@@ -1,13 +1,14 @@
 <script lang="ts">
     import LinkButton from '$components/LinkButton.svelte'
+    import Screen from '$components/Screen.svelte'
 </script>
 
-<!-- Design link: https://www.figma.com/file/dj1eaMaWVKt18tfFengORu/better?node-id=2%3A493 -->
+<Screen>
+    <h1 class="mt-20 text-6xl tracking-wider" slot="header">
+        Get<br />Better.
+    </h1>
 
-<div class="px-8 pt-20 text-stone-50">
-    <h1 class="text-6xl tracking-wider">Get<br />Better.</h1>
-
-    <div class="space-y-4 py-16">
+    <div class="space-y-4 place-self-center py-16" slot="main">
         <p>
             Get daily bite-sized challenges to help you become a better version
             of yourself. You choose where you want to improve, and we lead you
@@ -24,7 +25,11 @@
         </p>
     </div>
 
-    <LinkButton href="/onboarding" class="mx-auto mt-8 block">
+    <LinkButton
+        href="/onboarding"
+        class="my-12 place-self-center"
+        slot="footer"
+    >
         Less talk, let's go!
     </LinkButton>
-</div>
+</Screen>
