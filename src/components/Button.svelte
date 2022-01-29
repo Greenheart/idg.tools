@@ -1,8 +1,11 @@
 <script lang="ts" context="module">
+    import { cx } from '$lib/utils'
+
     const variants = {
-        primary: 'bg-emerald-500 text-white',
-        secondary: 'bg-stone-400 text-black',
-        danger: 'bg-red-700 text-white',
+        primary: 'bg-stone-50 text-stone-900',
+        secondary: 'bg-transparent text-stone-50 border-stone-50',
+        danger: 'bg-red-700 text-stone-50',
+        inactive: 'bg-stone-50 text-stone-900 opacity-60',
     }
     const defaultVariant = 'primary'
 
@@ -24,8 +27,11 @@
 <!-- svelte-ignore a11y-autofocus -->
 <button
     {autofocus}
-    class={'px-12 py-4 transform-gpu hover:scale-105 duration-100 text-xl font-semibold ' +
-        variants[variant ?? defaultVariant]}
+    class={cx(
+        'px-12 py-4 transform-gpu hover:scale-105 duration-100 text-xl font-semibold rounded-2xl',
+        variants[variant ?? defaultVariant],
+        $$props.class ?? '',
+    )}
     on:click={onClick}
 >
     {label}
