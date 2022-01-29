@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Button from '$components/Button.svelte'
+    import LinkButton from '$components/LinkButton.svelte'
 </script>
 
 <!-- Design link: https://www.figma.com/file/dj1eaMaWVKt18tfFengORu/better?node-id=2%3A493 -->
@@ -24,9 +24,7 @@
         </p>
     </div>
 
-    <Button
-        onClick={() => {}}
-        label="Less talk, let's go!"
-        class="mx-auto mt-8 block"
-    />
+    <LinkButton href="/onboarding" class="mx-auto mt-8 block">
+        Less talk, let's go!
+    </LinkButton>
 </div>

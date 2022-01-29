@@ -1,18 +1,21 @@
 <script lang="ts" context="module">
     import { cx } from '$lib/utils'
 
-    const variants = {
+    export const variants = {
         primary: 'bg-stone-50 text-stone-900',
         secondary: 'bg-transparent text-stone-50 border-stone-50',
         danger: 'bg-red-700 text-stone-50',
         inactive: 'bg-stone-50 text-stone-900 opacity-60',
     }
-    const defaultVariant = 'primary'
+    export const defaultVariant = 'primary'
+
+    export const defaultButtonClasses =
+        'px-12 py-4 transform-gpu hover:scale-105 duration-100 text-xl font-semibold rounded-2xl text-center'
 
     export type ButtonProps = {
         onClick: () => void
         label: string
-        variant?: keyof typeof variants
+        variant: keyof typeof variants
         autofocus?: boolean
     }
 </script>
@@ -28,7 +31,7 @@
 <button
     {autofocus}
     class={cx(
-        'px-12 py-4 transform-gpu hover:scale-105 duration-100 text-xl font-semibold rounded-2xl',
+        defaultButtonClasses,
         variants[variant ?? defaultVariant],
         $$props.class ?? '',
     )}
