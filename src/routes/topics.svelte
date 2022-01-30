@@ -13,6 +13,10 @@
             selected = [...selected, topic]
         }
     }
+
+    const reset = () => {
+        selected = []
+    }
 </script>
 
 <Screen>
@@ -20,15 +24,19 @@
         I want to<br />be more
     </h1>
 
-    <div class="flex flex-wrap gap-2 place-self-center py-16" slot="main">
-        {#each AllTopics as topic}
-            <Button
-                label={topic}
-                on:click={() => toggleTopic(topic)}
-                variant={selected.includes(topic) ? 'active' : 'primary'}
-                size="sm"
-            />
-        {/each}
+    <div class="grid place-self-center py-16" slot="main">
+        <div class="flex flex-wrap gap-2 pb-8">
+            {#each AllTopics as topic}
+                <Button
+                    label={topic}
+                    on:click={() => toggleTopic(topic)}
+                    variant={selected.includes(topic) ? 'active' : 'primary'}
+                    size="sm"
+                />
+            {/each}
+        </div>
+
+        <Button label="Reset" size="sm" on:click={reset} variant="secondary" />
     </div>
 
     <LinkButton
