@@ -14,7 +14,7 @@
         <p>It doesn't have to be harder than that.</p>
     </div>
 
-    <LinkButton href="/" class="my-12 place-self-center" slot="footer">
+    <LinkButton href="/topics" class="my-12 place-self-center" slot="footer">
         Choose topics
     </LinkButton>
 </Screen>

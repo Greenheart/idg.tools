@@ -6,28 +6,25 @@
         secondary: 'bg-transparent text-stone-50 border-stone-50',
         danger: 'bg-red-700 text-stone-50',
         disabled: 'bg-stone-50 text-stone-900 opacity-60 pointer-events-none',
+        active: 'bg-purple-500 text-stone-50',
     }
+    export const sizes = {
+        lg: 'px-12 py-4 text-xl',
+        sm: 'px-2 py-1 text-base rounded-xl',
+    }
+
     export const defaultVariant = 'primary'
-
-    // IDEA: Add standard button sizes controlled by props
-
-    export const defaultButtonClasses =
-        'px-12 py-4 transform-gpu hover:scale-105 duration-100 text-xl font-semibold rounded-2xl text-center'
-
-    export type ButtonProps = {
-        onClick: () => void
-        label: string
-        variant: keyof typeof variants
-        autofocus?: boolean
-    }
+    export const defaultSize = 'lg'
+    export const defaultClasses =
+        'transform-gpu hover:scale-105 duration-100 font-semibold rounded-2xl text-center'
 </script>
 
 <script lang="ts">
-    export let variant: ButtonProps['variant'] = defaultVariant
-    export let onClick: ButtonProps['onClick']
-    export let label: ButtonProps['label']
-    export let autofocus: ButtonProps['autofocus'] = false
+    export let variant: keyof typeof variants = defaultVariant
+    export let label: string
+    export let autofocus: boolean = false
     export let disabled: boolean = false
+    export let size: keyof typeof sizes = defaultSize
 </script>
 
 <!-- svelte-ignore a11y-autofocus -->
@@ -35,11 +32,12 @@
     {autofocus}
     {disabled}
     class={cx(
-        defaultButtonClasses,
+        defaultClasses,
         variants[disabled ? 'disabled' : variant ?? defaultVariant],
+        sizes[size ?? defaultSize],
         $$props.class ?? '',
     )}
-    on:click={onClick}
+    on:click
 >
     {label}
 </button>

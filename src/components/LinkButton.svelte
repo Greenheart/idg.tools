@@ -5,13 +5,17 @@
     import {
         variants,
         defaultVariant,
-        defaultButtonClasses,
+        defaultClasses,
+        sizes,
+        defaultSize,
     } from './Button.svelte'
     import Link from './Link.svelte'
 </script>
 
 <script lang="ts">
     export let variant: keyof typeof variants = defaultVariant
+    export let size: keyof typeof sizes = defaultSize
+    export let disabled: boolean = false
 
     export let href = ''
     let additionalProps: object
@@ -27,9 +31,11 @@
 <Link
     {href}
     {...$$props}
+    {disabled}
     class={cx(
-        defaultButtonClasses,
-        variants[variant ?? defaultVariant],
+        defaultClasses,
+        variants[disabled ? 'disabled' : variant ?? defaultVariant],
+        sizes[size ?? defaultSize],
         $$props.class ?? '',
     )}
     {...additionalProps}
