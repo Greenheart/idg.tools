@@ -8,7 +8,7 @@
     onMount(() => (ready = true))
 </script>
 
-<h1 class="pt-16 text-6xl tracking-wider md:pt-20">
+<h1 class="px-8 pt-16 text-6xl tracking-wider md:pt-20">
     Get<br />Better.
 </h1>
 
@@ -32,7 +32,7 @@
 
     <div
         in:fly={{ y: -10, delay: 2700, duration: 1000 }}
-        class="mx-auto flex justify-center"
+        class="mx-auto flex justify-center px-8"
     >
         <LinkButton href="/focus">Less talk, let's go!</LinkButton>
     </div>
