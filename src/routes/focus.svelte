@@ -1,21 +1,23 @@
 <script lang="ts">
     import Button from '$components/Button.svelte'
 
-    import { InnerDevelopmentGoals, IDGSkill } from '$lib/idgs'
+    import {
+        InnerDevelopmentGoals,
+        IDGSkill,
+        category,
+        skillsInCategory,
+    } from '$lib/idgs'
     import { cx } from '$lib/utils'
 
     let selected: IDGSkill[] = []
 
     const toggleSkill = (skill: IDGSkill) => {
-        if (isSkillSelected(skill)) {
+        if (selected.some((s) => s.id === skill.id)) {
             selected = selected.filter((s) => s.id !== skill.id)
         } else {
             selected = [...selected, skill]
         }
     }
-
-    const isSkillSelected = (skill: IDGSkill) =>
-        selected.some((s) => s.id === skill.id)
 
     const reset = () => {
         selected = []
@@ -35,28 +37,30 @@
 </script>
 
 <h1 class="pt-16 text-6xl tracking-wider md:pt-20">
-    I want<br />to develop.
+    I want<br />to develop
 </h1>
 
-<div class="space-y-6 py-12 md:py-16">
+<div class="space-y-5 py-12 md:py-16">
     {#each InnerDevelopmentGoals.categories as { name, subtitle, id: categoryId, color }}
         <details class="text-stone-900">
             <summary
-                class={cx('!list-none marker:!hidden p-4 select-none', color)}
+                class={cx(
+                    '!list-none marker:!hidden p-4 select-none text-lg cursor-pointer',
+                    color,
+                )}
             >
-                <span class="font-xl font-bold">{name}</span>
+                <span class="text-xl font-bold">{name}</span>
                 <br />{subtitle}
             </summary>
-            <div class="flex flex-wrap justify-center gap-2 p-4">
-                <!-- TODO: get skills to re-render when selected changes. -->
-                <!-- TODO: get skills to render with correct colors matching the idgs -->
-                <!-- TODO: Add colors to each skill, both original hex and our custom hex -->
-                {#each InnerDevelopmentGoals.skills.filter((s) => s.category === categoryId) as skill}
+            <div class="flex flex-wrap justify-center gap-3 px-4 pt-4">
+                {#each skillsInCategory(categoryId) as skill (skill.name)}
                     <Button
                         label={skill.name}
                         on:click={() => toggleSkill(skill)}
-                        variant={isSkillSelected(skill) ? 'active' : 'primary'}
                         size="sm"
+                        class={selected.some((s) => s.id === skill.id)
+                            ? color
+                            : undefined}
                     />
                 {/each}
             </div>

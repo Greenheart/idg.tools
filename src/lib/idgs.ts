@@ -1,4 +1,5 @@
 export const InnerDevelopmentGoals = {
+    // IDG colors use original colors, with added alpha transparency in two final characters
     categories: [
         {
             id: 1,
@@ -198,3 +199,12 @@ export const InnerDevelopmentGoals = {
 
 export type IDGSkill = typeof InnerDevelopmentGoals['skills'][number]
 export type IDGCategory = typeof InnerDevelopmentGoals['categories'][number]
+
+export const category = (id: IDGCategory['id']): IDGCategory =>
+    InnerDevelopmentGoals.categories.find((c) => c.id === id) as IDGCategory
+
+export const skill = (id: IDGSkill['id']): IDGSkill =>
+    InnerDevelopmentGoals.skills.find((s) => s.id === id) as IDGSkill
+
+export const skillsInCategory = (id: IDGCategory['id']): IDGSkill[] =>
+    InnerDevelopmentGoals.skills.filter((s) => s.category === id)
