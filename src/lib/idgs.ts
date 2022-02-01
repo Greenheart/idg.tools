@@ -1,10 +1,14 @@
 export const InnerDevelopmentGoals = {
     categories: [
-        { id: 1, name: 'Being — Relationship to Self' },
-        { id: 2, name: 'Thinking — Cognitive Skills' },
-        { id: 3, name: 'Relating — Caring for Others and the World' },
-        { id: 4, name: 'Collaborating — Social Skills' },
-        { id: 5, name: 'Acting — Driving change' },
+        { id: 1, name: 'Being', subtitle: 'Relationship to Self' },
+        { id: 2, name: 'Thinking', subtitle: 'Cognitive Skills' },
+        {
+            id: 3,
+            name: 'Relating',
+            subtitle: 'Caring for Others and the World',
+        },
+        { id: 4, name: 'Collaborating', subtitle: 'Social Skills' },
+        { id: 5, name: 'Acting', subtitle: 'Driving change' },
     ],
     skills: [
         {
@@ -170,3 +174,6 @@ export const InnerDevelopmentGoals = {
         },
     ],
 }
+
+export type IDGSkill = typeof InnerDevelopmentGoals['skills'][number]
+export type IDGCategory = typeof InnerDevelopmentGoals['categories'][number]

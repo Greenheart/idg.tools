@@ -13,7 +13,7 @@
 </h1>
 
 {#if ready}
-    <div class="space-y-6 place-self-center py-12 md:py-16">
+    <div class="space-y-6 py-12 md:py-16">
         <p in:fly={{ y: -30, delay: 500, duration: 1000 }}>
             Get daily bite-sized challenges to help you become a better version
             of yourself. You choose where you want to improve, and we lead you
