@@ -1,14 +1,35 @@
 export const InnerDevelopmentGoals = {
     categories: [
-        { id: 1, name: 'Being', subtitle: 'Relationship to Self' },
-        { id: 2, name: 'Thinking', subtitle: 'Cognitive Skills' },
+        {
+            id: 1,
+            name: 'Being',
+            subtitle: 'Relationship to Self',
+            color: 'bg-[#CFB991CC]',
+        },
+        {
+            id: 2,
+            name: 'Thinking',
+            subtitle: 'Cognitive Skills',
+            color: 'bg-[#D88AA1CC]',
+        },
         {
             id: 3,
             name: 'Relating',
             subtitle: 'Caring for Others and the World',
+            color: 'bg-[#D64F42CC]',
         },
-        { id: 4, name: 'Collaborating', subtitle: 'Social Skills' },
-        { id: 5, name: 'Acting', subtitle: 'Driving change' },
+        {
+            id: 4,
+            name: 'Collaborating',
+            subtitle: 'Social Skills',
+            color: 'bg-[#ED7239CC]',
+        },
+        {
+            id: 5,
+            name: 'Acting',
+            subtitle: 'Driving change',
+            color: 'bg-[#5E2030B2]',
+        },
     ],
     skills: [
         {

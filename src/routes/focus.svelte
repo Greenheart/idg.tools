@@ -2,6 +2,7 @@
     import Button from '$components/Button.svelte'
 
     import { InnerDevelopmentGoals, IDGSkill } from '$lib/idgs'
+    import { cx } from '$lib/utils'
 
     let selected: IDGSkill[] = []
 
@@ -38,22 +39,27 @@
 </h1>
 
 <div class="space-y-6 py-12 md:py-16">
-    {#each InnerDevelopmentGoals.categories as { name, subtitle, id: categoryId }}
-        <details>
-            <summary>
-                <span class="font-xl font-bold">{name}</span><br />{subtitle}
+    {#each InnerDevelopmentGoals.categories as { name, subtitle, id: categoryId, color }}
+        <details class="text-stone-900">
+            <summary
+                class={cx('!list-none marker:!hidden p-4 select-none', color)}
+            >
+                <span class="font-xl font-bold">{name}</span>
+                <br />{subtitle}
             </summary>
-            <!-- TODO: get skills to re-render when selected changes. -->
-            <!-- TODO: get skills to render with correct colors matching the idgs -->
-            <!-- TODO: Add colors to each skill, both original hex and our custom hex -->
-            {#each InnerDevelopmentGoals.skills.filter((s) => s.category === categoryId) as skill}
-                <Button
-                    label={skill.name}
-                    on:click={() => toggleSkill(skill)}
-                    variant={isSkillSelected(skill) ? 'active' : 'primary'}
-                    size="sm"
-                />
-            {/each}
+            <div class="flex flex-wrap justify-center gap-2 p-4">
+                <!-- TODO: get skills to re-render when selected changes. -->
+                <!-- TODO: get skills to render with correct colors matching the idgs -->
+                <!-- TODO: Add colors to each skill, both original hex and our custom hex -->
+                {#each InnerDevelopmentGoals.skills.filter((s) => s.category === categoryId) as skill}
+                    <Button
+                        label={skill.name}
+                        on:click={() => toggleSkill(skill)}
+                        variant={isSkillSelected(skill) ? 'active' : 'primary'}
+                        size="sm"
+                    />
+                {/each}
+            </div>
         </details>
     {/each}
 </div>
