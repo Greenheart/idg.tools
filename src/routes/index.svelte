@@ -15,18 +15,17 @@
 {#if ready}
     <div class="space-y-6 py-12 md:py-16">
         <p in:fly={{ y: -30, delay: 500, duration: 1000 }}>
-            Get daily bite-sized challenges to help you become a better version
-            of yourself. You choose where you want to improve, and we lead you
-            there!
+            Inner Development Goals (IDGs) are the skills we all need to achieve
+            the UN Sustainable Development Goals (SDGs).
         </p>
         <p in:fly={{ y: -30, delay: 1200, duration: 1000 }}>
-            Every day you’ll get find a short lesson, a challenge, and an
-            article to learn more. Just an intro and some resources to dig
-            deeper - if you want to.
+            With this app, you get daily bite-sized challenges to develop these
+            skills. You pick the skills you want to develop, and we lead you
+            there!
         </p>
         <p in:fly={{ y: -30, delay: 2000, duration: 1000 }}>
-            You can change the topics you’re interested in or request new topics
-            from us. And best of all - it’s all free!
+            Every day you’ll get find a short lesson, a challenge, and an
+            article to learn a bit more more — simple, right?
         </p>
     </div>
 
