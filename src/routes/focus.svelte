@@ -57,7 +57,7 @@
     }
 </script>
 
-<h1 class="px-8 pt-16 text-6xl tracking-wider md:pt-20">
+<h1 class="px-5 pt-12 text-6xl tracking-wider md:pt-20">
     I want<br />to develop
 </h1>
 
@@ -109,7 +109,7 @@
     {/each}
 </div>
 
-<div class="mx-auto flex flex-col justify-center space-y-4 px-8">
+<div class="mx-auto flex flex-col items-center space-y-4 px-8">
     <Button on:click={saveChoices} label="Save choices" />
     <Button
         label="Reset"
