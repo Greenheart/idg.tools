@@ -1,6 +1,6 @@
-import preprocess from "svelte-preprocess"
-import { resolve } from "path"
-import adapter from "@sveltejs/adapter-static"
+import preprocess from 'svelte-preprocess'
+import { resolve } from 'path'
+import adapter from '@sveltejs/adapter-static'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -10,12 +10,11 @@ const config = {
         vite: {
             resolve: {
                 alias: {
-                    $components: resolve("src/components"),
-                    $lib: resolve("src/lib"),
+                    $components: resolve('src/components'),
+                    $lib: resolve('src/lib'),
                 },
             },
         },
-        target: "#svelte",
     },
 }
 
