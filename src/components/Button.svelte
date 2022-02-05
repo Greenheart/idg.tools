@@ -9,7 +9,7 @@
         active: 'bg-purple-500 text-stone-50',
     }
     export const sizes = {
-        lg: 'px-12 py-4 text-xl',
+        lg: 'px-12 py-3 text-xl',
         sm: 'px-2 py-1 text-base rounded-xl',
     }
 
