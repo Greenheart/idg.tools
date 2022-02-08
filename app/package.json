@@ -1,7 +1,7 @@
 {
-    "name": "better",
+    "name": "idg.tools",
     "version": "0.0.1",
-    "description": "Join the co-creation of a regenerative future",
+    "description": "https://idg.tools | Welcome to join the co-creation of an open source app that makes it easy to learn about the IDGs and practice them with your community!",
     "private": true,
     "scripts": {
         "dev": "svelte-kit dev",
