@@ -19,13 +19,7 @@ import { list } from '@keystone-6/core'
 
 // We're using some common fields in the starter. Check out https://keystonejs.com/docs/apis/fields#fields-api
 // for the full list of fields.
-import {
-    text,
-    relationship,
-    password,
-    timestamp,
-    select,
-} from '@keystone-6/core/fields'
+import { text, relationship, password } from '@keystone-6/core/fields'
 // The document field is a more complicated field, so it's in its own package
 // Keystone aims to have all the base field types, but you can make your own
 // custom ones.
@@ -54,69 +48,46 @@ export const lists: Lists = {
             }),
             // The password field takes care of hiding details and hashing values
             password: password({ validation: { isRequired: true } }),
-            // Relationships allow us to reference other lists. In this case,
-            // we want a user to have many posts, and we are saying that the user
-            // should be referencable by the 'author' field of posts.
-            // Make sure you read the docs to understand how they work: https://keystonejs.com/docs/guides/relationships#understanding-relationships
-            posts: relationship({ ref: 'Post.author', many: true }),
         },
         // Here we can configure the Admin UI. We want to show a user's name and posts in the Admin UI
         ui: {
             listView: {
-                initialColumns: ['name', 'posts'],
+                initialColumns: ['name'],
             },
         },
     }),
-    // Our second list is the Posts list. We've got a few more fields here
-    // so we have all the info we need for displaying posts.
-    Post: list({
+    Tool: list({
         fields: {
-            title: text(),
-            // Having the status here will make it easy for us to choose whether to display
-            // posts on a live site.
-            status: select({
-                options: [
-                    { label: 'Published', value: 'published' },
-                    { label: 'Draft', value: 'draft' },
-                ],
-                // We want to make sure new posts start off as a draft when they are created
-                defaultValue: 'draft',
-                // fields also have the ability to configure their appearance in the Admin UI
-                ui: {
-                    displayMode: 'segmented-control',
-                },
-            }),
-            // The document field can be used for making highly editable content. Check out our
-            // guide on the document field https://keystonejs.com/docs/guides/document-fields#how-to-use-document-fields
-            // for more information
-            content: document({
+            name: text(),
+            description: document({
                 formatting: true,
-                layouts: [
-                    [1, 1],
-                    [1, 1, 1],
-                    [2, 1],
-                    [1, 2],
-                    [1, 2, 1],
-                ],
                 links: true,
                 dividers: true,
             }),
-            publishDate: timestamp(),
-            // Here is the link from post => author.
-            // We've configured its UI display quite a lot to make the experience of editing posts better.
-            author: relationship({
-                ref: 'User.posts',
+            challenge: document({
+                formatting: true,
+                links: true,
+                dividers: true,
+            }),
+            resource: document({
+                formatting: true,
+                links: true,
+                dividers: true,
+            }),
+            categories: relationship({
+                ref: 'Category.tools',
                 ui: {
                     displayMode: 'cards',
-                    cardFields: ['name', 'email'],
-                    inlineEdit: { fields: ['name', 'email'] },
+                    cardFields: ['name'],
+                    inlineEdit: { fields: ['name'] },
                     linkToItem: true,
-                    inlineCreate: { fields: ['name', 'email'] },
+                    inlineConnect: true,
+                    inlineCreate: { fields: ['name'] },
                 },
+                many: true,
             }),
-            // We also link posts to tags. This is a many <=> many linking.
-            tags: relationship({
-                ref: 'Tag.posts',
+            skills: relationship({
+                ref: 'Skill.tools',
                 ui: {
                     displayMode: 'cards',
                     cardFields: ['name'],
@@ -128,15 +99,31 @@ export const lists: Lists = {
                 many: true,
             }),
         },
-    }),
-    // Our final list is the tag list. This field is just a name and a relationship to posts
-    Tag: list({
         ui: {
-            isHidden: true,
+            listView: {
+                initialColumns: ['name', 'description', 'categories', 'skills'],
+            },
         },
+    }),
+    Category: list({
         fields: {
             name: text(),
-            posts: relationship({ ref: 'Post.tags', many: true }),
+            subtitle: text(),
+            tools: relationship({ ref: 'Tool.categories', many: true }),
+            skills: relationship({
+                ref: 'Skill.category',
+                many: true,
+            }),
+        },
+    }),
+    Skill: list({
+        fields: {
+            name: text(),
+            description: text(),
+            tools: relationship({ ref: 'Tool.skills', many: true }),
+            category: relationship({
+                ref: 'Category.skills',
+            }),
         },
     }),
 }

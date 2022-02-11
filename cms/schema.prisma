@@ -16,24 +16,33 @@ model User {
   name     String @default("")
   email    String @unique @default("")
   password String
-  posts    Post[] @relation("Post_author")
 }
 
-model Post {
+model Tool {
+  id          String     @id @default(cuid())
+  name        String     @default("")
+  description String     @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  challenge   String     @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  resource    String     @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  categories  Category[] @relation("Category_tools")
+  skills      Skill[]    @relation("Skill_tools")
+}
+
+model Category {
+  id       String  @id @default(cuid())
+  name     String  @default("")
+  subtitle String  @default("")
+  tools    Tool[]  @relation("Category_tools")
+  skills   Skill[] @relation("Skill_category")
+}
+
+model Skill {
   id          String    @id @default(cuid())
-  title       String    @default("")
-  status      String?   @default("draft")
-  content     String    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  publishDate DateTime?
-  author      User?     @relation("Post_author", fields: [authorId], references: [id])
-  authorId    String?   @map("author")
-  tags        Tag[]     @relation("Post_tags")
+  name        String    @default("")
+  description String    @default("")
+  tools       Tool[]    @relation("Skill_tools")
+  category    Category? @relation("Skill_category", fields: [categoryId], references: [id])
+  categoryId  String?   @map("category")
 
-  @@index([authorId])
-}
-
-model Tag {
-  id    String @id @default(cuid())
-  name  String @default("")
-  posts Post[] @relation("Post_tags")
+  @@index([categoryId])
 }
