@@ -99,6 +99,7 @@ type Tool {
   description: Tool_description_Document
   challenge: Tool_challenge_Document
   resource: Tool_resource_Document
+  status: String
   categories(
     where: CategoryWhereInput! = {}
     orderBy: [CategoryOrderByInput!]! = []
@@ -137,8 +138,37 @@ input ToolWhereInput {
   NOT: [ToolWhereInput!]
   id: IDFilter
   name: StringFilter
+  status: StringNullableFilter
   categories: CategoryManyRelationFilter
   skills: SkillManyRelationFilter
+}
+
+input StringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringNullableFilter
+}
+
+input NestedStringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringNullableFilter
 }
 
 input CategoryManyRelationFilter {
@@ -156,6 +186,7 @@ input SkillManyRelationFilter {
 input ToolOrderByInput {
   id: OrderDirection
   name: OrderDirection
+  status: OrderDirection
 }
 
 input ToolUpdateInput {
@@ -163,6 +194,7 @@ input ToolUpdateInput {
   description: JSON
   challenge: JSON
   resource: JSON
+  status: String
   categories: CategoryRelateToManyForUpdateInput
   skills: SkillRelateToManyForUpdateInput
 }
@@ -191,6 +223,7 @@ input ToolCreateInput {
   description: JSON
   challenge: JSON
   resource: JSON
+  status: String
   categories: CategoryRelateToManyForCreateInput
   skills: SkillRelateToManyForCreateInput
 }

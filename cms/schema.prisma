@@ -24,6 +24,7 @@ model Tool {
   description String     @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
   challenge   String     @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
   resource    String     @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  status      String?    @default("draft")
   categories  Category[] @relation("Category_tools")
   skills      Skill[]    @relation("Skill_tools")
 }
