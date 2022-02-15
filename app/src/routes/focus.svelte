@@ -5,7 +5,7 @@
         InnerDevelopmentGoals,
         IDGSkill,
         IDGCategory,
-        skillsInCategory,
+        getSkillsInCategory,
     } from '$lib/idgs'
     import { cx } from '$lib/utils'
 
@@ -94,7 +94,7 @@
                 </svg>
             </summary>
             <div class="flex flex-wrap justify-center gap-3 px-4 pt-4">
-                {#each skillsInCategory(categoryId) as skill (skill.name)}
+                {#each getSkillsInCategory(categoryId) as skill (skill.name)}
                     <Button
                         label={skill.name}
                         on:click={() => toggleSkill(skill)}
