@@ -1,5 +1,3 @@
-// TODO: fetch all content
-
 import 'dotenv/config'
 import { fetch } from 'native-fetch'
 import { writeFile } from 'fs/promises'
