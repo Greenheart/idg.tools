@@ -3,7 +3,6 @@
 
     import {
         InnerDevelopmentGoals,
-        IDGSkill,
         IDGCategory,
         getSkillsInCategory,
     } from '$lib/idgs'
@@ -11,28 +10,25 @@
     import { selectedSkills } from '$lib/stores'
     import { goto } from '$app/navigation'
 
-    let selected: IDGSkill['id'][] = $selectedSkills
-
     const toggleSkill = (skillId: number) => {
-        if (selected.includes(skillId)) {
-            selected = selected.filter((id) => id !== skillId)
+        if ($selectedSkills.includes(skillId)) {
+            $selectedSkills = $selectedSkills.filter((id) => id !== skillId)
         } else {
-            selected = [...selected, skillId]
+            $selectedSkills = [...$selectedSkills, skillId]
         }
     }
 
     const reset = () => {
-        selected = []
+        $selectedSkills = []
     }
 
     const saveChoices = () => {
-        if (!selected.length) {
+        if (!$selectedSkills.length) {
             // Use all skills if no specific ones were selected
-            selected = InnerDevelopmentGoals.skills.map((s) => s.id)
+            $selectedSkills = InnerDevelopmentGoals.skills.map((s) => s.id)
         }
 
-        console.log(selected)
-        $selectedSkills = selected
+        console.log($selectedSkills)
 
         goto('/explore')
     }
@@ -101,7 +97,9 @@
                         label={skill.name}
                         on:click={() => toggleSkill(skill.id)}
                         size="sm"
-                        class={selected.includes(skill.id) ? color : undefined}
+                        class={$selectedSkills.includes(skill.id)
+                            ? color
+                            : undefined}
                     />
                 {/each}
             </div>
@@ -110,7 +108,7 @@
 </div>
 
 <div class="mx-auto flex flex-col items-center space-y-4 px-8">
-    <Button on:click={saveChoices} label="Save choices" />
+    <Button on:click={saveChoices} label="Explore tools" />
     <Button
         label="Reset"
         size="sm"
