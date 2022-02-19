@@ -1,6 +1,8 @@
 <script lang="ts">
-    import Button from '$components/Button.svelte'
+    import { onMount } from 'svelte'
 
+    import Button from '$components/Button.svelte'
+    import LinkButton from '$components/LinkButton.svelte'
     import {
         InnerDevelopmentGoals,
         IDGCategory,
@@ -8,8 +10,6 @@
     } from '$lib/idgs'
     import { cx } from '$lib/utils'
     import { selectedSkills } from '$lib/stores'
-    import { goto } from '$app/navigation'
-    import { onMount } from 'svelte'
 
     onMount(() => {
         selectedSkills.useLocalStorage()
@@ -25,17 +25,6 @@
 
     const reset = () => {
         $selectedSkills = []
-    }
-
-    const saveChoices = () => {
-        if (!$selectedSkills.length) {
-            // Use all skills if no specific ones were selected
-            $selectedSkills = InnerDevelopmentGoals.skills.map((s) => s.id)
-        }
-
-        console.log($selectedSkills)
-
-        goto('/explore')
     }
 
     let isCategoryOpen: Record<IDGCategory['id'], boolean> = Object.values(
@@ -113,7 +102,7 @@
 </div>
 
 <div class="mx-auto flex flex-col items-center space-y-4 px-8">
-    <Button on:click={saveChoices} label="Explore tools" />
+    <LinkButton href="/explore">Explore tools</LinkButton>
     <Button
         label="Reset"
         size="sm"
