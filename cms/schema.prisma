@@ -27,6 +27,7 @@ model Tool {
   status      String?    @default("draft")
   categories  Category[] @relation("Category_tools")
   skills      Skill[]    @relation("Skill_tools")
+  slug        String     @default("")
 }
 
 model Category {
@@ -35,6 +36,7 @@ model Category {
   description String  @default("")
   tools       Tool[]  @relation("Category_tools")
   skills      Skill[] @relation("Skill_category")
+  color       String  @default("")
 }
 
 model Skill {

@@ -114,6 +114,7 @@ type Tool {
     skip: Int! = 0
   ): [Skill!]
   skillsCount(where: SkillWhereInput! = {}): Int
+  slug: String
 }
 
 type Tool_description_Document {
@@ -141,6 +142,7 @@ input ToolWhereInput {
   status: StringNullableFilter
   categories: CategoryManyRelationFilter
   skills: SkillManyRelationFilter
+  slug: StringFilter
 }
 
 input StringNullableFilter {
@@ -187,6 +189,7 @@ input ToolOrderByInput {
   id: OrderDirection
   name: OrderDirection
   status: OrderDirection
+  slug: OrderDirection
 }
 
 input ToolUpdateInput {
@@ -197,6 +200,7 @@ input ToolUpdateInput {
   status: String
   categories: CategoryRelateToManyForUpdateInput
   skills: SkillRelateToManyForUpdateInput
+  slug: String
 }
 
 input CategoryRelateToManyForUpdateInput {
@@ -226,6 +230,7 @@ input ToolCreateInput {
   status: String
   categories: CategoryRelateToManyForCreateInput
   skills: SkillRelateToManyForCreateInput
+  slug: String
 }
 
 input CategoryRelateToManyForCreateInput {
@@ -256,6 +261,7 @@ type Category {
     skip: Int! = 0
   ): [Skill!]
   skillsCount(where: SkillWhereInput! = {}): Int
+  color: String
 }
 
 input CategoryWhereUniqueInput {
@@ -271,6 +277,7 @@ input CategoryWhereInput {
   description: StringFilter
   tools: ToolManyRelationFilter
   skills: SkillManyRelationFilter
+  color: StringFilter
 }
 
 input ToolManyRelationFilter {
@@ -283,6 +290,7 @@ input CategoryOrderByInput {
   id: OrderDirection
   name: OrderDirection
   description: OrderDirection
+  color: OrderDirection
 }
 
 input CategoryUpdateInput {
@@ -290,6 +298,7 @@ input CategoryUpdateInput {
   description: String
   tools: ToolRelateToManyForUpdateInput
   skills: SkillRelateToManyForUpdateInput
+  color: String
 }
 
 input ToolRelateToManyForUpdateInput {
@@ -309,6 +318,7 @@ input CategoryCreateInput {
   description: String
   tools: ToolRelateToManyForCreateInput
   skills: SkillRelateToManyForCreateInput
+  color: String
 }
 
 input ToolRelateToManyForCreateInput {

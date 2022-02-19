@@ -31,6 +31,8 @@ import { document } from '@keystone-6/fields-document'
 // that Typescript cannot easily infer.
 import { Lists } from '.keystone/types'
 
+import { createSlug } from './utils'
+
 // We have a users list, a blogs list, and tags for blog posts, so they can be filtered.
 // Each property on the exported object will become the name of a list (a.k.a. the `listKey`),
 // with the value being the definition of the list, including the fields.
@@ -58,21 +60,18 @@ export const lists: Lists = {
     }),
     Tool: list({
         fields: {
-            name: text(),
+            name: text({ validation: { isRequired: true }, defaultValue: '' }),
             description: document({
                 formatting: true,
                 links: true,
-                dividers: true,
             }),
             challenge: document({
                 formatting: true,
                 links: true,
-                dividers: true,
             }),
             resource: document({
                 formatting: true,
                 links: true,
-                dividers: true,
             }),
             status: select({
                 options: [
@@ -109,6 +108,18 @@ export const lists: Lists = {
                 },
                 many: true,
             }),
+            // IDEA: Warn users about changing the slug since it will break links
+            // TODO: Add 404 redirect for invalid slugs back to the explore page
+            slug: text({ defaultValue: '' }),
+        },
+        hooks: {
+            resolveInput: ({ operation, resolvedData }) => {
+                if (operation === 'create' && resolvedData) {
+                    // @ts-expect-error 2540
+                    resolvedData.slug = createSlug(resolvedData.name ?? '')
+                }
+                return resolvedData
+            },
         },
         ui: {
             listView: {
@@ -125,6 +136,7 @@ export const lists: Lists = {
                 ref: 'Skill.category',
                 many: true,
             }),
+            color: text({ defaultValue: '' }),
         },
     }),
     Skill: list({
