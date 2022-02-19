@@ -8,10 +8,10 @@
     onMount(() => (ready = true))
 </script>
 
-<h1 class="px-5 pt-12 text-6xl tracking-wider md:pt-20">IDG.tools</h1>
+<h1 class="pt-12 text-6xl tracking-wider md:pt-16">IDG.tools</h1>
 
 {#if ready}
-    <div class="space-y-6 py-12 px-5 md:py-16">
+    <div class="space-y-6 py-12 md:py-16">
         <p in:fly={{ y: -30, delay: 300, duration: 1000 }}>
             Inner Development Goals (IDGs) are the skills we all need to achieve
             the UN Sustainable Development Goals (SDGs).
