@@ -13,7 +13,7 @@
 
 {#each Object.entries(TOOLS) as [slug, tool] (slug)}
     {#each tool.skills as skillId}
-        <Link href={`/tools/${slug}`}>
+        <Link href={`/explore/${slug}`}>
             <div class="bg-black p-4">
                 <h2 class="pb-4 font-semibold">{tool.name}</h2>
                 <Button
