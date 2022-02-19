@@ -8,14 +8,16 @@
         getSkillsInCategory,
     } from '$lib/idgs'
     import { cx } from '$lib/utils'
+    import { selectedSkills } from '$lib/stores'
+    import { goto } from '$app/navigation'
 
-    let selected: IDGSkill[] = []
+    let selected: IDGSkill['id'][] = $selectedSkills
 
-    const toggleSkill = (skill: IDGSkill) => {
-        if (selected.some((s) => s.id === skill.id)) {
-            selected = selected.filter((s) => s.id !== skill.id)
+    const toggleSkill = (skillId: number) => {
+        if (selected.includes(skillId)) {
+            selected = selected.filter((id) => id !== skillId)
         } else {
-            selected = [...selected, skill]
+            selected = [...selected, skillId]
         }
     }
 
@@ -26,13 +28,13 @@
     const saveChoices = () => {
         if (!selected.length) {
             // Use all skills if no specific ones were selected
-            selected = InnerDevelopmentGoals.skills.slice()
+            selected = InnerDevelopmentGoals.skills.map((s) => s.id)
         }
 
         console.log(selected)
+        $selectedSkills = selected
 
-        // TODO: Save choices in localStorage (or IndexedDB in the future for a app beyond the PoC stage)
-        // TODO: Navigate to the next screen, using svelte's built-in router
+        goto('/explore')
     }
 
     let isCategoryOpen: Record<IDGCategory['id'], boolean> = Object.values(
@@ -97,11 +99,9 @@
                 {#each getSkillsInCategory(categoryId) as skill (skill.name)}
                     <Button
                         label={skill.name}
-                        on:click={() => toggleSkill(skill)}
+                        on:click={() => toggleSkill(skill.id)}
                         size="sm"
-                        class={selected.some((s) => s.id === skill.id)
-                            ? color
-                            : undefined}
+                        class={selected.includes(skill.id) ? color : undefined}
                     />
                 {/each}
             </div>
