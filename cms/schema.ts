@@ -119,7 +119,7 @@ export const lists: Lists = {
     Category: list({
         fields: {
             name: text(),
-            subtitle: text(),
+            description: text(),
             tools: relationship({ ref: 'Tool.categories', many: true }),
             skills: relationship({
                 ref: 'Skill.category',

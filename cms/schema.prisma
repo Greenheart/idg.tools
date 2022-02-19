@@ -30,11 +30,11 @@ model Tool {
 }
 
 model Category {
-  id       String  @id @default(cuid())
-  name     String  @default("")
-  subtitle String  @default("")
-  tools    Tool[]  @relation("Category_tools")
-  skills   Skill[] @relation("Skill_category")
+  id          String  @id @default(cuid())
+  name        String  @default("")
+  description String  @default("")
+  tools       Tool[]  @relation("Category_tools")
+  skills      Skill[] @relation("Skill_category")
 }
 
 model Skill {

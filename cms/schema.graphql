@@ -241,7 +241,7 @@ input SkillRelateToManyForCreateInput {
 type Category {
   id: ID!
   name: String
-  subtitle: String
+  description: String
   tools(
     where: ToolWhereInput! = {}
     orderBy: [ToolOrderByInput!]! = []
@@ -268,7 +268,7 @@ input CategoryWhereInput {
   NOT: [CategoryWhereInput!]
   id: IDFilter
   name: StringFilter
-  subtitle: StringFilter
+  description: StringFilter
   tools: ToolManyRelationFilter
   skills: SkillManyRelationFilter
 }
@@ -282,12 +282,12 @@ input ToolManyRelationFilter {
 input CategoryOrderByInput {
   id: OrderDirection
   name: OrderDirection
-  subtitle: OrderDirection
+  description: OrderDirection
 }
 
 input CategoryUpdateInput {
   name: String
-  subtitle: String
+  description: String
   tools: ToolRelateToManyForUpdateInput
   skills: SkillRelateToManyForUpdateInput
 }
@@ -306,7 +306,7 @@ input CategoryUpdateArgs {
 
 input CategoryCreateInput {
   name: String
-  subtitle: String
+  description: String
   tools: ToolRelateToManyForCreateInput
   skills: SkillRelateToManyForCreateInput
 }

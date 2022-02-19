@@ -54,7 +54,7 @@
 </h1>
 
 <div class="space-y-5 py-12 md:py-16">
-    {#each InnerDevelopmentGoals.categories as { name, subtitle, id: categoryId, color }}
+    {#each InnerDevelopmentGoals.categories as { name, description, id: categoryId, color }}
         <details
             class={cx('text-stone-900')}
             on:toggle={(event) => onToggle(event, categoryId)}
@@ -67,7 +67,7 @@
             >
                 <span>
                     <span class="text-xl font-bold">{name}</span>
-                    <br />{subtitle}
+                    <br />{description}
                 </span>
                 <svg
                     class={cx(
