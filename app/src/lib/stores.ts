@@ -1,5 +1,7 @@
 import { writable } from 'svelte/store'
 
+import type { ItemId } from '$lib/idgs'
+
 function createPersistedStore<T>(key: string, startValue: T) {
     const { subscribe, set } = writable(startValue)
 
@@ -19,4 +21,4 @@ function createPersistedStore<T>(key: string, startValue: T) {
     }
 }
 
-export const selectedSkills = createPersistedStore<number[]>('selected', [])
+export const selectedSkills = createPersistedStore<ItemId[]>('selected', [])

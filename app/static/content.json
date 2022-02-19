@@ -5,7 +5,8 @@
       "name": "Being",
       "description": "Relationship to Self",
       "tools": [
-        "ckzf7tws30038zxn01pkcsrx7"
+        "ckzf7tws30038zxn01pkcsrx7",
+        "ckzucmgr10182x4n02ya4oywj"
       ],
       "skills": [
         "ckzi3a4z90431e2n04kx2pbq2",
@@ -13,7 +14,8 @@
         "ckzi3ayvo0547e2n03lvu0goo",
         "ckzi3b8sz0614e2n0ijnnazce",
         "ckzi3blfz0687e2n0huf88a8y"
-      ]
+      ],
+      "color": "#D9C7A7"
     },
     {
       "id": "ckzi38ilp0149e2n0idgw5zqv",
@@ -26,7 +28,8 @@
         "ckzi3d9gp0942e2n0lvc6k1nh",
         "ckzi3dk3h1039e2n0qxij7ooh",
         "ckzi3dtdk1142e2n0m9v02uf5"
-      ]
+      ],
+      "color": "#E0A1B4"
     },
     {
       "id": "ckzi38wix0218e2n09ncgnmxx",
@@ -38,7 +41,8 @@
         "ckzi3ef9s1366e2n082dhihsm",
         "ckzi3eor91487e2n0qdoa639u",
         "ckzi3ezut1614e2n07fab18pt"
-      ]
+      ],
+      "color": "#DE7268"
     },
     {
       "id": "ckzi3951t0293e2n0n3bykbg5",
@@ -51,7 +55,8 @@
         "ckzi3g17e2167e2n055jpiaaz",
         "ckzi3gb7f2318e2n04kesx118",
         "ckzi3gknp2475e2n0dm59ikcn"
-      ]
+      ],
+      "color": "#F18E61"
     },
     {
       "id": "ckzi39fwv0374e2n0d2eynda4",
@@ -63,7 +68,8 @@
         "ckzi3h80v2807e2n0l44d20qr",
         "ckzi3hi072982e2n0r4cdkqjy",
         "ckzi3hqs63163e2n03h36pb73"
-      ]
+      ],
+      "color": "#9E7983"
     }
   ],
   "skills": [
@@ -87,7 +93,9 @@
       "id": "ckzi3ayvo0547e2n03lvu0goo",
       "name": "Openness and Learning mindset",
       "description": "Having a basic mindset of curiosity and a willingness to be vulnerable and embrace change and grow.",
-      "tools": [],
+      "tools": [
+        "ckzucmgr10182x4n02ya4oywj"
+      ],
       "category": "ckzi3855r0086e2n0smi0mew5"
     },
     {
@@ -101,7 +109,9 @@
       "id": "ckzi3blfz0687e2n0huf88a8y",
       "name": "Presence",
       "description": "Ability to be in the here and now, without judgement and in a state of open-ended presence.",
-      "tools": [],
+      "tools": [
+        "ckzucmgr10182x4n02ya4oywj"
+      ],
       "category": "ckzi3855r0086e2n0smi0mew5"
     },
     {
@@ -276,7 +286,56 @@
       ],
       "skills": [
         "ckzi3a4z90431e2n04kx2pbq2"
-      ]
+      ],
+      "slug": "inner-compass"
+    },
+    {
+      "id": "ckzucmgr10182x4n02ya4oywj",
+      "name": "Practice presence with meditation",
+      "description": {
+        "document": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "Ability to be in the here and now, without judgement and in a state of open-ended presence"
+              }
+            ]
+          }
+        ]
+      },
+      "challenge": {
+        "document": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "Discuss with a friend: What helps you to be present here and now and stay open for new thoughts and ideas?"
+              }
+            ]
+          }
+        ]
+      },
+      "resource": {
+        "document": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "Try a meditation in the 29k app."
+              }
+            ]
+          }
+        ]
+      },
+      "categories": [
+        "ckzi3855r0086e2n0smi0mew5"
+      ],
+      "skills": [
+        "ckzi3ayvo0547e2n03lvu0goo",
+        "ckzi3blfz0687e2n0huf88a8y"
+      ],
+      "slug": "presence-meditation"
     }
   ]
 }

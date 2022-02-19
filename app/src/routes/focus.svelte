@@ -4,18 +4,25 @@
     import Button from '$components/Button.svelte'
     import LinkButton from '$components/LinkButton.svelte'
     import {
-        InnerDevelopmentGoals,
-        IDGCategory,
+        getCategories,
+        Category,
         getSkillsInCategory,
+        ItemId,
+        loadData,
     } from '$lib/idgs'
     import { cx } from '$lib/utils'
     import { selectedSkills } from '$lib/stores'
 
-    onMount(() => {
+    let categories: Category[] = []
+
+    onMount(async () => {
         selectedSkills.useLocalStorage()
+        // TODO: Consider using SSR - or adding a loading spinner and caching content.
+        await loadData('/content.json')
+        categories = getCategories()
     })
 
-    const toggleSkill = (skillId: number) => {
+    const toggleSkill = (skillId: ItemId) => {
         if ($selectedSkills.includes(skillId)) {
             $selectedSkills = $selectedSkills.filter((id) => id !== skillId)
         } else {
@@ -27,9 +34,9 @@
         $selectedSkills = []
     }
 
-    let isCategoryOpen: Record<IDGCategory['id'], boolean> = Object.values(
-        InnerDevelopmentGoals.categories,
-    ).reduce((isCategoryOpen: Record<IDGCategory['id'], boolean>, category) => {
+    let isCategoryOpen: Record<Category['id'], boolean> = Object.values(
+        categories,
+    ).reduce((isCategoryOpen: Record<Category['id'], boolean>, category) => {
         isCategoryOpen[category.id] = false
         return isCategoryOpen
     }, {})
@@ -37,7 +44,7 @@
         event: Event & {
             currentTarget: EventTarget & HTMLElement
         },
-        categoryId: IDGCategory['id'],
+        categoryId: Category['id'],
     ) => {
         isCategoryOpen = {
             ...isCategoryOpen,
@@ -54,16 +61,14 @@
 </h1>
 
 <div class="space-y-5 py-12 md:py-16">
-    {#each InnerDevelopmentGoals.categories as { name, description, id: categoryId, color }}
+    {#each categories as { name, description, id: categoryId, color }}
         <details
             class={cx('text-stone-900')}
             on:toggle={(event) => onToggle(event, categoryId)}
         >
             <summary
-                class={cx(
-                    '!list-none marker:!hidden p-4 select-none text-lg cursor-pointer flex justify-between items-center',
-                    color,
-                )}
+                class="flex cursor-pointer select-none !list-none items-center justify-between p-4 text-lg marker:!hidden"
+                style:background-color={color}
             >
                 <span>
                     <span class="text-xl font-bold">{name}</span>
@@ -91,8 +96,8 @@
                         label={skill.name}
                         on:click={() => toggleSkill(skill.id)}
                         size="sm"
-                        class={$selectedSkills.includes(skill.id)
-                            ? color
+                        style={$selectedSkills.includes(skill.id)
+                            ? `background-color: ${color}`
                             : undefined}
                     />
                 {/each}

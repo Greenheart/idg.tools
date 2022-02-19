@@ -29,6 +29,7 @@
 
 <!-- svelte-ignore a11y-autofocus -->
 <button
+    {...$$props}
     {autofocus}
     {disabled}
     class={cx(

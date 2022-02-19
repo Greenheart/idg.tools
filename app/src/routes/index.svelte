@@ -1,8 +1,9 @@
 <script lang="ts">
+    import { onMount } from 'svelte'
     import { fly } from 'svelte/transition'
 
     import LinkButton from '$components/LinkButton.svelte'
-    import { onMount } from 'svelte'
+    import Link from '$components/Link.svelte'
 
     let ready = false
     onMount(() => (ready = true))
@@ -10,11 +11,19 @@
 
 <h1 class="pt-12 text-6xl tracking-wider md:pt-16">IDG.tools</h1>
 
+<!-- IDEA: Add IDG favicon -->
+<!-- IDEA: Add IDG logo on the landing page -->
+
 {#if ready}
     <div class="space-y-6 py-12 md:py-16">
         <p in:fly={{ y: -30, delay: 300, duration: 1000 }}>
-            Inner Development Goals (IDGs) are the skills we all need to achieve
-            the UN Sustainable Development Goals (SDGs).
+            <Link
+                href="https://www.innerdevelopmentgoals.org"
+                class=" font-bold underline"
+            >
+                Inner Development Goals
+            </Link> (IDGs) are the skills we all need to achieve the UN Sustainable
+            Development Goals (SDGs).
         </p>
         <p in:fly={{ y: -30, delay: 1100, duration: 1000 }}>
             With this app, you get daily bite-sized challenges to develop these

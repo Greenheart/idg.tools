@@ -1,11 +1,12 @@
 {
     "name": "idg.tools",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "https://idg.tools | Welcome to join the co-creation of an open source app that makes it easy to learn about the IDGs and practice them with your community!",
     "private": true,
     "scripts": {
         "dev": "svelte-kit dev",
-        "build": "svelte-kit build",
+        "build:content": "node scripts/build-content.js",
+        "build": "npm run build:content && svelte-kit build",
         "preview": "svelte-kit preview",
         "check": "svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",

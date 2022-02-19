@@ -1,16 +1,12 @@
 <!-- https://kit.svelte.dev/docs/routing -->
 <script lang="ts">
+    import { page } from '$app/stores'
     import Tool from '$components/Tool.svelte'
+    import { getToolBySlug } from '$lib/idgs'
 
-    // TODO: show ui layout
-    // TODO: show hard coded data with always 'inner-compass'
-    // TODO: fetch dynamic tool data based on the `slug`
-    // TODO: load a random tool based on the user's selected IDGs
-
-    // TODO: replace temp hard coded value
-    const slug = 'inner-compass'
+    const tool = getToolBySlug($page.params.slug)
 </script>
 
 <h1 class="pt-8 text-5xl tracking-wider md:pt-16">Today's focus</h1>
 
-<Tool id={slug} />
+<Tool {tool} />

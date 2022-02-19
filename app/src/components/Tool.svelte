@@ -1,8 +1,7 @@
 <script lang="ts">
-    import { TOOLS } from '$lib/tools'
-    export let id: keyof typeof TOOLS
+    import type { Tool } from '$lib/idgs'
 
-    const tool = TOOLS[id]
+    export let tool: Tool
 </script>
 
 <h2 class="py-4 text-xl font-semibold">{tool.name}</h2>

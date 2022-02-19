@@ -17,6 +17,7 @@ const query = `
       skills {
         id
       }
+      color
     }
   
     skills {
@@ -49,6 +50,7 @@ const query = `
       skills {
         id
       }
+      slug
     }
   }
 `
@@ -62,6 +64,8 @@ const body = await fetch(process.env.API_URL, {
 }).then((res) => res.json())
 
 const content = body.data
+
+// TODO: serialize document fields in `content.tools` to markdown to make it easier to work with in the client
 
 content.categories = content.categories.map((category) => {
     category.tools = category.tools.map(keepId)

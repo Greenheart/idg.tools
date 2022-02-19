@@ -1,16 +1,18 @@
 <script lang="ts">
     import { onMount } from 'svelte'
 
-    import { TOOLS } from '$lib/tools'
-    import { getColorForSkill, getSkill } from '$lib/idgs'
-    import Button from '$components/Button.svelte'
-    import Link from '$components/Link.svelte'
+    import { getTools, loadData, Tool } from '$lib/idgs'
+    import { selectedSkills } from '$lib/stores'
     import LinkButton from '$components/LinkButton.svelte'
     import RecommendedTools from '$components/RecommendedTools.svelte'
-    import { selectedSkills } from '$lib/stores'
+    import ToolListItem from '$components/ToolListItem.svelte'
 
-    onMount(() => {
+    let tools: Tool[] = []
+
+    onMount(async () => {
         selectedSkills.useLocalStorage()
+        await loadData()
+        tools = getTools()
     })
 </script>
 
@@ -25,11 +27,11 @@
         <LinkButton href="/focus" size="sm">Preferences</LinkButton>
     </div>
 
-    <RecommendedTools selectedSkills={$selectedSkills} />
+    <!-- TODO: load a random tool based on the user's selected IDGs. Don't show all recommended, but select a new one every day -->
 
-    <hr class="my-12" />
+    <RecommendedTools selectedSkills={$selectedSkills} {tools} />
 
-    <h2 class="font-bold">All tools</h2>
+    <h2 class="mt-12 pb-6 text-3xl font-bold">All tools</h2>
 {:else}
     <div class="align-center flex justify-between py-4">
         <h2 class="font-bold">All tools</h2>
@@ -37,17 +39,8 @@
     </div>
 {/if}
 
-{#each Object.entries(TOOLS) as [slug, tool] (slug)}
-    {#each tool.skills as skillId}
-        <Link href={`/explore/${slug}`}>
-            <div class="bg-black p-4">
-                <h2 class="pb-4 font-semibold">{tool.name}</h2>
-                <Button
-                    size="sm"
-                    class={getColorForSkill(skillId)}
-                    label={getSkill(skillId).name}
-                />
-            </div>
-        </Link>
+<div class="grid gap-2">
+    {#each tools as tool (tool.slug)}
+        <ToolListItem {tool} />
     {/each}
-{/each}
+</div>
