@@ -4,6 +4,11 @@
     import Button from '$components/Button.svelte'
     import Link from '$components/Link.svelte'
     import { selectedSkills } from '$lib/stores'
+    import { onMount } from 'svelte'
+
+    onMount(() => {
+        selectedSkills.useLocalStorage()
+    })
 </script>
 
 {#each Object.entries(TOOLS) as [slug, tool] (slug)}

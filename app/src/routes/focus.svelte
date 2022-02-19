@@ -9,6 +9,11 @@
     import { cx } from '$lib/utils'
     import { selectedSkills } from '$lib/stores'
     import { goto } from '$app/navigation'
+    import { onMount } from 'svelte'
+
+    onMount(() => {
+        selectedSkills.useLocalStorage()
+    })
 
     const toggleSkill = (skillId: number) => {
         if ($selectedSkills.includes(skillId)) {

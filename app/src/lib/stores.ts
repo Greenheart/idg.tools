@@ -1,9 +1,22 @@
 import { writable } from 'svelte/store'
 
-const skills = localStorage.getItem('selected')
-const selected = typeof skills === 'string' ? JSON.parse(skills) : []
+function createPersistedStore<T>(key: string, startValue: T) {
+    const { subscribe, set } = writable(startValue)
 
-export const selectedSkills = writable<number[]>(selected)
-selectedSkills.subscribe((value) => {
-    localStorage.setItem('selected', JSON.stringify(value))
-})
+    return {
+        subscribe,
+        set,
+        useLocalStorage: () => {
+            const json = localStorage.getItem(key)
+            if (typeof json === 'string') {
+                set(JSON.parse(json))
+            }
+
+            subscribe((current) => {
+                localStorage.setItem(key, JSON.stringify(current))
+            })
+        },
+    }
+}
+
+export const selectedSkills = createPersistedStore<number[]>('selected', [])
