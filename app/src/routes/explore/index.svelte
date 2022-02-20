@@ -1,18 +1,16 @@
 <script lang="ts">
     import { onMount } from 'svelte'
 
-    import { getTools, loadData, Tool } from '$lib/idgs'
+    import type { Content } from '$lib/types'
     import { selectedSkills } from '$lib/stores'
     import LinkButton from '$components/LinkButton.svelte'
     import RecommendedTools from '$components/RecommendedTools.svelte'
     import ToolListItem from '$components/ToolListItem.svelte'
 
-    let tools: Tool[] = []
+    export let content: Content
 
     onMount(async () => {
         selectedSkills.useLocalStorage()
-        await loadData()
-        tools = getTools()
     })
 </script>
 
@@ -29,7 +27,7 @@
 
     <!-- TODO: load a random tool based on the user's selected IDGs. Don't show all recommended, but select a new one every day -->
 
-    <RecommendedTools selectedSkills={$selectedSkills} {tools} />
+    <RecommendedTools selectedSkills={$selectedSkills} {content} />
 
     <h2 class="mt-12 pb-6 text-3xl font-bold">All tools</h2>
 {:else}
@@ -40,7 +38,7 @@
 {/if}
 
 <div class="grid gap-2">
-    {#each tools as tool (tool.slug)}
-        <ToolListItem {tool} />
+    {#each content.tools as tool (tool.slug)}
+        <ToolListItem {tool} {content} />
     {/each}
 </div>

@@ -1,15 +1,15 @@
 <script lang="ts">
-    import type { ItemId, Tool } from '$lib/idgs'
+    import type { Content, Skill } from '$lib/types'
     import ToolListItem from './ToolListItem.svelte'
 
-    export let selectedSkills: ItemId[]
-    export let tools: Tool[]
+    export let selectedSkills: Skill['id'][]
+    export let content: Content
 </script>
 
 <div class="grid gap-2">
-    {#each tools as tool (tool.slug)}
+    {#each content.tools as tool (tool.slug)}
         {#if tool.skills.some((skillId) => selectedSkills.includes(skillId))}
-            <ToolListItem {tool} />
+            <ToolListItem {tool} {content} />
         {/if}
     {/each}
 </div>

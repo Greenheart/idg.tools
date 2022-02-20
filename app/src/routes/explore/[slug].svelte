@@ -1,13 +1,18 @@
 <script lang="ts">
-    import { page } from '$app/stores'
-    import Tool from '$components/Tool.svelte'
-    import { getToolBySlug } from '$lib/idgs'
-
-    // TODO: switch to static pre-rendering using sveltkit data loading
-    // This would allow this route to be the initial page load for the app.
-    const tool = getToolBySlug($page.params.slug)
+    import type { Tool } from '$lib/types'
+    export let tool: Tool
 </script>
 
 <h1 class="pt-8 text-5xl tracking-wider md:pt-16">Today's focus</h1>
 
-<Tool {tool} />
+<h2 class="py-4 text-xl font-semibold">{tool.name}</h2>
+
+<p class="pt-4">{tool.description}</p>
+
+<div class="my-8 rounded-2xl bg-white p-4 text-stone-900">
+    <h3 class="pb-2 text-xl font-bold">Your challenge</h3>
+    <p>{tool.challenge}</p>
+</div>
+
+<h3 class="pb-2 text-xl font-bold">Want to learn more?</h3>
+<p>{tool.resource}</p>

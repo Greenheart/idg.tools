@@ -3,26 +3,18 @@
 
     import Button from '$components/Button.svelte'
     import LinkButton from '$components/LinkButton.svelte'
-    import {
-        getCategories,
-        Category,
-        getSkillsInCategory,
-        ItemId,
-        loadData,
-    } from '$lib/idgs'
+    import { getSkillsInCategory } from '$lib/content-utils'
     import { cx } from '$lib/utils'
     import { selectedSkills } from '$lib/stores'
+    import type { Content, Category, Skill } from '$lib/types'
 
-    let categories: Category[] = []
+    export let content: Content
 
     onMount(async () => {
         selectedSkills.useLocalStorage()
-        // TODO: Consider using SSR - or adding a loading spinner and caching content.
-        await loadData('/content.json')
-        categories = getCategories()
     })
 
-    const toggleSkill = (skillId: ItemId) => {
+    const toggleSkill = (skillId: Skill['id']) => {
         if ($selectedSkills.includes(skillId)) {
             $selectedSkills = $selectedSkills.filter((id) => id !== skillId)
         } else {
@@ -35,11 +27,12 @@
     }
 
     let isCategoryOpen: Record<Category['id'], boolean> = Object.values(
-        categories,
+        content.categories,
     ).reduce((isCategoryOpen: Record<Category['id'], boolean>, category) => {
         isCategoryOpen[category.id] = false
         return isCategoryOpen
     }, {})
+
     const onToggle = (
         event: Event & {
             currentTarget: EventTarget & HTMLElement
@@ -61,7 +54,7 @@
 </h1>
 
 <div class="space-y-5 py-12 md:py-16">
-    {#each categories as { name, description, id: categoryId, color }}
+    {#each content.categories as { name, description, id: categoryId, color }}
         <details
             class={cx('text-stone-900')}
             on:toggle={(event) => onToggle(event, categoryId)}
@@ -91,7 +84,7 @@
                 </svg>
             </summary>
             <div class="flex flex-wrap justify-center gap-3 px-4 pt-4">
-                {#each getSkillsInCategory(categoryId) as skill (skill.name)}
+                {#each getSkillsInCategory(categoryId, content) as skill (skill.name)}
                     <Button
                         label={skill.name}
                         on:click={() => toggleSkill(skill.id)}
