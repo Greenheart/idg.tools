@@ -3,6 +3,8 @@ import { fetch } from 'native-fetch'
 import { writeFile } from 'fs/promises'
 import { resolve } from 'path'
 
+// TODO: Only include content with status === 'published'
+
 const query = `
   query {
     categories {
@@ -63,8 +65,6 @@ const body = await fetch(process.env.API_URL, {
 
 const content = body.data
 
-// TODO: serialize document fields in `content.tools` to markdown to make it easier to work with in the client
-
 content.categories = content.categories.map((category) => {
     category.tools = category.tools.map(keepId)
     category.skills = category.skills.map(keepId)
@@ -80,6 +80,9 @@ content.skills = content.skills.map((skill) => {
 content.tools = content.tools.map((tool) => {
     tool.categories = tool.categories.map(keepId)
     tool.skills = tool.skills.map(keepId)
+    tool.description = tool.description.document
+    tool.challenge = tool.challenge.document
+    tool.resource = tool.resource.document
     return tool
 })
 

@@ -1,5 +1,7 @@
 <script lang="ts">
+    import DocumentRenderer from '$components/DocumentRenderer.svelte'
     import type { Tool } from '$lib/types'
+
     export let tool: Tool
 </script>
 
@@ -7,7 +9,7 @@
 
 <h2 class="py-4 text-xl font-semibold">{tool.name}</h2>
 
-<p class="pt-4">{tool.description}</p>
+<DocumentRenderer document={tool.description} class="pt-4" />
 
 <div class="my-8 rounded-2xl bg-white p-4 text-stone-900">
     <h3 class="pb-2 text-xl font-bold">Your challenge</h3>

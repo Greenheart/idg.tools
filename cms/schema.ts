@@ -42,7 +42,6 @@ const DocumentFormattingConfig = {
         ordered: true,
         unordered: true,
     },
-    headingLevels: [1, 2, 3],
     blockTypes: {
         blockquote: true,
     },
@@ -59,11 +58,25 @@ export const lists: Lists = {
         // a name so we can refer to them, and a way to connect users to posts.
         fields: {
             name: text({ validation: { isRequired: true } }),
+            // TODO: Require special auth token to be able to access the GraphQL API.
             email: text({
                 validation: { isRequired: true },
                 isIndexed: 'unique',
                 isFilterable: true,
             }),
+            // TODO: add user roles
+            /**
+             * 1) Editor
+             * - create new Tools (always published with draft status)
+             * - edit existing Tools (all fields except `Tool.status`)
+             *
+             * 2) Admin
+             * - everything that Editors can do
+             * - update `Tool.status` (publish/unpublish)
+             * - remove Tools
+             * - create new users
+             * - create, update, delete IDG Categories and Skills
+             */
             // The password field takes care of hiding details and hashing values
             password: password({ validation: { isRequired: true } }),
         },
@@ -74,9 +87,12 @@ export const lists: Lists = {
             },
         },
     }),
+    // TODO: Prevent data loss when creating a new item, and clicking outside.
+    // IDEA: See if keystone has good UX tips for solving this.
     Tool: list({
         fields: {
             name: text({ validation: { isRequired: true }, defaultValue: '' }),
+            // TODO: Do we need document for all three fields, or would it be better to use something else?
             description: document({
                 // @ts-expect-error Ignore missing exported type FormattingConfig from `@keystone-6/fields-document`
                 formatting: DocumentFormattingConfig,
@@ -100,6 +116,7 @@ export const lists: Lists = {
                 // We want to make sure new tools start off as a draft when they are created
                 defaultValue: 'draft',
                 ui: {
+                    // TODO: make it impossible to clear status (it should always have a value)
                     displayMode: 'segmented-control',
                 },
             }),
@@ -127,7 +144,7 @@ export const lists: Lists = {
                 },
                 many: true,
             }),
-            // IDEA: Warn users about changing the slug since it will break links
+            // TODO: Add UI text to warn users about changing the slug since it will break links
             slug: text({ defaultValue: '' }),
         },
         hooks: {
@@ -167,4 +184,8 @@ export const lists: Lists = {
             }),
         },
     }),
+    // IDEA: When content changes during development, trigger a rebuild of the `content.json` automatically
+    // NOTE: However, since the schema doesn't change too often, it will not be worth the investment for the long term, once we have a stable schema.
+
+    // IDEA: Export seed data from the local CMS to make local development easier for other developers.
 }

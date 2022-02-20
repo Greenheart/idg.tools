@@ -4,7 +4,8 @@ type Item = {
     name: string
     description: string
 }
-type DocumentData = unknown
+// TODO: Add proper document types
+type DocumentData = any[]
 export type Skill = Item & {
     category: ItemId
     tools: ItemId[]
