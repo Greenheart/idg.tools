@@ -33,6 +33,22 @@ import { Lists } from '.keystone/types'
 
 import { createSlug } from './utils'
 
+const DocumentFormattingConfig = {
+    inlineMarks: {
+        bold: true,
+        italic: true,
+    },
+    listTypes: {
+        ordered: true,
+        unordered: true,
+    },
+    headingLevels: [1, 2, 3],
+    blockTypes: {
+        blockquote: true,
+    },
+    softBreaks: true,
+}
+
 // We have a users list, a blogs list, and tags for blog posts, so they can be filtered.
 // Each property on the exported object will become the name of a list (a.k.a. the `listKey`),
 // with the value being the definition of the list, including the fields.
@@ -62,15 +78,18 @@ export const lists: Lists = {
         fields: {
             name: text({ validation: { isRequired: true }, defaultValue: '' }),
             description: document({
-                formatting: true,
+                // @ts-expect-error Ignore missing exported type FormattingConfig from `@keystone-6/fields-document`
+                formatting: DocumentFormattingConfig,
                 links: true,
             }),
             challenge: document({
-                formatting: true,
+                // @ts-expect-error Ignore missing exported type FormattingConfig from `@keystone-6/fields-document`
+                formatting: DocumentFormattingConfig,
                 links: true,
             }),
             resource: document({
-                formatting: true,
+                // @ts-expect-error Ignore missing exported type FormattingConfig from `@keystone-6/fields-document`
+                formatting: DocumentFormattingConfig,
                 links: true,
             }),
             status: select({

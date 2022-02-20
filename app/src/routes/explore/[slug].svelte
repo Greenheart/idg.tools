@@ -1,9 +1,10 @@
-<!-- https://kit.svelte.dev/docs/routing -->
 <script lang="ts">
     import { page } from '$app/stores'
     import Tool from '$components/Tool.svelte'
     import { getToolBySlug } from '$lib/idgs'
 
+    // TODO: switch to static pre-rendering using sveltkit data loading
+    // This would allow this route to be the initial page load for the app.
     const tool = getToolBySlug($page.params.slug)
 </script>
 
