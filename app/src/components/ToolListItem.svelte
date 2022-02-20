@@ -13,6 +13,7 @@
             {#each tool.skills as skillId}
                 {@const skill = getSkill(skillId)}
                 {@const category = getCategory(skill.category)}
+                <!-- TODO: replace buttons since these categories don't need to be interactive, neither clickable nor with any hover effect. -->
                 <Button
                     size="sm"
                     style={`background-color: ${category.color}`}
