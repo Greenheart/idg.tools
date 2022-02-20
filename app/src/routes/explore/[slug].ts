@@ -14,6 +14,5 @@ export async function get({ params: { slug } }: { params: { slug: string } }) {
     // If no tool was found with a given slug, redirect to /explore
     return {
         status: 404,
-        headers: { Location: '/explore' },
     }
 }

@@ -17,6 +17,7 @@
 {#if ready}
     <div class="space-y-6 py-12 md:py-16">
         <p in:fly={{ y: -30, delay: 300, duration: 1000 }}>
+            <!-- TODO: Add styled link variants to make them easier to use across the app -->
             <Link
                 href="https://www.innerdevelopmentgoals.org"
                 class=" font-bold underline"

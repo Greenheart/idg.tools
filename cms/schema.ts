@@ -128,7 +128,6 @@ export const lists: Lists = {
                 many: true,
             }),
             // IDEA: Warn users about changing the slug since it will break links
-            // TODO: Add 404 redirect for invalid slugs back to the explore page
             slug: text({ defaultValue: '' }),
         },
         hooks: {
