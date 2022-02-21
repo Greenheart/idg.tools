@@ -2,6 +2,7 @@ import 'dotenv/config'
 import { fetch } from 'native-fetch'
 import { writeFile } from 'fs/promises'
 import { resolve } from 'path'
+import { serialize } from 'remark-slate'
 
 // TODO: Only include content with status === 'published'
 
@@ -56,6 +57,8 @@ const query = `
 `
 
 const keepId = ({ id }) => id
+const convertSlateToMarkdown = (document) =>
+    document.map((v) => serialize(v)).join('')
 
 const body = await fetch(process.env.API_URL, {
     method: 'POST',
@@ -80,16 +83,20 @@ content.skills = content.skills.map((skill) => {
 content.tools = content.tools.map((tool) => {
     tool.categories = tool.categories.map(keepId)
     tool.skills = tool.skills.map(keepId)
-    tool.description = tool.description.document
-    tool.challenge = tool.challenge.document
-    tool.resource = tool.resource.document
+    tool.description = convertSlateToMarkdown(tool.description.document)
+    tool.challenge = convertSlateToMarkdown(tool.challenge.document)
+    tool.resource = convertSlateToMarkdown(tool.resource.document)
     return tool
 })
 
+// await writeFile(
+//     resolve('static/content.json'),
+//     JSON.stringify(content, null, 2),
+//     { encoding: 'utf-8' },
+// )
+
 await writeFile(
-    resolve('static/content.json'),
+    resolve('static/content-markdown.json'),
     JSON.stringify(content, null, 2),
-    {
-        encoding: 'utf-8',
-    },
+    { encoding: 'utf-8' },
 )

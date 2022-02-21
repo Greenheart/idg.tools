@@ -1,10 +1,9 @@
 <script lang="ts">
+    // Simplified renderer based on https://github.com/keystonejs/keystone/blob/main/packages/document-renderer/src/index.tsx
     import DocumentNode from './DocumentNode.svelte'
+    import type { Element } from './types'
 
-    // IDEA: Maybe refactor document related stuff into a larger
-
-    // TODO: Add proper typing for the input data
-    export let document: string[]
+    export let document: Element[]
 
     console.log(document)
 </script>

@@ -1,0 +1,293 @@
+{
+  "categories": [
+    {
+      "id": "ckzi3855r0086e2n0smi0mew5",
+      "name": "Being",
+      "description": "Relationship to Self",
+      "tools": [
+        "ckzf7tws30038zxn01pkcsrx7",
+        "ckzucmgr10182x4n02ya4oywj"
+      ],
+      "skills": [
+        "ckzi3a4z90431e2n04kx2pbq2",
+        "ckzi3am4y0486e2n04obcy6hi",
+        "ckzi3ayvo0547e2n03lvu0goo",
+        "ckzi3b8sz0614e2n0ijnnazce",
+        "ckzi3blfz0687e2n0huf88a8y"
+      ],
+      "color": "#D9C7A7"
+    },
+    {
+      "id": "ckzi38ilp0149e2n0idgw5zqv",
+      "name": "Thinking",
+      "description": "Cognitive Skills",
+      "tools": [
+        "ckzvrs8dk0392jfn07466kcva"
+      ],
+      "skills": [
+        "ckzi3cikk0766e2n0j9my4e46",
+        "ckzi3cvpf0851e2n00bcmzsgz",
+        "ckzi3d9gp0942e2n0lvc6k1nh",
+        "ckzi3dk3h1039e2n0qxij7ooh",
+        "ckzi3dtdk1142e2n0m9v02uf5"
+      ],
+      "color": "#E0A1B4"
+    },
+    {
+      "id": "ckzi38wix0218e2n09ncgnmxx",
+      "name": "Relating",
+      "description": "Caring for Others and the World",
+      "tools": [],
+      "skills": [
+        "ckzi3e4as1251e2n0fz614xn4",
+        "ckzi3ef9s1366e2n082dhihsm",
+        "ckzi3eor91487e2n0qdoa639u",
+        "ckzi3ezut1614e2n07fab18pt"
+      ],
+      "color": "#DE7268"
+    },
+    {
+      "id": "ckzi3951t0293e2n0n3bykbg5",
+      "name": "Collaborating",
+      "description": "Social Skills",
+      "tools": [],
+      "skills": [
+        "ckzi3f9cj1747e2n0taoxah1j",
+        "ckzi3fnea2022e2n0r588if1r",
+        "ckzi3g17e2167e2n055jpiaaz",
+        "ckzi3gb7f2318e2n04kesx118",
+        "ckzi3gknp2475e2n0dm59ikcn"
+      ],
+      "color": "#F18E61"
+    },
+    {
+      "id": "ckzi39fwv0374e2n0d2eynda4",
+      "name": "Acting",
+      "description": "Driving change",
+      "tools": [],
+      "skills": [
+        "ckzi3gu6u2638e2n0fmr9gv86",
+        "ckzi3h80v2807e2n0l44d20qr",
+        "ckzi3hi072982e2n0r4cdkqjy",
+        "ckzi3hqs63163e2n03h36pb73"
+      ],
+      "color": "#9E7983"
+    }
+  ],
+  "skills": [
+    {
+      "id": "ckzi3a4z90431e2n04kx2pbq2",
+      "name": "Inner compass",
+      "description": "Having a deeply felt sense of responsibility and commitment to values and purposes relating to the good of the whole.",
+      "tools": [
+        "ckzf7tws30038zxn01pkcsrx7"
+      ],
+      "category": "ckzi3855r0086e2n0smi0mew5"
+    },
+    {
+      "id": "ckzi3am4y0486e2n04obcy6hi",
+      "name": "Integrity and Authenticity",
+      "description": "A commitment and ability to act with sincerity, honesty and integrity.",
+      "tools": [],
+      "category": "ckzi3855r0086e2n0smi0mew5"
+    },
+    {
+      "id": "ckzi3ayvo0547e2n03lvu0goo",
+      "name": "Openness and Learning mindset",
+      "description": "Having a basic mindset of curiosity and a willingness to be vulnerable and embrace change and grow.",
+      "tools": [
+        "ckzucmgr10182x4n02ya4oywj"
+      ],
+      "category": "ckzi3855r0086e2n0smi0mew5"
+    },
+    {
+      "id": "ckzi3b8sz0614e2n0ijnnazce",
+      "name": "Self-awareness",
+      "description": "Ability to be in reflective contact with own thoughts, feelings and desires; having a realistic self-image and ability to regulate oneself.",
+      "tools": [],
+      "category": "ckzi3855r0086e2n0smi0mew5"
+    },
+    {
+      "id": "ckzi3blfz0687e2n0huf88a8y",
+      "name": "Presence",
+      "description": "Ability to be in the here and now, without judgement and in a state of open-ended presence.",
+      "tools": [
+        "ckzucmgr10182x4n02ya4oywj"
+      ],
+      "category": "ckzi3855r0086e2n0smi0mew5"
+    },
+    {
+      "id": "ckzi3cikk0766e2n0j9my4e46",
+      "name": "Critical thinking",
+      "description": "Skills in critically reviewing the validity of views, evidence and plans.",
+      "tools": [],
+      "category": "ckzi38ilp0149e2n0idgw5zqv"
+    },
+    {
+      "id": "ckzi3cvpf0851e2n00bcmzsgz",
+      "name": "Complexity awareness",
+      "description": "Understanding of and skills in working with complex and systemic conditions and causalities.",
+      "tools": [],
+      "category": "ckzi38ilp0149e2n0idgw5zqv"
+    },
+    {
+      "id": "ckzi3d9gp0942e2n0lvc6k1nh",
+      "name": "Perspective skills",
+      "description": "Skills in seeking, understanding and actively making use of insights from contrasting perspectives.",
+      "tools": [],
+      "category": "ckzi38ilp0149e2n0idgw5zqv"
+    },
+    {
+      "id": "ckzi3dk3h1039e2n0qxij7ooh",
+      "name": "Sense-making",
+      "description": "Skills in seeing patterns, structuring the unknown and being able to consciously create stories.",
+      "tools": [
+        "ckzvrs8dk0392jfn07466kcva"
+      ],
+      "category": "ckzi38ilp0149e2n0idgw5zqv"
+    },
+    {
+      "id": "ckzi3dtdk1142e2n0m9v02uf5",
+      "name": "Long-term orientation and Visioning",
+      "description": "Long-term orientation and ability to formulate and sustain commitment to visions relating to the larger context.",
+      "tools": [],
+      "category": "ckzi38ilp0149e2n0idgw5zqv"
+    },
+    {
+      "id": "ckzi3e4as1251e2n0fz614xn4",
+      "name": "Appreciation",
+      "description": "Relating to others and to the world with a basic sense of appreciation, gratitude and joy.",
+      "tools": [],
+      "category": "ckzi38wix0218e2n09ncgnmxx"
+    },
+    {
+      "id": "ckzi3ef9s1366e2n082dhihsm",
+      "name": "Connectedness",
+      "description": "Having a keen sense of being connected with and/or being a part of a larger whole, such as a community, humanity or global ecosystem.",
+      "tools": [],
+      "category": "ckzi38wix0218e2n09ncgnmxx"
+    },
+    {
+      "id": "ckzi3eor91487e2n0qdoa639u",
+      "name": "Humility",
+      "description": "Being able to act in accordance with the needs of the situation without concern for one's own importance.",
+      "tools": [],
+      "category": "ckzi38wix0218e2n09ncgnmxx"
+    },
+    {
+      "id": "ckzi3ezut1614e2n07fab18pt",
+      "name": "Empathy and Compassion",
+      "description": "Ability to relate to others, oneself and nature with kindness, empathy and compassion and address related suffering",
+      "tools": [],
+      "category": "ckzi38wix0218e2n09ncgnmxx"
+    },
+    {
+      "id": "ckzi3f9cj1747e2n0taoxah1j",
+      "name": "Communication skills",
+      "description": "Ability to really listen to others, to foster genuine dialogue, to advocate own views skillfully, to manage conflicts constructively and to adapt communication to diverse groups.",
+      "tools": [],
+      "category": "ckzi3951t0293e2n0n3bykbg5"
+    },
+    {
+      "id": "ckzi3fnea2022e2n0r588if1r",
+      "name": "Co-creation skills",
+      "description": "Skills and motivation to build, develop and facilitate collaborative relationships with diverse stake-holders, characterized by psychological safety and genuine co-creation.",
+      "tools": [],
+      "category": "ckzi3951t0293e2n0n3bykbg5"
+    },
+    {
+      "id": "ckzi3g17e2167e2n055jpiaaz",
+      "name": "Inclusive mindset and intercultural competence",
+      "description": "Willingness and competence to embrace diversity and include people and collectives with different views and backgrounds.",
+      "tools": [],
+      "category": "ckzi3951t0293e2n0n3bykbg5"
+    },
+    {
+      "id": "ckzi3gb7f2318e2n04kesx118",
+      "name": "Trust",
+      "description": "Ability to show trust and to create and maintain trusting relationships.",
+      "tools": [],
+      "category": "ckzi3951t0293e2n0n3bykbg5"
+    },
+    {
+      "id": "ckzi3gknp2475e2n0dm59ikcn",
+      "name": "Mobilization skills",
+      "description": "Skills in inspiring and mobilizing others to engage in shared purposes.",
+      "tools": [],
+      "category": "ckzi3951t0293e2n0n3bykbg5"
+    },
+    {
+      "id": "ckzi3gu6u2638e2n0fmr9gv86",
+      "name": "Courage",
+      "description": "Ability to stand up for values, make decisions, take decisive action and, if need be, challenge and disrupt existing structures and views.",
+      "tools": [],
+      "category": "ckzi39fwv0374e2n0d2eynda4"
+    },
+    {
+      "id": "ckzi3h80v2807e2n0l44d20qr",
+      "name": "Creativity",
+      "description": "Ability to generate and develop original ideas, innovate and being willing to disrupt conventional patterns.",
+      "tools": [],
+      "category": "ckzi39fwv0374e2n0d2eynda4"
+    },
+    {
+      "id": "ckzi3hi072982e2n0r4cdkqjy",
+      "name": "Optimism",
+      "description": "Ability to sustain and communicate a sense of hope, positive attitude and confidence in the possibility of meaningful change.",
+      "tools": [],
+      "category": "ckzi39fwv0374e2n0d2eynda4"
+    },
+    {
+      "id": "ckzi3hqs63163e2n03h36pb73",
+      "name": "Perseverance",
+      "description": "Ability to sustain engagement and remain determined and patient even when efforts take a long time to bear fruit.",
+      "tools": [],
+      "category": "ckzi39fwv0374e2n0d2eynda4"
+    }
+  ],
+  "tools": [
+    {
+      "id": "ckzf7tws30038zxn01pkcsrx7",
+      "name": "Finding your inner compass",
+      "description": "Inner compass: having a deeply felt sense of responsibility and commitment to values and purposes relating to the good of the whole.\n",
+      "challenge": "Write down how you think people should treat themselves, others, and the planet. How closely do you follow these expectations? Is there anything you want to try to change? Starting with today, and think about how it feels to act closer to your values.\n",
+      "resource": "Check out the 29k lesson about finding your inner compass.\n",
+      "categories": [
+        "ckzi3855r0086e2n0smi0mew5"
+      ],
+      "skills": [
+        "ckzi3a4z90431e2n04kx2pbq2"
+      ],
+      "slug": "inner-compass"
+    },
+    {
+      "id": "ckzucmgr10182x4n02ya4oywj",
+      "name": "Practice presence with meditation",
+      "description": "Ability to be in the here and now, without judgement and in a state of open-ended presence\n",
+      "challenge": "**Discuss with a friend:** What helps you to be present here and now and stay open for new thoughts and ideas?\n",
+      "resource": "Try the meditation [Become Present]() in the 29k app.\n",
+      "categories": [
+        "ckzi3855r0086e2n0smi0mew5"
+      ],
+      "skills": [
+        "ckzi3ayvo0547e2n03lvu0goo",
+        "ckzi3blfz0687e2n0huf88a8y"
+      ],
+      "slug": "presence-meditation"
+    },
+    {
+      "id": "ckzvrs8dk0392jfn07466kcva",
+      "name": "Document Rendering Test",
+      "description": "**Bold**\n_Italics_\n***Bold italics***\n",
+      "challenge": "Try this with a friend:\nfirstsecondthird<br>\n\nThen optionally do one of these things:\nMaybeAnother<br>\n\n",
+      "resource": "When in doubt, read inspiring an inspiring quote. Like this one!\n<br>\n\nOr try the meditation in the app:\n[https://app.29k.org/JHFWP5HmyySeK8v97]()\n",
+      "categories": [
+        "ckzi38ilp0149e2n0idgw5zqv"
+      ],
+      "skills": [
+        "ckzi3dk3h1039e2n0qxij7ooh"
+      ],
+      "slug": "document-rendering-test"
+    }
+  ]
+}

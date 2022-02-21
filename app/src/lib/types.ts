@@ -4,8 +4,6 @@ type Item = {
     name: string
     description: string
 }
-// TODO: Add proper document types
-type DocumentData = any[]
 export type Skill = Item & {
     category: ItemId
     tools: ItemId[]
@@ -16,9 +14,9 @@ export type Category = Item & {
 }
 export type Tool = Item & {
     slug: string
-    description: DocumentData
-    challenge: DocumentData
-    resource: DocumentData
+    description: string
+    challenge: string
+    resource: string
     categories: ItemId[]
     skills: ItemId[]
 }
