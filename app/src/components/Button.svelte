@@ -3,13 +3,14 @@
 
     export const variants = {
         primary: 'bg-stone-50 text-stone-900',
+        inverted: 'bg-stone-900 text-stone-50',
         secondary: 'bg-transparent text-stone-50 border-stone-50 border',
         danger: 'bg-red-700 text-stone-50',
         disabled: 'bg-stone-50 text-stone-900 opacity-60 pointer-events-none',
         active: 'bg-purple-500 text-stone-50',
     }
     export const sizes = {
-        lg: 'px-12 py-3 text-xl',
+        lg: 'px-12 py-3 text-lg',
         sm: 'px-2 py-1 text-base',
     }
 
