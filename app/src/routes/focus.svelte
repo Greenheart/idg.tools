@@ -53,7 +53,7 @@
     I want<br />to develop
 </h1>
 
-<div class="space-y-5 py-12 md:py-16">
+<div class="space-y-4 py-12">
     {#each content.categories as { name, description, id: categoryId, color }}
         <details
             class={cx('text-stone-900')}
