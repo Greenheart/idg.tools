@@ -20,7 +20,7 @@
 <!-- IDEA: at the bottom, add invitation to join the co-creation -->
 
 {#if $selectedSkills.length}
-    <div class="align-center flex justify-between py-4">
+    <div class="flex items-center justify-between py-4">
         <h2 class="font-bold">Recommended for you</h2>
         <LinkButton href="/focus" size="sm">Preferences</LinkButton>
     </div>
@@ -31,7 +31,7 @@
 
     <h2 class="mt-12 pb-6 text-3xl font-bold">All tools</h2>
 {:else}
-    <div class="align-center flex justify-between py-4">
+    <div class="items-center flex justify-between py-4">
         <h2 class="font-bold">All tools</h2>
         <LinkButton href="/focus" size="sm">Preferences</LinkButton>
     </div>
