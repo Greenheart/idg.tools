@@ -101,11 +101,13 @@
 
 <div class="mx-auto flex flex-col items-center space-y-4 px-8">
     <LinkButton href="/explore">Explore tools</LinkButton>
-    <Button
-        label="Reset"
-        size="sm"
-        on:click={reset}
-        variant="secondary"
-        class="self-center px-16"
-    />
+    {#if $selectedSkills.length}
+        <Button
+            label="Reset"
+            size="sm"
+            on:click={reset}
+            variant="secondary"
+            class="self-center px-16"
+        />
+    {/if}
 </div>
