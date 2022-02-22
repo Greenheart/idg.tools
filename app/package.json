@@ -1,7 +1,7 @@
 {
     "name": "idg.tools",
     "version": "1.0.0",
-    "description": "https://idg.tools | Welcome to join the co-creation of an open source app that makes it easy to learn about the IDGs and practice them with your community!",
+    "description": "https://idg.tools | Your inner development toolbox",
     "private": true,
     "scripts": {
         "dev": "svelte-kit dev",
