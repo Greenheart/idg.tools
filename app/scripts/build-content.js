@@ -89,14 +89,8 @@ content.tools = content.tools.map((tool) => {
     return tool
 })
 
-// await writeFile(
-//     resolve('static/content.json'),
-//     JSON.stringify(content, null, 2),
-//     { encoding: 'utf-8' },
-// )
-
 await writeFile(
-    resolve('static/content-markdown.json'),
+    resolve('static/content.json'),
     JSON.stringify(content, null, 2),
     { encoding: 'utf-8' },
 )
