@@ -12,6 +12,10 @@
     <nav class="flex justify-evenly">
         <!-- TODO: make header responsive -->
         <Link class="p-2 hover:underline" href="/explore">Explore</Link>
+        <!-- IDEA: Add /community page to explain the various types of communities:
+            - IDG community on Element
+            - 29k
+         -->
         <Link
             class="p-2 hover:underline"
             href="https://matrix.to/#/#idg:matrix.org"
