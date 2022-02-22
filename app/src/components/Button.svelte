@@ -10,13 +10,13 @@
     }
     export const sizes = {
         lg: 'px-12 py-3 text-xl',
-        sm: 'px-2 py-1 text-base rounded-xl',
+        sm: 'px-2 py-1 text-base',
     }
 
     export const defaultVariant = 'primary'
     export const defaultSize = 'lg'
     export const defaultClasses =
-        'transform-gpu hover:scale-105 duration-100 font-semibold rounded-2xl text-center'
+        'transform-gpu hover:scale-105 duration-100 font-semibold rounded-full text-center'
 </script>
 
 <script lang="ts">
