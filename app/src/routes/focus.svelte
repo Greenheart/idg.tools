@@ -49,7 +49,7 @@
     }
 </script>
 
-<h1 class="pt-8 text-6xl tracking-wider md:pt-12">
+<h1 class="pt-4 text-6xl tracking-wider">
     I want<br />to develop
 </h1>
 

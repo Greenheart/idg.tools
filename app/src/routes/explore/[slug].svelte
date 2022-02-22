@@ -13,7 +13,7 @@
 <Markdown source={tool.description} class="pt-4" />
 <pre>{tool.description}</pre>
 
-<div class="my-8 rounded-2xl bg-white p-4 text-stone-900">
+<div class="my-8 rounded-2xl bg-stone-50 p-4 text-stone-900">
     <h3 class="pb-2 text-xl font-bold">Your challenge</h3>
     <Markdown source={tool.challenge} />
     <pre>{tool.challenge}</pre>

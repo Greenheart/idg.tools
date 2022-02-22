@@ -5,10 +5,12 @@
 <header class="flex items-center justify-between py-8">
     <Link href="/" class="group flex flex-col">
         <span class="font-bold group-hover:underline">IDG.tools</span>
-        <span class="text-sm">Inner Development Toolbox</span>
+        <span class="text-sm">Your inner development toolbox</span>
+        <!-- TODO: Decide what's better <span class="text-sm">Inner Development Toolbox</span> -->
     </Link>
 
     <nav class="flex justify-evenly">
+        <!-- TODO: make header responsive -->
         <Link class="p-2 hover:underline" href="/explore">Explore</Link>
         <Link
             class="p-2 hover:underline"
