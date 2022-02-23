@@ -4,7 +4,14 @@ import { writeFile } from 'fs/promises'
 import { resolve } from 'path'
 import { serialize } from 'remark-slate'
 
-// TODO: Only include content with status === 'published'
+const production = process.env.NODE_ENV === 'production'
+
+// Only include published tools when building for production
+const whereToolsArePublished = `(where: {
+      status: {
+        equals: "published"
+      }
+    })`
 
 const query = `
   query {
@@ -33,7 +40,7 @@ const query = `
       }
     }
   
-    tools {
+    tools${production ? whereToolsArePublished : ''} {
       id
       name
       description {
