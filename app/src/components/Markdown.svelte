@@ -6,14 +6,16 @@
         Blockquote,
         Paragraph,
         Text,
-        Link,
         List,
+        Link
         Br,
         ListItem,
     } from 'svelte-markdown/src/renderers'
 
+    // TODO: Use custom link
+    // import Link from './Link.svelte'
     import EmptyComponent from './EmptyComponent.svelte'
-    import { cx } from '$lib/utils'
+    import { cx, sanitizeHTML } from '$lib/utils'
 
     const variants = {
         default:
@@ -57,5 +59,9 @@
 </script>
 
 <div class={cx(baseClasses, variants[variant], className)}>
-    <SvelteMarkdown {source} {renderers} />
+    <SvelteMarkdown
+        {source}
+        {renderers}
+        options={{ sanitizer: sanitizeHTML }}
+    />
 </div>
