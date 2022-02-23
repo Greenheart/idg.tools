@@ -17,11 +17,16 @@
     export let status: number | undefined
 </script>
 
-{#if status === 404}
-    <Heading class="mb-8">Not found</Heading>
-    <LinkButton href="/explore" size="lg">Explore IDG.tools</LinkButton>
-{:else}
-    <Heading class="mb-8">Oops! Something went wrong</Heading>
-    <p>HTTP {status}</p>
-    <p>{message}</p>
-{/if}
+<div class="flex flex-col items-center justify-center">
+    {#if status === 404}
+        <Heading class="mb-8">Sorry, this page does not exist</Heading>
+        <LinkButton href="/explore" size="lg">Explore IDG.tools</LinkButton>
+    {:else}
+        <Heading class="mb-8">Oops! Something went wrong</Heading>
+        <p class="mb-8">
+            <span>HTTP {status} - </span>
+            {message}
+        </p>
+        <LinkButton href="/explore" size="lg">Explore IDG.tools</LinkButton>
+    {/if}
+</div>
