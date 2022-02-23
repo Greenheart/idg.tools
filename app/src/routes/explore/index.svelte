@@ -6,6 +6,7 @@
     import LinkButton from '$components/LinkButton.svelte'
     import RecommendedTools from '$components/RecommendedTools.svelte'
     import ToolListItem from '$components/ToolListItem.svelte'
+    import Heading from '$components/Heading.svelte'
 
     export let content: Content
 
@@ -21,7 +22,7 @@
 
 {#if $selectedSkills.length}
     <div class="flex items-center justify-between py-4">
-        <h2 class="font-bold">Recommended for you</h2>
+        <Heading>Recommended for you</Heading>
         <LinkButton href="/focus" size="sm">Preferences</LinkButton>
     </div>
 
@@ -32,7 +33,7 @@
     <h2 class="mt-12 pb-6 text-3xl font-bold">All tools</h2>
 {:else}
     <div class="items-center flex justify-between py-4">
-        <h2 class="font-bold">All tools</h2>
+        <Heading>All tools</Heading>
         <LinkButton href="/focus" size="sm">Preferences</LinkButton>
     </div>
 {/if}
@@ -41,4 +42,16 @@
     {#each content.tools as tool (tool.slug)}
         <ToolListItem {tool} {content} />
     {/each}
+</div>
+
+<div class="mt-16 grid items-center rounded-2xl bg-stone-50 p-4 text-stone-900">
+    <Heading>By the community, for the community</Heading>
+    <p class="pb-4 text-center font-bold">
+        Did you know that IDG.tools is created by people from all around the
+        world? Meet others practicing inner devlopment, and supportive
+        community.
+    </p>
+    <LinkButton href="/focus" class="mx-auto block" variant="inverted">
+        Join community
+    </LinkButton>
 </div>

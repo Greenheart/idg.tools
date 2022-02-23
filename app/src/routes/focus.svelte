@@ -8,7 +8,7 @@
 
     import Button from '$components/Button.svelte'
     import LinkButton from '$components/LinkButton.svelte'
-    import H from '$components/H.svelte'
+    import Heading from '$components/Heading.svelte'
 
     export let content: Content
 
@@ -51,9 +51,9 @@
     }
 </script>
 
-<H size={1} class="pt-4">
+<Heading size={1} class="pt-4">
     I want<br />to develop
-</H>
+</Heading>
 
 <div class="space-y-4 py-12">
     {#each content.categories as { name, description, id: categoryId, color }}
