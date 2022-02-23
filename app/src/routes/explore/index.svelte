@@ -30,7 +30,7 @@
 
     <RecommendedTools selectedSkills={$selectedSkills} {content} />
 
-    <h2 class="mt-12 pb-6 text-3xl font-bold">All tools</h2>
+    <Heading class="mt-12 pb-6">All tools</Heading>
 {:else}
     <div class="items-center flex justify-between py-4">
         <Heading>All tools</Heading>

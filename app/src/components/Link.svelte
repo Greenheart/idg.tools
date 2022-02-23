@@ -6,7 +6,7 @@
 
 <script lang="ts">
     export let href = ''
-    let className: string = ''
+    let className = ''
     export { className as class }
 
     let additionalProps: object

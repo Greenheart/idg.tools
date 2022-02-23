@@ -5,16 +5,20 @@
     type Size = typeof sizes[number]
 
     export let size: Size = 2
-    let className: string = ''
+    let className = ''
     export { className as class }
 </script>
 
 {#if size === 1}
-    <h1 class={cx('text-6xl tracking-wider', className)}>
+    <h1 class={cx('text-6xl tracking-wide font-semibold', className)}>
         <slot />
     </h1>
 {:else if size === 2}
-    <h2 class={cx('text-xl font-bold', className)}>
+    <h2 class={cx('text-3xl font-semibold', className)}>
         <slot />
     </h2>
+{:else if size === 3}
+    <h3 class={cx('text-lg font-semibold', className)}>
+        <slot />
+    </h3>
 {/if}

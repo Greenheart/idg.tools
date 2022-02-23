@@ -1,9 +1,8 @@
 <script lang="ts">
-    import { getCategory, getSkill } from '$lib/content-utils'
-
     import type { Tool, Content } from '$lib/types'
-    import Button from './Button.svelte'
+    import Heading from './Heading.svelte'
     import Link from './Link.svelte'
+    import Skills from './Skills.svelte'
 
     export let tool: Tool
     export let content: Content
@@ -11,19 +10,7 @@
 
 <Link href={`/explore/${tool.slug}`}>
     <div class="bg-stone-900 p-4">
-        <h2 class="pb-4 font-semibold">{tool.name}</h2>
-        <div class="flex flex-wrap items-start gap-3">
-            <!-- IDEA: add fly transition when they get mounted, to make the UI feel more alive -->
-            {#each tool.skills as skillId}
-                {@const skill = getSkill(skillId, content)}
-                {@const category = getCategory(skill.category, content)}
-                <!-- TODO: replace buttons since these categories don't need to be interactive, neither clickable nor with any hover effect. -->
-                <Button
-                    size="sm"
-                    style={`background-color: ${category.color}`}
-                    label={skill.name}
-                />
-            {/each}
-        </div>
+        <Heading size={3} class="pb-4">{tool.name}</Heading>
+        <Skills {tool} {content} />
     </div>
 </Link>

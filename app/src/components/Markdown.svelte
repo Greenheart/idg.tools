@@ -26,7 +26,7 @@
 
     export let variant: keyof typeof variants = defaultVariant
     export let source: string
-    let className: string = ''
+    let className = ''
     export { className as class }
 
     const renderers = {
