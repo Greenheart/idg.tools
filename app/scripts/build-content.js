@@ -9,7 +9,7 @@ const production = process.env.NODE_ENV === 'production'
 // Only include published tools when building for production
 const whereToolsArePublished = `(where: {
       status: {
-        equals: "published"
+        equals: published
       }
     })`
 
@@ -116,7 +116,9 @@ const body = await fetch(process.env.API_URL, {
     method: 'POST',
     body: JSON.stringify({ query }),
     headers: { 'Content-Type': 'application/json' },
-}).then((res) => res.json())
+})
+    .then((res) => res.json())
+    .catch((err) => console.error(err))
 
 const content = body.data
 

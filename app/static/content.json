@@ -274,20 +274,6 @@
         "ckzi3blfz0687e2n0huf88a8y"
       ],
       "slug": "presence-meditation"
-    },
-    {
-      "id": "ckzvrs8dk0392jfn07466kcva",
-      "name": "Document Rendering Test",
-      "description": "**Bold**\n_Italics_\n***Bold italics***\n",
-      "challenge": "Try this with a friend:\n\n1. first\n1. second\n1. third\n\nThen optionally do one of these things:\n\n- Maybe\n- Another\n- [Link in list item](https://github.com)\n- partial [link in list](https://github.com) item works well\n\n",
-      "resources": "> When in doubt, read inspiring an inspiring quote. Like this one!\n\n\nOr try the meditation in the app:\n[https://app.29k.org/JHFWP5HmyySeK8v97](https://app.29k.org/JHFWP5HmyySeK8v97)\nOr continue exploring with [this internal link](/explore)\n",
-      "categories": [
-        "ckzi38ilp0149e2n0idgw5zqv"
-      ],
-      "skills": [
-        "ckzi3dk3h1039e2n0qxij7ooh"
-      ],
-      "slug": "document-rendering-test"
     }
   ]
 }
