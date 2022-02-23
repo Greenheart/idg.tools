@@ -7,7 +7,7 @@
         Paragraph,
         Text,
         List,
-        Link
+        Link,
         Br,
         ListItem,
     } from 'svelte-markdown/src/renderers'
