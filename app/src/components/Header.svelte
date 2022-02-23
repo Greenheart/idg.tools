@@ -1,4 +1,6 @@
 <script>
+    import { COMMUNITY_LINK } from '$lib/constants'
+
     import Link from './Link.svelte'
 </script>
 
@@ -15,11 +17,6 @@
             - IDG community on Element
             - 29k
          -->
-        <Link
-            class="p-2 hover:underline"
-            href="https://matrix.to/#/#idg:matrix.org"
-        >
-            Community
-        </Link>
+        <Link class="p-2 hover:underline" href={COMMUNITY_LINK}>Community</Link>
     </nav>
 </header>

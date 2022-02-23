@@ -23,3 +23,6 @@
 
 <Heading class="pb-2">Want to learn more?</Heading>
 <Markdown source={tool.resources} />
+
+<!-- IDEA: Maybe add specific chat room for each IDG skill, allowing people to discuss this IDG with others -->
+<!-- IDEA: Probably even better, show a CTA at the bottom of each tool suggesting them to join the IDG community and learn together with others -->

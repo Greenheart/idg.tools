@@ -43,13 +43,10 @@
 
     <div
         in:fly={{ y: -10, delay: 2700, duration: 1000 }}
-        class="grid items-center rounded-2xl bg-stone-50 p-4 text-stone-900"
+        class="flex flex-col items-center justify-between rounded-2xl bg-stone-50 p-4 text-center text-stone-900"
     >
-        <p class="pb-4 text-center font-bold">
-            Welcome to IDG.tools - your inner development toolbox!
-        </p>
-        <LinkButton href="/focus" class="mx-auto block" variant="inverted">
-            Let's begin
-        </LinkButton>
+        <Heading>Welcome to IDG.tools!</Heading>
+        <p class="pt-3 pb-4 text-lg">Your inner development toolbox</p>
+        <LinkButton href="/focus" variant="inverted">Let's begin</LinkButton>
     </div>
 {/if}

@@ -7,6 +7,7 @@
     import RecommendedTools from '$components/RecommendedTools.svelte'
     import ToolListItem from '$components/ToolListItem.svelte'
     import Heading from '$components/Heading.svelte'
+    import { COMMUNITY_LINK } from '$lib/constants'
 
     export let content: Content
 
@@ -44,14 +45,19 @@
     {/each}
 </div>
 
-<div class="mt-16 grid items-center rounded-2xl bg-stone-50 p-4 text-stone-900">
-    <Heading>By the community, for the community</Heading>
-    <p class="pb-4 text-center font-bold">
-        Did you know that IDG.tools is created by people from all around the
-        world? Meet others practicing inner devlopment, and supportive
-        community.
+<div
+    class="mt-16 flex flex-col items-center justify-between rounded-2xl bg-stone-50 p-4 text-center text-stone-900"
+>
+    <!-- <Heading>By the community,<br />for the community</Heading> -->
+    <Heading>Created by and for the community</Heading>
+
+    <p class="pt-3 pb-4 text-lg">
+        Did you know that IDG.tools is co-created by people from all around the
+        world? Join a supportive community and practice inner development
+        together.
     </p>
-    <LinkButton href="/focus" class="mx-auto block" variant="inverted">
+
+    <LinkButton href={COMMUNITY_LINK} variant="inverted">
         Join community
     </LinkButton>
 </div>
