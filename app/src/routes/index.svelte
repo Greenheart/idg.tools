@@ -25,7 +25,7 @@
         <p in:fly={{ y: -30, delay: 1100, duration: 1000 }}>
             What better way to start than with the <Link
                 href="https://www.innerdevelopmentgoals.org"
-                class=" font-bold underline"
+                class="font-bold underline"
             >
                 Inner Development Goals
             </Link> (IDGs) - skills we all need to practice to achieve the UN Sustainable

@@ -6,6 +6,11 @@
 
 <script lang="ts">
     export let href = ''
+
+    // Workaround since `class` is reserved in JS
+    let className: string | undefined = undefined
+    export { className as class }
+
     let additionalProps: object
     onMount(() => {
         if (isExternalURL(href)) {
@@ -16,6 +21,6 @@
     })
 </script>
 
-<a {href} class={$$props.class ?? ''} {...$$props} {...additionalProps}>
+<a {href} class={className} {...additionalProps}>
     <slot />
 </a>

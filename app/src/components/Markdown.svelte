@@ -7,13 +7,11 @@
         Paragraph,
         Text,
         List,
-        Link,
         Br,
         ListItem,
     } from 'svelte-markdown/src/renderers'
 
-    // TODO: Use custom link
-    // import Link from './Link.svelte'
+    import Link from './Link.svelte'
     import EmptyComponent from './EmptyComponent.svelte'
     import { cx, sanitizeHTML } from '$lib/utils'
 
