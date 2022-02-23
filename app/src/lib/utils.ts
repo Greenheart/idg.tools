@@ -1,7 +1,8 @@
 export const randomInt = (min: number, max: number) =>
     Math.floor(Math.random() * (max - min + 1)) + min
 
-export const cx = (...classes: string[]) => classes.join(' ').trim()
+export const cx = (...classes: (string | undefined)[]) =>
+    classes.filter(Boolean).join(' ').trim()
 
 /**
  * Test if an URL is external.
