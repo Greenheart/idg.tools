@@ -6,7 +6,6 @@
     <Link href="/" class="group flex flex-col">
         <span class="font-bold group-hover:underline">IDG.tools</span>
         <span class="text-sm">Your inner development toolbox</span>
-        <!-- TODO: Decide what's better <span class="text-sm">Inner Development Toolbox</span> -->
     </Link>
 
     <nav class="flex justify-evenly">

@@ -31,10 +31,10 @@
 <Link
     {href}
     {...$$props}
-    {disabled}
     class={cx(
         defaultClasses,
         variants[disabled ? 'disabled' : variant ?? defaultVariant],
+        disabled ? 'pointer-events-none' : '',
         sizes[size ?? defaultSize],
         $$props.class ?? '',
     )}
