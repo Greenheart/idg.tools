@@ -12,7 +12,7 @@
 <Link href={`/explore/${tool.slug}`}>
     <div class="bg-stone-900 p-4">
         <h2 class="pb-4 font-semibold">{tool.name}</h2>
-        <div class="flex space-x-2">
+        <div class="flex flex-wrap items-start gap-2">
             <!-- TODO: respect prefers-reduced-motion - see SP website for solution -->
             <!-- IDEA: add fly transition when they get mounted, to make the UI feel more alive -->
             {#each tool.skills as skillId}
