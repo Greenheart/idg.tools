@@ -1,4 +1,5 @@
 <script lang="ts">
+    import H from '$components/H.svelte'
     import Markdown from '$components/Markdown.svelte'
 
     import type { Tool } from '$lib/types'
@@ -6,7 +7,7 @@
     export let tool: Tool
 </script>
 
-<h1 class="pt-8 text-5xl tracking-wider md:pt-16">Today's focus</h1>
+<H size={1} class="pt-4">Today's focus</H>
 
 <h2 class="py-4 text-xl font-semibold">{tool.name}</h2>
 

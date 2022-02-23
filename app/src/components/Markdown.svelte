@@ -7,7 +7,6 @@
         Paragraph,
         Text,
         List,
-        Br,
         ListItem,
     } from 'svelte-markdown/src/renderers'
 
@@ -27,10 +26,9 @@
 
     export let variant: keyof typeof variants = defaultVariant
     export let source: string
-
-    // Workaround since `class` is reserved in JS
-    let className: string | undefined = undefined
+    let className: string = ''
     export { className as class }
+
     const renderers = {
         text: Text,
         paragraph: Paragraph,
@@ -40,7 +38,7 @@
         blockquote: Blockquote,
         del: EmptyComponent,
         link: Link,
-        br: Br,
+        br: EmptyComponent,
         image: EmptyComponent,
         table: EmptyComponent,
         tablehead: EmptyComponent,

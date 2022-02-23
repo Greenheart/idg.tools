@@ -4,12 +4,13 @@
 
     import LinkButton from '$components/LinkButton.svelte'
     import Link from '$components/Link.svelte'
+    import H from '$components/H.svelte'
 
     let ready = false
     onMount(() => (ready = true))
 </script>
 
-<h1 class="pt-4 text-6xl tracking-wider">Get<br />Better.</h1>
+<H size={1} class="pt-4">Get<br />Better.</H>
 
 <!-- IDEA: Add IDG favicon -->
 <!-- IDEA: Add IDG logo on the landing page -->

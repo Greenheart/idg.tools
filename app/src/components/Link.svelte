@@ -6,9 +6,7 @@
 
 <script lang="ts">
     export let href = ''
-
-    // Workaround since `class` is reserved in JS
-    let className: string | undefined = undefined
+    let className: string = ''
     export { className as class }
 
     let additionalProps: object

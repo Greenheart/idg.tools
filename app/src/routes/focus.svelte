@@ -1,12 +1,14 @@
 <script lang="ts">
     import { onMount } from 'svelte'
 
-    import Button from '$components/Button.svelte'
-    import LinkButton from '$components/LinkButton.svelte'
     import { getSkillsInCategory } from '$lib/content-utils'
     import { cx } from '$lib/utils'
     import { selectedSkills } from '$lib/stores'
     import type { Content, Category, Skill } from '$lib/types'
+
+    import Button from '$components/Button.svelte'
+    import LinkButton from '$components/LinkButton.svelte'
+    import H from '$components/H.svelte'
 
     export let content: Content
 
@@ -49,9 +51,9 @@
     }
 </script>
 
-<h1 class="pt-4 text-6xl tracking-wider">
+<H size={1} class="pt-4">
     I want<br />to develop
-</h1>
+</H>
 
 <div class="space-y-4 py-12">
     {#each content.categories as { name, description, id: categoryId, color }}

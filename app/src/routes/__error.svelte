@@ -11,17 +11,17 @@
 
 <script lang="ts">
     import LinkButton from '$components/LinkButton.svelte'
+    import H from '$components/H.svelte'
 
     export let message: string | undefined
     export let status: number | undefined
 </script>
 
 {#if status === 404}
-    <!-- TODO: Add styled heading variants to make them easier to use across the app -->
-    <h2 class="mb-8">Not found</h2>
+    <H size={2} class="mb-8">Not found</H>
     <LinkButton href="/explore" size="lg">Explore IDG.tools</LinkButton>
 {:else}
-    <h2>Oops! Something went wrong</h2>
+    <H size={2} class="mb-8">Oops! Something went wrong</H>
     <p>HTTP {status}</p>
     <p>{message}</p>
 {/if}
