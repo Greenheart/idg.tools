@@ -48,7 +48,6 @@
 <div
     class="mt-16 flex flex-col items-center justify-between rounded-2xl bg-stone-50 p-4 text-center text-stone-900"
 >
-    <!-- <Heading>By the community,<br />for the community</Heading> -->
     <Heading>Created by and for the community</Heading>
 
     <p class="pt-3 pb-4 text-lg">
