@@ -103,7 +103,7 @@ export const lists: Lists = {
                 formatting: DocumentFormattingConfig,
                 links: true,
             }),
-            resource: document({
+            resources: document({
                 // @ts-expect-error Ignore missing exported type FormattingConfig from `@keystone-6/fields-document`
                 formatting: DocumentFormattingConfig,
                 links: true,
@@ -113,11 +113,14 @@ export const lists: Lists = {
                     { label: 'Published', value: 'published' },
                     { label: 'Draft', value: 'draft' },
                 ],
+                type: 'enum',
                 // We want to make sure new tools start off as a draft when they are created
                 defaultValue: 'draft',
+                validation: {
+                    isRequired: true,
+                },
                 ui: {
-                    // TODO: make it impossible to clear status (it should always have a value)
-                    displayMode: 'segmented-control',
+                    displayMode: 'select',
                 },
             }),
             categories: relationship({
@@ -145,7 +148,7 @@ export const lists: Lists = {
                 many: true,
             }),
             // TODO: Add UI text to warn users about changing the slug since it will break links
-            slug: text({ defaultValue: '' }),
+            slug: text({ defaultValue: '', validation: { isRequired: true } }),
         },
         hooks: {
             resolveInput: ({ operation, resolvedData }) => {

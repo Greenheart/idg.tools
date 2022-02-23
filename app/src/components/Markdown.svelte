@@ -1,15 +1,61 @@
 <script lang="ts">
-    import { compile } from 'mdsvex'
+    import SvelteMarkdown from 'svelte-markdown'
+    import {
+        Em,
+        Strong,
+        Blockquote,
+        Paragraph,
+        Text,
+        Link,
+        List,
+        Br,
+        ListItem,
+    } from 'svelte-markdown/src/renderers'
 
-    let source: string
+    import EmptyComponent from './EmptyComponent.svelte'
+    import { cx } from '$lib/utils'
+
+    const variants = {
+        default:
+            'prose-p:text-stone-50 prose-li:text-stone-50 marker:text-stone-50 prose-a:text-stone-50 prose-strong:text-stone-50 prose-em:text-stone-50',
+        inverted:
+            'prose-p:text-stone-900 prose-li:text-stone-900 marker:text-stone-900 prose-a:text-stone-900s prose-strong:text-stone-900 prose-em:text-stone-900',
+    }
+
+    const baseClasses = 'prose prose-stone prose-lg prose-li:my-1'
+    const defaultVariant = 'default'
+
+    export let variant: keyof typeof variants = defaultVariant
+    export let source: string
+
+    // Workaround since `class` is reserved in JS
     let className: string | undefined = undefined
     export { className as class }
-
-    const transformed_code = await compile(`
-
-${source}`)
+    const renderers = {
+        text: Text,
+        paragraph: Paragraph,
+        em: Em,
+        strong: Strong,
+        hr: EmptyComponent,
+        blockquote: Blockquote,
+        del: EmptyComponent,
+        link: Link,
+        br: Br,
+        image: EmptyComponent,
+        table: EmptyComponent,
+        tablehead: EmptyComponent,
+        tablebody: EmptyComponent,
+        tablerow: EmptyComponent,
+        tablecell: EmptyComponent,
+        list: List,
+        listitem: ListItem,
+        heading: EmptyComponent,
+        codespan: EmptyComponent,
+        code: EmptyComponent,
+        html: EmptyComponent,
+    }
 </script>
 
-<div class={className}>
-    {transformed_code}
+<div class={cx(baseClasses, variants[variant], className)}>
+    <SvelteMarkdown {source} {renderers} />
 </div>

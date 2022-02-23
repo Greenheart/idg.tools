@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 const config = {
     content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -9,6 +9,7 @@ const config = {
         },
         extend: {},
     },
+    plugins: [require('@tailwindcss/typography')],
 }
 
 module.exports = config

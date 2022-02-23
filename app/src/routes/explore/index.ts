@@ -1,4 +1,4 @@
-import { content } from '$lib/content'
+import { content } from '$lib/content-backend'
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function get() {

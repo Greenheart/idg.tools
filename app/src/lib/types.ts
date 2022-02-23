@@ -16,7 +16,7 @@ export type Tool = Item & {
     slug: string
     description: string
     challenge: string
-    resource: string
+    resources: string
     categories: ItemId[]
     skills: ItemId[]
 }

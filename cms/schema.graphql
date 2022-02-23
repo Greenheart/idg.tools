@@ -98,8 +98,8 @@ type Tool {
   name: String
   description: Tool_description_Document
   challenge: Tool_challenge_Document
-  resource: Tool_resource_Document
-  status: String
+  resources: Tool_resources_Document
+  status: ToolStatusType
   categories(
     where: CategoryWhereInput! = {}
     orderBy: [CategoryOrderByInput!]! = []
@@ -125,8 +125,13 @@ type Tool_challenge_Document {
   document(hydrateRelationships: Boolean! = false): JSON!
 }
 
-type Tool_resource_Document {
+type Tool_resources_Document {
   document(hydrateRelationships: Boolean! = false): JSON!
+}
+
+enum ToolStatusType {
+  published
+  draft
 }
 
 input ToolWhereUniqueInput {
@@ -139,38 +144,17 @@ input ToolWhereInput {
   NOT: [ToolWhereInput!]
   id: IDFilter
   name: StringFilter
-  status: StringNullableFilter
+  status: ToolStatusTypeNullableFilter
   categories: CategoryManyRelationFilter
   skills: SkillManyRelationFilter
   slug: StringFilter
 }
 
-input StringNullableFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: NestedStringNullableFilter
-}
-
-input NestedStringNullableFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: NestedStringNullableFilter
+input ToolStatusTypeNullableFilter {
+  equals: ToolStatusType
+  in: [ToolStatusType!]
+  notIn: [ToolStatusType!]
+  not: ToolStatusTypeNullableFilter
 }
 
 input CategoryManyRelationFilter {
@@ -196,8 +180,8 @@ input ToolUpdateInput {
   name: String
   description: JSON
   challenge: JSON
-  resource: JSON
-  status: String
+  resources: JSON
+  status: ToolStatusType
   categories: CategoryRelateToManyForUpdateInput
   skills: SkillRelateToManyForUpdateInput
   slug: String
@@ -226,8 +210,8 @@ input ToolCreateInput {
   name: String
   description: JSON
   challenge: JSON
-  resource: JSON
-  status: String
+  resources: JSON
+  status: ToolStatusType
   categories: CategoryRelateToManyForCreateInput
   skills: SkillRelateToManyForCreateInput
   slug: String

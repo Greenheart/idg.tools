@@ -1,7 +1,5 @@
 import type { Category, Content, Skill, Tool } from './types'
 
-// Content utils that need data to operate
-
 export const getCategory = (id: Category['id'], { categories }: Content) =>
     categories.find((c) => c.id === id) as Category
 

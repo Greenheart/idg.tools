@@ -249,36 +249,9 @@
     {
       "id": "ckzf7tws30038zxn01pkcsrx7",
       "name": "Finding your inner compass",
-      "description": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": "Inner compass: having a deeply felt sense of responsibility and commitment to values and purposes relating to the good of the whole."
-            }
-          ]
-        }
-      ],
-      "challenge": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": "Write down how you think people should treat themselves, others, and the planet. How closely do you follow these expectations? Is there anything you want to try to change? Starting with today, and think about how it feels to act closer to your values."
-            }
-          ]
-        }
-      ],
-      "resource": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": "Check out the 29k lesson about finding your inner compass."
-            }
-          ]
-        }
-      ],
+      "description": "Inner compass: having a deeply felt sense of responsibility and commitment to values and purposes relating to the good of the whole.\n",
+      "challenge": "Write down how you think people should treat themselves, others, and the planet. How closely do you follow these expectations? Is there anything you want to try to change? Starting with today, and think about how it feels to act closer to your values.\n",
+      "resources": "Check out the 29k lesson about finding your inner compass.\n",
       "categories": [
         "ckzi3855r0086e2n0smi0mew5"
       ],
@@ -290,52 +263,9 @@
     {
       "id": "ckzucmgr10182x4n02ya4oywj",
       "name": "Practice presence with meditation",
-      "description": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": "Ability to be in the here and now, without judgement and in a state of open-ended presence"
-            }
-          ]
-        }
-      ],
-      "challenge": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": "Discuss with a friend:",
-              "bold": true
-            },
-            {
-              "text": " What helps you to be present here and now and stay open for new thoughts and ideas?"
-            }
-          ]
-        }
-      ],
-      "resource": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": "Try the meditation "
-            },
-            {
-              "type": "link",
-              "href": "https://app.29k.org/JHFWP5HmyySeK8v97",
-              "children": [
-                {
-                  "text": "Become Present"
-                }
-              ]
-            },
-            {
-              "text": " in the 29k app."
-            }
-          ]
-        }
-      ],
+      "description": "Ability to be in the here and now, without judgement and in a state of open-ended presence\n",
+      "challenge": "**Discuss with a friend:** What helps you to be present here and now and stay open for new thoughts and ideas?\n",
+      "resources": "Try the meditation [Become Present](https://app.29k.org/JHFWP5HmyySeK8v97) in the 29k app.\n",
       "categories": [
         "ckzi3855r0086e2n0smi0mew5"
       ],
@@ -348,196 +278,9 @@
     {
       "id": "ckzvrs8dk0392jfn07466kcva",
       "name": "Document Rendering Test",
-      "description": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": "Bold",
-              "bold": true
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": "Italics",
-              "italic": true
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": "Bold italics",
-              "bold": true,
-              "italic": true
-            }
-          ]
-        }
-      ],
-      "challenge": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": "Try this with a friend:"
-            }
-          ]
-        },
-        {
-          "type": "ordered-list",
-          "children": [
-            {
-              "type": "list-item",
-              "children": [
-                {
-                  "type": "list-item-content",
-                  "children": [
-                    {
-                      "text": "first"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "list-item",
-              "children": [
-                {
-                  "type": "list-item-content",
-                  "children": [
-                    {
-                      "text": "second"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "list-item",
-              "children": [
-                {
-                  "type": "list-item-content",
-                  "children": [
-                    {
-                      "text": "third"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": ""
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": "Then optionally do one of these things:"
-            }
-          ]
-        },
-        {
-          "type": "unordered-list",
-          "children": [
-            {
-              "type": "list-item",
-              "children": [
-                {
-                  "type": "list-item-content",
-                  "children": [
-                    {
-                      "text": "Maybe"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "list-item",
-              "children": [
-                {
-                  "type": "list-item-content",
-                  "children": [
-                    {
-                      "text": "Another"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": ""
-            }
-          ]
-        }
-      ],
-      "resource": [
-        {
-          "type": "blockquote",
-          "children": [
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "text": "When in doubt, read inspiring an inspiring quote. Like this one!"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": ""
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": "Or try the meditation in the app:"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "text": ""
-            },
-            {
-              "type": "link",
-              "href": "https://app.29k.org/JHFWP5HmyySeK8v97",
-              "children": [
-                {
-                  "text": "https://app.29k.org/JHFWP5HmyySeK8v97"
-                }
-              ]
-            },
-            {
-              "text": ""
-            }
-          ]
-        }
-      ],
+      "description": "**Bold**\n_Italics_\n***Bold italics***\n",
+      "challenge": "Try this with a friend:\n\n1. first\n1. second\n1. third\n\nThen optionally do one of these things:\n\n- Maybe\n- Another\n- [Link in list item](https://github.com)\n- partial [link in list](https://github.com) item works well\n\n",
+      "resources": "> When in doubt, read inspiring an inspiring quote. Like this one!\n\n\nOr try the meditation in the app:\n[https://app.29k.org/JHFWP5HmyySeK8v97](https://app.29k.org/JHFWP5HmyySeK8v97)\nOr continue exploring with [this internal link](/explore)\n",
       "categories": [
         "ckzi38ilp0149e2n0idgw5zqv"
       ],

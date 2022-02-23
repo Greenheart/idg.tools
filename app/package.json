@@ -5,7 +5,7 @@
     "private": true,
     "scripts": {
         "dev": "svelte-kit dev",
-        "build:content": "node scripts/build-content.js",
+        "build:content": "node  --no-warnings scripts/build-content.js",
         "build": "npm run build:content && svelte-kit build",
         "preview": "svelte-kit preview",
         "check": "svelte-check --tsconfig ./tsconfig.json",
@@ -16,7 +16,8 @@
     "devDependencies": {
         "@sveltejs/adapter-static": "^1.0.0-next.28",
         "@sveltejs/kit": "^1.0.0-next.282",
-        "@types/react": "^17.0.39",
+        "@tailwindcss/typography": "^0.5.2",
+        "@types/sanitize-html": "^2.6.2",
         "autoprefixer": "^10.4.2",
         "cssnano": "^5.0.17",
         "postcss": "^8.4.6",
@@ -24,7 +25,6 @@
         "prettier": "^2.5.1",
         "prettier-plugin-svelte": "^2.6.0",
         "prettier-plugin-tailwindcss": "^0.1.7",
-        "react": "^17.0.2",
         "remark-slate": "^1.8.5",
         "svelte": "^3.46.4",
         "svelte-check": "^2.4.5",
@@ -42,8 +42,9 @@
     },
     "dependencies": {
         "dotenv": "^16.0.0",
-        "mdsvex": "^0.10.5",
         "native-fetch": "^4.0.2",
+        "sanitize-html": "^2.7.0",
+        "svelte-markdown": "^0.2.2",
         "undici": "^4.14.1"
     }
 }
