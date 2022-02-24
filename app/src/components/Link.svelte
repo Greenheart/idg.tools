@@ -8,6 +8,7 @@
     export let href = ''
     let className = ''
     export { className as class }
+    export let style = ''
 
     let additionalProps: object
     onMount(() => {
@@ -19,6 +20,6 @@
     })
 </script>
 
-<a {href} class={className} {...additionalProps}>
+<a {href} class={className} {style} {...additionalProps}>
     <slot />
 </a>

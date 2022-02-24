@@ -9,6 +9,7 @@
     import Button from '$components/Button.svelte'
     import LinkButton from '$components/LinkButton.svelte'
     import Heading from '$components/Heading.svelte'
+    import Link from '$components/Link.svelte'
 
     export let content: Content
 
@@ -55,7 +56,15 @@
     I want<br />to develop
 </Heading>
 
-<div class="space-y-4 py-12">
+<p class="py-8">
+    Pick the topics you want to focus on, or just continue to get a mix of all
+    of them. <Link href="/focus" class="underline" style={'color: #E0A1B4;'}>
+        Change them here
+    </Link>
+    <!-- IDEA: Maybe add colors as constants, or even add to the tailwind config -->
+</p>
+
+<div class="space-y-4 py-8">
     {#each content.categories as { name, description, id: categoryId, color }}
         <details
             class={cx('text-stone-900')}
@@ -85,7 +94,7 @@
                     />
                 </svg>
             </summary>
-            <div class="flex flex-wrap justify-left gap-3 px-4 pt-4">
+            <div class="justify-left flex flex-wrap gap-3 px-4 pt-4">
                 {#each getSkillsInCategory(categoryId, content) as skill (skill.name)}
                     <Button
                         label={skill.name}
@@ -102,7 +111,7 @@
 </div>
 
 <div class="mx-auto flex flex-col items-center space-y-4 px-8">
-    <LinkButton href="/explore">Explore tools</LinkButton>
+    <LinkButton href="/explore">Continue</LinkButton>
     {#if $selectedSkills.length}
         <Button
             label="Reset"

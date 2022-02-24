@@ -5,9 +5,10 @@
     import { selectedSkills } from '$lib/stores'
     import LinkButton from '$components/LinkButton.svelte'
     import RecommendedTools from '$components/RecommendedTools.svelte'
-    import ToolListItem from '$components/ToolListItem.svelte'
+    import Tool from '$components/Tool.svelte'
     import Heading from '$components/Heading.svelte'
     import { COMMUNITY_LINK } from '$lib/constants'
+    import Link from '$components/Link.svelte'
 
     export let content: Content
 
@@ -21,28 +22,30 @@
 <!-- IDEA: add basic client side search to find relevant content -->
 <!-- IDEA: at the bottom, add invitation to join the co-creation -->
 
-{#if $selectedSkills.length}
-    <div class="flex items-center justify-between py-4">
-        <Heading>Recommended for you</Heading>
-        <LinkButton href="/focus" size="sm">Preferences</LinkButton>
-    </div>
+<Heading size={1}>My tools</Heading>
 
-    <!-- TODO: load a random tool based on the user's selected IDGs. Don't show all recommended, but select a new one every day -->
+<p class="py-5">
+    These are the tools we recommend based on which skills you want to practice. <Link
+        href="/focus"
+        class="underline"
+        style={'color: #E0A1B4;'}
+    >
+        Change skills here
+    </Link>
+</p>
 
-    <RecommendedTools selectedSkills={$selectedSkills} {content} />
+<Heading class="py-5">Library</Heading>
 
-    <Heading class="mt-12 pb-6">All tools</Heading>
-{:else}
-    <div class="items-center flex justify-between py-4">
-        <Heading>All tools</Heading>
-        <LinkButton href="/focus" size="sm">Preferences</LinkButton>
-    </div>
-{/if}
-
-<div class="grid gap-2">
-    {#each content.tools as tool (tool.slug)}
-        <ToolListItem {tool} {content} />
-    {/each}
+<div class="grid gap-5">
+    {#if $selectedSkills.length}
+        <!-- TODO: load a random tool based on the user's selected IDGs. Don't show all recommended, but select a new one every day -->
+        <!-- TODO: improve recommended tools -->
+        <RecommendedTools selectedSkills={$selectedSkills} {content} />
+    {:else}
+        {#each content.tools as tool (tool.slug)}
+            <Tool {tool} {content} />
+        {/each}
+    {/if}
 </div>
 
 <div

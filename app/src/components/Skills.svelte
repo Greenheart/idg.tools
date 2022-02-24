@@ -23,6 +23,7 @@
         <Button
             size="sm"
             style={`background-color: ${category.color}`}
+            class="!rounded-lg"
             label={skill.name}
         />
     {/each}
