@@ -85,7 +85,7 @@
                     />
                 </svg>
             </summary>
-            <div class="flex flex-wrap justify-center gap-3 px-4 pt-4">
+            <div class="flex flex-wrap justify-left gap-3 px-4 pt-4">
                 {#each getSkillsInCategory(categoryId, content) as skill (skill.name)}
                     <Button
                         label={skill.name}
