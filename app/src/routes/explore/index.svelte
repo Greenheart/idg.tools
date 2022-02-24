@@ -34,7 +34,7 @@
     </Link>
 </p>
 
-<Heading class="py-5">Library</Heading>
+<Heading class="pb-5">Library</Heading>
 
 <div class="grid gap-5">
     {#if $selectedSkills.length}

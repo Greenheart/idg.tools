@@ -9,7 +9,6 @@
     import Button from '$components/Button.svelte'
     import LinkButton from '$components/LinkButton.svelte'
     import Heading from '$components/Heading.svelte'
-    import Link from '$components/Link.svelte'
 
     export let content: Content
 
@@ -56,12 +55,9 @@
     I want<br />to develop
 </Heading>
 
-<p class="py-8">
+<p class="pt-8">
     Pick the topics you want to focus on, or just continue to get a mix of all
-    of them. <Link href="/focus" class="underline" style={'color: #E0A1B4;'}>
-        Change them here
-    </Link>
-    <!-- IDEA: Maybe add colors as constants, or even add to the tailwind config -->
+    of them.
 </p>
 
 <div class="space-y-4 py-8">
