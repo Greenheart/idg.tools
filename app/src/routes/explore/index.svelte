@@ -51,9 +51,8 @@
     <Heading>Created by and for the community</Heading>
 
     <p class="pt-3 pb-4 text-lg">
-        Did you know that IDG.tools is co-created by people from all around the
-        world? Join our supportive community and let's practice inner
-        development together!
+        IDG.tools is co-created by people from all around the world - join our
+        supportive community and let's practice inner development together!
     </p>
 
     <LinkButton href={COMMUNITY_LINK} variant="inverted">
