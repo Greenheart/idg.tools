@@ -47,6 +47,6 @@
     >
         <Heading>Welcome to IDG.tools!</Heading>
         <p class="pt-3 pb-4 text-lg">Your inner development toolbox</p>
-        <LinkButton href="/focus" variant="inverted">Let's begin</LinkButton>
+        <LinkButton href="/skills" variant="inverted">Let's begin</LinkButton>
     </div>
 {/if}
