@@ -9,9 +9,8 @@
     export let content: Content
 </script>
 
-<Heading size={1} class="pt-4">{tool.name}</Heading>
+<Heading class="pt-4">{tool.name}</Heading>
 
-<!-- TODO: List relevant categories -->
 <Skills {tool} {content} class="pt-8" />
 
 <Markdown source={tool.description} class="pt-8" />
