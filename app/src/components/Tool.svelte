@@ -10,7 +10,9 @@
 </script>
 
 <Link href={`/explore/${tool.slug}`}>
-    <div class="relative rounded-2xl bg-stone-50 p-4 text-stone-900">
+    <div
+        class="relative transform-gpu rounded-2xl bg-stone-50 p-4 text-stone-900 duration-100 hover:scale-[103%]"
+    >
         <Heading size={3}>{tool.name}</Heading>
         <Markdown source={tool.description} class="py-2" variant="inverted" />
 
