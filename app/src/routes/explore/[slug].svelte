@@ -1,7 +1,7 @@
 <script lang="ts">
     import Heading from '$components/Heading.svelte'
     import Markdown from '$components/Markdown.svelte'
-    import Skills from '$components/Skills.svelte'
+    import RelevantSkills from '$components/RelevantSkills.svelte'
 
     import type { Content, Tool } from '$lib/types'
 
@@ -11,7 +11,7 @@
 
 <Heading class="pt-4">{tool.name}</Heading>
 
-<Skills {tool} {content} class="pt-8" />
+<RelevantSkills {tool} {content} class="pt-8" />
 
 <Markdown source={tool.description} class="pt-8" />
 
