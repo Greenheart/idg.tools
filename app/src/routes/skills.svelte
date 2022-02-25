@@ -56,7 +56,7 @@
 </Heading>
 
 <p class="pt-8">
-    Pick the topics you want to focus on, or just continue to get a mix of all
+    Pick the skills you want to focus on, or just continue to get a mix of all
     of them.
 </p>
 

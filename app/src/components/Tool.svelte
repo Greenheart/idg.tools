@@ -3,7 +3,7 @@
     import Heading from './Heading.svelte'
     import Link from './Link.svelte'
     import Markdown from './Markdown.svelte'
-    import Skills from './Skills.svelte'
+    import RelevantSkills from './RelevantSkills.svelte'
 
     export let tool: Tool
     export let content: Content
@@ -16,7 +16,7 @@
 
         <Heading size={3} class="pb-4">Skills you'll develop</Heading>
 
-        <Skills {tool} {content} />
+        <RelevantSkills {tool} {content} />
 
         <svg
             class="absolute bottom-4 right-4 h-6 w-6"
