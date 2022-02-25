@@ -2,7 +2,6 @@
     import { getCategory, getSkill } from '$lib/content-utils'
     import type { Content, Tool } from '$lib/types'
     import { cx } from '$lib/utils'
-    import Button from './Button.svelte'
 
     export let tool: Tool
     export let content: Content
@@ -14,17 +13,16 @@
     {#each tool.skills as skillId}
         {@const skill = getSkill(skillId, content)}
         {@const category = getCategory(skill.category, content)}
-        <!-- TODO: replace buttons since these categories don't need to be interactive, neither clickable nor with any hover effect. -->
         <!--
             IDEA: OR maybe, we could show a modal with details about the skill when people click the skill.
             This could be a way to give more details.
             We should likely do it in a clearer way though
         -->
-        <Button
-            size="sm"
+        <span
+            class="rounded-lg px-2 py-1 font-semibold text-stone-900"
             style={`background-color: ${category.color}`}
-            class="!rounded-lg"
-            label={skill.name}
-        />
+        >
+            {skill.name}
+        </span>
     {/each}
 </div>
