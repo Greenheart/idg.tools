@@ -17,7 +17,7 @@ A field: The individual bits of data on your list, each with its own type.
 // we get these even before code runs.
 import { list } from '@keystone-6/core'
 
-// We're using some common fields in the starter. Check out https://keystonejs.com/docs/apis/fields#fields-api
+// We're using some common fields. Check out https://keystonejs.com/docs/apis/fields#fields-api
 // for the full list of fields.
 import { text, relationship, password, select } from '@keystone-6/core/fields'
 // The document field is a more complicated field, so it's in its own package
@@ -48,11 +48,9 @@ const DocumentFormattingConfig = {
     softBreaks: true,
 }
 
-// We have a users list, a blogs list, and tags for blog posts, so they can be filtered.
-// Each property on the exported object will become the name of a list (a.k.a. the `listKey`),
+// Each property on the exported lists object will become the name of a list (a.k.a. the `listKey`),
 // with the value being the definition of the list, including the fields.
 export const lists: Lists = {
-    // Here we define the user list.
     User: list({
         // Here are the fields that `User` will have. We want an email and password so they can log in
         // a name so we can refer to them, and a way to connect users to posts.
@@ -80,10 +78,10 @@ export const lists: Lists = {
             // The password field takes care of hiding details and hashing values
             password: password({ validation: { isRequired: true } }),
         },
-        // Here we can configure the Admin UI. We want to show a user's name and posts in the Admin UI
+        // Here we can configure the Admin UI. We want to show a user's name in the Admin UI
         ui: {
             listView: {
-                initialColumns: ['name'],
+                initialColumns: ['name', 'email'],
             },
         },
     }),
@@ -92,7 +90,6 @@ export const lists: Lists = {
     Tool: list({
         fields: {
             name: text({ validation: { isRequired: true }, defaultValue: '' }),
-            // TODO: Do we need document for all three fields, or would it be better to use something else?
             description: document({
                 // @ts-expect-error Ignore missing exported type FormattingConfig from `@keystone-6/fields-document`
                 formatting: DocumentFormattingConfig,
@@ -116,22 +113,16 @@ export const lists: Lists = {
                 type: 'enum',
                 // We want to make sure new tools start off as a draft when they are created
                 defaultValue: 'draft',
-                validation: {
-                    isRequired: true,
-                },
-                ui: {
-                    displayMode: 'select',
-                },
+                validation: { isRequired: true },
+                ui: { displayMode: 'select' },
             }),
             categories: relationship({
                 ref: 'Category.tools',
                 ui: {
                     displayMode: 'cards',
                     cardFields: ['name'],
-                    inlineEdit: { fields: ['name'] },
                     linkToItem: true,
                     inlineConnect: true,
-                    inlineCreate: { fields: ['name'] },
                 },
                 many: true,
             }),
@@ -140,15 +131,21 @@ export const lists: Lists = {
                 ui: {
                     displayMode: 'cards',
                     cardFields: ['name'],
-                    inlineEdit: { fields: ['name'] },
                     linkToItem: true,
                     inlineConnect: true,
-                    inlineCreate: { fields: ['name'] },
                 },
                 many: true,
             }),
             // TODO: Add UI text to warn users about changing the slug since it will break links
-            slug: text({ defaultValue: '', validation: { isRequired: true } }),
+            slug: text({
+                defaultValue: '',
+                validation: { isRequired: true },
+                ui: {
+                    itemView: {
+                        fieldMode: 'read',
+                    },
+                },
+            }),
         },
         hooks: {
             resolveInput: ({ operation, resolvedData }) => {
@@ -161,26 +158,32 @@ export const lists: Lists = {
         },
         ui: {
             listView: {
-                initialColumns: ['name', 'description', 'categories', 'skills'],
+                initialColumns: [
+                    'name',
+                    'description',
+                    'categories',
+                    'skills',
+                    'status',
+                ],
             },
         },
     }),
     Category: list({
         fields: {
-            name: text(),
-            description: text(),
+            name: text({ validation: { isRequired: true } }),
+            description: text({ validation: { isRequired: true } }),
             tools: relationship({ ref: 'Tool.categories', many: true }),
             skills: relationship({
                 ref: 'Skill.category',
                 many: true,
             }),
-            color: text({ defaultValue: '' }),
+            color: text({ defaultValue: '', validation: { isRequired: true } }),
         },
     }),
     Skill: list({
         fields: {
-            name: text(),
-            description: text(),
+            name: text({ validation: { isRequired: true } }),
+            description: text({ validation: { isRequired: true } }),
             tools: relationship({ ref: 'Tool.skills', many: true }),
             category: relationship({
                 ref: 'Category.skills',
