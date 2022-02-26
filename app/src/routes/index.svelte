@@ -15,7 +15,6 @@
 <!-- IDEA: Add IDG favicon -->
 
 {#if ready}
-    <!-- TODO: Add styled link variants to make them easier to use across the app -->
     <div class="space-y-6 py-12">
         <p in:fly={{ y: -30, delay: 300, duration: 1000 }}>
             If you’re like us, you want to be a good person. You want to get
@@ -28,9 +27,12 @@
                 class="font-bold underline"
             >
                 Inner Development Goals
-            </Link> (IDGs) - skills we all need to practice to achieve the UN Sustainable
-            Development Goals (SDGs). It’s a lot of acronyms, but we promise it’s
-            good stuff.
+            </Link> (IDGs) - skills we all need to practice to achieve the <Link
+                href="https://sdgs.un.org/goals"
+                class="font-bold underline"
+            >
+                Sustainable Development Goals
+            </Link> (SDGs). It’s a lot of acronyms, but we promise it’s good stuff.
         </p>
 
         <p in:fly={{ y: -30, delay: 1900, duration: 1000 }}>

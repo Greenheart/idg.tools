@@ -27,8 +27,7 @@
 <p class="py-5">
     These are the tools we recommend based on which skills you want to practice. <Link
         href="/skills"
-        class="underline"
-        style={'color: #E0A1B4;'}
+        variant="pink"
     >
         Change skills here
     </Link>
