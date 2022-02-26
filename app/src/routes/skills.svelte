@@ -99,6 +99,7 @@
                         style={$selectedSkills.includes(skill.id)
                             ? `background-color: ${color}`
                             : undefined}
+                        class="!rounded-lg"
                     />
                 {/each}
             </div>

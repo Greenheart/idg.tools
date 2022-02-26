@@ -22,7 +22,7 @@
 <!-- IDEA: add basic client side search to find relevant content -->
 <!-- IDEA: at the bottom, add invitation to join the co-creation -->
 
-<Heading size={1}>My tools</Heading>
+<Heading size={1} class="pt-4">My tools</Heading>
 
 <p class="py-5">
     These are the tools we recommend based on which skills you want to practice. <Link
