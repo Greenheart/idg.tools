@@ -4,7 +4,7 @@
     import Link from './Link.svelte'
 </script>
 
-<header class="flex items-center justify-between py-6">
+<header class="flex items-center justify-between pt-8 pb-12">
     <Link href="/" class="group flex flex-col">
         <img src="/images/IDG-tools.svg" alt="IDG.tools logo" />
     </Link>

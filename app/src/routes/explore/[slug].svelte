@@ -9,7 +9,7 @@
     export let content: Content
 </script>
 
-<Heading class="pt-4">{tool.name}</Heading>
+<Heading>{tool.name}</Heading>
 
 <RelevantSkills {tool} {content} class="pt-8" />
 

@@ -21,7 +21,7 @@
             'prose-p:text-stone-900 prose-li:text-stone-900 marker:text-stone-900 prose-a:text-stone-900s prose-strong:text-stone-900 prose-em:text-stone-900',
     }
 
-    const baseClasses = 'prose prose-stone prose-lg prose-li:my-1'
+    const baseClasses = 'prose prose-stone prose-p:leading-6 prose-li:my-1'
     const defaultVariant = 'default'
 
     export let variant: keyof typeof variants = defaultVariant

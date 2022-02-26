@@ -51,7 +51,7 @@
     }
 </script>
 
-<Heading size={1} class="pt-4">
+<Heading size={1}>
     I want<br />to develop
 </Heading>
 
@@ -67,7 +67,7 @@
             on:toggle={(event) => onToggle(event, categoryId)}
         >
             <summary
-                class="flex cursor-pointer select-none !list-none items-center justify-between p-4 text-lg marker:!hidden"
+                class="flex cursor-pointer select-none !list-none items-center justify-between p-4 marker:!hidden"
                 style:background-color={color}
             >
                 <span>
