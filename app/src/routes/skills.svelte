@@ -24,10 +24,6 @@
         }
     }
 
-    const reset = () => {
-        $selectedSkills = []
-    }
-
     let isCategoryOpen: Record<Category['id'], boolean> = Object.values(
         content.categories,
     ).reduce((isCategoryOpen: Record<Category['id'], boolean>, category) => {
@@ -55,7 +51,7 @@
     I want<br />to develop
 </Heading>
 
-<div class="space-y-4 py-8">
+<div class="space-y-4 py-12">
     {#each content.categories as { name, description, id: categoryId, color }}
         <details
             class={cx('text-stone-900')}
@@ -104,13 +100,4 @@
 
 <div class="mx-auto flex flex-col items-center space-y-4 px-8">
     <LinkButton href="/explore">Continue</LinkButton>
-    {#if $selectedSkills.length}
-        <Button
-            label="Reset"
-            size="sm"
-            on:click={reset}
-            variant="secondary"
-            class="self-center px-16"
-        />
-    {/if}
 </div>

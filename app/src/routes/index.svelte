@@ -10,7 +10,7 @@
     onMount(() => (ready = true))
 </script>
 
-<Heading size={1} class="pt-4">Get<br />Better.</Heading>
+<Heading size={1}>Get<br />Better.</Heading>
 
 <!-- IDEA: Add IDG favicon -->
 
