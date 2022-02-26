@@ -9,7 +9,8 @@
     }
 
     const links = [
-        { href: '/explore', text: 'Explore' },
+        { href: '/skills', text: 'Skills' },
+        { href: '/explore', text: 'Toolbox' },
         { href: COMMUNITY_LINK, text: 'Community' },
     ]
 </script>
