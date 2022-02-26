@@ -1,7 +1,11 @@
 <script context="module" lang="ts">
-    import type { ErrorLoadInput } from '@sveltejs/kit'
-
-    export const load = ({ error, status }: ErrorLoadInput) => ({
+    export const load = ({
+        error,
+        status,
+    }: {
+        error?: Error
+        status?: number
+    }) => ({
         props: {
             message: error?.message,
             status,
