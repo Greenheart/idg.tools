@@ -181,6 +181,6 @@ const warnAboutUnsafeURIs = (_key, value) => {
 
 await writeFile(
     resolve('static/content.json'),
-    JSON.stringify(content, warnAboutUnsafeURIs, 2),
+    JSON.stringify(content, warnAboutUnsafeURIs, production ? 0 : 2),
     { encoding: 'utf-8' },
 )
