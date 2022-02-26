@@ -42,7 +42,7 @@
 
     <div
         in:fly={{ y: -20, delay: 2700, duration: 1000 }}
-        class="flex justify-center px-4"
+        class="flex justify-center"
     >
         <LinkButton href="/skills">Let's begin</LinkButton>
     </div>
