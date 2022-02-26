@@ -13,6 +13,7 @@
 <Heading size={1}>Get<br />Better.</Heading>
 
 <!-- IDEA: Add IDG favicon -->
+<!-- IDEA: Package app as an PWA, installable to the home screen -->
 
 {#if ready}
     <div class="space-y-6 py-12">

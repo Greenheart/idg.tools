@@ -169,9 +169,7 @@ content.tools = content.tools.map((tool) => {
     return tool
 })
 
-// Encourage users to use HTTPS URIs if possible.
-// IDEA: Maybe add as custom validation in Keystone Admin UI instead,
-// to allow users to catch this error
+// Encourage HTTPS URIs to be used if possible.
 const warnAboutUnsafeURIs = (_key, value) => {
     if (typeof value === 'string' && value.includes('http://')) {
         console.warn('🚨 Non-https URI detected:', value)

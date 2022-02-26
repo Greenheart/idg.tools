@@ -20,9 +20,6 @@
         <img src="/images/IDG-tools.svg" alt="IDG.tools logo" />
     </Link>
 
-    <!-- IDEA: Maybe use resize observer to set isMenuOpen to false when screen has been resized over a breakpoint -->
-    <!-- IDEA: remove webkit tap highlight color -->
-
     {#if $isMenuOpen}
         <nav
             class="fixed top-0 bottom-0 left-0 right-0 flex h-full w-full flex-col items-center justify-center text-6xl font-semibold backdrop-blur-2xl"
