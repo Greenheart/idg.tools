@@ -101,3 +101,12 @@
 <div class="mx-auto flex flex-col items-center space-y-4 px-8">
     <LinkButton href="/explore">Continue</LinkButton>
 </div>
+
+<style>
+    details > summary {
+        list-style: none;
+    }
+    details > summary::-webkit-details-marker {
+        display: none;
+    }
+</style>
