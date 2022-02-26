@@ -4,13 +4,12 @@
     import Link from './Link.svelte'
 </script>
 
-<header class="flex items-center justify-between py-8">
+<header class="flex items-center justify-between py-6">
     <Link href="/" class="group flex flex-col">
         <img src="/images/IDG-tools.svg" alt="IDG.tools logo" />
     </Link>
 
     <nav class="flex justify-evenly">
-        <!-- TODO: make header responsive -->
         <Link class="p-2 hover:underline" href="/explore">Explore</Link>
         <!-- IDEA: Add /community page to explain the various types of communities:
             - IDG community on Element

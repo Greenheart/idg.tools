@@ -13,11 +13,10 @@
 <Heading size={1} class="pt-4">Get<br />Better.</Heading>
 
 <!-- IDEA: Add IDG favicon -->
-<!-- IDEA: Add IDG logo on the landing page -->
 
 {#if ready}
     <!-- TODO: Add styled link variants to make them easier to use across the app -->
-    <div class="space-y-8 py-12 text-lg">
+    <div class="space-y-6 py-12">
         <p in:fly={{ y: -30, delay: 300, duration: 1000 }}>
             If you’re like us, you want to be a good person. You want to get
             better for yourself, your loved ones, and the planet.
@@ -42,11 +41,9 @@
     </div>
 
     <div
-        in:fly={{ y: -10, delay: 2700, duration: 1000 }}
-        class="flex flex-col items-center justify-between rounded-2xl bg-stone-50 p-4 text-center text-stone-900"
+        in:fly={{ y: -20, delay: 2700, duration: 1000 }}
+        class="flex justify-center px-4"
     >
-        <Heading>Welcome to IDG.tools!</Heading>
-        <p class="pt-3 pb-4 text-lg">Your inner development toolbox</p>
-        <LinkButton href="/skills" variant="inverted">Let's begin</LinkButton>
+        <LinkButton href="/skills">Let's begin</LinkButton>
     </div>
 {/if}
