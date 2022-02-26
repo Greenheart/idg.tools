@@ -11,7 +11,13 @@ function createPersistedStore<T>(key: string, startValue: T) {
         useLocalStorage: () => {
             const json = localStorage.getItem(key)
             if (typeof json === 'string') {
-                set(JSON.parse(json))
+                let data: T
+                try {
+                    data = JSON.parse(json)
+                } catch (error) {
+                    data = startValue
+                }
+                set(data)
             }
 
             subscribe((current) => {
