@@ -22,3 +22,4 @@ function createPersistedStore<T>(key: string, startValue: T) {
 }
 
 export const selectedSkills = createPersistedStore<ItemId[]>('selected', [])
+export const isMenuOpen = writable<boolean>(false)

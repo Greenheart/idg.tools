@@ -1,23 +1,41 @@
 <script lang="ts">
     import { COMMUNITY_LINK } from '$lib/constants'
+    import { isMenuOpen } from '$lib/stores'
 
     import Link from './Link.svelte'
 
-    let isMenuOpen = false
-
     const toggleMenu = () => {
-        isMenuOpen = !isMenuOpen
+        $isMenuOpen = !$isMenuOpen
     }
+
+    const links = [
+        { href: '/explore', text: 'Explore' },
+        { href: COMMUNITY_LINK, text: 'Community' },
+    ]
 </script>
 
-<header class="sticky top-0 flex items-center justify-between pt-6 pb-12">
-    <Link href="/" class="group flex flex-col">
+<header class="flex items-center justify-between pt-6 pb-12">
+    <Link href="/" class="flex h-[60px] items-center">
         <img src="/images/IDG-tools.svg" alt="IDG.tools logo" />
     </Link>
 
+    <!-- IDEA: Maybe use resize observer to set isMenuOpen to false when screen has been resized over a breakpoint -->
+    <!-- IDEA: remove webkit tap highlight color -->
+
+    {#if $isMenuOpen}
+        <nav
+            class="fixed top-0 bottom-0 left-0 right-0 flex h-full w-full flex-col items-center justify-center text-6xl font-semibold backdrop-blur-2xl"
+            on:click={toggleMenu}
+        >
+            {#each links as { href, text }}
+                <Link {href} class="p-2">{text}</Link>
+            {/each}
+        </nav>
+    {/if}
+
     <button
-        class="hamburger hamburger--spring"
-        class:is-active={isMenuOpen}
+        class="hamburger hamburger--spring justify-evenly sm:hidden"
+        class:is-active={$isMenuOpen}
         type="button"
         on:click={toggleMenu}
     >
@@ -26,12 +44,13 @@
         </span>
     </button>
 
-    <nav class="hidden justify-evenly md:flex">
-        <Link class="p-2 hover:underline" href="/explore">Explore</Link>
+    <nav class="hidden justify-evenly sm:flex">
+        {#each links as { href, text }}
+            <Link {href} class="p-2">{text}</Link>
+        {/each}
         <!-- IDEA: Add /community page to explain the various types of communities:
             - IDG community on Element
             - 29k
          -->
-        <Link class="p-2 hover:underline" href={COMMUNITY_LINK}>Community</Link>
     </nav>
 </header>

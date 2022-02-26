@@ -55,11 +55,6 @@
     I want<br />to develop
 </Heading>
 
-<p class="pt-8">
-    Pick the skills you want to focus on, or just continue to get a mix of all
-    of them.
-</p>
-
 <div class="space-y-4 py-8">
     {#each content.categories as { name, description, id: categoryId, color }}
         <details
