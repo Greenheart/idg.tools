@@ -1,7 +1,7 @@
 {
     "name": "idg.tools",
     "version": "1.0.0",
-    "description": "https://idg.tools | Your inner development toolbox",
+    "description": "https://idg.tools | Inner Development Toolbox",
     "private": true,
     "scripts": {
         "dev": "svelte-kit dev",

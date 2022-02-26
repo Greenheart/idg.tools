@@ -6,8 +6,7 @@
 
 <header class="flex items-center justify-between py-8">
     <Link href="/" class="group flex flex-col">
-        <span class="font-bold group-hover:underline">IDG.tools</span>
-        <span class="text-sm">Your inner development toolbox</span>
+        <img src="/images/IDG-tools.svg" alt="IDG.tools logo" />
     </Link>
 
     <nav class="flex justify-evenly">
