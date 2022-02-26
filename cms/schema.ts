@@ -89,7 +89,15 @@ export const lists: Lists = {
     // IDEA: See if keystone has good UX tips for solving this.
     Tool: list({
         fields: {
-            name: text({ validation: { isRequired: true }, defaultValue: '' }),
+            name: text({
+                validation: { isRequired: true },
+                defaultValue: '',
+                ui: {
+                    createView: {
+                        fieldMode: 'edit',
+                    },
+                },
+            }),
             description: document({
                 // @ts-expect-error Ignore missing exported type FormattingConfig from `@keystone-6/fields-document`
                 formatting: DocumentFormattingConfig,
@@ -137,6 +145,10 @@ export const lists: Lists = {
                 many: true,
             }),
             // TODO: Add UI text to warn users about changing the slug since it will break links
+            // IDEA: Or use a cuid at the end of each dynamic url to let the slug always be the latest sluggified name
+            // This would make URL:s less nice-looking, but greatly improving the UX for both editors and users, since they can see the updated, sluggified name
+            // And because we can let anyone to update the name of the tool, since the final part is always the same
+            // NOTE: Using a slug at the end of each tool url would however require a static cuid.slug() or similar that is set permanently when creating the initial document.
             slug: text({
                 defaultValue: '',
                 validation: { isRequired: true },
@@ -165,6 +177,9 @@ export const lists: Lists = {
                     'skills',
                     'status',
                 ],
+            },
+            createView: {
+                defaultFieldMode: 'hidden',
             },
         },
     }),

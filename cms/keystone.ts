@@ -22,6 +22,7 @@ export default withAuth(
             // TODO: Use PostgreSQL for production, and ideally also for local development.
             provider: 'sqlite',
             url: 'file:./keystone.db',
+            // NOTE: Maybe use migrations when using PostgreSQL
         },
         // This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
         ui: {
