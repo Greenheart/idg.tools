@@ -82,6 +82,10 @@
                 </svg>
             </summary>
             <div class="justify-left flex flex-wrap gap-3 px-4 pt-4">
+                <!--
+                    IDEA: Maybe we disable click events for the the skills we currently don't have tools for?
+                    This would avoid wasting people's time to select skills that we don't even have content for.
+                -->
                 {#each getSkillsInCategory(categoryId, content) as skill (skill.name)}
                     <Button
                         label={skill.name}
