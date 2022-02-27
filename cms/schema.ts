@@ -179,6 +179,8 @@ export const lists: Lists = {
                     (typeof data.slug === 'string' ||
                         typeof item?.slug === 'string')
                 ) {
+                    // TODO: Prevent links from getting too long. Cut after N characters,
+                    // or after splitting X '-' characters and combining the strings
                     data.link = createBackwardsCompatibleLink(
                         data.name,
                         data.slug ?? item!.slug,
