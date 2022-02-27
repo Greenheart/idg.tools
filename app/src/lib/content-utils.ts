@@ -6,8 +6,8 @@ export const getCategory = (id: Category['id'], { categories }: Content) =>
 export const getSkill = (id: Skill['id'], { skills }: Content) =>
     skills.find((s) => s.id === id) as Skill
 
-export const getToolBySlug = (slug: Tool['slug'], { tools }: Content) =>
-    tools.find((t) => t.slug === slug) as Tool
+export const getToolByLink = (link: Tool['link'], { tools }: Content) =>
+    tools.find((t) => t.link === link) as Tool
 
 export const getSkillsInCategory = (id: Category['id'], { skills }: Content) =>
     skills.filter((s) => s.category === id)

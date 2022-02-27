@@ -9,7 +9,7 @@
     export let content: Content
 </script>
 
-<Link href={`/explore/${tool.slug}`} unstyled>
+<Link href={`/explore/${tool.link}`} unstyled>
     <div
         class="relative transform-gpu rounded-2xl bg-stone-50 p-4 text-stone-900 duration-100 hover:scale-[103%]"
     >

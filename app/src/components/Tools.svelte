@@ -6,6 +6,6 @@
     export let content: Content
 </script>
 
-{#each tools as tool (tool.slug)}
+{#each tools as tool (tool.link)}
     <Tool {tool} {content} />
 {/each}

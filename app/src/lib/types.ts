@@ -13,7 +13,7 @@ export type Category = Item & {
     skills: ItemId[]
 }
 export type Tool = Item & {
-    slug: string
+    link: string
     description: string
     challenge: string
     resources: string

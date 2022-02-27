@@ -58,7 +58,7 @@ const query = `
       skills {
         id
       }
-      slug
+      link
     }
   }
 `
@@ -168,6 +168,8 @@ content.tools = content.tools.map((tool) => {
 
     return tool
 })
+
+// IDEA: Maybe don't include items with incomplete data
 
 // Encourage HTTPS URIs to be used if possible.
 const warnAboutUnsafeURIs = (_key, value) => {
