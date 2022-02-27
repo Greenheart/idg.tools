@@ -28,6 +28,7 @@ model Tool {
   categories  Category[] @relation("Category_tools")
   skills      Skill[]    @relation("Skill_tools")
   slug        String     @default("")
+  link        String     @default("")
 }
 
 model Category {

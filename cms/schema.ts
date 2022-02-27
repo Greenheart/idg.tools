@@ -23,7 +23,7 @@ import { text, relationship, password, select } from '@keystone-6/core/fields'
 // The document field is a more complicated field, so it's in its own package
 // Keystone aims to have all the base field types, but you can make your own
 // custom ones.
-import { document } from '@keystone-6/fields-document'
+import { document, DocumentFieldConfig } from '@keystone-6/fields-document'
 
 // We are using Typescript, and we want our types experience to be as strict as it can be.
 // By providing the Keystone generated `Lists` type to our lists object, we refine
@@ -31,9 +31,10 @@ import { document } from '@keystone-6/fields-document'
 // that Typescript cannot easily infer.
 import { Lists } from '.keystone/types'
 
-import { createSlug } from './utils'
+import { createToolLink } from './utils'
+import cuid from 'cuid'
 
-const DocumentFormattingConfig = {
+const DocumentFormattingConfig: DocumentFieldConfig<any>['formatting'] = {
     inlineMarks: {
         bold: true,
         italic: true,
@@ -78,15 +79,13 @@ export const lists: Lists = {
             // The password field takes care of hiding details and hashing values
             password: password({ validation: { isRequired: true } }),
         },
-        // Here we can configure the Admin UI. We want to show a user's name in the Admin UI
+        // Here we can configure the Admin UI. We want to show a user's name and email in the list view
         ui: {
             listView: {
                 initialColumns: ['name', 'email'],
             },
         },
     }),
-    // TODO: Prevent data loss when creating a new item, and clicking outside.
-    // IDEA: See if keystone has good UX tips for solving this.
     Tool: list({
         fields: {
             name: text({
@@ -99,17 +98,14 @@ export const lists: Lists = {
                 },
             }),
             description: document({
-                // @ts-expect-error Ignore missing exported type FormattingConfig from `@keystone-6/fields-document`
                 formatting: DocumentFormattingConfig,
                 links: true,
             }),
             challenge: document({
-                // @ts-expect-error Ignore missing exported type FormattingConfig from `@keystone-6/fields-document`
                 formatting: DocumentFormattingConfig,
                 links: true,
             }),
             resources: document({
-                // @ts-expect-error Ignore missing exported type FormattingConfig from `@keystone-6/fields-document`
                 formatting: DocumentFormattingConfig,
                 links: true,
             }),
@@ -151,7 +147,17 @@ export const lists: Lists = {
             // NOTE: Using a slug at the end of each tool url would however require a static cuid.slug() or similar that is set permanently when creating the initial document.
             slug: text({
                 defaultValue: '',
-                validation: { isRequired: true },
+                validation: { isRequired: false },
+                // TODO: Prevent this from being edited once it's been set
+                ui: {
+                    itemView: {
+                        fieldMode: 'hidden',
+                    },
+                },
+            }),
+            link: text({
+                defaultValue: '',
+                validation: { isRequired: false },
                 ui: {
                     itemView: {
                         fieldMode: 'read',
@@ -160,12 +166,25 @@ export const lists: Lists = {
             }),
         },
         hooks: {
-            resolveInput: ({ operation, resolvedData }) => {
-                if (operation === 'create' && resolvedData) {
-                    // @ts-expect-error 2540
-                    resolvedData.slug = createSlug(resolvedData.name ?? '')
+            resolveInput: ({ operation, resolvedData, item }) => {
+                const data = { ...resolvedData }
+                if (operation === 'create') {
+                    data.slug = cuid.slug()
+                    console.log('CREATE:', data.slug)
                 }
-                return resolvedData
+
+                if (
+                    typeof data.name === 'string' &&
+                    (typeof data.slug === 'string' ||
+                        typeof item?.slug === 'string')
+                ) {
+                    data.link = createToolLink(
+                        data.name,
+                        data.slug ? data.slug : item!.slug,
+                    )
+                    console.log('UPDATE LINK:', data.link)
+                }
+                return data
             },
         },
         ui: {

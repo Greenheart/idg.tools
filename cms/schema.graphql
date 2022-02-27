@@ -115,6 +115,7 @@ type Tool {
   ): [Skill!]
   skillsCount(where: SkillWhereInput! = {}): Int
   slug: String
+  link: String
 }
 
 type Tool_description_Document {
@@ -148,6 +149,7 @@ input ToolWhereInput {
   categories: CategoryManyRelationFilter
   skills: SkillManyRelationFilter
   slug: StringFilter
+  link: StringFilter
 }
 
 input ToolStatusTypeNullableFilter {
@@ -174,6 +176,7 @@ input ToolOrderByInput {
   name: OrderDirection
   status: OrderDirection
   slug: OrderDirection
+  link: OrderDirection
 }
 
 input ToolUpdateInput {
@@ -185,6 +188,7 @@ input ToolUpdateInput {
   categories: CategoryRelateToManyForUpdateInput
   skills: SkillRelateToManyForUpdateInput
   slug: String
+  link: String
 }
 
 input CategoryRelateToManyForUpdateInput {
@@ -215,6 +219,7 @@ input ToolCreateInput {
   categories: CategoryRelateToManyForCreateInput
   skills: SkillRelateToManyForCreateInput
   slug: String
+  link: String
 }
 
 input CategoryRelateToManyForCreateInput {
