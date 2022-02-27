@@ -16,12 +16,13 @@
 
     const variants = {
         default:
-            'prose-p:text-stone-50 prose-li:text-stone-50 marker:text-stone-50 prose-a:text-stone-50 prose-strong:text-stone-50 prose-em:text-stone-50',
+            'prose-p:text-stone-50 prose-li:text-stone-50 marker:text-stone-50 prose-strong:text-stone-50 prose-em:text-stone-50',
         inverted:
-            'prose-p:text-stone-900 prose-li:text-stone-900 marker:text-stone-900 prose-a:text-stone-900s prose-strong:text-stone-900 prose-em:text-stone-900',
+            'prose-p:text-stone-900 prose-li:text-stone-900 marker:text-stone-900 prose-strong:text-stone-900 prose-em:text-stone-900',
     }
 
-    const baseClasses = 'prose prose-stone prose-p:leading-6 prose-li:my-1'
+    const baseClasses =
+        'prose prose-stone prose-p:leading-6 prose-li:my-1 prose-a:text-[#E0A1B4]'
     const defaultVariant = 'default'
 
     export let variant: keyof typeof variants = defaultVariant
