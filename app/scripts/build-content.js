@@ -59,6 +59,7 @@ const query = `
         id
       }
       link
+      slug
     }
   }
 `

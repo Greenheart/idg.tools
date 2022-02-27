@@ -14,6 +14,7 @@ export type Category = Item & {
 }
 export type Tool = Item & {
     link: string
+    slug: string
     description: string
     challenge: string
     resources: string
