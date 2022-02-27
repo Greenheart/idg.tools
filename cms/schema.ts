@@ -31,7 +31,7 @@ import { document, DocumentFieldConfig } from '@keystone-6/fields-document'
 // that Typescript cannot easily infer.
 import { Lists } from '.keystone/types'
 
-import { createToolLink } from './utils'
+import { createBackwardsCompatibleLink } from './utils'
 import cuid from 'cuid'
 
 const DocumentFormattingConfig: DocumentFieldConfig<any>['formatting'] = {
@@ -90,7 +90,6 @@ export const lists: Lists = {
         fields: {
             name: text({
                 validation: { isRequired: true },
-                defaultValue: '',
                 ui: {
                     createView: {
                         fieldMode: 'edit',
@@ -140,23 +139,26 @@ export const lists: Lists = {
                 },
                 many: true,
             }),
-            // TODO: Add UI text to warn users about changing the slug since it will break links
-            // IDEA: Or use a cuid at the end of each dynamic url to let the slug always be the latest sluggified name
-            // This would make URL:s less nice-looking, but greatly improving the UX for both editors and users, since they can see the updated, sluggified name
-            // And because we can let anyone to update the name of the tool, since the final part is always the same
-            // NOTE: Using a slug at the end of each tool url would however require a static cuid.slug() or similar that is set permanently when creating the initial document.
             slug: text({
-                defaultValue: '',
                 validation: { isRequired: false },
-                // TODO: Prevent this from being edited once it's been set
                 ui: {
                     itemView: {
                         fieldMode: 'hidden',
                     },
                 },
+                hooks: {
+                    validateInput: ({
+                        operation,
+                        resolvedData,
+                        addValidationError,
+                    }) => {
+                        if (operation === 'update' && resolvedData.slug) {
+                            addValidationError(`Cannot update slug once set`)
+                        }
+                    },
+                },
             }),
             link: text({
-                defaultValue: '',
                 validation: { isRequired: false },
                 ui: {
                     itemView: {
@@ -170,7 +172,6 @@ export const lists: Lists = {
                 const data = { ...resolvedData }
                 if (operation === 'create') {
                     data.slug = cuid.slug()
-                    console.log('CREATE:', data.slug)
                 }
 
                 if (
@@ -178,11 +179,10 @@ export const lists: Lists = {
                     (typeof data.slug === 'string' ||
                         typeof item?.slug === 'string')
                 ) {
-                    data.link = createToolLink(
+                    data.link = createBackwardsCompatibleLink(
                         data.name,
-                        data.slug ? data.slug : item!.slug,
+                        data.slug ?? item!.slug,
                     )
-                    console.log('UPDATE LINK:', data.link)
                 }
                 return data
             },
@@ -191,10 +191,10 @@ export const lists: Lists = {
             listView: {
                 initialColumns: [
                     'name',
-                    'description',
                     'categories',
                     'skills',
                     'status',
+                    'link',
                 ],
             },
             createView: {

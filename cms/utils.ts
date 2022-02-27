@@ -10,5 +10,14 @@ export const slugifyName = (string: string) =>
         trim: true, // trim leading and trailing replacement chars, defaults to `true`
     })
 
-export const createToolLink = (name: string, uniqueSlug: string) =>
-    `${slugifyName(name)}-${uniqueSlug}`
+/**
+ * Create a slugified, backwards compatible link.
+ *
+ * @param name Name of the object to link to. Can be updated easily while keeping links backwards compatible.
+ * @param uniqueSlug cuid.slug() that should remain the same for an object as long as it exists in the database.
+ * @returns Slugified link
+ */
+export const createBackwardsCompatibleLink = (
+    name: string,
+    uniqueSlug: string,
+) => `${slugifyName(name)}-${uniqueSlug}`
