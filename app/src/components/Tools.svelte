@@ -23,6 +23,6 @@
             <Link href={COMMUNITY_LINK} variant="pink">our community</Link> and co-create
             more tools!
         </p>
-        <Button on:click={resetSkills} label="View all skills" />
+        <Button on:click={resetSkills} label="View all tools" />
     </div>
 {/each}
