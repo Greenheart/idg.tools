@@ -1,7 +1,7 @@
 <script lang="ts">
     import Heading from '$components/Heading.svelte'
     import Markdown from '$components/Markdown.svelte'
-    import RelevantSkills from '$components/RelevantSkills.svelte'
+    import DetailedRelevantSkills from '$components/DetailedRelevantSkills.svelte'
 
     import type { Content, Tool } from '$lib/types'
 
@@ -10,8 +10,6 @@
 </script>
 
 <Heading>{tool.name}</Heading>
-
-<RelevantSkills {tool} {content} class="pt-8" />
 
 <Markdown source={tool.description} class="pt-8" />
 
@@ -23,5 +21,6 @@
 <Heading class="pb-2">Want to learn more?</Heading>
 <Markdown source={tool.resources} />
 
-<!-- IDEA: Maybe add specific chat room for each IDG skill, allowing people to discuss this IDG with others -->
-<!-- IDEA: Probably even better, show a CTA at the bottom of each tool suggesting them to join the IDG community and learn together with others -->
+<DetailedRelevantSkills {tool} {content} class="pt-8" />
+
+<!-- IDEA: show a CTA at the bottom of each tool suggesting them to join the IDG community and learn together with others -->
