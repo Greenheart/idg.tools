@@ -1,4 +1,5 @@
 node_modules
 .keystone/admin
 keystone.db
+.next
 *.log
