@@ -3,9 +3,7 @@
 
     import type { Content } from '$lib/types'
     import { selectedSkills } from '$lib/stores'
-    import LinkButton from '$components/LinkButton.svelte'
     import Heading from '$components/Heading.svelte'
-    import { COMMUNITY_LINK } from '$lib/constants'
     import Link from '$components/Link.svelte'
     import Tools from '$components/Tools.svelte'
 
@@ -55,7 +53,7 @@
         supportive community and let's practice inner development together!
     </p>
 
-    <LinkButton href={COMMUNITY_LINK} variant="inverted">
+    <!-- <LinkButton href={COMMUNITY_LINK} variant="inverted">
         Join community
-    </LinkButton>
+    </LinkButton> -->
 </div>

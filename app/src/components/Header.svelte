@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { COMMUNITY_LINK } from '$lib/constants'
     import { isMenuOpen } from '$lib/stores'
 
     import Link from './Link.svelte'
@@ -11,7 +10,7 @@
     const links = [
         { href: '/skills', text: 'Skills' },
         { href: '/explore', text: 'Toolbox' },
-        { href: COMMUNITY_LINK, text: 'Community' },
+        // { href: COMMUNITY_LINK, text: 'Community' },
     ]
 </script>
 
