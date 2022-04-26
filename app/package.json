@@ -20,11 +20,11 @@
         "svelte-markdown": "^0.2.2"
     },
     "devDependencies": {
-        "@sveltejs/adapter-vercel": "^1.0.0-next.49",
-        "@sveltejs/kit": "^1.0.0-next.320",
+        "@sveltejs/adapter-vercel": "^1.0.0-next.50",
+        "@sveltejs/kit": "^1.0.0-next.322",
         "@tailwindcss/typography": "^0.5.2",
         "@types/sanitize-html": "^2.6.2",
-        "autoprefixer": "^10.4.4",
+        "autoprefixer": "^10.4.5",
         "cssnano": "^5.1.7",
         "postcss": "^8.4.12",
         "postcss-load-config": "^3.1.4",
