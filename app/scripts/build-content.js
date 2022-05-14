@@ -116,7 +116,10 @@ const convertSlateToMarkdown = (document) => {
 const body = await fetch(process.env.API_URL, {
     method: 'POST',
     body: JSON.stringify({ query }),
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.API_TOKEN}`,
+    },
 })
     .then((res) => res.json())
     .catch((err) => console.error(err))
