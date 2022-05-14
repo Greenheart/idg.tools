@@ -3,14 +3,12 @@ Welcome to the auth file! Here we have put a config to do basic auth in Keystone
 
 `createAuth` is an implementation for an email-password login out of the box.
 `statelessSessions` is a base implementation of session logic.
-
-For more on auth, check out: https://keystonejs.com/docs/apis/auth#authentication-api
 */
 
 import { createAuth } from '@keystone-6/auth'
-
-// See https://keystonejs.com/docs/apis/session#session-api for the session docs
 import { statelessSessions } from '@keystone-6/core/session'
+import { KeystoneContext } from '@keystone-6/core/types'
+import 'dotenv/config'
 
 let sessionSecret = process.env.SESSION_SECRET
 
@@ -41,7 +39,26 @@ export type Session = {
     }
 }
 
-type AuthGuard = ({ session }: { session: Session }) => boolean
+type AuthGuardParameters = {
+    session: Session
+    context: KeystoneContext
+}
+
+export const hasAPIToken: AuthGuard = ({ context }) => {
+    const token = context.req?.headers?.authorization?.split(' ')[1]
+    return token === process.env.API_TOKEN
+}
+
+type AuthGuard = ({ session, context }: AuthGuardParameters) => boolean
+
+/**
+ * Returns true if any of the callback functions passes.
+ * Useful to create an OR check.
+ */
+export const anyPass =
+    (...checks: AuthGuard[]) =>
+    ({ session, context }: AuthGuardParameters) =>
+        checks.some((c) => c({ session, context }))
 
 export const isAdmin: AuthGuard = ({ session }) =>
     session?.data.role === UserRole.ADMIN

@@ -30,7 +30,14 @@ import { document, DocumentFieldConfig } from '@keystone-6/fields-document'
 import { Lists } from '.keystone/types'
 
 import { createBackwardsCompatibleLink } from './utils'
-import { UserRole, isAdmin, hasPermission, Session } from './auth'
+import {
+    UserRole,
+    isAdmin,
+    hasPermission,
+    Session,
+    hasAPIToken,
+    anyPass,
+} from './auth'
 
 const DocumentFormattingConfig: DocumentFieldConfig<any>['formatting'] = {
     inlineMarks: {
@@ -67,6 +74,7 @@ export const lists: Lists = {
         access: {
             operation: {
                 delete: isAdmin,
+                // NOTE: Might need to allow access to query users if we add the contributors feature
                 query: hasPermission(UserRole.EDITOR),
                 update: hasPermission(UserRole.EDITOR),
                 create: isAdmin,
@@ -76,8 +84,7 @@ export const lists: Lists = {
                 update: filterUsers,
             },
         },
-        // Here are the fields that `User` will have. We want an email and password so they can log in
-        // a name so we can refer to them, and a way to connect users to posts.
+        // Here are the fields that `User` will have. We want an email and password so they can log in.
         fields: {
             name: text({ validation: { isRequired: true } }),
             email: text({
@@ -99,18 +106,6 @@ export const lists: Lists = {
                     update: isAdmin,
                 },
             }),
-            /**
-             * 1) Editor
-             * - create new Tools (always published with draft status)
-             * - edit existing Tools (all fields except `Tool.status`)
-             *
-             * 2) Admin
-             * - everything that Editors can do
-             * - update `Tool.status` (publish/unpublish)
-             * - remove Tools
-             * - create new users
-             * - create, update, delete IDG Categories and Skills
-             */
             // The password field takes care of hiding details and hashing values
             password: password({ validation: { isRequired: true } }),
         },
@@ -154,21 +149,6 @@ export const lists: Lists = {
                 ui: {
                     displayMode: 'select',
                 },
-                // IDEA: Either use a custom hook to always set status to draft, or simply hide that field in the Admin UI where most users will change it
-                // hooks: {
-                //     resolveInput: ({ operation, resolvedData, context }) => {
-                //         const data = { ...resolvedData }
-
-                //         if (
-                //             operation === 'create' &&
-                //             !isAdmin({ session: context.session as Session })
-                //         ) {
-                //             data.status = ToolStatus.DRAFT
-                //         }
-
-                //         return data
-                //     },
-                // },
                 access: {
                     update: hasPermission(UserRole.REVIEWER),
                 },
@@ -260,7 +240,10 @@ export const lists: Lists = {
         },
         access: {
             operation: {
-                delete: isAdmin,
+                delete: hasPermission(UserRole.REVIEWER),
+                create: hasPermission(UserRole.EDITOR),
+                update: hasPermission(UserRole.EDITOR),
+                query: anyPass(hasPermission(UserRole.EDITOR), hasAPIToken),
             },
         },
     }),
@@ -280,6 +263,7 @@ export const lists: Lists = {
                 create: isAdmin,
                 update: isAdmin,
                 delete: isAdmin,
+                query: anyPass(hasPermission(UserRole.EDITOR), hasAPIToken),
             },
         },
     }),
@@ -297,6 +281,7 @@ export const lists: Lists = {
                 create: isAdmin,
                 update: isAdmin,
                 delete: isAdmin,
+                query: anyPass(hasPermission(UserRole.EDITOR), hasAPIToken),
             },
         },
     }),
