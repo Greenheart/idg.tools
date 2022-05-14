@@ -9,7 +9,7 @@
         "postinstall": "keystone postinstall"
     },
     "dependencies": {
-        "@keystone-6/auth": "^1.0.2",
+        "@keystone-6/auth": "^2.0.0",
         "@keystone-6/core": "^1.1.1",
         "@keystone-6/fields-document": "^2.0.1",
         "cuid": "^2.1.8",
