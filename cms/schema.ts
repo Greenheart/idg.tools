@@ -53,7 +53,7 @@ export enum ToolStatus {
 }
 
 /**
- * Only allow admins to view all users. Otherwise only yourself.
+ * Only allow admins to view and update all users. Otherwise only yourself.
  */
 const filterUsers = ({ session }: { session: Session }) => {
     if (session?.data.role === UserRole.ADMIN) return true
@@ -68,11 +68,12 @@ export const lists: Lists = {
             operation: {
                 delete: isAdmin,
                 query: hasPermission(UserRole.EDITOR),
-                update: isAdmin,
+                update: hasPermission(UserRole.EDITOR),
                 create: isAdmin,
             },
             filter: {
                 query: filterUsers,
+                update: filterUsers,
             },
         },
         // Here are the fields that `User` will have. We want an email and password so they can log in
@@ -94,6 +95,9 @@ export const lists: Lists = {
                 defaultValue: UserRole.EDITOR,
                 validation: { isRequired: true },
                 ui: { displayMode: 'select' },
+                access: {
+                    update: isAdmin,
+                },
             }),
             /**
              * 1) Editor
