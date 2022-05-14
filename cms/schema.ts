@@ -5,17 +5,15 @@ Here we define our 'lists', which will then be used both for the GraphQL
 API definition, our database tables, and our Admin UI layout.
 
 Some quick definitions to help out:
-A list: A definition of a collection of fields with a name. For the starter
-  we have `User`, `Post`, and `Tag` lists.
-A field: The individual bits of data on your list, each with its own type.
-  you can see some of the lists in what we use below.
-
+A list: A definition of a collection of fields with a name.
+A field: The individual bits of data on your list, each with its own type. You can see some of the lists in what we use below.
 */
 
 // Like the `config` function we use in keystone.ts, we use functions
 // for putting in our config so we get useful errors. With typescript,
 // we get these even before code runs.
 import { list } from '@keystone-6/core'
+import cuid from 'cuid'
 
 // We're using some common fields. Check out https://keystonejs.com/docs/apis/fields#fields-api
 // for the full list of fields.
@@ -32,7 +30,7 @@ import { document, DocumentFieldConfig } from '@keystone-6/fields-document'
 import { Lists } from '.keystone/types'
 
 import { createBackwardsCompatibleLink } from './utils'
-import cuid from 'cuid'
+import { UserRole, isAdmin, hasPermission, Session } from './auth'
 
 const DocumentFormattingConfig: DocumentFieldConfig<any>['formatting'] = {
     inlineMarks: {
@@ -49,21 +47,54 @@ const DocumentFormattingConfig: DocumentFieldConfig<any>['formatting'] = {
     softBreaks: true,
 }
 
+export enum ToolStatus {
+    PUBLISHED = 'published',
+    DRAFT = 'draft',
+}
+
+/**
+ * Only allow admins to view all users. Otherwise only yourself.
+ */
+const filterUsers = ({ session }: { session: Session }) => {
+    if (session?.data.role === UserRole.ADMIN) return true
+    return { id: { equals: session?.data.id } }
+}
+
 // Each property on the exported lists object will become the name of a list (a.k.a. the `listKey`),
 // with the value being the definition of the list, including the fields.
 export const lists: Lists = {
     User: list({
+        access: {
+            operation: {
+                delete: isAdmin,
+                query: hasPermission(UserRole.EDITOR),
+                update: isAdmin,
+                create: isAdmin,
+            },
+            filter: {
+                query: filterUsers,
+            },
+        },
         // Here are the fields that `User` will have. We want an email and password so they can log in
         // a name so we can refer to them, and a way to connect users to posts.
         fields: {
             name: text({ validation: { isRequired: true } }),
-            // TODO: Require special auth token to be able to access the GraphQL API.
             email: text({
                 validation: { isRequired: true },
                 isIndexed: 'unique',
                 isFilterable: true,
             }),
-            // TODO: add user roles
+            role: select({
+                options: [
+                    { label: 'Editor', value: UserRole.EDITOR },
+                    { label: 'Reviewer', value: UserRole.REVIEWER },
+                    { label: 'Admin', value: UserRole.ADMIN },
+                ],
+                type: 'enum',
+                defaultValue: UserRole.EDITOR,
+                validation: { isRequired: true },
+                ui: { displayMode: 'select' },
+            }),
             /**
              * 1) Editor
              * - create new Tools (always published with draft status)
@@ -110,14 +141,33 @@ export const lists: Lists = {
             }),
             status: select({
                 options: [
-                    { label: 'Published', value: 'published' },
-                    { label: 'Draft', value: 'draft' },
+                    { label: 'Published', value: ToolStatus.PUBLISHED },
+                    { label: 'Draft', value: ToolStatus.DRAFT },
                 ],
                 type: 'enum',
-                // We want to make sure new tools start off as a draft when they are created
-                defaultValue: 'draft',
+                defaultValue: ToolStatus.DRAFT,
                 validation: { isRequired: true },
-                ui: { displayMode: 'select' },
+                ui: {
+                    displayMode: 'select',
+                },
+                // IDEA: Either use a custom hook to always set status to draft, or simply hide that field in the Admin UI where most users will change it
+                // hooks: {
+                //     resolveInput: ({ operation, resolvedData, context }) => {
+                //         const data = { ...resolvedData }
+
+                //         if (
+                //             operation === 'create' &&
+                //             !isAdmin({ session: context.session as Session })
+                //         ) {
+                //             data.status = ToolStatus.DRAFT
+                //         }
+
+                //         return data
+                //     },
+                // },
+                access: {
+                    update: hasPermission(UserRole.REVIEWER),
+                },
             }),
             categories: relationship({
                 ref: 'Category.tools',
@@ -157,6 +207,9 @@ export const lists: Lists = {
                         }
                     },
                 },
+                access: {
+                    update: isAdmin,
+                },
             }),
             link: text({
                 validation: { isRequired: false },
@@ -179,8 +232,6 @@ export const lists: Lists = {
                     (typeof data.slug === 'string' ||
                         typeof item?.slug === 'string')
                 ) {
-                    // TODO: Prevent links from getting too long. Cut after N characters,
-                    // or after splitting X '-' characters and combining the strings
                     data.link = createBackwardsCompatibleLink(
                         data.name,
                         data.slug ?? item!.slug,
@@ -203,6 +254,11 @@ export const lists: Lists = {
                 defaultFieldMode: 'hidden',
             },
         },
+        access: {
+            operation: {
+                delete: isAdmin,
+            },
+        },
     }),
     Category: list({
         fields: {
@@ -215,6 +271,13 @@ export const lists: Lists = {
             }),
             color: text({ defaultValue: '', validation: { isRequired: true } }),
         },
+        access: {
+            operation: {
+                create: isAdmin,
+                update: isAdmin,
+                delete: isAdmin,
+            },
+        },
     }),
     Skill: list({
         fields: {
@@ -225,9 +288,12 @@ export const lists: Lists = {
                 ref: 'Category.skills',
             }),
         },
+        access: {
+            operation: {
+                create: isAdmin,
+                update: isAdmin,
+                delete: isAdmin,
+            },
+        },
     }),
-    // IDEA: When content changes during development, trigger a rebuild of the `content.json` automatically
-    // NOTE: However, since the schema doesn't change too often, it will not be worth the investment for the long term, once we have a stable schema.
-
-    // IDEA: Export seed data from the local CMS to make local development easier for other developers.
 }
