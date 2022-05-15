@@ -60,6 +60,10 @@ const query = `
       }
       link
       slug
+      tags {
+        id
+        name
+      }
     }
   }
 `

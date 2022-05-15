@@ -203,6 +203,16 @@ export const lists: Lists = {
                     },
                 },
             }),
+            tags: relationship({
+                ref: 'Tag.tools',
+                ui: {
+                    displayMode: 'cards',
+                    cardFields: ['name'],
+                    linkToItem: true,
+                    inlineConnect: true,
+                },
+                many: true,
+            }),
         },
         hooks: {
             resolveInput: ({ operation, resolvedData, item }) => {
@@ -280,6 +290,20 @@ export const lists: Lists = {
             operation: {
                 create: isAdmin,
                 update: isAdmin,
+                delete: isAdmin,
+                query: anyPass(hasPermission(UserRole.EDITOR), hasAPIToken),
+            },
+        },
+    }),
+    Tag: list({
+        fields: {
+            name: text({ validation: { isRequired: true } }),
+            tools: relationship({ ref: 'Tool.tags', many: true }),
+        },
+        access: {
+            operation: {
+                create: hasPermission(UserRole.EDITOR),
+                update: hasPermission(UserRole.EDITOR),
                 delete: isAdmin,
                 query: anyPass(hasPermission(UserRole.EDITOR), hasAPIToken),
             },

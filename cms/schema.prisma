@@ -30,6 +30,7 @@ model Tool {
   skills      Skill[]    @relation("Skill_tools")
   slug        String     @default("")
   link        String     @default("")
+  tags        Tag[]      @relation("Tag_tools")
 }
 
 model Category {
@@ -50,4 +51,10 @@ model Skill {
   categoryId  String?   @map("category")
 
   @@index([categoryId])
+}
+
+model Tag {
+  id    String @id @default(cuid())
+  name  String @default("")
+  tools Tool[] @relation("Tag_tools")
 }
