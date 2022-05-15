@@ -20,7 +20,7 @@
         "svelte-markdown": "^0.2.2"
     },
     "devDependencies": {
-        "@sveltejs/adapter-vercel": "^1.0.0-next.51",
+        "@sveltejs/adapter-vercel": "1.0.0-next.50",
         "@sveltejs/kit": "^1.0.0-next.330",
         "@tailwindcss/typography": "^0.5.2",
         "@types/sanitize-html": "^2.6.2",
