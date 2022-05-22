@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte'
 
-    import type { Content } from '$lib/types'
+    import type { Content } from '$shared/types'
     import { selectedSkills } from '$lib/stores'
     import Heading from '$components/Heading.svelte'
     import Link from '$components/Link.svelte'

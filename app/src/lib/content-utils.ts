@@ -1,4 +1,4 @@
-import type { Category, Content, Skill, Tool } from './types'
+import type { Category, Content, Skill, Tool } from '$shared/types'
 
 export const getCategory = (id: Category['id'], { categories }: Content) =>
     categories.find((c) => c.id === id) as Category
