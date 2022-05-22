@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 
-import type { ItemId } from '$lib/types'
+import type { ItemId } from '$shared/types'
 
 function createPersistedStore<T>(key: string, startValue: T) {
     const { subscribe, set } = writable(startValue)

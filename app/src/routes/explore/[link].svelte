@@ -3,7 +3,7 @@
     import Markdown from '$components/Markdown.svelte'
     import RelevantSkills from '$components/RelevantSkills.svelte'
 
-    import type { Content, Tool } from '$lib/types'
+    import type { Content, Tool } from '$shared/types'
 
     export let tool: Tool
     export let content: Content

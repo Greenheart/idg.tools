@@ -28,6 +28,8 @@
         "paths": {
             "$lib": ["src/lib"],
             "$lib/*": ["src/lib/*"],
+            "$shared": ["../shared"],
+            "$shared/*": ["../shared/*"],
             "$components/*": ["src/components/*"]
         }
     },
