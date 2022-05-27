@@ -6,8 +6,12 @@ const UniqueId: FC<CmsWidgetControlProps<string>> = ({
     value = '',
     forID,
     classNameWrapper,
+    onChange,
 }) => {
-    if (!value) value = cuid()
+    if (!value) {
+        value = cuid()
+        onChange(value)
+    }
     return (
         <input
             type="text"
