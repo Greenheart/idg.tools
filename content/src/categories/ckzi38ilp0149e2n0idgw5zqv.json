@@ -1,0 +1,34 @@
+{
+  "en": {
+    "id": "ckzi38ilp0149e2n0idgw5zqv",
+    "name": "Thinking",
+    "description": "Cognitive Skills",
+    "tools": [
+      "ckzvrs8dk0392jfn07466kcva"
+    ],
+    "skills": [
+      "ckzi3cikk0766e2n0j9my4e46",
+      "ckzi3cvpf0851e2n00bcmzsgz",
+      "ckzi3d9gp0942e2n0lvc6k1nh",
+      "ckzi3dk3h1039e2n0qxij7ooh",
+      "ckzi3dtdk1142e2n0m9v02uf5"
+    ],
+    "color": "#E0A1B4"
+  },
+  "sv": {
+    "id": "ckzi38ilp0149e2n0idgw5zqv",
+    "name": "Thinking",
+    "description": "Cognitive Skills",
+    "tools": [
+      "ckzvrs8dk0392jfn07466kcva"
+    ],
+    "skills": [
+      "ckzi3cikk0766e2n0j9my4e46",
+      "ckzi3cvpf0851e2n00bcmzsgz",
+      "ckzi3d9gp0942e2n0lvc6k1nh",
+      "ckzi3dk3h1039e2n0qxij7ooh",
+      "ckzi3dtdk1142e2n0m9v02uf5"
+    ],
+    "color": "#E0A1B4"
+  }
+}
