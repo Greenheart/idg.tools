@@ -13,6 +13,7 @@ CMS.init({
     config: {
         load_config_file: false,
         editor: { preview: false },
+        media_folder: '/app/static/images',
         backend: {
             name: 'github',
             repo: 'Greenheart/idg.tools',
@@ -23,7 +24,6 @@ CMS.init({
         local_backend: {
             url: 'http://localhost:2030/api/v1',
         },
-
         publish_mode: 'editorial_workflow',
         i18n: {
             structure: 'single_file',
@@ -102,7 +102,6 @@ CMS.init({
                 description: 'The 5 categories of the Inner Development Goals.',
             },
         ] as CmsCollection[],
-        media_folder: '/app/static/images',
     },
 })
 
