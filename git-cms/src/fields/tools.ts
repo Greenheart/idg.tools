@@ -5,6 +5,17 @@ export const ToolsFields: CustomCmsField[] = [
     NAME,
     DESCRIPTION,
     {
+        label: 'Skills',
+        name: 'skills',
+        multiple: true,
+        widget: 'relation',
+        collection: 'skills',
+        value_field: 'id',
+        search_fields: ['name', 'id'],
+        display_fields: ['name'],
+        i18n: true,
+    },
+    {
         label: 'Tags',
         name: 'tags',
         multiple: true,
