@@ -46,6 +46,8 @@ CMS.init({
                 identifier_field: 'id',
                 slug: '{{id}}',
                 i18n: true,
+                description:
+                    'Tools are resources that help practicing the Inner Development Goals.',
             },
             {
                 name: 'tags',
@@ -62,6 +64,8 @@ CMS.init({
                 identifier_field: 'id',
                 slug: '{{id}}',
                 i18n: true,
+                description:
+                    'Create tags and use them to organize different tools.',
             },
             {
                 name: 'skills',
@@ -78,6 +82,7 @@ CMS.init({
                 identifier_field: 'id',
                 slug: '{{id}}',
                 i18n: true,
+                description: 'The 23 skills of the Inner Development Goals.',
             },
             {
                 name: 'categories',
@@ -94,6 +99,7 @@ CMS.init({
                 identifier_field: 'id',
                 slug: '{{id}}',
                 i18n: true,
+                description: 'The 5 categories of the Inner Development Goals.',
             },
         ] as CmsCollection[],
         media_folder: '/app/static/images',
