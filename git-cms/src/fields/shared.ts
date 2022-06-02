@@ -1,4 +1,4 @@
-import { CmsFieldBase, CmsField } from 'netlify-cms-core'
+import { CmsFieldBase, CmsField, CmsFieldMarkdown } from 'netlify-cms-core'
 
 export type CmsFieldUniqueId = CmsFieldBase & {
     widget: 'uniqueId'
@@ -26,4 +26,11 @@ export const DESCRIPTION: CmsField = {
     name: 'description',
     i18n: true,
     widget: 'string',
+}
+
+export const MARKDOWN_FIELD: Partial<CmsFieldMarkdown> = {
+    widget: 'markdown',
+    buttons: ['bulleted-list', 'numbered-list', 'link'],
+    editor_components: [],
+    minimal: true,
 }
