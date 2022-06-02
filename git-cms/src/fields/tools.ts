@@ -18,6 +18,13 @@ export const ToolsFields: CustomCmsField[] = [
         ...MARKDOWN_FIELD,
     },
     {
+        label: 'Research & Resources',
+        name: 'resources',
+        hint: 'List relevant research that supports this tool, and other resources that are relevant.',
+        i18n: true,
+        ...MARKDOWN_FIELD,
+    },
+    {
         label: 'Skills',
         name: 'skills',
         hint: 'Link related skills from the IDG framework.',
