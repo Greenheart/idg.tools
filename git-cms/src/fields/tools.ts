@@ -1,9 +1,14 @@
-import { CustomCmsField, DESCRIPTION, ID, NAME } from './shared'
+import { CustomCmsField, ID, MARKDOWN_FIELD, NAME } from './shared'
 
 export const ToolsFields: CustomCmsField[] = [
     ID,
     NAME,
-    DESCRIPTION,
+    {
+        label: 'Description',
+        name: 'description',
+        i18n: true,
+        ...MARKDOWN_FIELD,
+    },
     {
         label: 'Skills',
         name: 'skills',
