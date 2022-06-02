@@ -6,12 +6,21 @@ export const ToolsFields: CustomCmsField[] = [
     {
         label: 'Description',
         name: 'description',
+        hint: 'Describe how and why this tool helps people practice inner development for sustainable development.',
+        i18n: true,
+        ...MARKDOWN_FIELD,
+    },
+    {
+        label: 'Actions',
+        name: 'actions',
+        hint: 'Call to action. Describe one or more ways people can start using this tool to practice inner development for sustainable development.',
         i18n: true,
         ...MARKDOWN_FIELD,
     },
     {
         label: 'Skills',
         name: 'skills',
+        hint: 'Link related skills from the IDG framework.',
         multiple: true,
         widget: 'relation',
         collection: 'skills',
@@ -23,6 +32,7 @@ export const ToolsFields: CustomCmsField[] = [
     {
         label: 'Tags',
         name: 'tags',
+        hint: 'Add tags to make it easier to categorize different tools, and allow filtering the content.',
         multiple: true,
         widget: 'relation',
         collection: 'tags',
