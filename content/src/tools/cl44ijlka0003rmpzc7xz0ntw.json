@@ -120,7 +120,10 @@
         "skill": "ckzi3hqs63163e2n03h36pb73",
         "score": 0
       }
-    ]
+    ],
+    "resources": "* Flaxman, PE & Bond FW. (2010) [A randomised worksite comparison of acceptance and commitment therapy and stress inoculation training](https://www.sciencedirect.com/science/article/pii/S0005796710000872). Behaviour Research and Therapy, 48:8.\n\n* Lloyd, J, Bond, FW & Flaxman, PE. (2013) [The value of psychological flexibility: Examining psychological mechanisms underpinning a cognitive behavioural therapy intervention for burnout](https://doi.org/10.1080/02678373.2013.782157), Work & Stress, 27:2.\n\n* Frögéli, E, Djordjevic, A, Rudman, A, Livheim, F & Gustavsson, P. (2016) [A randomized controlled pilot trial of acceptance and commitment training (ACT) for preventing stress-related ill health among future nurses](https://doi.org/10.1080/10615806.2015.1025765), Anxiety, Stress & Coping, 29:2\n\n* Bond, FW & Bunce, D. (2000) [Mediators of change in emotion-focused and problem-focused worksite stress management interventions](https://doi.org/10.1037/1076-8998.5.1.156). Journal of Occupational Health Psychology, 5:1.\n\n* Ek, D, Hedensjö, B & Livheim, F (2017). [Tid att leva: ett tioveckors program för stresshantering med ACT och medveten närvaro](https://www.nok.se/titlar/akademisk-psykologi/tid-att-leva/). Natur & Kultur, Stockholm.",
+    "skills": [],
+    "tags": []
   },
   "sv": {
     "id": "cl44ijlka0003rmpzc7xz0ntw",
@@ -243,6 +246,9 @@
         "skill": "ckzi3hqs63163e2n03h36pb73",
         "score": 0
       }
-    ]
+    ],
+    "resources": "* Flaxman, PE & Bond FW. (2010) [A randomised worksite comparison of acceptance and commitment therapy and stress inoculation training](https://www.sciencedirect.com/science/article/pii/S0005796710000872). Behaviour Research and Therapy, 48:8.\n\n* Lloyd, J, Bond, FW & Flaxman, PE. (2013) [The value of psychological flexibility: Examining psychological mechanisms underpinning a cognitive behavioural therapy intervention for burnout](https://doi.org/10.1080/02678373.2013.782157), Work & Stress, 27:2.\n\n* Frögéli, E, Djordjevic, A, Rudman, A, Livheim, F & Gustavsson, P. (2016) [A randomized controlled pilot trial of acceptance and commitment training (ACT) for preventing stress-related ill health among future nurses](https://doi.org/10.1080/10615806.2015.1025765), Anxiety, Stress & Coping, 29:2\n\n* Bond, FW & Bunce, D. (2000) [Mediators of change in emotion-focused and problem-focused worksite stress management interventions](https://doi.org/10.1037/1076-8998.5.1.156). Journal of Occupational Health Psychology, 5:1.\n\n* Ek, D, Hedensjö, B & Livheim, F (2017). [Tid att leva: ett tioveckors program för stresshantering med ACT och medveten närvaro](https://www.nok.se/titlar/akademisk-psykologi/tid-att-leva/). Natur & Kultur, Stockholm.",
+    "skills": [],
+    "tags": []
   }
 }
