@@ -3,11 +3,13 @@ import { CmsCollection } from 'netlify-cms-core'
 
 import { default as UniqueId } from './widgets/UniqueId'
 
+import { createBackwardsCompatibleLink } from './utils'
 import { DEFAULT_LANGUAGE_TAG, LANGUAGE_TAGS } from '../../shared/constants'
 import { ToolsFields } from './fields/tools'
 import { SkillsFields } from './fields/skills'
 import { CategoriesFields } from './fields/categories'
 import { TagsFields } from './fields/tags'
+import cuid from 'cuid'
 
 CMS.init({
     config: {
@@ -106,3 +108,27 @@ CMS.init({
 })
 
 CMS.registerWidget(UniqueId)
+
+// IDEA: Maybe add this as a listener, but fix the drawback that this only makes changes to one language at a time.
+// CMS.registerEventListener({
+//     name: 'preSave',
+//     handler: ({ entry }) => {
+//         let data = entry.get('data')
+
+//         if (/collections\/tools\//.test(window.location.hash)) {
+//             if (!data.get('slug')) {
+//                 data = data.set('slug', cuid.slug())
+//             }
+
+//             data = data.set(
+//                 'link',
+//                 createBackwardsCompatibleLink(
+//                     data.get('name'),
+//                     data.get('slug'),
+//                 ),
+//             )
+//         }
+
+//         return data
+//     },
+// })

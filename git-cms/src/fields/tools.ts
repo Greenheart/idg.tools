@@ -48,19 +48,6 @@ export const ToolsFields: CustomCmsField[] = [
             },
         ],
     },
-    // TODO: remove old skills from local content files and replace with new structure
-    // {
-    //     label: 'Skills',
-    //     name: 'skills',
-    //     hint: 'Link related skills from the IDG framework.',
-    //     multiple: true,
-    //     widget: 'relation',
-    //     collection: 'skills',
-    //     value_field: 'id',
-    //     search_fields: ['name', 'id'],
-    //     display_fields: ['name'],
-    //     i18n: true,
-    // },
     {
         label: 'Tags',
         name: 'tags',
@@ -72,6 +59,7 @@ export const ToolsFields: CustomCmsField[] = [
         search_fields: ['name', 'id'],
         display_fields: ['name'],
         i18n: true,
+        required: false,
     },
     {
         label: 'Research & Resources',
@@ -79,12 +67,18 @@ export const ToolsFields: CustomCmsField[] = [
         hint: 'List relevant research that supports this tool, and other resources that are relevant.',
         i18n: true,
         ...MARKDOWN_FIELD,
+        required: false,
+    },
+    {
+        label: 'Slug',
+        name: 'slug',
+        i18n: 'duplicate',
+        widget: 'hidden',
+    },
+    {
+        label: 'Link',
+        name: 'link',
+        i18n: 'duplicate',
+        widget: 'hidden',
     },
 ]
-
-/**
- * TODO:
- *
- * - slug field for the permanent ending to the link
- * - link for storing the slugified name + slug that will be used to link to the tool
- */

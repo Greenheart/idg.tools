@@ -1,0 +1,18 @@
+{
+    "name": "content",
+    "private": true,
+    "version": "1.0.0",
+    "scripts": {
+        "prebuild": "node ./scripts/esbuild.js",
+        "build": "node ./compiled/build-content.js"
+    },
+    "devDependencies": {
+        "cuid": "^2.1.8",
+        "esbuild": "^0.14.44",
+        "fast-glob": "^3.2.11",
+        "slugify": "^1.6.5",
+        "ts-node": "^10.8.1",
+        "typescript": "^4.7.3"
+    },
+    "type": "module"
+}
