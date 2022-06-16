@@ -7,6 +7,7 @@
         "build": "node ./compiled/build-content.js"
     },
     "devDependencies": {
+        "@types/node": "^18.0.0",
         "cuid": "^2.1.8",
         "esbuild": "^0.14.44",
         "fast-glob": "^3.2.11",
