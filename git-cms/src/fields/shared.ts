@@ -4,7 +4,11 @@ export type CmsFieldUniqueId = CmsFieldBase & {
     widget: 'uniqueId'
 }
 
-export type CustomCmsField = CmsField | CmsFieldUniqueId
+export type CmsFieldUniqueSlug = CmsFieldBase & {
+    widget: 'uniqueSlug'
+}
+
+export type CustomCmsField = CmsField | CmsFieldUniqueId | CmsFieldUniqueSlug
 
 export const ID: CmsFieldUniqueId = {
     label: 'ID',
