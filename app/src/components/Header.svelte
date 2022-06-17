@@ -1,23 +1,54 @@
 <script lang="ts">
+    import Arrow from '$components/icons/Arrow.svelte'
+    import Link from '$components/Link.svelte'
+
     import { isMenuOpen } from '$lib/stores'
 
-    import Link from './Link.svelte'
-
+    export let showBackButton = false
     const toggleMenu = () => {
         $isMenuOpen = !$isMenuOpen
     }
 
     const links = [
-        { href: '/skills', text: 'Skills' },
         { href: '/explore', text: 'Toolbox' },
         // { href: COMMUNITY_LINK, text: 'Community' },
     ]
 </script>
 
-<header class="flex items-center justify-between pt-6 pb-12">
-    <Link href="/" class="flex h-[60px] items-center">
-        <img src="/images/IDG-tools.svg" alt="IDG.tools logo" />
-    </Link>
+<header class="relative flex items-center justify-between pt-6 pb-12">
+    {#if showBackButton}
+        <Link
+            class="z-10 -ml-4 grid rotate-180 place-items-center p-4"
+            unstyled
+            href="/"
+        >
+            <Arrow class="h-8 w-8" />
+        </Link>
+
+        <div class="absolute left-0 right-0 z-0 h-[60px]">
+            <div class="flex h-full">
+                <Link
+                    href="/"
+                    unstyled
+                    class="mx-auto flex h-full items-center"
+                >
+                    <img
+                        src="/images/IDG-tools.svg"
+                        alt="IDG.tools logo"
+                        class="mx-auto"
+                    />
+                </Link>
+            </div>
+        </div>
+    {:else}
+        <Link href="/" unstyled class="flex h-[60px] items-center">
+            <img
+                src="/images/IDG-tools.svg"
+                alt="IDG.tools logo"
+                class="mx-auto"
+            />
+        </Link>
+    {/if}
 
     {#if $isMenuOpen}
         <nav
@@ -31,7 +62,7 @@
     {/if}
 
     <button
-        class="hamburger hamburger--spring justify-evenly sm:hidden"
+        class="hamburger hamburger--spring z-10 justify-evenly sm:hidden"
         class:is-active={$isMenuOpen}
         type="button"
         on:click={toggleMenu}
@@ -45,9 +76,5 @@
         {#each links as { href, text }}
             <Link {href} class="p-2">{text}</Link>
         {/each}
-        <!-- IDEA: Add /community page to explain the various types of communities:
-            - IDG community on Element
-            - 29k
-         -->
     </nav>
 </header>

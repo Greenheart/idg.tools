@@ -2,6 +2,7 @@
     import Header from '$components/Header.svelte'
     import { TAGLINE } from '$lib/constants'
     import { isMenuOpen } from '$lib/stores'
+    import { page } from '$app/stores'
 
     import '../app.css'
 </script>
@@ -11,7 +12,7 @@
 </svelte:head>
 
 <main class="mx-auto w-full max-w-lg px-5 pb-16 text-stone-50">
-    <Header />
+    <Header showBackButton={$page.url.pathname !== '/'} />
     <div class:hidden={$isMenuOpen}>
         <slot />
     </div>
