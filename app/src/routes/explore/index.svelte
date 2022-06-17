@@ -26,8 +26,6 @@
     </Link>
 </p>
 
-<Heading class="pb-5">Library</Heading>
-
 <div class="grid gap-5">
     <Tools
         tools={$selectedSkills.length
