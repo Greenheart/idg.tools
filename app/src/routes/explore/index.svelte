@@ -17,14 +17,12 @@
 <!-- IDEA: filter tools based on related IDGs (possible to select one or multiple) -->
 <!-- IDEA: add basic client side search to find relevant content -->
 
-<Heading size={1}>My tools</Heading>
-
-<p class="py-5">
-    These are the tools we recommend based on which skills you want to practice. <Link
-        href="/skills"
+<p class="pb-6">
+    These are the tools we recommend based on the skills you selected. <Link
+        href="/#skills"
         variant="pink"
     >
-        Change skills here
+        Change selected skills
     </Link>
 </p>
 
