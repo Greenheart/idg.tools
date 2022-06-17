@@ -7,7 +7,6 @@
     import type { Content, Category, Skill } from '$shared/types'
 
     import Button from '$components/Button.svelte'
-    import LinkButton from '$components/LinkButton.svelte'
     import Heading from '$components/Heading.svelte'
 
     export let content: Content
@@ -47,11 +46,9 @@
     }
 </script>
 
-<Heading size={1}>
-    I want<br />to develop
-</Heading>
+<Heading size={3}>Choose the topics you want to focus on:</Heading>
 
-<div class="space-y-4 py-12">
+<div class="space-y-4 py-4">
     {#each content.categories as { name, description, id: categoryId, color }}
         <details
             class={cx('text-stone-900')}
@@ -82,10 +79,6 @@
                 </svg>
             </summary>
             <div class="justify-left flex flex-wrap gap-3 px-4 pt-4">
-                <!--
-                    IDEA: Maybe we disable click events for the the skills we currently don't have tools for?
-                    This would avoid wasting people's time to select skills that we don't even have content for.
-                -->
                 {#each getSkillsInCategory(categoryId, content) as skill (skill.name)}
                     <Button
                         label={skill.name}
@@ -100,10 +93,6 @@
             </div>
         </details>
     {/each}
-</div>
-
-<div class="mx-auto flex flex-col items-center space-y-4 px-8">
-    <LinkButton href="/explore">Continue</LinkButton>
 </div>
 
 <style>
