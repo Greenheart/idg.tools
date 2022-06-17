@@ -4,35 +4,24 @@
     import Heading from '$components/Heading.svelte'
 </script>
 
-<Heading size={1}>Get<br />Better.</Heading>
+<Heading size={1}>Get better</Heading>
 
 <!-- IDEA: Add IDG favicon -->
 <!-- IDEA: Package app as an PWA, installable to the home screen -->
 
 <div class="space-y-6 py-12">
     <p>
-        If you’re like us, you want to be a good person. You want to get better
-        for yourself, your loved ones, and the planet.
-    </p>
-
-    <p>
-        What better way to start than with the <Link
-            href="https://www.innerdevelopmentgoals.org"
-            class="font-bold underline"
-        >
-            Inner Development Goals
-        </Link> (IDGs) - skills we all need to practice to achieve the <Link
+        IDG.tools helps you develop the skills to achieve the <Link
             href="https://sdgs.un.org/goals"
             class="font-bold underline"
         >
-            Sustainable Development Goals
-        </Link> (SDGs). It’s a lot of acronyms, but we promise it’s good stuff.
+            SDGs.
+        </Link>
     </p>
 
     <p>
-        IDG.tools helps you practice the IDG skills. We’re a non-profit, open
-        source community, always learning and improving this library of
-        knowledge, together.
+        We’re a non-profit, open source community, always learning and improving
+        this library of knowledge, together.
     </p>
 </div>
 
