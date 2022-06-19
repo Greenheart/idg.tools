@@ -17,4 +17,10 @@ export const CategoriesFields: CustomCmsField[] = [
         max: 23,
         options_length: 23,
     },
+    {
+        label: 'Color',
+        name: 'color',
+        widget: 'hidden',
+        i18n: 'duplicate',
+    },
 ]
