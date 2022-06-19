@@ -6,7 +6,7 @@ console.log(`⚡ Building IDG.tools content scripts...`)
 
 esbuild
     .build({
-        entryPoints: ['scripts/build-content.ts', 'scripts/update-content.ts'],
+        entryPoints: ['scripts/build-content.ts'],
         outdir: 'compiled',
         bundle: true,
         minify: false,
