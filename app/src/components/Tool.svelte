@@ -17,9 +17,9 @@
         <Heading size={3}>{tool.name}</Heading>
         <Markdown source={tool.description} class="py-2" variant="inverted" />
 
-        <Heading size={3} class="pb-4">Skills you'll develop</Heading>
+        <Heading size={4} class="pb-4">Skills you'll develop</Heading>
 
-        <RelevantSkills {tool} {content} />
+        <RelevantSkills {tool} {content} visible={4} />
 
         <Arrow class="absolute bottom-4 right-4 h-6 w-6" />
     </div>
