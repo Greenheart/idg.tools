@@ -63,6 +63,14 @@ const prepareTools = (translatedTools: Translated<Tool>[]) => {
                 )
             }
 
+            // TODO: Ensure sorting of relevancy scores works as expected.
+
+            // TODO: Ensure tool has slug that is consistent across all languages.
+            // TODO: Warn if there's a mismatch between languages.
+            // TODO: Warn if the tool is missing a slug for some language
+            // Throw error to crash potential buggy builds
+            // TODO: Generate new link based on the tool name and slug
+
             tool.relevancy = sorted
             updated[language as Language] = tool
         }
@@ -70,6 +78,9 @@ const prepareTools = (translatedTools: Translated<Tool>[]) => {
         return updated
     })
 }
+
+// TODO: consider working with content in top-level language namespaces with one JSON object per language, instead of translations within each object
+// This could make sorting, filtering and working with content easier in general.
 
 const loadContent = async (contentTypes: Array<keyof Content>) => {
     const paths = await getContentPaths(contentTypes)
