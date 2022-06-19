@@ -10,9 +10,16 @@ import {
     Tag,
     Tool,
     Translated,
-    OLD_TranslatedContent,
 } from '../../shared/types'
 import { createBackwardsCompatibleLink, readJSON, writeJSON } from './utils'
+
+// Only used while buildign the content
+type ProcessingTranslatedContent = {
+    categories: Translated<Category>[]
+    tools: Translated<Tool>[]
+    skills: Translated<Skill>[]
+    tags: Translated<Tag>[]
+}
 
 console.log(`⚡ Building IDG.tools content...`)
 const startTime = performance.now()
@@ -30,11 +37,11 @@ const prepareSkills = (
         for (const [language, skill] of Object.entries(translatedSkill)) {
             // Assumes all content is available in English
             const translatedCategory = translatedCategories.find(
-                (tc) => tc.en.id === skill.category,
+                (tc) => tc!.en!.id === skill.category,
             ) as Translated<Category>
 
             // Add colors to skills
-            skill.color = translatedCategory.en.color
+            skill.color = translatedCategory!.en!.color
             updated[language as Language] = skill
         }
 
@@ -103,15 +110,15 @@ const loadContent = async (contentTypes: Array<keyof Content>) => {
         paths.map((paths) => Promise.all(paths.map(readJSON))),
     )
 
-    return { tools, skills, categories, tags } as OLD_TranslatedContent
+    return { tools, skills, categories, tags } as ProcessingTranslatedContent
 }
 
 function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
-    return content.map((item) => item[lang])
+    return content.map((item) => item[lang]).filter(Boolean) as T[]
 }
 
 const splitContentByLang = (
-    content: OLD_TranslatedContent,
+    content: ProcessingTranslatedContent,
     selectedLanguages: Language[] = LANGUAGE_TAGS,
 ) =>
     selectedLanguages.reduce<Translated<Content>>((result, lang: Language) => {
@@ -124,7 +131,7 @@ const splitContentByLang = (
         return result
     }, {} as Translated<Content>)
 
-const prepareContent = (content: OLD_TranslatedContent) => {
+const prepareContent = (content: ProcessingTranslatedContent) => {
     return {
         ...content,
         skills: prepareSkills(content.skills, content.categories),
@@ -139,7 +146,7 @@ const builtContent = splitContentByLang(prepareContent(rawContent), ['en'])
 
 console.log(`Building IDG.tools content...`)
 
-await writeJSON('./compiled/built-content.json', builtContent, 0)
+await writeJSON('../app/static/content.json', builtContent, 0)
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
     'en-US',
