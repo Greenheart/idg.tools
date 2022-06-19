@@ -110,8 +110,11 @@ function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
     return content.map((item) => item[lang])
 }
 
-const splitContentByLang = (content: OLD_TranslatedContent) =>
-    LANGUAGE_TAGS.reduce<Translated<Content>>((result, lang: Language) => {
+const splitContentByLang = (
+    content: OLD_TranslatedContent,
+    selectedLanguages: Language[] = LANGUAGE_TAGS,
+) =>
+    selectedLanguages.reduce<Translated<Content>>((result, lang: Language) => {
         result[lang] = {
             tools: getByLang(content.tools, lang),
             skills: getByLang(content.skills, lang),
@@ -131,11 +134,12 @@ const prepareContent = (content: OLD_TranslatedContent) => {
 
 const rawContent = await loadContent(['tools', 'skills', 'categories', 'tags'])
 
-const builtContent = splitContentByLang(prepareContent(rawContent))
+// NOTE: We currently only build the English content since no translations are available yet
+const builtContent = splitContentByLang(prepareContent(rawContent), ['en'])
 
 console.log(`Building IDG.tools content...`)
 
-await writeJSON('./compiled/built-content.json', builtContent, 2)
+await writeJSON('./compiled/built-content.json', builtContent, 0)
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
     'en-US',
