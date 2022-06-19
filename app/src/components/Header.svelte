@@ -9,6 +9,8 @@
         $isMenuOpen = !$isMenuOpen
     }
 
+    const goBack = () => window.history.back()
+
     const links = [
         { href: '/explore', text: 'Toolbox' },
         // { href: COMMUNITY_LINK, text: 'Community' },
@@ -17,13 +19,12 @@
 
 <header class="relative flex items-center justify-between pt-6 pb-12">
     {#if showBackButton}
-        <Link
+        <button
+            on:click={goBack}
             class="z-10 -ml-4 grid rotate-180 place-items-center p-4"
-            unstyled
-            href="/"
         >
             <Arrow class="h-8 w-8" />
-        </Link>
+        </button>
 
         <div class="absolute left-0 right-0 z-0 h-[60px]">
             <div class="flex h-full">
