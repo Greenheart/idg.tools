@@ -47,7 +47,28 @@ const prepareTools = (translatedTools: Translated<Tool>[]) => {
     return translatedTools.map((translatedTool) => {
         const updated = {} as Translated<Tool>
 
+        const uniqueSlugs = new Set()
+
         for (const [language, tool] of Object.entries(translatedTool)) {
+            if (!tool.slug) {
+                throw new Error(
+                    `[content] Missing slug for tool "${tool.name}" and language "${language}"`,
+                )
+            }
+
+            // Ensure slugs are consistent across all translations
+            uniqueSlugs.add(tool.slug)
+            if (uniqueSlugs.size > 1) {
+                uniqueSlugs.values()
+                throw new Error(
+                    `[content] Slugs should be the same for all translations for tool "${
+                        tool.name
+                    }" and language "${language}": Slugs found was ${JSON.stringify(
+                        [...uniqueSlugs],
+                    )}`,
+                )
+            }
+
             // Filter out skills with 0 relevancy
             const sorted = tool.relevancy
                 .filter((t) => t.score > 0)
@@ -57,19 +78,15 @@ const prepareTools = (translatedTools: Translated<Tool>[]) => {
                 console.log(
                     `Removed ${
                         tool.relevancy.length - sorted.length
-                    } relevancy scores from tool ${
+                    } relevancy scores from tool "${
                         tool.name
-                    } for language "${language}"`,
+                    }" for language "${language}"`,
                 )
             }
 
-            // TODO: Ensure tool has slug that is consistent across all languages.
-            // TODO: Warn if there's a mismatch between languages.
-            // TODO: Warn if the tool is missing a slug for some language
-            // Throw error to crash potential buggy builds
-            // TODO: Generate new link based on the tool name and slug
-
             tool.relevancy = sorted
+            tool.link = createBackwardsCompatibleLink(tool.name, tool.slug)
+
             updated[language as Language] = tool
         }
 
