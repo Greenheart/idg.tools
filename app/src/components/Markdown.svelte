@@ -1,9 +1,6 @@
 <script lang="ts">
     import SvelteMarkdown from 'svelte-markdown'
     import {
-        Em,
-        Strong,
-        Blockquote,
         Paragraph,
         Text,
         List,
@@ -33,10 +30,10 @@
     const renderers = {
         text: Text,
         paragraph: Paragraph,
-        em: Em,
-        strong: Strong,
+        em: EmptyComponent,
+        strong: EmptyComponent,
         hr: EmptyComponent,
-        blockquote: Blockquote,
+        blockquote: EmptyComponent,
         del: EmptyComponent,
         link: Link,
         br: EmptyComponent,
