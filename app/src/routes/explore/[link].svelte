@@ -1,11 +1,5 @@
-<script lang="ts">
-    import Heading from '$components/Heading.svelte'
-    import Markdown from '$components/Markdown.svelte'
-    import RelevantSkills from '$components/RelevantSkills.svelte'
-
-    import type { Content, Tool } from '$shared/types'
-
-    const TMP_TOOL = {
+<script lang="ts" context="module">
+    export const TMP_TOOL = {
         en: {
             resources:
                 '* Neff, K. D., & Germer, C. K. (2013). [A pilot study and randomized controlled trial of the mindful self‐compassion program](https://doi.org/10.1002/jclp.21923). Journal of clinical psychology, 69:1.\n* Neff, K. D., & Vonk, R. (2009). [Self‐compassion versus global self‐esteem: Two different ways of relating to oneself](https://doi.org/10.1111/j.1467-6494.2008.00537.x). Journal of personality, 77:1.Germer, C.K. and Neff, K.D. (2013), [Self‐Compassion in Clinical Practice](https://doi.org/10.1002/jclp.22021). Journal of Clinical Psychology, 69.\n* Neff, Kristin. (2015). [Self-Compassion – the Proven Power of Being Kind to Yourself](https://www.amazon.com/gp/product/0061733520/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0061733520&linkCode=as2&tag=selfcompassio-20&linkId=24d99d0532e24ea2d4913ee18222a6b1). William Morrow, New York, NY.\n* Neff, K. D., Tóth-Király, I., Yarnell, L., Arimitsu, K., Castilho, P., Ghorbani, N. ,Mantios, M. (2019). [Examining the Factor Structure of the Self-Compassion Scale using exploratory SEM bifactor analysis in 20 diverse samples: Support for use of a total score and six subscale scores](https://doi.org/10.1037/pas0000629). Psychological Assessment, 31:1.',
@@ -181,6 +175,15 @@
             link: 'self-compassion-z11tzsp',
         },
     }
+</script>
+
+<script lang="ts">
+    import Link from '$components/Link.svelte'
+    import Heading from '$components/Heading.svelte'
+    import Markdown from '$components/Markdown.svelte'
+    import DetailedRelevantSkills from '$components/DetailedRelevantSkills.svelte'
+
+    import type { Content, Tool } from '$shared/types'
 
     export const tool: Tool = TMP_TOOL['en']
     export let content: Content
@@ -195,10 +198,15 @@
     <Markdown source={tool.actions} variant="inverted" />
 </div>
 
-<RelevantSkills {tool} {content} class="pt-8" />
+<Heading class="pt-8 pb-2">Skill relevancy</Heading>
+<DetailedRelevantSkills {tool} {content} />
 
 <Heading class="pt-8 pb-2">Research and resources</Heading>
-<Markdown source={tool.resources} />
+<Markdown source={tool.resources} class="mb-8" />
+
+<Link href="https://github.com/Greenheart/idg.tools/discussions" variant="pink">
+    Help improve this tool
+</Link>
 
 <!-- IDEA: Maybe add specific chat room for each IDG skill, allowing people to discuss this IDG with others -->
 <!-- IDEA: Probably even better, show a CTA at the bottom of each tool suggesting them to join the IDG community and learn together with others -->
