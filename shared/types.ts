@@ -33,7 +33,7 @@ export type Content = {
     tags: Tag[]
 }
 
-export type TranslatedContent = {
+export type OLD_TranslatedContent = {
     categories: Translated<Category>[]
     tools: Translated<Tool>[]
     skills: Translated<Skill>[]
@@ -54,3 +54,4 @@ export type TranslatedTool = Translated<Tool>
 export type TranslatedTag = Translated<Tag>
 export type TranslatedSkill = Translated<Skill>
 export type TranslatedCategory = Translated<Category>
+export type NewTranslatedContent = Translated<Content>
