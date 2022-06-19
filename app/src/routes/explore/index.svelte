@@ -30,8 +30,8 @@
     <Tools
         tools={$selectedSkills.length
             ? content.tools.filter((tool) =>
-                  tool.skills.some((skillId) =>
-                      $selectedSkills.includes(skillId),
+                  tool.relevancy.some(({ skill }) =>
+                      $selectedSkills.includes(skill),
                   ),
               )
             : content.tools}
