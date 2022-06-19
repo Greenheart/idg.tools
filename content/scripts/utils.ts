@@ -29,5 +29,7 @@ export const createBackwardsCompatibleLink = (
 export const readJSON = (path: string) =>
     readFile(path, { encoding: 'utf-8' }).then(JSON.parse)
 
-export const writeJSON = (path: string, data: any) =>
-    writeFile(path, JSON.stringify(data), { encoding: 'utf-8' })
+export const writeJSON = (path: string, data: any, indentation: number = 0) =>
+    writeFile(path, JSON.stringify(data, null, indentation), {
+        encoding: 'utf-8',
+    })

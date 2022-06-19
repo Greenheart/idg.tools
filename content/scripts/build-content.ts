@@ -9,7 +9,7 @@ import {
     Tag,
     Tool,
     Translated,
-    TranslatedContent,
+    OLD_TranslatedContent,
 } from '../../shared/types'
 import { createBackwardsCompatibleLink, readJSON, writeJSON } from './utils'
 
@@ -63,8 +63,6 @@ const prepareTools = (translatedTools: Translated<Tool>[]) => {
                 )
             }
 
-            // TODO: Ensure sorting of relevancy scores works as expected.
-
             // TODO: Ensure tool has slug that is consistent across all languages.
             // TODO: Warn if there's a mismatch between languages.
             // TODO: Warn if the tool is missing a slug for some language
@@ -93,14 +91,35 @@ const loadContent = async (contentTypes: Array<keyof Content>) => {
         skills: prepareSkills(skills, categories),
         categories,
         tags,
-    } as TranslatedContent
+    } as OLD_TranslatedContent
 }
+/*
+
+const getByLang = (obj: Translated)
+
+function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
+    return content.map(item => item[lang])
+}
+
+const translatedContent = LANGUAGES.reduce(result, lang => {
+    result[lang] = {
+        tools: getByLang(tools, lang),
+        skills: getByLang(skills, lang),
+        categories: getByLang(categories, lang),
+        tags: getByLang(tags, lang),
+    }
+    return result
+}, {})
+
+*/
+
+const prepareContent = (content: OLD_TranslatedContent) => {}
 
 const rawContent = await loadContent(['tools', 'skills', 'categories', 'tags'])
 
 console.log(`Building IDG.tools content...`)
 
-await writeJSON('./compiled/built-content.json', rawContent)
+await writeJSON('./compiled/built-content.json', rawContent, 2)
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
     'en-US',
