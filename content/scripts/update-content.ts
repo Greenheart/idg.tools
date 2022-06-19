@@ -5,11 +5,7 @@ import { readFile, writeFile } from 'fs/promises'
 import { createBackwardsCompatibleLink } from './utils'
 import { TranslatedTool } from '../../shared/types'
 
-// IDEA: Maybe generate slugs and links for entries before build
-
-const toolPaths = (await FastGlob('./src/tools/*.json')).filter(
-    (x) => !x.includes('old_'),
-)
+const toolPaths = await FastGlob('./src/tools/*.json')
 
 console.log(`Updating ${toolPaths.length} tools...`)
 

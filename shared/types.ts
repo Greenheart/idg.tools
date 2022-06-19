@@ -10,6 +10,7 @@ type Item = {
 
 export type Skill = Item & {
     category: ItemId
+    color: string
 }
 
 export type Category = Item & {
@@ -32,6 +33,13 @@ export type Content = {
     tags: Tag[]
 }
 
+export type TranslatedContent = {
+    categories: Translated<Category>[]
+    tools: Translated<Tool>[]
+    skills: Translated<Skill>[]
+    tags: Translated<Tag>[]
+}
+
 export type IDGRelevancy = {
     skill: ItemId
     score: number
@@ -39,8 +47,9 @@ export type IDGRelevancy = {
 
 export type Tag = { id: ItemId; name: string }
 
-export type Translated<T> = Record<keyof typeof LANGUAGES, T>
-export type TranslatedContent = Translated<Content>
+export type Language = keyof typeof LANGUAGES
+
+export type Translated<T> = Record<Language, T>
 export type TranslatedTool = Translated<Tool>
 export type TranslatedTag = Translated<Tag>
 export type TranslatedSkill = Translated<Skill>

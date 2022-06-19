@@ -1,4 +1,5 @@
 import slugify from 'slugify'
+import { writeFile, readFile } from 'fs/promises'
 
 import { DEFAULT_LANGUAGE_TAG } from '../../shared/constants'
 
@@ -24,3 +25,9 @@ export const createBackwardsCompatibleLink = (
     uniqueSlug: string,
     language = DEFAULT_LANGUAGE_TAG,
 ) => `${slugifyName(name, language)}-${uniqueSlug}`
+
+export const readJSON = (path: string) =>
+    readFile(path, { encoding: 'utf-8' }).then(JSON.parse)
+
+export const writeJSON = (path: string, data: any) =>
+    writeFile(path, JSON.stringify(data), { encoding: 'utf-8' })

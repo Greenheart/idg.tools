@@ -1,27 +1,101 @@
 import FastGlob from 'fast-glob'
-import { readFile, writeFile } from 'fs/promises'
+import { performance } from 'perf_hooks'
 
-import { TranslatedTool } from '../../shared/types'
-import { createBackwardsCompatibleLink } from './utils'
+import {
+    Category,
+    Content,
+    Language,
+    Skill,
+    Tag,
+    Tool,
+    Translated,
+    TranslatedContent,
+} from '../../shared/types'
+import { createBackwardsCompatibleLink, readJSON, writeJSON } from './utils'
+
+console.log(`⚡ Building IDG.tools content...`)
+const startTime = performance.now()
 
 // IDEA: Maybe generate slugs and links for entries before build
 
-const toolPaths = (await FastGlob('./src/tools/*.json')).filter(
-    (x) => !x.includes('old_'),
+const getContentPaths = (contentTypes: Array<keyof Content>) =>
+    Promise.all(contentTypes.map((type) => FastGlob(`./src/${type}/*.json`)))
+
+const prepareSkills = (
+    translatedSkills: Translated<Skill>[],
+    translatedCategories: Translated<Category>[],
+) => {
+    return translatedSkills.map((translatedSkill) => {
+        const updated = {} as Translated<Skill>
+
+        for (const [language, skill] of Object.entries(translatedSkill)) {
+            // Assumes all content is available in English
+            const translatedCategory = translatedCategories.find(
+                (tc) => tc.en.id === skill.category,
+            ) as Translated<Category>
+
+            // Add colors to skills
+            skill.color = translatedCategory.en.color
+            updated[language as Language] = skill
+        }
+
+        return updated
+    })
+}
+
+const prepareTools = (translatedTools: Translated<Tool>[]) => {
+    return translatedTools.map((translatedTool) => {
+        const updated = {} as Translated<Tool>
+
+        for (const [language, tool] of Object.entries(translatedTool)) {
+            // Filter out skills with 0 relevancy
+            const sorted = tool.relevancy
+                .filter((t) => t.score > 0)
+                .sort((a, b) => b.score - a.score)
+
+            if (sorted.length < tool.relevancy.length) {
+                console.log(
+                    `Removed ${
+                        tool.relevancy.length - sorted.length
+                    } relevancy scores from tool ${
+                        tool.name
+                    } for language "${language}"`,
+                )
+            }
+
+            tool.relevancy = sorted
+            updated[language as Language] = tool
+        }
+
+        return updated
+    })
+}
+
+const loadContent = async (contentTypes: Array<keyof Content>) => {
+    const paths = await getContentPaths(contentTypes)
+    const [tools, skills, categories, tags] = await Promise.all(
+        paths.map((paths) => Promise.all(paths.map(readJSON))),
+    )
+
+    return {
+        tools: prepareTools(tools),
+        skills: prepareSkills(skills, categories),
+        categories,
+        tags,
+    } as TranslatedContent
+}
+
+const rawContent = await loadContent(['tools', 'skills', 'categories', 'tags'])
+
+console.log(`Building IDG.tools content...`)
+
+await writeJSON('./compiled/built-content.json', rawContent)
+
+const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
+    'en-US',
+    {
+        minimumFractionDigits: 3,
+        maximumFractionDigits: 3,
+    },
 )
-
-console.log(`Building ${toolPaths.length} tools...`)
-
-await Promise.all(
-    toolPaths.map(async (path) => {
-        const translatedTool = await readFile(path, { encoding: 'utf-8' }).then(
-            (raw) => JSON.parse(raw),
-        )
-
-        const result = {}
-
-        return writeFile(path, JSON.stringify(result, null, 2), {
-            encoding: 'utf-8',
-        })
-    }),
-)
+console.log(`✅ Finished in ${buildTime} s\n`)
