@@ -21,4 +21,8 @@
     <h3 class={cx('text-lg font-semibold', className)}>
         <slot />
     </h3>
+{:else if size === 4}
+    <h4 class={cx('text-sm font-semibold', className)}>
+        <slot />
+    </h4>
 {/if}

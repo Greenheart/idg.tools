@@ -4,13 +4,14 @@
     import { cx } from '$lib/utils'
 
     export let tool: Tool
+    export let visible: number
     export let content: Content
     let className = ''
     export { className as class }
 </script>
 
-<div class={cx('flex flex-wrap items-start gap-3', className)}>
-    {#each tool.relevancy as relevancy}
+<div class={cx('flex flex-wrap items-start gap-2 pr-5', className)}>
+    {#each tool.relevancy.slice(0, visible) as relevancy}
         {@const skill = getSkill(relevancy.skill, content)}
         {@const category = getCategory(skill.category, content)}
         <!--
@@ -19,7 +20,7 @@
             We should likely do it in a clearer way though
         -->
         <span
-            class="rounded-lg px-2 py-1 font-semibold text-stone-900"
+            class="rounded-lg px-2 py-1 text-stone-900"
             style={`background-color: ${category.color}`}
         >
             {skill.name}
