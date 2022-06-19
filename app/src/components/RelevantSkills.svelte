@@ -1,6 +1,6 @@
 <script lang="ts">
     import { getCategory, getSkill } from '$lib/content-utils'
-    import type { Content, Tool } from '$lib/types'
+    import type { Content, Tool } from '$shared/types'
     import { cx } from '$lib/utils'
 
     export let tool: Tool
@@ -10,8 +10,8 @@
 </script>
 
 <div class={cx('flex flex-wrap items-start gap-3', className)}>
-    {#each tool.skills as skillId}
-        {@const skill = getSkill(skillId, content)}
+    {#each tool.relevancy as relevancy}
+        {@const skill = getSkill(relevancy.skill, content)}
         {@const category = getCategory(skill.category, content)}
         <!--
             IDEA: OR maybe, we could show a modal with details about the skill when people click the skill.

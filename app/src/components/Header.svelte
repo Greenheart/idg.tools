@@ -72,7 +72,7 @@
         </span>
     </button>
 
-    <nav class="hidden justify-evenly sm:flex">
+    <nav class="z-10 hidden justify-evenly sm:flex">
         {#each links as { href, text }}
             <Link {href} class="p-2">{text}</Link>
         {/each}
