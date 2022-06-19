@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Tool, Content } from '$lib/types'
+    import type { Tool, Content } from '$shared/types'
     import Heading from './Heading.svelte'
     import Arrow from './icons/Arrow.svelte'
     import Link from './Link.svelte'

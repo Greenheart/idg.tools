@@ -2,9 +2,8 @@
     import { getCategory, getSkill } from '$lib/content-utils'
     import type { Content, Tool } from '$shared/types'
     import { cx } from '$lib/utils'
-    import { TMP_TOOL } from '../routes/explore/[link].svelte'
 
-    export const tool: Tool = TMP_TOOL['en']
+    export let tool: Tool
     export let content: Content
     let className = ''
     export { className as class }
