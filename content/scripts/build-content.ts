@@ -59,7 +59,6 @@ const prepareTools = (translatedTools: Translated<Tool>[]) => {
             // Ensure slugs are consistent across all translations
             uniqueSlugs.add(tool.slug)
             if (uniqueSlugs.size > 1) {
-                uniqueSlugs.values()
                 throw new Error(
                     `[content] Slugs should be the same for all translations for tool "${
                         tool.name
@@ -69,23 +68,28 @@ const prepareTools = (translatedTools: Translated<Tool>[]) => {
                 )
             }
 
-            // Filter out skills with 0 relevancy
             const sorted = tool.relevancy
-                .filter((t) => t.score > 0)
-                .sort((a, b) => b.score - a.score)
+                .filter((t) => t.score > 0) // Filter out skills with 0 relevancy
+                .sort((a, b) => b.score - a.score) // Most relevant first
 
             if (sorted.length < tool.relevancy.length) {
-                console.log(
-                    `Removed ${
+                console.warn(
+                    `[content] Removed ${
                         tool.relevancy.length - sorted.length
-                    } relevancy scores from tool "${
+                    } relevancy scores with 0 relevancy from tool "${
                         tool.name
                     }" for language "${language}"`,
                 )
             }
 
             tool.relevancy = sorted
-            tool.link = createBackwardsCompatibleLink(tool.name, tool.slug)
+            const newLink = createBackwardsCompatibleLink(tool.name, tool.slug)
+            if (newLink !== tool.link) {
+                console.warn(
+                    `[content] Link has changed for tool "${tool.name}" from old: "${tool.link}" to new: "${newLink}"`,
+                )
+                tool.link = newLink
+            }
 
             updated[language as Language] = tool
         }
