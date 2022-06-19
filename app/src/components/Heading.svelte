@@ -18,7 +18,7 @@
         <slot />
     </h2>
 {:else if size === 3}
-    <h3 class={cx('text-lg font-semibold', className)}>
+    <h3 class={cx('text-lg font-bold', className)}>
         <slot />
     </h3>
 {:else if size === 4}
