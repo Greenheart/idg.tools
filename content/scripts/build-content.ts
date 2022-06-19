@@ -1,6 +1,7 @@
 import FastGlob from 'fast-glob'
 import { performance } from 'perf_hooks'
 
+import { LANGUAGE_TAGS } from '../../shared/constants'
 import {
     Category,
     Content,
@@ -15,8 +16,6 @@ import { createBackwardsCompatibleLink, readJSON, writeJSON } from './utils'
 
 console.log(`⚡ Building IDG.tools content...`)
 const startTime = performance.now()
-
-// IDEA: Maybe generate slugs and links for entries before build
 
 const getContentPaths = (contentTypes: Array<keyof Content>) =>
     Promise.all(contentTypes.map((type) => FastGlob(`./src/${type}/*.json`)))
@@ -98,49 +97,45 @@ const prepareTools = (translatedTools: Translated<Tool>[]) => {
     })
 }
 
-// TODO: consider working with content in top-level language namespaces with one JSON object per language, instead of translations within each object
-// This could make sorting, filtering and working with content easier in general.
-
 const loadContent = async (contentTypes: Array<keyof Content>) => {
     const paths = await getContentPaths(contentTypes)
     const [tools, skills, categories, tags] = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
     )
 
-    return {
-        tools: prepareTools(tools),
-        skills: prepareSkills(skills, categories),
-        categories,
-        tags,
-    } as OLD_TranslatedContent
+    return { tools, skills, categories, tags } as OLD_TranslatedContent
 }
-/*
-
-const getByLang = (obj: Translated)
 
 function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
-    return content.map(item => item[lang])
+    return content.map((item) => item[lang])
 }
 
-const translatedContent = LANGUAGES.reduce(result, lang => {
-    result[lang] = {
-        tools: getByLang(tools, lang),
-        skills: getByLang(skills, lang),
-        categories: getByLang(categories, lang),
-        tags: getByLang(tags, lang),
+const splitContentByLang = (content: OLD_TranslatedContent) =>
+    LANGUAGE_TAGS.reduce<Translated<Content>>((result, lang: Language) => {
+        result[lang] = {
+            tools: getByLang(content.tools, lang),
+            skills: getByLang(content.skills, lang),
+            categories: getByLang(content.categories, lang),
+            tags: getByLang(content.tags, lang),
+        }
+        return result
+    }, {} as Translated<Content>)
+
+const prepareContent = (content: OLD_TranslatedContent) => {
+    return {
+        ...content,
+        skills: prepareSkills(content.skills, content.categories),
+        tools: prepareTools(content.tools),
     }
-    return result
-}, {})
-
-*/
-
-const prepareContent = (content: OLD_TranslatedContent) => {}
+}
 
 const rawContent = await loadContent(['tools', 'skills', 'categories', 'tags'])
 
+const builtContent = splitContentByLang(prepareContent(rawContent))
+
 console.log(`Building IDG.tools content...`)
 
-await writeJSON('./compiled/built-content.json', rawContent, 2)
+await writeJSON('./compiled/built-content.json', builtContent, 2)
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
     'en-US',
