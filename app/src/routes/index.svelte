@@ -17,7 +17,7 @@
 <div class="space-y-4 py-12">
     <p>
         IDG.tools helps you develop the skills to achieve the <Link
-            href="https://sdgs.un.org/goals"
+            href="https://sdgs.un.org/goals#goals"
             class="font-bold underline"
         >
             SDGs.
