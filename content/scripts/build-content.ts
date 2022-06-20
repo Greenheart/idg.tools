@@ -1,5 +1,9 @@
 import FastGlob from 'fast-glob'
 import { performance } from 'perf_hooks'
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 import { LANGUAGE_TAGS } from '$shared/constants'
 import { getTag } from '$shared/content-utils'
@@ -26,7 +30,11 @@ console.log(`⚡ Building IDG.tools content...`)
 const startTime = performance.now()
 
 const getContentPaths = (contentTypes: Array<keyof Content>) =>
-    Promise.all(contentTypes.map((type) => FastGlob(`./src/${type}/*.json`)))
+    Promise.all(
+        contentTypes.map((type) =>
+            FastGlob(resolve(__dirname, `../src/${type}/*.json`)),
+        ),
+    )
 
 const prepareSkills = (
     translatedSkills: Translated<Skill>[],
@@ -176,7 +184,11 @@ const builtContent = splitContentByLang(prepareContent(rawContent), ['en'])
 
 console.log(`Building IDG.tools content...`)
 
-await writeJSON('../app/static/content.json', builtContent, 0)
+await writeJSON(
+    resolve(__dirname, '../../app/static/content.json'),
+    builtContent,
+    0,
+)
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
     'en-US',

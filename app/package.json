@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "svelte-kit dev",
         "dev:host": "svelte-kit dev --host",
-        "build:content": "node --no-warnings scripts/build-content.js",
+        "build:content": "node ../content/scripts/esbuild.js && node ../content/compiled/build-content.js",
         "build": "svelte-kit build",
         "build:all": "npm run build:content && svelte-kit build",
         "preview": "svelte-kit preview",
