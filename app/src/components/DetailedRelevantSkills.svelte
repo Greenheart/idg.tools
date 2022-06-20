@@ -26,7 +26,7 @@
 
             <div class="flex items-center justify-between gap-4">
                 <span
-                    class="overflow-hidden text-ellipsis whitespace-nowrap rounded-lg px-2 py-1 font-semibold text-stone-900"
+                    class="overflow-hidden text-ellipsis whitespace-nowrap rounded-lg px-2 py-1 text-stone-900"
                     style={`background-color: ${category.color}`}
                 >
                     {skill.name}
