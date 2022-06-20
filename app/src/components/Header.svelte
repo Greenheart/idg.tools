@@ -3,13 +3,20 @@
     import Link from '$components/Link.svelte'
 
     import { isMenuOpen } from '$lib/stores'
+    import { page } from '$app/stores'
 
     export let showBackButton = false
     const toggleMenu = () => {
         $isMenuOpen = !$isMenuOpen
     }
 
-    const goBack = () => window.history.back()
+    const getBackLink = (routeId: string) => {
+        const backLinks = {
+            'explore/[link]': '/explore',
+            explore: '/',
+        }
+        return backLinks[routeId as keyof typeof backLinks] ?? '/'
+    }
 
     const links = [
         { href: '/explore', text: 'Toolbox' },
@@ -19,12 +26,13 @@
 
 <header class="relative flex items-center justify-between pt-6 pb-12">
     {#if showBackButton}
-        <button
-            on:click={goBack}
+        <Link
+            href={getBackLink($page.routeId ?? '')}
+            unstyled
             class="z-10 -ml-4 grid h-[60px] rotate-180 place-items-center p-4"
         >
             <Arrow class="h-8 w-8 pb-1" />
-        </button>
+        </Link>
 
         <div class="absolute left-0 right-0 z-0 h-[60px]">
             <div class="flex h-full">
