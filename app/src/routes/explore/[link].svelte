@@ -14,7 +14,7 @@
 
 <Markdown source={tool.description} class="pt-8 text-lg" />
 
-<div class="my-8 rounded-2xl bg-stone-50 p-4 text-stone-900">
+<div class="mt-8 rounded-2xl bg-stone-50 p-4 text-stone-900">
     <Heading class="pb-2 text-2xl">Try it today</Heading>
     <Markdown source={tool.actions} variant="inverted" />
 </div>
