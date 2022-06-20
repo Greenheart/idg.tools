@@ -6,6 +6,7 @@
     import Heading from '$components/Heading.svelte'
     import Link from '$components/Link.svelte'
     import Tools from '$components/Tools.svelte'
+    import UserGroup from '$components/icons/UserGroup.svelte'
 
     export let content: Content
 
@@ -40,11 +41,12 @@
 </div>
 
 <div
-    class="mt-16 flex flex-col items-center justify-between rounded-2xl bg-stone-50 p-4 text-center text-stone-900"
+    class="mt-16 flex flex-col items-center justify-between rounded-2xl bg-stone-50 p-4 text-left text-stone-900"
 >
-    <Heading>Created by and for the community</Heading>
+    <UserGroup class="h-8 w-8" />
+    <Heading size={3} class="py-2">Created by and for the community</Heading>
 
-    <p class="pt-3 pb-4">
+    <p class="px-4 pb-4">
         IDG.tools is co-created by people from all around the world - join our
         supportive community and let's practice inner development together!
     </p>
