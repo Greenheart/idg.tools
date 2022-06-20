@@ -44,8 +44,3 @@ export type Tag = { id: ItemId; name: string }
 export type Language = keyof typeof LANGUAGES
 
 export type Translated<T> = Partial<Record<Language, T>>
-export type TranslatedTool = Translated<Tool>
-export type TranslatedTag = Translated<Tag>
-export type TranslatedSkill = Translated<Skill>
-export type TranslatedCategory = Translated<Category>
-export type NewTranslatedContent = Translated<Content>

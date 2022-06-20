@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte'
 
-    import { getSkillsInCategory } from '$lib/content-utils'
+    import { getSkillsInCategory } from '$shared/content-utils'
     import { cx } from '$lib/utils'
     import { selectedSkills } from '$lib/stores'
     import type { Content, Category, Skill } from '$shared/types'

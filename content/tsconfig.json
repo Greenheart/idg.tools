@@ -14,8 +14,12 @@
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "baseUrl": "."
+        "baseUrl": ".",
+        "paths": {
+            "$shared": ["../shared"],
+            "$shared/*": ["../shared/*"]
+        }
     },
-    "include": ["scripts/**/*.ts", "../shared/**/*"],
+    "include": ["scripts/**/*.ts"],
     "exclude": ["node_modules", "src"]
 }

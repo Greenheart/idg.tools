@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { getTag } from '$lib/content-utils'
+    import { getTag } from '$shared/content-utils'
     import type { Content, Tool } from '$shared/types'
     import { cx } from '$lib/utils'
 
