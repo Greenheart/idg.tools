@@ -21,9 +21,9 @@
     {#if showBackButton}
         <button
             on:click={goBack}
-            class="z-10 -ml-4 grid rotate-180 place-items-center p-4"
+            class="z-10 -ml-4 grid h-[60px] rotate-180 place-items-center p-4"
         >
-            <Arrow class="h-8 w-8" />
+            <Arrow class="h-8 w-8 pb-1" />
         </button>
 
         <div class="absolute left-0 right-0 z-0 h-[60px]">
@@ -63,7 +63,7 @@
     {/if}
 
     <button
-        class="hamburger hamburger--spring z-10 justify-evenly sm:hidden"
+        class="hamburger hamburger--spring z-10 !-mr-4 justify-evenly sm:hidden"
         class:is-active={$isMenuOpen}
         type="button"
         on:click={toggleMenu}
