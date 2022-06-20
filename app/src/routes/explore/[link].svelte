@@ -5,6 +5,7 @@
 
     import type { Content, Tool } from '$shared/types'
     import LinkButton from '$components/LinkButton.svelte'
+    import Tags from '$components/Tags.svelte'
 
     export let tool: Tool
     export let content: Content
@@ -12,7 +13,9 @@
 
 <Heading class="text-5xl">{tool.name}</Heading>
 
-<Markdown source={tool.description} class="pt-8 text-lg" />
+<Tags {tool} {content} visible={3} class="pt-4" inverted />
+
+<Markdown source={tool.description} class="pt-4 text-lg" />
 
 <div class="mt-8 rounded-2xl bg-stone-50 p-4 text-stone-900">
     <Heading class="pb-2 text-2xl">Try it today</Heading>

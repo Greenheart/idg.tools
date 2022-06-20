@@ -1,10 +1,13 @@
-import type { Category, Content, Skill, Tool } from '$shared/types'
+import type { Category, Content, Skill, Tag, Tool } from '$shared/types'
 
 export const getCategory = (id: Category['id'], { categories }: Content) =>
     categories.find((c) => c.id === id) as Category
 
 export const getSkill = (id: Skill['id'], { skills }: Content) =>
     skills.find((s) => s.id === id) as Skill
+
+export const getTag = (id: Tag['id'], { tags }: Content) =>
+    tags.find((t) => t.id === id) as Tag
 
 /**
  * By supporting backwards compatible links that end with a `cuid.slug()`,

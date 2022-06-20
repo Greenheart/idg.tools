@@ -1,4 +1,4 @@
-import { LANGUAGES } from './constants'
+import type { LANGUAGES } from './constants'
 
 export type ItemId = string
 
@@ -24,6 +24,7 @@ export type Tool = Item & {
     actions: string
     resources: string
     relevancy: IDGRelevancy[]
+    tags: Tag['id'][]
 }
 
 export type Content = {
