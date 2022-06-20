@@ -1,7 +1,8 @@
 import FastGlob from 'fast-glob'
 import { performance } from 'perf_hooks'
 
-import { LANGUAGE_TAGS } from '../../shared/constants'
+import { LANGUAGE_TAGS } from '$shared/constants'
+import { getTag } from '$shared/content-utils'
 import {
     Category,
     Content,
@@ -10,7 +11,7 @@ import {
     Tag,
     Tool,
     Translated,
-} from '../../shared/types'
+} from '$shared/types'
 import { createBackwardsCompatibleLink, readJSON, writeJSON } from './utils'
 
 // Only used while buildign the content
@@ -49,7 +50,10 @@ const prepareSkills = (
     })
 }
 
-const prepareTools = (translatedTools: Translated<Tool>[]) => {
+const prepareTools = (
+    translatedTools: Translated<Tool>[],
+    translatedTags: Translated<Tag>[],
+) => {
     return translatedTools.map((translatedTool) => {
         const updated = {} as Translated<Tool>
 
@@ -74,21 +78,47 @@ const prepareTools = (translatedTools: Translated<Tool>[]) => {
                 )
             }
 
-            const sorted = tool.relevancy
+            const firstDuplicateTag = tool.tags.find(
+                (t, i) => tool.tags.lastIndexOf(t) !== i,
+            )
+            if (firstDuplicateTag) {
+                throw new Error(
+                    `[content] Tool "${tool.name}" has duplicate tags: ${firstDuplicateTag}`,
+                )
+            }
+
+            const tags = translatedTags.map((tag) => {
+                const translatedTag = tag[language as Language]
+                if (translatedTag !== undefined) return translatedTag
+                throw new Error(
+                    `[content] Tag is missing translation for language "${language}": ${JSON.stringify(
+                        tag,
+                    )}`,
+                )
+            })
+
+            const tagsSortedAlphabetically = tool.tags
+                .map((t) => getTag(t, { tags }))
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((t) => t.id)
+
+            tool.tags = tagsSortedAlphabetically
+
+            const sortedRelevancyScores = tool.relevancy
                 .filter((t) => t.score > 0) // Filter out skills with 0 relevancy
                 .sort((a, b) => b.score - a.score) // Most relevant first
 
-            if (sorted.length < tool.relevancy.length) {
+            if (sortedRelevancyScores.length < tool.relevancy.length) {
                 console.warn(
                     `[content] Removed ${
-                        tool.relevancy.length - sorted.length
+                        tool.relevancy.length - sortedRelevancyScores.length
                     } relevancy scores with 0 relevancy from tool "${
                         tool.name
                     }" for language "${language}"`,
                 )
             }
 
-            tool.relevancy = sorted
+            tool.relevancy = sortedRelevancyScores
             const newLink = createBackwardsCompatibleLink(tool.name, tool.slug)
             if (newLink !== tool.link) {
                 console.warn(
@@ -135,7 +165,7 @@ const prepareContent = (content: ProcessingTranslatedContent) => {
     return {
         ...content,
         skills: prepareSkills(content.skills, content.categories),
-        tools: prepareTools(content.tools),
+        tools: prepareTools(content.tools, content.tags),
     }
 }
 
