@@ -1,10 +1,10 @@
 <script lang="ts">
-    import Link from '$components/Link.svelte'
     import Heading from '$components/Heading.svelte'
     import Markdown from '$components/Markdown.svelte'
     import DetailedRelevantSkills from '$components/DetailedRelevantSkills.svelte'
 
     import type { Content, Tool } from '$shared/types'
+    import LinkButton from '$components/LinkButton.svelte'
 
     export let tool: Tool
     export let content: Content
@@ -22,12 +22,16 @@
 <Heading class="pt-8 pb-2">Skill relevancy</Heading>
 <DetailedRelevantSkills {tool} {content} />
 
-<Heading class="pt-8 pb-2">Research and resources</Heading>
-<Markdown source={tool.resources} class="mb-8" />
+{#if tool.resources}
+    <Heading class="pt-8 pb-2">Research and resources</Heading>
+    <Markdown source={tool.resources} class="mb-8" />
+{/if}
 
-<Link href="https://github.com/Greenheart/idg.tools/discussions" variant="pink">
-    Help improve this tool
-</Link>
+<div class="flex justify-center">
+    <LinkButton href="https://github.com/Greenheart/idg.tools/discussions">
+        Help improve this tool
+    </LinkButton>
+</div>
 
 <!-- IDEA: Maybe add specific chat room for each IDG skill, allowing people to discuss this IDG with others -->
 <!-- IDEA: Probably even better, show a CTA at the bottom of each tool suggesting them to join the IDG community and learn together with others -->
