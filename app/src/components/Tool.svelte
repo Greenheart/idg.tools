@@ -5,6 +5,7 @@
     import Link from './Link.svelte'
     import Markdown from './Markdown.svelte'
     import RelevantSkills from './RelevantSkills.svelte'
+    import Tags from './Tags.svelte'
 
     export let tool: Tool
     export let content: Content
@@ -15,6 +16,9 @@
         class="relative transform-gpu rounded-2xl bg-stone-50 p-4 text-stone-900 duration-100 hover:scale-[103%]"
     >
         <Heading size={2}>{tool.name}</Heading>
+
+        <Tags {tool} {content} visible={3} class="pt-2" />
+
         <Markdown
             source={tool.description}
             class="pt-2 pb-4"
