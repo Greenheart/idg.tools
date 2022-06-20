@@ -1,4 +1,8 @@
 import esbuild from 'esbuild'
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const startTime = performance.now()
 
@@ -6,8 +10,8 @@ console.log(`⚡ Building IDG.tools content scripts...`)
 
 esbuild
     .build({
-        entryPoints: ['scripts/build-content.ts'],
-        outdir: 'compiled',
+        entryPoints: [resolve(__dirname, 'build-content.ts')],
+        outdir: resolve(__dirname, '../compiled'),
         bundle: true,
         minify: false,
         sourcemap: false,
