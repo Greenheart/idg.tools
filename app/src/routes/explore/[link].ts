@@ -1,7 +1,7 @@
 import type { RequestHandlerOutput } from '@sveltejs/kit'
 
 import { content } from '$lib/content-backend'
-import { getToolByLink } from '$lib/content-utils'
+import { getToolByLink } from '$shared/content-utils'
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function get({

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { getCategory, getSkill } from '$lib/content-utils'
+    import { getCategory, getSkill } from '$shared/content-utils'
     import type { Content, Tool } from '$shared/types'
     import { cx } from '$lib/utils'
 
