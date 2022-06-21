@@ -6,7 +6,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const startTime = performance.now()
 
-console.log(`⚡ Building IDG.tools content scripts...`)
+console.log(`1. ⚡ Compiling IDG.tools content scripts...`)
 
 esbuild
     .build({

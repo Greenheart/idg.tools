@@ -58,7 +58,7 @@ type ProcessingTranslatedContent = {
     tags: Translated<Tag>[]
 }
 
-console.log(`⚡ Building IDG.tools content...`)
+console.log(`2. ⚡ Building IDG.tools content...`)
 const startTime = performance.now()
 
 const getContentPaths = (contentTypes: Array<keyof Content>) =>
