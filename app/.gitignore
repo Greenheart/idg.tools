@@ -4,4 +4,4 @@ node_modules
 /.svelte-kit
 /package
 .env
-scripts/compiled
+/scripts/compiled
