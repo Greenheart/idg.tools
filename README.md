@@ -10,7 +10,7 @@ IDG.tools is a free, open source and co-created library of tools and resources t
 
 ## Technologies used
 
--   [KeystoneJS](https://keystonejs.com) - CMS to simplify both content co-creation and development.
+-   [Netlify CMS](https://netlify.com) - CMS to simplify both content co-creation and development, integrated with Git.
 -   [SvelteKit](https://kit.svelte.dev) - Modern web app framework.
 -   [Tailwind CSS](https://tailwindcss.com/) - Simple and efficient styling.
 
