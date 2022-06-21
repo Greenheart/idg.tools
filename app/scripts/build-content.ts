@@ -1,13 +1,13 @@
+import slugify from 'slugify'
 import FastGlob from 'fast-glob'
 import { performance } from 'perf_hooks'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { readFile, writeFile } from 'fs/promises'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-
-import { LANGUAGE_TAGS } from '$shared/constants'
+import { DEFAULT_LANGUAGE_TAG, LANGUAGE_TAGS } from '$shared/constants'
 import { getTag } from '$shared/content-utils'
-import {
+import type {
     Category,
     Content,
     Language,
@@ -16,9 +16,41 @@ import {
     Tool,
     Translated,
 } from '$shared/types'
-import { createBackwardsCompatibleLink, readJSON, writeJSON } from './utils'
 
-// Only used while buildign the content
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+export const slugifyName = (string: string, language = DEFAULT_LANGUAGE_TAG) =>
+    slugify(string, {
+        replacement: '-', // replace spaces with replacement character, defaults to `-`
+        remove: undefined, // remove characters that match regex, defaults to `undefined`
+        lower: true, // convert to lower case, defaults to `false`
+        strict: true, // strip special characters except replacement, defaults to `false`
+        locale: language, // language code of the locale to use
+        trim: true, // trim leading and trailing replacement chars, defaults to `true`
+    })
+
+/**
+ * Create a slugified, backwards compatible link.
+ *
+ * @param name Name of the object to link to. Can be updated easily while keeping links backwards compatible.
+ * @param uniqueSlug cuid.slug() that should remain the same for an object as long as it exists in the database.
+ * @returns Slugified link
+ */
+export const createBackwardsCompatibleLink = (
+    name: string,
+    uniqueSlug: string,
+    language = DEFAULT_LANGUAGE_TAG,
+) => `${slugifyName(name, language)}-${uniqueSlug}`
+
+export const readJSON = (path: string) =>
+    readFile(path, { encoding: 'utf-8' }).then(JSON.parse)
+
+export const writeJSON = (path: string, data: any, indentation: number = 0) =>
+    writeFile(path, JSON.stringify(data, null, indentation), {
+        encoding: 'utf-8',
+    })
+
+// Only used while building the content
 type ProcessingTranslatedContent = {
     categories: Translated<Category>[]
     tools: Translated<Tool>[]
@@ -32,7 +64,7 @@ const startTime = performance.now()
 const getContentPaths = (contentTypes: Array<keyof Content>) =>
     Promise.all(
         contentTypes.map((type) =>
-            FastGlob(resolve(__dirname, `../src/${type}/*.json`)),
+            FastGlob(resolve(__dirname, `../../../content/src/${type}/*.json`)),
         ),
     )
 
@@ -144,6 +176,7 @@ const prepareTools = (
 
 const loadContent = async (contentTypes: Array<keyof Content>) => {
     const paths = await getContentPaths(contentTypes)
+
     const [tools, skills, categories, tags] = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
     )
@@ -185,7 +218,7 @@ const builtContent = splitContentByLang(prepareContent(rawContent), ['en'])
 console.log(`Building IDG.tools content...`)
 
 await writeJSON(
-    resolve(__dirname, '../../app/static/content.json'),
+    resolve(__dirname, '../../static/content.json'),
     builtContent,
     0,
 )
