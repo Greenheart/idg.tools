@@ -4,7 +4,7 @@ import { content } from '$lib/content-backend'
 import { getToolByLink } from '$shared/content-utils'
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
-export async function get({
+export async function GET({
     params: { link },
 }: {
     params: Record<string, string>

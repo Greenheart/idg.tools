@@ -1,11 +1,11 @@
-const tailwindcss = require("tailwindcss")
-const autoprefixer = require("autoprefixer")
-const cssnano = require("cssnano")
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
+import cssnano from 'cssnano'
 
 const mode = process.env.NODE_ENV
-const dev = mode === "development"
+const dev = mode === 'development'
 
-const config = {
+export default {
     plugins: [
         //Some plugins, like tailwindcss/nesting, need to run before Tailwind,
         tailwindcss(),
@@ -13,9 +13,7 @@ const config = {
         autoprefixer(),
         !dev &&
             cssnano({
-                preset: "default",
+                preset: 'default',
             }),
     ],
 }
-
-module.exports = config

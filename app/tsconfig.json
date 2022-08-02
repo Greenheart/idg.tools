@@ -30,6 +30,7 @@
             "$lib/*": ["src/lib/*"],
             "$shared": ["../shared"],
             "$shared/*": ["../shared/*"],
+            "$components": ["src/components"],
             "$components/*": ["src/components/*"]
         }
     },

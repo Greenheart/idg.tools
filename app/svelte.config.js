@@ -7,14 +7,9 @@ const config = {
     preprocess: [preprocess({ postcss: true })],
     kit: {
         adapter: adapter(),
-        vite: {
-            resolve: {
-                alias: {
-                    $components: resolve('src/components'),
-                    $lib: resolve('src/lib'),
-                    $shared: resolve('../shared'),
-                },
-            },
+        alias: {
+            $components: resolve('src/components'),
+            $shared: resolve('../shared'),
         },
     },
 }

@@ -6,10 +6,11 @@
         List,
         ListItem,
     } from 'svelte-markdown/src/renderers'
+    import DOMPurify from 'dompurify'
 
     import Link from './Link.svelte'
     import EmptyComponent from './EmptyComponent.svelte'
-    import { cx, sanitizeHTML } from '$lib/utils'
+    import { cx } from '$lib/utils'
 
     const variants = {
         default:
@@ -56,6 +57,6 @@
     <SvelteMarkdown
         {source}
         {renderers}
-        options={{ sanitizer: sanitizeHTML }}
+        options={{ sanitizer: DOMPurify.sanitize }}
     />
 </div>
