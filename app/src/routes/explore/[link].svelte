@@ -2,6 +2,7 @@
     import Heading from '$components/Heading.svelte'
     import Markdown from '$components/Markdown.svelte'
     import DetailedRelevantSkills from '$components/DetailedRelevantSkills.svelte'
+    import Resources from '$components/Resources.svelte'
 
     import type { Content, Tool } from '$shared/types'
     import LinkButton from '$components/LinkButton.svelte'
@@ -27,7 +28,7 @@
 
 {#if tool.resources}
     <Heading class="pt-8 pb-2">Research and resources</Heading>
-    <Markdown source={tool.resources} class="mb-8" />
+    <Resources {tool} class="mb-8" />
 {/if}
 
 <div class="flex justify-center">
