@@ -8,6 +8,7 @@
 
     import Button from '$components/Button.svelte'
     import Heading from '$components/Heading.svelte'
+    import NumberOfSelectedSkills from './NumberOfSelectedSkills.svelte'
 
     export let content: Content
 
@@ -44,27 +45,12 @@
         }
         return isCategoryOpen
     }
-
-    const getSelectedSkillsInCategory = (
-        skills: Skill['id'][],
-        selected: Skill['id'][],
-    ) =>
-        skills.reduce(
-            (count, skill) =>
-                selected.some((s) => s === skill) ? count + 1 : count,
-            0,
-        )
 </script>
 
 <Heading size={3}>Choose the topics you want to focus on:</Heading>
 
 <div class="space-y-4 py-4" id="skills">
-    {#each content.categories as { name, description, id: categoryId, color, skills }}
-        {@const selectedInCategory = getSelectedSkillsInCategory(
-            skills,
-            $selectedSkills,
-        )}
-
+    {#each content.categories as { name, description, id: categoryId, color, skills: skillsInCategory }}
         <details
             class={cx('text-stone-900')}
             on:toggle={(event) => onToggle(event, categoryId)}
@@ -78,12 +64,7 @@
                     <br />{description}
                 </span>
                 <div class="flex items-center space-x-4">
-                    {#if selectedInCategory}
-                        <span
-                            class="grid h-6 w-6 place-items-center rounded-full bg-white"
-                            >{selectedInCategory}</span
-                        >
-                    {/if}
+                    <NumberOfSelectedSkills {skillsInCategory} />
                     <svg
                         class={cx(
                             'h-6 w-6 transform transition duration-150',
