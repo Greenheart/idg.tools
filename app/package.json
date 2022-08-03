@@ -8,7 +8,7 @@
         "dev:host": "vite dev --host",
         "build:content": "node scripts/esbuild.js && node scripts/compiled/build-content.js",
         "build": "vite build",
-        "build:all": "npm run build:content && svelte-kit build",
+        "build:all": "npm run build:content && npm run build",
         "preview": "vite preview",
         "check": "svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
