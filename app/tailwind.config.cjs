@@ -7,7 +7,11 @@ const config = {
             xs: '475px',
             ...defaultTheme.screens,
         },
-        extend: {},
+        extend: {
+            fontFamily: {
+                sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+            },
+        },
     },
     plugins: [require('@tailwindcss/typography')],
 }
