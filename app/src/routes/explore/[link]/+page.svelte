@@ -27,10 +27,10 @@
 
 {#if tool.resources}
     <Heading class="pt-8 pb-2">Research and resources</Heading>
-    <Resources {tool} class="mb-8" />
+    <Resources {tool} />
 {/if}
 
-<div class="flex justify-center">
+<div class="mt-8 flex justify-center">
     <LinkButton href="https://github.com/Greenheart/idg.tools/discussions">
         Help improve this tool
     </LinkButton>
