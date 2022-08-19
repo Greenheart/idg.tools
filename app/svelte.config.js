@@ -1,6 +1,6 @@
 import preprocess from 'svelte-preprocess'
 import { resolve } from 'path'
-import adapter from '@sveltejs/adapter-vercel'
+import adapter from '@sveltejs/adapter-static'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -10,6 +10,9 @@ const config = {
         alias: {
             $components: resolve('src/components'),
             $shared: resolve('../shared'),
+        },
+        prerender: {
+            default: true,
         },
     },
 }
