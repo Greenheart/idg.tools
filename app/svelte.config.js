@@ -6,7 +6,9 @@ import adapter from '@sveltejs/adapter-static'
 const config = {
     preprocess: [preprocess({ postcss: true })],
     kit: {
-        adapter: adapter(),
+        adapter: adapter({
+            fallback: 'index.html',
+        }),
         alias: {
             $components: resolve('src/components'),
             $shared: resolve('../shared'),
