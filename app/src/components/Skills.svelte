@@ -47,7 +47,7 @@
     }
 </script>
 
-<Heading size={3}>Choose the topics you want to focus on:</Heading>
+<Heading size={3}>Choose the skills you want to focus on:</Heading>
 
 <div class="space-y-4 py-4" id="skills">
     {#each content.categories as { name, description, id: categoryId, color, skills: skillsInCategory }}

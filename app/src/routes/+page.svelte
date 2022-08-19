@@ -34,4 +34,10 @@
 
 <div class="mx-auto mt-6 flex flex-col items-center px-8">
     <LinkButton href="/explore">Continue</LinkButton>
+
+    <Link
+        href="https://www.innerdevelopmentgoals.org/framework"
+        class="mt-6 font-bold underline"
+        >Learn more about the Inner Development Goals</Link
+    >
 </div>
