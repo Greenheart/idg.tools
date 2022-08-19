@@ -1,10 +1,10 @@
-import type { RequestHandlerOutput } from '@sveltejs/kit'
+import type { redirect } from '@sveltejs/kit'
 
 import { content } from '$lib/content-backend'
 import { getToolByLink } from '$shared/content-utils'
 
-/** @type {import('@sveltejs/kit').RequestHandler} */
-export async function GET({
+/** @type {import('@sveltejs/kit').PageServerLoad} */
+export async function load({
     params: { link },
 }: {
     params: Record<string, string>
@@ -12,17 +12,13 @@ export async function GET({
     const tool = getToolByLink(link, content)
 
     if (tool) {
-        return {
-            body: { tool, content },
-            // If page was found on a different URL,
-            // permanently redirect to the updated url (HTTP 301)
-            // to prevent multiple URLs publishing the same content.
-            status: link === tool.link ? 200 : 301,
-            headers: {
-                location: `/explore/${tool.link}`,
-            },
-        } as RequestHandlerOutput
-    }
+        // If page was found on a different URL,
+        // permanently redirect to the updated url (HTTP 301)
+        // to prevent multiple URLs publishing the same content.
+        if (link !== tool.link) {
+            throw redirect(301, `/explore/${tool.link}`)
+        }
 
-    return { status: 404 }
+        return { tool, content }
+    }
 }

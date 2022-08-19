@@ -8,6 +8,10 @@
     import Tools from '$components/Tools.svelte'
     import UserGroup from '$components/icons/UserGroup.svelte'
 
+    import type { PageData } from './$types'
+    export let data: PageData
+    $: ({ content } = data)
+
     export let content: Content
 
     onMount(async () => {

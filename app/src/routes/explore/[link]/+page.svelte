@@ -8,6 +8,10 @@
     import LinkButton from '$components/LinkButton.svelte'
     import Tags from '$components/Tags.svelte'
 
+    import type { PageData } from './$types'
+    export let data: PageData
+    $: ({ tool, content } = data)
+
     export let tool: Tool
     export let content: Content
 </script>

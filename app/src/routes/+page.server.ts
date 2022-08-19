@@ -1,10 +1,8 @@
 import { content } from '$lib/content-backend'
 
-/** @type {import('@sveltejs/kit').RequestHandler} */
-export async function GET() {
+/** @type {import('@sveltejs/kit').PageServerLoad} */
+export async function load() {
     if (content) {
-        return { body: { content } }
+        return { content }
     }
-
-    return { status: 500 }
 }

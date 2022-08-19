@@ -1,16 +1,9 @@
-<script lang="ts" context="module">
-    const getBgOpacity = (routeId: string) => {
-        if (routeId === 'explore/[link]') return 75
-        if (routeId === 'explore') return 65
-        return 55
-    }
-</script>
-
 <script lang="ts">
     import Header from '$components/Header.svelte'
     import { TAGLINE } from '$lib/constants'
     import { isMenuOpen } from '$lib/stores'
     import { page } from '$app/stores'
+    import { getBgOpacity } from '$lib/utils'
 
     import '../app.css'
 

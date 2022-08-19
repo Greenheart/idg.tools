@@ -14,3 +14,9 @@ export function isExternalURL(href: string): boolean {
     a.href = href
     return window.location.host !== a.host
 }
+
+export const getBgOpacity = (routeId: string) => {
+    if (routeId === 'explore/[link]') return 75
+    if (routeId === 'explore') return 65
+    return 55
+}
