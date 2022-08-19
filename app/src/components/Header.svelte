@@ -25,7 +25,7 @@
 </script>
 
 <header class="relative flex items-center justify-between pt-6 pb-12">
-    {#if showBackButton}
+    {#if showBackButton && !$isMenuOpen}
         <Link
             href={getBackLink($page.routeId ?? '')}
             unstyled
