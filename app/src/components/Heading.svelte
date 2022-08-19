@@ -10,7 +10,7 @@
 </script>
 
 {#if size === 1}
-    <h1 class={cx('text-6xl tracking-wide font-semibold', className)}>
+    <h1 class={cx('text-6xl font-semibold', className)}>
         <slot />
     </h1>
 {:else if size === 2}
