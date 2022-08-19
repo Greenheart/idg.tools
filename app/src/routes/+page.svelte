@@ -32,12 +32,16 @@
 
 <Skills {content} />
 
-<div class="mx-auto mt-6 flex flex-col items-center px-8">
+<div class="mx-auto mt-6 flex flex-col items-center space-y-6 px-8 text-center">
     <LinkButton href="/explore">Continue</LinkButton>
 
-    <Link
-        href="https://www.innerdevelopmentgoals.org/framework"
-        class="mt-6 font-bold underline"
-        >Learn more about the Inner Development Goals</Link
-    >
+    <span>Or...</span>
+
+    <p>
+        Learn more about the<br />
+        <Link
+            href="https://www.innerdevelopmentgoals.org/framework"
+            class="mt-6 font-bold underline">Inner Development Goals</Link
+        >
+    </p>
 </div>
