@@ -3,17 +3,12 @@
     import Markdown from '$components/Markdown.svelte'
     import DetailedRelevantSkills from '$components/DetailedRelevantSkills.svelte'
     import Resources from '$components/Resources.svelte'
-
-    import type { Content, Tool } from '$shared/types'
     import LinkButton from '$components/LinkButton.svelte'
     import Tags from '$components/Tags.svelte'
 
     import type { PageData } from './$types'
     export let data: PageData
     $: ({ tool, content } = data)
-
-    export let tool: Tool
-    export let content: Content
 </script>
 
 <Heading class="text-5xl">{tool.name}</Heading>

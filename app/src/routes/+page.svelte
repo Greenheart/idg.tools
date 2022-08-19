@@ -4,13 +4,9 @@
     import Heading from '$components/Heading.svelte'
     import LinkButton from '$components/LinkButton.svelte'
 
-    import type { Content } from '$shared/types'
-
     import type { PageData } from './$types'
     export let data: PageData
     $: ({ content } = data)
-
-    export let content: Content
 </script>
 
 <Heading size={1}>Get better</Heading>

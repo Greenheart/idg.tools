@@ -1,7 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte'
 
-    import type { Content } from '$shared/types'
     import { selectedSkills } from '$lib/stores'
     import Heading from '$components/Heading.svelte'
     import Link from '$components/Link.svelte'
@@ -11,8 +10,6 @@
     import type { PageData } from './$types'
     export let data: PageData
     $: ({ content } = data)
-
-    export let content: Content
 
     onMount(async () => {
         selectedSkills.useLocalStorage()

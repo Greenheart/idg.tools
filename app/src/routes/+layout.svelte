@@ -3,7 +3,7 @@
     import { TAGLINE } from '$lib/constants'
     import { isMenuOpen } from '$lib/stores'
     import { page } from '$app/stores'
-    import { getBgOpacity } from '$lib/utils'
+    import { getBgOpacity } from './+layout'
 
     import '../app.css'
 
