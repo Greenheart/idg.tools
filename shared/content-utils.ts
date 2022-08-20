@@ -1,4 +1,5 @@
-import type { Category, Content, Skill, Tag, Tool } from './types'
+import type { Category, Content, Skill, Tag, Tool } from './content-types'
+import type * as Runtime from './runtime-types'
 
 export const getCategory = (
     id: Category['id'],
@@ -23,9 +24,9 @@ export const getTag = (id: Tag['id'], { tags }: Pick<Content, 'tags'>) =>
  * With the third case, we get built-in support for short URLs. Not that easy to type, but at least they are few characters.
  */
 export const getToolByLink = (
-    link: Tool['link'],
-    { tools }: Pick<Content, 'tools'>,
-) => tools.find((t) => t.link === link || link.endsWith(t.slug)) as Tool
+    link: Runtime.Tool['link'],
+    { tools }: Pick<Runtime.Content, 'tools'>,
+) => tools.find((t) => t.link === link || link.endsWith(t.slug)) as Runtime.Tool
 
 export const getSkillsInCategory = (
     id: Category['id'],

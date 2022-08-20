@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Category } from '$shared/types'
+    import type { Category } from '$shared/runtime-types'
     import { selectedSkills } from '$lib/stores'
 
     export let skillsInCategory: Category['skills']

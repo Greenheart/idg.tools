@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Tool, Content } from '$shared/types'
+    import type { Tool } from '$shared/runtime-types'
     import Heading from './Heading.svelte'
     import Arrow from './icons/Arrow.svelte'
     import Link from './Link.svelte'
@@ -8,7 +8,6 @@
     import Tags from './Tags.svelte'
 
     export let tool: Tool
-    export let content: Content
 </script>
 
 <Link href={`/explore/${tool.link}`} unstyled>
@@ -17,7 +16,7 @@
     >
         <Heading size={2}>{tool.name}</Heading>
 
-        <Tags {tool} {content} visible={3} class="pt-2" />
+        <Tags {tool} visible={3} class="pt-2" />
 
         <Markdown
             source={tool.description}
@@ -27,7 +26,7 @@
 
         <Heading size={4} class="pb-4">Skills you'll develop</Heading>
 
-        <RelevantSkills {tool} {content} visible={4} />
+        <RelevantSkills {tool} visible={4} />
 
         <Arrow class="absolute bottom-4 right-4 h-6 w-6" />
     </div>

@@ -8,12 +8,12 @@
 
     import type { PageData } from './$types'
     export let data: PageData
-    $: ({ tool, content } = data)
+    $: ({ tool } = data)
 </script>
 
 <Heading class="text-5xl">{tool.name}</Heading>
 
-<Tags {tool} {content} visible={3} class="pt-4" inverted />
+<Tags {tool} visible={3} class="pt-4" inverted />
 
 <Markdown source={tool.description} class="pt-4 text-lg" />
 
@@ -23,7 +23,7 @@
 </div>
 
 <Heading class="pt-8 pb-2">Skill relevancy</Heading>
-<DetailedRelevantSkills {tool} {content} />
+<DetailedRelevantSkills {tool} />
 
 {#if tool.resources}
     <Heading class="pt-8 pb-2">Research and resources</Heading>

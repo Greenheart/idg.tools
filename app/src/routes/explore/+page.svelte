@@ -33,11 +33,10 @@
         tools={$selectedSkills.length
             ? content.tools.filter((tool) =>
                   tool.relevancy.some(({ skill }) =>
-                      $selectedSkills.includes(skill),
+                      $selectedSkills.includes(skill.id),
                   ),
               )
             : content.tools}
-        {content}
     />
 </div>
 

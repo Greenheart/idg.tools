@@ -4,7 +4,7 @@
     import { getSkillsInCategory } from '$shared/content-utils'
     import { cx } from '$lib/utils'
     import { selectedSkills } from '$lib/stores'
-    import type { Content, Category, Skill } from '$shared/types'
+    import type { Content, Category, Skill } from '$shared/runtime-types'
 
     import Button from '$components/Button.svelte'
     import Heading from '$components/Heading.svelte'

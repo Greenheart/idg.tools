@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Tool } from '$shared/types'
+    import type { Tool } from '$shared/runtime-types'
     import Markdown from '$components/Markdown.svelte'
 
     export let tool: Tool

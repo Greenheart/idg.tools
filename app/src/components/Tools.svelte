@@ -1,12 +1,11 @@
 <script lang="ts">
-    import type { Content, Tool as ToolType } from '$shared/types'
+    import type { Tool as ToolType } from '$shared/runtime-types'
     import { selectedSkills } from '$lib/stores'
     import Tool from './Tool.svelte'
     import Button from './Button.svelte'
     import Link from './Link.svelte'
 
     export let tools: ToolType[]
-    export let content: Content
 
     const resetSkills = () => {
         $selectedSkills = []
@@ -20,7 +19,7 @@
 </script>
 
 {#each tools.slice(0, limit) as tool (tool.link)}
-    <Tool {tool} {content} />
+    <Tool {tool} />
 {:else}
     <div class="flex flex-col items-center space-y-4">
         <p>

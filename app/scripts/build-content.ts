@@ -15,7 +15,9 @@ import type {
     Tag,
     Tool,
     Translated,
-} from '$shared/types'
+} from '$shared/content-types'
+
+import type * as Runtime from '$shared/runtime-types'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -58,6 +60,14 @@ type ProcessingTranslatedContent = {
     tags: Translated<Tag>[]
 }
 
+// Only used while building the content
+type RuntimeProcessingTranslatedContent = {
+    categories: Runtime.Translated<Runtime.Category>[]
+    tools: Runtime.Translated<Runtime.Tool>[]
+    skills: Runtime.Translated<Runtime.Skill>[]
+    tags: Runtime.Translated<Runtime.Tag>[]
+}
+
 console.log(`2. ⚡ Building IDG.tools content...`)
 const startTime = performance.now()
 
@@ -73,7 +83,7 @@ const prepareSkills = (
     translatedCategories: Translated<Category>[],
 ) => {
     return translatedSkills.map((translatedSkill) => {
-        const updated = {} as Translated<Skill>
+        const updated = {} as Runtime.Translated<Runtime.Skill>
 
         for (const [language, skill] of Object.entries(translatedSkill)) {
             // Assumes all content is available in English
@@ -81,9 +91,13 @@ const prepareSkills = (
                 (tc) => tc!.en!.id === skill.category,
             ) as Translated<Category>
 
-            // Add colors to skills
-            skill.color = translatedCategory!.en!.color
-            updated[language as Language] = skill
+            const updatedSkill: Runtime.Skill = {
+                ...skill,
+                // Add colors to skills
+                color: translatedCategory!.en!.color,
+            }
+
+            updated[language as Language] = updatedSkill
         }
 
         return updated
@@ -93,9 +107,10 @@ const prepareSkills = (
 const prepareTools = (
     translatedTools: Translated<Tool>[],
     translatedTags: Translated<Tag>[],
+    translatedSkills: Translated<Skill>[],
 ) => {
     return translatedTools.map((translatedTool) => {
-        const updated = {} as Translated<Tool>
+        const updated = {} as Runtime.Translated<Runtime.Tool>
 
         const uniqueSlugs = new Set()
 
@@ -140,12 +155,16 @@ const prepareTools = (
             const tagsSortedAlphabetically = tool.tags
                 .map((t) => getTag(t, { tags }))
                 .sort((a, b) => a.name.localeCompare(b.name))
-                .map((t) => t.id)
-
-            tool.tags = tagsSortedAlphabetically
 
             const sortedRelevancyScores = tool.relevancy
                 .filter((t) => t.score > 0) // Filter out skills with 0 relevancy
+                .map(({ score, skill }) => ({
+                    // Map skillIds to actual Skills
+                    score,
+                    skill: translatedSkills.find(
+                        (s) => s[language as Language]!.id === skill,
+                    )![language as Language] as Runtime.Skill,
+                }))
                 .sort((a, b) => b.score - a.score) // Most relevant first
 
             if (sortedRelevancyScores.length < tool.relevancy.length) {
@@ -158,16 +177,21 @@ const prepareTools = (
                 )
             }
 
-            tool.relevancy = sortedRelevancyScores
+            const updatedTool: Runtime.Tool = {
+                ...tool,
+                tags: tagsSortedAlphabetically,
+                relevancy: sortedRelevancyScores,
+            }
+
             const newLink = createBackwardsCompatibleLink(tool.name, tool.slug)
             if (newLink !== tool.link) {
                 console.warn(
                     `[content] Link has changed for tool "${tool.name}" from old: "${tool.link}" to new: "${newLink}"`,
                 )
-                tool.link = newLink
+                updatedTool.link = newLink
             }
 
-            updated[language as Language] = tool
+            updated[language as Language] = updatedTool
         }
 
         return updated
@@ -189,25 +213,29 @@ function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
 }
 
 const splitContentByLang = (
-    content: ProcessingTranslatedContent,
+    content: RuntimeProcessingTranslatedContent,
     selectedLanguages: Language[] = LANGUAGE_TAGS,
 ) =>
-    selectedLanguages.reduce<Translated<Content>>((result, lang: Language) => {
-        result[lang] = {
-            tools: getByLang(content.tools, lang),
-            skills: getByLang(content.skills, lang),
-            categories: getByLang(content.categories, lang),
-            tags: getByLang(content.tags, lang),
-        }
-        return result
-    }, {} as Translated<Content>)
+    selectedLanguages.reduce<Runtime.Translated<Runtime.Content>>(
+        (result, lang: Language) => {
+            result[lang] = {
+                tools: getByLang(content.tools, lang),
+                skills: getByLang(content.skills, lang),
+                categories: getByLang(content.categories, lang),
+                tags: getByLang(content.tags, lang),
+            }
+            return result
+        },
+        {} as Runtime.Translated<Runtime.Content>,
+    )
 
 const prepareContent = (content: ProcessingTranslatedContent) => {
+    const skills = prepareSkills(content.skills, content.categories)
     return {
         ...content,
-        skills: prepareSkills(content.skills, content.categories),
-        tools: prepareTools(content.tools, content.tags),
-    }
+        skills,
+        tools: prepareTools(content.tools, content.tags, skills),
+    } as RuntimeProcessingTranslatedContent
 }
 
 const rawContent = await loadContent(['tools', 'skills', 'categories', 'tags'])
@@ -217,11 +245,7 @@ const builtContent = splitContentByLang(prepareContent(rawContent), ['en'])
 
 console.log(`Building IDG.tools content...`)
 
-await writeJSON(
-    resolve(__dirname, '../../static/content.json'),
-    builtContent,
-    0,
-)
+await writeJSON(resolve(__dirname, '../../static/content.json'), builtContent)
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
     'en-US',
