@@ -217,11 +217,7 @@ const builtContent = splitContentByLang(prepareContent(rawContent), ['en'])
 
 console.log(`Building IDG.tools content...`)
 
-await writeJSON(
-    resolve(__dirname, '../../static/content.json'),
-    builtContent,
-    0,
-)
+await writeJSON(resolve(__dirname, '../../static/content.json'), builtContent)
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
     'en-US',

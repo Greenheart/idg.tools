@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { getCategory, getSkill } from '$shared/content-utils'
+    import { getSkill } from '$shared/content-utils'
     import type { Content, Tool } from '$shared/types'
     import RelevancyScore from './RelevancyScore.svelte'
     export let tool: Tool
@@ -22,12 +22,11 @@
     <div class={'grid grid-cols-1 gap-3'}>
         {#each visibleSkills as { skill: skillId, score }}
             {@const skill = getSkill(skillId, content)}
-            {@const category = getCategory(skill.category, content)}
 
             <div class="flex items-center justify-between gap-4">
                 <span
                     class="overflow-hidden text-ellipsis whitespace-nowrap rounded-lg px-2 py-1 text-stone-900"
-                    style={`background-color: ${category.color}`}
+                    style={`background-color: ${skill.color}`}
                 >
                     {skill.name}
                 </span>
