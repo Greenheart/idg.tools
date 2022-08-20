@@ -1,6 +1,7 @@
 <script lang="ts">
+    import { onMount } from 'svelte'
     import type { Content, Tool as ToolType } from '$shared/types'
-    import { selectedSkills } from '$lib/stores'
+    import { selectedSkills, exploreVisibleItems } from '$lib/stores'
     import Tool from './Tool.svelte'
     import Button from './Button.svelte'
     import Link from './Link.svelte'
@@ -12,14 +13,16 @@
         $selectedSkills = []
     }
 
-    let limit = 3
+    onMount(() => {
+        exploreVisibleItems.useLocalStorage()
+    })
 
     const showMore = () => {
-        limit += 3
+        $exploreVisibleItems += 3
     }
 </script>
 
-{#each tools.slice(0, limit) as tool (tool.link)}
+{#each tools.slice(0, $exploreVisibleItems) as tool (tool.link)}
     <Tool {tool} {content} />
 {:else}
     <div class="flex flex-col items-center space-y-4">
@@ -34,7 +37,7 @@
 {/each}
 
 <div class="flex justify-center">
-    {#if limit < tools.length}
+    {#if $exploreVisibleItems < tools.length}
         <button
             on:click={showMore}
             class="py-4 px-8 font-semibold text-[#E0A1B4] underline"
