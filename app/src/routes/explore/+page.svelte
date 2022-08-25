@@ -28,18 +28,16 @@
     </Link>
 </p>
 
-<div class="grid gap-5">
-    <Tools
-        tools={$selectedSkills.length
-            ? content.tools.filter((tool) =>
-                  tool.relevancy.some(({ skill }) =>
-                      $selectedSkills.includes(skill),
-                  ),
-              )
-            : content.tools}
-        {content}
-    />
-</div>
+<Tools
+    tools={$selectedSkills.length
+        ? content.tools.filter((tool) =>
+              tool.relevancy.some(({ skill }) =>
+                  $selectedSkills.includes(skill),
+              ),
+          )
+        : content.tools}
+    {content}
+/>
 
 <div
     class="mt-16 flex flex-col items-center justify-between rounded-2xl bg-stone-50 p-4 text-left text-stone-900"

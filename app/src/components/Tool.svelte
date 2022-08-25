@@ -11,7 +11,7 @@
     export let content: Content
 </script>
 
-<Link href={`/explore/${tool.link}`} unstyled>
+<Link href={`/explore/${tool.link}`} unstyled class="grid max-w-2xl">
     <div
         class="relative transform-gpu rounded-2xl bg-stone-50 p-4 text-stone-900 duration-100 hover:scale-[103%]"
     >
