@@ -22,7 +22,7 @@
     },
     "devDependencies": {
         "@sveltejs/adapter-vercel": "1.0.0-next.68",
-        "@sveltejs/kit": "^1.0.0-next.440",
+        "@sveltejs/kit": "^1.0.0-next.442",
         "@tailwindcss/typography": "^0.5.4",
         "@types/dompurify": "^2.3.4",
         "@types/sanitize-html": "^2.6.2",
