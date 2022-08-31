@@ -7,6 +7,9 @@
 
     import '../app.css'
 
+    export const csr = false
+    export const prerender = true
+
     $: bodyStyle = `
 <style>
     body {

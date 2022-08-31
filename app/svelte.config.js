@@ -11,9 +11,6 @@ const config = {
             $components: resolve('src/components'),
             $shared: resolve('../shared'),
         },
-        prerender: {
-            default: true,
-        },
     },
 }
 
