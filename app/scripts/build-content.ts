@@ -71,11 +71,13 @@ const getContentPaths = (contentTypes: Array<keyof Content>) =>
 const prepareSkills = (
     translatedSkills: Translated<Skill>[],
     translatedCategories: Translated<Category>[],
+    selectedLanguages: Language[],
 ) => {
     return translatedSkills.map((translatedSkill) => {
         const updated = {} as Translated<Skill>
 
         for (const [language, skill] of Object.entries(translatedSkill)) {
+            if (!selectedLanguages.includes(language as Language)) continue
             // Assumes all content is available in English
             const translatedCategory = translatedCategories.find(
                 (tc) => tc!.en!.id === skill.category,
@@ -93,6 +95,7 @@ const prepareSkills = (
 const prepareTools = (
     translatedTools: Translated<Tool>[],
     translatedTags: Translated<Tag>[],
+    selectedLanguages: Language[],
 ) => {
     return translatedTools.map((translatedTool) => {
         const updated = {} as Translated<Tool>
@@ -100,6 +103,7 @@ const prepareTools = (
         const uniqueSlugs = new Set()
 
         for (const [language, tool] of Object.entries(translatedTool)) {
+            if (!selectedLanguages.includes(language as Language)) continue
             if (!tool.slug) {
                 throw new Error(
                     `[content] Missing slug for tool "${tool.name}" and language "${language}"`,
@@ -116,6 +120,11 @@ const prepareTools = (
                         [...uniqueSlugs],
                     )}`,
                 )
+            }
+
+            if (!tool.tags) {
+                console.log(JSON.stringify(tool, null, 2))
+                console.log('MISSING TAGS for tool ', tool.name)
             }
 
             const firstDuplicateTag = tool.tags.find(
@@ -204,18 +213,31 @@ const splitContentByLang = (
         return result
     }, {} as Translated<Content>)
 
-const prepareContent = (content: ProcessingTranslatedContent) => {
+const prepareContent = (
+    content: ProcessingTranslatedContent,
+    selectedLanguages: Language[] = LANGUAGE_TAGS,
+) => {
     return {
         ...content,
-        skills: prepareSkills(content.skills, content.categories),
-        tools: prepareTools(content.tools, content.tags),
+        skills: prepareSkills(
+            content.skills,
+            content.categories,
+            selectedLanguages,
+        ),
+        tools: prepareTools(content.tools, content.tags, selectedLanguages),
     }
 }
 
 const rawContent = await loadContent(['tools', 'skills', 'categories', 'tags'])
 
+const SELECTED_LANGUAGES: Language[] = ['en']
+
 // NOTE: We currently only build the English content since no translations are available yet
-const builtContent = splitContentByLang(prepareContent(rawContent), ['en'])
+// IDEA: Maybe refactor this to only pass in selected languages at one place, but this works for now.
+const builtContent = splitContentByLang(
+    prepareContent(rawContent, SELECTED_LANGUAGES),
+    SELECTED_LANGUAGES,
+)
 
 console.log(`Building IDG.tools content...`)
 
