@@ -7,6 +7,13 @@
     import RelevantSkills from './RelevantSkills.svelte'
     import Tags from './Tags.svelte'
 
+    const introLength = 300
+
+    $: intro =
+        tool.description.length > introLength
+            ? tool.description.slice(0, introLength) + '…'
+            : tool.description
+
     export let tool: Tool
     export let content: Content
 </script>
@@ -19,13 +26,9 @@
 
         <Tags {tool} {content} visible={3} class="pt-2" />
 
-        <Markdown
-            source={tool.description}
-            class="pt-2 pb-4"
-            variant="inverted"
-        />
+        <Markdown source={intro} class="pt-2 pb-4" variant="inverted" />
 
-        <Heading size={4} class="pb-4">Skills you'll develop</Heading>
+        <Heading size={4} class="pb-4">Skills you'll practice</Heading>
 
         <RelevantSkills {tool} {content} visible={4} />
 
