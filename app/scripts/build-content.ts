@@ -161,9 +161,11 @@ const prepareTools = (
             tool.relevancy = sortedRelevancyScores
             const newLink = createBackwardsCompatibleLink(tool.name, tool.slug)
             if (newLink !== tool.link) {
-                console.warn(
-                    `[content] Link has changed for tool "${tool.name}" from old: "${tool.link}" to new: "${newLink}"`,
-                )
+                if (tool.link !== undefined) {
+                    console.warn(
+                        `[content] Link has changed for tool "${tool.name}" from old: "${tool.link}" to new: "${newLink}"`,
+                    )
+                }
                 tool.link = newLink
             }
 
