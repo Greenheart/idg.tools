@@ -22,8 +22,8 @@
     },
     "devDependencies": {
         "@sveltejs/adapter-vercel": "1.0.0-next.72",
-        "@sveltejs/kit": "^1.0.0-next.456",
-        "@tailwindcss/typography": "^0.5.4",
+        "@sveltejs/kit": "^1.0.0-next.463",
+        "@tailwindcss/typography": "^0.5.7",
         "@types/dompurify": "^2.3.4",
         "@types/sanitize-html": "^2.6.2",
         "autoprefixer": "^10.4.8",
@@ -37,14 +37,14 @@
         "prettier-plugin-tailwindcss": "^0.1.13",
         "remark-slate": "^1.8.6",
         "slugify": "^1.6.5",
-        "svelte": "^3.49.0",
+        "svelte": "^3.50.0",
         "svelte-check": "^2.9.0",
         "svelte-preprocess": "^4.10.7",
         "tailwindcss": "^3.1.8",
         "tslib": "^2.4.0",
-        "typescript": "^4.7.4",
+        "typescript": "^4.8.2",
         "undici": "^5.10.0",
-        "vite": "^3.1.0-beta.1"
+        "vite": "^3.1.0-beta.2"
     },
     "type": "module",
     "prettier": {

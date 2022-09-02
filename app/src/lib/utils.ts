@@ -12,7 +12,7 @@ export const cx = (...classes: (string | undefined)[]) =>
 export function isExternalURL(href: string): boolean {
     const a = document.createElement('a')
     a.href = href
-    return window.location.host !== a.host
+    return location.host !== a.host
 }
 
 export const getBgOpacity = (routeId: string) => {

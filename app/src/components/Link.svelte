@@ -22,9 +22,10 @@
     let additionalProps: object
     onMount(() => {
         if (isExternalURL(href)) {
-            additionalProps = { rel: 'noopener noreferrer', target: '_blank' }
-        } else {
-            additionalProps = { 'sveltekit:prefetch': true }
+            additionalProps = {
+                rel: 'noopener noreferrer',
+                target: '_blank',
+            }
         }
     })
 </script>
