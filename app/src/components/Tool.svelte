@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { truncateText } from '$lib/utils'
     import type { Tool, Content } from '$shared/types'
     import Heading from './Heading.svelte'
     import Arrow from './icons/Arrow.svelte'
@@ -9,10 +10,7 @@
 
     const introLength = 300
 
-    $: intro =
-        tool.description.length > introLength
-            ? tool.description.slice(0, introLength) + '…'
-            : tool.description
+    $: intro = truncateText(tool.description, introLength)
 
     export let tool: Tool
     export let content: Content

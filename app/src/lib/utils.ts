@@ -20,3 +20,13 @@ export const getBgOpacity = (routeId: string) => {
     if (routeId === 'explore') return 65
     return 55
 }
+
+/**
+ * Truncate a text to a max length, keeping whole words.
+ */
+export function truncateText(text: string, maxLength: number, separator = ' ') {
+    const compact = text.replace(/\n/g, ' ')
+    if (compact.length <= maxLength) return compact
+    const res = compact.slice(0, text.lastIndexOf(separator, maxLength))
+    return res.endsWith('.') ? res : res + '…'
+}
