@@ -10,6 +10,7 @@ import { getTag } from '$shared/content-utils'
 import type {
     Category,
     Content,
+    ItemId,
     Language,
     Skill,
     Tag,
@@ -192,7 +193,54 @@ const loadContent = async (contentTypes: Array<keyof Content>) => {
         paths.map((paths) => Promise.all(paths.map(readJSON))),
     )
 
-    return { tools, skills, categories, tags } as ProcessingTranslatedContent
+    type WidgetData = {
+        content: {
+            name: string
+            relevancy: {
+                skill: ItemId
+                scoreGroup: number
+            }[]
+        }[]
+    }
+
+    const widgetData: WidgetData = await readJSON(
+        resolve(__dirname, '../../static/widget-data.json'),
+    )
+
+    const updatedTools2 = (tools as ProcessingTranslatedContent['tools']).map(
+        ({ en, sv }) => {
+            const enRelevancy = (en as Tool).relevancy.map(
+                ({ skill, ...rel }) => ({
+                    ...rel,
+                    skill,
+                    score: widgetData.content
+                        .find((t) => t.name === (en as Tool).name)
+                        ?.relevancy.find((r) => r.skill === skill)?.scoreGroup,
+                }),
+            )
+            const svRelevancy = (sv as Tool).relevancy.map(
+                ({ skill, ...rel }) => ({
+                    ...rel,
+                    skill,
+                    score: widgetData.content
+                        .find((t) => t.name === (sv as Tool).name)
+                        ?.relevancy.find((r) => r.skill === skill)?.scoreGroup,
+                }),
+            )
+
+            return {
+                en: { ...en, relevancy: enRelevancy },
+                sv: { ...sv, relevancy: svRelevancy },
+            }
+        },
+    )
+
+    return {
+        tools: updatedTools2,
+        skills,
+        categories,
+        tags,
+    } as ProcessingTranslatedContent
 }
 
 function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
