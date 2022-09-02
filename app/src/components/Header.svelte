@@ -19,7 +19,7 @@
     }
 
     const links = [
-        { href: '/explore', text: 'Toolbox' },
+        { href: '/explore', text: 'Field Kit' },
         // { href: COMMUNITY_LINK, text: 'Community' },
     ]
 </script>
