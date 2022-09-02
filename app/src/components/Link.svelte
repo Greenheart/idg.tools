@@ -25,6 +25,7 @@
             additionalProps = {
                 rel: 'noopener noreferrer',
                 target: '_blank',
+                'data-sveltekit-prefetch': 'off',
             }
         }
     })
