@@ -1,0 +1,56 @@
+{
+  "en": {
+    "id": "cl7m2jlkq00022e62sk690vhn",
+    "slug": "ml32209",
+    "name": "Acceptance and Commitment Therapy/Training (ACT)",
+    "description": "Acceptance and Commitment Therapy (ACT) is an evidence-based psychotherapeutic intervention coming out of the cognitive-behavioural tradition that mediates improvements in individuals’ psychological flexibility. Psychological flexibility consists of six core processes: acceptance, cognitive defusion, being present, self as context, values and committed action.\n\nEffects of working with ACT in e.g. coaching sessions are to increase psychological flexibility and have a more stable identity and sense of self. This has been demonstrated to have a number of positive effects, such as higher performance at cognitive tasks, increased quality in relations, decreased levels of stress and depression and decreased tendencies to get caught up in conspiracy theories. There are also exercises for developing the ability for perspective taking and long-term orientation, such as imagining what your guests might say about you at your 90-year birthday party.",
+    "relevancy": [
+      {
+        "skill": "ckzi3a4z90431e2n04kx2pbq2",
+        "score": 90
+      },
+      {
+        "skill": "ckzi3blfz0687e2n0huf88a8y",
+        "score": 80
+      },
+      {
+        "skill": "ckzi3b8sz0614e2n0ijnnazce",
+        "score": 90
+      },
+      {
+        "skill": "ckzi3d9gp0942e2n0lvc6k1nh",
+        "score": 60
+      },
+      {
+        "skill": "ckzi3dk3h1039e2n0qxij7ooh",
+        "score": 60
+      },
+      {
+        "skill": "ckzi3dtdk1142e2n0m9v02uf5",
+        "score": 60
+      },
+      {
+        "skill": "ckzi3ezut1614e2n07fab18pt",
+        "score": 60
+      },
+      {
+        "skill": "ckzi3gu6u2638e2n0fmr9gv86",
+        "score": 60
+      },
+      {
+        "skill": "ckzi3hqs63163e2n03h36pb73",
+        "score": 60
+      }
+    ],
+    "actions": "There are several ACT self-help-books, courses and trainings for professionals available. A quick search on the Internet will take you far. The official site for resources and more information and ACT can be found here: <https://contextualscience.org>",
+    "tags": [
+      "cl7lzoeqy00002e62ke8rog8l",
+      "cl7lzp6jh00012e623q59s9pf"
+    ],
+    "resources": "* [https://contextualscience.org](https://contextualscience.org)"
+  },
+  "sv": {
+    "id": "cl7m2jlkq00022e62sk690vhn",
+    "slug": "ml32209"
+  }
+}
