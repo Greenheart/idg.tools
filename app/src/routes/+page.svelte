@@ -38,8 +38,6 @@
 <div class="mx-auto mt-6 flex flex-col items-center space-y-6 px-8 text-center">
     <LinkButton href="/explore">Continue <Arrow /></LinkButton>
 
-    <span>Or...</span>
-
     <p>
         Learn more about the<br />
         <Link
