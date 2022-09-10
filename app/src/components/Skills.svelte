@@ -60,11 +60,13 @@
                 style:background-color={color}
             >
                 <span>
-                    <span class="text-xl font-bold">{name}</span>
-                    <br />{description}
+                    <span class="flex items-center text-xl font-bold">
+                        {name}
+                        <NumberOfSelectedSkills {skillsInCategory} />
+                    </span>
+                    {description}
                 </span>
-                <div class="flex items-center space-x-4">
-                    <NumberOfSelectedSkills {skillsInCategory} />
+                <div class="flex items-center">
                     <svg
                         class={cx(
                             'h-6 w-6 transform transition duration-150',

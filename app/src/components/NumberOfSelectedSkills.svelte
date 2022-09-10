@@ -12,7 +12,8 @@
 </script>
 
 {#if selectedInCategory}
-    <span class="grid h-6 w-6 place-items-center rounded-full bg-white"
-        >{selectedInCategory}</span
+    <span class="px-2">&middot;</span>
+    <span class="text-base font-normal">
+        {selectedInCategory}/{skillsInCategory.length}</span
     >
 {/if}
