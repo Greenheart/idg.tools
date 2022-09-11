@@ -10,25 +10,23 @@
     $: ({ content } = data)
 </script>
 
-<!-- IDEA: Add IDG favicon -->
-<!-- IDEA: Package app as an PWA, installable to the home screen -->
-
 <div class="mx-auto max-w-xl">
-    <Heading size={1}>Get better</Heading>
+    <Heading size={1}>Change starts from within</Heading>
 
     <div class="space-y-4 py-12">
         <p>
-            IDG.tools helps you develop the skills to achieve the <Link
-                href="https://sdgs.un.org/goals#goals"
-                class="font-bold underline"
-            >
-                SDGs.
-            </Link>
+            IDG.tools is the digital field kit for the <Link
+                href="https://www.innerdevelopmentgoals.org/framework"
+                class="mt-6 font-bold underline">Inner Development Goals</Link
+            > (IDGs) initiative.
         </p>
 
         <p>
-            We’re a non-profit, open source community, always learning and
-            improving this library of knowledge, together.
+            The IDGs helps us develop the skills needed to achieve the <Link
+                href="https://sdgs.un.org/goals#goals"
+                class="font-bold underline"
+                >UN Sustainable Development Goals</Link
+            > (SDGs).
         </p>
     </div>
 
@@ -37,12 +35,4 @@
 
 <div class="mx-auto mt-6 flex flex-col items-center space-y-6 px-8 text-center">
     <LinkButton href="/explore">Continue <Arrow /></LinkButton>
-
-    <p>
-        Learn more about the<br />
-        <Link
-            href="https://www.innerdevelopmentgoals.org/framework"
-            class="mt-6 font-bold underline">Inner Development Goals</Link
-        >
-    </p>
 </div>
