@@ -10,7 +10,7 @@
     export { className as class }
 </script>
 
-<div class={cx('flex flex-wrap items-start gap-2 pr-7', className)}>
+<div class={cx('flex flex-wrap items-start gap-2 pr-[29px]', className)}>
     {#each tool.relevancy.slice(0, visible) as relevancy}
         {@const skill = getSkill(relevancy.skill, content)}
         <!--

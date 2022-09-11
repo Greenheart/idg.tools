@@ -1,7 +1,6 @@
 <script lang="ts">
     import Header from '$components/Header.svelte'
     import { TAGLINE } from '$lib/constants'
-    import { isMenuOpen } from '$lib/stores'
     import { page } from '$app/stores'
     import { getBgOpacity } from './+layout'
 
@@ -30,9 +29,7 @@
 
 <main class="mx-auto w-full max-w-lg px-5 pb-16 text-stone-50 sm:max-w-5xl">
     <Header />
-    <div class:hidden={$isMenuOpen}>
-        <slot />
-    </div>
+    <slot />
 </main>
 
 <div class="mx-auto w-full max-w-lg px-5 pb-16 sm:max-w-3xl">
