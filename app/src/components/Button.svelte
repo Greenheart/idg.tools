@@ -22,16 +22,12 @@
 
 <script lang="ts">
     export let variant: keyof typeof variants = defaultVariant
-    export let label: string
-    export let autofocus: boolean = false
     export let disabled: boolean = false
     export let size: keyof typeof sizes = defaultSize
 </script>
 
-<!-- svelte-ignore a11y-autofocus -->
 <button
     {...$$props}
-    {autofocus}
     {disabled}
     class={cx(
         defaultClasses,
@@ -41,5 +37,5 @@
     )}
     on:click
 >
-    {label}
+    <slot />
 </button>

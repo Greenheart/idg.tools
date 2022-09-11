@@ -1,13 +1,18 @@
 <script lang="ts">
+    import { onMount } from 'svelte'
     import Skills from '$components/Skills.svelte'
     import Link from '$components/Link.svelte'
     import Heading from '$components/Heading.svelte'
-    import LinkButton from '$components/LinkButton.svelte'
+    import { selectedSkills } from '$lib/stores'
+    import Tools from '$components/Tools.svelte'
 
     import type { PageData } from './$types'
-    import Arrow from '$components/icons/Arrow.svelte'
     export let data: PageData
     $: ({ content } = data)
+
+    onMount(async () => {
+        selectedSkills.useLocalStorage()
+    })
 </script>
 
 <div>
@@ -35,10 +40,14 @@
     <Heading size={2}>Choose skills to practice</Heading>
     <Heading size={2}>Most relevant tools</Heading>
     <Skills {content} />
-    <div class="flex bg-white" />
-</div>
-
-<!-- TODO: change this into a Show more button -->
-<div class="mx-auto mt-6 flex flex-col items-center space-y-6 px-8 text-center">
-    <LinkButton href="/explore">Continue <Arrow /></LinkButton>
+    <Tools
+        tools={$selectedSkills.length
+            ? content.tools.filter((tool) =>
+                  tool.relevancy.some(({ skill }) =>
+                      $selectedSkills.includes(skill),
+                  ),
+              )
+            : content.tools}
+        {content}
+    />
 </div>

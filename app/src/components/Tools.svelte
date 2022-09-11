@@ -1,12 +1,15 @@
 <script lang="ts">
     import { onMount } from 'svelte'
-    import type { Content, Tool as ToolType } from '$shared/types'
-    import { selectedSkills, exploreVisibleItems } from '$lib/stores'
-    import Tool from './Tool.svelte'
+
+    import type { Content, Tool } from '$shared/types'
+    import { selectedSkills, visibleItems } from '$lib/stores'
+    import ToolPreview from './ToolPreview.svelte'
     import Button from './Button.svelte'
     import Link from './Link.svelte'
+    import Arrow from './icons/Arrow.svelte'
+    import { SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
 
-    export let tools: ToolType[]
+    export let tools: Tool[]
     export let content: Content
 
     const resetSkills = () => {
@@ -14,45 +17,45 @@
     }
 
     onMount(() => {
-        exploreVisibleItems.useLocalStorage()
+        visibleItems.useLocalStorage()
     })
 
     const showMore = () => {
-        $exploreVisibleItems += 10
+        $visibleItems += 10
     }
 </script>
 
-<div class="grid gap-5 lg:grid-cols-2">
-    {#each tools.slice(0, $exploreVisibleItems) as tool (tool.link)}
-        <Tool {tool} {content} />
-    {:else}
-        <div class="flex flex-col items-center space-y-4">
-            <p>
-                Sorry! No published tools for these skills yet.
-                <!-- Welcome to join
-            <Link href={COMMUNITY_LINK} variant="pink">our community</Link> and co-create
-            more tools! -->
-            </p>
-            <Button on:click={resetSkills} label="View all tools" />
-        </div>
-    {/each}
-</div>
+<!-- NOTE: Temp for testing empty states -->
+<!-- {#each tools.slice(0, $visibleItems) as tool (tool.link)} -->
+{#each [] as tool}
+    <ToolPreview {tool} {content} />
+{:else}
+    <div class="flex flex-col items-center space-y-4">
+        <p>
+            No published tools for these skills yet.
+            <!-- Welcome to
+            <Link href={GITHUB_LINK} variant="pink">suggest new tools here</Link
+            >! -->
+        </p>
+        <Button on:click={resetSkills}>View all tools</Button>
+        <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink">Suggest new tool</Link
+        >
+    </div>
+{/each}
 
-<div class="flex justify-center pt-16">
-    {#if $exploreVisibleItems < tools.length}
-        <button
-            on:click={showMore}
-            class="py-4 px-8 font-semibold text-[#E0A1B4] underline"
-        >
-            Show more
-        </button>
+<div
+    class="col-span-2 flex flex-col items-center justify-center space-y-4 pt-16"
+>
+    {#if $visibleItems < tools.length}
+        <Button on:click={showMore}>Continue <Arrow /></Button>
     {:else}
-        <Link
-            href="https://github.com/Greenheart/idg.tools/discussions"
-            variant="pink"
-            class="py-4 px-8"
+        <p>
+            Welcome to <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink"
+                >suggest new tools here</Link
+            >!
+        </p>
+        <Button on:click={resetSkills}>View all tools</Button>
+        <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink">Suggest new tool</Link
         >
-            That's all so far - suggest new tools here!
-        </Link>
     {/if}
 </div>
