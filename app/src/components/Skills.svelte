@@ -7,7 +7,6 @@
     import type { Content, Category, Skill } from '$shared/types'
 
     import Button from '$components/Button.svelte'
-    import Heading from '$components/Heading.svelte'
     import NumberOfSelectedSkills from './NumberOfSelectedSkills.svelte'
 
     export let content: Content
@@ -47,9 +46,7 @@
     }
 </script>
 
-<Heading size={3}>Choose the skills you want to focus on:</Heading>
-
-<div class="space-y-4 py-4" id="skills">
+<div class="space-y-4" id="skills">
     {#each content.categories as { name, description, id: categoryId, color, skills: skillsInCategory }}
         <details
             class={cx('text-stone-900')}
