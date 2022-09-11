@@ -25,9 +25,7 @@
     }
 </script>
 
-<!-- NOTE: Temp for testing empty states -->
-<!-- {#each tools.slice(0, $visibleItems) as tool (tool.link)} -->
-{#each [] as tool}
+{#each tools.slice(0, $visibleItems) as tool (tool.link)}
     <ToolPreview {tool} {content} />
 {:else}
     <div class="flex flex-col items-center space-y-4">

@@ -1,9 +1,10 @@
 <script lang="ts">
     import { onMount } from 'svelte'
+
     import Skills from '$components/Skills.svelte'
     import Link from '$components/Link.svelte'
     import Heading from '$components/Heading.svelte'
-    import { selectedSkills } from '$lib/stores'
+    import { selectedSkills, isMenuOpen } from '$lib/stores'
     import Tools from '$components/Tools.svelte'
 
     import type { PageData } from './$types'
@@ -15,7 +16,7 @@
     })
 </script>
 
-<div>
+<div class:hidden={$isMenuOpen}>
     <Heading size={1}>Change starts from within</Heading>
 
     <div class="space-y-4 py-12 text-xl">
@@ -36,7 +37,7 @@
     </div>
 </div>
 
-<div class="grid grid-cols-2 gap-8">
+<div class="grid grid-cols-2 gap-8" class:hidden={$isMenuOpen}>
     <Heading size={2}>Choose skills to practice</Heading>
     <Heading size={2}>Most relevant tools</Heading>
     <Skills {content} />
