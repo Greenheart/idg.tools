@@ -41,6 +41,7 @@
     <Heading size={2}>Choose skills to practice</Heading>
     <Heading size={2}>Most relevant tools</Heading>
     <Skills {content} />
+    <!-- TODO: Improve filtering logic, and break out into a function called `getMostRelevantTools()` -->
     <Tools
         tools={$selectedSkills.length
             ? content.tools.filter((tool) =>

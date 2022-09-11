@@ -16,9 +16,9 @@ export const getTag = (id: Tag['id'], { tags }: Pick<Content, 'tags'>) =>
 /**
  * By supporting backwards compatible links that end with a `cuid.slug()`,
  * we make it possible to find the same tool in multiple ways:
- * 1) /explore/finding-your-inner-compass-105l07u
- * 2) /explore/invalid-or-old-name-still-works-105l07u
- * 3) /explore/105l07u
+ * 1) /finding-your-inner-compass-105l07u
+ * 2) /invalid-or-old-name-still-works-105l07u
+ * 3) /105l07u
  *
  * With the third case, we get built-in support for short URLs. Not that easy to type, but at least they are few characters.
  */

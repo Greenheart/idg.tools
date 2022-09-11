@@ -8,6 +8,7 @@
 
     const links = [
         { href: '/', text: 'Home' },
+        { href: '/about', text: 'About' },
         { href: 'https://github.com/Greenheart/idg.tools', text: 'GitHub' },
         // { href: COMMUNITY_LINK, text: 'Community' },
     ]

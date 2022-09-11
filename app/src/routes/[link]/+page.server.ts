@@ -16,7 +16,7 @@ export async function load({
         // permanently redirect to the updated url (HTTP 301)
         // to prevent multiple URLs publishing the same content.
         if (link !== tool.link) {
-            const location = `/explore/${tool.link}`
+            const location = `/${tool.link}`
             throw redirect(301, location)
         }
 
