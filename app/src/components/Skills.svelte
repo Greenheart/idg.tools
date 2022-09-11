@@ -86,14 +86,13 @@
             <div class="justify-left flex flex-wrap gap-3 px-4 pt-4">
                 {#each getSkillsInCategory(categoryId, content) as skill (skill.name)}
                     <Button
-                        label={skill.name}
                         on:click={() => toggleSkill(skill.id)}
                         size="sm"
                         style={$selectedSkills.includes(skill.id)
                             ? `background-color: ${color}`
                             : undefined}
-                        class="!rounded-lg !font-normal"
-                    />
+                        class="!rounded-lg !font-normal">{skill.name}</Button
+                    >
                 {/each}
             </div>
         </details>
