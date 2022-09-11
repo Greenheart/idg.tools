@@ -16,7 +16,7 @@
     export let content: Content
 </script>
 
-<Link href={`/${tool.link}`} unstyled class="grid max-w-2xl">
+<Link href={`/${tool.link}`} unstyled class="grid max-h-[392px] max-w-2xl">
     <div
         class="relative max-h-[392px] transform-gpu rounded-2xl bg-stone-50 p-4 text-stone-900 duration-100 hover:scale-[103%]"
     >
