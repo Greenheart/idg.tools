@@ -17,7 +17,7 @@
 </script>
 
 <div class:hidden={$isMenuOpen}>
-    <Heading size={1}>Change starts from within</Heading>
+    <Heading size={1}>Change starts within</Heading>
 
     <div class="space-y-4 py-12 text-xl">
         <p>
