@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { cx, getColor } from '$lib/utils'
+
     import { getSkill } from '$shared/content-utils'
     import type { Content, Tool } from '$shared/types'
     import RelevancyScore from './RelevancyScore.svelte'
@@ -22,11 +24,14 @@
     <div class={'grid grid-cols-1 gap-3'}>
         {#each visibleSkills as { skill: skillId, score }}
             {@const skill = getSkill(skillId, content)}
+            {@const color = getColor(skillId)}
 
             <div class="flex items-center justify-between gap-4">
                 <span
-                    class="overflow-hidden text-ellipsis whitespace-nowrap rounded-lg px-2 py-1 text-stone-900"
-                    style={`background-color: ${skill.color}`}
+                    class={cx(
+                        'overflow-hidden text-ellipsis whitespace-nowrap rounded-lg px-2 py-1 text-stone-900',
+                        color,
+                    )}
                 >
                     {skill.name}
                 </span>

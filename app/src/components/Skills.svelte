@@ -2,7 +2,7 @@
     import { onMount } from 'svelte'
 
     import { getSkillsInCategory } from '$shared/content-utils'
-    import { cx } from '$lib/utils'
+    import { cx, getColor } from '$lib/utils'
     import { selectedSkills } from '$lib/stores'
     import type { Content, Category, Skill } from '$shared/types'
 
@@ -47,14 +47,17 @@
 </script>
 
 <div class="space-y-4" id="skills">
-    {#each content.categories as { name, description, id: categoryId, color, skills: skillsInCategory }}
+    {#each content.categories as { name, description, id: categoryId, skills: skillsInCategory }}
+        {@const color = getColor(categoryId)}
         <details
             class={cx('text-stone-900')}
             on:toggle={(event) => onToggle(event, categoryId)}
         >
             <summary
-                class="flex cursor-pointer select-none !list-none items-center justify-between p-4 marker:!hidden"
-                style:background-color={color}
+                class={cx(
+                    'flex cursor-pointer select-none !list-none items-center justify-between p-4 marker:!hidden',
+                    color,
+                )}
             >
                 <span>
                     <span class="flex items-center text-xl font-bold">
@@ -83,15 +86,22 @@
                     </svg>
                 </div>
             </summary>
-            <div class="justify-left flex flex-wrap gap-3 px-4 pt-4">
+            <div
+                class={cx(
+                    'flex flex-wrap justify-center gap-3 bg-opacity-70 p-4',
+                    color,
+                )}
+            >
                 {#each getSkillsInCategory(categoryId, content) as skill (skill.name)}
+                    {@const buttonColor = $selectedSkills.includes(skill.id)
+                        ? 'bg-white'
+                        : 'bg-white bg-opacity-50'}
                     <Button
                         on:click={() => toggleSkill(skill.id)}
                         size="sm"
-                        style={$selectedSkills.includes(skill.id)
-                            ? `background-color: ${color}`
-                            : undefined}
-                        class="!rounded-lg !font-normal">{skill.name}</Button
+                        variant="unstyled"
+                        class={cx('!rounded-lg !font-normal', buttonColor)}
+                        >{skill.name}</Button
                     >
                 {/each}
             </div>
