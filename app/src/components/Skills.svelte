@@ -46,7 +46,7 @@
     }
 </script>
 
-<div class="space-y-4" id="skills">
+<div class="space-y-4">
     {#each content.categories as { name, description, id: categoryId, skills: skillsInCategory }}
         {@const color = getColor(categoryId)}
         <details

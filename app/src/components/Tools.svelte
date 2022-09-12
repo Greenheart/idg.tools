@@ -8,6 +8,7 @@
     import Link from './Link.svelte'
     import Arrow from './icons/Arrow.svelte'
     import { SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
+    import TopPick from './TopPick.svelte'
 
     export let tools: Tool[]
     export let content: Content
@@ -25,8 +26,12 @@
     }
 </script>
 
-{#each tools.slice(0, $visibleItems) as tool (tool.link)}
-    <ToolPreview {tool} {content} />
+{#each tools.slice(0, $visibleItems) as tool, index (tool.link)}
+    {#if index === 0}
+        <TopPick {tool} {content} />
+    {:else}
+        <ToolPreview {tool} {content} />
+    {/if}
 {:else}
     <div class="flex flex-col items-center space-y-4">
         <p>
