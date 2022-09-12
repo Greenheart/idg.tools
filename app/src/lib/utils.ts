@@ -3,7 +3,7 @@ import type { ItemId } from '$shared/types'
 export const randomInt = (min: number, max: number) =>
     Math.floor(Math.random() * (max - min + 1)) + min
 
-export const cx = (...classes: (string | undefined)[]) =>
+export const cx = (...classes: (string | undefined | false)[]) =>
     classes.filter(Boolean).join(' ').trim()
 
 /**
