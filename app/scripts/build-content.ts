@@ -68,30 +68,6 @@ const getContentPaths = (contentTypes: Array<keyof Content>) =>
         ),
     )
 
-const prepareSkills = (
-    translatedSkills: Translated<Skill>[],
-    translatedCategories: Translated<Category>[],
-    selectedLanguages: Language[],
-) => {
-    return translatedSkills.map((translatedSkill) => {
-        const updated = {} as Translated<Skill>
-
-        for (const [language, skill] of Object.entries(translatedSkill)) {
-            if (!selectedLanguages.includes(language as Language)) continue
-            // Assumes all content is available in English
-            const translatedCategory = translatedCategories.find(
-                (tc) => tc!.en!.id === skill.category,
-            ) as Translated<Category>
-
-            // Add colors to skills
-            skill.color = translatedCategory!.en!.color
-            updated[language as Language] = skill
-        }
-
-        return updated
-    })
-}
-
 const prepareTools = (
     translatedTools: Translated<Tool>[],
     translatedTags: Translated<Tag>[],
@@ -219,11 +195,6 @@ const prepareContent = (
 ) => {
     return {
         ...content,
-        skills: prepareSkills(
-            content.skills,
-            content.categories,
-            selectedLanguages,
-        ),
         tools: prepareTools(content.tools, content.tags, selectedLanguages),
     }
 }

@@ -10,7 +10,6 @@ type Item = {
 
 export type Skill = Item & {
     category: ItemId
-    color: string
 }
 
 export type Category = Item & {
