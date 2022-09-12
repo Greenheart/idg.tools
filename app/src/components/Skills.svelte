@@ -88,20 +88,20 @@
             </summary>
             <div
                 class={cx(
-                    'flex flex-wrap justify-center gap-3 bg-opacity-70 p-4',
+                    'flex flex-wrap justify-center gap-3 bg-opacity-70 p-4 border-t border-stone-900',
                     color,
                 )}
             >
                 {#each getSkillsInCategory(categoryId, content) as skill (skill.name)}
-                    {@const buttonColor = $selectedSkills.includes(skill.id)
-                        ? 'bg-white'
-                        : 'bg-white bg-opacity-50'}
                     <Button
                         on:click={() => toggleSkill(skill.id)}
                         size="sm"
                         variant="unstyled"
-                        class={cx('!rounded-lg !font-normal', buttonColor)}
-                        >{skill.name}</Button
+                        class={cx(
+                            '!rounded-lg !font-normal bg-white',
+                            !$selectedSkills.includes(skill.id) &&
+                                'bg-opacity-50',
+                        )}>{skill.name}</Button
                     >
                 {/each}
             </div>
