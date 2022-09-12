@@ -60,11 +60,12 @@
                 )}
             >
                 <span>
-                    <span class="flex items-center text-xl font-bold">
-                        {name}
+                    <span class="flex items-center">
+                        <span class="text-xl font-bold">{name}</span>
+                        <span class="px-2">&mdash;</span>
+                        {description}
                         <NumberOfSelectedSkills {skillsInCategory} />
                     </span>
-                    {description}
                 </span>
                 <div class="flex items-center">
                     <svg
