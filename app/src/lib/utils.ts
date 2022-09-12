@@ -34,6 +34,7 @@ export function truncateText(text: string, maxLength: number, separator = ' ') {
 
 // IDEA: Maybe this could be generated based on `content.json`, to allow the CMS to generate it.
 // IDEA: Same with the tailwind config, which perhaps could generate the color config based on category names, and color props from the CMS
+// IDEA: Maybe generate a `colors.json` which defines this structure? This could then be imported both to the utils and to the tailwind config, thus allowing the CMS to dictate how IDG colors look in the app
 const SKILLS_BY_CATEGORY = {
     ckzi3855r0086e2n0smi0mew5: {
         name: 'being',
