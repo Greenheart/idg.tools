@@ -1,0 +1,63 @@
+{
+  "en": {
+    "id": "cl80jw0ot00062e64ijltbvi1",
+    "slug": "rm724cm",
+    "name": "Personal agency and personal initiative trainings",
+    "description": "Personal agency, defined as the ability to make and act upon important decisions in one’s life, is central in the promotion of overall well-being (Bandura, 1989;2006). Recent research studies from psychology, cognitive science, economics, and public health have demonstrated that personal agency can be nurtured, even within populations faced with significant resource constraints and environmental threats.\n\nPersonal-agency interventions take the form of behavioral and/or digital interventions designed to catalyze actions towards specific goals and to support behavioral change.\n\nIn the past decade, there has been an increase in personal agency interventions designed to catalyze and support the following sustainable development goals: Goal 1) no poverty, Goal 3) enhancing health and well-being, Goal 5) gender equality and Goal 8) decent work and economic growth.\n\nLearn more in the section about \"Personal agency and personal initiative trainings\" in the [IDG Field Kit](FIELD_KIT_LINK).",
+    "actions": "Three specific examples of tested interventions in low resource settings are described in the [IDG Field Kit](FIELD_KIT_LINK):\n\n1. Empowered Employee training\n2. Empowered Entrepreneur training\n3. Personal initiative training\n\nYou may also want to explore the SEE Change curriculum which is available as open-source documents through the [SEE Change website](https://publichealth.jhu.edu/departments/international-health/research-and-practice/centers-and-research-groups/research-groups/the-self-empowerment-and-equity-for-change-initiative-see-change).",
+    "tags": [
+      "cl7lzp6jh00012e623q59s9pf"
+    ],
+    "resources": "- Bandura, A. (1989). Human agency in social cognitive theory. American psychologist, 44(9), 1175.\n- Bandura, A. (2006). Toward a psychology of human agency. Perspectives on psychological science, 1(2), 164-180.\n- Campos, F., Frese, M., Goldstein, M., Iacovone, L., Johnson, H. C., McKenzie, D., & Mensmann, M. (2017). Teaching personal initiative beats traditional training in boosting small business in West Africa. Science, 357(6357), 1287-1290.\n- Frese, M. and Gielnik, M.M. (2014). The psychology of entrepreneurship. Annual Review of Organizational Psychology and Organizational Behavior, 1, 13. 1-13. 26.\n- McKenzie, D. and Woodruff, C. (2014). What were we learning from business training and entrepreneurship evaluations around the developing world? The World Bank Research Observer, 29(1), 48-82.\n- Shankar, AV, Onyura, M and Alderman, J. Agency-based empowerment training enhances sales capacity of female cookstove entrepreneurs in Kenya. Journal of Health Communications 2015; 20 Suppl 1:67-75.\n- Shankar A, Sundar S, Smith G. Agency-Based Empowerment Interventions: Efforts to Enhance Decision-Making and Action in Health and Development. J Behav Health Serv Res. 2019. 46(1): 164-176.",
+    "relevancy": [
+      {
+        "skill": "ckzi3b8sz0614e2n0ijnnazce",
+        "score": 60
+      },
+      {
+        "skill": "ckzi3f9cj1747e2n0taoxah1j",
+        "score": 60
+      },
+      {
+        "skill": "ckzi3hqs63163e2n03h36pb73",
+        "score": 80
+      },
+      {
+        "skill": "ckzi3gknp2475e2n0dm59ikcn",
+        "score": 60
+      },
+      {
+        "skill": "ckzi3blfz0687e2n0huf88a8y",
+        "score": 50
+      },
+      {
+        "skill": "ckzi3dtdk1142e2n0m9v02uf5",
+        "score": 50
+      },
+      {
+        "skill": "ckzi3dk3h1039e2n0qxij7ooh",
+        "score": 50
+      },
+      {
+        "skill": "ckzi3cvpf0851e2n00bcmzsgz",
+        "score": 50
+      },
+      {
+        "skill": "ckzi3am4y0486e2n04obcy6hi",
+        "score": 80
+      },
+      {
+        "skill": "ckzi3a4z90431e2n04kx2pbq2",
+        "score": 60
+      },
+      {
+        "skill": "ckzi3gu6u2638e2n0fmr9gv86",
+        "score": 60
+      }
+    ]
+  },
+  "sv": {
+    "id": "cl80jw0ot00062e64ijltbvi1",
+    "slug": "rm724cm"
+  }
+}
