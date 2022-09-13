@@ -50,15 +50,15 @@
     class="col-span-2 flex flex-col items-center justify-center space-y-4 pt-16"
 >
     {#if $visibleItems < tools.length}
-        <Button on:click={showMore}>Continue <Arrow /></Button>
+        <Button on:click={showMore}>Show more</Button>
     {:else}
+        {#if $selectedSkills.length}
+            <Button on:click={resetSkills}>View all tools</Button>
+        {/if}
         <p>
             Welcome to <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink"
                 >suggest new tools here</Link
             >!
         </p>
-        <Button on:click={resetSkills}>View all tools</Button>
-        <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink">Suggest new tool</Link
-        >
     {/if}
 </div>
