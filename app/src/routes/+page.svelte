@@ -4,7 +4,7 @@
     import Skills from '$components/Skills.svelte'
     import Link from '$components/Link.svelte'
     import Heading from '$components/Heading.svelte'
-    import { selectedSkills, isMenuOpen } from '$lib/stores'
+    import { selectedSkills, isMenuOpen, visibleItems } from '$lib/stores'
     import Tools from '$components/Tools.svelte'
 
     import type { PageData } from './$types'
@@ -13,6 +13,7 @@
 
     onMount(async () => {
         selectedSkills.useLocalStorage()
+        visibleItems.useLocalStorage()
     })
 </script>
 
