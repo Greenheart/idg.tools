@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { onMount } from 'svelte'
-
     import { getSkillsInCategory } from '$shared/content-utils'
     import { cx, getColor } from '$lib/utils'
     import { selectedSkills } from '$lib/stores'
@@ -10,10 +8,6 @@
     import NumberOfSelectedSkills from './NumberOfSelectedSkills.svelte'
 
     export let content: Content
-
-    onMount(async () => {
-        selectedSkills.useLocalStorage()
-    })
 
     const toggleSkill = (skillId: Skill['id']) => {
         if ($selectedSkills.includes(skillId)) {
