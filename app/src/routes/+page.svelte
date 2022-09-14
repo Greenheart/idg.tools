@@ -49,8 +49,8 @@
 </div>
 
 <div class="grid gap-8 lg:grid-cols-2" class:hidden={$isMenuOpen}>
-    <Heading size={2} class="-order-3">Choose skills to practice</Heading>
-    <Heading size={2} class="-order-1">Most relevant tools</Heading>
+    <Heading size={2} class="-order-3">1. Choose skills to practice</Heading>
+    <Heading size={2} class="-order-1">2. Explore relevant tools</Heading>
     <Skills {content} class="hidden lg:-order-1 lg:block" />
     <SkillTabs {content} class="-order-2 lg:order-none lg:hidden" />
     <Tools tools={mostRelevantTools} {content} />
