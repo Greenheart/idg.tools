@@ -8,6 +8,7 @@
     import Tools from '$components/Tools.svelte'
 
     import type { PageData } from './$types'
+    import SkillTabs from '$components/SkillTabs.svelte'
     export let data: PageData
     $: ({ content } = data)
 
@@ -15,6 +16,15 @@
         selectedSkills.useLocalStorage()
         visibleItems.useLocalStorage()
     })
+
+    // TODO: Improve filtering logic, and break out into a function called `getMostRelevantTools()`
+    $: mostRelevantTools = $selectedSkills.length
+        ? content.tools.filter((tool) =>
+              tool.relevancy.some(({ skill }) =>
+                  $selectedSkills.includes(skill),
+              ),
+          )
+        : content.tools
 </script>
 
 <div class:hidden={$isMenuOpen}>
@@ -38,19 +48,10 @@
     </div>
 </div>
 
-<div class="grid grid-cols-2 gap-8" class:hidden={$isMenuOpen}>
-    <Heading size={2}>Choose skills to practice</Heading>
-    <Heading size={2}>Most relevant tools</Heading>
-    <Skills {content} />
-    <!-- TODO: Improve filtering logic, and break out into a function called `getMostRelevantTools()` -->
-    <Tools
-        tools={$selectedSkills.length
-            ? content.tools.filter((tool) =>
-                  tool.relevancy.some(({ skill }) =>
-                      $selectedSkills.includes(skill),
-                  ),
-              )
-            : content.tools}
-        {content}
-    />
+<div class="grid gap-8 lg:grid-cols-2" class:hidden={$isMenuOpen}>
+    <Heading size={2} class="-order-3">Choose skills to practice</Heading>
+    <Heading size={2} class="-order-1">Most relevant tools</Heading>
+    <Skills {content} class="hidden lg:-order-1 lg:block" />
+    <SkillTabs {content} class="-order-2 lg:order-none lg:hidden" />
+    <Tools tools={mostRelevantTools} {content} />
 </div>
