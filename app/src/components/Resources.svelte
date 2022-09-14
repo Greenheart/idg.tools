@@ -18,7 +18,7 @@
     {#if visibleResources < allResources.length}
         <Markdown source={allResources.slice(0, visibleResources).join('\n')} />
         <button
-            class="mt-4 font-semibold text-[#E0A1B4] underline"
+            class="text-thinking mt-4 font-semibold underline"
             on:click={showAll}
         >
             Show {allResources.length - visibleResources ?? ''} more

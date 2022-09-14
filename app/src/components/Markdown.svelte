@@ -20,7 +20,7 @@
     }
 
     const baseClasses =
-        'prose prose-stone prose-p:leading-6 prose-li:my-1 prose-a:text-[#E0A1B4]'
+        'prose prose-stone prose-p:leading-6 prose-li:my-1 prose-a:text-thinking'
     const defaultVariant = 'default'
 
     export let variant: keyof typeof variants = defaultVariant
