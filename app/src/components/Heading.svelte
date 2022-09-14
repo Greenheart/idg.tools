@@ -12,7 +12,7 @@
 {#if size === 1}
     <h1
         class={cx(
-            'text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-semibold',
+            'text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold',
             className,
         )}
     >
