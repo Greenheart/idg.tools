@@ -1,20 +1,17 @@
 <script lang="ts">
-    import { getTag } from '$shared/content-utils'
-    import type { Content, Tool } from '$shared/types'
     import { cx } from '$lib/utils'
+    import type { Tag } from '$shared/types'
 
     export let inverted: boolean = false
 
-    export let tool: Tool
+    export let tags: Tag[]
     export let visible: number
-    export let content: Content
     let className = ''
     export { className as class }
 </script>
 
 <div class={cx('flex flex-wrap items-start gap-1 pr-6', className)}>
-    {#each tool.tags.slice(0, visible) as tagId}
-        {@const tag = getTag(tagId, content)}
+    {#each tags.slice(0, visible) as tag}
         <span
             class={cx(
                 'rounded-lg p-1 text-xs',

@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit'
 
 import { content } from '$lib/content-backend'
-import { getToolByLink } from '$shared/content-utils'
+import { getSkill, getTag, getToolByLink } from '$shared/content-utils'
 
 /** @type {import('@sveltejs/kit').PageServerLoad} */
 export async function load({
@@ -10,6 +10,8 @@ export async function load({
     params: Record<string, string>
 }) {
     const tool = getToolByLink(link, content)
+    const tags = tool.tags.map((tagId) => getTag(tagId, content))
+    const skills = tool.relevancy.map((r) => getSkill(r.skill, content))
 
     if (tool) {
         // If page was found on a different URL,
@@ -20,6 +22,6 @@ export async function load({
             throw redirect(301, location)
         }
 
-        return { tool, content }
+        return { tool, tags, skills }
     }
 }
