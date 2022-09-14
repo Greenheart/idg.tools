@@ -28,7 +28,7 @@
     {@html bodyStyle}
 </svelte:head>
 
-<main class="mx-auto w-full max-w-2xl px-5 pb-16 text-stone-50 sm:max-w-5xl">
+<main class="mx-auto w-full max-w-2xl px-4 pb-16 text-stone-50 sm:max-w-5xl">
     <Header />
     <div class:hidden={$isMenuOpen}>
         <slot />
@@ -36,7 +36,7 @@
 </main>
 
 <div
-    class="mx-auto w-full max-w-2xl px-5 pb-16 sm:max-w-3xl"
+    class="mx-auto w-full max-w-2xl px-4 pb-16 sm:max-w-3xl"
     class:hidden={$isMenuOpen}
 >
     <CommunitySection />

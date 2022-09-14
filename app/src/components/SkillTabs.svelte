@@ -17,22 +17,27 @@
     export { className as class }
 </script>
 
-<div class={cx('sticky top-0 z-10 h-[131px]', className)}>
+<div
+    class={cx(
+        'sticky top-0 z-10 h-[162px] xs:h-[146px] md:h-[131px]',
+        className,
+    )}
+>
     <div class="relative">
         <TabGroup
-            class="absolute top-0 left-0 right-0 -ml-5 -mr-5 overflow-hidden bg-stone-900 text-stone-50 shadow-2xl"
+            class="absolute top-0 left-0 right-0 -ml-4 -mr-4 overflow-hidden bg-stone-900 text-stone-50 shadow-2xl"
             on:change={() =>
                 document.querySelector('.skill-tabs')?.scrollTo(0, 0)}
         >
             <TabList
-                class="flex flex-nowrap overflow-x-scroll sm:overflow-auto"
+                class="xs:overflow-auto flex flex-nowrap overflow-x-scroll"
             >
                 {#each content.categories as { name, id: categoryId } (categoryId)}
                     {@const color = getColor(categoryId, 'text')}
                     <Tab
                         class={({ selected }) =>
                             cx(
-                                'py-4 px-2 text-lg',
+                                'py-4 px-2 text-lg first:pl-4 last:pr-4',
                                 selected
                                     ? cx(color, 'underline')
                                     : 'text-stone-50',
@@ -45,7 +50,7 @@
                     {@const color = getColor(categoryId)}
                     <TabPanel
                         class={cx(
-                            'flex flex-nowrap gap-2 bg-opacity-70 p-2',
+                            'flex flex-nowrap gap-2 bg-opacity-70 p-4',
                             color,
                         )}
                     >
