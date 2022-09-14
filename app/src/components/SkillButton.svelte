@@ -22,7 +22,7 @@
     size="sm"
     variant="unstyled"
     class={cx(
-        '!rounded-lg !font-normal bg-white',
+        '!rounded-lg !font-normal bg-stone-50',
         !$selectedSkills.includes(skill.id) && 'bg-opacity-50 shadow-lg',
         className,
     )}>{skill.name}</Button
