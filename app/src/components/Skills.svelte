@@ -1,21 +1,12 @@
 <script lang="ts">
     import { getSkillsInCategory } from '$shared/content-utils'
     import { cx, getColor } from '$lib/utils'
-    import { selectedSkills } from '$lib/stores'
-    import type { Content, Category, Skill } from '$shared/types'
+    import type { Content, Category } from '$shared/types'
 
-    import Button from '$components/Button.svelte'
     import NumberOfSelectedSkills from './NumberOfSelectedSkills.svelte'
+    import SkillButton from './SkillButton.svelte'
 
     export let content: Content
-
-    const toggleSkill = (skillId: Skill['id']) => {
-        if ($selectedSkills.includes(skillId)) {
-            $selectedSkills = $selectedSkills.filter((id) => id !== skillId)
-        } else {
-            $selectedSkills = [...$selectedSkills, skillId]
-        }
-    }
 
     let isCategoryOpen: Record<Category['id'], boolean> = Object.values(
         content.categories,
@@ -44,7 +35,7 @@
     {#each content.categories as { name, description, id: categoryId, skills: skillsInCategory }}
         {@const color = getColor(categoryId)}
         <details
-            class={cx('text-stone-900')}
+            class="text-stone-900"
             on:toggle={(event) => onToggle(event, categoryId)}
         >
             <summary
@@ -88,16 +79,7 @@
                 )}
             >
                 {#each getSkillsInCategory(categoryId, content) as skill (skill.name)}
-                    <Button
-                        on:click={() => toggleSkill(skill.id)}
-                        size="sm"
-                        variant="unstyled"
-                        class={cx(
-                            '!rounded-lg !font-normal bg-white',
-                            !$selectedSkills.includes(skill.id) &&
-                                'bg-opacity-50',
-                        )}>{skill.name}</Button
-                    >
+                    <SkillButton {skill} />
                 {/each}
             </div>
         </details>
