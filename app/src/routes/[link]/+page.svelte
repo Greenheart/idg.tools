@@ -8,12 +8,20 @@
 
     import type { PageData } from './$types'
     export let data: PageData
-    $: ({ tool, content } = data)
+    $: ({ tool, skills, tags } = data)
+
+    // TODO: data actually needed for this route:
+
+    // the actual tags -> tool.tags.map(tagId => getTag(tagId, content))
+    // The specific tool -> already returned
+    // The actual skills -> tool.skills.map(skillId => getSkill(skillId, content))
+
+    // measure data returned to this endpoint before and after.
 </script>
 
 <Heading class="text-5xl">{tool.name}</Heading>
 
-<Tags {tool} {content} visible={3} class="pt-4" inverted />
+<Tags {tags} visible={3} class="pt-4" inverted />
 
 <Markdown source={tool.description} class="pt-4 text-lg" />
 
@@ -23,7 +31,7 @@
 </div>
 
 <Heading class="pt-8 pb-2">Skill relevancy</Heading>
-<DetailedRelevantSkills {tool} {content} />
+<DetailedRelevantSkills {skills} relevancy={tool.relevancy} />
 
 {#if tool.resources}
     <Heading class="pt-8 pb-2">Research and resources</Heading>
@@ -31,7 +39,10 @@
 {/if}
 
 <div class="mt-8 flex justify-center">
-    <LinkButton href="https://github.com/Greenheart/idg.tools/discussions">
+    <LinkButton
+        href="https://github.com/Greenheart/idg.tools/discussions"
+        variant="primary"
+    >
         Help improve this tool
     </LinkButton>
 </div>

@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { cx, truncateText } from '$lib/utils'
+    import { truncateText } from '$lib/utils'
+    import { getTag } from '$shared/content-utils'
     import type { Tool, Content } from '$shared/types'
     import Heading from './Heading.svelte'
     import Arrow from './icons/Arrow.svelte'
@@ -14,6 +15,8 @@
 
     export let tool: Tool
     export let content: Content
+
+    let tags = tool.tags.map((tagId) => getTag(tagId, content))
 </script>
 
 <Link
@@ -27,7 +30,7 @@
         <div class="flex h-full max-h-max flex-col justify-between">
             <div>
                 <Heading size={2}>{tool.name}</Heading>
-                <Tags {tool} {content} visible={3} class="pt-2" />
+                <Tags {tags} visible={3} class="pt-2" />
                 <Markdown source={intro} class="pt-2 pb-4" variant="inverted" />
             </div>
             <!-- <div> -->

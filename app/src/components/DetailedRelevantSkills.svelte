@@ -1,29 +1,29 @@
 <script lang="ts">
     import { cx, getColor } from '$lib/utils'
-
     import { getSkill } from '$shared/content-utils'
-    import type { Content, Tool } from '$shared/types'
+    import type { IDGRelevancy, Skill } from '$shared/types'
     import RelevancyScore from './RelevancyScore.svelte'
-    export let tool: Tool
-    export let content: Content
+
+    export let skills: Skill[]
+    export let relevancy: IDGRelevancy[]
     let className = ''
     export { className as class }
 
     let [mostRelevant, remaining] = [
-        tool.relevancy.slice(0, 5),
-        tool.relevancy.slice(5).length,
+        relevancy.slice(0, 5),
+        relevancy.slice(5).length,
     ]
 
     let visibleSkills = mostRelevant
     function showAll() {
-        visibleSkills = tool.relevancy
+        visibleSkills = relevancy
     }
 </script>
 
 <div class={className}>
     <div class={'grid grid-cols-1 gap-3'}>
         {#each visibleSkills as { skill: skillId, score }}
-            {@const skill = getSkill(skillId, content)}
+            {@const skill = getSkill(skillId, { skills })}
             {@const color = getColor(skillId)}
 
             <div class="flex items-center justify-between gap-4">
@@ -40,7 +40,7 @@
         {/each}
     </div>
 
-    {#if visibleSkills.length < tool.relevancy.length}
+    {#if visibleSkills.length < relevancy.length}
         <button
             class="text-thinking mt-4 font-semibold underline"
             on:click={showAll}
