@@ -19,8 +19,8 @@
             class={cx(
                 'rounded-lg p-1 text-xs',
                 inverted
-                    ? 'bg-white text-stone-900'
-                    : 'bg-stone-900 text-white',
+                    ? 'bg-stone-50 text-stone-900'
+                    : 'bg-stone-900 text-stone-50',
             )}
         >
             {tag.name}
