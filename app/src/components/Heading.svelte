@@ -10,11 +10,11 @@
 </script>
 
 {#if size === 1}
-    <h1 class={cx('text-6xl font-semibold', className)}>
+    <h1 class={cx('text-4xl sm:text-5xl md:text-6xl font-semibold', className)}>
         <slot />
     </h1>
 {:else if size === 2}
-    <h2 class={cx('text-3xl font-bold', className)}>
+    <h2 class={cx('md:text-3xl sm:text-2xl text-xl font-bold', className)}>
         <slot />
     </h2>
 {:else if size === 3}

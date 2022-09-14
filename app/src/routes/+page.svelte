@@ -30,7 +30,7 @@
 <div class:hidden={$isMenuOpen}>
     <Heading size={1}>Change starts within</Heading>
 
-    <div class="space-y-4 py-12 text-xl">
+    <div class="space-y-4 py-12 text-lg sm:text-xl">
         <p>
             IDG.tools is the digital field kit for the <Link
                 href="https://www.innerdevelopmentgoals.org/framework"
