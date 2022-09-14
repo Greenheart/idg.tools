@@ -86,7 +86,7 @@ const SKILLS_BY_CATEGORY = {
     },
 }
 
-export function getColor(id: ItemId, colorType = 'bg') {
+export function getColor(id: ItemId, colorType: 'bg' | 'text' = 'bg') {
     const category =
         SKILLS_BY_CATEGORY[id as unknown as keyof typeof SKILLS_BY_CATEGORY] ??
         Object.values(SKILLS_BY_CATEGORY).find((category) =>

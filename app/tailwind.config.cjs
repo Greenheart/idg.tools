@@ -3,9 +3,13 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 /** @type {import('tailwindcss').Config} */
 const config = {
     content: ['./src/**/*.{html,js,svelte,ts}'],
-    safelist: ['being', 'thinking', 'relating', 'collaborating', 'acting'].map(
-        (name) => `bg-${name}`,
-    ),
+    safelist: [
+        'being',
+        'thinking',
+        'relating',
+        'collaborating',
+        'acting',
+    ].flatMap((name) => [`bg-${name}`, `text-${name}`]),
     theme: {
         screens: {
             xs: '475px',
