@@ -29,7 +29,7 @@
             <div class="flex items-center justify-between gap-4">
                 <span
                     class={cx(
-                        'overflow-hidden text-ellipsis whitespace-nowrap rounded-lg px-2 py-1 text-stone-900',
+                        'overflow-hidden text-ellipsis whitespace-nowrap rounded-lg px-2 py-1 text-white',
                         color,
                     )}
                 >
@@ -42,7 +42,7 @@
 
     {#if visibleSkills.length < tool.relevancy.length}
         <button
-            class="mt-4 font-semibold text-[#E0A1B4] underline"
+            class="text-thinking mt-4 font-semibold underline"
             on:click={showAll}
         >
             Show {remaining ?? ''} more

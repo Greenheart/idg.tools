@@ -4,8 +4,8 @@
     import { cx, isExternalURL } from '$lib/utils'
 
     export const variants = {
-        pink: 'text-[#E0A1B4]',
-        white: 'text-[stone-50]',
+        pink: 'text-thinking',
+        white: 'text-stone-50',
     }
 
     const defaultVariant = 'white'
