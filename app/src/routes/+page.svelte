@@ -18,9 +18,15 @@
         visibleItems.useLocalStorage()
     })
 
-    $: mostRelevantTools = $selectedSkills.length
-        ? content.tools.slice().sort(mostRelevantContentFirst($selectedSkills))
-        : content.tools
+    $: mostRelevantTools = content.tools
+        .slice()
+        .sort(
+            mostRelevantContentFirst(
+                $selectedSkills.length
+                    ? $selectedSkills
+                    : content.skills.map((s) => s.id),
+            ),
+        )
 </script>
 
 <div class:hidden={$isMenuOpen}>
