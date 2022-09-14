@@ -17,12 +17,7 @@
     export { className as class }
 </script>
 
-<div
-    class={cx(
-        'sticky top-0 z-10 h-[162px] xs:h-[146px] md:h-[131px]',
-        className,
-    )}
->
+<div class={cx('sticky top-0 z-10 h-[146px] md:h-[131px]', className)}>
     <div class="relative">
         <TabGroup
             class="absolute top-0 left-0 right-0 -ml-4 -mr-4 overflow-hidden bg-stone-900 text-stone-50 shadow-2xl"
