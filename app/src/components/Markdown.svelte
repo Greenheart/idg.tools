@@ -53,7 +53,7 @@
     }
 </script>
 
-<div class={cx(baseClasses, variants[variant], className)}>
+<div class={cx(baseClasses, variants[variant], className, 'break-words')}>
     <SvelteMarkdown
         {source}
         {renderers}
