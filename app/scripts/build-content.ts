@@ -7,6 +7,7 @@ import { readFile, writeFile } from 'fs/promises'
 
 import { DEFAULT_LANGUAGE_TAG, LANGUAGE_TAGS } from '$shared/constants'
 import { getTag } from '$shared/content-utils'
+import { mostRelevantContentFirst } from '$lib/utils'
 import type {
     Category,
     Content,
@@ -201,6 +202,27 @@ const prepareContent = (
     }
 }
 
+const orderToolsConsistently = (builtContent: Translated<Content>) => {
+    for (const [language, content] of Object.entries(builtContent)) {
+        const before = content.tools.map((t) => t.id).join('')
+
+        builtContent[language as Language] = {
+            ...content,
+            tools: content.tools.sort(
+                mostRelevantContentFirst(
+                    content.skills.map((skill) => skill.id),
+                ),
+            ),
+        }
+
+        const after = content.tools.map((t) => t.id).join('')
+
+        console.log('before === after', before === after)
+    }
+
+    return builtContent
+}
+
 const rawContent = await loadContent(['tools', 'skills', 'categories', 'tags'])
 
 const SELECTED_LANGUAGES: Language[] = ['en']
@@ -212,9 +234,11 @@ const builtContent = splitContentByLang(
     SELECTED_LANGUAGES,
 )
 
+const output = orderToolsConsistently(builtContent)
+
 console.log(`Building IDG.tools content...`)
 
-await writeJSON(resolve(__dirname, '../../static/content.json'), builtContent)
+await writeJSON(resolve(__dirname, '../../static/content.json'), output)
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
     'en-US',
