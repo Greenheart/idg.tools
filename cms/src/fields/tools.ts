@@ -69,8 +69,6 @@ export const ToolsFields: CustomCmsField[] = [
         ...MARKDOWN_FIELD,
         required: false,
     },
-    // IDEA: Maybe add custom widget that automatically generates the slug and link, similar to how uniqueId works
-    // This would enable content to be created with the CMS rather than having to rely on a build step.
     {
         label: 'Slug',
         name: 'slug',
