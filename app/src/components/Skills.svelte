@@ -38,7 +38,7 @@
     {#each content.categories as { name, description, id: categoryId, skills: skillsInCategory }}
         {@const color = getColor(categoryId)}
         <details
-            class="text-stone-900"
+            class="text-white"
             on:toggle={(event) => onToggle(event, categoryId)}
         >
             <summary
@@ -58,7 +58,7 @@
                 <div class="flex items-center">
                     <svg
                         class={cx(
-                            'h-6 w-6 transform transition duration-150',
+                            'h-6 w-6 transform transition duration-150 text-stone-900',
                             isCategoryOpen[categoryId]
                                 ? 'rotate-0'
                                 : 'rotate-45',
@@ -77,7 +77,7 @@
             </summary>
             <div
                 class={cx(
-                    'flex flex-wrap justify-center gap-3 bg-opacity-70 p-4 border-t border-stone-900',
+                    'flex flex-wrap justify-center gap-3 bg-opacity-70 p-4 border-t border-stone-900 text-stone-900',
                     color,
                 )}
             >

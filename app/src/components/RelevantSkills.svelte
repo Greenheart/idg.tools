@@ -19,7 +19,7 @@
             This could be a way to give more details.
             We should likely do it in a clearer way though
         -->
-        <span class={cx('rounded-lg px-2 py-1 text-stone-900', color)}>
+        <span class={cx('rounded-lg px-2 py-1 text-white', color)}>
             {skill.name}
         </span>
     {/each}

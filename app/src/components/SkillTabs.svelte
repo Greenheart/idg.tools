@@ -54,10 +54,7 @@
                     {#each content.categories as { id: categoryId } (categoryId)}
                         {@const color = getColor(categoryId)}
                         <TabPanel
-                            class={cx(
-                                'flex flex-nowrap gap-2 bg-opacity-70 p-4',
-                                color,
-                            )}
+                            class={cx('flex flex-nowrap gap-2 p-4', color)}
                         >
                             {#each getSkillsInCategory(categoryId, content) as skill (skill.name)}
                                 <SkillButton
