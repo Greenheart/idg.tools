@@ -17,6 +17,7 @@
     export { className as class }
 </script>
 
+<!-- TODO: Do something about the slow initial render after page refresh. Likely caused by waiting for the app to mount, and reading from localStorage before rendering -->
 <div class={cx('sticky top-0 z-10 h-[146px] md:h-[131px]', className)}>
     <div class="relative">
         <TabGroup

@@ -4,11 +4,12 @@
     import Skills from '$components/Skills.svelte'
     import Link from '$components/Link.svelte'
     import Heading from '$components/Heading.svelte'
-    import { selectedSkills, isMenuOpen, visibleItems } from '$lib/stores'
     import Tools from '$components/Tools.svelte'
-
-    import type { PageData } from './$types'
     import SkillTabs from '$components/SkillTabs.svelte'
+    import { selectedSkills, isMenuOpen, visibleItems } from '$lib/stores'
+    import type { PageData } from './$types'
+    import { mostRelevantContentFirst } from '$lib/utils'
+
     export let data: PageData
     $: ({ content } = data)
 
@@ -17,13 +18,8 @@
         visibleItems.useLocalStorage()
     })
 
-    // TODO: Improve filtering logic, and break out into a function called `getMostRelevantTools()`
     $: mostRelevantTools = $selectedSkills.length
-        ? content.tools.filter((tool) =>
-              tool.relevancy.some(({ skill }) =>
-                  $selectedSkills.includes(skill),
-              ),
-          )
+        ? content.tools.slice().sort(mostRelevantContentFirst($selectedSkills))
         : content.tools
 </script>
 

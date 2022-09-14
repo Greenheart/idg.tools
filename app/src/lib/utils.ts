@@ -1,4 +1,4 @@
-import type { ItemId } from '$shared/types'
+import type { ItemId, Skill, Tool } from '$shared/types'
 
 export const randomInt = (min: number, max: number) =>
     Math.floor(Math.random() * (max - min + 1)) + min
@@ -94,3 +94,19 @@ export function getColor(id: ItemId, colorType: 'bg' | 'text' = 'bg') {
         )
     return `${colorType}-${category.name}`
 }
+
+export const getTotalRelevancyScore = (
+    relevancy: Tool['relevancy'],
+    selectedSkills: Skill['id'][],
+) =>
+    relevancy.reduce((totalRelevancy, r) => {
+        if (selectedSkills.includes(r.skill)) {
+            totalRelevancy += r.score
+        }
+        return totalRelevancy
+    }, 0)
+
+export const mostRelevantContentFirst =
+    (selectedSkills: Skill['id'][]) => (a: Tool, b: Tool) =>
+        getTotalRelevancyScore(b.relevancy, selectedSkills) -
+        getTotalRelevancyScore(a.relevancy, selectedSkills)
