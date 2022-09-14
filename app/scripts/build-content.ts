@@ -129,6 +129,8 @@ const prepareTools = (
 
             tool.tags = tagsSortedAlphabetically
 
+            if (!tool.relevancy) tool.relevancy = []
+
             const sortedRelevancyScores = tool.relevancy
                 .filter((t) => t.score > 0) // Filter out skills with 0 relevancy
                 .sort((a, b) => b.score - a.score) // Most relevant first
