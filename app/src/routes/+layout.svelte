@@ -3,6 +3,7 @@
     import { TAGLINE } from '$lib/constants'
     import { page } from '$app/stores'
     import { getBgOpacity } from './+layout'
+    import { isMenuOpen } from '$lib/stores'
 
     import '../app.css'
     import CommunitySection from '$components/CommunitySection.svelte'
@@ -29,9 +30,14 @@
 
 <main class="mx-auto w-full max-w-2xl px-5 pb-16 text-stone-50 sm:max-w-5xl">
     <Header />
-    <slot />
+    <div class:hidden={$isMenuOpen}>
+        <slot />
+    </div>
 </main>
 
-<div class="mx-auto w-full max-w-2xl px-5 pb-16 sm:max-w-3xl">
+<div
+    class="mx-auto w-full max-w-2xl px-5 pb-16 sm:max-w-3xl"
+    class:hidden={$isMenuOpen}
+>
     <CommunitySection />
 </div>
