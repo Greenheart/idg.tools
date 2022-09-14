@@ -20,7 +20,7 @@
 <div class={cx('sticky top-0 z-10 h-[131px]', className)}>
     <div class="relative">
         <TabGroup
-            class="absolute top-0 left-0 right-0 -ml-5 -mr-5 overflow-hidden bg-stone-50 text-stone-900"
+            class="absolute top-0 left-0 right-0 -ml-5 -mr-5 overflow-hidden bg-stone-900 text-stone-50 shadow-2xl"
             on:change={() =>
                 document.querySelector('.skill-tabs')?.scrollTo(0, 0)}
         >
@@ -35,12 +35,12 @@
                                 'py-4 px-2 text-lg',
                                 selected
                                     ? cx(color, 'underline')
-                                    : 'text-stone-900',
+                                    : 'text-stone-50',
                             )}>{name}</Tab
                     >
                 {/each}
             </TabList>
-            <TabPanels class="skill-tabs grid overflow-x-scroll">
+            <TabPanels class="skill-tabs grid overflow-x-scroll text-stone-900">
                 {#each content.categories as { id: categoryId } (categoryId)}
                     {@const color = getColor(categoryId)}
                     <TabPanel
@@ -52,7 +52,7 @@
                         {#each getSkillsInCategory(categoryId, content) as skill (skill.name)}
                             <SkillButton
                                 {skill}
-                                class="transform-none whitespace-nowrap py-2 lg:transform-gpu"
+                                class="!transform-none whitespace-nowrap py-2"
                             />
                         {/each}
                     </TabPanel>
