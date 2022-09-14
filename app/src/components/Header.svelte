@@ -25,7 +25,7 @@
             on:click={toggleMenu}
         >
             {#each links as { href, text }}
-                <Link {href} class="p-2">{text}</Link>
+                <Link {href} class="p-4">{text}</Link>
             {/each}
         </nav>
     {/if}
