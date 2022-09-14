@@ -38,7 +38,7 @@
 {/each}
 
 <div
-    class="col-span-2 flex flex-col items-center justify-center space-y-4 pt-16"
+    class="flex flex-col items-center justify-center space-y-4 pt-16 lg:col-span-2"
 >
     {#if $visibleItems < tools.length}
         <Button on:click={showMore}>Show more</Button>

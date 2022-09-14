@@ -27,11 +27,11 @@
     {@html bodyStyle}
 </svelte:head>
 
-<main class="mx-auto w-full max-w-lg px-5 pb-16 text-stone-50 sm:max-w-5xl">
+<main class="mx-auto w-full max-w-2xl px-5 pb-16 text-stone-50 sm:max-w-5xl">
     <Header />
     <slot />
 </main>
 
-<div class="mx-auto w-full max-w-lg px-5 pb-16 sm:max-w-3xl">
+<div class="mx-auto w-full max-w-2xl px-5 pb-16 sm:max-w-3xl">
     <CommunitySection />
 </div>

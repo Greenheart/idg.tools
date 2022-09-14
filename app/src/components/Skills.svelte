@@ -29,9 +29,12 @@
         }
         return isCategoryOpen
     }
+
+    let className = ''
+    export { className as class }
 </script>
 
-<div class="space-y-4">
+<div class={cx('space-y-4', className)}>
     {#each content.categories as { name, description, id: categoryId, skills: skillsInCategory }}
         {@const color = getColor(categoryId)}
         <details
