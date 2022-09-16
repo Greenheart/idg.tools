@@ -204,8 +204,6 @@ const prepareContent = (
 
 const orderToolsConsistently = (builtContent: Translated<Content>) => {
     for (const [language, content] of Object.entries(builtContent)) {
-        const before = content.tools.map((t) => t.id).join('')
-
         builtContent[language as Language] = {
             ...content,
             tools: content.tools.sort(
@@ -214,10 +212,6 @@ const orderToolsConsistently = (builtContent: Translated<Content>) => {
                 ),
             ),
         }
-
-        const after = content.tools.map((t) => t.id).join('')
-
-        console.log('before === after', before === after)
     }
 
     return builtContent
