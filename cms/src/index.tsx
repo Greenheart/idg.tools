@@ -7,7 +7,7 @@ import { default as UniqueSlug } from './widgets/UniqueSlug'
 import { DEFAULT_LANGUAGE_TAG, LANGUAGE_TAGS } from '../../shared/constants'
 import { ToolsFields } from './fields/tools'
 import { SkillsFields } from './fields/skills'
-import { CategoriesFields } from './fields/categories'
+import { DimensionsFields } from './fields/dimensions'
 import { TagsFields } from './fields/tags'
 
 CMS.init({
@@ -86,11 +86,11 @@ CMS.init({
                 description: 'The 23 skills of the Inner Development Goals.',
             },
             {
-                name: 'categories',
-                label: 'Categories',
-                label_singular: 'Category',
-                folder: '/content/src/categories',
-                fields: CategoriesFields,
+                name: 'dimensions',
+                label: 'Dimensions',
+                label_singular: 'Dimension',
+                folder: '/content/src/dimensions',
+                fields: DimensionsFields,
                 extension: 'json',
                 format: 'json',
                 create: false,
@@ -100,7 +100,7 @@ CMS.init({
                 identifier_field: 'id',
                 slug: '{{id}}',
                 i18n: true,
-                description: 'The 5 categories of the Inner Development Goals.',
+                description: 'The 5 dimensions of the Inner Development Goals.',
             },
         ] as CmsCollection[],
     },

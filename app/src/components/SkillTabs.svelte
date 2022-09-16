@@ -9,7 +9,7 @@
     import { onMount } from 'svelte'
     import { fade } from 'svelte/transition'
 
-    import { getSkillsInCategory } from '$shared/content-utils'
+    import { getSkillsInDimension } from '$shared/content-utils'
     import { cx, getColor } from '$lib/utils'
     import type { Content } from '$shared/types'
     import SkillButton from './SkillButton.svelte'
@@ -35,8 +35,8 @@
                 <TabList
                     class="xs:overflow-auto flex flex-nowrap overflow-x-scroll"
                 >
-                    {#each content.categories as { name, id: categoryId } (categoryId)}
-                        {@const color = getColor(categoryId, 'text')}
+                    {#each content.dimensions as { name, id: dimensionId } (dimensionId)}
+                        {@const color = getColor(dimensionId, 'text')}
                         <Tab
                             class={({ selected }) =>
                                 cx(
@@ -51,12 +51,12 @@
                 <TabPanels
                     class="skill-tabs grid overflow-x-scroll text-stone-900"
                 >
-                    {#each content.categories as { id: categoryId } (categoryId)}
-                        {@const color = getColor(categoryId)}
+                    {#each content.dimensions as { id: dimensionId } (dimensionId)}
+                        {@const color = getColor(dimensionId)}
                         <TabPanel
                             class={cx('flex flex-nowrap gap-2 p-4', color)}
                         >
-                            {#each getSkillsInCategory(categoryId, content) as skill (skill.name)}
+                            {#each getSkillsInDimension(dimensionId, content) as skill (skill.name)}
                                 <SkillButton
                                     {skill}
                                     class="!transform-none whitespace-nowrap py-2"

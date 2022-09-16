@@ -1,33 +1,33 @@
 <script lang="ts">
-    import { getSkillsInCategory } from '$shared/content-utils'
+    import { getSkillsInDimension } from '$shared/content-utils'
     import { cx, getColor } from '$lib/utils'
-    import type { Content, Category } from '$shared/types'
+    import type { Content, Dimension } from '$shared/types'
 
     import NumberOfSelectedSkills from './NumberOfSelectedSkills.svelte'
     import SkillButton from './SkillButton.svelte'
 
     export let content: Content
 
-    let isCategoryOpen: Record<Category['id'], boolean> = Object.values(
-        content.categories,
-    ).reduce((isCategoryOpen: Record<Category['id'], boolean>, category) => {
-        isCategoryOpen[category.id] = false
-        return isCategoryOpen
+    let isDimensionOpen: Record<Dimension['id'], boolean> = Object.values(
+        content.dimensions,
+    ).reduce((isDimensionOpen: Record<Dimension['id'], boolean>, dimension) => {
+        isDimensionOpen[dimension.id] = false
+        return isDimensionOpen
     }, {})
 
     const onToggle = (
         event: Event & {
             currentTarget: EventTarget & HTMLElement
         },
-        categoryId: Category['id'],
+        dimensionId: Dimension['id'],
     ) => {
-        isCategoryOpen = {
-            ...isCategoryOpen,
-            [categoryId]: (
+        isDimensionOpen = {
+            ...isDimensionOpen,
+            [dimensionId]: (
                 event?.target as unknown as EventTarget & HTMLDetailsElement
             ).open,
         }
-        return isCategoryOpen
+        return isDimensionOpen
     }
 
     let className = ''
@@ -35,11 +35,11 @@
 </script>
 
 <div class={cx('space-y-4', className)}>
-    {#each content.categories as { name, description, id: categoryId, skills: skillsInCategory }}
-        {@const color = getColor(categoryId)}
+    {#each content.dimensions as { name, description, id: dimensionId, skills: skillsInDimension }}
+        {@const color = getColor(dimensionId)}
         <details
             class="text-white"
-            on:toggle={(event) => onToggle(event, categoryId)}
+            on:toggle={(event) => onToggle(event, dimensionId)}
         >
             <summary
                 class={cx(
@@ -52,14 +52,14 @@
                         <span class="text-xl font-bold">{name}</span>
                         <span class="px-2">&mdash;</span>
                         {description}
-                        <NumberOfSelectedSkills {skillsInCategory} />
+                        <NumberOfSelectedSkills {skillsInDimension} />
                     </span>
                 </span>
                 <div class="flex items-center">
                     <svg
                         class={cx(
                             'h-6 w-6 transform transition duration-150 text-stone-900',
-                            isCategoryOpen[categoryId]
+                            isDimensionOpen[dimensionId]
                                 ? 'rotate-0'
                                 : 'rotate-45',
                         )}
@@ -81,7 +81,7 @@
                     color,
                 )}
             >
-                {#each getSkillsInCategory(categoryId, content) as skill (skill.name)}
+                {#each getSkillsInDimension(dimensionId, content) as skill (skill.name)}
                     <SkillButton {skill} />
                 {/each}
             </div>

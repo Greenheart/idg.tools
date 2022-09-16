@@ -5,10 +5,10 @@ export const SkillsFields: CustomCmsField[] = [
     NAME,
     DESCRIPTION,
     {
-        label: 'Category',
-        name: 'category',
+        label: 'Dimension',
+        name: 'dimension',
         widget: 'relation',
-        collection: 'categories',
+        collection: 'dimensions',
         value_field: 'id',
         search_fields: ['name', 'id'],
         display_fields: ['name'],

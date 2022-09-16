@@ -33,9 +33,9 @@ export function truncateText(text: string, maxLength: number, separator = ' ') {
 }
 
 // IDEA: Maybe this could be generated based on `content.json`, to allow the CMS to generate it.
-// IDEA: Same with the tailwind config, which perhaps could generate the color config based on category names, and color props from the CMS
+// IDEA: Same with the tailwind config, which perhaps could generate the color config based on dimension names, and color props from the CMS
 // IDEA: Maybe generate a `colors.json` which defines this structure? This could then be imported both to the utils and to the tailwind config, thus allowing the CMS to dictate how IDG colors look in the app
-const SKILLS_BY_CATEGORY = {
+const SKILLS_BY_DIMENSION = {
     ckzi3855r0086e2n0smi0mew5: {
         name: 'being',
         skills: [
@@ -87,12 +87,14 @@ const SKILLS_BY_CATEGORY = {
 }
 
 export function getColor(id: ItemId, colorType: 'bg' | 'text' = 'bg') {
-    const category =
-        SKILLS_BY_CATEGORY[id as unknown as keyof typeof SKILLS_BY_CATEGORY] ??
-        Object.values(SKILLS_BY_CATEGORY).find((category) =>
-            category.skills.some((skillId) => skillId === id),
+    const dimension =
+        SKILLS_BY_DIMENSION[
+            id as unknown as keyof typeof SKILLS_BY_DIMENSION
+        ] ??
+        Object.values(SKILLS_BY_DIMENSION).find((dimension) =>
+            dimension.skills.some((skillId) => skillId === id),
         )
-    return `${colorType}-${category.name}`
+    return `${colorType}-${dimension.name}`
 }
 
 export const getTotalRelevancyScore = (

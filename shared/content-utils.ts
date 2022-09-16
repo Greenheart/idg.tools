@@ -1,9 +1,9 @@
-import type { Category, Content, Skill, Tag, Tool } from './types'
+import type { Dimension, Content, Skill, Tag, Tool } from './types'
 
-export const getCategory = (
-    id: Category['id'],
-    { categories }: Pick<Content, 'categories'>,
-) => categories.find((c) => c.id === id) as Category
+export const getDimension = (
+    id: Dimension['id'],
+    { dimensions }: Pick<Content, 'dimensions'>,
+) => dimensions.find((c) => c.id === id) as Dimension
 
 export const getSkill = (
     id: Skill['id'],
@@ -27,7 +27,7 @@ export const getToolByLink = (
     { tools }: Pick<Content, 'tools'>,
 ) => tools.find((t) => t.link === link || link.endsWith(t.slug)) as Tool
 
-export const getSkillsInCategory = (
-    id: Category['id'],
+export const getSkillsInDimension = (
+    id: Dimension['id'],
     { skills }: Pick<Content, 'skills'>,
-) => skills.filter((s) => s.category === id)
+) => skills.filter((s) => s.dimension === id)

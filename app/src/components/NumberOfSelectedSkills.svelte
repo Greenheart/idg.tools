@@ -1,19 +1,19 @@
 <script lang="ts">
-    import type { Category } from '$shared/types'
+    import type { Dimension } from '$shared/types'
     import { selectedSkills } from '$lib/stores'
 
-    export let skillsInCategory: Category['skills']
+    export let skillsInDimension: Dimension['skills']
 
-    $: selectedInCategory = skillsInCategory.reduce(
+    $: selectedInDimension = skillsInDimension.reduce(
         (count, skill) =>
             $selectedSkills.some((s) => s === skill) ? count + 1 : count,
         0,
     )
 </script>
 
-{#if selectedInCategory}
+{#if selectedInDimension}
     <span class="px-2">&middot;</span>
     <span class="text-base font-normal">
-        {selectedInCategory}/{skillsInCategory.length}</span
+        {selectedInDimension}/{skillsInDimension.length}</span
     >
 {/if}

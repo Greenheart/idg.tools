@@ -9,7 +9,7 @@ import { DEFAULT_LANGUAGE_TAG, LANGUAGE_TAGS } from '$shared/constants'
 import { getTag } from '$shared/content-utils'
 import { mostRelevantContentFirst } from '$lib/utils'
 import type {
-    Category,
+    Dimension,
     Content,
     Language,
     Skill,
@@ -53,7 +53,7 @@ export const writeJSON = (path: string, data: any, indentation: number = 0) =>
 
 // Only used while building the content
 type ProcessingTranslatedContent = {
-    categories: Translated<Category>[]
+    dimensions: Translated<Dimension>[]
     tools: Translated<Tool>[]
     skills: Translated<Skill>[]
     tags: Translated<Tag>[]
@@ -167,11 +167,11 @@ const prepareTools = (
 const loadContent = async (contentTypes: Array<keyof Content>) => {
     const paths = await getContentPaths(contentTypes)
 
-    const [tools, skills, categories, tags] = await Promise.all(
+    const [tools, skills, dimensions, tags] = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
     )
 
-    return { tools, skills, categories, tags } as ProcessingTranslatedContent
+    return { tools, skills, dimensions, tags } as ProcessingTranslatedContent
 }
 
 function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
@@ -186,7 +186,7 @@ const splitContentByLang = (
         result[lang] = {
             tools: getByLang(content.tools, lang),
             skills: getByLang(content.skills, lang),
-            categories: getByLang(content.categories, lang),
+            dimensions: getByLang(content.dimensions, lang),
             tags: getByLang(content.tags, lang),
         }
         return result
@@ -223,7 +223,7 @@ const orderToolsConsistently = (builtContent: Translated<Content>) => {
     return builtContent
 }
 
-const rawContent = await loadContent(['tools', 'skills', 'categories', 'tags'])
+const rawContent = await loadContent(['tools', 'skills', 'dimensions', 'tags'])
 
 const SELECTED_LANGUAGES: Language[] = ['en']
 

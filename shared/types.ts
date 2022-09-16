@@ -9,10 +9,10 @@ type Item = {
 }
 
 export type Skill = Item & {
-    category: ItemId
+    dimension: ItemId
 }
 
-export type Category = Item & {
+export type Dimension = Item & {
     color: string
     skills: ItemId[]
 }
@@ -27,7 +27,7 @@ export type Tool = Item & {
 }
 
 export type Content = {
-    categories: Category[]
+    dimensions: Dimension[]
     tools: Tool[]
     skills: Skill[]
     tags: Tag[]
