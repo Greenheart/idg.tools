@@ -8,7 +8,7 @@
     import SkillTabs from '$components/SkillTabs.svelte'
     import { selectedSkills, isMenuOpen, visibleItems } from '$lib/stores'
     import type { PageData } from './$types'
-    import { mostRelevantContentFirst } from '$lib/utils'
+    import { getMostRelevantContent } from '$lib/utils'
 
     export let data: PageData
     $: ({ content } = data)
@@ -19,7 +19,7 @@
     })
 
     $: mostRelevantTools = $selectedSkills.length
-        ? content.tools.slice().sort(mostRelevantContentFirst($selectedSkills))
+        ? getMostRelevantContent(content, $selectedSkills)
         : content.tools
 </script>
 

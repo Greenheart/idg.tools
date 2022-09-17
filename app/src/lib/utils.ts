@@ -1,4 +1,4 @@
-import type { ItemId, Skill, Tool } from '$shared/types'
+import type { Content, ItemId, Skill, Tool } from '$shared/types'
 
 export const randomInt = (min: number, max: number) =>
     Math.floor(Math.random() * (max - min + 1)) + min
@@ -112,3 +112,15 @@ export const mostRelevantContentFirst =
     (selectedSkills: Skill['id'][]) => (a: Tool, b: Tool) =>
         getTotalRelevancyScore(b.relevancy, selectedSkills) -
         getTotalRelevancyScore(a.relevancy, selectedSkills)
+
+export const getMostRelevantContent = (
+    content: Content,
+    selectedSkills: Skill['id'][],
+) =>
+    content.tools
+        .filter((tool) =>
+            selectedSkills.every((skillId) =>
+                tool.relevancy.some(({ skill }) => skill === skillId),
+            ),
+        )
+        .sort(mostRelevantContentFirst(selectedSkills))
