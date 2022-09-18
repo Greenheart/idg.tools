@@ -12,7 +12,7 @@
     export let data: PageData
     $: ({ content } = data)
 
-    onMount(async () => {
+    onMount(() => {
         selectedSkills.useLocalStorage()
         visibleItems.useLocalStorage()
     })
