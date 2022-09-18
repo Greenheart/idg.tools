@@ -52,9 +52,6 @@
 <Filters {content} />
 
 <Heading size={2} class="mb-4 mt-16">2. Explore relevant tools</Heading>
-<div
-    class="grid gap-8 lg:grid-cols-2"
-    class:hidden={$isMenuOpen || $filtersExpanded}
->
+<div class="grid gap-8 lg:grid-cols-2" class:hidden={$isMenuOpen}>
     <Tools tools={mostRelevantTools} {content} />
 </div>

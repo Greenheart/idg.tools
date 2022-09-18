@@ -46,19 +46,18 @@
             )
         }
     }
-
-    let apply: any
 </script>
 
 <Dialog
     open={$filtersExpanded}
     on:close={close}
     class="fixed inset-0 z-20 grid justify-items-center overflow-y-auto"
-    initialFocus={apply}
+    unmount={false}
 >
-    <DialogOverlay
-        class="fixed inset-0 -z-10 h-full w-full backdrop-blur-2xl"
+    <div
+        class="fixed inset-0 -z-20 bg-stone-900 bg-[url(/images/david-marcu-78A265wPiO4-unsplash.jpg)] bg-cover bg-fixed bg-center bg-no-repeat"
     />
+    <DialogOverlay class="filters-backdrop fixed inset-0 -z-10" />
 
     <div class="w-full max-w-2xl sm:max-w-6xl">
         <div class="sr-only">
@@ -71,7 +70,6 @@
         <div class="mx-auto grid max-w-3xl gap-4 py-4">
             <Skills {content} />
             <Button
-                bind:this={apply}
                 on:click={close}
                 class="col-span-full mt-4 max-w-xs justify-self-center"
                 >Apply filters</Button
@@ -80,4 +78,7 @@
     </div>
 </Dialog>
 
-<FiltersToolbar {title} class={$filtersExpanded ? 'hidden' : '-mr-4 -ml-4'} />
+<FiltersToolbar
+    {title}
+    class={$filtersExpanded ? 'invisible' : '-mr-4 -ml-4'}
+/>
