@@ -1,24 +1,34 @@
 <script lang="ts">
     import {
+        Dialog,
+        DialogOverlay,
+        DialogTitle,
+        DialogDescription,
+    } from '@rgossiaux/svelte-headlessui'
+
+    import {
         selectedSkills,
         filtersExpanded,
         isDimensionOpen,
     } from '$lib/stores'
-    import { pluralize } from '$lib/utils'
+    // TODO: If we don't need `filtersExpanded` outside of this component, we could use local state instead and remove a store
+
     import type { Content, Dimension } from '$shared/types'
     import Button from './Button.svelte'
-    import Expand from './icons/Expand.svelte'
     import Skills from './Skills.svelte'
+    import FiltersToolbar from './FiltersToolbar.svelte'
+    import { pluralize } from '$lib/utils'
 
     export let content: Content
-
-    function resetFilters() {
-        $selectedSkills = []
-    }
 
     $: title = $selectedSkills.length
         ? `${pluralize('skill', $selectedSkills.length)} selected`
         : 'Filter tools based on skills and tags'
+
+    // $: document.documentElement.classList.toggle(
+    //     '!overflow-hidden',
+    //     $filtersExpanded,
+    // )
 
     function close() {
         if ($filtersExpanded) {
@@ -42,13 +52,45 @@
             )
         }
     }
+
+    let apply: any
 </script>
 
 <!-- TODO: Refactor into a modal instead to make UX better on smaller screens. Still use sticky positioned filter toolbar. And add IDG colors to a border to distinguish it from the other content -->
 
+<!-- IDEA: Only show the background image, hide all content when opening the filters -->
+<Dialog
+    open={$filtersExpanded}
+    on:close={close}
+    class="fixed inset-0 z-20 grid justify-items-center overflow-y-auto"
+    initialFocus={apply}
+>
+    <DialogOverlay class="fixed inset-0 -z-10 h-full w-full bg-stone-900" />
+
+    <div class="w-full max-w-2xl sm:max-w-6xl">
+        <div class="sr-only">
+            <DialogTitle>Select filters</DialogTitle>
+            <DialogDescription>{title}</DialogDescription>
+        </div>
+
+        <FiltersToolbar {title} />
+
+        <div class="mx-auto grid max-w-3xl gap-4 py-4">
+            <Skills {content} />
+            <Button
+                bind:this={apply}
+                on:click={close}
+                class="col-span-full mt-4 max-w-xs justify-self-center"
+                >Apply filters</Button
+            >
+        </div>
+    </div>
+</Dialog>
+
+<FiltersToolbar {title} class={$filtersExpanded ? 'hidden' : '-mr-4 -ml-4'} />
+
 <!-- TODO: Add transition when opening and closing filters so the user understands what happens -->
-<!-- TODO: Decide if we want `use:clickOutside={close}` -->
-<details
+<!-- <details
     bind:open={$filtersExpanded}
     class="sticky top-0 z-10 -ml-4 -mr-4 flex text-stone-900 shadow-2xl"
 >
@@ -75,4 +117,4 @@
             >Apply filters</Button
         >
     </div>
-</details>
+</details> -->

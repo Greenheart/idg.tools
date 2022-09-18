@@ -38,14 +38,18 @@
         >
             <summary
                 class={cx(
-                    'flex cursor-pointer select-none !list-none items-center justify-between p-4 marker:!hidden',
+                    'flex cursor-pointer select-none !list-none items-center justify-between px-2 py-4 sm:px-4 marker:!hidden',
                     color,
                 )}
             >
                 <span>
-                    <span class="flex items-center">
-                        <span class="text-xl font-bold">{name}</span>
-                        <span class="px-2">&mdash;</span>
+                    <span
+                        class="flex items-center text-xs sm:text-base md:text-base"
+                    >
+                        <span class="text-base font-bold sm:text-lg md:text-xl"
+                            >{name}</span
+                        >
+                        <span class="px-1 md:px-2">&mdash;</span>
                         {description}
                         <NumberOfSelectedSkills {skillsInDimension} />
                     </span>
