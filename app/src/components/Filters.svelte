@@ -63,11 +63,13 @@
         {/if}
     </summary>
     <div
-        class={'grid gap-4 p-4 border-t border-stone-900 text-stone-900 bg-stone-900'}
+        class={'grid gap-4 p-4 border-t border-stone-900 text-stone-900 bg-stone-900 lg:grid-cols-2'}
     >
-        <div class="flex flex-wrap gap-3">
-            <Skills {content} />
-        </div>
-        <Button on:click={close}>Apply filters</Button>
+        <Skills {content} />
+        <Button
+            on:click={close}
+            class="col-span-full max-w-xs justify-self-center"
+            >Apply filters</Button
+        >
     </div>
 </details>
