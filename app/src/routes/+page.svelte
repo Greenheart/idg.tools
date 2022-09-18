@@ -48,10 +48,6 @@
     </div>
 </div>
 
-<!-- TODO: Left menu that can be shown on top if needed on smaller screens, and always open, to the side for larger screens -->
-<!-- Use grid with two or one column for content -->
-<!-- Maybe use the same skills selection + filters on mobile too, opening on top from the left -->
-
 <Heading size={2} class="mb-4">1. Choose skills to practice</Heading>
 <Filters {content} />
 
