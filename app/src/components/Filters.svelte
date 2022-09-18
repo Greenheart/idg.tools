@@ -11,7 +11,6 @@
         filtersExpanded,
         isDimensionOpen,
     } from '$lib/stores'
-    // TODO: If we don't need `filtersExpanded` outside of this component, we could use local state instead and remove a store
 
     import type { Content, Dimension } from '$shared/types'
     import Button from './Button.svelte'
@@ -24,11 +23,6 @@
     $: title = $selectedSkills.length
         ? `${pluralize('skill', $selectedSkills.length)} selected`
         : 'Filter tools based on skills and tags'
-
-    // $: document.documentElement.classList.toggle(
-    //     '!overflow-hidden',
-    //     $filtersExpanded,
-    // )
 
     function close() {
         if ($filtersExpanded) {
@@ -88,33 +82,3 @@
 </Dialog>
 
 <FiltersToolbar {title} class={$filtersExpanded ? 'hidden' : '-mr-4 -ml-4'} />
-
-<!-- TODO: Add transition when opening and closing filters so the user understands what happens -->
-<!-- <details
-    bind:open={$filtersExpanded}
-    class="sticky top-0 z-10 -ml-4 -mr-4 flex text-stone-900 shadow-2xl"
->
-    <summary
-        class="flex h-14 cursor-pointer select-none items-center justify-between bg-stone-50 px-4 py-2"
-    >
-        <div class="flex items-center space-x-4">
-            <Expand open={$filtersExpanded} />
-            <p>{title}</p>
-        </div>
-        {#if $selectedSkills.length}
-            <Button on:click={resetFilters} variant="inverted" size="md"
-                >Reset</Button
-            >
-        {/if}
-    </summary>
-    <div
-        class="grid gap-4 border-t border-stone-900 bg-stone-900 p-4 text-stone-900"
-    >
-        <Skills {content} />
-        <Button
-            on:click={close}
-            class="col-span-full max-w-xs justify-self-center"
-            >Apply filters</Button
-        >
-    </div>
-</details> -->

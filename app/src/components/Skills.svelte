@@ -29,7 +29,7 @@
 </script>
 
 <div class={cx('space-y-4', className)}>
-    {#each content.dimensions as { name, description, id: dimensionId, skills: skillsInDimension }}
+    {#each content.dimensions as { name, description, id: dimensionId, skills: skillsInDimension }, index}
         {@const color = getColor(dimensionId)}
         <details
             class="text-white"
@@ -41,6 +41,7 @@
                     'flex cursor-pointer select-none !list-none items-center justify-between px-2 py-4 sm:px-4 marker:!hidden',
                     color,
                 )}
+                tabindex={index + 1}
             >
                 <span>
                     <span
