@@ -9,14 +9,6 @@
     import type { PageData } from './$types'
     export let data: PageData
     $: ({ tool, skills, tags } = data)
-
-    // TODO: data actually needed for this route:
-
-    // the actual tags -> tool.tags.map(tagId => getTag(tagId, content))
-    // The specific tool -> already returned
-    // The actual skills -> tool.skills.map(skillId => getSkill(skillId, content))
-
-    // measure data returned to this endpoint before and after.
 </script>
 
 <Heading class="text-5xl">{tool.name}</Heading>
@@ -46,6 +38,3 @@
         Help improve this tool
     </LinkButton>
 </div>
-
-<!-- IDEA: Maybe add specific chat room for each IDG skill, allowing people to discuss this IDG with others -->
-<!-- IDEA: Probably even better, show a CTA at the bottom of each tool suggesting them to join the IDG community and learn together with others -->

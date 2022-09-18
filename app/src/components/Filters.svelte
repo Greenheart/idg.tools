@@ -50,9 +50,6 @@
     let apply: any
 </script>
 
-<!-- TODO: Refactor into a modal instead to make UX better on smaller screens. Still use sticky positioned filter toolbar. And add IDG colors to a border to distinguish it from the other content -->
-
-<!-- IDEA: Only show the background image, hide all content when opening the filters -->
 <Dialog
     open={$filtersExpanded}
     on:close={close}
