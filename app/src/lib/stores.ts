@@ -28,7 +28,10 @@ function createPersistedStore<T>(key: string, startValue: T) {
     }
 }
 
-export const selectedSkills = createPersistedStore<ItemId[]>('selected', [])
+export const selectedSkills = createPersistedStore<ItemId[]>(
+    'selectedSkills',
+    [],
+)
 export const isMenuOpen = writable<boolean>(false)
 export const filtersExpanded = writable<boolean>(false)
 export const visibleItems = createPersistedStore<number>('visibleItems', 10)
