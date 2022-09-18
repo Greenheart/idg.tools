@@ -124,3 +124,7 @@ export const getMostRelevantContent = (
             ),
         )
         .sort(mostRelevantContentFirst(selectedSkills))
+
+// TODO: This needs to be updated to support other languages than English, but is good enough for now.
+export const pluralize = (item: string, count: number) =>
+    count === 1 ? `1 ${item}` : `${count} ${item}s`

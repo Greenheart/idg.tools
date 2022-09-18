@@ -35,6 +35,14 @@ html {
     }
 }
 
+details > summary {
+    list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+    display: none;
+}
+
 /*!
  * Hamburgers
  * @description Tasty CSS-animated hamburgers
