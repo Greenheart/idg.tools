@@ -4,7 +4,12 @@
     import Link from '$components/Link.svelte'
     import Heading from '$components/Heading.svelte'
     import Tools from '$components/Tools.svelte'
-    import { selectedSkills, isMenuOpen, visibleItems } from '$lib/stores'
+    import {
+        selectedSkills,
+        isMenuOpen,
+        visibleItems,
+        filtersExpanded,
+    } from '$lib/stores'
     import type { PageData } from './$types'
     import { getMostRelevantContent } from '$lib/utils'
     import Filters from '$components/Filters.svelte'
@@ -51,6 +56,9 @@
 <Filters {content} />
 
 <Heading size={2} class="mb-4 mt-16">2. Explore relevant tools</Heading>
-<div class="grid gap-8 lg:grid-cols-2" class:hidden={$isMenuOpen}>
+<div
+    class="grid gap-8 lg:grid-cols-2"
+    class:hidden={$isMenuOpen || $filtersExpanded}
+>
     <Tools tools={mostRelevantTools} {content} />
 </div>
