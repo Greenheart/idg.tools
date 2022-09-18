@@ -33,11 +33,7 @@
                 <Tags {tags} visible={3} class="pt-2" />
                 <Markdown source={intro} class="pt-2 pb-4" variant="inverted" />
             </div>
-            <!-- <div> -->
-            <!-- NOTE: Either remove heading or keep pb-2 instead to make it more compact -->
-            <!-- <Heading size={4} class="pb-2">Skills you'll practice</Heading> -->
             <RelevantSkills {tool} {content} visible={4} />
-            <!-- </div> -->
         </div>
 
         <Arrow
