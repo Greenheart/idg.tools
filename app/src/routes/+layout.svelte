@@ -3,7 +3,7 @@
     import { TAGLINE } from '$lib/constants'
     import { page } from '$app/stores'
     import { getBgOpacity } from './+layout'
-    import { isMenuOpen } from '$lib/stores'
+    import { isMenuOpen, filtersExpanded } from '$lib/stores'
 
     import '../app.css'
     import CommunitySection from '$components/CommunitySection.svelte'
@@ -37,7 +37,7 @@
 
 <div
     class="mx-auto w-full max-w-2xl px-4 pb-16 sm:max-w-3xl"
-    class:hidden={$isMenuOpen}
+    class:hidden={$isMenuOpen || $filtersExpanded}
 >
     <CommunitySection />
 </div>
