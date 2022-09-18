@@ -27,8 +27,11 @@
             <p>{title}</p>
         </div>
         {#if $selectedSkills.length}
-            <Button on:click={resetFilters} variant="inverted" size="md"
-                >Reset</Button
+            <Button
+                on:click={resetFilters}
+                variant="inverted"
+                size="md"
+                tabindex="10">Reset</Button
             >
         {/if}
         <div class="absolute left-0 bottom-0 right-0 grid h-2 grid-cols-5">
