@@ -26,9 +26,11 @@
     export let variant: keyof typeof variants = defaultVariant
     export let disabled: boolean = false
     export let size: keyof typeof sizes = defaultSize
+    export let element: HTMLButtonElement | undefined = undefined
 </script>
 
 <button
+    bind:this={element}
     {...$$props}
     {disabled}
     class={cx(

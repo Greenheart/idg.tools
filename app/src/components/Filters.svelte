@@ -46,6 +46,8 @@
             )
         }
     }
+
+    let applyButton: HTMLButtonElement
 </script>
 
 <Dialog
@@ -53,6 +55,7 @@
     on:close={close}
     class="fixed inset-0 z-20 grid justify-items-center overflow-y-auto"
     unmount={false}
+    initialFocus={applyButton}
 >
     <div
         class="fixed inset-0 -z-20 bg-stone-900 bg-[url(/images/david-marcu-78A265wPiO4-unsplash.jpg)] bg-cover bg-fixed bg-center bg-no-repeat"
@@ -70,6 +73,7 @@
         <div class="mx-auto grid max-w-3xl gap-4 py-4">
             <Skills {content} />
             <Button
+                bind:element={applyButton}
                 on:click={close}
                 class="col-span-full mt-4 max-w-xs justify-self-center"
                 >Apply filters</Button
