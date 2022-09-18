@@ -12,8 +12,8 @@
 </script>
 
 {#if selectedInDimension}
-    <span class="px-2">&middot;</span>
-    <span class="text-base font-normal">
+    <span class="px-1 md:px-2">&middot;</span>
+    <span class="text-xs font-normal sm:text-sm md:text-base">
         {selectedInDimension}/{skillsInDimension.length}</span
     >
 {/if}

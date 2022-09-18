@@ -21,7 +21,7 @@
 
     {#if $isMenuOpen}
         <nav
-            class="fixed top-0 bottom-0 left-0 right-0 flex h-full w-full flex-col items-center justify-center text-6xl font-semibold backdrop-blur-2xl"
+            class="fixed inset-0 flex h-full w-full flex-col items-center justify-center text-6xl font-semibold backdrop-blur-2xl"
             on:click={toggleMenu}
         >
             {#each links as { href, text }}
