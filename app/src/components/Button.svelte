@@ -12,6 +12,7 @@
     }
     export const sizes = {
         lg: 'px-12 py-3 text-lg',
+        md: 'px-4 py-2 text-base',
         sm: 'px-2 py-1 text-base',
     }
 
