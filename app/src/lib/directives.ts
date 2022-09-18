@@ -1,12 +1,14 @@
 export const clickOutside = (
     node: HTMLElement,
-    handler: () => void,
+    handler: (() => void) | undefined,
 ): { destroy: () => void } => {
-    const onClick = (event: MouseEvent) =>
-        node &&
-        !node.contains(event.target as HTMLElement) &&
-        !event.defaultPrevented &&
-        handler()
+    const onClick = handler
+        ? (event: MouseEvent) =>
+              node &&
+              !node.contains(event.target as HTMLElement) &&
+              !event.defaultPrevented &&
+              handler()
+        : () => {}
 
     document.addEventListener('click', onClick, true)
 
