@@ -22,32 +22,34 @@
         : 'Select skills to practice'
 
     function close() {
-        $filtersExpanded = false
+        if ($filtersExpanded) {
+            $filtersExpanded = false
 
-        // When filters are closed, automatically close any dimension section without any selected skills
-        // This saves screen space the next time filters are opened.
-        $isDimensionOpen = Object.entries($isDimensionOpen).reduce(
-            (isSectionOpen, [dimensionId, isOpen]) => {
-                if (isOpen) {
-                    const skillsInDimension = content.dimensions.find(
-                        ({ id }) => id === dimensionId,
-                    )!.skills
-                    isSectionOpen[dimensionId] = skillsInDimension.some(
-                        (skillId) => $selectedSkills.includes(skillId),
-                    )
-                }
-                return isSectionOpen
-            },
-            {} as Record<Dimension['id'], boolean>,
-        )
+            // When filters are closed, automatically close any dimension section without any selected skills
+            // This saves screen space the next time filters are opened.
+            $isDimensionOpen = Object.entries($isDimensionOpen).reduce(
+                (isSectionOpen, [dimensionId, isOpen]) => {
+                    if (isOpen) {
+                        const skillsInDimension = content.dimensions.find(
+                            ({ id }) => id === dimensionId,
+                        )!.skills
+                        isSectionOpen[dimensionId] = skillsInDimension.some(
+                            (skillId) => $selectedSkills.includes(skillId),
+                        )
+                    }
+                    return isSectionOpen
+                },
+                {} as Record<Dimension['id'], boolean>,
+            )
+        }
     }
 </script>
 
 <!-- TODO: Add transition when opening and closing filters so the user understands what happens -->
+<!-- TODO: Decide if we want `use:clickOutside={close}` -->
 <details
     bind:open={$filtersExpanded}
     class="sticky top-0 z-10 flex text-stone-900 shadow-2xl"
-    use:clickOutside={$filtersExpanded ? close : undefined}
 >
     <summary
         class="flex h-14 cursor-pointer select-none items-center justify-between bg-stone-50 px-4 py-2"
