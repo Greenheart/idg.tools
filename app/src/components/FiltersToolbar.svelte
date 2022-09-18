@@ -15,7 +15,9 @@
 
 <div
     class={cx('sticky top-0 z-10 text-stone-900 shadow-2xl', className)}
-    on:click={() => ($filtersExpanded = !$filtersExpanded)}
+    on:click={() => {
+        $filtersExpanded = !$filtersExpanded
+    }}
 >
     <div
         class="relative flex h-16 cursor-pointer select-none items-center justify-between bg-stone-50 px-2 pt-2 pb-4 md:px-4"
