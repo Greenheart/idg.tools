@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { clickOutside } from '$lib/directives'
     import {
         selectedSkills,
         filtersExpanded,
@@ -19,7 +18,7 @@
 
     $: title = $selectedSkills.length
         ? `${pluralize('skill', $selectedSkills.length)} selected`
-        : 'Select skills to practice'
+        : 'Filter tools based on skills and tags'
 
     function close() {
         if ($filtersExpanded) {
@@ -45,11 +44,13 @@
     }
 </script>
 
+<!-- TODO: Refactor into a modal instead to make UX better on smaller screens. Still use sticky positioned filter toolbar. And add IDG colors to a border to distinguish it from the other content -->
+
 <!-- TODO: Add transition when opening and closing filters so the user understands what happens -->
 <!-- TODO: Decide if we want `use:clickOutside={close}` -->
 <details
     bind:open={$filtersExpanded}
-    class="sticky top-0 z-10 flex text-stone-900 shadow-2xl"
+    class="sticky top-0 z-10 -ml-4 -mr-4 flex text-stone-900 shadow-2xl"
 >
     <summary
         class="flex h-14 cursor-pointer select-none items-center justify-between bg-stone-50 px-4 py-2"
@@ -65,7 +66,7 @@
         {/if}
     </summary>
     <div
-        class={'grid gap-4 p-4 border-t border-stone-900 text-stone-900 bg-stone-900 lg:grid-cols-2'}
+        class="grid gap-4 border-t border-stone-900 bg-stone-900 p-4 text-stone-900"
     >
         <Skills {content} />
         <Button
