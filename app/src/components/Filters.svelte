@@ -59,7 +59,9 @@
     class="fixed inset-0 z-20 grid justify-items-center overflow-y-auto"
     initialFocus={apply}
 >
-    <DialogOverlay class="fixed inset-0 -z-10 h-full w-full bg-stone-900" />
+    <DialogOverlay
+        class="fixed inset-0 -z-10 h-full w-full backdrop-blur-2xl"
+    />
 
     <div class="w-full max-w-2xl sm:max-w-6xl">
         <div class="sr-only">
