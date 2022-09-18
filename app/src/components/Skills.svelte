@@ -2,6 +2,7 @@
     import { getSkillsInDimension } from '$shared/content-utils'
     import { cx, getColor } from '$lib/utils'
     import type { Content, Dimension } from '$shared/types'
+    import { isDimensionOpen } from '$lib/stores'
 
     import NumberOfSelectedSkills from './NumberOfSelectedSkills.svelte'
     import SkillButton from './SkillButton.svelte'
@@ -9,26 +10,18 @@
 
     export let content: Content
 
-    let isDimensionOpen: Record<Dimension['id'], boolean> = Object.values(
-        content.dimensions,
-    ).reduce((isDimensionOpen: Record<Dimension['id'], boolean>, dimension) => {
-        isDimensionOpen[dimension.id] = false
-        return isDimensionOpen
-    }, {})
-
     const onToggle = (
         event: Event & {
             currentTarget: EventTarget & HTMLElement
         },
         dimensionId: Dimension['id'],
     ) => {
-        isDimensionOpen = {
-            ...isDimensionOpen,
+        $isDimensionOpen = {
+            ...$isDimensionOpen,
             [dimensionId]: (
                 event?.target as unknown as EventTarget & HTMLDetailsElement
             ).open,
         }
-        return isDimensionOpen
     }
 
     let className = ''
@@ -41,6 +34,7 @@
         <details
             class="text-white"
             on:toggle={(event) => onToggle(event, dimensionId)}
+            open={$isDimensionOpen[dimensionId]}
         >
             <summary
                 class={cx(
@@ -57,7 +51,7 @@
                     </span>
                 </span>
                 <div class="flex items-center">
-                    <Expand open={isDimensionOpen[dimensionId]} />
+                    <Expand open={$isDimensionOpen[dimensionId]} />
                 </div>
             </summary>
             <div
