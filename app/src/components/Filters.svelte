@@ -53,7 +53,7 @@
 <Dialog
     open={$filtersExpanded}
     on:close={close}
-    class="fixed inset-0 z-20 grid justify-items-center overflow-y-auto"
+    class="fixed inset-0 z-20 grid justify-items-center overflow-y-auto pr-[15px]"
     unmount={false}
     initialFocus={applyButton}
 >
