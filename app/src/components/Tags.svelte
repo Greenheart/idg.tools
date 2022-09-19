@@ -27,7 +27,7 @@
     export { className as class }
 </script>
 
-<div class={cx('flex flex-wrap items-start gap-1 pr-6', className)}>
+<div class={cx('flex flex-wrap items-start gap-1 pr-6 select-none', className)}>
     {#each tags.slice(0, visible) as tag (tag.name)}
         <span
             on:click={interactive ? () => toggleTag(tag.id) : () => {}}

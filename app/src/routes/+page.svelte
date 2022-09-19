@@ -24,9 +24,10 @@
         visibleItems.useLocalStorage()
     })
 
-    $: mostRelevantTools = $selectedSkills.length
-        ? getMostRelevantContent(content, $selectedSkills)
-        : content.tools
+    $: mostRelevantTools =
+        $selectedSkills.length || $selectedTags.length
+            ? getMostRelevantContent(content, $selectedSkills, $selectedTags)
+            : content.tools
 </script>
 
 <div class:hidden={$isMenuOpen}>

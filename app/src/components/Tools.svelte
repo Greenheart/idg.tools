@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Content, Tool } from '$shared/types'
-    import { selectedSkills, visibleItems } from '$lib/stores'
+    import { selectedSkills, visibleItems, selectedTags } from '$lib/stores'
     import ToolPreview from './ToolPreview.svelte'
     import Button from './Button.svelte'
     import Link from './Link.svelte'
@@ -9,8 +9,9 @@
     export let tools: Tool[]
     export let content: Content
 
-    const resetSkills = () => {
+    const showAll = () => {
         $selectedSkills = []
+        $selectedTags = []
     }
 
     const showMore = () => {
@@ -28,7 +29,7 @@
                 >suggest new tools here</Link
             >!
         </p>
-        <Button on:click={resetSkills}>View all tools</Button>
+        <Button on:click={showAll}>Show all tools</Button>
     </div>
 {/each}
 
@@ -38,8 +39,8 @@
     {#if $visibleItems < tools.length}
         <Button on:click={showMore}>Show more</Button>
     {:else}
-        {#if $selectedSkills.length}
-            <Button on:click={resetSkills}>View all tools</Button>
+        {#if $selectedSkills.length || $selectedTags.length}
+            <Button on:click={showAll}>Show all tools</Button>
         {/if}
         {#if tools.length}
             <p>

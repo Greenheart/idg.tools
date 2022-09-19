@@ -1,5 +1,5 @@
 import { SKILLS_BY_DIMENSION } from '$shared/constants'
-import type { Content, ItemId, Skill, Tool } from '$shared/types'
+import type { Content, ItemId, Skill, Tag, Tool } from '$shared/types'
 
 export const randomInt = (min: number, max: number) =>
     Math.floor(Math.random() * (max - min + 1)) + min
@@ -63,12 +63,17 @@ export const mostRelevantContentFirst =
 export const getMostRelevantContent = (
     content: Content,
     selectedSkills: Skill['id'][],
+    selectedTags: Tag['id'][],
 ) =>
     content.tools
-        .filter((tool) =>
-            selectedSkills.every((skillId) =>
-                tool.relevancy.some(({ skill }) => skill === skillId),
-            ),
+        .filter(
+            (tool) =>
+                selectedSkills.every((skillId) =>
+                    tool.relevancy.some(({ skill }) => skill === skillId),
+                ) &&
+                selectedTags.every((tagId) =>
+                    tool.tags.some((id) => id === tagId),
+                ),
         )
         .sort(mostRelevantContentFirst(selectedSkills))
 

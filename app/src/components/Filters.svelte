@@ -78,7 +78,13 @@
             <Skills {content} />
 
             <Heading class="mt-4">Select tags</Heading>
-            <Tags tags={content.tags} inverted size="md" interactive />
+            <Tags
+                tags={content.tags}
+                inverted
+                size="md"
+                interactive
+                class="!gap-3 pr-0"
+            />
             <Button
                 bind:element={applyButton}
                 on:click={close}
