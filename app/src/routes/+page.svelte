@@ -55,7 +55,9 @@
         <p>
             This toolkit is co-created by and for the community, and we’re just
             getting started! Today, the library primarily contains methods from
-            the <Link href="/assets/report.pdf" class="font-underline font-bold"
+            the <Link
+                href="/assets/220919_IDG_Toolkit_v2.pdf"
+                class="font-underline font-bold"
                 >IDG Phase 2 Research Report</Link
             >. Now, we want to add more tools and resources, and make IDG.tools
             even better. <Link
