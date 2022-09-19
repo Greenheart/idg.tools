@@ -29,7 +29,9 @@ export const getBgOpacity = (routeId: string) => {
 export function truncateText(text: string, maxLength: number, separator = ' ') {
     const compact = text.replace(/\n/g, ' ')
     if (compact.length <= maxLength) return compact
-    const res = compact.slice(0, text.lastIndexOf(separator, maxLength))
+    const res = compact
+        .slice(0, text.lastIndexOf(separator, maxLength))
+        .replace(/,$/, '')
     return res.endsWith('.') ? res : res + '…'
 }
 
