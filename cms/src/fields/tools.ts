@@ -9,6 +9,7 @@ export const ToolsFields: CustomCmsField[] = [
         hint: "A short intro to catch the reader's interest. This will be visible in the search results and at the top of the tool's own page.",
         i18n: true,
         ...MARKDOWN_FIELD,
+        required: false,
     },
     {
         label: 'Description',

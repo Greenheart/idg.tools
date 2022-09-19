@@ -11,7 +11,7 @@
     $: ({ tool, skills, tags } = data)
 </script>
 
-<Heading class="text-5xl">{tool.name}</Heading>
+<Heading size={1}>{tool.name}</Heading>
 
 <Tags {tags} visible={3} class="pt-4" inverted />
 
