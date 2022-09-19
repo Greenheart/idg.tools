@@ -11,7 +11,12 @@
     export { className as class }
 </script>
 
-<div class={cx('flex flex-wrap items-start gap-2 pr-[29px]', className)}>
+<div
+    class={cx(
+        'flex flex-wrap items-start gap-2 pr-[29px] text-sm md:text-base',
+        className,
+    )}
+>
     {#each tool.relevancy
         .filter($selectedSkills.length ? ({ skill }) => $selectedSkills.includes(skill) : () => true)
         .slice(0, visible) as relevancy}
