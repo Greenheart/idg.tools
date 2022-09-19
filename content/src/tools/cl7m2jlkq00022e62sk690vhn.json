@@ -1,21 +1,21 @@
 {
   "en": {
-    "id": "cl7m2jlkq00022e62sk690vhn",
+    "resources": "* ACT is a non-profit, co-created open source initiative dedicated to\nthe alleviation of human suffering and the advancement of human well-being through research and practice grounded. There are several ACT self-help-books, courses and trainings for professionals available.\n\n* A quick search on the Internet will take you far. The official site for resources and more information and ACT can be found here: [https://contextualscience.org](https://contextualscience.org)\n\n* Explore books and digital resources where you can learn ACT or train ACT. For example, the non-profit platform 29k.org that has several free ACT courses and exercises.",
+    "name": "ACT (Acceptance and Commitment Therapy/Training)",
     "slug": "ml32209",
-    "name": "Acceptance and Commitment Therapy/Training (ACT)",
-    "description": "Acceptance and Commitment Therapy (ACT) is an evidence-based psychotherapeutic intervention coming out of the cognitive-behavioural tradition that mediates improvements in individuals’ psychological flexibility. Psychological flexibility consists of six core processes: acceptance, cognitive defusion, being present, self as context, values and committed action.\n\nEffects of working with ACT in e.g. coaching sessions are to increase psychological flexibility and have a more stable identity and sense of self. This has been demonstrated to have a number of positive effects, such as higher performance at cognitive tasks, increased quality in relations, decreased levels of stress and depression and decreased tendencies to get caught up in conspiracy theories. There are also exercises for developing the ability for perspective taking and long-term orientation, such as imagining what your guests might say about you at your 90-year birthday party.\n\nLearn more in the section about ACT in the [IDG field-kit](FIELD_KIT_LINK).",
+    "intro": "Acceptance commitment therapy / training (ACT) is a psychotherapeutic intervention that mediates improvements in individuals’ psychological flexibility. It can help the practitioner increase psychological flexibility and have a more stable identity and sense of self.",
     "relevancy": [
       {
         "skill": "ckzi3a4z90431e2n04kx2pbq2",
         "score": 90
       },
       {
-        "skill": "ckzi3blfz0687e2n0huf88a8y",
-        "score": 80
-      },
-      {
         "skill": "ckzi3b8sz0614e2n0ijnnazce",
         "score": 90
+      },
+      {
+        "skill": "ckzi3blfz0687e2n0huf88a8y",
+        "score": 80
       },
       {
         "skill": "ckzi3d9gp0942e2n0lvc6k1nh",
@@ -40,15 +40,28 @@
       {
         "skill": "ckzi3hqs63163e2n03h36pb73",
         "score": 60
+      },
+      {
+        "skill": "ckzi3eor91487e2n0qdoa639u",
+        "score": 40
+      },
+      {
+        "skill": "ckzi3ef9s1366e2n082dhihsm",
+        "score": 40
+      },
+      {
+        "skill": "ckzi3e4as1251e2n0fz614xn4",
+        "score": 50
       }
     ],
-    "actions": "There are several ACT self-help-books, courses and trainings for professionals available. A quick search on the Internet will take you far. The official site for resources and more information and ACT can be found here: <https://contextualscience.org>",
     "tags": [
       "cl7lzoeqy00002e62ke8rog8l",
       "cl7lzp6jh00012e623q59s9pf",
       "cl87r11sd00012e64lyugvbv2"
     ],
-    "resources": "* [https://contextualscience.org](https://contextualscience.org)"
+    "id": "cl7m2jlkq00022e62sk690vhn",
+    "description": "ACT is an evidence-based psychotherapeutic intervention that improves psychological flexibility, which consists of six core processes: acceptance, cognitive defusion, being present, self as context, values and committed action. Part of psychological flexibility can be seen as increasing your inner space. The other half is directed towards committed action, which comes from working with identifying one’s values and building new behavior towards goals that are aligned with these values. \n\nAlthough the connection to individuals’ engagement in sustainability issues is not that direct, nothing in the practice says that the values you identify shouldn’t align with e.g. the planetary boundaries.\n\nACT is a non-profit, co-created open source initiative. One can take ACT therapy or ACT training, but evidence shows that the practitioner can achieve equal effects from learning through both books and face-to-face counseling.\n\nHow it can help: ACT and improving psychological flexibility have been demonstrated to have a number of positive effects, such as higher performance at cognitive tasks, increased quality in relations, decreased levels of stress and depression and decreased tendencies to get caught up in conspiracy theories. There are also exercises for developing long-term perspectives and orientation.\n\nContributor: Fredrik Livheim",
+    "actions": "When starting ACT for the first time, try the following: \n\n1. Begin with differentiating oneself from one’s thoughts. For example, there is a big difference between thinking “I don’t matter to anyone” and “I am having the thought that I don’t matter.” \n2. Explore digital resources where you can learn ACT or train ACT. For example, the non-profit platform 29k.org that has several free ACT courses and exercises. \n3. The official site for resources for ACT can be found here: \\[https://contextualscience.org/](https://contextualscience.org/) Here you can explore ACT-self-help books, TED-talks on ACT, Free ACT Articles, Podcasts, Interviews, find a therapist and much more."
   },
   "sv": {
     "id": "cl7m2jlkq00022e62sk690vhn",

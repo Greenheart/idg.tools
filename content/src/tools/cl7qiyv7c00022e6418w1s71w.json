@@ -1,16 +1,18 @@
 {
   "en": {
-    "id": "cl7qiyv7c00022e6418w1s71w",
+    "resources": "* Johnson, B. 2020 And, Making a Difference by Leveraging Polarity, Paradox or Dilemma. Volume One: Foundations. HRD Press, MA, USA",
+    "name": "Personal Growth through a Polarity Lens",
     "slug": "a4324v9",
-    "name": "Personal growth through a polarity lens",
-    "tags": [
-      "cl7lzoeqy00002e62ke8rog8l",
-      "cl80nkv7900002e64os1wgo0u"
-    ],
-    "resources": "- Johnson, B. 1992 Polarity Management: Identifying and Managing Unsolvable Problems. HRD Press, MA, USA",
-    "actions": "- Learn more in the section about \"Personal growth through a polarity lens\" in the [IDG field-kit](FIELD_KIT_LINK).",
-    "description": "We often experience personal growth as going from something about ourselves that we would like to change. The Polarity Map is a wisdom organizer - the wisdom in you.\n\nGet an understanding of historic strengths while at the same time looking forward towards what you want to develop.",
+    "intro": "The Polarity Map organizes wisdom around your Greater Purpose Statement and your Deeper Fear.\n\nIt can help the practitioner to identify and manage seemingly unsolvable or paradoxical problems.",
     "relevancy": [
+      {
+        "skill": "ckzi3cvpf0851e2n00bcmzsgz",
+        "score": 80
+      },
+      {
+        "skill": "ckzi3dk3h1039e2n0qxij7ooh",
+        "score": 70
+      },
       {
         "skill": "ckzi3d9gp0942e2n0lvc6k1nh",
         "score": 70
@@ -20,7 +22,7 @@
         "score": 60
       },
       {
-        "skill": "ckzi3dk3h1039e2n0qxij7ooh",
+        "skill": "ckzi3ayvo0547e2n03lvu0goo",
         "score": 60
       },
       {
@@ -28,10 +30,17 @@
         "score": 50
       },
       {
-        "skill": "ckzi3gu6u2638e2n0fmr9gv86",
-        "score": 20
+        "skill": "ckzi3ezut1614e2n07fab18pt",
+        "score": 60
       }
-    ]
+    ],
+    "tags": [
+      "cl7lzoeqy00002e62ke8rog8l",
+      "cl80nkv7900002e64os1wgo0u"
+    ],
+    "id": "cl7qiyv7c00022e6418w1s71w",
+    "description": "The Polarity Map is a wisdom organizer. The wisdom is in you. At the top of the map is your GPS – Greater Purpose Statement, for example “personal growth.” At the bottom is the Deeper Fear of what will happen if you do not leverage this polarity well, for example “stuck” which indicates a lack of personal growth.\n\nHow it can help: The 8 sections of the map help you identify and manage seemingly unsolvable or paradoxical problems.\n\nContributor: Barry Johnsson",
+    "actions": "- Learn more in the section about \"Personal Growth through a Polarity Lens\" in the [IDG field-kit](FIELD_KIT_LINK)."
   },
   "sv": {
     "id": "cl7qiyv7c00022e6418w1s71w",

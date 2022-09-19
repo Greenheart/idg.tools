@@ -1,17 +1,14 @@
 {
   "en": {
-    "id": "cl7qkz7q300062e64ynyxxctu",
+    "resources": "* Chawla, L. (2020). Childhood nature connection and constructive hope: A review of research on connecting with nature and coping with environmental loss. People and Nature, 2(3), 619-642.\n\n* van Droffelaar, B. (2020). The Impact of a Wilderness-Based Training Program on Leadership Transformation. Doctoral thesis, Wageningen University, the Netherlands.\n\n* Dunlap, R. E., & Van Liere, K. D. (1978). The “new environmental paradigm”. The journal of environmental education, 9(4), 10-19.\n\n* Evans, G. W., Otto, S., & Kaiser, F. G. (2018). Childhood origins of young adult environmental behavior. Psychological science, 29(5), 679-687.\n\n* Ewert, A., Place, G., & Sibthorp, J. (2005). Early-life outdoor experiences and an individual's environmental attitudes. Leisure Sciences, 27(3), 225-239.\n\n* Gennvi, G. (2019). Nature Quest and The Inner Leadership. [https://www.youtube.com/watch?v=SfpAr-X8bGo](https://www.youtube.com/watch?v=SfpAr-X8bGo)\n\n* Mayer, F. S., & Frantz, C. M. (2004). The connectedness to nature scale: A measure of individuals’ feeling in community with nature. Journal of environmental psychology, 24(4), 503-515.\n\n- Visionary Films Stockholm (2016). Into the Great Mystery - A Reconnection to Nature. [https://vimeo.com/182526162](https://vimeo.com/182526162)",
+    "name": "Nature Quest",
     "slug": "sl72413",
-    "name": "Nature quest",
-    "description": "As disconnection is one of the main root-causes of the social-ecological crisis we are in, reconnection is one of the key processes required to make our world more sustainable. We need to reconnect both to ourselves as well as to the natural world. Research shows that we mainly protect and restore the natural world for the sake of relational values: due to attachment to a special place in nature and in general due to the feeling of being connected with nature. The assumption is that if we feel connected to nature, we will be less likely to harm it because harming the natural world would then be experienced like self-destruction.\n\nResearch shows that our level of connection to nature increases with time spent outdoors, especially with time spent in wild nature.\n\nLearn more in the section about the Dialectical Thought Form framework in the [IDG field-kit](FIELD_KIT_LINK).",
-    "actions": "* You can do a nature quest by participating in an organised retreat or by organising your own trip into nature. Wherever you go, in the end, it is always about reconnecting with the web of life, with our sense of belonging and oneness. We experience that nature is not only around us but that we are nature inside and recognize that we as humans are inseparable from the natural world.",
-    "resources": "- Gennvi, G. (2019). Nature Quest and The Inner Leadership. [https://www.youtube.com/watch?v=SfpAr-X8bGo](https://www.youtube.com/watch?v=SfpAr-X8bGo)\n\n- Visionary Films Stockholm (2016). Into the Great Mystery - A Reconnection to Nature. [https://vimeo.com/182526162](https://vimeo.com/182526162)\n\n- Chawla, L. (2020). Childhood nature connection and constructive hope: A review of research on connecting with nature and coping with environmental loss. People and Nature, 2(3), 619-642.\n\n- van Droffelaar, B. (2020). The Impact of a Wilderness-Based Training Program on Leadership Transformation. Doctoral thesis, Wageningen University, the Netherlands.\n\n- Dunlap, R. E., & Van Liere, K. D. (1978). The “new environmental paradigm”. The journal of environmental education, 9(4), 10-19.\n\n- Evans, G. W., Otto, S., & Kaiser, F. G. (2018). Childhood origins of young adult environmental behavior. Psychological science, 29(5), 679-687.\n\n- Ewert, A., Place, G., & Sibthorp, J. (2005). Early-life outdoor experiences and an individual's environmental attitudes. Leisure Sciences, 27(3), 225-239.\n\n- Mayer, F. S., & Frantz, C. M. (2004). The connectedness to nature scale: A measure of individuals’ feeling in community with nature. Journal of environmental psychology, 24(4), 503-515.",
-    "tags": [
-      "cl7lzoeqy00002e62ke8rog8l",
-      "cl7lzp6jh00012e623q59s9pf",
-      "cl87r11sd00012e64lyugvbv2"
-    ],
+    "intro": "Connections with nature have the potential to leverage deep societal change toward respect and care for our environment. It can help the practitioner recognize that we do not exist independently and that our sense of self includes nature, fostering pro-environmental behavior.",
     "relevancy": [
+      {
+        "skill": "ckzi3e4as1251e2n0fz614xn4",
+        "score": 100
+      },
       {
         "skill": "ckzi3ef9s1366e2n082dhihsm",
         "score": 100
@@ -25,26 +22,30 @@
         "score": 90
       },
       {
-        "skill": "ckzi3e4as1251e2n0fz614xn4",
-        "score": 70
-      },
-      {
         "skill": "ckzi3eor91487e2n0qdoa639u",
         "score": 60
       },
       {
-        "skill": "ckzi3cvpf0851e2n00bcmzsgz",
-        "score": 30
-      },
-      {
-        "skill": "ckzi3dk3h1039e2n0qxij7ooh",
-        "score": 40
-      },
-      {
         "skill": "ckzi3b8sz0614e2n0ijnnazce",
         "score": 60
+      },
+      {
+        "skill": "ckzi3hqs63163e2n03h36pb73",
+        "score": 60
+      },
+      {
+        "skill": "ckzi3hi072982e2n0r4cdkqjy",
+        "score": 50
       }
-    ]
+    ],
+    "tags": [
+      "cl7lzoeqy00002e62ke8rog8l",
+      "cl7lzp6jh00012e623q59s9pf",
+      "cl87r11sd00012e64lyugvbv2"
+    ],
+    "id": "cl7qkz7q300062e64ynyxxctu",
+    "description": "People mainly protect and restore the natural world for the sake of relational values: due to attachment to a special place in nature and in general due to the feeling of being connected with nature. Our level of connection to nature increases with time spent outdoors, especially with time spent in wild nature. Nature quests further develop emotional connection to the natural world, and deepen our awareness towards the environment and the relationship between humankind and the natural world.\n\nHow it can help: Expanding our sense of self so that it includes the natural world can foster pro environmental behavior, as we will be less likely to harm it because harming the natural world would then be experienced like self-destruction.\n\nContributor: Alina Stöver",
+    "actions": "When starting with a nature quest for the first time, try the following:\n\n1. Start by going on a walk in a forest and focus on relating to your surroundings, e.g. by naming the trees. Be aware of issues connected to nature such as environmental pollution, and the related actions you can take, e.g. not leaving trash behind.\n\n2. Observe what is already there: listen to the sounds around you, feel the ground which is carrying you, smell the air, taste it, and sink into your visual field. The aim is to leave everyday habits and patterns behind so that something new can emerge.\n\n3. Explore questions that may come to mind on the walk, such as: What is nature? And why does it matter? What is humanity's relationship to the natural world?"
   },
   "sv": {
     "id": "cl7qkz7q300062e64ynyxxctu",
