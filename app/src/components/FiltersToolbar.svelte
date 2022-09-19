@@ -33,7 +33,7 @@
                 on:click={resetFilters}
                 variant="inverted"
                 size="md"
-                tabindex="10">Reset</Button
+                tabindex="10">Clear filters</Button
             >
         {/if}
         <div class="absolute left-0 bottom-0 right-0 grid h-2 grid-cols-5">

@@ -73,7 +73,7 @@ export const getMostRelevantContent = (
                 selectedSkills.every((skillId) =>
                     tool.relevancy.some(({ skill }) => skill === skillId),
                 ) &&
-                selectedTags.every((tagId) =>
+                selectedTags.some((tagId) =>
                     tool.tags.some((id) => id === tagId),
                 ),
         )

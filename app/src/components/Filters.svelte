@@ -92,7 +92,7 @@
             <Heading>Select skills</Heading>
             <Skills {content} class="-ml-4 -mr-4" />
 
-            <Heading class="mt-4">Select tags</Heading>
+            <Heading class="mt-4">Content preferences</Heading>
             <Tags
                 tags={content.tags}
                 inverted
@@ -104,7 +104,7 @@
                 bind:element={applyButton}
                 on:click={close}
                 class="col-span-full my-4 max-w-xs justify-self-center"
-                >Apply filters</Button
+                >Show content</Button
             >
         </div>
     </div>
