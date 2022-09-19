@@ -22,7 +22,7 @@
 {#each tools.slice(0, $visibleItems) as tool (tool.link)}
     <ToolPreview {tool} {content} />
 {:else}
-    <div class="flex flex-col items-center space-y-4">
+    <div class="flex flex-col items-center space-y-4 pt-16 lg:col-span-2">
         <p>
             No published tools for these skills yet. Welcome to
             <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink"
@@ -38,16 +38,15 @@
 >
     {#if $visibleItems < tools.length}
         <Button on:click={showMore}>Show more</Button>
-    {:else}
+    {:else if tools.length}
+        <p>That's everything matching your search right now.</p>
         {#if $selectedSkills.length || $selectedTags.length}
             <Button on:click={showAll}>Show all tools</Button>
         {/if}
-        {#if tools.length}
-            <p>
-                Welcome to <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink"
-                    >suggest new tools here</Link
-                >!
-            </p>
-        {/if}
+        <p>
+            Welcome to <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink"
+                >suggest new tools here</Link
+            >!
+        </p>
     {/if}
 </div>
