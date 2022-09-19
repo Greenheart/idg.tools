@@ -1,9 +1,8 @@
 {
   "en": {
-    "id": "cl44ijlka0007rmpzbqao4czu",
     "name": "Meaning-making in a crisis",
-    "description": "In this course you will take the first step on a journey to a more meaningful life in these times of turmoil, based on what really matters to you, practice acceptance and work on finding your values.",
-    "actions": "* [Try \"Meaning-making in a crisis\" in the 29k app!](https://app.29k.org/meaning-making-in-a-crisis-idg)",
+    "slug": "z56tzf1",
+    "intro": "In this course you will take the first step on a journey to a more meaningful life in these times of turmoil, based on what really matters to you, practice acceptance and work on finding your values.",
     "relevancy": [
       {
         "skill": "ckzi3a4z90431e2n04kx2pbq2",
@@ -31,8 +30,10 @@
       "cl4mbzx5z00042e64g1ueu8vj",
       "cl37epfsz0159jgn0ytt4k64j"
     ],
-    "slug": "z56tzf1",
-    "link": "meaning-making-in-a-crisis-z56tzf1"
+    "link": "meaning-making-in-a-crisis-z56tzf1",
+    "id": "cl44ijlka0007rmpzbqao4czu",
+    "description": "29k is a Swedish foundation and one of the initiating partners of the IDGs initiative. 29k's mission is to democratise access to inner development. 29k does this via a non-profit, open-source digital platform that provides free access to evidence-based psychological tools for mental health and inner development. All interventions are co-created together with leading researchers on the topic in question. Check out more at [www.29k.org](https://29k.org).",
+    "actions": "* [Try \"Meaning-making in a crisis\" in the 29k app!](https://app.29k.org/meaning-making-in-a-crisis-idg)"
   },
   "sv": {
     "id": "cl44ijlka0007rmpzbqao4czu",

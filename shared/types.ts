@@ -19,6 +19,7 @@ export type Dimension = Item & {
 
 export type Tool = Item & {
     link: string
+    intro: string
     slug: string
     actions: string
     resources: string

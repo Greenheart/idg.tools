@@ -1,9 +1,8 @@
 {
   "en": {
-    "id": "cl44ijlka0008rmpz2pzf2yjs",
     "name": "Values",
-    "description": "In our everyday life, we easily lose touch with what matters to us. This is especially true when we’re dealing with a challenging situation. This course is focused on connecting to our core values as a powerful tool to take meaningful action in every moment of our lives.",
-    "actions": "* [Try \"Values\" in the 29k app!](https://app.29k.org/values-idg)",
+    "slug": "z68tzgs",
+    "intro": "In our everyday life, we easily lose touch with what matters to us. This is especially true when we’re dealing with a challenging situation. This course is focused on connecting to our core values as a powerful tool to take meaningful action in every moment of our lives.",
     "relevancy": [
       {
         "skill": "ckzi3a4z90431e2n04kx2pbq2",
@@ -95,8 +94,10 @@
       "cl4mbzx5z00042e64g1ueu8vj",
       "cl37epfsz0159jgn0ytt4k64j"
     ],
-    "slug": "z68tzgs",
-    "link": "values-z68tzgs"
+    "link": "values-z68tzgs",
+    "id": "cl44ijlka0008rmpz2pzf2yjs",
+    "description": "29k is a Swedish foundation and one of the initiating partners of the IDGs initiative. 29k's mission is to democratise access to inner development. 29k does this via a non-profit, open-source digital platform that provides free access to evidence-based psychological tools for mental health and inner development. All interventions are co-created together with leading researchers on the topic in question. Check out more at [www.29k.org](https://29k.org).",
+    "actions": "* [Try \"Values\" in the 29k app!](https://app.29k.org/values-idg)"
   },
   "sv": {
     "id": "cl44ijlka0008rmpz2pzf2yjs",

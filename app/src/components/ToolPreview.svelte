@@ -11,7 +11,7 @@
 
     const introLength = 300
 
-    $: intro = truncateText(tool.description, introLength)
+    $: intro = truncateText(tool.intro ?? tool.description, introLength)
 
     export let tool: Tool
     export let content: Content

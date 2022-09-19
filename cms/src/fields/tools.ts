@@ -4,6 +4,13 @@ export const ToolsFields: CustomCmsField[] = [
     ID,
     NAME,
     {
+        label: 'Intro',
+        name: 'intro',
+        hint: "A short intro to catch the reader's interest. This will be visible in the search results and at the top of the tool's own page.",
+        i18n: true,
+        ...MARKDOWN_FIELD,
+    },
+    {
         label: 'Description',
         name: 'description',
         hint: 'Describe how and why this tool helps people practice inner development for sustainable development.',

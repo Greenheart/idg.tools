@@ -15,6 +15,10 @@
 
 <Tags {tags} visible={3} class="pt-4" inverted />
 
+{#if tool.intro}
+    <Markdown source={tool.intro} class="pt-4 text-lg font-bold" />
+{/if}
+
 <Markdown source={tool.description} class="pt-4 text-lg" />
 
 <div class="mt-8 rounded-2xl bg-stone-50 p-4 text-stone-900">

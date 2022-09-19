@@ -1,9 +1,9 @@
 {
   "en": {
-    "id": "cl44ijlka0003rmpzc7xz0ntw",
+    "resources": "* Flaxman, PE & Bond FW. (2010) [A randomised worksite comparison of acceptance and commitment therapy and stress inoculation training](https://www.sciencedirect.com/science/article/pii/S0005796710000872). Behaviour Research and Therapy, 48:8.\n\n* Lloyd, J, Bond, FW & Flaxman, PE. (2013) [The value of psychological flexibility: Examining psychological mechanisms underpinning a cognitive behavioural therapy intervention for burnout](https://doi.org/10.1080/02678373.2013.782157), Work & Stress, 27:2.\n\n* Frögéli, E, Djordjevic, A, Rudman, A, Livheim, F & Gustavsson, P. (2016) [A randomized controlled pilot trial of acceptance and commitment training (ACT) for preventing stress-related ill health among future nurses](https://doi.org/10.1080/10615806.2015.1025765), Anxiety, Stress & Coping, 29:2\n\n* Bond, FW & Bunce, D. (2000) [Mediators of change in emotion-focused and problem-focused worksite stress management interventions](https://doi.org/10.1037/1076-8998.5.1.156). Journal of Occupational Health Psychology, 5:1.\n\n* Ek, D, Hedensjö, B & Livheim, F (2017). [Tid att leva: ett tioveckors program för stresshantering med ACT och medveten närvaro](https://www.nok.se/titlar/akademisk-psykologi/tid-att-leva/). Natur & Kultur, Stockholm.",
     "name": "Dealing with stress",
-    "description": "What would life look like if it was less stressful? In this course you'll get to explore ways to improve your ability to deal with stress and live a life that is more meaningful to you.",
-    "actions": "* [Try \"Dealing with stress\" in the 29k app!](https://app.29k.org/dealing-with-stress-idg)",
+    "slug": "z32tzib",
+    "intro": "What would life look like if it was less stressful? In this course you'll get to explore ways to improve your ability to deal with stress and live a life that is more meaningful to you.",
     "relevancy": [
       {
         "skill": "ckzi3a4z90431e2n04kx2pbq2",
@@ -26,20 +26,20 @@
         "score": 70
       }
     ],
-    "resources": "* Flaxman, PE & Bond FW. (2010) [A randomised worksite comparison of acceptance and commitment therapy and stress inoculation training](https://www.sciencedirect.com/science/article/pii/S0005796710000872). Behaviour Research and Therapy, 48:8.\n\n* Lloyd, J, Bond, FW & Flaxman, PE. (2013) [The value of psychological flexibility: Examining psychological mechanisms underpinning a cognitive behavioural therapy intervention for burnout](https://doi.org/10.1080/02678373.2013.782157), Work & Stress, 27:2.\n\n* Frögéli, E, Djordjevic, A, Rudman, A, Livheim, F & Gustavsson, P. (2016) [A randomized controlled pilot trial of acceptance and commitment training (ACT) for preventing stress-related ill health among future nurses](https://doi.org/10.1080/10615806.2015.1025765), Anxiety, Stress & Coping, 29:2\n\n* Bond, FW & Bunce, D. (2000) [Mediators of change in emotion-focused and problem-focused worksite stress management interventions](https://doi.org/10.1037/1076-8998.5.1.156). Journal of Occupational Health Psychology, 5:1.\n\n* Ek, D, Hedensjö, B & Livheim, F (2017). [Tid att leva: ett tioveckors program för stresshantering med ACT och medveten närvaro](https://www.nok.se/titlar/akademisk-psykologi/tid-att-leva/). Natur & Kultur, Stockholm.",
     "tags": [
       "cl4mbwmh400002e64dj6n7abw",
       "cl4mbzx5z00042e64g1ueu8vj",
       "cl37epfsz0159jgn0ytt4k64j"
     ],
-    "slug": "z32tzib",
-    "link": "dealing-with-stress-z32tzib"
+    "link": "dealing-with-stress-z32tzib",
+    "id": "cl44ijlka0003rmpzc7xz0ntw",
+    "description": "29k is a Swedish foundation and one of the initiating partners of the IDGs initiative. 29k's mission is to democratise access to inner development. 29k does this via a non-profit, open-source digital platform that provides free access to evidence-based psychological tools for mental health and inner development. All interventions are co-created together with leading researchers on the topic in question. Check out more at [www.29k.org](https://29k.org).",
+    "actions": "* [Try \"Dealing with stress\" in the 29k app!](https://app.29k.org/dealing-with-stress-idg)"
   },
   "sv": {
-    "id": "cl44ijlka0003rmpzc7xz0ntw",
+    "resources": "* Flaxman, PE & Bond FW. (2010) [A randomised worksite comparison of acceptance and commitment therapy and stress inoculation training](https://www.sciencedirect.com/science/article/pii/S0005796710000872). Behaviour Research and Therapy, 48:8.\n\n* Lloyd, J, Bond, FW & Flaxman, PE. (2013) [The value of psychological flexibility: Examining psychological mechanisms underpinning a cognitive behavioural therapy intervention for burnout](https://doi.org/10.1080/02678373.2013.782157), Work & Stress, 27:2.\n\n* Frögéli, E, Djordjevic, A, Rudman, A, Livheim, F & Gustavsson, P. (2016) [A randomized controlled pilot trial of acceptance and commitment training (ACT) for preventing stress-related ill health among future nurses](https://doi.org/10.1080/10615806.2015.1025765), Anxiety, Stress & Coping, 29:2\n\n* Bond, FW & Bunce, D. (2000) [Mediators of change in emotion-focused and problem-focused worksite stress management interventions](https://doi.org/10.1037/1076-8998.5.1.156). Journal of Occupational Health Psychology, 5:1.\n\n* Ek, D, Hedensjö, B & Livheim, F (2017). [Tid att leva: ett tioveckors program för stresshantering med ACT och medveten närvaro](https://www.nok.se/titlar/akademisk-psykologi/tid-att-leva/). Natur & Kultur, Stockholm.",
     "name": "Dealing with stress",
-    "description": "What would life look like if it was less stressful? In this course you'll get to explore ways to improve your ability to deal with stress and live a life that is more meaningful to you.",
-    "actions": "* [Try \"Dealing with stress\" in the 29k app!](https://app.29k.org/dealing-with-stress-idg)",
+    "slug": "z32tzib",
     "relevancy": [
       {
         "skill": "ckzi3a4z90431e2n04kx2pbq2",
@@ -62,13 +62,14 @@
         "score": 70
       }
     ],
-    "resources": "* Flaxman, PE & Bond FW. (2010) [A randomised worksite comparison of acceptance and commitment therapy and stress inoculation training](https://www.sciencedirect.com/science/article/pii/S0005796710000872). Behaviour Research and Therapy, 48:8.\n\n* Lloyd, J, Bond, FW & Flaxman, PE. (2013) [The value of psychological flexibility: Examining psychological mechanisms underpinning a cognitive behavioural therapy intervention for burnout](https://doi.org/10.1080/02678373.2013.782157), Work & Stress, 27:2.\n\n* Frögéli, E, Djordjevic, A, Rudman, A, Livheim, F & Gustavsson, P. (2016) [A randomized controlled pilot trial of acceptance and commitment training (ACT) for preventing stress-related ill health among future nurses](https://doi.org/10.1080/10615806.2015.1025765), Anxiety, Stress & Coping, 29:2\n\n* Bond, FW & Bunce, D. (2000) [Mediators of change in emotion-focused and problem-focused worksite stress management interventions](https://doi.org/10.1037/1076-8998.5.1.156). Journal of Occupational Health Psychology, 5:1.\n\n* Ek, D, Hedensjö, B & Livheim, F (2017). [Tid att leva: ett tioveckors program för stresshantering med ACT och medveten närvaro](https://www.nok.se/titlar/akademisk-psykologi/tid-att-leva/). Natur & Kultur, Stockholm.",
     "tags": [
       "cl4mbwmh400002e64dj6n7abw",
       "cl4mbzx5z00042e64g1ueu8vj",
       "cl37epfsz0159jgn0ytt4k64j"
     ],
-    "slug": "z32tzib",
-    "link": "dealing-with-stress-z32tzib"
+    "link": "dealing-with-stress-z32tzib",
+    "id": "cl44ijlka0003rmpzc7xz0ntw",
+    "description": "What would life look like if it was less stressful? In this course you'll get to explore ways to improve your ability to deal with stress and live a life that is more meaningful to you.",
+    "actions": "* [Try \"Dealing with stress\" in the 29k app!](https://app.29k.org/dealing-with-stress-idg)"
   }
 }
