@@ -4,7 +4,8 @@
     import Button from './Button.svelte'
     import { cx } from '$lib/utils'
 
-    function resetFilters() {
+    function resetFilters(event: MouseEvent) {
+        event.stopPropagation()
         $selectedSkills = []
         $selectedTags = []
     }
