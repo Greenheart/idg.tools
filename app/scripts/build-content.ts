@@ -164,6 +164,28 @@ const prepareTools = (
     })
 }
 
+const prepareTags = (
+    translatedTools: Translated<Tool>[],
+    translatedTags: Translated<Tag>[],
+    selectedLanguages: Language[],
+) => {
+    return translatedTags.filter((translatedTag) => {
+        for (const [language, tag] of Object.entries(translatedTag)) {
+            if (!selectedLanguages.includes(language as Language)) continue
+            const tagIsUsedBySomeTool = translatedTools.some((translatedTool) =>
+                translatedTool[language as Language]?.tags?.includes?.(tag.id),
+            )
+            if (!tagIsUsedBySomeTool) {
+                console.warn(
+                    `[content] Tag "${tag.name}" with id "${tag.id}" is not used in any tool.`,
+                )
+                return false
+            }
+        }
+        return true
+    }, {})
+}
+
 const loadContent = async (contentTypes: Array<keyof Content>) => {
     const paths = await getContentPaths(contentTypes)
 
@@ -196,10 +218,9 @@ const prepareContent = (
     content: ProcessingTranslatedContent,
     selectedLanguages: Language[] = LANGUAGE_TAGS,
 ) => {
-    return {
-        ...content,
-        tools: prepareTools(content.tools, content.tags, selectedLanguages),
-    }
+    const tools = prepareTools(content.tools, content.tags, selectedLanguages)
+    const tags = prepareTags(tools, content.tags, selectedLanguages)
+    return { ...content, tools, tags }
 }
 
 const orderToolsConsistently = (builtContent: Translated<Content>) => {
@@ -216,6 +237,9 @@ const orderToolsConsistently = (builtContent: Translated<Content>) => {
 
     return builtContent
 }
+
+// IDEA: Remove tags without any content in production build. Also warn about it.
+// IDAE: Also sort tags by name, alphabetically
 
 const rawContent = await loadContent(['tools', 'skills', 'dimensions', 'tags'])
 
