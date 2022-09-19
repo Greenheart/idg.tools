@@ -69,6 +69,8 @@ const getContentPaths = (contentTypes: Array<keyof Content>) =>
         ),
     )
 
+const sortNamesAlphabetically = (a: Tag, b: Tag) => a.name.localeCompare(b.name)
+
 const prepareTools = (
     translatedTools: Translated<Tool>[],
     translatedTags: Translated<Tag>[],
@@ -125,7 +127,7 @@ const prepareTools = (
 
             const tagsSortedAlphabetically = tool.tags
                 .map((t) => getTag(t, { tags }))
-                .sort((a, b) => a.name.localeCompare(b.name))
+                .sort(sortNamesAlphabetically)
                 .map((t) => t.id)
 
             tool.tags = tagsSortedAlphabetically
@@ -209,7 +211,7 @@ const splitContentByLang = (
             tools: getByLang(content.tools, lang),
             skills: getByLang(content.skills, lang),
             dimensions: getByLang(content.dimensions, lang),
-            tags: getByLang(content.tags, lang),
+            tags: getByLang(content.tags, lang).sort(sortNamesAlphabetically),
         }
         return result
     }, {} as Translated<Content>)
@@ -237,9 +239,6 @@ const orderToolsConsistently = (builtContent: Translated<Content>) => {
 
     return builtContent
 }
-
-// IDEA: Remove tags without any content in production build. Also warn about it.
-// IDAE: Also sort tags by name, alphabetically
 
 const rawContent = await loadContent(['tools', 'skills', 'dimensions', 'tags'])
 
