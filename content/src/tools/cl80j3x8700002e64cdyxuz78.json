@@ -1,8 +1,9 @@
 {
   "en": {
-    "id": "cl80j3x8700002e64cdyxuz78",
+    "resources": "- Chhokar, J. S., Brodbeck, F. C., & House, R. J. (2007). Culture and leadership across the world: The GLOBE book of in-depth studies of 25 societies. London: Erlbaum.\n- Hofstede, G., G. J. Hofstede & M. Minkov (2010). Cultures and Organizations: Software of the Mind, Third Edition: Intercultural Cooperation and Its Importance for Survival, McGraw- Hill Professional.\n- Erin, M. (2014). The Culture Map: Breaking Through the Invisible Boundaries of Global Business, PublicAffairs.\n- Ting-Toomey, S., & Oetzel, J. G. (2001). Managing intercultural conflict effectively. Oaks, CA: SAGE.\n- Trompenaars, F., & Hampden-Turner, C. (2020). Riding the waves of culture: Understanding diversity in global business. Hachette UK.",
+    "name": "Training in Intercultural Competence",
     "slug": "gk1240c",
-    "name": "Training in intercultural competence",
+    "intro": "Training in intercultural competence can include earning about common dimensions of cultural differences in endeavors involving participants with different cultural backgrounds. It can help the practitioner reduce the risk of misunderstandings, frictions and outright conflict.",
     "relevancy": [
       {
         "skill": "ckzi3g17e2167e2n055jpiaaz",
@@ -23,15 +24,31 @@
       {
         "skill": "ckzi3cvpf0851e2n00bcmzsgz",
         "score": 65
+      },
+      {
+        "skill": "ckzi3fnea2022e2n0r588if1r",
+        "score": 90
+      },
+      {
+        "skill": "ckzi3ezut1614e2n07fab18pt",
+        "score": 70
+      },
+      {
+        "skill": "ckzi3gu6u2638e2n0fmr9gv86",
+        "score": 70
+      },
+      {
+        "skill": "ckzi3h80v2807e2n0l44d20qr",
+        "score": 50
       }
     ],
-    "description": "Training in intercultural awareness can be crucially important in endeavors involving participants with different cultural backgrounds, by reducing the risk of misunderstandings, frictions and outright conflict, as well as by facilitating personal and collective development through a broader repertoire of values and behaviors.\n\nThe most well-known and relevant dimensions for cultural differences are (following Hofstede) power distance, individualism/collectivism, femininity/masculinity and uncertainty avoidance. Such diffe­rences (and others) can influence communication and collaboration practices, relationship building, leadership and followership and attitudes toward gender roles. Training in intercultural competence can include learning about common dimensions for cultural differences through lectures and reading, reflecting on others’ or own experiences with intercultural conflict, and conducting group simulations and communication exercises. It should be recognized, though, that some scholars and practitioners caution against the risks of stereotyping when using frameworks like Hofstede’s and advocate a more open-ended approach to training in intercultural awareness. Intercultural training should be designed to minimize the risk of stereotyping, while offering clear examples of how cultural differences potentially can be problematic, and providing guidance on insights and skills that increase the capacity for creative collaboration across cultural differences.\n\nThe volume of empirical research on intercultural differences is very large. There are also many books and articles written for the general public with the purpose of strengthening skills in intercultural collaboration. Training in intercultural competence has been around for a very long time, there is a large community of skilled trainers using different approaches.\n\nLearn more in the section about \"Training in intercultural competence\" in the [IDG field-kit](FIELD_KIT_LINK).",
     "tags": [
       "cl7lzp6jh00012e623q59s9pf",
       "cl87r11sd00012e64lyugvbv2"
     ],
-    "resources": "- Chhokar, J. S., Brodbeck, F. C., & House, R. J. (2007). Culture and leadership across the world: The GLOBE book of in-depth studies of 25 societies. London: Erlbaum.\n- Hofstede, G., G. J. Hofstede & M. Minkov (2010). Cultures and Organizations: Software of the Mind, Third Edition: Intercultural Cooperation and Its Importance for Survival, McGraw- Hill Professional.\n- Erin, M. (2014). The Culture Map: Breaking Through the Invisible Boundaries of Global Business, PublicAffairs.\n- Ting-Toomey, S., & Oetzel, J. G. (2001). Managing intercultural conflict effectively. Oaks, CA: SAGE.\n- Trompenaars, F., & Hampden-Turner, C. (2020). Riding the waves of culture: Understanding diversity in global business. Hachette UK.",
-    "actions": "- Explore the resources below to find more concrete examples\n\n- Welcome to suggest more ways of practicing these skills!"
+    "id": "cl80j3x8700002e64cdyxuz78",
+    "description": "When working with people with different cultural backgrounds, such as international collaboration on the SDGs, cultural differences may constitute a considerable conflict potential. The most well-known and relevant dimensions for cultural differences are power distance, individualism/collectivism, femininity/masculinity and uncertainty avoidance, which can influence communication and collaboration practices, relationship building, leadership and followership and attitudes toward gender roles. \n\nTraining in intercultural competence can include learning about common dimensions for cultural differences through lectures and reading, reflecting on others’ or own experiences with intercultural conflict, and conducting group simulations and communication exercises. \n\nA more open-ended approach to training in intercultural awareness can help reduce the risk of stereotyping, while offering clear examples of how cultural differences potentially can be problematic, and providing guidance on insights and skills that increase the capacity for creative collaboration across cultural differences. \n\nHow it can help: Training in intercultural awareness can reduce the risk of misunderstandings, frictions and outright conflict in endeavors involving participants with different cultural backgrounds, as well as facilitate personal and collective development through a broader repertoire of values and behavior. ",
+    "actions": "When starting with training in intercultural competence for the first time, try the following: \n\n1. Seek out books and articles written for the general public with the purpose of strengthening skills in intercultural collaboration. \n\n2. Identified facilitated training on an individual or group level that can include readings, lectures, reflections, and group simulation and communication exercises."
   },
   "sv": {
     "id": "cl80j3x8700002e64cdyxuz78",

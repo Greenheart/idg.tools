@@ -1,14 +1,9 @@
 {
   "en": {
-    "id": "cl80jnj0q00042e64nc1o4ws9",
+    "resources": "- Stefan Dahlberg, Competenscompagniet",
+    "name": "The Shield",
     "slug": "1w524fl",
-    "name": "The shield",
-    "tags": [
-      "cl7lzp6jh00012e623q59s9pf",
-      "cl80nkv7900002e64os1wgo0u"
-    ],
-    "description": "This is an exercise with many purposes but mainly to get the participants to talk about and share themselves, as well as getting to know each other. The aim may also be to create a climate of trust.\n\nThis exercise can have different outcomes depending on the group, what is shared and how met. You may have to take a little height because the rendering may take a little extra time depending on what emerges.\n\nThe exercise is for three participants or more and takes 30 min to 4 hours to do. Material needed is paper (preferably flip-chart size) and pen (preferably whiteboard variety).",
-    "actions": "1. Hand out paper and pencil to the participants, one for each. Instruct on a blackboard or whiteboard (or own paper) how the exercise is carried out before the participants are allowed to start.\n2. Participants are asked to draw a shield on the paper, which is then divided into four parts. The shield should cover as much of the paper as possible.\n3. In each quarter, participants are asked to describe themselves based on four different themes. It is essential that participants use pictures and not words.\n4. The themes can be varied, but suggestions can be, for example: \nThis describes me…; A difficulty I got over…; I am proud of this…; This is what you didn't know about me…; Then I made myself disappear…; My dream is to… ; In twenty years…\n5. The participants then show their presentations one by one and give an oral presentation for about a minute.\n6. When the participants present their creations, those listening are invited to take notes and provide positive feedback on the presentations. Inform that this is to be saved for later.\n7. When everyone has given their speech, the group leader can either continue with the exercise immediately or ask to come back with the next step later. Both options have their pros and cons.\n8. Feedback. Arrange the group's chairs in a circle formation. Ask the participants to produce the feedback that was recorded. The participants must now, one by one, turn away outward from the group when feedback is given. When feedback is given, the person receiving feedback must only listen and not comment. Feedback is then given in a round; the person sitting to the left of it starts receiving feedback, and then goes clockwise.\n9. When everyone has given their feedback, the person who received feedback turns back to the group and says thanks to the group.\n10. When everyone has gone around the group, the group gets to tell what they experienced and reflect on what this aroused.\n",
+    "intro": "This shield is an exercise for three or more participants that takes 30 min to 4 hours to do. It’s main purpose is to get the participants to talk about and share about themselves. \n\nIt can help groups connect, get to know each other, and create a climate of trust.",
     "relevancy": [
       {
         "skill": "ckzi3gb7f2318e2n04kesx118",
@@ -41,9 +36,19 @@
       {
         "skill": "ckzi3b8sz0614e2n0ijnnazce",
         "score": 60
+      },
+      {
+        "skill": "ckzi3g17e2167e2n055jpiaaz",
+        "score": 90
       }
     ],
-    "resources": "- Stefan Dahlberg, Competenscompagniet"
+    "tags": [
+      "cl7lzp6jh00012e623q59s9pf",
+      "cl80nkv7900002e64os1wgo0u"
+    ],
+    "id": "cl80jnj0q00042e64nc1o4ws9",
+    "description": "The shield is an exercise with many purposes but mainly to get the participants to talk about and share about themselves, as well as getting to know each other. The exercise is for three participants or more and takes 30 min to 4 hours to do. Material needed is paper (preferably flip-chart size) and pen (preferably whiteboard variety). Psychological safety is best conceptualized as a group phenomena, but it cannot be achieved without engagement from all team members. Individual awareness and actions will contribute to increased psychological safety in a group they are a part of. \n\nHow it can help: This exercise can help participants share deeper about themselves and create a climate of trust.",
+    "actions": "When starting with the shield for the first time, try the following: \n\n1. Hand out a paper and pencil to each participant, one for each. \n\n2. Ask participants to draw a large shield on the paper, which is then divided into four parts. \n\n3. In each quarter, participants are asked to describe themselves based on four different themes. It is essential that participants use pictures and not words. The themes can be varied, but suggestions can be, for example: This describes me…; A difficulty I got over…; I am proud of this…; This is what you didn't know about me…; Then I made myself disappear…; My dream is to… ; In twenty years… \n\n4. The participants then share their shields one by one and give a short oral presentation for about a minute. Those listening are invited to take notes and provide positive feedback on the presentations. This feedback is saved for later for the optional feedback session. \n\n5. When everyone has presented their shields, the exercise can end, or can continue with a feedback session. During the feedback session, the participants must, one by one, turn away outward from the group. When feedback is given, the person receiving feedback must only listen and not comment. Feedback is then given in a round; the person sitting to the left of it starts receiving feedback, and then goes clockwise. When everyone has given their feedback, the person who received feedback turns back to the group and says thanks to the group."
   },
   "sv": {
     "id": "cl80jnj0q00042e64nc1o4ws9",

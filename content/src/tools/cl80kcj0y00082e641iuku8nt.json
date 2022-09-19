@@ -1,8 +1,9 @@
 {
   "en": {
-    "id": "cl80kcj0y00082e641iuku8nt",
+    "resources": "- Collective Encounters, UK: A leading arts organisation specialising in theatre for social change [https://collective-encounters.org.uk/](https://collective-encounters.org.uk/)\n- Cardboard Citizens, UK: An innovative arts organisation dedicated to addressing social inequities and injustices though creative practice [https://cardboardcitizens.org.uk/](https://cardboardcitizens.org.uk/)\n- Creativity & Transformation: A 10-week online learning course, exploring how creativity engenders inner development and social change [https://www.aleftrust.org/open-learning-list/creativity-transformation/](https://www.aleftrust.org/open-learning-list/creativity-transformation/)",
+    "name": "Arts, Creativity and Imagination",
     "slug": "36924it",
-    "name": "Arts, creativity & imagination",
+    "intro": "Multi-disciplinary arts practices are used in many sectors to liberate people from normative identities and structures. Creative practice can help people increase their health and well-being, as well as enhance their empathy and compassion, empowering them to care more for others.",
     "relevancy": [
       {
         "skill": "ckzi3h80v2807e2n0l44d20qr",
@@ -30,16 +31,29 @@
       },
       {
         "skill": "ckzi3ezut1614e2n07fab18pt",
+        "score": 70
+      },
+      {
+        "skill": "ckzi3hi072982e2n0r4cdkqjy",
+        "score": 80
+      },
+      {
+        "skill": "ckzi3fnea2022e2n0r588if1r",
+        "score": 60
+      },
+      {
+        "skill": "ckzi3g17e2167e2n055jpiaaz",
         "score": 60
       }
     ],
-    "description": "Many people engage with creative activities as a hobby, and when asked they will readily affirm that creative activities bring them relaxation, as well as enjoyment and fun. Beyond providing personal entertainment and relief from the stresses of everyday life, creative practices have demonstrated health and wellbeing benefits which in turn lead to greater courage, optimism and perseverance. In many countries around the world arts practices are now woven into healthcare and social care.\n\nResearchers working in arts and social change highlight the value and power of creative methods in projects envisioning change (e.g., Pereira, Hichert, Hamann, Preiser & Biggs, 2018). Creative methods can help generate visionary narratives and pilot initiatives that help seed more benign futures in the present. Underpinning these visions is the understanding that the imagination – through images, metaphors and language – has generative power.\n\nCreativity and the arts enable people to liberate themselves from normative identities and structures and follow imagination’s wild and spontaneous flow, increasing their potential to care for the world and drive change.\n\nLearn more in the section about \"Arts, creativity & imagination\" in the [IDG field-kit](FIELD_KIT_LINK).",
-    "actions": "- Explore ways to be creative both on your own and together with others.\n\n- Explore the resources below to learn more.",
     "tags": [
       "cl7lzoeqy00002e62ke8rog8l",
-      "cl87r11sd00012e64lyugvbv2"
+      "cl87r11sd00012e64lyugvbv2",
+      "cl7lzp6jh00012e623q59s9pf"
     ],
-    "resources": "- Collective Encounters, UK: A leading arts organisation specialising in theatre for social change [https://collective-encounters.org.uk/](https://collective-encounters.org.uk/)\n- Cardboard Citizens, UK: An innovative arts organisation dedicated to addressing social inequities and injustices though creative practice [https://cardboardcitizens.org.uk/](https://cardboardcitizens.org.uk/)\n- Creativity & Transformation: A 10-week online learning course, exploring how creativity engenders inner development and social change [https://www.aleftrust.org/open-learning-list/creativity-transformation/](https://www.aleftrust.org/open-learning-list/creativity-transformation/)"
+    "id": "cl80kcj0y00082e641iuku8nt",
+    "description": "Creativity and the arts enable people to liberate themselves from normative identities and structures and follow imagination’s wild and spontaneous flow. This can increase people’s potential to care for the world, work well with others, and drive change. \n\nBeyond providing personal entertainment and relief from the stresses of everyday life, arts practices are now woven into healthcare and social care for their demonstrated health and well-being benefits. Hospitals and surgeries are being re-envisioned with innovative arts designs that are said to enhance patient experience and speed up recovery. See Institute for Medical Humanities for an interdisciplinary example. \n\nMulti-disciplinary arts practices are now widely used in education, community development, restorative justice, and peace-building, enabling self-exploration, dialogue and healing. Creative methods can help generate visionary narratives and pilot initiatives that help seed more benign futures in the present. Underpinning these visions is the understanding that the imagination – through images, metaphors and language – has generative power.\n\nHow it can help: How it can help: Creative practices have demonstrated health and well-being benefits which in turn lead to greater courage, optimism and perseverance. They also lead to more active citizenship and enhance social skills, as well as empathy and compassion, empowering people to care more for others.\n\nContributor: Jessica Bockler",
+    "actions": "When starting with arts practices for the first time, try the following: \n\n1. Consider how you engage or might engage with creative activities as a hobby. \n\n2. Identify a creative activity that brings you relaxation and inspiration as well as enjoyment & fun.\n \n3. Explore opportunities for synergies between your everyday work and your creative activities. Consider where your creativity might innovate or reframe your work, enabling you to shift from established rules, norms and structures, discovering new ways of doing and being through play or imagination."
   },
   "sv": {
     "id": "cl80kcj0y00082e641iuku8nt",

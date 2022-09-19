@@ -1,16 +1,9 @@
 {
   "en": {
-    "id": "cl80jdasm00022e64t8gn810v",
-    "slug": "tx324p1",
-    "name": "Psychological safety",
-    "description": "Psychological safety refers to the experience of being able to be oneself in a group without fear of being rejected or ridiculed by other group members. Or in the words of Amy Edmondson, professor at Harvard and very much associated with this concept, “a team-climate characterized by interpersonal trust and mutual respect”. Teams with a high degree of psychological safety are open about their mistakes and are encouraged to talk about and learn from them. The concept of psychological safety applies to groups/teams and organizational settings where individuals are highly dependent on each other and are working towards a common goal. Without the help from all individuals in the group, the goal is hard to reach.\n\nThere has been a lot of research on psychological safety at the individual, group and organizational level showing that a high degree of psychological safety can lead to increased performance, increased learning, and higher work satisfaction.\n\nLearn more in the section about \"Psychological safety\" in the [IDG field-kit](FIELD_KIT_LINK).",
-    "actions": "- Even though psychological safety is a group concept and cannot be achieved without  engagement from all team members, there are a lots of things an individual can do to increase the psychological safety in a group they are a part of. Small behaviors such as asking questions, being interested in and respectful to other group members, accepting differences in personality, making sure everyone is included in conversations and decisions, asking for the opinion of others, speaking up about your own mistakes and trying new behaviors in the group.\n\n- Here, we need help to find good ways of developing psychological safety. Welcome to contribute!",
-    "tags": [
-      "cl7lzoeqy00002e62ke8rog8l",
-      "cl7lzp6jh00012e623q59s9pf",
-      "cl87r11sd00012e64lyugvbv2"
-    ],
     "resources": "- Rework with google: Understanding team effectiveness - Tool: Foster psychological safety\n[https://rework.withgoogle.com/guides/understanding-team-effectiveness/steps/foster-psychological-safety/](https://rework.withgoogle.com/guides/understanding-team-effectiveness/steps/foster-psychological-safety/)\n- Edmonson, A. C. and Lei, Z. (2014). Psychological Safety: The History, Renaissance, and Future of an Interpersonal Construct. [https://www.ixistenz.ch/objectcomponent774.pdf](https://www.ixistenz.ch/objectcomponent774.pdf)\n- The fearless organization: [https://fearlessorganization.com/](https://fearlessorganization.com/)",
+    "name": "Psychological Safety",
+    "slug": "tx324p1",
+    "intro": "Psychological safety refers to the experience of being able to be oneself in a group without fear of being rejected or ridiculed by other group members. It can help teams increase performance, increase learning, and have higher work satisfaction.",
     "relevancy": [
       {
         "skill": "ckzi3fnea2022e2n0r588if1r",
@@ -18,7 +11,7 @@
       },
       {
         "skill": "ckzi3gb7f2318e2n04kesx118",
-        "score": 80
+        "score": 100
       },
       {
         "skill": "ckzi3gknp2475e2n0dm59ikcn",
@@ -43,8 +36,20 @@
       {
         "skill": "ckzi3ezut1614e2n07fab18pt",
         "score": 50
+      },
+      {
+        "skill": "ckzi3f9cj1747e2n0taoxah1j",
+        "score": 100
       }
-    ]
+    ],
+    "tags": [
+      "cl7lzoeqy00002e62ke8rog8l",
+      "cl7lzp6jh00012e623q59s9pf",
+      "cl87r11sd00012e64lyugvbv2"
+    ],
+    "id": "cl80jdasm00022e64t8gn810v",
+    "description": "Psychological safety refers to the experience of being able to be oneself in a group without fear of being rejected or ridiculed by other group members. Teams with a high degree of psychological safety are open about their mistakes and are encouraged to talk about and learn from them. The concept of psychological safety applies to groups/teams and organizational settings where individuals are highly dependent on each other and are working towards a common goal. Without the help from all individuals in the group, the goal is hard to reach. \n\nPsychological safety is best conceptualized as a group phenomena, but it cannot be achieved without engagement from all team members. Individual awareness and actions will contribute to increased psychological safety in a group they are a part of.\n\nHow it can help: A high degree of psychological safety can lead to increased performance, increased learning, and higher work satisfaction. \n\nContributor: Kristofer Vernmark",
+    "actions": "When starting with the shield for the first time, try the following: \n\n1. Hand out a paper and pencil to each participant, one for each. \n2. Ask participants to draw a large shield on the paper, which is then divided into four parts. \n3. Speak up about your own mistakes"
   },
   "sv": {
     "id": "cl80jdasm00022e64t8gn810v",

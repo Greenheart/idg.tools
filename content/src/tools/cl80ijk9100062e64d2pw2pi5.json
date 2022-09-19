@@ -1,14 +1,9 @@
 {
   "en": {
-    "id": "cl80ijk9100062e64d2pw2pi5",
+    "resources": "- Bunker, B. B. & Alban, B. (2006). The handbook of large group methods: Creating systemic change in organizations and communities. Chichester, England: John Wiley & Sons.\n- Holman, P., Devane, T. & Cady, S. (Eds.) (2007). The change handbook: The definitive resource on today's best methods for engaging whole systems. San Francisco, CA: Berrett-Koehler Publishers.\n- Jordan, T. (2014). Deliberative Methods for Complex Issues: A typology of functions that may need scaffolding. Group Facilitation: A Research and Applications Journal, Nr 13, pp. 50-71.\n- Rosenhead J, & Mingers, J. (Eds.) (2001). Rational analysis for a problematic world revisited: Problem structuring methods for complexity, uncertainty and conflict. Chichester, England: John Wiley & Sons.\n- Ross, S. N. (2006). The integral process for working on complex issues: Public issues edition. (4th Ed.) Bethel, OH: ARINA, Inc.\n- Wilkinson, M. (2004). The secrets of facilitation: The S.M.A.R.T. guide to getting results with groups. San Francisco, CA: Jossey-Bass.",
+    "name": "Methods for Scaffolding Collaboration on Complex Issues",
     "slug": "ah724my",
-    "name": "Methods for scaffolding collaboration on complex issues",
-    "tags": [
-      "cl7lzp6jh00012e623q59s9pf",
-      "cl87r11sd00012e64lyugvbv2"
-    ],
-    "description": "When issues are very complex, no single actor possesses the knowledge and competences that have to be weighed in and used when developing action plans. In particular when stakeholders with quite different interests, perspectives, roles and knowledge base are involved, there is also a considerable potential for miscommunication, lack of trust, lack of shared focus and outright conflict.\n\nOver the last five decades or so, a very large number of methods have been developed in order to scaffold productive collaboration and overcome interest conflicts among diverse stakeholders. Some examples (of very many) of such methods are: TIP, The Integral Process for Working on Complex Issues; Soft Systems Methodology; Open Space; Future Search; the Strategic Choice Approach, WorkOut, the Consensus-Based Approach, the Inquiry-Based Approach, Deep Democracy and Future Workshops.\n\nPicking one method from the diverse field of methods is problematic, since different methods have been developed for different purposes and have different profiles regarding what functions they perform (see Jordan, 2014).\n\nIn order to fully realize the potential of using methods for complex issues, it might be necessary to involve a trained and experienced facilitator. Such a facilitator can adapt the design of a group process to the specific conditions in the particular case, and can facilitate each phase of the process in order to mobilize the competences of the participants and ensure productive collaboration.\n\nLearn more in the [IDG field-kit](FIELD_KIT_LINK).",
-    "actions": "- Using structured facilitation (either using an established method, or a bespoke design by a skilled facilitator) might be necessary in order to find consensus on purpose and delimitation, create trust and openness, mobilize creativity, explore complex conditions and causal relationships, make use of different perspectives, defuse conflicts, and other functions.",
+    "intro": "Structured methods for facilitating collaboration on complex issues can scaffold productive collaboration and overcome interest conflicts among diverse stakeholders. It can help the practitioner facilitate collaboration and problem-solving on a specific issue, as well as long term openness to diverging perspectives and co-creation skills.",
     "relevancy": [
       {
         "skill": "ckzi3cvpf0851e2n00bcmzsgz",
@@ -16,7 +11,7 @@
       },
       {
         "skill": "ckzi3fnea2022e2n0r588if1r",
-        "score": 70
+        "score": 100
       },
       {
         "skill": "ckzi3f9cj1747e2n0taoxah1j",
@@ -24,7 +19,7 @@
       },
       {
         "skill": "ckzi3g17e2167e2n055jpiaaz",
-        "score": 80
+        "score": 100
       },
       {
         "skill": "ckzi3gb7f2318e2n04kesx118",
@@ -45,9 +40,19 @@
       {
         "skill": "ckzi3gknp2475e2n0dm59ikcn",
         "score": 60
+      },
+      {
+        "skill": "ckzi3ef9s1366e2n082dhihsm",
+        "score": 70
       }
     ],
-    "resources": "- Bunker, B. B. & Alban, B. (2006). The handbook of large group methods: Creating systemic change in organizations and communities. Chichester, England: John Wiley & Sons.\n- Holman, P., Devane, T. & Cady, S. (Eds.) (2007). The change handbook: The definitive resource on today's best methods for engaging whole systems. San Francisco, CA: Berrett-Koehler Publishers.\n- Jordan, T. (2014). Deliberative Methods for Complex Issues: A typology of functions that may need scaffolding. Group Facilitation: A Research and Applications Journal, Nr 13, pp. 50-71.\n- Rosenhead J, & Mingers, J. (Eds.) (2001). Rational analysis for a problematic world revisited: Problem structuring methods for complexity, uncertainty and conflict. Chichester, England: John Wiley & Sons.\n- Ross, S. N. (2006). The integral process for working on complex issues: Public issues edition. (4th Ed.) Bethel, OH: ARINA, Inc.\n- Wilkinson, M. (2004). The secrets of facilitation: The S.M.A.R.T. guide to getting results with groups. San Francisco, CA: Jossey-Bass."
+    "tags": [
+      "cl7lzp6jh00012e623q59s9pf",
+      "cl87r11sd00012e64lyugvbv2"
+    ],
+    "id": "cl80ijk9100062e64d2pw2pi5",
+    "description": "When issues are very complex, no single actor possesses the knowledge and competences that have to be weighed in and used when developing action plans. Over the last five decades or so, a very large number of methods have been developed in order to scaffold productive collaboration and overcome interest conflicts among diverse stakeholders. \n\nSome examples (of very many) of such methods are: \n• TIP, The Integral Process for Working on Complex Issues \n• Soft Systems Methodology \n• Open Space \n• Future Search \n• the Strategic Choice Approach \n• WorkOut \n• the Consensus-Based Approach \n• the Inquiry-Based Approach \n• Deep Democracy \n• Future Workshops\n\nHow it can help: These structured methods facilitate collaboration, problem-solving and strategy development in relation to specific issues. They also support long-term learning among participants regarding awareness of complexity, openness to explore diverging perspectives and concrete co-creation skills.\n\nContributor: Thomas Jordan",
+    "actions": "When starting with methods for scaffolding collaboration on complex issues for the first time, try the following: \n\n1. Identify the complex issues and high level purpose for which you would like to use the method. \n\n2. Seek out structured facilitation, either using an established method, or a bespoke design by a skilled facilitator. A trained facilitator can adapt the design of a group process to the specific conditions in the particular case, and can facilitate each phase of the process in order to mobilize the competences of the participants and ensure productive collaboration."
   },
   "sv": {
     "id": "cl80ijk9100062e64d2pw2pi5",
