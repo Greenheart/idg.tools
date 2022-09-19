@@ -27,7 +27,7 @@
             <Expand open={$filtersExpanded} />
             <p>{title}</p>
         </div>
-        {#if $selectedSkills.length}
+        {#if $selectedSkills.length || $selectedTags.length}
             <Button
                 on:click={resetFilters}
                 variant="inverted"
