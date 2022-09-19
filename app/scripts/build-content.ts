@@ -211,6 +211,7 @@ const splitContentByLang = (
             tools: getByLang(content.tools, lang),
             skills: getByLang(content.skills, lang),
             dimensions: getByLang(content.dimensions, lang),
+            // IDEA: Or should tags be sorted by number of tools using them? This would make the popular tags appear first and might give a better UX
             tags: getByLang(content.tags, lang).sort(sortNamesAlphabetically),
         }
         return result
