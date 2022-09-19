@@ -1,17 +1,18 @@
 {
   "en": {
-    "id": "cl80gz52d00002e64sh3ew79o",
+    "resources": "* Atkinson, J. (2002). Trauma trails, recreating song lines: the transgen- erational effects of trauma in indigenous Australia. Spinifex Press\n* Rodriguez Carreon, V., & Vozniak, P. (2021). Embodied Experiential Learning: Cultivating Inner Peace in Higher Education. Journal of Awareness-Based Systems Change, 1(2), 31–50. <https://doi.org/10.47061/jabsc.v1i2.1179>\n* Scharmer, C. O. (2015). Otto Scharmer on the four levels of listening YouTube. <https://www.youtube.com/watch?v=eLfXpRkVZaI&t=414s>\n* Scharmer, C. O. (2018). The essentials of Theory U: Core principles\n  and applications. Berrett-Koehler Publishers.\n* Ungunmerr, M. R. Elder (1988). Dadirri: Inner deep listening and quiet still awareness. Miriam Rose Foundation. <https://www.miriamrosefoundation.org.au/wp-content/uploads/2021/03/Dadirri_Handout.pdf>\n* Ungunmerr, M. R. Elder (2017). Dadirri. \\[Video]. YouTube. <https://www.youtube.com/watch?v=tow2tR_ezL8>",
+    "name": "Listening to Pause",
     "slug": "4w1249u",
-    "name": "Listening to pause",
-    "description": "Pausing is key to consider what we just heard. It is an inner skill that enables connecting to “what the person just said” and “how those words landed on oneself”. Allowing the time to pause is as important as the quality of the space created for that pause to happen. The importance of this quality had been highlighted without methodological steps in ancient wisdom and the western literature describing the listening process for discernment.\nThe invitation to pause lies in evidence-based sources to understand the awareness gained in pausing.\n\nDeep listening can also be viewed as a process. In the three key elements used in Theory U to open the mind, open the heart and open the will —to risk, Otto Scharmer, highlights listening as the most important and underrated skill. The 4 levels of listening are: “downloading” (reconfirming what we know), “factual” (what is different from what we know), “empathic” (allows us to connect with the experience of the other), and “generative” (connects us with who we are and whom we want to be). It is doable to be with others and inwardly, pausing in order to notice from which level of listening we are operating —downloading, factual, empathic, or generative.\n\nPausing to reflect is being conscious of the embodiment of what we just heard, and that inner quality has the capability during the process to change the outcome.\n\nLearn more in the section about \"Listening to pause\" in the [IDG field-kit](FIELD_KIT_LINK).",
-    "resources": "- Atkinson, J. (2002). Trauma trails, recreating song lines: the transgenerational effects of trauma in indigenous Australia. Spinifex Press\n- Rodriguez Carreon, V., & Vozniak, P. (2021). Embodied Experiential Learning: Cultivating Inner Peace in Higher Education. Journal of Awareness-Based Systems Change, 1(2), 31–50. [https://doi.org/10.47061/jabsc.v1i2.1179](https://doi.org/10.47061/jabsc.v1i2.1179)\n- Scharmer, C. O. (2015). Otto Scharmer on the four levels of listening [Video]. YouTube. [https://www.youtube.com/watch?v=eLfXpRkVZaI&t=414s](https://www.youtube.com/watch?v=eLfXpRkVZaI&t=414s)\n- Scharmer, C. O. (2018). The essentials of Theory U: Core principles and applications. Berrett-Koehler Publishers.\n- Ungunmerr, M. R. Elder (1988). Dadirri: Inner deep listening and quiet still awareness. \nMiriam Rose Foundation. [https://www.miriamrosefoundation.org.au/wp-content/uploads/2021/03/Dadirri_Handout.pdf](https://www.miriamrosefoundation.org.au/wp-content/uploads/2021/03/Dadirri_Handout.pdf)\n- Ungunmerr, M. R. Elder (2017). Dadirri. [Video]. YouTube. [https://www.youtube.com/watch?v=tow2tR_ezL8](https://www.youtube.com/watch?v=tow2tR_ezL8)\n",
-    "actions": "- For example, in groups, each person can be given the same amount of time for communicating, followed by one (or more) minute of pausing, then the next person can speak for the same amount of time, and so on. In that pause, before it is the next person’s turn to talk, is when the magic happened. It shifts from reaction to being able to respond.",
-    "tags": [
-      "cl7lzoeqy00002e62ke8rog8l",
-      "cl7lzp6jh00012e623q59s9pf",
-      "cl87r11sd00012e64lyugvbv2"
-    ],
+    "intro": "Pausing on what we just heard is an inner skill that enables connecting to “what the person just said” and “how those words landed on oneself”. It can help the practitioner act from a more conscious state of being.",
     "relevancy": [
+      {
+        "skill": "ckzi3e4as1251e2n0fz614xn4",
+        "score": 90
+      },
+      {
+        "skill": "ckzi3ef9s1366e2n082dhihsm",
+        "score": 80
+      },
       {
         "skill": "ckzi3blfz0687e2n0huf88a8y",
         "score": 80
@@ -25,24 +26,8 @@
         "score": 60
       },
       {
-        "skill": "ckzi3e4as1251e2n0fz614xn4",
-        "score": 60
-      },
-      {
         "skill": "ckzi3eor91487e2n0qdoa639u",
         "score": 75
-      },
-      {
-        "skill": "ckzi3d9gp0942e2n0lvc6k1nh",
-        "score": 40
-      },
-      {
-        "skill": "ckzi3dk3h1039e2n0qxij7ooh",
-        "score": 40
-      },
-      {
-        "skill": "ckzi3ef9s1366e2n082dhihsm",
-        "score": 60
       },
       {
         "skill": "ckzi3gb7f2318e2n04kesx118",
@@ -55,8 +40,23 @@
       {
         "skill": "ckzi3b8sz0614e2n0ijnnazce",
         "score": 45
+      },
+      {
+        "skill": "ckzi3fnea2022e2n0r588if1r",
+        "score": 60
+      },
+      {
+        "skill": "ckzi3gknp2475e2n0dm59ikcn",
+        "score": 40
       }
-    ]
+    ],
+    "tags": [
+      "cl7lzoeqy00002e62ke8rog8l",
+      "cl87r11sd00012e64lyugvbv2"
+    ],
+    "id": "cl80gz52d00002e64sh3ew79o",
+    "description": "The importance of pausing to listen had been highlighted without methodological steps in ancient wisdom and the western literature describing the listening process for discernment. It is a state in which one gathers information in quiet observation and deep listening, building knowledge by becoming aware. In this space of contemplation, the invisible inner qualities are working, which informs action. Allowing the time to pause is as important as the quality of the space created for that pause to happen.\n\nPausing to reflect is embodying what we just heard, and developing that inner quality of being more conscious during the process has the capability to change the outcome. When practicing in teams, pausing can also help us notice from which level of listening we are operating from Otto Scharmer’s four levels of listening: “downloading” (reconfirming what we know), “factual” (what is different from what we know), “empathic” (allows us to connect with the experience of the other), and “generative” (connects us with who we are and whom we want to be).\n\nPracticing listening more deeply to sense a deeper connection with the environment enables us to relate with our surroundings. Elder Miriam Rose Ungunmerr said we learn by watching and listening, waiting and then acting.\n\nHow it can help: The awareness gained in pausing forms the quality to act from a more conscious state of being.\n\nContributor: Vivianna Rodriguez Carreon",
+    "actions": "When starting with listening to pause for the first time, try the following:\n\n1. In teams, each person can be given the same amount of time for communicating, e.g. 5 minutes.\n\n2. Around 1 minute (more or less) is given to pause between each person's interaction.\n\n3. During the pause is space for awareness to know from which level of listening you are operating, and to discern the quality of how to continue the dynamic."
   },
   "sv": {
     "id": "cl80gz52d00002e64sh3ew79o",
