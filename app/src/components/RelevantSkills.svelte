@@ -12,10 +12,7 @@
 </script>
 
 <div
-    class={cx(
-        'flex flex-wrap items-start gap-2 pr-[29px] text-sm md:text-base',
-        className,
-    )}
+    class={cx('flex flex-wrap items-start gap-2 pr-[29px] text-sm', className)}
 >
     {#each tool.relevancy
         .filter($selectedSkills.length ? ({ skill }) => $selectedSkills.includes(skill) : () => true)

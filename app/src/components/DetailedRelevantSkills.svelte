@@ -29,7 +29,7 @@
             <div class="flex items-center justify-between gap-4">
                 <span
                     class={cx(
-                        'overflow-hidden text-ellipsis whitespace-nowrap rounded-lg px-2 py-1 text-white',
+                        'overflow-hidden text-ellipsis whitespace-nowrap rounded-lg px-2 py-1 text-white text-sm',
                         color,
                     )}
                 >
