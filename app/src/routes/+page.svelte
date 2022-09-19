@@ -48,8 +48,8 @@
 
         <p>
             We’re building a library of scientifically-validated methods to
-            develop these inner skills. Just select which ones you want to
-            practice and find tools relevant for you.
+            develop the skills outlined by the IDG framework. Just select which
+            ones you want to practice and find tools relevant for you.
         </p>
 
         <p>
