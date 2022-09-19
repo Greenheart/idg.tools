@@ -23,10 +23,24 @@
 
     export let content: Content
 
-    // TODO: update title to include N tags too
-    $: title = $selectedSkills.length
-        ? `${pluralize('skill', $selectedSkills.length)} selected`
-        : 'Filter tools based on skills and tags'
+    $: title =
+        $selectedSkills.length || $selectedTags.length
+            ? `${
+                  $selectedSkills.length
+                      ? pluralize('skill', $selectedSkills.length)
+                      : ''
+              }${
+                  $selectedSkills.length
+                      ? $selectedTags.length
+                          ? ' and '
+                          : ''
+                      : ''
+              }${
+                  $selectedTags.length
+                      ? pluralize('tag', $selectedTags.length)
+                      : ''
+              } selected`
+            : 'Filter tools based on skills and tags'
 
     function close() {
         if ($filtersExpanded) {
