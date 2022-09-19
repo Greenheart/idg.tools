@@ -1,7 +1,7 @@
 {
     "name": "idg.tools",
     "version": "1.0.0",
-    "description": "https://idg.tools | Inner Development Toolbox",
+    "description": "https://idg.tools | Inner Development Toolkit",
     "private": true,
     "scripts": {
         "dev": "vite dev",

@@ -1,4 +1,4 @@
-# IDG.tools - Inner Development Toolbox
+# IDG.tools - Inner Development Toolkit
 
 > Transformational Skills for Sustainable Development
 
