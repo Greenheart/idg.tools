@@ -13,7 +13,7 @@
         selectedTags,
     } from '$lib/stores'
 
-    import type { Content, Dimension, Tag } from '$shared/types'
+    import type { Content, Dimension } from '$shared/types'
     import Button from './Button.svelte'
     import Skills from './Skills.svelte'
     import FiltersToolbar from './FiltersToolbar.svelte'
@@ -71,7 +71,7 @@
 <Dialog
     open={$filtersExpanded}
     on:close={close}
-    class="fixed inset-0 z-20 grid justify-items-center overflow-y-auto pr-[15px]"
+    class="fixed inset-0 z-20 grid justify-items-center overflow-y-auto lg:pr-[15px]"
     unmount={false}
     initialFocus={applyButton}
 >
@@ -88,9 +88,9 @@
 
         <FiltersToolbar {title} />
 
-        <div class="mx-auto grid max-w-3xl gap-4 py-4 text-stone-50">
+        <div class="mx-auto grid max-w-3xl gap-4 p-4 text-stone-50">
             <Heading>Select skills</Heading>
-            <Skills {content} />
+            <Skills {content} class="-ml-4 -mr-4" />
 
             <Heading class="mt-4">Select tags</Heading>
             <Tags
@@ -103,7 +103,7 @@
             <Button
                 bind:element={applyButton}
                 on:click={close}
-                class="col-span-full mt-4 max-w-xs justify-self-center"
+                class="col-span-full my-4 max-w-xs justify-self-center"
                 >Apply filters</Button
             >
         </div>
