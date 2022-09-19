@@ -36,7 +36,7 @@
                 interactive
                     ? $selectedTags.includes(tag.id)
                         ? 'cursor-pointer'
-                        : 'bg-opacity-40 cursor-pointer'
+                        : 'bg-opacity-50 cursor-pointer'
                     : '',
                 sizes[size],
                 inverted
