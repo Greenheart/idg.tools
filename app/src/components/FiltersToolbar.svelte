@@ -1,11 +1,12 @@
 <script lang="ts">
     import Expand from './icons/Expand.svelte'
-    import { filtersExpanded, selectedSkills } from '$lib/stores'
+    import { filtersExpanded, selectedSkills, selectedTags } from '$lib/stores'
     import Button from './Button.svelte'
     import { cx } from '$lib/utils'
 
     function resetFilters() {
         $selectedSkills = []
+        $selectedTags = []
     }
 
     export let title: string

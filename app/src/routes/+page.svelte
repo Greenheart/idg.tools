@@ -6,9 +6,9 @@
     import Tools from '$components/Tools.svelte'
     import {
         selectedSkills,
+        selectedTags,
         isMenuOpen,
         visibleItems,
-        filtersExpanded,
     } from '$lib/stores'
     import type { PageData } from './$types'
     import { getMostRelevantContent } from '$lib/utils'
@@ -18,7 +18,9 @@
     $: ({ content } = data)
 
     onMount(() => {
+        // NOTE: Maybe we could limit the number of re-renders by showing a loading state until all of these have updated?
         selectedSkills.useLocalStorage()
+        selectedTags.useLocalStorage()
         visibleItems.useLocalStorage()
     })
 

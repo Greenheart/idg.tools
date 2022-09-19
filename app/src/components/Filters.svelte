@@ -10,13 +10,16 @@
         selectedSkills,
         filtersExpanded,
         isDimensionOpen,
+        selectedTags,
     } from '$lib/stores'
 
-    import type { Content, Dimension } from '$shared/types'
+    import type { Content, Dimension, Tag } from '$shared/types'
     import Button from './Button.svelte'
     import Skills from './Skills.svelte'
     import FiltersToolbar from './FiltersToolbar.svelte'
     import { pluralize } from '$lib/utils'
+    import Heading from './Heading.svelte'
+    import Tags from './Tags.svelte'
 
     export let content: Content
 
@@ -70,8 +73,12 @@
 
         <FiltersToolbar {title} />
 
-        <div class="mx-auto grid max-w-3xl gap-4 py-4">
+        <div class="mx-auto grid max-w-3xl gap-4 py-4 text-stone-50">
+            <Heading>Select skills</Heading>
             <Skills {content} />
+
+            <Heading class="mt-4">Select tags</Heading>
+            <Tags tags={content.tags} inverted size="md" interactive />
             <Button
                 bind:element={applyButton}
                 on:click={close}
