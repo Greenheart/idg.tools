@@ -13,6 +13,7 @@
     import type { PageData } from './$types'
     import { getMostRelevantContent } from '$lib/utils'
     import Filters from '$components/Filters.svelte'
+    import { FEEDBACK_FORM_LINK } from '$lib/constants'
 
     export let data: PageData
     $: ({ content } = data)
@@ -60,7 +61,7 @@
                 >IDG Phase 2 Research Report</Link
             >. Next, we want to add more tools and resources, and make IDG.tools
             even better. <Link
-                href="/contribute"
+                href={FEEDBACK_FORM_LINK}
                 class="font-underline font-bold">With your support</Link
             >, we can make it happen!
         </p>
