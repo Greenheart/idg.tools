@@ -32,6 +32,7 @@ export const selectedSkills = createPersistedStore<ItemId[]>(
     'selectedSkills',
     [],
 )
+export const selectedTags = createPersistedStore<ItemId[]>('selectedTags', [])
 export const isMenuOpen = writable<boolean>(false)
 export const filtersExpanded = writable<boolean>(false)
 export const visibleItems = createPersistedStore<number>('visibleItems', 10)
