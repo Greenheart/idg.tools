@@ -35,18 +35,33 @@
 
     <div class="space-y-4 py-12 text-lg sm:text-xl">
         <p>
-            IDG.tools is the digital field-kit for the <Link
+            IDG.tools is the open source toolkit for the <Link
                 href="https://www.innerdevelopmentgoals.org/framework"
                 class="mt-6 font-bold underline">Inner Development Goals</Link
-            > (IDGs) initiative.
-        </p>
-
-        <p>
-            The IDGs helps us develop the skills needed to achieve the <Link
+            > (IDGs) non-profit initiative. The initiative is working to achieve
+            the <Link
                 href="https://sdgs.un.org/goals#goals"
                 class="font-bold underline"
                 >UN Sustainable Development Goals</Link
-            > (SDGs).
+            > (SDGs) through inner development.
+        </p>
+
+        <p>
+            We’re building a library of scientifically-validated methods to
+            develop these inner skills. Just select which ones you want to
+            practice and find tools relevant for you.
+        </p>
+
+        <p>
+            This toolkit is co-created by and for the community, and we’re just
+            getting started! Today, the library primarily contains methods from
+            the <Link href="/assets/report.pdf" class="font-underline font-bold"
+                >IDG Phase 2 Research Report</Link
+            >. Now, we want to add more tools and resources, and make IDG.tools
+            even better. <Link
+                href="/contribute"
+                class="font-underline font-bold">With your support</Link
+            >, we can make it happen!
         </p>
     </div>
 </div>
