@@ -24,15 +24,16 @@
     <div
         class="relative flex h-16 cursor-pointer select-none items-center justify-between bg-stone-50 px-2 pt-2 pb-4 md:px-4"
     >
-        <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-2 md:space-x-3">
             <Expand open={$filtersExpanded} />
-            <p>{title}</p>
+            <p class="text-xs sm:text-sm md:text-base">{title}</p>
         </div>
         {#if $selectedSkills.length || $selectedTags.length}
             <Button
                 on:click={resetFilters}
                 variant="inverted"
                 size="md"
+                class="text-xs"
                 tabindex="10">Clear filters</Button
             >
         {/if}
