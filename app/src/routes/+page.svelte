@@ -29,6 +29,8 @@
         $selectedSkills.length || $selectedTags.length
             ? getMostRelevantContent(content, $selectedSkills, $selectedTags)
             : content.tools
+
+    console.log(content?.tools?.length, mostRelevantTools)
 </script>
 
 <div class:hidden={$isMenuOpen}>

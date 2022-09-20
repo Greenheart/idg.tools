@@ -68,15 +68,18 @@ export const getMostRelevantContent = (
     selectedTags: Tag['id'][],
 ) =>
     content.tools
-        .filter(
-            (tool) =>
-                selectedSkills.every((skillId) =>
-                    tool.relevancy.some(({ skill }) => skill === skillId),
-                ) &&
-                selectedTags.some((tagId) =>
-                    tool.tags.some((id) => id === tagId),
-                ),
-        )
+        .filter((tool) => {
+            const hasMatchingSkills = selectedSkills.every((skillId) =>
+                tool.relevancy.some(({ skill }) => skill === skillId),
+            )
+            const hasMatchingTags = selectedTags.length
+                ? selectedTags.some((tagId) =>
+                      tool.tags.some((id) => id === tagId),
+                  )
+                : true
+
+            return hasMatchingSkills && hasMatchingTags
+        })
         .sort(mostRelevantContentFirst(selectedSkills))
 
 // TODO: This needs to be updated to support other languages than English, but is good enough for now.
