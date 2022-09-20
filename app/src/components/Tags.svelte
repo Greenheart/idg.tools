@@ -8,7 +8,7 @@
 
     const sizes = {
         sm: 'p-1 text-xs',
-        md: 'px-2 py-1 text-base',
+        md: 'px-2 py-1 text-sm xs:text-base',
     }
 
     export let size: keyof typeof sizes = 'sm'
