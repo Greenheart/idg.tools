@@ -36,5 +36,7 @@
 {/if}
 
 <div class="mt-8 flex justify-center">
-    <LinkButton href={FEEDBACK_FORM_LINK}>Help improve this tool</LinkButton>
+    <LinkButton href={FEEDBACK_FORM_LINK} variant="primary"
+        >Help improve this tool</LinkButton
+    >
 </div>
