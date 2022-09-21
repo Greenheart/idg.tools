@@ -27,7 +27,7 @@
         <Button on:click={showAll}>Show all tools</Button>
         <p>
             Welcome to <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink"
-                >suggest new tools here</Link
+                >suggest a new tool here</Link
             >!
         </p>
     </div>
@@ -47,7 +47,7 @@
         {/if}
         <p>
             Welcome to <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink"
-                >suggest new tools here</Link
+                >suggest a new tool here</Link
             >!
         </p>
     {/if}

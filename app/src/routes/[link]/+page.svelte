@@ -7,6 +7,7 @@
     import Tags from '$components/Tags.svelte'
 
     import type { PageData } from './$types'
+    import { FEEDBACK_FORM_LINK } from '$lib/constants'
     export let data: PageData
     $: ({ tool, skills, tags } = data)
 </script>
@@ -35,10 +36,5 @@
 {/if}
 
 <div class="mt-8 flex justify-center">
-    <LinkButton
-        href="https://github.com/Greenheart/idg.tools/discussions"
-        variant="primary"
-    >
-        Help improve this tool
-    </LinkButton>
+    <LinkButton href={FEEDBACK_FORM_LINK}>Help improve this tool</LinkButton>
 </div>
