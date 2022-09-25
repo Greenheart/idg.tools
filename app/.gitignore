@@ -6,3 +6,4 @@ build
 /package
 .env
 /scripts/compiled
+/.idea/*
