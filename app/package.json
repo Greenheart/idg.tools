@@ -18,17 +18,17 @@
     },
     "dependencies": {
         "dompurify": "^2.4.0",
-        "sanitize-html": "^2.7.1",
+        "sanitize-html": "^2.7.2",
         "svelte-markdown": "^0.2.3"
     },
     "devDependencies": {
         "@rgossiaux/svelte-headlessui": "^1.0.2",
-        "@sveltejs/adapter-vercel": "1.0.0-next.74",
-        "@sveltejs/kit": "^1.0.0-next.481",
+        "@sveltejs/adapter-vercel": "1.0.0-next.77",
+        "@sveltejs/kit": "^1.0.0-next.503",
         "@tailwindcss/typography": "^0.5.7",
         "@types/dompurify": "^2.3.4",
         "@types/sanitize-html": "^2.6.2",
-        "autoprefixer": "^10.4.10",
+        "autoprefixer": "^10.4.12",
         "chokidar-cli": "^3.0.0",
         "cssnano": "^5.1.13",
         "dotenv": "^16.0.2",
@@ -47,7 +47,7 @@
         "tslib": "^2.4.0",
         "typescript": "^4.8.3",
         "undici": "^5.10.0",
-        "vite": "^3.1.0"
+        "vite": "^3.1.3"
     },
     "type": "module",
     "prettier": {
