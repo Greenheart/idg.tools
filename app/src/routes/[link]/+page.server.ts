@@ -3,7 +3,7 @@ import { redirect } from '@sveltejs/kit'
 import { content } from '$lib/content-backend'
 import { getSkill, getTag, getToolByLink } from '$shared/content-utils'
 import type { Actions, PageServerLoad } from './$types'
-import { createIssue, getLatestIssues } from '$lib/github'
+import { createIssue } from '$lib/github'
 
 /** @type {PageServerLoad} */
 export async function load({
@@ -29,9 +29,7 @@ export async function load({
 }
 
 export const actions: Actions = {
-    default: async ({ request }) => {
-        console.log('feedback submitted!')
-
+    default: async ({ request, url }) => {
         const raw = await request.formData()
 
         const data = {
@@ -43,8 +41,9 @@ export const actions: Actions = {
         // IDEA: only allow plain text
 
         const res = await createIssue({
-            userContent: `## What do you like?\n${data.liked}\n\n## What can be improved?\n${data.improve}`,
+            userContent: `## What do you like?\n> ${data.liked}\n\n## What can be improved?\n> ${data.improve}`,
             type: 'FEEDBACK',
+            url: url.href,
         })
         console.log('returned', res)
 
