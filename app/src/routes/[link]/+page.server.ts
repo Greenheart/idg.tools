@@ -2,8 +2,9 @@ import { redirect } from '@sveltejs/kit'
 
 import { content } from '$lib/content-backend'
 import { getSkill, getTag, getToolByLink } from '$shared/content-utils'
+import type { Actions, PageServerLoad } from './$types'
 
-/** @type {import('@sveltejs/kit').PageServerLoad} */
+/** @type {PageServerLoad} */
 export async function load({
     params: { link },
 }: {
@@ -24,4 +25,20 @@ export async function load({
 
         return { tool, tags, skills }
     }
+}
+
+export const actions: Actions = {
+    default: async ({ request }) => {
+        const raw = await request.formData()
+
+        const data = {
+            liked: raw.get('liked'),
+            improve: raw.get('improve'),
+        }
+
+        // TODO: Save feedback to somewhere
+        console.log('feedback received', data)
+
+        return { success: true }
+    },
 }

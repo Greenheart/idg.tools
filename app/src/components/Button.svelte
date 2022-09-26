@@ -41,7 +41,7 @@
         sizes[size],
         className,
     )}
-    on:click
+    on:click|trusted
 >
     <slot />
 </button>

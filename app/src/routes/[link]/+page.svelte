@@ -3,11 +3,10 @@
     import Markdown from '$components/Markdown.svelte'
     import DetailedRelevantSkills from '$components/DetailedRelevantSkills.svelte'
     import Resources from '$components/Resources.svelte'
-    import LinkButton from '$components/LinkButton.svelte'
+    import FeedbackForm from '$components/FeedbackForm.svelte'
     import Tags from '$components/Tags.svelte'
 
     import type { PageData } from './$types'
-    import { FEEDBACK_FORM_LINK } from '$lib/constants'
     export let data: PageData
     $: ({ tool, skills, tags } = data)
 </script>
@@ -35,8 +34,6 @@
     <Resources {tool} />
 {/if}
 
-<div class="mt-8 flex justify-center">
-    <LinkButton href={FEEDBACK_FORM_LINK} variant="primary"
-        >Help improve this tool</LinkButton
-    >
+<div class="mt-8">
+    <FeedbackForm />
 </div>
