@@ -33,12 +33,5 @@
             "$components": ["src/components"],
             "$components/*": ["src/components/*"]
         }
-    },
-    "include": [
-        "src/**/*.d.ts",
-        "src/**/*.js",
-        "src/**/*.ts",
-        "src/**/*.svelte",
-        "scripts/**/*.ts"
-    ]
+    }
 }
