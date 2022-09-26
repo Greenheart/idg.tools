@@ -3,7 +3,7 @@ import { redirect } from '@sveltejs/kit'
 import { content } from '$lib/content-backend'
 import { getSkill, getTag, getToolByLink } from '$shared/content-utils'
 import type { Actions, PageServerLoad } from './$types'
-import { getLatestIssues } from '$lib/github'
+import { createIssue, getLatestIssues } from '$lib/github'
 
 /** @type {PageServerLoad} */
 export async function load({
@@ -32,17 +32,20 @@ export const actions: Actions = {
     default: async ({ request }) => {
         console.log('feedback submitted!')
 
-        // const raw = await request.formData()
+        const raw = await request.formData()
 
-        // const data = {
-        //     liked: raw.get('liked'),
-        //     improve: raw.get('improve'),
-        // }
+        const data = {
+            liked: raw.get('liked'),
+            improve: raw.get('improve'),
+        }
 
-        // TODO: Save feedback to somewhere
-        // console.log('feedback received', data)
+        // TODO: IMPORTANT to escape Markdown content here
+        // IDEA: only allow plain text
 
-        const res = await getLatestIssues()
+        const res = await createIssue({
+            userContent: `## What do you like?\n${data.liked}\n\n## What can be improved?\n${data.improve}`,
+            type: 'FEEDBACK',
+        })
         console.log('returned', res)
 
         return { success: true }

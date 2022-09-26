@@ -1,56 +1,132 @@
 import { graphql as octokitGraphQL } from '@octokit/graphql'
 import { GITHUB_API_TOKEN } from '$env/static/private'
+import { dev } from '$app/environment'
 
-// TODO: create issue with graphql API
-// TODO: Add label for `app-content-suggestion`
-// TODO: Add label for `app-feedback`
+const LABELS = dev
+    ? {
+          NEEDS_REVIEW: {
+              id: 'LA_kwDOIEbazs8AAAABENw4jA',
+          },
+          FEEDBACK: {
+              id: 'LA_kwDOIEbazs8AAAABENw8mQ',
+          },
+          CONTENT_SUGGESTION: {
+              id: 'LA_kwDOIEbazs8AAAABENw_UQ',
+          },
+      }
+    : {
+          NEEDS_REVIEW: {
+              id: 'LA_kwDOGwukUc8AAAABENwnuQ',
+          },
+          FEEDBACK: {
+              id: 'LA_kwDOGwukUc8AAAABENtM9w',
+          },
+          CONTENT_SUGGESTION: {
+              id: 'LA_kwDOGwukUc8AAAABENs-UA',
+          },
+      }
 
-// TODO: Add disclaimer within the published message
-
-// TODO: distinguish between dev and prod
-
-const LABELS = {
-    NEEDS_REVIEW: '',
-    FEEDBACK: '',
-    CONTENT_SUGGESTION: '',
-}
+const REPOSITORY = dev
+    ? {
+          name: 'playground',
+          owner: 'Greenheart',
+          id: 'R_kgDOIEbazg',
+      }
+    : {
+          name: 'idg.tools',
+          owner: 'Greenheart',
+          id: 'R_kgDOGwukUQ',
+      }
 
 const TEMPLATES = {
     FEEDBACK: {
-        title: '[App Feedback]:', // IDEA: Add ISO date string after here
+        title: 'App Feedback',
         labelIds: [LABELS.NEEDS_REVIEW, LABELS.FEEDBACK],
+        disclaimer:
+            '## Disclaimer\nThe following feedback was submitted by an user of https://idg.tools. This has not yet been reviewed or approved by the contributors.\n\n---\n\n',
     },
     CONTENT_SUGGESTION: {
-        title: '[App Content Suggestion]:',
+        title: 'App Content Suggestion',
         labelIds: [LABELS.NEEDS_REVIEW, LABELS.CONTENT_SUGGESTION],
+        disclaimer:
+            '## Disclaimer\nThe following content suggestion was submitted by an user of https://idg.tools. This has not yet been reviewed or approved by the contributors.\n\n---\n\n',
     },
 }
 
-const DISCLAIMER =
-    '## Disclaimer\nThe following feedback or suggestion was submitted via https://idg.tools and has not yet been reviewed or approved by the team.\n\n---\n\n'
-
 export async function getLatestIssues() {
     try {
-        const result = (await octokitGraphQL(
-            `{
-  repository(owner: "Greenheart", name: "idg.tools") {
+        const result = (await octokitGraphQL({
+            query: `
+query lastIssues($owner: String!, $repo: String!) {
+  repository(owner: $owner, name: $repo) {
     issues(last: 3) {
       edges {
         node {
-          title
+        title
         }
       }
     }
   }
 }`,
-            {
-                headers: {
-                    'user-agent': 'IDG Community Bot',
-                    authorization: `token ${GITHUB_API_TOKEN}`,
-                },
+            headers: {
+                'user-agent': 'IDG Community Bot',
+                authorization: `token ${GITHUB_API_TOKEN}`,
             },
-        )) as { repository: { issues: { edges: Array<{ title: string }> } } }
-        console.log('GITHUB result: ', result?.repository?.issues?.edges)
+            owner: 'Greenheart',
+            repo: 'idg.tools',
+        })) as { repository: { issues: { edges: Array<{ title: string }> } } }
+
+        return result?.repository?.issues?.edges
+    } catch (e) {
+        console.error(e)
+    }
+
+    return null
+}
+
+type ISSUE_TYPES = keyof typeof TEMPLATES
+
+export async function createIssue({
+    userContent,
+    type,
+}: {
+    userContent: string
+    type: ISSUE_TYPES
+}) {
+    const { title, labelIds, disclaimer } = TEMPLATES[type]
+    const newIssue = {
+        repositoryId: REPOSITORY.id,
+        title: `[${title}]: ${new Date().toISOString()}`,
+        body: disclaimer + userContent,
+        labelIds,
+    }
+
+    console.log('NEW ISSUE', newIssue)
+
+    return null
+
+    // TODO: get repositoryId based on $env
+    // TODO: set the title basd on type of issue
+    // TODO: format body as `DISCLAIMER + userContent`
+    // TODO: spread variables into the mutation below, then send request and return result
+
+    try {
+        const result = (await octokitGraphQL({
+            mutation: `
+mutation createIssue($repositoryId: String!, $title: String!, $body: String!, $labelIds: [String]!) {
+  createIssue(input: {
+    repositoryId: $repositoryId
+    title: $title
+    body: $body
+    labelIds: $labelIds
+  })
+}`,
+            headers: {
+                'user-agent': 'IDG Community Bot',
+                authorization: `token ${GITHUB_API_TOKEN}`,
+            },
+            ...newIssue,
+        })) as { repository: { issues: { edges: Array<{ title: string }> } } }
 
         return result?.repository?.issues?.edges
     } catch (e) {
