@@ -17,6 +17,7 @@
         "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
     },
     "dependencies": {
+        "@octokit/graphql": "^5.0.1",
         "dompurify": "^2.4.0",
         "sanitize-html": "^2.7.2",
         "svelte-markdown": "^0.2.3"

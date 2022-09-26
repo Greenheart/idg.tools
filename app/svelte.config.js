@@ -11,6 +11,10 @@ const config = {
             $components: resolve('src/components'),
             $shared: resolve('../shared'),
         },
+        env: {
+            dir: '.',
+            publicPrefix: 'PUBLIC_',
+        },
     },
 }
 
