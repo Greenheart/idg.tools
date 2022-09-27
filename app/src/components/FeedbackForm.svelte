@@ -35,7 +35,7 @@
         <input type="text" name="improve" bind:value={improve} class="p-2" />
         <Button
             type="submit"
-            disabled={!(liked.length || improve.length)}
+            disabled={!(liked.length && improve.length)}
             class="!mt-6 justify-self-center">Submit feedback</Button
         >
     </form>
