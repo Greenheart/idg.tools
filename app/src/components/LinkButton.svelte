@@ -36,9 +36,9 @@
     {...$$props}
     class={cx(
         defaultClasses,
-        variants[disabled ? 'disabled' : variant ?? defaultVariant],
+        variants[disabled ? 'disabled' : variant],
         disabled ? 'pointer-events-none' : '',
-        sizes[size ?? defaultSize],
+        sizes[size],
         className,
     )}
     {...additionalProps}
