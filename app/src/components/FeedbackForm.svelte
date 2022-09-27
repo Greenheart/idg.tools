@@ -4,8 +4,8 @@
 
     let expanded = false
     let submitted = false
-    let liked = 'A was good'
-    let improve = 'Please make Y better'
+    let liked = ''
+    let improve = ''
 </script>
 
 {#if submitted}
