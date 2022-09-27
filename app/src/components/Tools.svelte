@@ -23,7 +23,7 @@
     <ToolPreview {tool} {content} />
 {:else}
     <div class="flex flex-col items-center space-y-4 lg:col-span-2">
-        <p>No published tools matching your filters yet.</p>
+        <p>There are no published tools matching your filters yet.</p>
         <Button on:click={showAll}>Show all tools</Button>
         <p>
             Welcome to <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink"
