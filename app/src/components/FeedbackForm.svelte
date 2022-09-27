@@ -13,6 +13,7 @@
         <p>Thanks for your feedback!</p>
     </div>
 {:else if expanded}
+    <!-- TODO: Make form fields required -->
     <form
         method="POST"
         class="grid space-y-2 text-stone-900"

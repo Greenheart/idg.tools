@@ -2,6 +2,8 @@ import { graphql as octokitGraphQL } from '@octokit/graphql'
 import { GITHUB_API_TOKEN } from '$env/static/private'
 import { dev } from '$app/environment'
 
+// IDEA: can this be provided when starting up the app, and written to a static file or something?
+// Maybe write a short shell script which adds this to the environment variables in both dev and prod
 import { execSync } from 'child_process'
 
 const GIT_COMMIT = execSync('git rev-parse --short HEAD').toString()
@@ -105,9 +107,3 @@ mutation createIssue($repositoryId: ID!, $title: String!, $body: String!, $label
 
     return null
 }
-
-// TODO: Read labels from the example repo https://github.com/Greenheart/playground/labels
-// TODO: Read lables from the real repo
-
-// TODO: setup difference between prod and dev
-// IDEA: Could use .env.development and .env
