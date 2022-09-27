@@ -19,7 +19,9 @@
     "dependencies": {
         "@octokit/graphql": "^5.0.1",
         "dompurify": "^2.4.0",
+        "remark": "^14.0.2",
         "sanitize-html": "^2.7.2",
+        "strip-markdown": "^5.0.0",
         "svelte-markdown": "^0.2.3"
     },
     "devDependencies": {
