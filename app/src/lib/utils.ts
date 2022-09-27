@@ -12,10 +12,10 @@ export const cx = (...classes: (string | undefined | false)[]) =>
  * @param href The URL to test.
  * @returns True if the link is external, and false otherwise.
  */
-export function isExternalURL(href: string): boolean {
+export function isExternalURL(href: string, staticPath = '/assets/'): boolean {
     const a = document.createElement('a')
     a.href = href
-    return location.host !== a.host
+    return location.host !== a.host || href.includes(staticPath)
 }
 
 export const getBgOpacity = (routeId: string) => {
