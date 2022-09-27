@@ -10,7 +10,7 @@
     let className = ''
     export { className as class }
 
-    const mostRelevantSkills = tool.relevancy
+    $: mostRelevantSkills = tool.relevancy
         .filter(
             $selectedSkills.length
                 ? ({ skill }) => $selectedSkills.includes(skill)
