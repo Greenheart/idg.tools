@@ -61,7 +61,7 @@ export async function createIssue({
 
     const body = `${disclaimer}
 - URL: ${url}
-- Git commit: ${GIT_COMMIT}
+- Git commit: \`${GIT_COMMIT}\`
 
 ---
 
@@ -78,8 +78,8 @@ ${userContent}`
 
     try {
         const result = (await octokitGraphQL({
-            mutation: `
-mutation createIssue($repositoryId: String!, $title: String!, $body: String!, $labelIds: [String]!) {
+            query: `
+mutation createIssue($repositoryId: ID!, $title: String!, $body: String!, $labelIds: [ID!]) {
   createIssue(input: {
     repositoryId: $repositoryId
     title: $title
