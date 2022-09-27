@@ -21,8 +21,8 @@
 
     <p class="px-4 pb-4 text-left">
         We’re a non-profit, open source community, always learning and improving
-        this library of knowledge, together. And with your help, we can make
-        IDG.tools even better!
+        this library, together. And with your help, we can make IDG.tools even
+        better!
     </p>
 
     <LinkButton href={GITHUB_LINK} variant="inverted">
