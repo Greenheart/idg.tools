@@ -13,7 +13,6 @@
         <p>Thanks for your feedback!</p>
     </div>
 {:else if expanded}
-    <!-- TODO: Make form fields required -->
     <form
         method="POST"
         class="grid space-y-2 text-stone-900"
@@ -26,6 +25,10 @@
             }
         }}
     >
+        <label for="description" class="absolute -left-full text-stone-50"
+            >Description</label
+        >
+        <input type="text" name="description" class="absolute -left-full p-2" />
         <label for="liked" class="text-stone-50">What do you like?</label>
         <input type="text" name="liked" bind:value={liked} class="p-2" />
         <label for="improve" class="text-stone-50">What can be improved?</label>

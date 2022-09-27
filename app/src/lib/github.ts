@@ -76,8 +76,6 @@ ${userContent}`
         labelIds,
     }
 
-    // console.log('NEW ISSUE', newIssue)
-
     try {
         const result = (await octokitGraphQL({
             query: `
