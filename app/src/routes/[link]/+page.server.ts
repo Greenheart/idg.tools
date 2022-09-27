@@ -10,10 +10,10 @@ export async function load({
     params: Record<string, string>
 }) {
     const tool = getToolByLink(link, content)
-    const tags = tool.tags.map((tagId) => getTag(tagId, content))
-    const skills = tool.relevancy.map((r) => getSkill(r.skill, content))
 
     if (tool) {
+        const tags = tool.tags.map((tagId) => getTag(tagId, content))
+        const skills = tool.relevancy.map((r) => getSkill(r.skill, content))
         // If page was found on a different URL,
         // permanently redirect to the updated url (HTTP 301)
         // to prevent multiple URLs publishing the same content.

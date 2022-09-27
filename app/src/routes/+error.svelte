@@ -13,7 +13,7 @@
         <Heading class="mb-8">Oops! Something went wrong</Heading>
         <p class="mb-8">
             <span>HTTP {$page.status} - </span>
-            {$page.error.message}
+            {$page.error?.message}
         </p>
         <LinkButton href="/" variant="primary">Explore IDG.tools</LinkButton>
     {/if}
