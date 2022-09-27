@@ -1,12 +1,9 @@
 import { graphql as octokitGraphQL } from '@octokit/graphql'
-import { GITHUB_API_TOKEN } from '$env/static/private'
+import { GITHUB_API_TOKEN, GIT_COMMIT } from '$env/static/private'
 import { dev } from '$app/environment'
 
 // IDEA: can this be provided when starting up the app, and written to a static file or something?
 // Maybe write a short shell script which adds this to the environment variables in both dev and prod
-import { execSync } from 'child_process'
-
-const GIT_COMMIT = execSync('git rev-parse --short HEAD').toString()
 
 const REPOSITORY = dev
     ? {
