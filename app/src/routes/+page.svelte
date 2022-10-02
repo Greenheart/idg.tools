@@ -56,7 +56,7 @@
         <p>
             This toolkit is co-created by and for the community, and primarily
             contains methods from the <Link
-                href="/assets/220922_IDG_Toolkit_v5.pdf"
+                href="/assets/220927_IDG_Toolkit_v6.pdf"
                 class="font-underline font-bold"
                 >IDG Phase 2 Research Report</Link
             >. Next, we want to add more tools and resources, and make IDG.tools
