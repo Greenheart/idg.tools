@@ -13,6 +13,7 @@ IDG.tools is a free, open source and co-created library of tools and resources t
 -   [SvelteKit](https://kit.svelte.dev) - Modern web app framework.
 -   [Netlify CMS](https://netlify.com) - CMS to simplify both content co-creation and development, integrated with Git.
 -   [Tailwind CSS](https://tailwindcss.com/) - Simple and efficient styling.
+-   [pnpm](https://pnpm.io) - Fast, disk space efficient package manager.
 
 ## License
 
