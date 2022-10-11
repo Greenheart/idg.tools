@@ -6,7 +6,7 @@
         "pnpm": ">= 7"
     },
     "scripts": {
-        "dev": "pnpm --filter \"./(app|cms)\" dev & pnpm --filter app watch:content",
+        "dev": "pnpm --filter \"./(app|cms|content)\" --parallel dev",
         "app": "pnpm --filter app dev",
         "cms": "pnpm --filter cms dev",
         "content": "pnpm --filter app watch:content"
