@@ -59,7 +59,6 @@ type ProcessingTranslatedContent = {
     tags: Translated<Tag>[]
 }
 
-console.log(`2. ⚡ Building IDG.tools content...`)
 const startTime = performance.now()
 
 const getContentPaths = (contentTypes: Array<keyof Content>) =>
@@ -254,8 +253,6 @@ const builtContent = splitContentByLang(
 
 const output = orderToolsConsistently(builtContent)
 
-console.log(`Building IDG.tools content...`)
-
 await writeJSON(resolve(__dirname, '../../static/content.json'), output)
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
@@ -265,4 +262,4 @@ const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
         maximumFractionDigits: 3,
     },
 )
-console.log(`✅ Finished in ${buildTime} s\n`)
+console.log(`✅ Built IDG.tools content in ${buildTime} s\n`)

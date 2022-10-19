@@ -7,7 +7,7 @@
         "dev": "GIT_COMMIT=`git rev-parse --short HEAD` vite dev",
         "dev:host": "GIT_COMMIT=`git rev-parse --short HEAD` vite dev --host",
         "build:content": "node scripts/esbuild.js && node scripts/compiled/build-content.js",
-        "watch:content": "chokidar \"../content/src/**/*.json\" -c \"pnpm build:content\" --initial",
+        "watch:content": "chokidar \"../content/src/**/*.json\" -c \"pnpm build:content\" --initial --silent",
         "build": "GIT_COMMIT=`git rev-parse --short HEAD` vite build",
         "build:all": "pnpm build:content && pnpm build",
         "preview": "GIT_COMMIT=`git rev-parse --short HEAD` vite preview",
