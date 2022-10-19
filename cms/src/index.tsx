@@ -19,8 +19,7 @@ CMS.init({
             name: 'github',
             repo: 'Greenheart/idg.tools',
             branch: 'main',
-            auth_type: 'pkce',
-            app_id: import.meta.env.VITE_BACKEND_APP_ID,
+            open_authoring: true,
         },
         local_backend: {
             url: 'http://localhost:2030/api/v1',

@@ -1,4 +1,7 @@
 import { defineConfig } from 'vite'
+import { setDefaultResultOrder } from 'dns'
+
+setDefaultResultOrder('verbatim')
 
 export default defineConfig({
     root: 'src',
