@@ -8,6 +8,9 @@ export default defineConfig({
     server: {
         port: 1234,
     },
+    preview: {
+        port: 2234,
+    },
     build: {
         outDir: 'build',
     },

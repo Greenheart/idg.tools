@@ -4,6 +4,7 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-        "dev": "pnpm --filter app watch:content"
+        "dev": "pnpm --filter app watch:content",
+        "build": "pnpm --filter app build:content"
     }
 }

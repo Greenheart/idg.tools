@@ -9,6 +9,8 @@
         "dev": "pnpm --filter \"./(app|cms|content)\" --parallel dev",
         "app": "pnpm --filter app dev",
         "cms": "pnpm --filter cms dev",
-        "content": "pnpm --filter app watch:content"
+        "content": "pnpm --filter app watch:content",
+        "build": "pnpm --filter \"./(app|cms|content)\" --parallel build",
+        "preview": "pnpm --filter \"./(app|cms|content)\" --parallel preview"
     }
 }
