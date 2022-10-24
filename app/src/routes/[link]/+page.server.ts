@@ -1,4 +1,4 @@
-import { redirect } from '@sveltejs/kit'
+import { redirect, error } from '@sveltejs/kit'
 import { remark } from 'remark'
 import stripMarkdown from 'strip-markdown'
 
@@ -33,6 +33,8 @@ export async function load({
 
         return { tool, tags, skills }
     }
+
+    throw error(404, `No tool found with the link: "${link}"`)
 }
 
 export const actions: Actions = {
