@@ -13,16 +13,22 @@
     export let title: string
     let className = ''
     export { className as class }
+
+    const toggleOpen = () => {
+        $filtersExpanded = !$filtersExpanded
+    }
 </script>
 
-<div
-    class={cx('sticky top-0 z-10 text-stone-900 shadow-2xl', className)}
-    on:click={() => {
-        $filtersExpanded = !$filtersExpanded
-    }}
+<button
+    class={cx('sticky top-0 z-10 text-stone-900 shadow-2xl w-full', className)}
+    on:click={toggleOpen}
+    on:keypress={toggleOpen}
 >
     <div
-        class="relative flex h-16 cursor-pointer select-none items-center justify-between bg-stone-50 px-2 pt-2 pb-4 md:px-4"
+        class={cx(
+            'relative flex h-16 cursor-pointer select-none items-center justify-between bg-stone-50 px-2 pt-2 pb-4 md:px-4 -mr-4',
+            $filtersExpanded ? '' : '-ml-4',
+        )}
     >
         <div class="flex items-center space-x-2 md:space-x-3">
             <Expand open={$filtersExpanded} />
@@ -45,4 +51,4 @@
             <div class="bg-acting" />
         </div>
     </div>
-</div>
+</button>

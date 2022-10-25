@@ -82,7 +82,7 @@
 
     <div class="w-full max-w-2xl sm:max-w-6xl">
         <div class="sr-only">
-            <DialogTitle>Select filters</DialogTitle>
+            <DialogTitle>Content preferences</DialogTitle>
             <DialogDescription>{title}</DialogDescription>
         </div>
 
@@ -103,6 +103,7 @@
             <Button
                 bind:element={applyButton}
                 on:click={close}
+                on:keypress={close}
                 class="col-span-full my-4 max-w-xs justify-self-center"
                 >Show content</Button
             >
@@ -110,7 +111,4 @@
     </div>
 </Dialog>
 
-<FiltersToolbar
-    {title}
-    class={$filtersExpanded ? 'invisible' : '-mr-4 -ml-4'}
-/>
+<FiltersToolbar {title} class={$filtersExpanded ? 'invisible' : ''} />
