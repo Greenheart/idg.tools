@@ -14,7 +14,7 @@ CMS.init({
     config: {
         load_config_file: false,
         editor: { preview: false },
-        media_folder: '/app/static/images',
+        media_folder: '/tools/static/images',
         backend: {
             name: 'github',
             repo: 'Greenheart/idg.tools',

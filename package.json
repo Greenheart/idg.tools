@@ -1,16 +1,16 @@
 {
-    "name": "idg.tools",
+    "name": "innerdevelopmentgoals",
     "private": true,
     "engines": {
         "node": ">= 16",
         "pnpm": ">= 7"
     },
     "scripts": {
-        "dev": "pnpm --filter \"./(app|cms|content)\" --parallel dev",
-        "app": "pnpm --filter app dev",
+        "dev": "pnpm --filter \"./(tools|cms|content)\" --parallel dev",
+        "tools": "pnpm --filter tools dev",
         "cms": "pnpm --filter cms dev",
-        "content": "pnpm --filter app watch:content",
-        "build": "pnpm --filter \"./(app|cms|content)\" --parallel build",
-        "preview": "pnpm --filter \"./(app|cms|content)\" --parallel preview"
+        "content": "pnpm --filter tools watch:content",
+        "build": "pnpm --filter \"./(tools|cms|content)\" --parallel build",
+        "preview": "pnpm --filter \"./(tools|cms|content)\" --parallel preview"
     }
 }
