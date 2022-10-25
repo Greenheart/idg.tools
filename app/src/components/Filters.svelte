@@ -17,7 +17,7 @@
     import Button from './Button.svelte'
     import Skills from './Skills.svelte'
     import FiltersToolbar from './FiltersToolbar.svelte'
-    import { pluralize } from '$lib/utils'
+    import { onKeydown, pluralize } from '$lib/utils'
     import Heading from './Heading.svelte'
     import Tags from './Tags.svelte'
 
@@ -103,7 +103,7 @@
             <Button
                 bind:element={applyButton}
                 on:click={close}
-                on:keypress={close}
+                on:keydown={onKeydown(close)}
                 class="col-span-full my-4 max-w-xs justify-self-center"
                 >Show content</Button
             >

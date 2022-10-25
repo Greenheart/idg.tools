@@ -2,22 +2,16 @@
     import Expand from './icons/Expand.svelte'
     import { filtersExpanded, selectedSkills, selectedTags } from '$lib/stores'
     import Button from './Button.svelte'
-    import { cx } from '$lib/utils'
+    import { cx, onKeydown } from '$lib/utils'
 
     function resetFilters() {
         $selectedSkills = []
         $selectedTags = []
     }
 
-    const onClick = (event: MouseEvent) => {
+    const onClick = (action: () => void) => (event: MouseEvent) => {
         event.stopPropagation()
-        resetFilters()
-    }
-
-    const onPress = (event: KeyboardEvent) => {
-        if (event.code === 'Return' || event.key === 'Space') {
-            resetFilters()
-        }
+        action()
     }
 
     export let title: string
@@ -31,8 +25,8 @@
 
 <button
     class={cx('sticky top-0 z-10 text-stone-900 shadow-2xl w-full', className)}
-    on:click={toggleOpen}
-    on:keypress={toggleOpen}
+    on:click={onClick(toggleOpen)}
+    on:keydown={onKeydown(toggleOpen)}
 >
     <div
         class={cx(
@@ -46,8 +40,8 @@
         </div>
         {#if $selectedSkills.length || $selectedTags.length}
             <Button
-                on:click={onClick}
-                on:keydown={onPress}
+                on:click={onClick(resetFilters)}
+                on:keydown={onKeydown(resetFilters)}
                 variant="inverted"
                 size="md"
                 class="text-xs"

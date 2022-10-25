@@ -23,6 +23,7 @@
     href={`/${tool.link}`}
     unstyled
     class="grid max-h-max max-w-2xl justify-self-center"
+    tabindex={0}
 >
     <div
         class="relative max-h-max transform-gpu rounded-2xl bg-stone-50 p-4 text-stone-900 duration-100 hover:scale-[103%]"

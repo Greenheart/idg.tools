@@ -85,3 +85,12 @@ export const getMostRelevantContent = (
 // TODO: This needs to be updated to support other languages than English, but is good enough for now.
 export const pluralize = (item: string, count: number) =>
     count === 1 ? `1 ${item}` : `${count} ${item}s`
+
+export const shouldTriggerKeyboardInteraction = (event: KeyboardEvent) =>
+    event.code === 'Return' || event.key === 'Space'
+
+export const onKeydown = (action: () => void) => (event: KeyboardEvent) => {
+    if (shouldTriggerKeyboardInteraction(event)) {
+        action()
+    }
+}

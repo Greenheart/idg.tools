@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { cx } from '$lib/utils'
+    import { cx, onKeydown } from '$lib/utils'
     import type { Tag } from '$shared/types'
     import { selectedTags } from '$lib/stores'
 
@@ -25,13 +25,18 @@
     export let visible: number = tags.length
     let className = ''
     export { className as class }
+
+    const renderAs = interactive ? 'button' : 'span'
 </script>
 
 <div class={cx('flex flex-wrap items-start gap-1 pr-6 select-none', className)}>
     {#each tags.slice(0, visible) as tag (tag.name)}
-        <span
+        <svelte:element
+            this={renderAs}
             on:click={interactive ? () => toggleTag(tag.id) : () => {}}
-            on:keypress={interactive ? () => toggleTag(tag.id) : () => {}}
+            on:keydown={interactive
+                ? onKeydown(() => toggleTag(tag.id))
+                : () => {}}
             class={cx(
                 'rounded-lg',
                 interactive
@@ -46,6 +51,6 @@
             )}
         >
             {tag.name}
-        </span>
+        </svelte:element>
     {/each}
 </div>

@@ -1,7 +1,8 @@
 <script lang="ts">
     import Link from '$components/Link.svelte'
-
     import { isMenuOpen } from '$lib/stores'
+    import { onKeydown } from '$lib/utils'
+
     const toggleMenu = () => {
         $isMenuOpen = !$isMenuOpen
     }
@@ -23,7 +24,7 @@
         <nav
             class="fixed inset-0 flex h-full w-full flex-col items-center justify-center text-6xl font-semibold backdrop-blur-2xl"
             on:click={toggleMenu}
-            on:keypress={toggleMenu}
+            on:keydown={onKeydown(toggleMenu)}
         >
             {#each links as { href, text }}
                 <Link {href} class="p-4">{text}</Link>
@@ -36,6 +37,7 @@
         class:is-active={$isMenuOpen}
         type="button"
         on:click={toggleMenu}
+        on:keydown={onKeydown(toggleMenu)}
     >
         <span class="hamburger-box">
             <span class="hamburger-inner" />
