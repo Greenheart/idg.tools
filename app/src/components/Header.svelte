@@ -23,6 +23,7 @@
         <nav
             class="fixed inset-0 flex h-full w-full flex-col items-center justify-center text-6xl font-semibold backdrop-blur-2xl"
             on:click={toggleMenu}
+            on:keypress={toggleMenu}
         >
             {#each links as { href, text }}
                 <Link {href} class="p-4">{text}</Link>
