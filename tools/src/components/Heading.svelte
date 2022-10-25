@@ -1,33 +1,26 @@
-<script lang="ts">
-    import { cx } from '$lib/utils'
-
+<script lang="ts" context="module">
     const sizes = [1, 2, 3, 4, 5, 6] as const
     type Size = typeof sizes[number]
+
+    const classes: Record<Size, string> = {
+        1: 'text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold',
+        2: 'md:text-3xl sm:text-2xl text-xl font-bold',
+        3: 'text-lg font-bold',
+        4: 'text-sm font-semibold',
+        5: '',
+        6: '',
+    }
+</script>
+
+<script lang="ts">
+    import { cx } from '$lib/utils'
 
     export let size: Size = 2
     let className = ''
     export { className as class }
+    const tag = `h${size}`
 </script>
 
-{#if size === 1}
-    <h1
-        class={cx(
-            'text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold',
-            className,
-        )}
-    >
-        <slot />
-    </h1>
-{:else if size === 2}
-    <h2 class={cx('md:text-3xl sm:text-2xl text-xl font-bold', className)}>
-        <slot />
-    </h2>
-{:else if size === 3}
-    <h3 class={cx('text-lg font-bold', className)}>
-        <slot />
-    </h3>
-{:else if size === 4}
-    <h4 class={cx('text-sm font-semibold', className)}>
-        <slot />
-    </h4>
-{/if}
+<svelte:element this={tag} class={cx(classes[size], className)}>
+    <slot />
+</svelte:element>
