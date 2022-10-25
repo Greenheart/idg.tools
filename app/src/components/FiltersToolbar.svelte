@@ -4,10 +4,20 @@
     import Button from './Button.svelte'
     import { cx } from '$lib/utils'
 
-    function resetFilters(event: MouseEvent) {
-        event.stopPropagation()
+    function resetFilters() {
         $selectedSkills = []
         $selectedTags = []
+    }
+
+    const onClick = (event: MouseEvent) => {
+        event.stopPropagation()
+        resetFilters()
+    }
+
+    const onPress = (event: KeyboardEvent) => {
+        if (event.code === 'Return' || event.key === 'Space') {
+            resetFilters()
+        }
     }
 
     export let title: string
@@ -36,7 +46,8 @@
         </div>
         {#if $selectedSkills.length || $selectedTags.length}
             <Button
-                on:click={resetFilters}
+                on:click={onClick}
+                on:keydown={onPress}
                 variant="inverted"
                 size="md"
                 class="text-xs"
