@@ -31,6 +31,7 @@
     {#each tags.slice(0, visible) as tag (tag.name)}
         <span
             on:click={interactive ? () => toggleTag(tag.id) : () => {}}
+            on:keypress={interactive ? () => toggleTag(tag.id) : () => {}}
             class={cx(
                 'rounded-lg',
                 interactive
