@@ -1,10 +1,19 @@
-# IDG.tools - Inner Development Toolkit
+# Inner Development Goals
 
 > Transformational Skills for Sustainable Development
 
-IDG.tools is a free, open source and co-created library of tools and resources to help you practice [inner development](https://www.innerdevelopmentgoals.org) to accelerate the implementation of the [Sustainable Development Goals](https://www.undp.org/sustainable-development-goals).
+Welcome! This is a collection of free and open source projects supporting the [Inner Development Goals](https://www.innerdevelopmentgoals.org) (IDGs). The goal is to accelerate the implementation of the [Sustainable Development Goals](https://www.undp.org/sustainable-development-goals) (SDGs).
+
+Our projects include:
+
+-   [idg.tools](https://idg.tools) - A free, open source and co-created library of tools and resources to help people and organizations practice inner development.
+-   [idg.community](https://idg.community) - A website created by and for the IDG community. A place to share stories and get involved in various activities.
 
 ## Get involved
+
+Curious to learn how you can contribute? Come say hi in our chat room and we'll help you get started.
+
+There are many ways to help out so don't be afraid to ask!
 
 -   [Element chat room](https://app.element.io/#/room/#idg-tools:community.innerdevelopmentgoals.org)
 
