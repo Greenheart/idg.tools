@@ -9,6 +9,8 @@ import { ToolsFields } from './fields/tools'
 import { SkillsFields } from './fields/skills'
 import { DimensionsFields } from './fields/dimensions'
 import { TagsFields } from './fields/tags'
+import { StoriesFields } from './fields/stories'
+import { ContributorsFields } from './fields/contributors'
 
 CMS.init({
     config: {
@@ -48,6 +50,42 @@ CMS.init({
                 i18n: true,
                 description:
                     'Tools are resources that help practicing the Inner Development Goals.',
+            },
+            {
+                name: 'stories',
+                label: 'Stories',
+                label_singular: 'Story',
+                folder: '/content/src/stories',
+                fields: StoriesFields,
+                extension: 'json',
+                format: 'json',
+                create: true,
+                delete: false,
+                publish: false,
+                summary: '{{ fields.name }}',
+                slug: '{{id}}',
+                identifier_field: 'id',
+                i18n: true,
+                description:
+                    'Stories to share insights and learnings of how the IDGs are being used in practice, to reach the SDGs.',
+            },
+            {
+                name: 'contributors',
+                label: 'Contributors',
+                label_singular: 'Contributor',
+                folder: '/content/src/contributors',
+                fields: ContributorsFields,
+                extension: 'json',
+                format: 'json',
+                create: true,
+                delete: false,
+                publish: false,
+                summary: '{{fields.name}}',
+                identifier_field: 'id',
+                slug: '{{id}}',
+                i18n: true,
+                description:
+                    'Give credit to the people who help co-create the IDGs.',
             },
             {
                 name: 'tags',

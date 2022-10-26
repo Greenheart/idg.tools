@@ -1,29 +1,34 @@
 import { CustomCmsField, ID, MARKDOWN_FIELD, NAME } from './shared'
 
-export const ToolsFields: CustomCmsField[] = [
+export const StoriesFields: CustomCmsField[] = [
     ID,
     NAME,
     {
         label: 'Intro',
         name: 'intro',
-        hint: "A short intro to catch the reader's interest. This will be visible in the search results and at the top of the tool's own page.",
+        hint: "A short intro to catch the reader's interest.",
         i18n: true,
         ...MARKDOWN_FIELD,
         required: false,
     },
     {
-        label: 'Description',
-        name: 'description',
-        hint: 'Describe how and why this tool helps people practice inner development for sustainable development.',
+        label: 'Story',
+        name: 'story',
+        hint: 'Your story of how you practiced inner development and how it helped you with sustainable development.',
         i18n: true,
         ...MARKDOWN_FIELD,
     },
     {
-        label: 'Actions',
-        name: 'actions',
-        hint: 'Call to action. Describe one or more ways people can start using this tool to practice inner development for sustainable development.',
+        label: 'Contributors',
+        name: 'contributors',
+        hint: 'Give credit to the people behind the story.',
+        multiple: true,
+        widget: 'relation',
+        collection: 'contributors',
+        value_field: 'id',
+        search_fields: ['name', 'id'],
+        display_fields: ['name'],
         i18n: true,
-        ...MARKDOWN_FIELD,
     },
     {
         label: 'Relevant skills',
@@ -31,9 +36,7 @@ export const ToolsFields: CustomCmsField[] = [
         hint: 'Link related skills from the IDG framework.',
         widget: 'list',
         i18n: true,
-        required: false,
         summary: '{{fields.skill}} - {{fields.score}}',
-        // minimize_collapsed: true,
         collapsed: true,
         fields: [
             {
@@ -60,7 +63,7 @@ export const ToolsFields: CustomCmsField[] = [
     {
         label: 'Tags',
         name: 'tags',
-        hint: 'Add tags to make it easier to categorize different tools, and allow filtering the content.',
+        hint: 'Add tags to help people find the most relevant content for their context and background.',
         multiple: true,
         widget: 'relation',
         collection: 'tags',
@@ -68,14 +71,6 @@ export const ToolsFields: CustomCmsField[] = [
         search_fields: ['name', 'id'],
         display_fields: ['name'],
         i18n: true,
-        required: false,
-    },
-    {
-        label: 'Research & Resources',
-        name: 'resources',
-        hint: 'List relevant research that supports this tool, and other resources that are relevant.',
-        i18n: true,
-        ...MARKDOWN_FIELD,
         required: false,
     },
     {
