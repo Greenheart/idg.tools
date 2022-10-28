@@ -1,4 +1,5 @@
 packages:
     - tools
+    - community
     - cms
     - content
