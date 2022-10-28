@@ -16,6 +16,11 @@ const config = {
             publicPrefix: 'PUBLIC_',
         },
     },
+    vitePlugin: {
+        experimental: {
+            inspector: true,
+        },
+    },
 }
 
 export default config
