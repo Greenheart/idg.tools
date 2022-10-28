@@ -2,8 +2,7 @@ import tailwindcss from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
 
-const mode = process.env.NODE_ENV
-const dev = mode === 'development'
+const { NODE_ENV } = process.env
 
 export default {
     plugins: [
@@ -11,9 +10,6 @@ export default {
         tailwindcss(),
         //But others, like autoprefixer, need to run after,
         autoprefixer(),
-        !dev &&
-            cssnano({
-                preset: 'default',
-            }),
+        NODE_ENV !== 'development' && cssnano({ preset: 'default' }),
     ],
 }
