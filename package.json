@@ -6,11 +6,12 @@
         "pnpm": ">= 7"
     },
     "scripts": {
-        "dev": "pnpm --filter \"./(tools|cms|content)\" --parallel dev",
+        "dev": "pnpm --filter \"./(tools|cms|content|community)\" --parallel dev",
         "tools": "pnpm --filter tools dev",
+        "community": "pnpm --filter community dev",
         "cms": "pnpm --filter cms dev",
         "content": "pnpm --filter tools watch:content",
-        "build": "pnpm --filter \"./(tools|cms|content)\" --parallel build",
-        "preview": "pnpm --filter \"./(tools|cms|content)\" --parallel preview"
+        "build": "pnpm --filter \"./(tools|cms|content|community)\" --parallel build",
+        "preview": "pnpm --filter \"./(tools|cms|content|community)\" --parallel preview"
     }
 }
