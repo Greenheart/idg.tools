@@ -35,7 +35,7 @@ importers:
       '@octokit/graphql': ^5.0.4
       '@rgossiaux/svelte-headlessui': ^1.0.2
       '@sveltejs/adapter-vercel': 1.0.0-next.80
-      '@sveltejs/kit': ^1.0.0-next.528
+      '@sveltejs/kit': 1.0.0-next.527
       '@tailwindcss/typography': ^0.5.7
       '@types/dompurify': ^2.3.4
       '@types/sanitize-html': ^2.6.2
@@ -76,7 +76,7 @@ importers:
     devDependencies:
       '@rgossiaux/svelte-headlessui': 1.0.2_svelte@3.52.0
       '@sveltejs/adapter-vercel': 1.0.0-next.80
-      '@sveltejs/kit': 1.0.0-next.528_svelte@3.52.0+vite@3.2.1
+      '@sveltejs/kit': 1.0.0-next.527_svelte@3.52.0+vite@3.2.1
       '@tailwindcss/typography': 0.5.7_tailwindcss@3.2.1
       '@types/dompurify': 2.3.4
       '@types/sanitize-html': 2.6.2
