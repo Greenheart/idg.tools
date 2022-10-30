@@ -42,7 +42,7 @@
 {:else}
     <div class="flex justify-center">
         <Button on:click={() => (expanded = true)}
-            >Help improve this tool</Button
+            >Give feedback on this tool</Button
         >
     </div>
 {/if}
