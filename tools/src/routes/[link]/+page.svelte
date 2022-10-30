@@ -7,6 +7,7 @@
     import Tags from '$components/Tags.svelte'
 
     import type { PageData } from './$types'
+    import Link from '$components/Link.svelte'
     export let data: PageData
     $: ({ tool, skills, tags } = data)
 </script>
@@ -36,4 +37,8 @@
 
 <div class="mt-8">
     <FeedbackForm />
+</div>
+
+<div class="flex mt-8 justify-center">
+    <Link href="/" variant="pink">See more tools</Link>
 </div>
