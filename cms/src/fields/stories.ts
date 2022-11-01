@@ -1,8 +1,8 @@
-import { CustomCmsField, ID, MARKDOWN_FIELD, NAME } from './shared'
+import { CustomCmsField, ID, MARKDOWN_FIELD, TITLE } from './shared'
 
 export const StoriesFields: CustomCmsField[] = [
     ID,
-    NAME,
+    TITLE,
     {
         label: 'Intro',
         name: 'intro',
@@ -22,7 +22,7 @@ export const StoriesFields: CustomCmsField[] = [
     {
         label: 'Relevant dimensions',
         name: 'dimensions',
-        hint: 'Link related dimensions from the IDG framework.',
+        hint: 'Link the most relevant dimensions from the IDG framework.',
         widget: 'list',
         i18n: true,
         summary: '{{fields.dimension}}',
@@ -44,7 +44,7 @@ export const StoriesFields: CustomCmsField[] = [
     {
         label: 'Contributors',
         name: 'contributors',
-        hint: 'Give credit to the people behind the story.',
+        hint: 'Give credit to the people behind the story by adding their names.',
         multiple: true,
         widget: 'relation',
         collection: 'contributors',

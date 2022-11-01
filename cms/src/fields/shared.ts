@@ -25,6 +25,13 @@ export const NAME: CmsField = {
     widget: 'string',
 }
 
+export const TITLE: CmsField = {
+    label: 'Title',
+    name: 'title',
+    i18n: true,
+    widget: 'string',
+}
+
 export const DESCRIPTION: CmsField = {
     label: 'Description',
     name: 'description',
