@@ -3,7 +3,6 @@
 
     import Link from '$components/Link.svelte'
     import Heading from '$components/Heading.svelte'
-    import Tools from '$components/Tools.svelte'
     import {
         selectedSkills,
         selectedTags,
