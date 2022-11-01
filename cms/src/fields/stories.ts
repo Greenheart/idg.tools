@@ -42,6 +42,7 @@ export const StoriesFields: CustomCmsField[] = [
         search_fields: ['name', 'id'],
         display_fields: ['name'],
         i18n: true,
+        required: false,
     },
     // TODO: add image as a required field since a story without an image is too boring
     {
