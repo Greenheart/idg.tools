@@ -52,7 +52,7 @@ export const StoriesFields: CustomCmsField[] = [
         required: false,
         date_format: 'YYYY-MM-DD',
     } as CmsField,
-    // TODO: add image as a required field since a story without an image is too boring
+    // TODO: add image as a required field since a story without an image is too boring.
     {
         label: 'Slug',
         name: 'slug',
