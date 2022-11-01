@@ -12,7 +12,6 @@
     } from '$lib/stores'
     import type { PageData } from './$types'
     import { getMostRelevantContent } from '$lib/utils'
-    import Filters from '$components/Filters.svelte'
 
     export let data: PageData
     $: ({ content } = data)
@@ -55,9 +54,5 @@
 </div>
 
 <Heading size={2} class="mb-4">1. Choose skills to practice</Heading>
-<Filters {content} />
 
-<Heading size={2} class="mb-4 mt-16">2. Explore relevant tools</Heading>
-<div class="grid gap-8 lg:grid-cols-2" class:hidden={$isMenuOpen}>
-    <Tools tools={mostRelevantTools} {content} />
-</div>
+<Heading size={2} class="mb-4 mt-16">Latest stories</Heading>
