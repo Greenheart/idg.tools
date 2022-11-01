@@ -19,18 +19,6 @@ export const StoriesFields: CustomCmsField[] = [
         ...MARKDOWN_FIELD,
     },
     {
-        label: 'Contributors',
-        name: 'contributors',
-        hint: 'Give credit to the people behind the story.',
-        multiple: true,
-        widget: 'relation',
-        collection: 'contributors',
-        value_field: 'id',
-        search_fields: ['name', 'id'],
-        display_fields: ['name'],
-        i18n: true,
-    },
-    {
         label: 'Relevant dimensions',
         name: 'dimensions',
         hint: 'Link related dimensions from the IDG framework.',
@@ -51,6 +39,18 @@ export const StoriesFields: CustomCmsField[] = [
                 i18n: 'duplicate',
             },
         ],
+    },
+    {
+        label: 'Contributors',
+        name: 'contributors',
+        hint: 'Give credit to the people behind the story.',
+        multiple: true,
+        widget: 'relation',
+        collection: 'contributors',
+        value_field: 'id',
+        search_fields: ['name', 'id'],
+        display_fields: ['name'],
+        i18n: true,
     },
     // TODO: add image as a required field since a story without an image is too boring
     {

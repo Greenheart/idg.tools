@@ -2,7 +2,10 @@ import { CustomCmsField, ID, NAME } from './shared'
 
 export const ContributorsFields: CustomCmsField[] = [
     ID,
-    NAME,
+    {
+        ...NAME,
+        i18n: 'duplicate',
+    },
     {
         label: 'Link',
         name: 'link',
