@@ -18,6 +18,7 @@ export const StoriesFields: CustomCmsField[] = [
         i18n: true,
         ...MARKDOWN_FIELD,
     },
+    // TODO: maybe use multiselect instead of list widget
     {
         label: 'Relevant dimensions',
         name: 'dimensions',
