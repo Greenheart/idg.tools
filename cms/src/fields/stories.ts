@@ -1,3 +1,4 @@
+import { CmsField } from 'netlify-cms-core'
 import { CustomCmsField, ID, MARKDOWN_FIELD, TITLE } from './shared'
 
 export const StoriesFields: CustomCmsField[] = [
@@ -44,6 +45,13 @@ export const StoriesFields: CustomCmsField[] = [
         i18n: true,
         required: false,
     },
+    {
+        label: 'Publishing date',
+        name: 'publishedAt',
+        widget: 'date',
+        required: false,
+        date_format: 'YYYY-MM-DD',
+    } as CmsField,
     // TODO: add image as a required field since a story without an image is too boring
     {
         label: 'Slug',
