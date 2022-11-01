@@ -83,7 +83,7 @@ CMS.init({
                 summary: '{{fields.name}}',
                 identifier_field: 'id',
                 slug: '{{id}}',
-                i18n: true,
+                i18n: false,
                 description:
                     'Give credit to the people who help co-create the IDGs.',
             },
