@@ -52,19 +52,7 @@ export const StoriesFields: CustomCmsField[] = [
             },
         ],
     },
-    {
-        label: 'Tags',
-        name: 'tags',
-        hint: 'Add tags to help people find the most relevant content for their context and background.',
-        multiple: true,
-        widget: 'relation',
-        collection: 'tags',
-        value_field: 'id',
-        search_fields: ['name', 'id'],
-        display_fields: ['name'],
-        i18n: true,
-        required: false,
-    },
+    // TODO: add image as a required field since a story without an image is too boring
     {
         label: 'Slug',
         name: 'slug',
