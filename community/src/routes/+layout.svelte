@@ -3,7 +3,7 @@
     import { TAGLINE } from '$lib/constants'
     import { page } from '$app/stores'
     import { getBgOpacity } from './+layout'
-    import { isMenuOpen, filtersExpanded } from '$lib/stores'
+    import { isMenuOpen } from '$lib/stores'
 
     import '../app.css'
     import CommunitySection from '$components/CommunitySection.svelte'

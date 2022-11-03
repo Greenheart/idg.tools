@@ -1,14 +1,13 @@
 <script lang="ts">
     import Heading from '$components/Heading.svelte'
     import Markdown from '$components/Markdown.svelte'
-    import DetailedRelevantSkills from '$components/DetailedRelevantSkills.svelte'
     import Resources from '$components/Resources.svelte'
     import FeedbackForm from '$components/FeedbackForm.svelte'
     import Tags from '$components/Tags.svelte'
 
     import type { PageData } from './$types'
     export let data: PageData
-    $: ({ tool, skills, tags } = data)
+    $: ({ tool, tags } = data)
 </script>
 
 <Heading size={1}>{tool.name}</Heading>
@@ -27,7 +26,6 @@
 </div>
 
 <Heading class="pt-8 pb-2">Skill relevancy</Heading>
-<DetailedRelevantSkills {skills} relevancy={tool.relevancy} />
 
 {#if tool.resources}
     <Heading class="pt-8 pb-2">Research and resources</Heading>
