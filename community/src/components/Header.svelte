@@ -17,7 +17,9 @@
 
 <header class="relative flex items-center justify-between pt-6 pb-12">
     <Link href="/" unstyled class="flex h-[60px] items-center">
-        <img src="/images/IDG-tools.svg" alt="IDG.tools logo" class="mx-auto" />
+        <span class="font-bold text-2xl">IDG.community</span>
+        <!-- TODO: Add proper IDG.community logo -->
+        <!-- <img src="/images/IDG-tools.svg" alt="IDG.tools logo" class="mx-auto" /> -->
     </Link>
 
     {#if $isMenuOpen}
