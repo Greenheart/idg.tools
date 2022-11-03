@@ -74,3 +74,30 @@
         <Link href="#stories" variant="pink">Get inspired</Link>
     </div>
 </div>
+
+<div class="grid grid-cols-2 gap-x-8 py-12 mt-8">
+    <Heading size={2} class="mb-4">Upcoming events</Heading>
+    <Heading size={2} class="mb-4">Featured stories</Heading>
+    <div class="bg-being h-64 rounded-2xl" />
+    <div class="bg-relating h-64 rounded-2xl" />
+</div>
+
+<div class="grid py-12 w-1/2 mx-auto">
+    <Heading size={2} class="mb-2">Come join us!</Heading>
+    <p class="mb-4">
+        (This could be an interactive widget to help people find their way of
+        engaging by answering a few questions, and getting recommended specific
+        actions)
+    </p>
+    <div class="bg-thinking h-64 rounded-2xl" />
+</div>
+
+<div class="grid py-12 w-1/2 mx-auto">
+    <Heading size={2} class="mb-2">Map: Find your local IDG hub!</Heading>
+    <p class="mb-4">
+        (This could be an interactive map to visualize the key information about
+        all active IDG hubs. The data would be updated by the IDG hubs
+        themselves, as part of their commitment to remain featured)
+    </p>
+    <div class="bg-collaborating h-64 rounded-2xl" />
+</div>
