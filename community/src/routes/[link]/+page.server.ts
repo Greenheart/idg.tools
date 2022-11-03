@@ -3,7 +3,7 @@ import { remark } from 'remark'
 import stripMarkdown from 'strip-markdown'
 
 import { content } from '$lib/content-backend'
-import { getSkill, getTag, getToolByLink } from '$shared/content-utils'
+import { getTag, getToolByLink } from '$shared/content-utils'
 import type { Actions, PageServerLoad } from './$types'
 import { createIssue } from '$lib/github'
 
@@ -22,7 +22,6 @@ export async function load({
 
     if (tool) {
         const tags = tool.tags.map((tagId) => getTag(tagId, content))
-        const skills = tool.relevancy.map((r) => getSkill(r.skill, content))
         // If page was found on a different URL,
         // permanently redirect to the updated url (HTTP 301)
         // to prevent multiple URLs publishing the same content.
@@ -31,7 +30,7 @@ export async function load({
             throw redirect(301, location)
         }
 
-        return { tool, tags, skills }
+        return { tool, tags }
     }
 
     throw error(404, `No tool found with the link: "${link}"`)

@@ -1,35 +1,23 @@
 <script lang="ts">
-    import { onMount } from 'svelte'
-
     import Link from '$components/Link.svelte'
     import Heading from '$components/Heading.svelte'
-    import {
-        selectedSkills,
-        selectedTags,
-        isMenuOpen,
-        visibleItems,
-    } from '$lib/stores'
+    import { isMenuOpen } from '$lib/stores'
     import type { PageData } from './$types'
-    import { getMostRelevantContent } from '$lib/utils'
 
     export let data: PageData
     $: ({ content } = data)
-
-    onMount(() => {
-        // NOTE: Maybe we could limit the number of re-renders by showing a loading state until all of these have updated?
-        selectedSkills.useLocalStorage()
-        selectedTags.useLocalStorage()
-        visibleItems.useLocalStorage()
-    })
-
-    $: mostRelevantTools =
-        $selectedSkills.length || $selectedTags.length
-            ? getMostRelevantContent(content, $selectedSkills, $selectedTags)
-            : content.tools
 </script>
 
 <div class:hidden={$isMenuOpen}>
     <Heading size={1}>Change starts within</Heading>
+
+    <Heading size={2}>Welcome to the Inner Development Goals Community!</Heading
+    >
+
+    <p>
+        This is an emerging community using the IDG framework in practice to
+        reach the SDGs.
+    </p>
 
     <div class="space-y-4 py-12 text-lg sm:text-xl">
         <p>
