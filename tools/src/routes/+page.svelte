@@ -36,7 +36,7 @@
 
     <div class="space-y-4 py-12 text-lg sm:text-xl">
         <p>
-            IDG.tools is the open source toolkit for the <Link
+            IDG.tools is the open source toolkit from the <Link
                 href="https://www.innerdevelopmentgoals.org/framework"
                 class="mt-6 font-bold underline">Inner Development Goals</Link
             > (IDGs) non-profit initiative. The initiative is working to achieve
@@ -48,7 +48,7 @@
         </p>
 
         <p>
-            We’re building a library of scientifically-validated methods to
+            We’re creating a library of scientifically-validated methods to
             develop the skills outlined by the IDG framework. Just select which
             ones you want to practice and find tools relevant for you.
         </p>
