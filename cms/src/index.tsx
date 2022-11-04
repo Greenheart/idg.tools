@@ -11,6 +11,7 @@ import { DimensionsFields } from './fields/dimensions'
 import { TagsFields } from './fields/tags'
 import { StoriesFields } from './fields/stories'
 import { ContributorsFields } from './fields/contributors'
+import { FeaturedContentFields } from './fields/settings/featured'
 
 CMS.init({
     config: {
@@ -104,6 +105,20 @@ CMS.init({
                 i18n: true,
                 description:
                     'Create tags and use them to organize different tools.',
+            },
+            {
+                i18n: true,
+                name: 'settings',
+                label: 'Settings',
+                files: [
+                    {
+                        i18n: true,
+                        label: 'Featured Content',
+                        name: 'featured',
+                        file: '/content/src/settings/featured.json',
+                        fields: FeaturedContentFields,
+                    },
+                ],
             },
             {
                 name: 'skills',
