@@ -1,27 +1,20 @@
 import { CustomCmsField } from '../shared'
 
 export const FeaturedContentFields: CustomCmsField[] = [
-    // TODO: Can the order of the output from the relation widget be trusted to be consistent?
-    // If not, we might need to use the `list` widget type
-    // NOTE: Maybe it's easier to sort stories with the list widget than with the relation directly.
-    // If we want to use the list widget instead, we should move the relation widget as the only content in there.
     {
+        name: 'stories',
+        required: false,
         label: 'Featured Stories',
         label_singular: 'Featured Story',
-        name: 'stories',
-        hint: 'Select the stories you want to feature on the IDG.community website.',
-        widget: 'list',
-        required: false,
-        field: {
-            name: 'id',
-            label: 'Featured Story',
-            widget: 'relation',
-            collection: 'stories',
-            value_field: 'id',
-            search_fields: ['name', 'id'],
-            display_fields: ['name'],
-            i18n: 'duplicate',
-            required: true,
-        },
+        widget: 'relation',
+        multiple: true,
+        // NOTE: Maybe we want the same featured content in all languages, or maybe not.
+        // With `duplicate` they will be consistent, but with `i18n: true` we could have variations
+        i18n: 'duplicate',
+        collection: 'stories',
+        value_field: 'id',
+        search_fields: ['title', 'id'],
+        display_fields: ['title'],
+        hint: 'Select the stories you want to feature on the IDG.community website. You can change the order by removing and adding stories in the order you want them.',
     },
 ]

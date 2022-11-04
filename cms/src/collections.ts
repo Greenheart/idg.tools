@@ -83,6 +83,8 @@ export const COLLECTIONS = [
         i18n: true,
         name: 'settings',
         label: 'Settings',
+        description:
+            'Here you can change settings like which stories and events that should be featured.',
         files: [
             {
                 i18n: true,
