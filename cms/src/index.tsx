@@ -62,7 +62,7 @@ CMS.init({
                 create: true,
                 delete: false,
                 publish: false,
-                summary: '{{ fields.name }}',
+                summary: '{{fields.title}}',
                 slug: '{{id}}',
                 identifier_field: 'id',
                 i18n: true,
