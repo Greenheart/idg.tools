@@ -27,11 +27,32 @@ export type Tool = Item & {
     tags: Tag['id'][]
 }
 
+export type Contributor = {
+    name: string
+    link: string
+}
+
+export type Story = {
+    title: string
+    intro: string
+    story: string
+    dimensions: Dimension['id'][]
+    slug: string
+    publishedAt: string
+    tags: Tag['id'][]
+}
+
 export type ToolsContent = {
     dimensions: Dimension[]
     tools: Tool[]
     skills: Skill[]
     tags: Tag[]
+}
+
+export type CommunityContent = {
+    tags: Tag[]
+    contributors: Contributor[]
+    stories: Story[]
 }
 
 export type IDGRelevancy = {
