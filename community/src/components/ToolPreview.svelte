@@ -1,7 +1,7 @@
 <script lang="ts">
     import { truncateText } from '$lib/utils'
     import { getTag } from '$shared/content-utils'
-    import type { Tool, Content } from '$shared/types'
+    import type { Tool, ToolsContent } from '$shared/types'
     import Heading from './Heading.svelte'
     import Arrow from './icons/Arrow.svelte'
     import Link from './Link.svelte'
@@ -14,7 +14,7 @@
     $: intro = truncateText(tool.intro ?? tool.description, introLength)
 
     export let tool: Tool
-    export let content: Content
+    export let content: ToolsContent
 
     let tags = tool.tags.map((tagId) => getTag(tagId, content))
 </script>
