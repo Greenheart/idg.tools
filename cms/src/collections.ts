@@ -11,7 +11,7 @@ import { ToolsFields } from './fields/tools'
 export const COLLECTIONS = [
     {
         name: 'tools',
-        label: 'Tools',
+        label: '📚 Tools',
         label_singular: 'Tool',
         folder: '/content/src/tools',
         fields: ToolsFields,
@@ -29,7 +29,7 @@ export const COLLECTIONS = [
     },
     {
         name: 'stories',
-        label: 'Stories',
+        label: '✍️ Stories',
         label_singular: 'Story',
         folder: '/content/src/stories',
         fields: StoriesFields,
@@ -47,7 +47,7 @@ export const COLLECTIONS = [
     },
     {
         name: 'contributors',
-        label: 'Contributors',
+        label: '👥 Contributors',
         label_singular: 'Contributor',
         folder: '/content/src/contributors',
         fields: ContributorsFields,
@@ -64,7 +64,7 @@ export const COLLECTIONS = [
     },
     {
         name: 'tags',
-        label: 'Tags',
+        label: '🏷 Tags',
         label_singular: 'Tag',
         folder: '/content/src/tags',
         fields: TagsFields,
@@ -82,7 +82,7 @@ export const COLLECTIONS = [
     {
         i18n: true,
         name: 'settings',
-        label: 'Settings',
+        label: '⚙️ Settings',
         description:
             'Here you can change settings like which stories and events that should be featured.',
         files: [
@@ -97,7 +97,7 @@ export const COLLECTIONS = [
     },
     {
         name: 'skills',
-        label: 'Skills',
+        label: '🌱 Skills',
         label_singular: 'Skill',
         folder: '/content/src/skills',
         fields: SkillsFields,
@@ -114,7 +114,7 @@ export const COLLECTIONS = [
     },
     {
         name: 'dimensions',
-        label: 'Dimensions',
+        label: '🌿 Dimensions',
         label_singular: 'Dimension',
         folder: '/content/src/dimensions',
         fields: DimensionsFields,
