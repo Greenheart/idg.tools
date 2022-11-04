@@ -27,7 +27,7 @@ export type Tool = Item & {
     tags: Tag['id'][]
 }
 
-export type Content = {
+export type ToolsContent = {
     dimensions: Dimension[]
     tools: Tool[]
     skills: Skill[]

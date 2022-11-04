@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Content, Tool } from '$shared/types'
+    import type { ToolsContent, Tool } from '$shared/types'
     import { selectedSkills, visibleItems, selectedTags } from '$lib/stores'
     import ToolPreview from './ToolPreview.svelte'
     import Button from './Button.svelte'
@@ -7,7 +7,7 @@
     import { SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
 
     export let tools: Tool[]
-    export let content: Content
+    export let content: ToolsContent
 
     const showAll = () => {
         $selectedSkills = []

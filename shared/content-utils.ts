@@ -1,16 +1,16 @@
-import type { Dimension, Content, Skill, Tag, Tool } from './types'
+import type { Dimension, ToolsContent, Skill, Tag, Tool } from './types'
 
 export const getDimension = (
     id: Dimension['id'],
-    { dimensions }: Pick<Content, 'dimensions'>,
+    { dimensions }: Pick<ToolsContent, 'dimensions'>,
 ) => dimensions.find((c) => c.id === id) as Dimension
 
 export const getSkill = (
     id: Skill['id'],
-    { skills }: Pick<Content, 'skills'>,
+    { skills }: Pick<ToolsContent, 'skills'>,
 ) => skills.find((s) => s.id === id) as Skill
 
-export const getTag = (id: Tag['id'], { tags }: Pick<Content, 'tags'>) =>
+export const getTag = (id: Tag['id'], { tags }: Pick<ToolsContent, 'tags'>) =>
     tags.find((t) => t.id === id) as Tag
 
 /**
@@ -24,10 +24,10 @@ export const getTag = (id: Tag['id'], { tags }: Pick<Content, 'tags'>) =>
  */
 export const getToolByLink = (
     link: Tool['link'],
-    { tools }: Pick<Content, 'tools'>,
+    { tools }: Pick<ToolsContent, 'tools'>,
 ) => tools.find((t) => t.link === link || link.endsWith(t.slug)) as Tool
 
 export const getSkillsInDimension = (
     id: Dimension['id'],
-    { skills }: Pick<Content, 'skills'>,
+    { skills }: Pick<ToolsContent, 'skills'>,
 ) => skills.filter((s) => s.dimension === id)
