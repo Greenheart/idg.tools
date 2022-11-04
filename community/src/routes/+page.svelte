@@ -57,10 +57,7 @@
             participate, explore and co-create. Join local events and use our
             chat rooms to connect and learn together with a global network.
         </p>
-        <Link
-            href="https://app.element.io/#/room/#idg:community.innerdevelopmentgoals.org"
-            variant="pink">Join us on Element</Link
-        >
+        <Link href="#" variant="pink">Find your community</Link>
     </div>
 
     <div class="text-center">
@@ -71,7 +68,7 @@
             local hub. Share your own story and help make the IDG resources even
             better!
         </p>
-        <Link href="#stories" variant="pink">Get inspired</Link>
+        <Link href="#stories" variant="pink">Inspire and get inspired!</Link>
     </div>
 </div>
 

@@ -1,4 +1,5 @@
-export const COMMUNITY_LINK = ''
+export const COMMUNITY_LINK =
+    'https://app.element.io/#/room/#idg:community.innerdevelopmentgoals.org'
 export const TAGLINE = 'Inner Development Goals Community'
 export const GITHUB_LINK = 'https://github.com/Greenheart/idg.tools'
 export const SUGGEST_NEW_TOOL_LINK =
