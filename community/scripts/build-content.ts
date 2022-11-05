@@ -100,8 +100,7 @@ const prepareStories = (
             }
 
             if (!story.tags) {
-                console.log(JSON.stringify(story, null, 2))
-                console.log('MISSING TAGS for story ', story.title)
+                console.log('[content] MISSING TAGS for story ', story.title)
             } else {
                 const firstDuplicateTag = story.tags.find(
                     (t, i) => story.tags.lastIndexOf(t) !== i,

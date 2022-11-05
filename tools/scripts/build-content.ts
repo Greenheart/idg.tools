@@ -101,8 +101,7 @@ const prepareTools = (
             }
 
             if (!tool.tags) {
-                console.log(JSON.stringify(tool, null, 2))
-                console.log('MISSING TAGS for tool ', tool.name)
+                console.log('[content] MISSING TAGS for tool ', tool.name)
             } else {
                 const firstDuplicateTag = tool.tags.find(
                     (t, i) => tool.tags.lastIndexOf(t) !== i,
