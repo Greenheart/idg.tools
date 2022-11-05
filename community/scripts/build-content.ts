@@ -7,15 +7,15 @@ import { readFile, writeFile } from 'fs/promises'
 
 import { DEFAULT_LANGUAGE_TAG, LANGUAGE_TAGS } from '$shared/constants'
 import { getTag } from '$shared/content-utils'
-import { mostRelevantContentFirst } from '$lib/utils'
 import type {
     Dimension,
-    ToolsContent,
+    CommunityContent,
     Language,
-    Skill,
     Tag,
     Tool,
     Translated,
+    Story,
+    Contributor,
 } from '$shared/types'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -52,16 +52,16 @@ export const writeJSON = (path: string, data: any, indentation: number = 0) =>
     })
 
 // Only used while building the content
-type ProcessingTranslatedContent = {
+type ProcessingTranslatedCommunityContent = {
+    stories: Translated<Story>[]
+    contributors: Translated<Contributor>[]
     dimensions: Translated<Dimension>[]
-    tools: Translated<Tool>[]
-    skills: Translated<Skill>[]
     tags: Translated<Tag>[]
 }
 
 const startTime = performance.now()
 
-const getContentPaths = (contentTypes: Array<keyof ToolsContent>) =>
+const getContentPaths = (contentTypes: Array<keyof CommunityContent>) =>
     Promise.all(
         contentTypes.map((type) =>
             FastGlob(resolve(__dirname, `../../../content/src/${type}/*.json`)),
@@ -70,47 +70,47 @@ const getContentPaths = (contentTypes: Array<keyof ToolsContent>) =>
 
 const sortNamesAlphabetically = (a: Tag, b: Tag) => a.name.localeCompare(b.name)
 
-const prepareTools = (
-    translatedTools: Translated<Tool>[],
+const prepareStories = (
+    translatedStories: Translated<Story>[],
     translatedTags: Translated<Tag>[],
     selectedLanguages: Language[],
 ) => {
-    return translatedTools.map((translatedTool) => {
-        const updated = {} as Translated<Tool>
+    return translatedStories.map((translatedStory) => {
+        const updated = {} as Translated<Story>
 
         const uniqueSlugs = new Set()
 
-        for (const [language, tool] of Object.entries(translatedTool)) {
+        for (const [language, story] of Object.entries(translatedStory)) {
             if (!selectedLanguages.includes(language as Language)) continue
-            if (!tool.slug) {
+            if (!story.slug) {
                 throw new Error(
-                    `[content] Missing slug for tool "${tool.name}" and language "${language}"`,
+                    `[content] Missing slug for story "${story.title}" and language "${language}"`,
                 )
             }
 
             // Ensure slugs are consistent across all translations
-            uniqueSlugs.add(tool.slug)
+            uniqueSlugs.add(story.slug)
             if (uniqueSlugs.size > 1) {
                 throw new Error(
-                    `[content] Slugs should be the same for all translations for tool "${
-                        tool.name
+                    `[content] Slugs should be the same for all translations for story "${
+                        story.title
                     }" and language "${language}": Slugs found was ${JSON.stringify(
                         [...uniqueSlugs],
                     )}`,
                 )
             }
 
-            if (!tool.tags) {
-                console.log(JSON.stringify(tool, null, 2))
-                console.log('MISSING TAGS for tool ', tool.name)
+            if (!story.tags) {
+                console.log(JSON.stringify(story, null, 2))
+                console.log('MISSING TAGS for tool ', story.title)
             }
 
-            const firstDuplicateTag = tool.tags.find(
-                (t, i) => tool.tags.lastIndexOf(t) !== i,
+            const firstDuplicateTag = story.tags.find(
+                (t, i) => story.tags.lastIndexOf(t) !== i,
             )
             if (firstDuplicateTag) {
                 throw new Error(
-                    `[content] Tool "${tool.name}" has duplicate tags: ${firstDuplicateTag}`,
+                    `[content] Story "${story.title}" has duplicate tags: ${firstDuplicateTag}`,
                 )
             }
 
@@ -124,41 +124,27 @@ const prepareTools = (
                 )
             })
 
-            const tagsSortedAlphabetically = tool.tags
+            const tagsSortedAlphabetically = story.tags
                 .map((t) => getTag(t, { tags }))
                 .sort(sortNamesAlphabetically)
                 .map((t) => t.id)
 
-            tool.tags = tagsSortedAlphabetically
+            story.tags = tagsSortedAlphabetically
 
-            if (!tool.relevancy) tool.relevancy = []
-
-            const sortedRelevancyScores = tool.relevancy
-                .filter((t) => t.score > 0) // Filter out skills with 0 relevancy
-                .sort((a, b) => b.score - a.score) // Most relevant first
-
-            if (sortedRelevancyScores.length < tool.relevancy.length) {
-                console.warn(
-                    `[content] Removed ${
-                        tool.relevancy.length - sortedRelevancyScores.length
-                    } relevancy scores with 0 relevancy from tool "${
-                        tool.name
-                    }" for language "${language}"`,
-                )
-            }
-
-            tool.relevancy = sortedRelevancyScores
-            const newLink = createBackwardsCompatibleLink(tool.name, tool.slug)
-            if (newLink !== tool.link) {
-                if (tool.link !== undefined) {
+            const newLink = createBackwardsCompatibleLink(
+                story.title,
+                story.slug,
+            )
+            if (newLink !== story.link) {
+                if (story.link !== undefined) {
                     console.warn(
-                        `[content] Link has changed for tool "${tool.name}" from old: "${tool.link}" to new: "${newLink}"`,
+                        `[content] Link has changed for tool "${story.title}" from old: "${story.link}" to new: "${newLink}"`,
                     )
                 }
-                tool.link = newLink
+                story.link = newLink
             }
 
-            updated[language as Language] = tool
+            updated[language as Language] = story
         }
 
         return updated
@@ -166,35 +152,42 @@ const prepareTools = (
 }
 
 const prepareTags = (
-    translatedTools: Translated<Tool>[],
+    translatedStories: Translated<Story>[],
     translatedTags: Translated<Tag>[],
     selectedLanguages: Language[],
-) => {
-    return translatedTags.filter((translatedTag) => {
+) =>
+    translatedTags.filter((translatedTag) => {
         for (const [language, tag] of Object.entries(translatedTag)) {
             if (!selectedLanguages.includes(language as Language)) continue
-            const tagIsUsedBySomeTool = translatedTools.some((translatedTool) =>
-                translatedTool[language as Language]?.tags?.includes?.(tag.id),
+            const tagIsUsedBySomeTool = translatedStories.some(
+                (translatedStory) =>
+                    translatedStory[language as Language]?.tags?.includes?.(
+                        tag.id,
+                    ),
             )
             if (!tagIsUsedBySomeTool) {
                 console.warn(
-                    `[content] Tag "${tag.name}" with id "${tag.id}" is not used in any tool.`,
+                    `[content] Tag "${tag.name}" with id "${tag.id}" is not used in any story.`,
                 )
                 return false
             }
         }
         return true
     }, {})
-}
 
-const loadContent = async (contentTypes: Array<keyof ToolsContent>) => {
+const loadContent = async (contentTypes: Array<keyof CommunityContent>) => {
     const paths = await getContentPaths(contentTypes)
 
-    const [tools, skills, dimensions, tags] = await Promise.all(
+    const [stories, contributors, dimensions, tags] = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
     )
 
-    return { tools, skills, dimensions, tags } as ProcessingTranslatedContent
+    return {
+        stories,
+        contributors,
+        dimensions,
+        tags,
+    } as ProcessingTranslatedCommunityContent
 }
 
 function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
@@ -202,14 +195,14 @@ function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
 }
 
 const splitContentByLang = (
-    content: ProcessingTranslatedContent,
+    content: ProcessingTranslatedCommunityContent,
     selectedLanguages: Language[] = LANGUAGE_TAGS,
 ) =>
-    selectedLanguages.reduce<Translated<ToolsContent>>(
+    selectedLanguages.reduce<Translated<CommunityContent>>(
         (result, lang: Language) => {
             result[lang] = {
-                tools: getByLang(content.tools, lang),
-                skills: getByLang(content.skills, lang),
+                stories: getByLang(content.stories, lang),
+                contributors: getByLang(content.contributors, lang),
                 dimensions: getByLang(content.dimensions, lang),
                 // IDEA: Or should tags be sorted by number of tools using them? This would make the popular tags appear first and might give a better UX
                 tags: getByLang(content.tags, lang).sort(
@@ -218,34 +211,28 @@ const splitContentByLang = (
             }
             return result
         },
-        {} as Translated<ToolsContent>,
+        {} as Translated<CommunityContent>,
     )
 
 const prepareContent = (
-    content: ProcessingTranslatedContent,
+    content: ProcessingTranslatedCommunityContent,
     selectedLanguages: Language[] = LANGUAGE_TAGS,
 ) => {
-    const tools = prepareTools(content.tools, content.tags, selectedLanguages)
-    const tags = prepareTags(tools, content.tags, selectedLanguages)
-    return { ...content, tools, tags }
+    const stories = prepareStories(
+        content.stories,
+        content.tags,
+        selectedLanguages,
+    )
+    const tags = prepareTags(stories, content.tags, selectedLanguages)
+    return { ...content, stories, tags }
 }
 
-const orderToolsConsistently = (builtContent: Translated<ToolsContent>) => {
-    for (const [language, content] of Object.entries(builtContent)) {
-        builtContent[language as Language] = {
-            ...content,
-            tools: content.tools.sort(
-                mostRelevantContentFirst(
-                    content.skills.map((skill) => skill.id),
-                ),
-            ),
-        }
-    }
-
-    return builtContent
-}
-
-const rawContent = await loadContent(['tools', 'skills', 'dimensions', 'tags'])
+const rawContent = await loadContent([
+    'stories',
+    'contributors',
+    'dimensions',
+    'tags',
+])
 
 const SELECTED_LANGUAGES: Language[] = ['en']
 
@@ -256,9 +243,7 @@ const builtContent = splitContentByLang(
     SELECTED_LANGUAGES,
 )
 
-const output = orderToolsConsistently(builtContent)
-
-await writeJSON(resolve(__dirname, '../../static/content.json'), output)
+await writeJSON(resolve(__dirname, '../../static/content.json'), builtContent)
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
     'en-US',

@@ -37,6 +37,7 @@ export type Story = {
     intro: string
     story: string
     dimensions: Dimension['id'][]
+    link: string
     slug: string
     publishedAt: string
     tags: Tag['id'][]
@@ -50,9 +51,10 @@ export type ToolsContent = {
 }
 
 export type CommunityContent = {
-    tags: Tag[]
-    contributors: Contributor[]
     stories: Story[]
+    contributors: Contributor[]
+    dimensions: Dimension[]
+    tags: Tag[]
 }
 
 export type IDGRelevancy = {

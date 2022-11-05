@@ -169,8 +169,8 @@ const prepareTags = (
     translatedTools: Translated<Tool>[],
     translatedTags: Translated<Tag>[],
     selectedLanguages: Language[],
-) => {
-    return translatedTags.filter((translatedTag) => {
+) =>
+    translatedTags.filter((translatedTag) => {
         for (const [language, tag] of Object.entries(translatedTag)) {
             if (!selectedLanguages.includes(language as Language)) continue
             const tagIsUsedBySomeTool = translatedTools.some((translatedTool) =>
@@ -185,7 +185,6 @@ const prepareTags = (
         }
         return true
     }, {})
-}
 
 const loadContent = async (contentTypes: Array<keyof ToolsContent>) => {
     const paths = await getContentPaths(contentTypes)
