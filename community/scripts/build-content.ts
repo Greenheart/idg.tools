@@ -101,33 +101,34 @@ const prepareStories = (
 
             if (!story.tags) {
                 console.log('[content] MISSING TAGS for story ', story.title)
-            } else {
-                const firstDuplicateTag = story.tags.find(
-                    (t, i) => story.tags.lastIndexOf(t) !== i,
-                )
-                if (firstDuplicateTag) {
-                    throw new Error(
-                        `[content] Story "${story.title}" has duplicate tags: ${firstDuplicateTag}`,
-                    )
-                }
-
-                const tags = translatedTags.map((tag) => {
-                    const translatedTag = tag[language as Language]
-                    if (translatedTag !== undefined) return translatedTag
-                    throw new Error(
-                        `[content] Tag is missing translation for language "${language}": ${JSON.stringify(
-                            tag,
-                        )}`,
-                    )
-                })
-
-                const tagsSortedAlphabetically = story.tags
-                    .map((t) => getTag(t, { tags }))
-                    .sort(sortNamesAlphabetically)
-                    .map((t) => t.id)
-
-                story.tags = tagsSortedAlphabetically
+                story.tags = []
             }
+
+            const firstDuplicateTag = story.tags.find(
+                (t, i) => story.tags.lastIndexOf(t) !== i,
+            )
+            if (firstDuplicateTag) {
+                throw new Error(
+                    `[content] Story "${story.title}" has duplicate tags: ${firstDuplicateTag}`,
+                )
+            }
+
+            const tags = translatedTags.map((tag) => {
+                const translatedTag = tag[language as Language]
+                if (translatedTag !== undefined) return translatedTag
+                throw new Error(
+                    `[content] Tag is missing translation for language "${language}": ${JSON.stringify(
+                        tag,
+                    )}`,
+                )
+            })
+
+            const tagsSortedAlphabetically = story.tags
+                .map((t) => getTag(t, { tags }))
+                .sort(sortNamesAlphabetically)
+                .map((t) => t.id)
+
+            story.tags = tagsSortedAlphabetically
 
             const newLink = createBackwardsCompatibleLink(
                 story.title,
