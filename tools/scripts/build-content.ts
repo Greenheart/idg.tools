@@ -103,33 +103,33 @@ const prepareTools = (
             if (!tool.tags) {
                 console.log(JSON.stringify(tool, null, 2))
                 console.log('MISSING TAGS for tool ', tool.name)
-            }
-
-            const firstDuplicateTag = tool.tags.find(
-                (t, i) => tool.tags.lastIndexOf(t) !== i,
-            )
-            if (firstDuplicateTag) {
-                throw new Error(
-                    `[content] Tool "${tool.name}" has duplicate tags: ${firstDuplicateTag}`,
+            } else {
+                const firstDuplicateTag = tool.tags.find(
+                    (t, i) => tool.tags.lastIndexOf(t) !== i,
                 )
+                if (firstDuplicateTag) {
+                    throw new Error(
+                        `[content] Tool "${tool.name}" has duplicate tags: ${firstDuplicateTag}`,
+                    )
+                }
+
+                const tags = translatedTags.map((tag) => {
+                    const translatedTag = tag[language as Language]
+                    if (translatedTag !== undefined) return translatedTag
+                    throw new Error(
+                        `[content] Tag is missing translation for language "${language}": ${JSON.stringify(
+                            tag,
+                        )}`,
+                    )
+                })
+
+                const tagsSortedAlphabetically = tool.tags
+                    .map((t) => getTag(t, { tags }))
+                    .sort(sortNamesAlphabetically)
+                    .map((t) => t.id)
+
+                tool.tags = tagsSortedAlphabetically
             }
-
-            const tags = translatedTags.map((tag) => {
-                const translatedTag = tag[language as Language]
-                if (translatedTag !== undefined) return translatedTag
-                throw new Error(
-                    `[content] Tag is missing translation for language "${language}": ${JSON.stringify(
-                        tag,
-                    )}`,
-                )
-            })
-
-            const tagsSortedAlphabetically = tool.tags
-                .map((t) => getTag(t, { tags }))
-                .sort(sortNamesAlphabetically)
-                .map((t) => t.id)
-
-            tool.tags = tagsSortedAlphabetically
 
             if (!tool.relevancy) tool.relevancy = []
 
