@@ -6,11 +6,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 esbuild
     .build({
-        entryPoints: [
-            resolve(__dirname, 'build-content.ts'),
-            resolve(__dirname, 'builders', 'tools.ts'),
-            resolve(__dirname, 'builders', 'community.ts'),
-        ],
+        entryPoints: [resolve(__dirname, 'build-content.ts')],
         outdir: resolve(__dirname, 'compiled'),
         bundle: true,
         minify: false,

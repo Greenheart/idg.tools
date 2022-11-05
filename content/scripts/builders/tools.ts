@@ -147,7 +147,10 @@ const prepareTags = (
     }, {})
 
 const loadContent = async (contentTypes: Array<keyof ToolsContent>) => {
-    const paths = await getContentPaths(contentTypes, __dirname)
+    const paths = await getContentPaths(
+        contentTypes,
+        resolve(__dirname, '../../src'),
+    )
 
     const [tools, skills, dimensions, tags] = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
@@ -209,7 +212,7 @@ const orderToolsConsistently = (builtContent: Translated<ToolsContent>) => {
     return builtContent
 }
 
-export async function build(selectedLanguages: Language[]) {
+export default async function buildTools(selectedLanguages: Language[]) {
     const rawContent = await loadContent([
         'tools',
         'skills',
@@ -217,8 +220,6 @@ export async function build(selectedLanguages: Language[]) {
         'tags',
     ])
 
-    // NOTE: We currently only build the English content since no translations are available yet
-    // IDEA: Maybe refactor this to only pass in selected languages at one place, but this works for now.
     const builtContent = splitContentByLang(
         prepareContent(rawContent, selectedLanguages),
         selectedLanguages,
@@ -227,7 +228,7 @@ export async function build(selectedLanguages: Language[]) {
     const output = orderToolsConsistently(builtContent)
 
     await writeJSON(
-        resolve(__dirname, '../../../../tools/static/content.json'),
+        resolve(__dirname, '../../../tools/static/content.json'),
         output,
     )
 }

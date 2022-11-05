@@ -1,27 +1,31 @@
 import { performance } from 'perf_hooks'
 import type { Language } from '$shared/types'
 
-// TODO: create a shared build-content that builds the content bundles that are passed as arguments
-// For exampe, the arguments can be `tools` or `community`, and if nothing is specified, everything is built by default
+import community from './builders/community'
+import tools from './builders/tools'
 
-// TODO: refactor the separate bundles that are imported dynamically and executed only if needed.
-// This will allow to speed up the content build for specific sites
+type BuilderNames = 'community' | 'tools'
+export type Builder = (selectedLanguages: Language[]) => Promise<void>
+
+const BUILDERS: Record<BuilderNames, Builder> = {
+    community,
+    tools,
+}
 
 const startTime = performance.now()
-const selectedBuilders = process.argv.slice(2)
+
+let selectedBuilders = process.argv.slice(2) as unknown as BuilderNames[]
 
 // If no builders specified by arguments, run all by default
 if (!selectedBuilders.length) {
-    selectedBuilders.push('tools', 'community')
+    selectedBuilders = ['tools', 'community']
 }
 
+// NOTE: We currently only build the English content since no translations are available yet
 const SELECTED_LANGUAGES: Language[] = ['en']
 
 await Promise.all(
-    selectedBuilders.map(async (builder) => {
-        const { build } = await import(`./builders/${builder}.js`)
-        await build(SELECTED_LANGUAGES)
-    }),
+    selectedBuilders.map((builder) => BUILDERS[builder](SELECTED_LANGUAGES)),
 )
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
@@ -32,6 +36,5 @@ const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
     },
 )
 
-const presentBuilders = selectedBuilders.map((b) => `IDG.${b}`).join(' and ')
-
-console.log(`✅ Built content for ${presentBuilders} in ${buildTime} s\n`)
+const updatedProjects = selectedBuilders.map((b) => `IDG.${b}`).join(' and ')
+console.log(`✅ Built content for ${updatedProjects} in ${buildTime} s\n`)
