@@ -4,7 +4,14 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-        "dev": "pnpm --filter tools watch:content",
-        "build": "pnpm --filter tools build:content"
+        "dev": "chokidar \"../content/src/**/*.json\" -c \"pnpm --filter tools build:content\" --initial --silent",
+        "build": "node scripts/esbuild.js && node scripts/compiled/build-content.js"
+    },
+    "devDependencies": {
+        "chokidar-cli": "^3.0.0",
+        "esbuild": "^0.15.12",
+        "fast-glob": "^3.2.12",
+        "slugify": "^1.6.5",
+        "@types/node": "^18.11.9"
     }
 }

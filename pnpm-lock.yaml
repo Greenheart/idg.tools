@@ -40,12 +40,9 @@ importers:
       '@types/dompurify': ^2.3.4
       '@types/sanitize-html': ^2.6.2
       autoprefixer: ^10.4.13
-      chokidar-cli: ^3.0.0
       cssnano: ^5.1.14
       dompurify: ^2.4.0
       dotenv: ^16.0.3
-      esbuild: ^0.15.12
-      fast-glob: ^3.2.12
       native-fetch: ^4.0.2
       postcss: ^8.4.18
       postcss-load-config: ^4.0.1
@@ -55,7 +52,6 @@ importers:
       remark: ^14.0.2
       remark-slate: ^1.8.6
       sanitize-html: ^2.7.3
-      slugify: ^1.6.5
       strip-markdown: ^5.0.0
       svelte: ^3.52.0
       svelte-check: ^2.9.2
@@ -81,11 +77,8 @@ importers:
       '@types/dompurify': 2.3.4
       '@types/sanitize-html': 2.6.2
       autoprefixer: 10.4.13_postcss@8.4.18
-      chokidar-cli: 3.0.0
       cssnano: 5.1.14_postcss@8.4.18
       dotenv: 16.0.3
-      esbuild: 0.15.12
-      fast-glob: 3.2.12
       native-fetch: 4.0.2_undici@5.12.0
       postcss: 8.4.18
       postcss-load-config: 4.0.1_postcss@8.4.18
@@ -93,7 +86,6 @@ importers:
       prettier-plugin-svelte: 2.8.0_lrllcp5xtrkmmdzifit4hd52ze
       prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
       remark-slate: 1.8.6
-      slugify: 1.6.5
       svelte: 3.52.0
       svelte-check: 2.9.2_xyvwwpusdp7eiuesisaivc7wmm
       svelte-preprocess: 4.10.7_4n3z2octtzg5pdokl7pjruqnki
@@ -104,7 +96,18 @@ importers:
       vite: 3.2.1
 
   content:
-    specifiers: {}
+    specifiers:
+      '@types/node': ^18.11.9
+      chokidar-cli: ^3.0.0
+      esbuild: ^0.15.12
+      fast-glob: ^3.2.12
+      slugify: ^1.6.5
+    devDependencies:
+      '@types/node': 18.11.9
+      chokidar-cli: 3.0.0
+      esbuild: 0.15.12
+      fast-glob: 3.2.12
+      slugify: 1.6.5
 
   tools:
     specifiers:
@@ -116,12 +119,9 @@ importers:
       '@types/dompurify': ^2.3.4
       '@types/sanitize-html': ^2.6.2
       autoprefixer: ^10.4.13
-      chokidar-cli: ^3.0.0
       cssnano: ^5.1.14
       dompurify: ^2.4.0
       dotenv: ^16.0.3
-      esbuild: ^0.15.12
-      fast-glob: ^3.2.12
       native-fetch: ^4.0.2
       postcss: ^8.4.18
       postcss-load-config: ^4.0.1
@@ -131,7 +131,6 @@ importers:
       remark: ^14.0.2
       remark-slate: ^1.8.6
       sanitize-html: ^2.7.3
-      slugify: ^1.6.5
       strip-markdown: ^5.0.0
       svelte: ^3.52.0
       svelte-check: ^2.9.2
@@ -157,11 +156,8 @@ importers:
       '@types/dompurify': 2.3.4
       '@types/sanitize-html': 2.6.2
       autoprefixer: 10.4.13_postcss@8.4.18
-      chokidar-cli: 3.0.0
       cssnano: 5.1.14_postcss@8.4.18
       dotenv: 16.0.3
-      esbuild: 0.15.12
-      fast-glob: 3.2.12
       native-fetch: 4.0.2_undici@5.12.0
       postcss: 8.4.18
       postcss-load-config: 4.0.1_postcss@8.4.18
@@ -169,7 +165,6 @@ importers:
       prettier-plugin-svelte: 2.8.0_lrllcp5xtrkmmdzifit4hd52ze
       prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
       remark-slate: 1.8.6
-      slugify: 1.6.5
       svelte: 3.52.0
       svelte-check: 2.9.2_xyvwwpusdp7eiuesisaivc7wmm
       svelte-preprocess: 4.10.7_4n3z2octtzg5pdokl7pjruqnki
@@ -1025,8 +1020,8 @@ packages:
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: false
 
-  /@types/node/18.8.3:
-    resolution: {integrity: sha512-0os9vz6BpGwxGe9LOhgP/ncvYN5Tx1fNcd2TM3rD/aCGBkysb+ZWpXEocG24h6ZzOi13+VB8HndAQFezsSOw1w==}
+  /@types/node/18.11.9:
+    resolution: {integrity: sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==}
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
@@ -1072,7 +1067,7 @@ packages:
   /@types/sass/1.43.1:
     resolution: {integrity: sha512-BPdoIt1lfJ6B7rw35ncdwBZrAssjcwzI5LByIrYs+tpXlj/CAkuVdRsgZDdP4lq5EjyWzwxZCqAoFyHKFwp32g==}
     dependencies:
-      '@types/node': 18.8.3
+      '@types/node': 18.11.9
     dev: true
 
   /@types/scheduler/0.16.2:
@@ -1096,7 +1091,7 @@ packages:
   /@types/vfile/3.0.2:
     resolution: {integrity: sha512-b3nLFGaGkJ9rzOcuXRfHkZMdjsawuDD0ENL9fzTophtBg8FJHSGbH7daXkEpcwy3v7Xol3pAvsmlYyFhR4pqJw==}
     dependencies:
-      '@types/node': 18.8.3
+      '@types/node': 18.11.9
       '@types/unist': 2.0.6
       '@types/vfile-message': 2.0.0
     dev: false
@@ -1128,7 +1123,7 @@ packages:
   /@wry/context/0.4.4:
     resolution: {integrity: sha512-LrKVLove/zw6h2Md/KZyWxIkFM6AoyKp71OqpH9Hiip1csjPVoD3tPxlbQUNxEnHENks3UGgNpSBCAfq9KWuag==}
     dependencies:
-      '@types/node': 18.8.3
+      '@types/node': 18.11.9
       tslib: 1.14.1
     dev: false
 

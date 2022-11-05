@@ -10,7 +10,6 @@ import type {
     Dimension,
     CommunityContent,
     Language,
-    Tag,
     Translated,
     Story,
     Contributor,
@@ -170,7 +169,10 @@ const builtContent = splitContentByLang(
     SELECTED_LANGUAGES,
 )
 
-await writeJSON(resolve(__dirname, '../../static/content.json'), builtContent)
+await writeJSON(
+    resolve(__dirname, '../../../community/static/content.json'),
+    builtContent,
+)
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
     'en-US',
