@@ -11,7 +11,7 @@
 
     import { getSkillsInDimension } from '$shared/content-utils'
     import { cx, getColor } from '$lib/utils'
-    import type { Content } from '$shared/types'
+    import type { ToolsContent } from '$shared/types'
     import SkillButton from './SkillButton.svelte'
 
     let loaded = false
@@ -19,7 +19,7 @@
         loaded = true
     })
 
-    export let content: Content
+    export let content: ToolsContent
     let className = ''
     export { className as class }
 </script>
