@@ -39,6 +39,7 @@ export type Story = {
     dimensions: Dimension['id'][]
     link: string
     slug: string
+    contributors: Contributor[]
     publishedAt: string
     tags: Tag['id'][]
 }
