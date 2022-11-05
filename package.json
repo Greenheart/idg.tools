@@ -13,11 +13,5 @@
         "content": "pnpm --filter content dev",
         "build": "pnpm --filter \"./(tools|cms|content|community)\" --parallel build",
         "preview": "pnpm --filter \"./(tools|cms|community)\" --parallel preview"
-    },
-    "prettier": {
-        "semi": false,
-        "tabWidth": 4,
-        "trailingComma": "all",
-        "singleQuote": true
     }
 }
