@@ -54,7 +54,6 @@ export type CommunityContent = {
     stories: Story[]
     contributors: Contributor[]
     dimensions: Dimension[]
-    tags: Tag[]
 }
 
 export type IDGRelevancy = {
