@@ -6,7 +6,6 @@ import { fileURLToPath } from 'url'
 import { readFile, writeFile } from 'fs/promises'
 
 import { DEFAULT_LANGUAGE_TAG, LANGUAGE_TAGS } from '$shared/constants'
-import { getTag } from '$shared/content-utils'
 import type {
     Dimension,
     CommunityContent,
@@ -55,7 +54,6 @@ type ProcessingTranslatedCommunityContent = {
     stories: Translated<Story>[]
     contributors: Translated<Contributor>[]
     dimensions: Translated<Dimension>[]
-    tags: Translated<Tag>[]
 }
 
 const startTime = performance.now()
@@ -67,11 +65,8 @@ const getContentPaths = (contentTypes: Array<keyof CommunityContent>) =>
         ),
     )
 
-const sortNamesAlphabetically = (a: Tag, b: Tag) => a.name.localeCompare(b.name)
-
 const prepareStories = (
     translatedStories: Translated<Story>[],
-    translatedTags: Translated<Tag>[],
     selectedLanguages: Language[],
 ) => {
     return translatedStories.map((translatedStory) => {
@@ -99,37 +94,6 @@ const prepareStories = (
                 )
             }
 
-            if (!story.tags) {
-                console.log('[content] MISSING TAGS for story ', story.title)
-                story.tags = []
-            }
-
-            const firstDuplicateTag = story.tags.find(
-                (t, i) => story.tags.lastIndexOf(t) !== i,
-            )
-            if (firstDuplicateTag) {
-                throw new Error(
-                    `[content] Story "${story.title}" has duplicate tags: ${firstDuplicateTag}`,
-                )
-            }
-
-            const tags = translatedTags.map((tag) => {
-                const translatedTag = tag[language as Language]
-                if (translatedTag !== undefined) return translatedTag
-                throw new Error(
-                    `[content] Tag is missing translation for language "${language}": ${JSON.stringify(
-                        tag,
-                    )}`,
-                )
-            })
-
-            const tagsSortedAlphabetically = story.tags
-                .map((t) => getTag(t, { tags }))
-                .sort(sortNamesAlphabetically)
-                .map((t) => t.id)
-
-            story.tags = tagsSortedAlphabetically
-
             const newLink = createBackwardsCompatibleLink(
                 story.title,
                 story.slug,
@@ -150,34 +114,10 @@ const prepareStories = (
     })
 }
 
-const prepareTags = (
-    translatedStories: Translated<Story>[],
-    translatedTags: Translated<Tag>[],
-    selectedLanguages: Language[],
-) =>
-    translatedTags.filter((translatedTag) => {
-        for (const [language, tag] of Object.entries(translatedTag)) {
-            if (!selectedLanguages.includes(language as Language)) continue
-            const tagIsUsedBySomeStory = translatedStories.some(
-                (translatedStory) =>
-                    translatedStory[language as Language]?.tags?.includes?.(
-                        tag.id,
-                    ),
-            )
-            if (!tagIsUsedBySomeStory) {
-                console.warn(
-                    `[content] Tag "${tag.name}" with id "${tag.id}" is not used in any story.`,
-                )
-                return false
-            }
-        }
-        return true
-    }, {})
-
 const loadContent = async (contentTypes: Array<keyof CommunityContent>) => {
     const paths = await getContentPaths(contentTypes)
 
-    const [stories, contributors, dimensions, tags] = await Promise.all(
+    const [stories, contributors, dimensions] = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
     )
 
@@ -185,7 +125,6 @@ const loadContent = async (contentTypes: Array<keyof CommunityContent>) => {
         stories,
         contributors,
         dimensions,
-        tags,
     } as ProcessingTranslatedCommunityContent
 }
 
@@ -203,10 +142,6 @@ const splitContentByLang = (
                 stories: getByLang(content.stories, lang),
                 contributors: content.contributors as Contributor[],
                 dimensions: getByLang(content.dimensions, lang),
-                // IDEA: Or should tags be sorted by number of stories using them? This would make the popular tags appear first and might give a better UX
-                tags: getByLang(content.tags, lang).sort(
-                    sortNamesAlphabetically,
-                ),
             }
             return result
         },
@@ -217,21 +152,11 @@ const prepareContent = (
     content: ProcessingTranslatedCommunityContent,
     selectedLanguages: Language[] = LANGUAGE_TAGS,
 ) => {
-    const stories = prepareStories(
-        content.stories,
-        content.tags,
-        selectedLanguages,
-    )
-    const tags = prepareTags(stories, content.tags, selectedLanguages)
-    return { ...content, stories, tags }
+    const stories = prepareStories(content.stories, selectedLanguages)
+    return { ...content, stories }
 }
 
-const rawContent = await loadContent([
-    'stories',
-    'contributors',
-    'dimensions',
-    'tags',
-])
+const rawContent = await loadContent(['stories', 'contributors', 'dimensions'])
 
 const SELECTED_LANGUAGES: Language[] = ['en']
 
