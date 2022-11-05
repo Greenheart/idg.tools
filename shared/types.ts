@@ -57,6 +57,8 @@ export type CommunityContent = {
     dimensions: Dimension[]
 }
 
+export type AllContent = ToolsContent & CommunityContent
+
 export type IDGRelevancy = {
     skill: ItemId
     score: number

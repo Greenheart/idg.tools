@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-        "dev": "chokidar \"../content/src/**/*.json\" -c \"pnpm --filter tools build:content\" --initial --silent",
+        "dev": "chokidar \"src/**/*.json\" -c \"pnpm --filter content build\" --initial --silent",
         "build": "node scripts/esbuild.js && node scripts/compiled/build-content.js"
     },
     "devDependencies": {
