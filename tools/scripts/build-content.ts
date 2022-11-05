@@ -10,7 +10,7 @@ import { getTag } from '$shared/content-utils'
 import { mostRelevantContentFirst } from '$lib/utils'
 import type {
     Dimension,
-    Content,
+    ToolsContent,
     Language,
     Skill,
     Tag,
@@ -52,7 +52,7 @@ export const writeJSON = (path: string, data: any, indentation: number = 0) =>
     })
 
 // Only used while building the content
-type ProcessingTranslatedContent = {
+type ProcessingTranslatedToolsContent = {
     dimensions: Translated<Dimension>[]
     tools: Translated<Tool>[]
     skills: Translated<Skill>[]
@@ -61,7 +61,7 @@ type ProcessingTranslatedContent = {
 
 const startTime = performance.now()
 
-const getContentPaths = (contentTypes: Array<keyof Content>) =>
+const getContentPaths = (contentTypes: Array<keyof ToolsContent>) =>
     Promise.all(
         contentTypes.map((type) =>
             FastGlob(resolve(__dirname, `../../../content/src/${type}/*.json`)),
@@ -187,14 +187,19 @@ const prepareTags = (
     }, {})
 }
 
-const loadContent = async (contentTypes: Array<keyof Content>) => {
+const loadContent = async (contentTypes: Array<keyof ToolsContent>) => {
     const paths = await getContentPaths(contentTypes)
 
     const [tools, skills, dimensions, tags] = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
     )
 
-    return { tools, skills, dimensions, tags } as ProcessingTranslatedContent
+    return {
+        tools,
+        skills,
+        dimensions,
+        tags,
+    } as ProcessingTranslatedToolsContent
 }
 
 function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
@@ -202,22 +207,27 @@ function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
 }
 
 const splitContentByLang = (
-    content: ProcessingTranslatedContent,
+    content: ProcessingTranslatedToolsContent,
     selectedLanguages: Language[] = LANGUAGE_TAGS,
 ) =>
-    selectedLanguages.reduce<Translated<Content>>((result, lang: Language) => {
-        result[lang] = {
-            tools: getByLang(content.tools, lang),
-            skills: getByLang(content.skills, lang),
-            dimensions: getByLang(content.dimensions, lang),
-            // IDEA: Or should tags be sorted by number of tools using them? This would make the popular tags appear first and might give a better UX
-            tags: getByLang(content.tags, lang).sort(sortNamesAlphabetically),
-        }
-        return result
-    }, {} as Translated<Content>)
+    selectedLanguages.reduce<Translated<ToolsContent>>(
+        (result, lang: Language) => {
+            result[lang] = {
+                tools: getByLang(content.tools, lang),
+                skills: getByLang(content.skills, lang),
+                dimensions: getByLang(content.dimensions, lang),
+                // IDEA: Or should tags be sorted by number of tools using them? This would make the popular tags appear first and might give a better UX
+                tags: getByLang(content.tags, lang).sort(
+                    sortNamesAlphabetically,
+                ),
+            }
+            return result
+        },
+        {} as Translated<ToolsContent>,
+    )
 
 const prepareContent = (
-    content: ProcessingTranslatedContent,
+    content: ProcessingTranslatedToolsContent,
     selectedLanguages: Language[] = LANGUAGE_TAGS,
 ) => {
     const tools = prepareTools(content.tools, content.tags, selectedLanguages)
@@ -225,7 +235,7 @@ const prepareContent = (
     return { ...content, tools, tags }
 }
 
-const orderToolsConsistently = (builtContent: Translated<Content>) => {
+const orderToolsConsistently = (builtContent: Translated<ToolsContent>) => {
     for (const [language, content] of Object.entries(builtContent)) {
         builtContent[language as Language] = {
             ...content,
