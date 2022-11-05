@@ -11,7 +11,7 @@
         visibleItems,
     } from '$lib/stores'
     import type { PageData } from './$types'
-    import { getMostRelevantContent } from '$lib/utils'
+    import { getMostRelevantContent } from '$shared/content-utils'
     import Filters from '$components/Filters.svelte'
     import { FEEDBACK_FORM_LINK } from '$lib/constants'
 

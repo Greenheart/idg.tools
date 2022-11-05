@@ -1,14 +1,14 @@
 <script lang="ts">
     import { getSkillsInDimension } from '$shared/content-utils'
     import { cx, getColor } from '$lib/utils'
-    import type { Content, Dimension } from '$shared/types'
+    import type { ToolsContent, Dimension } from '$shared/types'
     import { isDimensionOpen } from '$lib/stores'
 
     import NumberOfSelectedSkills from './NumberOfSelectedSkills.svelte'
     import SkillButton from './SkillButton.svelte'
     import Expand from './icons/Expand.svelte'
 
-    export let content: Content
+    export let content: ToolsContent
 
     const onToggle = (
         event: Event & {

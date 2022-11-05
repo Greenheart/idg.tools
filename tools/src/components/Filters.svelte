@@ -13,7 +13,7 @@
         selectedTags,
     } from '$lib/stores'
 
-    import type { Content, Dimension } from '$shared/types'
+    import type { ToolsContent, Dimension } from '$shared/types'
     import Button from './Button.svelte'
     import Skills from './Skills.svelte'
     import FiltersToolbar from './FiltersToolbar.svelte'
@@ -21,7 +21,7 @@
     import Heading from './Heading.svelte'
     import Tags from './Tags.svelte'
 
-    export let content: Content
+    export let content: ToolsContent
 
     $: title =
         $selectedSkills.length || $selectedTags.length

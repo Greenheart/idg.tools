@@ -1,12 +1,12 @@
 <script lang="ts">
     import { getSkill } from '$shared/content-utils'
-    import type { Content, Tool } from '$shared/types'
+    import type { ToolsContent, Tool } from '$shared/types'
     import { cx, getColor } from '$lib/utils'
     import { selectedSkills } from '$lib/stores'
 
     export let tool: Tool
     export let visible: number
-    export let content: Content
+    export let content: ToolsContent
     let className = ''
     export { className as class }
 

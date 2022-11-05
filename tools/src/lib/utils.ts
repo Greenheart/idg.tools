@@ -1,5 +1,5 @@
 import { SKILLS_BY_DIMENSION } from '$shared/constants'
-import type { Content, ItemId, Skill, Tag, Tool } from '$shared/types'
+import type { ItemId } from '$shared/types'
 
 export const randomInt = (min: number, max: number) =>
     Math.floor(Math.random() * (max - min + 1)) + min
@@ -45,42 +45,6 @@ export function getColor(id: ItemId, colorType: 'bg' | 'text' = 'bg') {
         )
     return `${colorType}-${dimension.name}`
 }
-
-export const getTotalRelevancyScore = (
-    relevancy: Tool['relevancy'],
-    selectedSkills: Skill['id'][],
-) =>
-    relevancy.reduce((totalRelevancy, r) => {
-        if (selectedSkills.includes(r.skill)) {
-            totalRelevancy += r.score
-        }
-        return totalRelevancy
-    }, 0)
-
-export const mostRelevantContentFirst =
-    (selectedSkills: Skill['id'][]) => (a: Tool, b: Tool) =>
-        getTotalRelevancyScore(b.relevancy, selectedSkills) -
-        getTotalRelevancyScore(a.relevancy, selectedSkills)
-
-export const getMostRelevantContent = (
-    content: Content,
-    selectedSkills: Skill['id'][],
-    selectedTags: Tag['id'][],
-) =>
-    content.tools
-        .filter((tool) => {
-            const hasMatchingSkills = selectedSkills.every((skillId) =>
-                tool.relevancy.some(({ skill }) => skill === skillId),
-            )
-            const hasMatchingTags = selectedTags.length
-                ? selectedTags.some((tagId) =>
-                      tool.tags.some((id) => id === tagId),
-                  )
-                : true
-
-            return hasMatchingSkills && hasMatchingTags
-        })
-        .sort(mostRelevantContentFirst(selectedSkills))
 
 // TODO: This needs to be updated to support other languages than English, but is good enough for now.
 export const pluralize = (item: string, count: number) =>
