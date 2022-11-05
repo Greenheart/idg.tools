@@ -1,6 +1,3 @@
-import { resolve, dirname } from 'path'
-import { fileURLToPath } from 'url'
-
 import { getTag, mostRelevantContentFirst } from '$shared/content-utils'
 import type {
     Dimension,
@@ -17,8 +14,6 @@ import {
     readJSON,
     writeJSON,
 } from '../utils'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // Only used while building the content
 type ProcessingTranslatedToolsContent = {
@@ -146,11 +141,11 @@ const prepareTags = (
         return true
     }, {})
 
-const loadContent = async (contentTypes: Array<keyof ToolsContent>) => {
-    const paths = await getContentPaths(
-        contentTypes,
-        resolve(__dirname, '../../src'),
-    )
+const loadContent = async (
+    contentTypes: Array<keyof ToolsContent>,
+    contentDir: string,
+) => {
+    const paths = await getContentPaths(contentTypes, contentDir)
 
     const [tools, skills, dimensions, tags] = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
@@ -212,13 +207,15 @@ const orderToolsConsistently = (builtContent: Translated<ToolsContent>) => {
     return builtContent
 }
 
-export default async function buildTools(selectedLanguages: Language[]) {
-    const rawContent = await loadContent([
-        'tools',
-        'skills',
-        'dimensions',
-        'tags',
-    ])
+export default async function buildTools(
+    selectedLanguages: Language[],
+    contentDir: string,
+    outputFile: string,
+) {
+    const rawContent = await loadContent(
+        ['tools', 'skills', 'dimensions', 'tags'],
+        contentDir,
+    )
 
     const builtContent = splitContentByLang(
         prepareContent(rawContent, selectedLanguages),
@@ -227,8 +224,5 @@ export default async function buildTools(selectedLanguages: Language[]) {
 
     const output = orderToolsConsistently(builtContent)
 
-    await writeJSON(
-        resolve(__dirname, '../../../tools/static/content.json'),
-        output,
-    )
+    await writeJSON(outputFile, output)
 }
