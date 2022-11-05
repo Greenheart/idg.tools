@@ -107,6 +107,9 @@ const prepareStories = (
                 story.link = newLink
             }
 
+            if (!story.contributors) story.contributors = []
+            if (!story.dimensions) story.dimensions = []
+
             updated[language as Language] = story
         }
 
