@@ -1,11 +1,6 @@
-import slugify from 'slugify'
-import FastGlob from 'fast-glob'
-import { performance } from 'perf_hooks'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { readFile, writeFile } from 'fs/promises'
 
-import { DEFAULT_LANGUAGE_TAG, LANGUAGE_TAGS } from '$shared/constants'
 import { getTag, mostRelevantContentFirst } from '$shared/content-utils'
 import type {
     Dimension,
@@ -16,41 +11,14 @@ import type {
     Tool,
     Translated,
 } from '$shared/types'
+import {
+    createBackwardsCompatibleLink,
+    getContentPaths,
+    readJSON,
+    writeJSON,
+} from '../utils'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-
-// TODO: Move shared utils to a separate module so they can be reused for both tools and community.
-
-export const slugifyName = (string: string, language = DEFAULT_LANGUAGE_TAG) =>
-    slugify(string, {
-        replacement: '-', // replace spaces with replacement character, defaults to `-`
-        remove: undefined, // remove characters that match regex, defaults to `undefined`
-        lower: true, // convert to lower case, defaults to `false`
-        strict: true, // strip special characters except replacement, defaults to `false`
-        locale: language, // language code of the locale to use
-        trim: true, // trim leading and trailing replacement chars, defaults to `true`
-    })
-
-/**
- * Create a slugified, backwards compatible link.
- *
- * @param name Name of the object to link to. Can be updated easily while keeping links backwards compatible.
- * @param uniqueSlug cuid.slug() that should remain the same for an object as long as it exists in the database.
- * @returns Slugified link
- */
-export const createBackwardsCompatibleLink = (
-    name: string,
-    uniqueSlug: string,
-    language = DEFAULT_LANGUAGE_TAG,
-) => `${slugifyName(name, language)}-${uniqueSlug}`
-
-export const readJSON = (path: string) =>
-    readFile(path, { encoding: 'utf-8' }).then(JSON.parse)
-
-export const writeJSON = (path: string, data: any, indentation: number = 0) =>
-    writeFile(path, JSON.stringify(data, null, indentation), {
-        encoding: 'utf-8',
-    })
 
 // Only used while building the content
 type ProcessingTranslatedToolsContent = {
@@ -59,17 +27,6 @@ type ProcessingTranslatedToolsContent = {
     skills: Translated<Skill>[]
     tags: Translated<Tag>[]
 }
-
-const startTime = performance.now()
-
-// TODO: Add support for loading collections with specific files rather than entire directories
-// This would be a good utility function to complement getContentPaths
-const getContentPaths = (contentTypes: Array<keyof ToolsContent>) =>
-    Promise.all(
-        contentTypes.map((type) =>
-            FastGlob(resolve(__dirname, `../../../content/src/${type}/*.json`)),
-        ),
-    )
 
 const sortNamesAlphabetically = (a: Tag, b: Tag) => a.name.localeCompare(b.name)
 
@@ -190,7 +147,7 @@ const prepareTags = (
     }, {})
 
 const loadContent = async (contentTypes: Array<keyof ToolsContent>) => {
-    const paths = await getContentPaths(contentTypes)
+    const paths = await getContentPaths(contentTypes, __dirname)
 
     const [tools, skills, dimensions, tags] = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
@@ -210,7 +167,7 @@ function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
 
 const splitContentByLang = (
     content: ProcessingTranslatedToolsContent,
-    selectedLanguages: Language[] = LANGUAGE_TAGS,
+    selectedLanguages: Language[],
 ) =>
     selectedLanguages.reduce<Translated<ToolsContent>>(
         (result, lang: Language) => {
@@ -230,7 +187,7 @@ const splitContentByLang = (
 
 const prepareContent = (
     content: ProcessingTranslatedToolsContent,
-    selectedLanguages: Language[] = LANGUAGE_TAGS,
+    selectedLanguages: Language[],
 ) => {
     const tools = prepareTools(content.tools, content.tags, selectedLanguages)
     const tags = prepareTags(tools, content.tags, selectedLanguages)
@@ -252,29 +209,25 @@ const orderToolsConsistently = (builtContent: Translated<ToolsContent>) => {
     return builtContent
 }
 
-const rawContent = await loadContent(['tools', 'skills', 'dimensions', 'tags'])
+export async function build(selectedLanguages: Language[]) {
+    const rawContent = await loadContent([
+        'tools',
+        'skills',
+        'dimensions',
+        'tags',
+    ])
 
-const SELECTED_LANGUAGES: Language[] = ['en']
+    // NOTE: We currently only build the English content since no translations are available yet
+    // IDEA: Maybe refactor this to only pass in selected languages at one place, but this works for now.
+    const builtContent = splitContentByLang(
+        prepareContent(rawContent, selectedLanguages),
+        selectedLanguages,
+    )
 
-// NOTE: We currently only build the English content since no translations are available yet
-// IDEA: Maybe refactor this to only pass in selected languages at one place, but this works for now.
-const builtContent = splitContentByLang(
-    prepareContent(rawContent, SELECTED_LANGUAGES),
-    SELECTED_LANGUAGES,
-)
+    const output = orderToolsConsistently(builtContent)
 
-const output = orderToolsConsistently(builtContent)
-
-await writeJSON(
-    resolve(__dirname, '../../../tools/static/content.json'),
-    output,
-)
-
-const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
-    'en-US',
-    {
-        minimumFractionDigits: 3,
-        maximumFractionDigits: 3,
-    },
-)
-console.log(`✅ Built IDG.tools content in ${buildTime} s\n`)
+    await writeJSON(
+        resolve(__dirname, '../../../../tools/static/content.json'),
+        output,
+    )
+}

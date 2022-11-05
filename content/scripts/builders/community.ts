@@ -1,11 +1,7 @@
-import slugify from 'slugify'
-import FastGlob from 'fast-glob'
-import { performance } from 'perf_hooks'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { readFile, writeFile } from 'fs/promises'
 
-import { DEFAULT_LANGUAGE_TAG, LANGUAGE_TAGS } from '$shared/constants'
+import { LANGUAGE_TAGS } from '$shared/constants'
 import type {
     Dimension,
     CommunityContent,
@@ -14,39 +10,14 @@ import type {
     Story,
     Contributor,
 } from '$shared/types'
+import {
+    createBackwardsCompatibleLink,
+    getContentPaths,
+    readJSON,
+    writeJSON,
+} from '../utils'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-
-export const slugifyName = (string: string, language = DEFAULT_LANGUAGE_TAG) =>
-    slugify(string, {
-        replacement: '-', // replace spaces with replacement character, defaults to `-`
-        remove: undefined, // remove characters that match regex, defaults to `undefined`
-        lower: true, // convert to lower case, defaults to `false`
-        strict: true, // strip special characters except replacement, defaults to `false`
-        locale: language, // language code of the locale to use
-        trim: true, // trim leading and trailing replacement chars, defaults to `true`
-    })
-
-/**
- * Create a slugified, backwards compatible link.
- *
- * @param name Name of the object to link to. Can be updated easily while keeping links backwards compatible.
- * @param uniqueSlug cuid.slug() that should remain the same for an object as long as it exists in the database.
- * @returns Slugified link
- */
-export const createBackwardsCompatibleLink = (
-    name: string,
-    uniqueSlug: string,
-    language = DEFAULT_LANGUAGE_TAG,
-) => `${slugifyName(name, language)}-${uniqueSlug}`
-
-export const readJSON = (path: string) =>
-    readFile(path, { encoding: 'utf-8' }).then(JSON.parse)
-
-export const writeJSON = (path: string, data: any, indentation: number = 0) =>
-    writeFile(path, JSON.stringify(data, null, indentation), {
-        encoding: 'utf-8',
-    })
 
 // Only used while building the content
 type ProcessingTranslatedCommunityContent = {
@@ -54,15 +25,6 @@ type ProcessingTranslatedCommunityContent = {
     contributors: Translated<Contributor>[]
     dimensions: Translated<Dimension>[]
 }
-
-const startTime = performance.now()
-
-const getContentPaths = (contentTypes: Array<keyof CommunityContent>) =>
-    Promise.all(
-        contentTypes.map((type) =>
-            FastGlob(resolve(__dirname, `../../../content/src/${type}/*.json`)),
-        ),
-    )
 
 const prepareStories = (
     translatedStories: Translated<Story>[],
@@ -117,7 +79,7 @@ const prepareStories = (
 }
 
 const loadContent = async (contentTypes: Array<keyof CommunityContent>) => {
-    const paths = await getContentPaths(contentTypes)
+    const paths = await getContentPaths(contentTypes, __dirname)
 
     const [stories, contributors, dimensions] = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
@@ -170,15 +132,6 @@ const builtContent = splitContentByLang(
 )
 
 await writeJSON(
-    resolve(__dirname, '../../../community/static/content.json'),
+    resolve(__dirname, '../../../../community/static/content.json'),
     builtContent,
 )
-
-const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
-    'en-US',
-    {
-        minimumFractionDigits: 3,
-        maximumFractionDigits: 3,
-    },
-)
-console.log(`✅ Built IDG.community content in ${buildTime} s\n`)
