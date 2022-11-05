@@ -12,7 +12,6 @@ import type {
     CommunityContent,
     Language,
     Tag,
-    Tool,
     Translated,
     Story,
     Contributor,
@@ -102,34 +101,34 @@ const prepareStories = (
 
             if (!story.tags) {
                 console.log(JSON.stringify(story, null, 2))
-                console.log('MISSING TAGS for tool ', story.title)
-            }
-
-            const firstDuplicateTag = story.tags.find(
-                (t, i) => story.tags.lastIndexOf(t) !== i,
-            )
-            if (firstDuplicateTag) {
-                throw new Error(
-                    `[content] Story "${story.title}" has duplicate tags: ${firstDuplicateTag}`,
+                console.log('MISSING TAGS for story ', story.title)
+            } else {
+                const firstDuplicateTag = story.tags.find(
+                    (t, i) => story.tags.lastIndexOf(t) !== i,
                 )
+                if (firstDuplicateTag) {
+                    throw new Error(
+                        `[content] Story "${story.title}" has duplicate tags: ${firstDuplicateTag}`,
+                    )
+                }
+
+                const tags = translatedTags.map((tag) => {
+                    const translatedTag = tag[language as Language]
+                    if (translatedTag !== undefined) return translatedTag
+                    throw new Error(
+                        `[content] Tag is missing translation for language "${language}": ${JSON.stringify(
+                            tag,
+                        )}`,
+                    )
+                })
+
+                const tagsSortedAlphabetically = story.tags
+                    .map((t) => getTag(t, { tags }))
+                    .sort(sortNamesAlphabetically)
+                    .map((t) => t.id)
+
+                story.tags = tagsSortedAlphabetically
             }
-
-            const tags = translatedTags.map((tag) => {
-                const translatedTag = tag[language as Language]
-                if (translatedTag !== undefined) return translatedTag
-                throw new Error(
-                    `[content] Tag is missing translation for language "${language}": ${JSON.stringify(
-                        tag,
-                    )}`,
-                )
-            })
-
-            const tagsSortedAlphabetically = story.tags
-                .map((t) => getTag(t, { tags }))
-                .sort(sortNamesAlphabetically)
-                .map((t) => t.id)
-
-            story.tags = tagsSortedAlphabetically
 
             const newLink = createBackwardsCompatibleLink(
                 story.title,
@@ -138,7 +137,7 @@ const prepareStories = (
             if (newLink !== story.link) {
                 if (story.link !== undefined) {
                     console.warn(
-                        `[content] Link has changed for tool "${story.title}" from old: "${story.link}" to new: "${newLink}"`,
+                        `[content] Link has changed for story "${story.title}" from old: "${story.link}" to new: "${newLink}"`,
                     )
                 }
                 story.link = newLink
@@ -159,13 +158,13 @@ const prepareTags = (
     translatedTags.filter((translatedTag) => {
         for (const [language, tag] of Object.entries(translatedTag)) {
             if (!selectedLanguages.includes(language as Language)) continue
-            const tagIsUsedBySomeTool = translatedStories.some(
+            const tagIsUsedBySomeStory = translatedStories.some(
                 (translatedStory) =>
                     translatedStory[language as Language]?.tags?.includes?.(
                         tag.id,
                     ),
             )
-            if (!tagIsUsedBySomeTool) {
+            if (!tagIsUsedBySomeStory) {
                 console.warn(
                     `[content] Tag "${tag.name}" with id "${tag.id}" is not used in any story.`,
                 )
@@ -204,7 +203,7 @@ const splitContentByLang = (
                 stories: getByLang(content.stories, lang),
                 contributors: getByLang(content.contributors, lang),
                 dimensions: getByLang(content.dimensions, lang),
-                // IDEA: Or should tags be sorted by number of tools using them? This would make the popular tags appear first and might give a better UX
+                // IDEA: Or should tags be sorted by number of stories using them? This would make the popular tags appear first and might give a better UX
                 tags: getByLang(content.tags, lang).sort(
                     sortNamesAlphabetically,
                 ),
