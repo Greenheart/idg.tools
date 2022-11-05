@@ -1,6 +1,3 @@
-import { resolve, dirname } from 'path'
-import { fileURLToPath } from 'url'
-
 import type {
     Dimension,
     CommunityContent,
@@ -15,8 +12,6 @@ import {
     readJSON,
     writeJSON,
 } from '../utils'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // Only used while building the content
 type ProcessingTranslatedCommunityContent = {
@@ -77,11 +72,11 @@ const prepareStories = (
     })
 }
 
-const loadContent = async (contentTypes: Array<keyof CommunityContent>) => {
-    const paths = await getContentPaths(
-        contentTypes,
-        resolve(__dirname, '../../src'),
-    )
+const loadContent = async (
+    contentTypes: Array<keyof CommunityContent>,
+    contentDir: string,
+) => {
+    const paths = await getContentPaths(contentTypes, contentDir)
 
     const [stories, contributors, dimensions] = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
@@ -122,20 +117,20 @@ const prepareContent = (
     return { ...content, stories }
 }
 
-export default async function buildCommunity(selectedLanguages: Language[]) {
-    const rawContent = await loadContent([
-        'stories',
-        'contributors',
-        'dimensions',
-    ])
+export default async function buildCommunity(
+    selectedLanguages: Language[],
+    contentDir: string,
+    outputFile: string,
+) {
+    const rawContent = await loadContent(
+        ['stories', 'contributors', 'dimensions'],
+        contentDir,
+    )
 
     const builtContent = splitContentByLang(
         prepareContent(rawContent, selectedLanguages),
         selectedLanguages,
     )
 
-    await writeJSON(
-        resolve(__dirname, '../../../community/static/content.json'),
-        builtContent,
-    )
+    await writeJSON(outputFile, builtContent)
 }

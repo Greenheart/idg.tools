@@ -1,11 +1,19 @@
 import { performance } from 'perf_hooks'
-import type { Language } from '$shared/types'
+import { dirname, resolve } from 'path'
 
+import type { Language } from '$shared/types'
 import community from './builders/community'
 import tools from './builders/tools'
+import { fileURLToPath } from 'url'
 
 type BuilderNames = 'community' | 'tools'
-export type Builder = (selectedLanguages: Language[]) => Promise<void>
+export type Builder = (
+    selectedLanguages: Language[],
+    contentDir: string,
+    outputFile: string,
+) => Promise<void>
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const BUILDERS: Record<BuilderNames, Builder> = {
     community,
@@ -24,8 +32,16 @@ if (!selectedBuilders.length) {
 // NOTE: We currently only build the English content since no translations are available yet
 const SELECTED_LANGUAGES: Language[] = ['en']
 
+const contentDir = resolve(__dirname, '../../src')
+
 await Promise.all(
-    selectedBuilders.map((builder) => BUILDERS[builder](SELECTED_LANGUAGES)),
+    selectedBuilders.map((builder) => {
+        const outputFile = resolve(
+            __dirname,
+            `../../../${builder}/static/content.json`,
+        )
+        return BUILDERS[builder](SELECTED_LANGUAGES, contentDir, outputFile)
+    }),
 )
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
