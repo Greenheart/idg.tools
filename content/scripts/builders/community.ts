@@ -1,7 +1,6 @@
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
-import { LANGUAGE_TAGS } from '$shared/constants'
 import type {
     Dimension,
     CommunityContent,
@@ -79,7 +78,10 @@ const prepareStories = (
 }
 
 const loadContent = async (contentTypes: Array<keyof CommunityContent>) => {
-    const paths = await getContentPaths(contentTypes, __dirname)
+    const paths = await getContentPaths(
+        contentTypes,
+        resolve(__dirname, '../../src'),
+    )
 
     const [stories, contributors, dimensions] = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
@@ -98,7 +100,7 @@ function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
 
 const splitContentByLang = (
     content: ProcessingTranslatedCommunityContent,
-    selectedLanguages: Language[] = LANGUAGE_TAGS,
+    selectedLanguages: Language[],
 ) =>
     selectedLanguages.reduce<Translated<CommunityContent>>(
         (result, lang: Language) => {
@@ -114,24 +116,26 @@ const splitContentByLang = (
 
 const prepareContent = (
     content: ProcessingTranslatedCommunityContent,
-    selectedLanguages: Language[] = LANGUAGE_TAGS,
+    selectedLanguages: Language[],
 ) => {
     const stories = prepareStories(content.stories, selectedLanguages)
     return { ...content, stories }
 }
 
-const rawContent = await loadContent(['stories', 'contributors', 'dimensions'])
+export default async function buildCommunity(selectedLanguages: Language[]) {
+    const rawContent = await loadContent([
+        'stories',
+        'contributors',
+        'dimensions',
+    ])
 
-const SELECTED_LANGUAGES: Language[] = ['en']
+    const builtContent = splitContentByLang(
+        prepareContent(rawContent, selectedLanguages),
+        selectedLanguages,
+    )
 
-// NOTE: We currently only build the English content since no translations are available yet
-// IDEA: Maybe refactor this to only pass in selected languages at one place, but this works for now.
-const builtContent = splitContentByLang(
-    prepareContent(rawContent, SELECTED_LANGUAGES),
-    SELECTED_LANGUAGES,
-)
-
-await writeJSON(
-    resolve(__dirname, '../../../../community/static/content.json'),
-    builtContent,
-)
+    await writeJSON(
+        resolve(__dirname, '../../../community/static/content.json'),
+        builtContent,
+    )
+}

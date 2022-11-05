@@ -1,9 +1,10 @@
-import { DEFAULT_LANGUAGE_TAG } from '$shared/constants'
-import type { AllContent } from '$shared/types'
 import FastGlob from 'fast-glob'
 import { readFile, writeFile } from 'fs/promises'
 import { resolve } from 'path'
 import slugify from 'slugify'
+
+import { DEFAULT_LANGUAGE_TAG } from '$shared/constants'
+import type { AllContent } from '$shared/types'
 
 export const slugifyName = (string: string, language = DEFAULT_LANGUAGE_TAG) =>
     slugify(string, {
@@ -44,6 +45,6 @@ export const getContentPaths = (
 ) =>
     Promise.all(
         contentTypes.map((type) =>
-            FastGlob(resolve(baseDir, `../../../content/src/${type}/*.json`)),
+            FastGlob(resolve(baseDir, `${type}/*.json`)),
         ),
     )
