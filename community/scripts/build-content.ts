@@ -201,7 +201,7 @@ const splitContentByLang = (
         (result, lang: Language) => {
             result[lang] = {
                 stories: getByLang(content.stories, lang),
-                contributors: getByLang(content.contributors, lang),
+                contributors: content.contributors as Contributor[],
                 dimensions: getByLang(content.dimensions, lang),
                 // IDEA: Or should tags be sorted by number of stories using them? This would make the popular tags appear first and might give a better UX
                 tags: getByLang(content.tags, lang).sort(
