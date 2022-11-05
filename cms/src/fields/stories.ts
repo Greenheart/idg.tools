@@ -48,9 +48,11 @@ export const StoriesFields: CustomCmsField[] = [
     {
         label: 'Publishing date',
         name: 'publishedAt',
-        widget: 'date',
+        widget: 'datetime',
         required: false,
         date_format: 'YYYY-MM-DD',
+        time_format: '',
+        default: '',
     } as CmsField,
     // TODO: add image as a required field since a story without an image is too boring
     {
