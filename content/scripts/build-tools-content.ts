@@ -6,8 +6,7 @@ import { fileURLToPath } from 'url'
 import { readFile, writeFile } from 'fs/promises'
 
 import { DEFAULT_LANGUAGE_TAG, LANGUAGE_TAGS } from '$shared/constants'
-import { getTag } from '$shared/content-utils'
-import { mostRelevantContentFirst } from '$lib/utils'
+import { getTag, mostRelevantContentFirst } from '$shared/content-utils'
 import type {
     Dimension,
     ToolsContent,
@@ -19,6 +18,8 @@ import type {
 } from '$shared/types'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
+
+// TODO: Move shared utils to a separate module so they can be reused for both tools and community.
 
 export const slugifyName = (string: string, language = DEFAULT_LANGUAGE_TAG) =>
     slugify(string, {
@@ -61,6 +62,8 @@ type ProcessingTranslatedToolsContent = {
 
 const startTime = performance.now()
 
+// TODO: Add support for loading collections with specific files rather than entire directories
+// This would be a good utility function to complement getContentPaths
 const getContentPaths = (contentTypes: Array<keyof ToolsContent>) =>
     Promise.all(
         contentTypes.map((type) =>
@@ -262,7 +265,10 @@ const builtContent = splitContentByLang(
 
 const output = orderToolsConsistently(builtContent)
 
-await writeJSON(resolve(__dirname, '../../static/content.json'), output)
+await writeJSON(
+    resolve(__dirname, '../../../tools/static/content.json'),
+    output,
+)
 
 const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
     'en-US',

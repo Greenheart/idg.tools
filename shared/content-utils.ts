@@ -31,3 +31,39 @@ export const getSkillsInDimension = (
     id: Dimension['id'],
     { skills }: Pick<ToolsContent, 'skills'>,
 ) => skills.filter((s) => s.dimension === id)
+
+export const getTotalRelevancyScore = (
+    relevancy: Tool['relevancy'],
+    selectedSkills: Skill['id'][],
+) =>
+    relevancy.reduce((totalRelevancy, r) => {
+        if (selectedSkills.includes(r.skill)) {
+            totalRelevancy += r.score
+        }
+        return totalRelevancy
+    }, 0)
+
+export const mostRelevantContentFirst =
+    (selectedSkills: Skill['id'][]) => (a: Tool, b: Tool) =>
+        getTotalRelevancyScore(b.relevancy, selectedSkills) -
+        getTotalRelevancyScore(a.relevancy, selectedSkills)
+
+export const getMostRelevantContent = (
+    content: ToolsContent,
+    selectedSkills: Skill['id'][],
+    selectedTags: Tag['id'][],
+) =>
+    content.tools
+        .filter((tool) => {
+            const hasMatchingSkills = selectedSkills.every((skillId) =>
+                tool.relevancy.some(({ skill }) => skill === skillId),
+            )
+            const hasMatchingTags = selectedTags.length
+                ? selectedTags.some((tagId) =>
+                      tool.tags.some((id) => id === tagId),
+                  )
+                : true
+
+            return hasMatchingSkills && hasMatchingTags
+        })
+        .sort(mostRelevantContentFirst(selectedSkills))
