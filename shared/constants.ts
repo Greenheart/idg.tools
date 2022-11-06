@@ -11,6 +11,7 @@ export const DEFAULT_LANGUAGE_TAG = 'en'
 // IDEA: Maybe this could be generated based on `content.json`, to allow the CMS to generate it.
 // IDEA: Same with the tailwind config, which perhaps could generate the color config based on dimension names, and color props from the CMS
 // IDEA: Maybe generate a `colors.json` which defines this structure? This could then be imported both to the utils and to the tailwind config, thus allowing the CMS to dictate how IDG colors look in the app
+// NOTE: It would be worth moving the colors out of the CMS since they need to live closer to the design anyway, it doesn't make sense to store it in the CMS
 export const SKILLS_BY_DIMENSION = {
     ckzi3855r0086e2n0smi0mew5: {
         name: 'being',
