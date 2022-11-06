@@ -28,6 +28,7 @@ export type Tool = Item & {
 }
 
 export type Contributor = {
+    id: string
     name: string
     link: string
 }
@@ -39,9 +40,8 @@ export type Story = {
     dimensions: Dimension['id'][]
     link: string
     slug: string
-    contributors: Contributor[]
+    contributors: Contributor['id'][]
     publishedAt: string
-    tags: Tag['id'][]
 }
 
 export type ToolsContent = {

@@ -68,7 +68,7 @@
             local hub. Share your own story and help make the IDG resources even
             better!
         </p>
-        <Link href="#stories" variant="pink">Inspire and get inspired!</Link>
+        <Link href="/stories" variant="pink">Inspire and get inspired!</Link>
     </div>
 </div>
 
