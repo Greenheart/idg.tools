@@ -79,18 +79,16 @@
     <div class="bg-being h-64 rounded-2xl p-4 flex flex-col justify-between">
         <div class="flex flex-col space-y-2">
             {#each content.events as event}
-                <span
-                    class="grid grid-cols-[min-content_1fr] gap-x-2 bg-stone-50 p-2 rounded-lg shadow-lg"
+                <Link
+                    href={`/events/${event.link}`}
+                    variant="black"
+                    class="no-underline grid grid-cols-[min-content_1fr] gap-x-2 bg-stone-50 p-2 rounded-lg shadow-lg"
                 >
                     📅
-                    <!-- IDEA: Maybe make the entire card into a link -->
-                    <Link
-                        href={`/events/${event.link}`}
-                        variant="black"
-                        class="no-underline"
-                        >{getShortDateString(event.startDate)} &middot; {event.name}</Link
+                    <span
+                        >{getShortDateString(event.startDate)} &middot; {event.name}</span
                     >
-                </span>
+                </Link>
             {/each}
         </div>
         <Link href="/events" class="self-end" variant="black"
@@ -98,12 +96,16 @@
         >
     </div>
     <div class="bg-relating h-64 rounded-2xl p-4 flex flex-col justify-between">
-        <div class="flex flex-col space-y-4">
+        <div class="flex flex-col space-y-2">
             {#each content.stories as story}
-                <span class="grid grid-cols-[min-content_1fr] gap-x-2">
+                <Link
+                    href={`/stories/${story.link}`}
+                    variant="black"
+                    class="no-underline grid grid-cols-[min-content_1fr] gap-x-2 bg-stone-50 p-2 rounded-lg shadow-lg"
+                >
                     📝
-                    <Link href={`/stories/${story.link}`}>{story.title}</Link>
-                </span>
+                    <span>{story.title}</span>
+                </Link>
             {/each}
         </div>
         <Link href="/stories" class="self-end" variant="black"

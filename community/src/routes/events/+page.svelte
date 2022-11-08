@@ -7,7 +7,7 @@
     $: ({ events } = data)
 </script>
 
-<Heading size={1}>Stories from the IDG community</Heading>
+<Heading size={1}>Upcoming events for the IDG community</Heading>
 
 <!-- IDEA: Show Tool card for each event -->
 

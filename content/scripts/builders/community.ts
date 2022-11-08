@@ -29,6 +29,8 @@ const prepareStories = (
     return translatedStories.map((translatedStory) => {
         const updated = {} as Translated<Story>
 
+        // IDEA: Maybe automatically title case story titles
+
         const uniqueSlugs = new Set()
 
         for (const [language, story] of Object.entries(translatedStory)) {
@@ -80,6 +82,8 @@ const prepareEvents = (
 ) => {
     return translatedEvents.map((translatedEvent) => {
         const updated = {} as Translated<Event>
+
+        // IDEA: Maybe automatically title case event names
 
         const uniqueSlugs = new Set()
 
