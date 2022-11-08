@@ -74,6 +74,57 @@ const prepareStories = (
     })
 }
 
+const prepareEvents = (
+    translatedEvents: Translated<Event>[],
+    selectedLanguages: Language[],
+) => {
+    return translatedEvents.map((translatedEvent) => {
+        const updated = {} as Translated<Event>
+
+        const uniqueSlugs = new Set()
+
+        for (const [language, event] of Object.entries(translatedEvent)) {
+            if (!selectedLanguages.includes(language as Language)) continue
+            if (!event.slug) {
+                throw new Error(
+                    `[content] Missing slug for event "${event.name}" and language "${language}"`,
+                )
+            }
+
+            // Ensure slugs are consistent across all translations
+            uniqueSlugs.add(event.slug)
+            if (uniqueSlugs.size > 1) {
+                throw new Error(
+                    `[content] Slugs should be the same for all translations for event "${
+                        event.name
+                    }" and language "${language}": Slugs found was ${JSON.stringify(
+                        [...uniqueSlugs],
+                    )}`,
+                )
+            }
+
+            const newLink = createBackwardsCompatibleLink(
+                event.name,
+                event.slug,
+            )
+            if (newLink !== event.link) {
+                if (event.link !== undefined) {
+                    console.warn(
+                        `[content] Link has changed for event "${event.name}" from old: "${event.link}" to new: "${newLink}"`,
+                    )
+                }
+                event.link = newLink
+            }
+
+            if (!event.dimensions) event.dimensions = []
+
+            updated[language as Language] = event
+        }
+
+        return updated
+    })
+}
+
 const loadContent = async (
     contentTypes: Array<keyof CommunityContent>,
     contentDir: string,
@@ -115,7 +166,8 @@ const prepareContent = (
     selectedLanguages: Language[],
 ) => {
     const stories = prepareStories(content.stories, selectedLanguages)
-    return { ...content, stories }
+    const events = prepareEvents(content.events, selectedLanguages)
+    return { ...content, stories, events }
 }
 
 export default async function buildCommunity(

@@ -50,6 +50,7 @@ export type Event = Item & {
     endDate: string
     location: string
     description: string
+    dimensions: Dimension['id'][]
     link: string
     slug: string
 }
