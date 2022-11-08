@@ -8,7 +8,7 @@ export const EventsFields: CustomCmsField[] = [
         label: 'Location',
         name: 'location',
         hint: 'Where is this event happening? E.g. "Online" or in a specific location.',
-        ...MARKDOWN_FIELD,
+        widget: 'string',
     },
     {
         label: 'Description',

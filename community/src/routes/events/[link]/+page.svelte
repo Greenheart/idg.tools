@@ -17,7 +17,7 @@
     <span>Ends:</span>
     <span>{getDateTimeString(event.endDate)}</span>
     <span class="flex">Location:</span>
-    <Markdown source={event.location} />
+    <span>{event.location}</span>
 </div>
 
 <div class="flex items-center mt-4">
