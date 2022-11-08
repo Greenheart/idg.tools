@@ -4,6 +4,7 @@
     import { isMenuOpen } from '$lib/stores'
     import type { PageData } from './$types'
     import LinkButton from '$components/LinkButton.svelte'
+    import { getShortDateString } from '$shared/content-utils'
 
     export let data: PageData
     $: ({ content } = data)
@@ -76,21 +77,33 @@
     <Heading size={2} class="mb-4">Upcoming events</Heading>
     <Heading size={2} class="mb-4">Featured stories</Heading>
     <div class="bg-being h-64 rounded-2xl p-4 flex flex-col justify-between">
-        <div class="flex flex-col space-y-4">
+        <div class="flex flex-col space-y-2">
             {#each content.events as event}
-                <Link href={`/stories/${event.link}`} variant="black"
-                    >{event.name}</Link
+                <span
+                    class="grid grid-cols-[min-content_1fr] gap-x-2 bg-stone-50 p-2 rounded-lg shadow-lg"
                 >
+                    📅
+                    <!-- IDEA: Maybe make the entire card into a link -->
+                    <Link
+                        href={`/events/${event.link}`}
+                        variant="black"
+                        class="no-underline"
+                        >{getShortDateString(event.startDate)} &middot; {event.name}</Link
+                    >
+                </span>
             {/each}
         </div>
-        <Link href="/stories" class="self-end" variant="black"
+        <Link href="/events" class="self-end" variant="black"
             >See all &rarr</Link
         >
     </div>
     <div class="bg-relating h-64 rounded-2xl p-4 flex flex-col justify-between">
         <div class="flex flex-col space-y-4">
             {#each content.stories as story}
-                <Link href={`/stories/${story.link}`}>{story.title}</Link>
+                <span class="grid grid-cols-[min-content_1fr] gap-x-2">
+                    📝
+                    <Link href={`/stories/${story.link}`}>{story.title}</Link>
+                </span>
             {/each}
         </div>
         <Link href="/stories" class="self-end" variant="black"
