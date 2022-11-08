@@ -34,6 +34,7 @@ export type Contributor = {
 }
 
 export type Story = {
+    id: string
     title: string
     intro: string
     story: string
@@ -42,6 +43,13 @@ export type Story = {
     slug: string
     contributors: Contributor['id'][]
     publishedAt: string
+}
+
+export type Event = Item & {
+    startDate: string
+    endDate: string
+    where: string
+    description: string
 }
 
 export type ToolsContent = {
