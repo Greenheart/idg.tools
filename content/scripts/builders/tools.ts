@@ -56,7 +56,7 @@ const prepareTools = (
             }
 
             if (!tool.tags) {
-                console.log('[content] MISSING TAGS for tool ', tool.name)
+                console.warn('[content] MISSING TAGS for tool ', tool.name)
                 tool.tags = []
             }
 
@@ -146,17 +146,14 @@ const loadContent = async (
     contentDir: string,
 ) => {
     const paths = await getContentPaths(contentTypes, contentDir)
-
-    const [tools, skills, dimensions, tags] = await Promise.all(
+    const content = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
     )
 
-    return {
-        tools,
-        skills,
-        dimensions,
-        tags,
-    } as ProcessingTranslatedToolsContent
+    return contentTypes.reduce((rawContent, type, i) => {
+        rawContent[type] = content[i]
+        return rawContent
+    }, {} as ProcessingTranslatedToolsContent)
 }
 
 function getByLang<T>(content: Translated<T>[], lang: Language): T[] {

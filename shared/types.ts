@@ -48,8 +48,10 @@ export type Story = {
 export type Event = Item & {
     startDate: string
     endDate: string
-    where: string
+    location: string
     description: string
+    link: string
+    slug: string
 }
 
 export type ToolsContent = {
@@ -61,6 +63,7 @@ export type ToolsContent = {
 
 export type CommunityContent = {
     stories: Story[]
+    events: Event[]
     contributors: Contributor[]
     dimensions: Dimension[]
 }

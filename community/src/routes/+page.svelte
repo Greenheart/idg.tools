@@ -77,9 +77,9 @@
     <Heading size={2} class="mb-4">Featured stories</Heading>
     <div class="bg-being h-64 rounded-2xl p-4 flex flex-col justify-between">
         <div class="flex flex-col space-y-4">
-            {#each content.stories as story}
-                <Link href={`/stories/${story.link}`} variant="black"
-                    >{story.title}</Link
+            {#each content.events as event}
+                <Link href={`/stories/${event.link}`} variant="black"
+                    >{event.name}</Link
                 >
             {/each}
         </div>
