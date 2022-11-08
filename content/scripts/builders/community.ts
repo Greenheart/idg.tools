@@ -5,6 +5,7 @@ import type {
     Translated,
     Story,
     Contributor,
+    Event,
 } from '$shared/types'
 import {
     createBackwardsCompatibleLink,
@@ -16,6 +17,7 @@ import {
 // Only used while building the content
 type ProcessingTranslatedCommunityContent = {
     stories: Translated<Story>[]
+    events: Translated<Event>[]
     contributors: Translated<Contributor>[]
     dimensions: Translated<Dimension>[]
 }
@@ -77,16 +79,14 @@ const loadContent = async (
     contentDir: string,
 ) => {
     const paths = await getContentPaths(contentTypes, contentDir)
-
-    const [stories, contributors, dimensions] = await Promise.all(
+    const content = await Promise.all(
         paths.map((paths) => Promise.all(paths.map(readJSON))),
     )
 
-    return {
-        stories,
-        contributors,
-        dimensions,
-    } as ProcessingTranslatedCommunityContent
+    return contentTypes.reduce((rawContent, type, i) => {
+        rawContent[type] = content[i]
+        return rawContent
+    }, {} as ProcessingTranslatedCommunityContent)
 }
 
 function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
@@ -101,6 +101,7 @@ const splitContentByLang = (
         (result, lang: Language) => {
             result[lang] = {
                 stories: getByLang(content.stories, lang),
+                events: getByLang(content.events, lang),
                 contributors: content.contributors as Contributor[],
                 dimensions: getByLang(content.dimensions, lang),
             }
@@ -123,7 +124,7 @@ export default async function buildCommunity(
     outputFile: string,
 ) {
     const rawContent = await loadContent(
-        ['stories', 'contributors', 'dimensions'],
+        ['stories', 'events', 'contributors', 'dimensions'],
         contentDir,
     )
 
