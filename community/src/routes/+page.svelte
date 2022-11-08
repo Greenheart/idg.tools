@@ -75,8 +75,28 @@
 <div class="grid grid-cols-2 gap-x-8 py-12 mt-8">
     <Heading size={2} class="mb-4">Upcoming events</Heading>
     <Heading size={2} class="mb-4">Featured stories</Heading>
-    <div class="bg-being h-64 rounded-2xl" />
-    <div class="bg-relating h-64 rounded-2xl" />
+    <div class="bg-being h-64 rounded-2xl p-4 flex flex-col justify-between">
+        <div class="flex flex-col space-y-4">
+            {#each content.stories as story}
+                <Link href={`/stories/${story.link}`} variant="black"
+                    >{story.title}</Link
+                >
+            {/each}
+        </div>
+        <Link href="/stories" class="self-end" variant="black"
+            >See all &rarr</Link
+        >
+    </div>
+    <div class="bg-relating h-64 rounded-2xl p-4 flex flex-col justify-between">
+        <div class="flex flex-col space-y-4">
+            {#each content.stories as story}
+                <Link href={`/stories/${story.link}`}>{story.title}</Link>
+            {/each}
+        </div>
+        <Link href="/stories" class="self-end" variant="black"
+            >See all &rarr</Link
+        >
+    </div>
 </div>
 
 <div class="grid py-12 w-1/2 mx-auto">
