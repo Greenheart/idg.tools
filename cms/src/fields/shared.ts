@@ -39,9 +39,10 @@ export const DESCRIPTION: CmsField = {
     widget: 'string',
 }
 
-export const MARKDOWN_FIELD: Partial<CmsFieldMarkdown> = {
+export const MARKDOWN_FIELD: Partial<CmsFieldMarkdown & CmsFieldBase> = {
     widget: 'markdown',
     buttons: ['bulleted-list', 'numbered-list', 'link'],
     editor_components: [],
+    i18n: true,
     minimal: true,
 }

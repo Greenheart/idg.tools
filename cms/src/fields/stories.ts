@@ -8,7 +8,6 @@ export const StoriesFields: CustomCmsField[] = [
         label: 'Intro',
         name: 'intro',
         hint: "A short intro to catch the reader's interest.",
-        i18n: true,
         ...MARKDOWN_FIELD,
         required: false,
     },
@@ -16,7 +15,6 @@ export const StoriesFields: CustomCmsField[] = [
         label: 'Story',
         name: 'story',
         hint: 'Your story of how you practiced inner development and how it helped you with sustainable development.',
-        i18n: true,
         ...MARKDOWN_FIELD,
     },
     {
