@@ -2,6 +2,7 @@ import { CmsCollection } from 'netlify-cms-core'
 
 import { ContributorsFields } from './fields/contributors'
 import { DimensionsFields } from './fields/dimensions'
+import { EventsFields } from './fields/events'
 import { FeaturedContentFields } from './fields/settings/featured'
 import { SkillsFields } from './fields/skills'
 import { StoriesFields } from './fields/stories'
@@ -44,6 +45,24 @@ export const COLLECTIONS = [
         i18n: true,
         description:
             'Stories to share insights and learnings of how the IDGs are being used in practice, to reach the SDGs.',
+    },
+    {
+        name: 'events',
+        label: '📅 Events',
+        label_singular: 'Event',
+        folder: '/content/src/events',
+        fields: EventsFields,
+        extension: 'json',
+        format: 'json',
+        create: true,
+        delete: false,
+        publish: false,
+        summary: '{{fields.name}}',
+        slug: '{{id}}',
+        identifier_field: 'id',
+        i18n: true,
+        description:
+            'Events to interact with the IDG community and learn together.',
     },
     {
         name: 'contributors',
