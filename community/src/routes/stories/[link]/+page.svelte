@@ -1,5 +1,6 @@
 <script lang="ts">
     import Heading from '$components/Heading.svelte'
+    import Link from '$components/Link.svelte'
     import Markdown from '$components/Markdown.svelte'
     import { cx, getColor } from '$lib/utils'
 
@@ -29,11 +30,13 @@
 
 <Markdown source={story.story} class="pt-4 text-lg" />
 
-<!-- 
-<div class="mt-8 rounded-2xl bg-stone-50 p-4 text-stone-900">
-    <Heading class="pb-2 text-2xl">How to practice</Heading>
-    <Markdown source={tool.actions} variant="inverted" />
-</div> -->
-
 <Heading class="pt-8 pb-2">Contributors</Heading>
-<span>{contributors.map((c) => c.name).join(', ')}</span>
+<div class="flex space-x-1">
+    {#each contributors as { link, name }, i}
+        {#if link}
+            <Link href={link}>{name}</Link>
+        {:else}
+            <span>{name}</span>
+        {/if}{i < contributors.length - 1 ? ',' : ''}
+    {/each}
+</div>
