@@ -6,6 +6,7 @@
     export const variants = {
         pink: 'text-thinking',
         white: 'text-stone-50',
+        black: 'text-stone-900',
     }
 
     const defaultVariant = 'white'
