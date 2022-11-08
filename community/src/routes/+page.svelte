@@ -43,7 +43,7 @@
         <Heading size={2}>Tools</Heading>
         <p class="my-4">
             We're creating an open source library of scientifically-validated
-            methods to develop the skills outlined by the IDG framework. Here
+            tools to develop the skills outlined by the IDG framework. Here you
             can find exercises, workshops and resources relevant to the skills
             you want to practice.
         </p>
@@ -63,12 +63,12 @@
     <div class="text-center">
         <Heading size={2}>Stories</Heading>
         <p class="my-4">
-            Read stories of how people around the world are applying the IDG
-            framework in their context. Learn from others and try it with your
-            local hub. Share your own story and help make the IDG resources even
+            Read stories of how people around the world are using the IDG
+            framework in practice. Learn from others and try it with your local
+            hub. Share your own story and help make the IDG resources even
             better!
         </p>
-        <Link href="/stories" variant="pink">Inspire and get inspired!</Link>
+        <Link href="/stories" variant="pink">Inspire and get inspired</Link>
     </div>
 </div>
 
