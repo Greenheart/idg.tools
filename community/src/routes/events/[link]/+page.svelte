@@ -1,5 +1,6 @@
 <script lang="ts">
     import Heading from '$components/Heading.svelte'
+    import LinkButton from '$components/LinkButton.svelte'
     import Markdown from '$components/Markdown.svelte'
     import { cx, getColor } from '$lib/utils'
     import { getDateTimeString } from '$shared/content-utils'
@@ -32,3 +33,7 @@
 </div>
 
 <Markdown source={event.description} class="pt-4 text-lg" />
+
+<div class="mt-16 flex justify-center">
+    <LinkButton href="/events" variant="primary">See all events</LinkButton>
+</div>

@@ -1,6 +1,7 @@
 <script lang="ts">
     import Heading from '$components/Heading.svelte'
     import Link from '$components/Link.svelte'
+    import LinkButton from '$components/LinkButton.svelte'
     import Markdown from '$components/Markdown.svelte'
     import { cx, getColor } from '$lib/utils'
 
@@ -39,4 +40,8 @@
             <span>{name}</span>
         {/if}{i < contributors.length - 1 ? ',' : ''}
     {/each}
+</div>
+
+<div class="mt-16 flex justify-center">
+    <LinkButton href="/stories" variant="primary">See all stories</LinkButton>
 </div>
