@@ -10,13 +10,8 @@
 
 <Heading size={1}>Stories from the IDG community</Heading>
 
-<!-- IDEA: Show Tool card for each story -->
-
 <div class="grid gap-4 mt-16">
     <Stories stories={content.stories} {content} />
-    <!-- {#each stories as story}
-        <Link href={`/stories/${story.link}`}>{story.title}</Link>
-    {/each} -->
 </div>
 
 <!-- IDEA: Make it possible to explore stories based on dimensions and contributors -->
