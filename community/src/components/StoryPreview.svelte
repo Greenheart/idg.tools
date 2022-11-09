@@ -1,26 +1,22 @@
 <script lang="ts">
     import { truncateText } from '$lib/utils'
-    import { getTag } from '$shared/content-utils'
-    import type { Tool, ToolsContent } from '$shared/types'
+    import type { Story, CommunityContent } from '$shared/types'
     import Heading from './Heading.svelte'
     import Arrow from './icons/Arrow.svelte'
     import Link from './Link.svelte'
     import Markdown from './Markdown.svelte'
-    import RelevantSkills from './RelevantSkills.svelte'
-    import Tags from './Tags.svelte'
+
+    export let story: Story
+    export let content: CommunityContent
 
     const introLength = 300
+    $: intro = truncateText(story.intro ?? story.story, introLength)
 
-    $: intro = truncateText(tool.intro ?? tool.description, introLength)
-
-    export let tool: Tool
-    export let content: ToolsContent
-
-    let tags = tool.tags.map((tagId) => getTag(tagId, content))
+    // let tags = story.tags.map((tagId) => getTag(tagId, content))
 </script>
 
 <Link
-    href={`/${tool.link}`}
+    href={`/stories/${story.link}`}
     unstyled
     class="grid max-h-max max-w-2xl justify-self-center"
     tabindex={0}
@@ -30,11 +26,11 @@
     >
         <div class="flex h-full max-h-max flex-col justify-between">
             <div>
-                <Heading size={2}>{tool.name}</Heading>
-                <Tags {tags} visible={3} class="pt-2" />
+                <Heading size={2}>{story.title}</Heading>
+                <!-- <Tags {tags} visible={3} class="pt-2" /> -->
                 <Markdown source={intro} class="pt-2 pb-4" variant="inverted" />
             </div>
-            <RelevantSkills {tool} {content} visible={4} />
+            <!-- <RelevantDimensions {story} {content} visible={4} /> -->
         </div>
 
         <Arrow
