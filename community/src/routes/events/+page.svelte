@@ -13,7 +13,7 @@
 
 <div class="grid gap-4 mt-16">
     {#each events as event}
-        <Link href={`/stories/${event.link}`}>{event.name}</Link>
+        <Link href={`/events/${event.link}`}>{event.name}</Link>
     {/each}
 </div>
 
