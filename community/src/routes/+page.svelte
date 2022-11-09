@@ -115,7 +115,7 @@
 </div>
 
 <div class="grid py-12 w-1/2 mx-auto">
-    <Heading size={2} class="mb-2">Come join us!</Heading>
+    <Heading size={2} class="mb-2">Find your community</Heading>
     <p class="mb-4">
         (This could be an interactive widget to help people find their way of
         engaging by answering a few questions, and getting recommended specific
@@ -129,7 +129,7 @@
     <p class="mb-4">
         (This could be an interactive map to visualize the key information about
         all active IDG hubs. The data would be updated by the IDG hubs
-        themselves, as part of their commitment to remain featured)
+        themselves, as part of their commitment to remain listed)
     </p>
     <div class="bg-collaborating h-64 rounded-2xl" />
 </div>
