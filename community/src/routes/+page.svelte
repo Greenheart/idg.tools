@@ -5,6 +5,7 @@
     import type { PageData } from './$types'
     import LinkButton from '$components/LinkButton.svelte'
     import { getShortDateString } from '$shared/content-utils'
+    import GetInvolved from '$components/GetInvolved.svelte'
 
     export let data: PageData
     $: ({ content } = data)
@@ -121,7 +122,7 @@
         engaging by answering a few questions, and getting recommended specific
         actions)
     </p>
-    <div class="bg-thinking h-64 rounded-2xl" />
+    <GetInvolved />
 </div>
 
 <div class="grid py-12 w-1/2 mx-auto">
