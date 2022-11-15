@@ -1,3 +1,4 @@
+import { getTag } from '$shared/content-utils'
 import type {
     Dimension,
     CommunityContent,
@@ -6,11 +7,13 @@ import type {
     Story,
     Contributor,
     Event,
+    Tag,
 } from '$shared/types'
 import {
     createBackwardsCompatibleLink,
     getContentPaths,
     readJSON,
+    sortNamesAlphabetically,
     writeJSON,
 } from '../utils'
 
@@ -20,12 +23,15 @@ type ProcessingTranslatedCommunityContent = {
     events: Translated<Event>[]
     contributors: Translated<Contributor>[]
     dimensions: Translated<Dimension>[]
+    tags: Translated<Tag>[]
 }
 
 const prepareStories = (
     translatedStories: Translated<Story>[],
+    translatedTags: Translated<Tag>[],
     selectedLanguages: Language[],
 ) => {
+    // TODO: translatedTags need to be used here
     return translatedStories.map((translatedStory) => {
         const updated = {} as Translated<Story>
 
@@ -52,6 +58,40 @@ const prepareStories = (
                     )}`,
                 )
             }
+
+            if (!story.tags) {
+                console.warn('[content] Missing tags for story', story.title)
+                story.tags = []
+            }
+
+            // Consider removing duplicate tags check, since this is taken care of by the relation widget in the CMS
+            // Or maybe only enable it when running in local development and not in the production build
+            const firstDuplicateTag = story.tags.find(
+                (t, i) => story.tags.lastIndexOf(t) !== i,
+            )
+            if (firstDuplicateTag) {
+                throw new Error(
+                    `[content] Story "${story.title}" has a duplicate tag: ${firstDuplicateTag}`,
+                )
+            }
+
+            // TODO: prepare tags once instead of doing it for every story and every language
+            const tags = translatedTags.map((tag) => {
+                const translatedTag = tag[language as Language]
+                if (translatedTag !== undefined) return translatedTag
+                throw new Error(
+                    `[content] Tag is missing translation for language "${language}": ${JSON.stringify(
+                        tag,
+                    )}`,
+                )
+            })
+
+            const tagsSortedAlphabetically = story.tags
+                .map((t) => getTag(t, { tags }))
+                .sort(sortNamesAlphabetically)
+                .map((t) => t.id)
+
+            story.tags = tagsSortedAlphabetically
 
             const newLink = createBackwardsCompatibleLink(
                 story.title,
@@ -129,6 +169,30 @@ const prepareEvents = (
     })
 }
 
+const prepareTags = (
+    translatedStories: Translated<Story>[],
+    translatedTags: Translated<Tag>[],
+    selectedLanguages: Language[],
+) =>
+    translatedTags.filter((translatedTag) => {
+        for (const [language, tag] of Object.entries(translatedTag)) {
+            if (!selectedLanguages.includes(language as Language)) continue
+            const tagIsUsedBySomeStory = translatedStories.some(
+                (translatedStory) =>
+                    translatedStory[language as Language]?.tags?.includes?.(
+                        tag.id,
+                    ),
+            )
+            if (!tagIsUsedBySomeStory) {
+                console.warn(
+                    `[content] Tag "${tag.name}" with id "${tag.id}" is not used in any story.`,
+                )
+                return false
+            }
+        }
+        return true
+    }, {})
+
 const loadContent = async (
     contentTypes: Array<keyof CommunityContent>,
     contentDir: string,
@@ -159,6 +223,11 @@ const splitContentByLang = (
                 events: getByLang(content.events, lang),
                 contributors: content.contributors as Contributor[],
                 dimensions: getByLang(content.dimensions, lang),
+                // IDEA: Or should tags be sorted by number of stories using them?
+                // This would make the popular tags appear first and might give a better UX
+                tags: getByLang(content.tags, lang).sort(
+                    sortNamesAlphabetically,
+                ),
             }
             return result
         },
@@ -169,9 +238,14 @@ const prepareContent = (
     content: ProcessingTranslatedCommunityContent,
     selectedLanguages: Language[],
 ) => {
-    const stories = prepareStories(content.stories, selectedLanguages)
+    const stories = prepareStories(
+        content.stories,
+        content.tags,
+        selectedLanguages,
+    )
+    const tags = prepareTags(stories, content.tags, selectedLanguages)
     const events = prepareEvents(content.events, selectedLanguages)
-    return { ...content, stories, events }
+    return { ...content, stories, events, tags }
 }
 
 export default async function buildCommunity(
@@ -180,7 +254,7 @@ export default async function buildCommunity(
     outputFile: string,
 ) {
     const rawContent = await loadContent(
-        ['stories', 'events', 'contributors', 'dimensions'],
+        ['stories', 'events', 'contributors', 'dimensions', 'tags'],
         contentDir,
     )
 

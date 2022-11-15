@@ -43,6 +43,7 @@ export type Story = {
     slug: string
     contributors: Contributor['id'][]
     publishedAt: string
+    tags: Tag['id'][]
 }
 
 export type Event = Item & {
@@ -67,6 +68,7 @@ export type CommunityContent = {
     events: Event[]
     contributors: Contributor[]
     dimensions: Dimension[]
+    tags: Tag[]
 }
 
 export type AllContent = ToolsContent & CommunityContent

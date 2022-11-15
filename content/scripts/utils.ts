@@ -4,7 +4,7 @@ import { resolve } from 'path'
 import slugify from 'slugify'
 
 import { DEFAULT_LANGUAGE_TAG } from '$shared/constants'
-import type { AllContent } from '$shared/types'
+import type { AllContent, Tag } from '$shared/types'
 
 export const slugifyName = (string: string, language = DEFAULT_LANGUAGE_TAG) =>
     slugify(string, {
@@ -48,3 +48,6 @@ export const getContentPaths = (
             FastGlob(resolve(baseDir, `${type}/*.json`)),
         ),
     )
+
+export const sortNamesAlphabetically = (a: Tag, b: Tag) =>
+    a.name.localeCompare(b.name)
