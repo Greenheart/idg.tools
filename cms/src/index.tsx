@@ -10,6 +10,10 @@ CMS.init({
     config: {
         load_config_file: false,
         editor: { preview: false },
+        // TODO: Need to find a solution to avoid duplicating images across multiple sites.
+        // Ideally we can store all images in content/static/images and copy them to tools and community when building.
+        // This way, the CMS can store all images in one place, organized based on which project uses them.
+        // IDEA: Maybe hide the global media library from the navigation to avoid confusion.
         media_folder: '/tools/static/images',
         backend: {
             name: 'github',
