@@ -31,7 +31,6 @@ const prepareStories = (
     translatedTags: Translated<Tag>[],
     selectedLanguages: Language[],
 ) => {
-    // TODO: translatedTags need to be used here
     return translatedStories.map((translatedStory) => {
         const updated = {} as Translated<Story>
 
