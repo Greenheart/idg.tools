@@ -11,6 +11,15 @@ export const StoriesFields: CustomCmsField[] = [
     ID,
     TITLE,
     {
+        widget: 'image',
+        hint: 'The featured image to help give a framing and context to this story',
+        i18n: 'duplicate',
+        media_folder: '/community/static/images',
+        required: false,
+        name: 'image',
+        label: 'Featured image',
+    },
+    {
         label: 'Intro',
         name: 'intro',
         hint: "A short intro to catch the reader's interest.",
@@ -58,7 +67,6 @@ export const StoriesFields: CustomCmsField[] = [
         time_format: '',
         default: '',
     } as CmsField,
-    // TODO: add image as a required field since a story without an image is too boring
     {
         label: 'Slug',
         name: 'slug',
