@@ -70,19 +70,15 @@ const prepareTools = (
                 )
             }
 
-            // TODO: prepare tags once instead of doing it for every tool and every language
-            const tags = translatedTags.map((tag) => {
+            // TODO: If we only load content for each language, this step can be avoided.
+            const relevantTags = translatedTags.reduce((relevantTags, tag) => {
                 const translatedTag = tag[language as Language]
-                if (translatedTag !== undefined) return translatedTag
-                throw new Error(
-                    `[content] Tag is missing translation for language "${language}": ${JSON.stringify(
-                        tag,
-                    )}`,
-                )
-            })
+                if (translatedTag) relevantTags.push(translatedTag)
+                return relevantTags
+            }, [] as Tag[])
 
             const tagsSortedAlphabetically = tool.tags
-                .map((t) => getTag(t, { tags }))
+                .map((t) => getTag(t, { tags: relevantTags }))
                 .sort(sortNamesAlphabetically)
                 .map((t) => t.id)
 
@@ -130,6 +126,14 @@ const prepareTags = (
     translatedTags.filter((translatedTag) => {
         for (const [language, tag] of Object.entries(translatedTag)) {
             if (!selectedLanguages.includes(language as Language)) continue
+            if (!tag) {
+                throw new Error(
+                    `[content] Tag is missing translation for language "${language}": ${JSON.stringify(
+                        translatedTag,
+                    )}`,
+                )
+            }
+
             const tagIsUsedBySomeTool = translatedTools.some((translatedTool) =>
                 translatedTool[language as Language]?.tags?.includes?.(tag.id),
             )
@@ -216,6 +220,9 @@ export default async function buildTools(
         ['tools', 'skills', 'dimensions', 'tags'],
         contentDir,
     )
+
+    // IDEA: Perhaps we could split content by language first, and then prepare content only for the languages wanted?
+    // This would allow to filter out missing content in the beginning and only implement the selectedLanguages filering in one place.
 
     const builtContent = splitContentByLang(
         prepareContent(rawContent, selectedLanguages),
