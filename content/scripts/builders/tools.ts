@@ -12,6 +12,7 @@ import {
     createBackwardsCompatibleLink,
     getContentPaths,
     readJSON,
+    sortNamesAlphabetically,
     writeJSON,
 } from '../utils'
 
@@ -22,8 +23,6 @@ type ProcessingTranslatedToolsContent = {
     skills: Translated<Skill>[]
     tags: Translated<Tag>[]
 }
-
-const sortNamesAlphabetically = (a: Tag, b: Tag) => a.name.localeCompare(b.name)
 
 const prepareTools = (
     translatedTools: Translated<Tool>[],
@@ -56,19 +55,22 @@ const prepareTools = (
             }
 
             if (!tool.tags) {
-                console.warn('[content] MISSING TAGS for tool ', tool.name)
+                console.warn('[content] Missing tags for tool', tool.name)
                 tool.tags = []
             }
 
+            // Consider removing duplicate tags check, since this is taken care of by the relation widget in the CMS
+            // Or maybe only enable it when running in local development and not in the production build
             const firstDuplicateTag = tool.tags.find(
                 (t, i) => tool.tags.lastIndexOf(t) !== i,
             )
             if (firstDuplicateTag) {
                 throw new Error(
-                    `[content] Tool "${tool.name}" has duplicate tags: ${firstDuplicateTag}`,
+                    `[content] Tool "${tool.name}" has a duplicate tag: ${firstDuplicateTag}`,
                 )
             }
 
+            // TODO: prepare tags once instead of doing it for every tool and every language
             const tags = translatedTags.map((tag) => {
                 const translatedTag = tag[language as Language]
                 if (translatedTag !== undefined) return translatedTag
@@ -170,7 +172,8 @@ const splitContentByLang = (
                 tools: getByLang(content.tools, lang),
                 skills: getByLang(content.skills, lang),
                 dimensions: getByLang(content.dimensions, lang),
-                // IDEA: Or should tags be sorted by number of tools using them? This would make the popular tags appear first and might give a better UX
+                // IDEA: Or should tags be sorted by number of tools using them?
+                // This would make the popular tags appear first and might give a better UX
                 tags: getByLang(content.tags, lang).sort(
                     sortNamesAlphabetically,
                 ),
