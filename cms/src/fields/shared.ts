@@ -39,10 +39,31 @@ export const DESCRIPTION: CmsField = {
     widget: 'string',
 }
 
-export const MARKDOWN_FIELD: Partial<CmsFieldMarkdown & CmsFieldBase> = {
+export const MARKDOWN_LINKS_ONLY: Partial<CmsFieldMarkdown & CmsFieldBase> = {
     widget: 'markdown',
-    buttons: ['bulleted-list', 'numbered-list', 'link'],
+    buttons: ['link'],
     editor_components: [],
+    i18n: true,
+    minimal: true,
+}
+
+export const MARKDOWN_MINIMAL: Partial<CmsFieldMarkdown & CmsFieldBase> = {
+    ...MARKDOWN_LINKS_ONLY,
+    buttons: ['bulleted-list', 'numbered-list', 'link'],
+}
+
+export const MARKDOWN_ARTICLE: Partial<CmsFieldMarkdown & CmsFieldBase> = {
+    widget: 'markdown',
+    buttons: [
+        'heading-one',
+        'heading-two',
+        'heading-three',
+        'quote',
+        'bulleted-list',
+        'numbered-list',
+        'link',
+    ],
+    editor_components: ['image'],
     i18n: true,
     minimal: true,
 }

@@ -1,5 +1,5 @@
 import { CmsField } from 'netlify-cms-core'
-import { CustomCmsField, ID, MARKDOWN_FIELD, NAME } from './shared'
+import { CustomCmsField, ID, MARKDOWN_MINIMAL, NAME } from './shared'
 
 export const EventsFields: CustomCmsField[] = [
     ID,
@@ -14,7 +14,7 @@ export const EventsFields: CustomCmsField[] = [
         label: 'Description',
         name: 'description',
         hint: 'Describe the event details and how to participate.',
-        ...MARKDOWN_FIELD,
+        ...MARKDOWN_MINIMAL,
     },
     // IDEA: Maybe include relevant dimensions for the event
     {
