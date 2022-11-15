@@ -1,4 +1,10 @@
-import { CustomCmsField, ID, MARKDOWN_FIELD, NAME } from './shared'
+import {
+    CustomCmsField,
+    ID,
+    MARKDOWN_MINIMAL,
+    MARKDOWN_LINKS_ONLY,
+    NAME,
+} from './shared'
 
 export const ToolsFields: CustomCmsField[] = [
     ID,
@@ -7,20 +13,20 @@ export const ToolsFields: CustomCmsField[] = [
         label: 'Intro',
         name: 'intro',
         hint: "A short intro to catch the reader's interest. This will be visible in the search results and at the top of the tool's own page.",
-        ...MARKDOWN_FIELD,
+        ...MARKDOWN_LINKS_ONLY,
         required: false,
     },
     {
         label: 'Description',
         name: 'description',
         hint: 'Describe how and why this tool helps people practice inner development for sustainable development.',
-        ...MARKDOWN_FIELD,
+        ...MARKDOWN_MINIMAL,
     },
     {
         label: 'Actions',
         name: 'actions',
         hint: 'Call to action. Describe one or more ways people can start using this tool to practice inner development for sustainable development.',
-        ...MARKDOWN_FIELD,
+        ...MARKDOWN_MINIMAL,
     },
     {
         label: 'Relevant skills',
@@ -71,7 +77,7 @@ export const ToolsFields: CustomCmsField[] = [
         label: 'Research & Resources',
         name: 'resources',
         hint: 'List relevant research that supports this tool, and other resources that are relevant.',
-        ...MARKDOWN_FIELD,
+        ...MARKDOWN_MINIMAL,
         required: false,
     },
     {

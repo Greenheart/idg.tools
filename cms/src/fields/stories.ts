@@ -1,5 +1,11 @@
 import { CmsField } from 'netlify-cms-core'
-import { CustomCmsField, ID, MARKDOWN_FIELD, TITLE } from './shared'
+import {
+    CustomCmsField,
+    ID,
+    MARKDOWN_ARTICLE,
+    MARKDOWN_LINKS_ONLY,
+    TITLE,
+} from './shared'
 
 export const StoriesFields: CustomCmsField[] = [
     ID,
@@ -8,14 +14,14 @@ export const StoriesFields: CustomCmsField[] = [
         label: 'Intro',
         name: 'intro',
         hint: "A short intro to catch the reader's interest.",
-        ...MARKDOWN_FIELD,
+        ...MARKDOWN_LINKS_ONLY,
         required: false,
     },
     {
         label: 'Story',
         name: 'story',
         hint: 'Your story of how you practiced inner development and how it helped you with sustainable development.',
-        ...MARKDOWN_FIELD,
+        ...MARKDOWN_ARTICLE,
     },
     {
         label: 'Relevant dimensions',
