@@ -8,6 +8,7 @@ import type {
     Contributor,
     Event,
     Tag,
+    CommunityCollections,
 } from '$shared/types'
 import {
     createBackwardsCompatibleLink,
@@ -203,7 +204,7 @@ const prepareTags = (
     }, {})
 
 const loadContent = async (
-    contentTypes: Array<keyof CommunityContent>,
+    contentTypes: CommunityCollections,
     contentDir: string,
 ) => {
     const paths = await getContentPaths(contentTypes, contentDir)
@@ -261,11 +262,9 @@ export default async function buildCommunity(
     selectedLanguages: Language[],
     contentDir: string,
     outputFile: string,
+    selectedCollections: CommunityCollections,
 ) {
-    const rawContent = await loadContent(
-        ['stories', 'events', 'contributors', 'dimensions', 'tags'],
-        contentDir,
-    )
+    const rawContent = await loadContent(selectedCollections, contentDir)
 
     // IDEA: Perhaps we could split content by language first, and then prepare content only for the languages wanted?
     // This would allow to filter out missing content in the beginning and only implement the selectedLanguages filering in one place.

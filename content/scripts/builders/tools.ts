@@ -7,6 +7,7 @@ import type {
     Tag,
     Tool,
     Translated,
+    ToolsCollections,
 } from '$shared/types'
 import {
     createBackwardsCompatibleLink,
@@ -148,7 +149,7 @@ const prepareTags = (
     }, {})
 
 const loadContent = async (
-    contentTypes: Array<keyof ToolsContent>,
+    contentTypes: ToolsCollections,
     contentDir: string,
 ) => {
     const paths = await getContentPaths(contentTypes, contentDir)
@@ -215,11 +216,9 @@ export default async function buildTools(
     selectedLanguages: Language[],
     contentDir: string,
     outputFile: string,
+    selectedCollections: ToolsCollections,
 ) {
-    const rawContent = await loadContent(
-        ['tools', 'skills', 'dimensions', 'tags'],
-        contentDir,
-    )
+    const rawContent = await loadContent(selectedCollections, contentDir)
 
     // IDEA: Perhaps we could split content by language first, and then prepare content only for the languages wanted?
     // This would allow to filter out missing content in the beginning and only implement the selectedLanguages filering in one place.
