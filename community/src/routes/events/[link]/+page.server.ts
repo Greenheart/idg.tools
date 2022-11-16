@@ -11,9 +11,11 @@ export async function load({
     params: Record<string, string>
 }) {
     const event = getEventByLink(link, content)
-    const dimensions = event.dimensions.map((id) => getDimension(id, content))
 
     if (event) {
+        const dimensions = event.dimensions.map((id) =>
+            getDimension(id, content),
+        )
         // If page was found on a different URL,
         // permanently redirect to the updated url (HTTP 301)
         // to prevent multiple URLs publishing the same content.
