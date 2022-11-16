@@ -1,33 +1,68 @@
 import { performance } from 'perf_hooks'
 import { dirname, resolve } from 'path'
 
-import type { Language } from '$shared/types'
+import type {
+    Language,
+    ToolsCollections,
+    CommunityCollections,
+} from '$shared/types'
 import community from './builders/community'
 import tools from './builders/tools'
 import { fileURLToPath } from 'url'
 
-type BuilderNames = 'community' | 'tools'
-export type Builder = (
+const BUILDER_NAMES = ['community', 'tools']
+type BuilderName = typeof BUILDER_NAMES[number]
+export type Builder<T> = (
     selectedLanguages: Language[],
     contentDir: string,
     outputFile: string,
+    selectedCollections: T,
 ) => Promise<void>
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-const BUILDERS: Record<BuilderNames, Builder> = {
-    community,
-    tools,
+const BUILDERS: Record<BuilderName, Builder<any>> = {
+    tools: tools as Builder<ToolsCollections>,
+    community: community as Builder<CommunityCollections>,
+}
+
+const COLLECTIONS: Record<
+    BuilderName,
+    CommunityCollections | ToolsCollections
+> = {
+    tools: ['tools', 'skills', 'dimensions', 'tags'],
+    community: ['stories', 'events', 'contributors', 'dimensions', 'tags'],
 }
 
 const startTime = performance.now()
+const args = process.argv.slice(2)
 
-let selectedBuilders = process.argv.slice(2) as unknown as BuilderNames[]
+// The paths that changed, passed by Chokidar
+const changedPaths = process.argv.filter((arg) => arg.endsWith('.json'))
+
+let selectedBuilders = args.filter((arg) =>
+    BUILDER_NAMES.includes(arg),
+) as unknown as BuilderName[]
+
+console.log('before', { changedPaths, selectedBuilders })
 
 // If no builders specified by arguments, run all by default
 if (!selectedBuilders.length) {
-    selectedBuilders = ['tools', 'community']
+    selectedBuilders = ['tools', 'community'] as unknown as BuilderName[]
+
+    // Only re-execute the builders whose content actually changed
+    if (changedPaths.length) {
+        selectedBuilders = selectedBuilders.filter((builder) =>
+            changedPaths.some((path) =>
+                COLLECTIONS[builder].some((collection) =>
+                    path.includes(`/${collection}/`),
+                ),
+            ),
+        )
+    }
 }
+
+console.log('after', { changedPaths, selectedBuilders })
 
 // NOTE: We currently only build the English content since no translations are available yet
 const SELECTED_LANGUAGES: Language[] = ['en']
@@ -40,7 +75,13 @@ await Promise.all(
             __dirname,
             `../../../${builder}/static/content.json`,
         )
-        return BUILDERS[builder](SELECTED_LANGUAGES, contentDir, outputFile)
+
+        return BUILDERS[builder](
+            SELECTED_LANGUAGES,
+            contentDir,
+            outputFile,
+            COLLECTIONS[builder],
+        )
     }),
 )
 

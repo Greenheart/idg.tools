@@ -73,6 +73,9 @@ export type CommunityContent = {
     tags: Tag[]
 }
 
+export type ToolsCollections = (keyof ToolsContent)[]
+export type CommunityCollections = (keyof CommunityContent)[]
+
 export type AllContent = ToolsContent & CommunityContent
 
 export type IDGRelevancy = {
