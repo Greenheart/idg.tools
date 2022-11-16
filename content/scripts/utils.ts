@@ -49,5 +49,11 @@ export const getContentPaths = (
         ),
     )
 
+/**
+ * Ensures the url works in the live app or website by removing the full prefix added by the CMS.
+ */
+export const getConsistentAssetURL = (url: string, unwantedPrefix: string) =>
+    url.replace(unwantedPrefix, '')
+
 export const sortNamesAlphabetically = (a: Tag, b: Tag) =>
     a.name.localeCompare(b.name)
