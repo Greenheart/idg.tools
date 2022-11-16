@@ -6,6 +6,7 @@
     "dimensions": [
       "ckzi3855r0086e2n0smi0mew5"
     ],
+    "imageAlt": "Seedling",
     "story": "Whether you're new to the IDGs or already familiar with the framework, you're invited to join this upcoming theme and learn more about each of the IDG dimensions.\n\nThere will be discussions, events and opportunities to learn together with people from different parts of the world.\n\nThe first month, we're starting with the Being dimension.",
     "title": "Invitation: Join 10+ Hubs and Explore One IDG Dimension Every Month",
     "contributors": [
@@ -24,6 +25,7 @@
     "dimensions": [
       "ckzi3855r0086e2n0smi0mew5"
     ],
-    "image": "/community/static/images/austin-d-72XZgeY3IY4-unsplash.jpg"
+    "image": "/community/static/images/austin-d-72XZgeY3IY4-unsplash.jpg",
+    "imageAlt": "Seedling"
   }
 }

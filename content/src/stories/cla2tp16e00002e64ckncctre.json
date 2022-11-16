@@ -6,6 +6,7 @@
     "dimensions": [
       "ckzi38wix0218e2n09ncgnmxx"
     ],
+    "imageAlt": "Spruce",
     "story": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis.\n\nLorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis.",
     "title": "Prototyping with the IDGs in Education",
     "contributors": [
@@ -20,6 +21,7 @@
     "dimensions": [
       "ckzi38wix0218e2n09ncgnmxx"
     ],
-    "image": "/community/static/images/matthew-smith-Rfflri94rs8-unsplash.jpg"
+    "image": "/community/static/images/matthew-smith-Rfflri94rs8-unsplash.jpg",
+    "imageAlt": "Spruce"
   }
 }

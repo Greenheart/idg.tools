@@ -3,11 +3,12 @@
     import Link from '$components/Link.svelte'
     import LinkButton from '$components/LinkButton.svelte'
     import Markdown from '$components/Markdown.svelte'
+    import Tags from '$components/Tags.svelte'
     import { cx, getColor } from '$lib/utils'
 
     import type { PageData } from './$types'
     export let data: PageData
-    $: ({ story, dimensions, contributors } = data)
+    $: ({ story, dimensions, contributors, tags } = data)
 </script>
 
 <Heading size={1}>{story.title}</Heading>
@@ -23,18 +24,20 @@
             >
         {/each}
     </div>
+    <span class="px-1 md:px-2">&middot;</span>
+    <Tags {tags} inverted size="md" />
 </div>
 
-<img src={story.image} alt={story.imageAlt} />
+<img src={story.image} alt={story.imageAlt} class="mt-4 rounded-2xl" />
 
 {#if story.intro}
-    <Markdown source={story.intro} class="pt-4 text-lg font-bold" />
+    <Markdown source={story.intro} class="pt-8 font-bold" />
 {/if}
 
-<Markdown source={story.story} class="pt-4 text-lg" />
+<Markdown source={story.story} class="pt-8" />
 
 <Heading class="pt-8 pb-2">Contributors</Heading>
-<div class="flex space-x-1">
+<div class="flex space-x-1 text-lg">
     {#each contributors as { link, name }, i}
         {#if link}
             <Link href={link}>{name}</Link>
