@@ -15,17 +15,22 @@
 
 <div class="flex items-center mt-4">
     <span>{new Date(story.publishedAt).toLocaleDateString('sv-SE')}</span>
-    <span class="px-1 md:px-2">&middot;</span>
-    <div class="flex space-x-2">
-        {#each dimensions as dimension}
-            {@const color = getColor(dimension.id)}
-            <span class={cx('px-2 py-1 text-sm text-white rounded-lg', color)}
-                >{dimension.name}</span
-            >
-        {/each}
-    </div>
-    <span class="px-1 md:px-2">&middot;</span>
-    <Tags {tags} inverted size="md" />
+    {#if dimensions?.length}
+        <span class="px-1 md:px-2">&middot;</span>
+        <div class="flex space-x-2">
+            {#each dimensions as dimension}
+                {@const color = getColor(dimension.id)}
+                <span
+                    class={cx('px-2 py-1 text-sm text-white rounded-lg', color)}
+                    >{dimension.name}</span
+                >
+            {/each}
+        </div>
+    {/if}
+    {#if tags?.length}
+        <span class="px-1 md:px-2">&middot;</span>
+        <Tags {tags} inverted size="md" />
+    {/if}
 </div>
 
 <img src={story.image} alt={story.imageAlt} class="mt-4 rounded-2xl" />
