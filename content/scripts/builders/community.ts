@@ -11,6 +11,7 @@ import type {
 } from '$shared/types'
 import {
     createBackwardsCompatibleLink,
+    getConsistentAssetURL,
     getContentPaths,
     readJSON,
     sortNamesAlphabetically,
@@ -86,11 +87,10 @@ const prepareStories = (
                 .sort(sortNamesAlphabetically)
                 .map((t) => t.id)
 
-            // IDEA: This could be a shared util used for many content types as long as they use the same Image content type.
-            if (story.image.startsWith('/community/static')) {
-                // Ensure image URLs will work on the website
-                story.image = story.image.replace('/community/static', '')
-            }
+            story.image = getConsistentAssetURL(
+                story.image,
+                '/community/static',
+            )
 
             story.tags = tagsSortedAlphabetically
 
