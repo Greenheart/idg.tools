@@ -93,13 +93,7 @@
             <Skills {content} class="-ml-4 -mr-4" />
 
             <Heading class="mt-4">Content preferences</Heading>
-            <Tags
-                tags={content.tags}
-                inverted
-                size="md"
-                interactive
-                class="!gap-3 pr-0"
-            />
+            <Tags tags={content.tags} inverted interactive size="lg" />
             <Button
                 bind:element={applyButton}
                 on:click={close}
