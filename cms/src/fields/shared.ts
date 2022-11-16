@@ -1,4 +1,9 @@
-import { CmsFieldBase, CmsField, CmsFieldMarkdown } from 'netlify-cms-core'
+import {
+    CmsFieldBase,
+    CmsField,
+    CmsFieldMarkdown,
+    CmsFieldFileOrImage,
+} from 'netlify-cms-core'
 
 export type CmsFieldUniqueId = CmsFieldBase & {
     widget: 'uniqueId'
@@ -37,6 +42,32 @@ export const DESCRIPTION: CmsField = {
     name: 'description',
     i18n: true,
     widget: 'string',
+}
+
+export const IMAGE: CmsField = {
+    label: 'Image',
+    name: 'image',
+    i18n: true,
+    widget: 'object',
+    required: false,
+    fields: [
+        {
+            label: 'Image',
+            name: 'src',
+            widget: 'image',
+            choose_url: false,
+            allow_multiple: false,
+            i18n: 'duplicate',
+            media_folder: '/community/static/images',
+        } as CmsFieldFileOrImage & CmsFieldBase,
+        {
+            label: 'Description (alt text)',
+            hint: 'Describe what the image contains. This is important for accessibility.',
+            widget: 'string',
+            name: 'alt',
+            i18n: true,
+        },
+    ],
 }
 
 export const MARKDOWN_LINKS_ONLY: Partial<CmsFieldMarkdown & CmsFieldBase> = {

@@ -86,6 +86,39 @@ const prepareStories = (
                 .sort(sortNamesAlphabetically)
                 .map((t) => t.id)
 
+            // IDEA: This could be a shared util used for many content types as long as they use the same Image content type.
+            // NOTE: this is for the image as object (or with relation) widget
+            // if (
+            //     story.image &&
+            //     story.image.src.startsWith('/community/static')
+            // ) {
+            //     // Ensure image URLs will work on the website
+            //     story.image.src = story.image.src.replace(
+            //         '/community/static',
+            //         '',
+            //     )
+            // }
+
+            // IDEA: This could be a shared util used for many content types as long as they use the same Image content type.
+            if (story.image) {
+                if (story.image?.startsWith('/community/static')) {
+                    // Ensure image URLs will work on the website
+                    story.image = story.image.replace('/community/static', '')
+                }
+            } else {
+                console.warn(
+                    `[content] Story is missing image "${story.title}"`,
+                )
+                story.image = ''
+            }
+
+            if (story.image && !story.imageAlt) {
+                console.warn(
+                    `[content] Story is missing alt text: "${story.title}"`,
+                )
+                story.imageAlt = ''
+            }
+
             story.tags = tagsSortedAlphabetically
 
             const newLink = createBackwardsCompatibleLink(
