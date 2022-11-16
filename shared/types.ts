@@ -33,10 +33,18 @@ export type Contributor = {
     link: string
 }
 
+export type Image = {
+    src: string
+    alt: string
+}
+
 export type Story = {
     id: string
     title: string
     intro: string
+    // image: Image
+    image: string
+    imageAlt: string
     story: string
     dimensions: Dimension['id'][]
     link: string

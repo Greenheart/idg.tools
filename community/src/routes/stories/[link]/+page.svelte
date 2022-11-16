@@ -25,6 +25,8 @@
     </div>
 </div>
 
+<img src={story.image} alt={story.imageAlt} />
+
 {#if story.intro}
     <Markdown source={story.intro} class="pt-4 text-lg font-bold" />
 {/if}

@@ -5,19 +5,34 @@ import {
     MARKDOWN_ARTICLE,
     MARKDOWN_LINKS_ONLY,
     TITLE,
+    IMAGE,
 } from './shared'
 
 export const StoriesFields: CustomCmsField[] = [
     ID,
     TITLE,
+    // {
+    //     ...IMAGE,
+    //     required: false,
+    //     label: 'Featured image',
+    //     hint: 'The featured image to help give a framing and context to this story',
+    //     i18n: true,
+    // },
     {
         widget: 'image',
         hint: 'The featured image to help give a framing and context to this story',
         i18n: 'duplicate',
         media_folder: '/community/static/images',
-        required: false,
         name: 'image',
+        choose_url: false,
         label: 'Featured image',
+    } as CmsField,
+    {
+        label: 'Image description (alt text)',
+        hint: 'Describe what the image shows. This is important for accessibility.',
+        widget: 'string',
+        name: 'imageAlt',
+        i18n: true,
     },
     {
         label: 'Intro',
