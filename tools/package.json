@@ -15,18 +15,15 @@
     },
     "dependencies": {
         "@octokit/graphql": "^5.0.4",
-        "dompurify": "^2.4.0",
         "remark": "^14.0.2",
         "sanitize-html": "^2.7.3",
-        "strip-markdown": "^5.0.0",
-        "svelte-markdown": "^0.2.3"
+        "strip-markdown": "^5.0.0"
     },
     "devDependencies": {
         "@rgossiaux/svelte-headlessui": "^1.0.2",
         "@sveltejs/adapter-vercel": "1.0.0-next.80",
         "@sveltejs/kit": "1.0.0-next.527",
         "@tailwindcss/typography": "^0.5.7",
-        "@types/dompurify": "^2.3.4",
         "@types/sanitize-html": "^2.6.2",
         "autoprefixer": "^10.4.13",
         "cssnano": "^5.1.14",

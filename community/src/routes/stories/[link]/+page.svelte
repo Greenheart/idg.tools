@@ -2,7 +2,7 @@
     import Heading from '$shared/components/Heading.svelte'
     import Link from '$shared/components/Link.svelte'
     import LinkButton from '$shared/components/LinkButton.svelte'
-    import Markdown from '$components/Markdown.svelte'
+    import Markdown from '$shared/components/Markdown.svelte'
     import Tags from '$components/Tags.svelte'
     import { cx, getColor } from '$lib/utils'
 

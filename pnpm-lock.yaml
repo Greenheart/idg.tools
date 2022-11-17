@@ -37,11 +37,9 @@ importers:
       '@sveltejs/adapter-vercel': 1.0.0-next.80
       '@sveltejs/kit': 1.0.0-next.527
       '@tailwindcss/typography': ^0.5.7
-      '@types/dompurify': ^2.3.4
       '@types/sanitize-html': ^2.6.2
       autoprefixer: ^10.4.13
       cssnano: ^5.1.14
-      dompurify: ^2.4.0
       dotenv: ^16.0.3
       native-fetch: ^4.0.2
       postcss: ^8.4.18
@@ -55,7 +53,6 @@ importers:
       strip-markdown: ^5.0.0
       svelte: ^3.52.0
       svelte-check: ^2.9.2
-      svelte-markdown: ^0.2.3
       svelte-preprocess: ^4.10.7
       tailwindcss: ^3.2.1
       tslib: ^2.4.0
@@ -64,17 +61,14 @@ importers:
       vite: ^3.2.1
     dependencies:
       '@octokit/graphql': 5.0.4
-      dompurify: 2.4.0
       remark: 14.0.2
       sanitize-html: 2.7.3
       strip-markdown: 5.0.0
-      svelte-markdown: 0.2.3_svelte@3.52.0
     devDependencies:
       '@rgossiaux/svelte-headlessui': 1.0.2_svelte@3.52.0
       '@sveltejs/adapter-vercel': 1.0.0-next.80
       '@sveltejs/kit': 1.0.0-next.527_svelte@3.52.0+vite@3.2.1
       '@tailwindcss/typography': 0.5.7_tailwindcss@3.2.1
-      '@types/dompurify': 2.3.4
       '@types/sanitize-html': 2.6.2
       autoprefixer: 10.4.13_postcss@8.4.18
       cssnano: 5.1.14_postcss@8.4.18
@@ -113,9 +107,16 @@ importers:
 
   shared:
     specifiers:
+      '@types/dompurify': ^2.4.0
+      dompurify: ^2.4.1
       svelte: ^3.53.1
+      svelte-markdown: ^0.2.3
     dependencies:
+      dompurify: 2.4.1
       svelte: 3.53.1
+      svelte-markdown: 0.2.3_svelte@3.53.1
+    devDependencies:
+      '@types/dompurify': 2.4.0
 
   tools:
     specifiers:
@@ -993,6 +994,12 @@ packages:
 
   /@types/dompurify/2.3.4:
     resolution: {integrity: sha512-EXzDatIb5EspL2eb/xPGmaC8pePcTHrkDCONjeisusLFrVfl38Pjea/R0YJGu3k9ZQadSvMqW0WXPI2hEo2Ajg==}
+    dependencies:
+      '@types/trusted-types': 2.0.2
+    dev: true
+
+  /@types/dompurify/2.4.0:
+    resolution: {integrity: sha512-IDBwO5IZhrKvHFUl+clZxgf3hn2b/lU6H1KaBShPkQyGJUQ0xwebezIPSuiyGwfz1UzJWQl4M7BDxtHtCCPlTg==}
     dependencies:
       '@types/trusted-types': 2.0.2
     dev: true
@@ -2060,6 +2067,10 @@ packages:
 
   /dompurify/2.4.0:
     resolution: {integrity: sha512-Be9tbQMZds4a3C6xTmz68NlMfeONA//4dOavl/1rNw50E+/QO0KVpbcU0PcaW0nsQxurXls9ZocqFxk8R2mWEA==}
+    dev: false
+
+  /dompurify/2.4.1:
+    resolution: {integrity: sha512-ewwFzHzrrneRjxzmK6oVz/rZn9VWspGFRDb4/rRtIsM1n36t9AKma/ye8syCpcw+XJ25kOK/hOG7t1j2I2yBqA==}
     dev: false
 
   /domutils/2.8.0:
@@ -4601,7 +4612,7 @@ packages:
     dependencies:
       '@emotion/core': 10.3.1_react@16.14.0
       '@emotion/styled': 10.3.0_qzeatvug73zaio2r3dlvejynye
-      dompurify: 2.4.0
+      dompurify: 2.4.1
       immutable: 3.8.2
       is-hotkey: 0.2.0
       lodash: 4.17.21
@@ -6774,6 +6785,16 @@ packages:
       '@types/marked': 4.0.7
       marked: 4.1.1
       svelte: 3.52.0
+    dev: false
+
+  /svelte-markdown/0.2.3_svelte@3.53.1:
+    resolution: {integrity: sha512-2h680NzTXnAD0CXhxe3GeHl6W+ayG4iKQRl+BIDRw+R0mUE0OiNxP1Vt8Rn+aWevB/LBiBIPCAwvL+0BkG057A==}
+    peerDependencies:
+      svelte: ^3.0.0
+    dependencies:
+      '@types/marked': 4.0.7
+      marked: 4.1.1
+      svelte: 3.53.1
     dev: false
 
   /svelte-preprocess/4.10.7_4n3z2octtzg5pdokl7pjruqnki:
