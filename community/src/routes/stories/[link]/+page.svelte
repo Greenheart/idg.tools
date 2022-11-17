@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Heading from '$components/Heading.svelte'
+    import Heading from '$shared/components/Heading.svelte'
     import Link from '$components/Link.svelte'
     import LinkButton from '$components/LinkButton.svelte'
     import Markdown from '$components/Markdown.svelte'

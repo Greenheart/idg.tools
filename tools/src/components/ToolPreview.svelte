@@ -2,7 +2,7 @@
     import { truncateText } from '$lib/utils'
     import { getTag } from '$shared/content-utils'
     import type { Tool, ToolsContent } from '$shared/types'
-    import Heading from './Heading.svelte'
+    import Heading from '$shared/components/Heading.svelte'
     import Arrow from '$shared/icons/Arrow.svelte'
     import Link from './Link.svelte'
     import Markdown from './Markdown.svelte'

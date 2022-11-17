@@ -1,6 +1,5 @@
 <script lang="ts">
-    import Heading from '$components/Heading.svelte'
-    import Link from '$components/Link.svelte'
+    import Heading from '$shared/components/Heading.svelte'
     import Stories from '$components/Stories.svelte'
 
     import type { PageData } from './$types'

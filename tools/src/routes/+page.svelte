@@ -2,7 +2,7 @@
     import { onMount } from 'svelte'
 
     import Link from '$components/Link.svelte'
-    import Heading from '$components/Heading.svelte'
+    import Heading from '$shared/components/Heading.svelte'
     import Tools from '$components/Tools.svelte'
     import {
         selectedSkills,

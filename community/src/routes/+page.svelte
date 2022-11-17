@@ -1,10 +1,9 @@
 <script lang="ts">
     import Link from '$components/Link.svelte'
-    import Heading from '$components/Heading.svelte'
+    import Heading from '$shared/components/Heading.svelte'
     import { isMenuOpen } from '$lib/stores'
     import type { PageData } from './$types'
     import LinkButton from '$components/LinkButton.svelte'
-    import { getShortDateString } from '$shared/content-utils'
     import GetInvolved from '$components/GetInvolved.svelte'
 
     export let data: PageData

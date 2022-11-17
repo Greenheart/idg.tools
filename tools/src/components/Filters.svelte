@@ -18,7 +18,7 @@
     import Skills from './Skills.svelte'
     import FiltersToolbar from './FiltersToolbar.svelte'
     import { onKeydown, pluralize } from '$lib/utils'
-    import Heading from './Heading.svelte'
+    import Heading from '$shared/components/Heading.svelte'
     import Tags from './Tags.svelte'
 
     export let content: ToolsContent
