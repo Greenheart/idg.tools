@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { cx } from '$lib/utils'
+    import { cx } from '../utils'
 
     let className = ''
     export { className as class }

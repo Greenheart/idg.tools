@@ -3,7 +3,7 @@
     import { getTag } from '$shared/content-utils'
     import type { Tool, ToolsContent } from '$shared/types'
     import Heading from './Heading.svelte'
-    import Arrow from './icons/Arrow.svelte'
+    import Arrow from '$shared/icons/Arrow.svelte'
     import Link from './Link.svelte'
     import Markdown from './Markdown.svelte'
     import RelevantSkills from './RelevantSkills.svelte'
