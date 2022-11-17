@@ -1,5 +1,9 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
+const IDG_COLORS = require('../shared/colors.json')
+
+console.log({ IDG_COLORS })
+
 /** @type {import('tailwindcss').Config} */
 const config = {
     content: ['./src/**/*.{html,js,svelte,ts}'],
