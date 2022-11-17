@@ -34,64 +34,63 @@ const COLLECTIONS: Record<
     community: ['stories', 'events', 'contributors', 'dimensions', 'tags'],
 }
 
-const startTime = performance.now()
-const args = process.argv.slice(2)
-
-// The paths that changed, passed by Chokidar
-const changedPaths = process.argv.filter((arg) => arg.endsWith('.json'))
-
-let selectedBuilders = args.filter((arg) =>
-    BUILDER_NAMES.includes(arg),
-) as unknown as BuilderName[]
-
-console.log('before', { changedPaths, selectedBuilders })
-
-// If no builders specified by arguments, run all by default
-if (!selectedBuilders.length) {
-    selectedBuilders = ['tools', 'community'] as unknown as BuilderName[]
-
-    // Only re-execute the builders whose content actually changed
-    if (changedPaths.length) {
-        selectedBuilders = selectedBuilders.filter((builder) =>
-            changedPaths.some((path) =>
-                COLLECTIONS[builder].some((collection) =>
-                    path.includes(`/${collection}/`),
-                ),
-            ),
-        )
-    }
-}
-
-console.log('after', { changedPaths, selectedBuilders })
-
 // NOTE: We currently only build the English content since no translations are available yet
 const SELECTED_LANGUAGES: Language[] = ['en']
 
 const contentDir = resolve(__dirname, '../../src')
 
-await Promise.all(
-    selectedBuilders.map((builder) => {
-        const outputFile = resolve(
-            __dirname,
-            `../../../${builder}/static/content.json`,
+async function build(selectedBuilders: BuilderName[]) {
+    const startTime = performance.now()
+
+    await Promise.all(
+        selectedBuilders.map((builder) => {
+            const outputFile = resolve(
+                __dirname,
+                `../../../${builder}/static/content.json`,
+            )
+
+            return BUILDERS[builder](
+                SELECTED_LANGUAGES,
+                contentDir,
+                outputFile,
+                COLLECTIONS[builder],
+            )
+        }),
+    )
+
+    const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
+        'en-US',
+        {
+            minimumFractionDigits: 3,
+            maximumFractionDigits: 3,
+        },
+    )
+
+    const updatedProjects = selectedBuilders
+        .map((b) => `IDG.${b}`)
+        .join(' and ')
+    console.log(`✅ Built content for ${updatedProjects} in ${buildTime} s\n`)
+}
+
+export default async function run(
+    selectedBuilders: BuilderName[] = BUILDER_NAMES,
+    path: string,
+) {
+    // Remove any invalid arguments
+    selectedBuilders = selectedBuilders.filter((b) => BUILDER_NAMES.includes(b))
+
+    if (!selectedBuilders.length) {
+        selectedBuilders = BUILDER_NAMES
+    }
+
+    if (path) {
+        // If a path just changed, we only re-execute the builders that are using that type of content
+        selectedBuilders = selectedBuilders.filter((builder) =>
+            COLLECTIONS[builder].some((collection) =>
+                path.includes(`/${collection}/`),
+            ),
         )
+    }
 
-        return BUILDERS[builder](
-            SELECTED_LANGUAGES,
-            contentDir,
-            outputFile,
-            COLLECTIONS[builder],
-        )
-    }),
-)
-
-const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
-    'en-US',
-    {
-        minimumFractionDigits: 3,
-        maximumFractionDigits: 3,
-    },
-)
-
-const updatedProjects = selectedBuilders.map((b) => `IDG.${b}`).join(' and ')
-console.log(`✅ Built content for ${updatedProjects} in ${buildTime} s\n`)
+    return build(selectedBuilders)
+}
