@@ -1,6 +1,6 @@
 <script lang="ts">
     import { applyAction, enhance } from '$app/forms'
-    import Button from './Button.svelte'
+    import Button from '$shared/components/Button.svelte'
 
     let expanded = false
     let submitted = false

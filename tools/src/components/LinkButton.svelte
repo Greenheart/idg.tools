@@ -8,7 +8,7 @@
         defaultClasses,
         sizes,
         defaultSize,
-    } from './Button.svelte'
+    } from '$shared/components/Button.svelte'
     import Link from './Link.svelte'
 </script>
 

@@ -1,7 +1,7 @@
 <script lang="ts">
     import Expand from '$shared/icons/Expand.svelte'
     import { filtersExpanded, selectedSkills, selectedTags } from '$lib/stores'
-    import Button from './Button.svelte'
+    import Button from '$shared/components/Button.svelte'
     import { cx, onKeydown } from '$lib/utils'
 
     function resetFilters() {
