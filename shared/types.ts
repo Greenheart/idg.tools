@@ -48,16 +48,6 @@ export type Story = {
     tags: Tag['id'][]
 }
 
-export type Event = Item & {
-    startDate: string
-    endDate: string
-    location: string
-    description: string
-    dimensions: Dimension['id'][]
-    link: string
-    slug: string
-}
-
 export type ToolsContent = {
     dimensions: Dimension[]
     tools: Tool[]
@@ -67,7 +57,6 @@ export type ToolsContent = {
 
 export type CommunityContent = {
     stories: Story[]
-    events: Event[]
     contributors: Contributor[]
     dimensions: Dimension[]
     tags: Tag[]

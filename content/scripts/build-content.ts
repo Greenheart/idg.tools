@@ -31,7 +31,7 @@ const COLLECTIONS: Record<
     CommunityCollections | ToolsCollections
 > = {
     tools: ['tools', 'skills', 'dimensions', 'tags'],
-    community: ['stories', 'events', 'contributors', 'dimensions', 'tags'],
+    community: ['stories', 'contributors', 'dimensions', 'tags'],
 }
 
 // NOTE: We currently only build the English content since no translations are available yet
