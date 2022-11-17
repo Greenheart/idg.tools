@@ -3,7 +3,7 @@
     import Heading from '$shared/components/Heading.svelte'
     import { isMenuOpen } from '$lib/stores'
     import type { PageData } from './$types'
-    import LinkButton from '$components/LinkButton.svelte'
+    import LinkButton from '$shared/components/LinkButton.svelte'
     import GetInvolved from '$components/GetInvolved.svelte'
 
     export let data: PageData

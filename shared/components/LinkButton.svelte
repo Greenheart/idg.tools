@@ -1,15 +1,15 @@
 <script lang="ts" context="module">
     import { onMount } from 'svelte'
 
-    import { isExternalURL, cx } from '$lib/utils'
+    import { isExternalURL, cx } from '../utils'
     import {
         variants,
         defaultVariant,
         defaultClasses,
         sizes,
         defaultSize,
-    } from '$shared/components/Button.svelte'
-    import Link from '$shared/components/Link.svelte'
+    } from './Button.svelte'
+    import Link from './Link.svelte'
 </script>
 
 <script lang="ts">

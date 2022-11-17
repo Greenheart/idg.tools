@@ -1,7 +1,7 @@
 <script lang="ts">
     import UserGroup from '$shared/icons/UserGroup.svelte'
     import Heading from '$shared/components/Heading.svelte'
-    import LinkButton from './LinkButton.svelte'
+    import LinkButton from '$shared/components/LinkButton.svelte'
     import { GITHUB_LINK } from '$lib/constants'
 </script>
 
