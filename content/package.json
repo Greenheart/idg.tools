@@ -4,14 +4,15 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-        "dev": "chokidar \"src/**/*.json\" -c \"pnpm --filter content build\" --initial --silent",
-        "build": "node scripts/esbuild.js && node scripts/compiled/build-content.js"
+        "dev": "node scripts/compile.js && node scripts/dev.js",
+        "build": "node scripts/compile.js && node scripts/compiled/build.js"
     },
     "devDependencies": {
-        "chokidar-cli": "^3.0.0",
+        "@types/node": "^18.11.9",
+        "chokidar": "^3.5.3",
         "esbuild": "^0.15.12",
         "fast-glob": "^3.2.12",
         "slugify": "^1.6.5",
-        "@types/node": "^18.11.9"
+        "lodash.debounce": "^4.0.8"
     }
 }
