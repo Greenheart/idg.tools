@@ -11,9 +11,9 @@
     } from 'svelte-markdown/src/renderers'
     import DOMPurify from 'dompurify'
 
-    import Link from '$shared/components/Link.svelte'
+    import Link from './Link.svelte'
     import EmptyComponent from './EmptyComponent.svelte'
-    import { cx } from '$lib/utils'
+    import { cx } from '../utils'
 
     // TODO: Move this component to the $shared/components folder, and export the types and constants from $shared too.
     // TODO: Ideally align the enabled formatting options with the enabled formatting in the CMS editor, to make it easy to sync updates

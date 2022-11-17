@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Tool } from '$shared/types'
-    import Markdown from '$components/Markdown.svelte'
+    import Markdown from '$shared/components/Markdown.svelte'
 
     export let tool: Tool
     let className = ''

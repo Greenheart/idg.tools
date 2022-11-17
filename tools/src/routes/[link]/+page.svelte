@@ -1,6 +1,6 @@
 <script lang="ts">
     import Heading from '$shared/components/Heading.svelte'
-    import Markdown from '$components/Markdown.svelte'
+    import Markdown from '$shared/components/Markdown.svelte'
     import DetailedRelevantSkills from '$components/DetailedRelevantSkills.svelte'
     import Resources from '$components/Resources.svelte'
     import FeedbackForm from '$components/FeedbackForm.svelte'

@@ -5,7 +5,7 @@
     import Heading from '$shared/components/Heading.svelte'
     import Arrow from '$shared/icons/Arrow.svelte'
     import Link from '$shared/components/Link.svelte'
-    import Markdown from './Markdown.svelte'
+    import Markdown from '$shared/components/Markdown.svelte'
     import Tags from './Tags.svelte'
 
     export let story: Story
