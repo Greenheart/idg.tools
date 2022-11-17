@@ -103,12 +103,6 @@ export const getDateString = (date: string) =>
         day: '2-digit',
     }).format(new Date(date))
 
-export const getShortDateString = (date: string) =>
-    new Intl.DateTimeFormat('en-US', {
-        month: 'short',
-        day: 'numeric',
-    }).format(new Date(date))
-
 export const getDateTimeString = (date: string) =>
     new Intl.DateTimeFormat('sv-SE', {
         year: 'numeric',
