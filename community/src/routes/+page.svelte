@@ -74,28 +74,8 @@
     </div>
 </div>
 
-<div class="grid grid-cols-2 gap-x-8 py-12 mt-8">
-    <Heading size={2} class="mb-4">Upcoming events</Heading>
+<div class="grid gap-x-8 py-12 mt-8">
     <Heading size={2} class="mb-4">Featured stories</Heading>
-    <div class="bg-being h-64 rounded-2xl p-4 flex flex-col justify-between">
-        <div class="flex flex-col space-y-2">
-            {#each content.events as event}
-                <Link
-                    href={`/events/${event.link}`}
-                    variant="black"
-                    class="no-underline grid grid-cols-[min-content_1fr] gap-x-2 bg-stone-50 p-2 rounded-lg shadow-lg"
-                >
-                    📅
-                    <span
-                        >{getShortDateString(event.startDate)} &middot; {event.name}</span
-                    >
-                </Link>
-            {/each}
-        </div>
-        <Link href="/events" class="self-end" variant="black"
-            >See all &rarr</Link
-        >
-    </div>
     <div class="bg-relating h-64 rounded-2xl p-4 flex flex-col justify-between">
         <div class="flex flex-col space-y-2">
             {#each content.stories as story}

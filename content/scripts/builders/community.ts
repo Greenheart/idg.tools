@@ -6,7 +6,6 @@ import type {
     Translated,
     Story,
     Contributor,
-    Event,
     Tag,
     CommunityCollections,
 } from '$shared/types'
@@ -22,7 +21,6 @@ import {
 // Only used while building the content
 type ProcessingTranslatedCommunityContent = {
     stories: Translated<Story>[]
-    events: Translated<Event>[]
     contributors: Translated<Contributor>[]
     dimensions: Translated<Dimension>[]
     tags: Translated<Tag>[]
@@ -118,59 +116,6 @@ const prepareStories = (
     })
 }
 
-const prepareEvents = (
-    translatedEvents: Translated<Event>[],
-    selectedLanguages: Language[],
-) => {
-    return translatedEvents.map((translatedEvent) => {
-        const updated = {} as Translated<Event>
-
-        // IDEA: Maybe automatically title case event names
-
-        const uniqueSlugs = new Set()
-
-        for (const [language, event] of Object.entries(translatedEvent)) {
-            if (!selectedLanguages.includes(language as Language)) continue
-            if (!event.slug) {
-                throw new Error(
-                    `[content] Missing slug for event "${event.name}" and language "${language}"`,
-                )
-            }
-
-            // Ensure slugs are consistent across all translations
-            uniqueSlugs.add(event.slug)
-            if (uniqueSlugs.size > 1) {
-                throw new Error(
-                    `[content] Slugs should be the same for all translations for event "${
-                        event.name
-                    }" and language "${language}": Slugs found was ${JSON.stringify(
-                        [...uniqueSlugs],
-                    )}`,
-                )
-            }
-
-            const newLink = createBackwardsCompatibleLink(
-                event.name,
-                event.slug,
-            )
-            if (newLink !== event.link) {
-                if (event.link !== undefined) {
-                    console.warn(
-                        `[content] Link has changed for event "${event.name}" from old: "${event.link}" to new: "${newLink}"`,
-                    )
-                }
-                event.link = newLink
-            }
-
-            if (!event.dimensions) event.dimensions = []
-
-            updated[language as Language] = event
-        }
-
-        return updated
-    })
-}
-
 const prepareTags = (
     translatedStories: Translated<Story>[],
     translatedTags: Translated<Tag>[],
@@ -230,7 +175,6 @@ const splitContentByLang = (
         (result, lang: Language) => {
             result[lang] = {
                 stories: getByLang(content.stories, lang),
-                events: getByLang(content.events, lang),
                 contributors: content.contributors as Contributor[],
                 dimensions: getByLang(content.dimensions, lang),
                 // IDEA: Or should tags be sorted by number of stories using them?
@@ -254,8 +198,7 @@ const prepareContent = (
         selectedLanguages,
     )
     const tags = prepareTags(stories, content.tags, selectedLanguages)
-    const events = prepareEvents(content.events, selectedLanguages)
-    return { ...content, stories, events, tags }
+    return { ...content, stories, tags }
 }
 
 export default async function buildCommunity(
