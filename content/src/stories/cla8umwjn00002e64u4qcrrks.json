@@ -7,6 +7,7 @@
       "ckzi38wix0218e2n09ncgnmxx",
       "ckzi39fwv0374e2n0d2eynda4"
     ],
+    "imageAlt": "Dewdrop on grass",
     "story": "Something interesting",
     "title": "One Year of Exploring the IDGs with 29k",
     "contributors": [
@@ -14,7 +15,7 @@
       "cla8vdpi400032e64780t7x8e"
     ],
     "id": "cla8umwjn00002e64u4qcrrks",
-    "image": "/community/static/images/austin-d-72XZgeY3IY4-unsplash.jpg"
+    "image": "/community/static/images/aaron-burden-Kp9z6zcUfGw-unsplash.jpg"
   },
   "sv": {
     "id": "cla8umwjn00002e64u4qcrrks",
@@ -23,6 +24,7 @@
       "ckzi38wix0218e2n09ncgnmxx",
       "ckzi39fwv0374e2n0d2eynda4"
     ],
-    "image": "/community/static/images/austin-d-72XZgeY3IY4-unsplash.jpg"
+    "image": "/community/static/images/aaron-burden-Kp9z6zcUfGw-unsplash.jpg",
+    "imageAlt": "Dewdrop on grass"
   }
 }
