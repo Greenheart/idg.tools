@@ -14,7 +14,7 @@ export type Skill = Item & {
 
 export type Dimension = Item & {
     color: string
-    skills: ItemId[]
+    skills: Skill['id'][]
 }
 
 export type Tool = Item & {
@@ -68,7 +68,7 @@ export type CommunityCollections = (keyof CommunityContent)[]
 export type AllContent = ToolsContent & CommunityContent
 
 export type IDGRelevancy = {
-    skill: ItemId
+    skill: Skill['id']
     score: number
 }
 

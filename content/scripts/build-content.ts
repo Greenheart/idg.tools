@@ -9,21 +9,21 @@ import type {
 import community from './builders/community'
 import tools from './builders/tools'
 import { fileURLToPath } from 'url'
+import { writeJSON } from './utils'
 
 const BUILDER_NAMES = ['community', 'tools']
 type BuilderName = typeof BUILDER_NAMES[number]
 export type Builder<T> = (
     selectedLanguages: Language[],
     contentDir: string,
-    outputFile: string,
     selectedCollections: T,
 ) => Promise<void>
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const BUILDERS: Record<BuilderName, Builder<any>> = {
-    tools: tools as Builder<ToolsCollections>,
-    community: community as Builder<CommunityCollections>,
+    tools: tools as unknown as Builder<ToolsCollections>,
+    community: community as unknown as Builder<CommunityCollections>,
 }
 
 const COLLECTIONS: Record<
@@ -43,18 +43,19 @@ async function build(selectedBuilders: BuilderName[]) {
     const startTime = performance.now()
 
     await Promise.all(
-        selectedBuilders.map((builder) => {
+        selectedBuilders.map(async (builder) => {
+            const content = await BUILDERS[builder](
+                SELECTED_LANGUAGES,
+                contentDir,
+                COLLECTIONS[builder],
+            )
+
             const outputFile = resolve(
                 __dirname,
                 `../../../${builder}/static/content.json`,
             )
 
-            return BUILDERS[builder](
-                SELECTED_LANGUAGES,
-                contentDir,
-                outputFile,
-                COLLECTIONS[builder],
-            )
+            return writeJSON(outputFile, content)
         }),
     )
 

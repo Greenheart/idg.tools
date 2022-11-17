@@ -15,7 +15,6 @@ import {
     getContentPaths,
     readJSON,
     sortNamesAlphabetically,
-    writeJSON,
 } from '../utils'
 
 // Only used while building the content
@@ -204,7 +203,6 @@ const prepareContent = (
 export default async function buildCommunity(
     selectedLanguages: Language[],
     contentDir: string,
-    outputFile: string,
     selectedCollections: CommunityCollections,
 ) {
     const rawContent = await loadContent(selectedCollections, contentDir)
@@ -212,10 +210,8 @@ export default async function buildCommunity(
     // IDEA: Perhaps we could split content by language first, and then prepare content only for the languages wanted?
     // This would allow to filter out missing content in the beginning and only implement the selectedLanguages filering in one place.
 
-    const builtContent = splitContentByLang(
+    return splitContentByLang(
         prepareContent(rawContent, selectedLanguages),
         selectedLanguages,
     )
-
-    await writeJSON(outputFile, builtContent)
 }
