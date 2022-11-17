@@ -9,16 +9,19 @@ const inputFile = resolve(__dirname, '../../../tools/static/content.json')
 const outputFile = resolve(__dirname, `../../../shared/colors.json`)
 
 async function buildIDGColors({ dimensions }: ToolsContent) {
-    const colors = dimensions.reduce((colors, dimension) => {
+    const COLORS = dimensions.reduce((COLORS, dimension) => {
         const colorName = dimension.name.toLowerCase() as IDGColorMap[string]
-        colors[dimension.id] = colorName
+        COLORS[dimension.id] = colorName
         dimension.skills.forEach((skillId) => {
-            colors[skillId] = colorName
+            COLORS[skillId] = colorName
         })
-        return colors
+        return COLORS
     }, {} as IDGColorMap)
 
-    return writeJSON(outputFile, colors)
+    return writeJSON(outputFile, {
+        COLORS,
+        DIMENSION_IDS: dimensions.map((d) => d.id),
+    })
 }
 
 const content = (await readJSON(inputFile)) as Required<
