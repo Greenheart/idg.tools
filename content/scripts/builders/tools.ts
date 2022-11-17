@@ -14,7 +14,6 @@ import {
     getContentPaths,
     readJSON,
     sortNamesAlphabetically,
-    writeJSON,
 } from '../utils'
 
 // Only used while building the content
@@ -215,7 +214,6 @@ const orderToolsConsistently = (builtContent: Translated<ToolsContent>) => {
 export default async function buildTools(
     selectedLanguages: Language[],
     contentDir: string,
-    outputFile: string,
     selectedCollections: ToolsCollections,
 ) {
     const rawContent = await loadContent(selectedCollections, contentDir)
@@ -228,7 +226,5 @@ export default async function buildTools(
         selectedLanguages,
     )
 
-    const output = orderToolsConsistently(builtContent)
-
-    await writeJSON(outputFile, output)
+    return orderToolsConsistently(builtContent)
 }
