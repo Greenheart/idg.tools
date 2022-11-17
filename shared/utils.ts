@@ -1,4 +1,4 @@
-import { SKILLS_BY_DIMENSION } from './constants'
+import { COLORS } from './constants'
 import type { ItemId } from './types'
 
 export const cx = (...classes: (string | undefined | false)[]) =>
@@ -16,16 +16,8 @@ export function truncateText(text: string, maxLength: number, separator = ' ') {
     return res.endsWith('.') ? res : res + '…'
 }
 
-export function getColor(id: ItemId, colorType: 'bg' | 'text' = 'bg') {
-    const dimension =
-        SKILLS_BY_DIMENSION[
-            id as unknown as keyof typeof SKILLS_BY_DIMENSION
-        ] ??
-        Object.values(SKILLS_BY_DIMENSION).find((dimension) =>
-            dimension.skills.some((skillId) => skillId === id),
-        )
-    return `${colorType}-${dimension.name}`
-}
+export const getColor = (id: ItemId, colorType: 'bg' | 'text' = 'bg') =>
+    `${colorType}-${COLORS[id]}`
 
 // TODO: This needs to be updated to support other languages than English, but is good enough for now.
 export const pluralize = (item: string, count: number) =>
