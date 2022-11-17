@@ -9,7 +9,7 @@
         sizes,
         defaultSize,
     } from '$shared/components/Button.svelte'
-    import Link from './Link.svelte'
+    import Link from '$shared/components/Link.svelte'
 </script>
 
 <script lang="ts">

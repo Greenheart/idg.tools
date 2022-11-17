@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Link from '$components/Link.svelte'
+    import Link from '$shared/components/Link.svelte'
     import Heading from '$shared/components/Heading.svelte'
     import { isMenuOpen } from '$lib/stores'
     import type { PageData } from './$types'

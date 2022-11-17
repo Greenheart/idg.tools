@@ -1,4 +1,6 @@
 <script lang="ts" context="module">
+    import { cx } from '../utils'
+
     const sizes = [1, 2, 3, 4, 5, 6] as const
     type Size = typeof sizes[number]
 
@@ -13,8 +15,6 @@
 </script>
 
 <script lang="ts">
-    import { cx } from '$lib/utils'
-
     export let size: Size = 2
     let className = ''
     export { className as class }

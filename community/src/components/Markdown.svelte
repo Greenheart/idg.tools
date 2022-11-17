@@ -11,7 +11,7 @@
     } from 'svelte-markdown/src/renderers'
     import DOMPurify from 'dompurify'
 
-    import Link from './Link.svelte'
+    import Link from '$shared/components/Link.svelte'
     import EmptyComponent from './EmptyComponent.svelte'
     import { cx } from '$lib/utils'
 

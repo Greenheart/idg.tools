@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
     import { onMount } from 'svelte'
 
-    import { cx, isExternalURL } from '$lib/utils'
+    import { cx, isExternalURL } from '../utils'
 
     export const variants = {
         pink: 'text-thinking',
