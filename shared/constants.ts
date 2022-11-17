@@ -8,6 +8,10 @@ export const LANGUAGES = {
 export const LANGUAGE_TAGS = Object.keys(LANGUAGES) as Language[]
 export const DEFAULT_LANGUAGE_TAG = 'en'
 
+// TODO: with the new colors.json the ids will stay updated. However, this new approach takes some more space than before
+// Might be worth just sticking with the new update-colors.ts script, but saving in the old format like SKILLS_BY_DIMENSION
+// It could be worth keeping the new format though, since it would simplify the runtime lookups to O(1), improving rendering performance a tiny bit
+
 // IDEA: Maybe this could be generated based on `content.json`, to allow the CMS to generate it.
 // IDEA: Same with the tailwind config, which perhaps could generate the color config based on dimension names, and color props from the CMS
 // IDEA: Maybe generate a `colors.json` which defines this structure? This could then be imported both to the utils and to the tailwind config, thus allowing the CMS to dictate how IDG colors look in the app
