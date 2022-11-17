@@ -6,7 +6,7 @@
 
     import NumberOfSelectedSkills from './NumberOfSelectedSkills.svelte'
     import SkillButton from './SkillButton.svelte'
-    import Expand from './icons/Expand.svelte'
+    import Expand from '$shared/icons/Expand.svelte'
 
     export let content: ToolsContent
 

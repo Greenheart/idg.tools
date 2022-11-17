@@ -1,5 +1,5 @@
 <script lang="ts">
-    import UserGroup from './icons/UserGroup.svelte'
+    import UserGroup from '$shared/icons/UserGroup.svelte'
     import Heading from './Heading.svelte'
     import LinkButton from './LinkButton.svelte'
     import { GITHUB_LINK } from '$lib/constants'
@@ -21,8 +21,8 @@
 
     <p class="px-4 pb-4 text-left">
         We’re a non-profit, open source community, always learning and improving
-        this library, together. And with your help, we can make IDG.community even
-        better!
+        this library, together. And with your help, we can make IDG.community
+        even better!
     </p>
 
     <LinkButton href={GITHUB_LINK} variant="inverted">
