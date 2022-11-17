@@ -4,7 +4,7 @@
     import type { Tool, ToolsContent } from '$shared/types'
     import Heading from '$shared/components/Heading.svelte'
     import Arrow from '$shared/icons/Arrow.svelte'
-    import Link from './Link.svelte'
+    import Link from '$shared/components/Link.svelte'
     import Markdown from './Markdown.svelte'
     import RelevantSkills from './RelevantSkills.svelte'
     import Tags from './Tags.svelte'

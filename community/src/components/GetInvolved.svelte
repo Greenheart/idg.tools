@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Link from './Link.svelte'
+    import Link from '$shared/components/Link.svelte'
 
     // IDEA: Create menu options to help people find how and where to engage.
 

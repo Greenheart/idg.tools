@@ -7,7 +7,7 @@
     import Tags from '$components/Tags.svelte'
 
     import type { PageData } from './$types'
-    import Link from '$components/Link.svelte'
+    import Link from '$shared/components/Link.svelte'
     export let data: PageData
     $: ({ tool, skills, tags } = data)
 </script>

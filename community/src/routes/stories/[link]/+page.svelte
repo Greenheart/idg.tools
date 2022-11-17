@@ -1,6 +1,6 @@
 <script lang="ts">
     import Heading from '$shared/components/Heading.svelte'
-    import Link from '$components/Link.svelte'
+    import Link from '$shared/components/Link.svelte'
     import LinkButton from '$components/LinkButton.svelte'
     import Markdown from '$components/Markdown.svelte'
     import Tags from '$components/Tags.svelte'
