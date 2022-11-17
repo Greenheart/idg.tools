@@ -72,6 +72,15 @@ export type IDGRelevancy = {
     score: number
 }
 
+export type IDGColorMap = {
+    [id: Dimension['id'] | Skill['id']]:
+        | 'being'
+        | 'thinking'
+        | 'relating'
+        | 'collaborating'
+        | 'acting'
+}
+
 export type Tag = { id: ItemId; name: string }
 
 export type Language = keyof typeof LANGUAGES

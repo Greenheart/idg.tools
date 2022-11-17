@@ -5,7 +5,8 @@
     "type": "module",
     "scripts": {
         "dev": "node scripts/compile.js && node scripts/dev.js",
-        "build": "node scripts/compile.js && node scripts/compiled/build.js"
+        "build": "node scripts/compile.js && node scripts/build.js",
+        "colors": "node scripts/compile.js && node scripts/compiled/update-colors.js"
     },
     "devDependencies": {
         "@types/node": "^18.11.9",
