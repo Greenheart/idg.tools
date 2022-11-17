@@ -14,7 +14,7 @@
     } from '$lib/stores'
 
     import type { ToolsContent, Dimension } from '$shared/types'
-    import Button from './Button.svelte'
+    import Button from '$shared/components/Button.svelte'
     import Skills from './Skills.svelte'
     import FiltersToolbar from './FiltersToolbar.svelte'
     import { onKeydown, pluralize } from '$lib/utils'

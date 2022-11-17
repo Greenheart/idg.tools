@@ -1,6 +1,6 @@
 <script lang="ts">
     import { cx } from '$lib/utils'
-    import Button from './Button.svelte'
+    import Button from '$shared/components/Button.svelte'
     import type { Skill } from '$shared/types'
     import { selectedSkills } from '$lib/stores'
 

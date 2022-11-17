@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-    import { cx } from '$lib/utils'
+    import { cx } from '../utils'
 
     export const variants = {
         primary: 'bg-stone-50 text-stone-900',

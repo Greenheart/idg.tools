@@ -2,7 +2,7 @@
     import type { ToolsContent, Tool } from '$shared/types'
     import { selectedSkills, visibleItems, selectedTags } from '$lib/stores'
     import ToolPreview from './ToolPreview.svelte'
-    import Button from './Button.svelte'
+    import Button from '$shared/components/Button.svelte'
     import Link from './Link.svelte'
     import { SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
 

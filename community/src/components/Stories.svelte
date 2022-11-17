@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { CommunityContent, Story } from '$shared/types'
     import StoryPreview from './StoryPreview.svelte'
-    import Button from './Button.svelte'
+    import Button from '$shared/components/Button.svelte'
 
     export let stories: Story[]
     export let content: CommunityContent
