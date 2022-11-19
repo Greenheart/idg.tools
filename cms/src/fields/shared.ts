@@ -26,7 +26,7 @@ export const NAME: CmsField = {
 }
 
 export const TITLE: CmsField = {
-    label: 'Title',
+    label: 'Headline',
     name: 'title',
     i18n: true,
     widget: 'string',

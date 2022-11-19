@@ -1,4 +1,5 @@
 import { CmsField } from 'netlify-cms-core'
+import { STORIES_LEARN_MORE } from '../constants'
 import {
     CustomCmsField,
     ID,
@@ -36,7 +37,7 @@ export const StoriesFields: CustomCmsField[] = [
     {
         label: 'Story',
         name: 'story',
-        hint: 'Your story of how you practiced inner development and how it helped you with sustainable development.',
+        hint: `Your story of how you practiced inner development and how it helped you with sustainable development. [Click here to learn more about IDG.community stories](${STORIES_LEARN_MORE})`,
         ...MARKDOWN_ARTICLE,
     },
     {
