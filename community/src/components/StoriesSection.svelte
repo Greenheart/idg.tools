@@ -23,7 +23,7 @@
         about the IDGs yourself - but also empower many others.
     </p>
 
-    <div class="flex space-x-4">
+    <div class="flex flex-wrap justify-center gap-4">
         <LinkButton href={STORIES_ABOUT_LINK} variant="inverted">Share your story</LinkButton>
         <LinkButton
             href={STORIES_ABOUT_LINK}
