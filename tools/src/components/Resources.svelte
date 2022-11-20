@@ -8,22 +8,19 @@
 
     let visibleResources = 5
     const allResources = tool.resources.split('\n').filter(Boolean)
+    let source = allResources.slice(0, visibleResources).join('\n')
 
     const showAll = () => {
         visibleResources = allResources.length
+        source = tool.resources
     }
 </script>
 
 <div class={className}>
+    <Markdown {source} formatting="limited" />
     {#if visibleResources < allResources.length}
-        <Markdown source={allResources.slice(0, visibleResources).join('\n')} />
-        <button
-            class="text-thinking mt-4 font-semibold underline"
-            on:click={showAll}
-        >
+        <button class="text-thinking mt-4 font-semibold underline" on:click={showAll}>
             Show {allResources.length - visibleResources ?? ''} more
         </button>
-    {:else}
-        <Markdown source={tool.resources} />
     {/if}
 </div>
