@@ -38,9 +38,9 @@
 <p class="text-center text-base uppercase">Our three pillars:</p>
 
 <div
-    class="mx-auto mt-8 grid max-w-lg justify-items-center gap-4 text-center text-stone-50 md:max-w-none md:grid-cols-3 md:text-stone-50 lg:gap-8"
+    class="mx-auto mt-8 grid max-w-lg justify-items-center gap-4 text-center text-stone-50 md:max-w-none md:grid-cols-3 lg:gap-8"
 >
-    <div class="border-being flex flex-col rounded-2xl border-2 p-4 md:w-full md:bg-transparent">
+    <div class="border-being flex flex-col rounded-2xl border-2 p-4">
         <Heading size={2}>Tools</Heading>
         <p class="my-4 flex-1">
             We're creating an open source library of scientifically-validated tools to develop the
@@ -50,7 +50,7 @@
         <Link href="https://idg.tools" variant="pink">Explore IDG.tools</Link>
     </div>
 
-    <div class="border-relating flex flex-col rounded-2xl border-2 p-4 md:w-full md:bg-transparent">
+    <div class="border-relating flex flex-col rounded-2xl border-2 p-4">
         <Heading size={2}>Community</Heading>
         <p class="my-4 flex-1">
             With hubs in almost 100 cities, this is an emerging network eager to participate,
@@ -60,9 +60,7 @@
         <Link href={COMMUNITY_LINK} variant="pink">Find your community</Link>
     </div>
 
-    <div
-        class="border-collaborating flex flex-col rounded-2xl border-2 p-4 md:w-full md:bg-transparent"
-    >
+    <div class="border-collaborating flex flex-col rounded-2xl border-2 p-4">
         <Heading size={2}>Stories</Heading>
         <p class="my-4 flex-1">
             Read stories of how people around the world are using the IDG framework in practice.
