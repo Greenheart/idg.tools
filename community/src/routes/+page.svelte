@@ -4,7 +4,6 @@
     import { isMenuOpen } from '$lib/stores'
     import type { PageData } from './$types'
     import LinkButton from '$shared/components/LinkButton.svelte'
-    import GetInvolved from '$components/GetInvolved.svelte'
 
     export let data: PageData
     $: ({ content } = data)
@@ -50,10 +49,12 @@
         <Heading size={2}>Community</Heading>
         <p class="my-4">
             With hubs in almost 100 cities, this is an emerging network eager to participate,
-            explore and co-create. Join local events and use our chat rooms to connect and learn
-            together with a global network.
+            explore and co-create. Join local events, connect with the global community and let's
+            learn together.
         </p>
-        <Link href="#" variant="pink">Find your community</Link>
+        <Link href="https://www.innerdevelopmentgoals.org/community" variant="pink"
+            >Find your community</Link
+        >
     </div>
 
     <div class="text-center">
@@ -75,7 +76,7 @@
     IDGs to reach the SDGs.
 </p>
 
-<div class="mt-8 grid gap-x-8 py-12">
+<!-- <div class="mt-8 grid gap-x-8 py-12">
     <Heading size={2} class="mb-4">Featured stories</Heading>
     <div class="bg-relating flex h-64 flex-col justify-between rounded-2xl p-4">
         <div class="flex flex-col space-y-2">
@@ -92,4 +93,19 @@
         </div>
         <Link href="/stories" class="self-end" variant="black">See all &rarr</Link>
     </div>
+</div> -->
+
+<Heading class="mb-4 mt-16">Featured stories</Heading>
+
+<div class="grid grid-cols-2 gap-32">
+    {#each content.stories as story}
+        <Link
+            href={`/stories/${story.link}`}
+            variant="black"
+            class="grid grid-cols-[min-content_1fr] gap-x-2 rounded-lg bg-stone-50 p-2 no-underline shadow-lg"
+        >
+            📝
+            <span>{story.title}</span>
+        </Link>
+    {/each}
 </div>
