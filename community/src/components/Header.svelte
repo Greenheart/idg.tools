@@ -11,13 +11,13 @@
         // { href: '/', text: 'Home' },
         // { href: '/about', text: 'About' },
         { href: 'https://github.com/Greenheart/idg.tools', text: 'GitHub' },
-        // { href: COMMUNITY_LINK, text: 'Community' },
+        // { href: ELEMENT_LINK, text: 'Community' },
     ]
 </script>
 
 <header class="relative flex items-center justify-between pt-6 pb-12">
     <Link href="/" unstyled class="flex h-[60px] items-center">
-        <span class="font-bold text-2xl">IDG.community</span>
+        <span class="text-2xl font-bold">IDG.community</span>
         <!-- TODO: Add proper IDG.community logo -->
         <!-- <img src="/images/IDG-tools.svg" alt="IDG.tools logo" class="mx-auto" /> -->
     </Link>
