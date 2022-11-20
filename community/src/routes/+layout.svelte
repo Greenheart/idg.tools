@@ -14,7 +14,7 @@
     $: bodyStyle = `
 <style>
     body, .filters-backdrop {
-        background: linear-gradient(0deg, #000, rgb(0 0 0 / ${getBgOpacity($page.route.id)}%));
+        background: linear-gradient(0deg, #000, rgb(0 0 0 / ${getBgOpacity($page?.route?.id)}%));
     }
 </style>
 `

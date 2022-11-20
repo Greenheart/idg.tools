@@ -3,7 +3,7 @@
     import { TAGLINE } from '$lib/constants'
     import { page } from '$app/stores'
     import { getBgOpacity } from './+layout'
-    import { isMenuOpen, filtersExpanded } from '$lib/stores'
+    import { isMenuOpen } from '$lib/stores'
 
     import '../app.css'
     import CommunitySection from '$components/CommunitySection.svelte'
@@ -14,7 +14,7 @@
     $: bodyStyle = `
 <style>
     body, .filters-backdrop {
-        background: linear-gradient(0deg, #000, rgb(0 0 0 / ${getBgOpacity($page.route.id)}%));
+        background: linear-gradient(0deg, #000, rgb(0 0 0 / ${getBgOpacity($page?.route?.id)}%));
     }
 </style>
 `
