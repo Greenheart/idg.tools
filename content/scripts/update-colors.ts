@@ -6,7 +6,7 @@ import { readJSON, writeJSON } from './utils'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const inputFile = resolve(__dirname, '../../../tools/static/content.json')
-const outputFile = resolve(__dirname, `../../../shared/colors.json`)
+const outputFile = resolve(__dirname, `../../../shared/src/lib/colors.json`)
 
 async function buildIDGColors({ dimensions }: ToolsContent) {
     const COLORS = dimensions.reduce((COLORS, dimension) => {
@@ -24,9 +24,7 @@ async function buildIDGColors({ dimensions }: ToolsContent) {
     })
 }
 
-const content = (await readJSON(inputFile)) as Required<
-    Translated<ToolsContent>
->
+const content = (await readJSON(inputFile)) as Required<Translated<ToolsContent>>
 
 await buildIDGColors(content['en'])
 
