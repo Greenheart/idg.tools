@@ -5,7 +5,7 @@
     import type { PageData } from './$types'
     import LinkButton from '$shared/components/LinkButton.svelte'
     import StoryPreview from '$components/StoryPreview.svelte'
-    import GetInvolvedSection from '$components/GetInvolvedSection.svelte'
+    import StoriesSection from '$components/StoriesSection.svelte'
     import { COMMUNITY_LINK, FRAMEWORK_LINK } from '$shared/constants'
 
     export let data: PageData
@@ -29,7 +29,7 @@
         </p>
 
         <div class="flex gap-4 pt-8">
-            <LinkButton href="#about" variant="secondary">Learn more</LinkButton>
+            <LinkButton href={COMMUNITY_LINK} variant="secondary">Learn more</LinkButton>
             <LinkButton href="#participate" variant="primary">Get involved</LinkButton>
         </div>
     </div>
@@ -37,20 +37,20 @@
 
 <p class="text-center text-sm uppercase">Our three pillars:</p>
 
-<div class="mt-8 grid grid-cols-3 gap-8">
-    <div class="text-center">
+<div class="mt-8 grid grid-cols-3 gap-8 text-center">
+    <div class="flex flex-col">
         <Heading size={2}>Tools</Heading>
-        <p class="my-4">
+        <p class="my-4 flex-1">
             We're creating an open source library of scientifically-validated tools to develop the
-            skills outlined by the IDG framework. Here you can find exercises, workshops and
-            resources relevant to the skills you want to practice.
+            skills outlined by the IDG framework. Here you can find methods, workshops and resources
+            relevant to the skills you want to practice.
         </p>
         <Link href="https://idg.tools" variant="pink">Explore IDG.tools</Link>
     </div>
 
-    <div class="text-center">
+    <div class="flex flex-col">
         <Heading size={2}>Community</Heading>
-        <p class="my-4">
+        <p class="my-4 flex-1">
             With hubs in almost 100 cities, this is an emerging network eager to participate,
             explore and co-create. Join local events, connect with the global community and learn
             together.
@@ -58,9 +58,9 @@
         <Link href={COMMUNITY_LINK} variant="pink">Find your community</Link>
     </div>
 
-    <div class="text-center">
+    <div class="flex flex-col">
         <Heading size={2}>Stories</Heading>
-        <p class="my-4">
+        <p class="my-4 flex-1">
             Read stories of how people around the world are using the IDG framework in practice.
             Learn from others and try it with your local hub. Share your own story and help make the
             IDG resources even better!
@@ -69,7 +69,7 @@
     </div>
 </div>
 
-<GetInvolvedSection />
+<StoriesSection />
 
 <Heading class="mb-4 mt-16">Featured stories</Heading>
 
@@ -85,7 +85,6 @@
 <!-- TODO: add tags to content for testing purposes -->
 <!-- TODO: fix images within posts in the CMS - until it works, it's possible to work around it by adding images using the global asset upload, and then referencing them using markdown formatting -->
 <!-- TODO: Improve the layout of posts, wider title, better display of the image, show relevant posts beneath (and link back to start page) -->
-<!-- TODO: add redirect from /stories/ back to / since we're not going to use that page for now. Also update links -->
 <!-- TODO: Write contributing markdown document that can also be rendered as a page - stories, content, design and development -->
 <!--
     IDEA: UI for filters could be to select the tags you want to find
