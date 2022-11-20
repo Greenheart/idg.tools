@@ -4,4 +4,3 @@ packages:
     - cms
     - content
     - shared
-    - shared2 # new components experiment

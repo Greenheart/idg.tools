@@ -1,17 +1,38 @@
 {
-    "name": "innerdevelopmentgoals",
-    "private": true,
-    "engines": {
-        "node": ">= 16",
-        "pnpm": ">= 7"
-    },
-    "scripts": {
-        "dev": "pnpm --filter \"./(tools|cms|content|community)\" --parallel dev",
-        "tools": "pnpm --filter tools dev",
-        "community": "pnpm --filter community dev",
-        "cms": "pnpm --filter cms dev",
-        "content": "pnpm --filter content dev",
-        "build": "pnpm --filter \"./(tools|cms|content|community)\" --parallel build",
-        "preview": "pnpm --filter \"./(tools|cms|community)\" --parallel preview"
-    }
+  "name": "innerdevelopmentgoals",
+  "private": true,
+  "engines": {
+    "node": ">= 16",
+    "pnpm": ">= 7"
+  },
+  "scripts": {
+    "dev": "pnpm --filter \"./(tools|cms|content|community)\" --parallel dev",
+    "tools": "pnpm --filter tools dev",
+    "community": "pnpm --filter community dev",
+    "cms": "pnpm --filter cms dev",
+    "content": "pnpm --filter content dev",
+    "build": "pnpm --filter \"./(tools|cms|content|community)\" --parallel build",
+    "preview": "pnpm --filter \"./(tools|cms|community)\" --parallel preview"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "trailingComma": "all",
+    "printWidth": 100,
+    "plugins": [
+      "prettier-plugin-svelte"
+    ],
+    "pluginSearchDirs": [
+      "."
+    ],
+    "overrides": [
+      {
+        "files": "*.svelte",
+        "options": {
+          "parser": "svelte"
+        }
+      }
+    ]
+  }
 }
