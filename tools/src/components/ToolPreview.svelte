@@ -9,9 +9,7 @@
     import RelevantSkills from './RelevantSkills.svelte'
     import Tags from './Tags.svelte'
 
-    const introLength = 300
-
-    $: intro = truncateText(tool.intro ?? tool.description, introLength)
+    $: intro = truncateText(tool.intro ?? tool.description, 300)
 
     export let tool: Tool
     export let content: ToolsContent
@@ -37,8 +35,6 @@
             <RelevantSkills {tool} {content} visible={4} />
         </div>
 
-        <Arrow
-            class="absolute bottom-5 right-5 mb-1 grid h-6 w-6 place-items-center"
-        />
+        <Arrow class="absolute bottom-5 right-5 mb-1 grid h-6 w-6 place-items-center" />
     </div>
 </Link>
