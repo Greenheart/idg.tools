@@ -40,7 +40,7 @@
 <div class="mt-8 grid grid-cols-3 gap-8 text-center">
     <div class="flex flex-col">
         <Heading size={2}>Tools</Heading>
-        <p class="my-4 flex-1">
+        <p class="my-4 flex-1 text-left">
             We're creating an open source library of scientifically-validated tools to develop the
             skills outlined by the IDG framework. Here you can find methods, workshops and resources
             relevant to the skills you want to practice.
@@ -50,7 +50,7 @@
 
     <div class="flex flex-col">
         <Heading size={2}>Community</Heading>
-        <p class="my-4 flex-1">
+        <p class="my-4 flex-1 text-left">
             With hubs in almost 100 cities, this is an emerging network eager to participate,
             explore and co-create. Join local events, connect with the global community and learn
             together.
@@ -60,7 +60,7 @@
 
     <div class="flex flex-col">
         <Heading size={2}>Stories</Heading>
-        <p class="my-4 flex-1">
+        <p class="my-4 flex-1 text-left">
             Read stories of how people around the world are using the IDG framework in practice.
             Learn from others and try it with your local hub. Share your own story and help make the
             IDG resources even better!
