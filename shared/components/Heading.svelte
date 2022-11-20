@@ -6,8 +6,8 @@
 
     const classes: Record<Size, string> = {
         1: 'text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold',
-        2: 'md:text-3xl sm:text-2xl text-xl font-bold',
-        3: 'text-lg font-bold',
+        2: 'text-xl sm:text-2xl md:text-3xl font-bold',
+        3: 'text-lg sm:text-xl font-bold',
         4: 'text-sm font-semibold',
         5: '',
         6: '',

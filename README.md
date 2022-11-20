@@ -24,6 +24,11 @@ There are many ways to help out so don't be afraid to ask!
 -   [Tailwind CSS](https://tailwindcss.com/) - Simple and efficient styling.
 -   [pnpm](https://pnpm.io) - Fast, disk space efficient package manager.
 
+## Credits
+
+-   Icons by [Heroicons](https://heroicons.com)
+-   Photos from Unsplash and Pexels. The original filenames have been preserved to make it easier to find the photobgraphers (including names, photo ID and service).
+
 ## License
 
 The content of this repository is bound by the following licenses:
