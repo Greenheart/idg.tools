@@ -15,10 +15,10 @@
 <div class:hidden={$isMenuOpen}>
     <Heading size={1}>Change starts within</Heading>
 
-    <div class="space-y-4 py-12 text-lg sm:text-xl">
+    <div class="py-12 text-lg sm:text-xl">
         <p>Welcome to the Inner Development Goals Community!</p>
 
-        <p>
+        <p class="mt-4">
             This is an emerging network of hubs who are using the <Link
                 href={FRAMEWORK_LINK}
                 class="mt-6 font-bold underline">Inner Development Goals</Link
@@ -28,7 +28,7 @@
             > (SDGs).
         </p>
 
-        <div class="flex flex-wrap justify-center gap-4 sm:justify-start">
+        <div class="mt-8 flex flex-wrap justify-center gap-4 sm:justify-start">
             <LinkButton href={COMMUNITY_LINK} variant="secondary">Learn more</LinkButton>
             <LinkButton href="#participate" variant="primary">Get involved</LinkButton>
         </div>
