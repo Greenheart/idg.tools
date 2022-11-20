@@ -14,9 +14,7 @@
     $: bodyStyle = `
 <style>
     body, .filters-backdrop {
-        background: linear-gradient(0deg, #000, rgb(0 0 0 / ${getBgOpacity(
-            $page.routeId,
-        )}%));
+        background: linear-gradient(0deg, #000, rgb(0 0 0 / ${getBgOpacity($page.route.id)}%));
     }
 </style>
 `
@@ -35,9 +33,6 @@
     </div>
 </main>
 
-<div
-    class="mx-auto w-full max-w-2xl px-4 pb-16 sm:max-w-3xl"
-    class:hidden={$isMenuOpen}
->
+<div class="mx-auto w-full max-w-2xl px-4 pb-16 sm:max-w-3xl" class:hidden={$isMenuOpen}>
     <CommunitySection />
 </div>
