@@ -6,3 +6,5 @@ build
 /package
 .env
 /scripts/compiled
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
