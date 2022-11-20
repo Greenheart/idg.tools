@@ -73,6 +73,15 @@
     </div>
 </div>
 
+<p>
+    We're launching the IDG.community stories as an experiment. However, we need
+    your help to sustain this, and realize the full potential. Therefore, we
+    like to invite anyone who want to see more IDG community stories in the
+    future to help out. This is a community-driven project, and a great
+    opportunity to make a meaningful contribution to further help people engage
+    with the IDGs to reach the SDGs.
+</p>
+
 <div class="grid gap-x-8 py-12 mt-8">
     <Heading size={2} class="mb-4">Featured stories</Heading>
     <div class="bg-relating h-64 rounded-2xl p-4 flex flex-col justify-between">

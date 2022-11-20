@@ -8,7 +8,7 @@ export const LANGUAGES = {
 export const LANGUAGE_TAGS = Object.keys(LANGUAGES) as Language[]
 export const DEFAULT_LANGUAGE_TAG = 'en'
 
-export const COLORS: Record<Dimension['id'] | Skill['id'], string> = {
+export const COLORS: Record<Skill['id'] | Dimension['id'], string> = {
     ckzi3855r0086e2n0smi0mew5: 'being',
     ckzi3a4z90431e2n04kx2pbq2: 'being',
     ckzi3am4y0486e2n04obcy6hi: 'being',

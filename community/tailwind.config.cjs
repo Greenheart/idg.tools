@@ -2,14 +2,16 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 const config = {
-    content: ['./src/**/*.{html,js,svelte,ts}'],
-    safelist: [
-        'being',
-        'thinking',
-        'relating',
-        'collaborating',
-        'acting',
-    ].flatMap((name) => [`bg-${name}`, `text-${name}`]),
+    // NOTE: special setup here to include the tailwind classes from the component library when building.
+    content: [
+        './src/**/*.{html,js,svelte,ts}',
+        '../shared/**/*.{html,js,svelte,ts}',
+        '../shared2/**/*.{html,js,svelte,ts}', // TODO: remove this when done with migration
+    ],
+    safelist: ['being', 'thinking', 'relating', 'collaborating', 'acting'].flatMap((name) => [
+        `bg-${name}`,
+        `text-${name}`,
+    ]),
     theme: {
         screens: {
             xs: '475px',
