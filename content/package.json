@@ -11,9 +11,9 @@
     "devDependencies": {
         "@types/node": "^18.11.9",
         "chokidar": "^3.5.3",
-        "esbuild": "^0.15.12",
+        "esbuild": "^0.15.14",
         "fast-glob": "^3.2.12",
-        "slugify": "^1.6.5",
-        "lodash.debounce": "^4.0.8"
+        "lodash.debounce": "^4.0.8",
+        "slugify": "^1.6.5"
     }
 }
