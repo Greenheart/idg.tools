@@ -37,8 +37,10 @@
 
 <p class="text-center text-sm uppercase">Our three pillars:</p>
 
-<div class="mt-8 grid grid-cols-3 gap-8 text-center">
-    <div class="flex flex-col">
+<div
+    class="mt-8 grid justify-items-center gap-8 text-center text-stone-900 md:grid-cols-3 md:text-stone-50"
+>
+    <div class="flex w-4/5 flex-col rounded-2xl bg-stone-50 p-4 md:w-full md:bg-transparent md:p-0">
         <Heading size={2}>Tools</Heading>
         <p class="my-4 flex-1 text-left">
             We're creating an open source library of scientifically-validated tools to develop the
@@ -48,7 +50,7 @@
         <Link href="https://idg.tools" variant="pink">Explore IDG.tools</Link>
     </div>
 
-    <div class="flex flex-col">
+    <div class="flex w-4/5 flex-col rounded-2xl bg-stone-50 p-4 md:w-full md:bg-transparent md:p-0">
         <Heading size={2}>Community</Heading>
         <p class="my-4 flex-1 text-left">
             With hubs in almost 100 cities, this is an emerging network eager to participate,
@@ -58,7 +60,7 @@
         <Link href={COMMUNITY_LINK} variant="pink">Find your community</Link>
     </div>
 
-    <div class="flex flex-col">
+    <div class="flex w-4/5 flex-col rounded-2xl bg-stone-50 p-4 md:w-full md:bg-transparent md:p-0">
         <Heading size={2}>Stories</Heading>
         <p class="my-4 flex-1 text-left">
             Read stories of how people around the world are using the IDG framework in practice.
@@ -73,7 +75,9 @@
 
 <Heading class="mb-4 mt-16">Featured stories</Heading>
 
-<div class="grid grid-cols-2 items-start gap-x-8 gap-y-8 md:gap-x-16">
+<div
+    class="mx-auto grid max-w-lg items-start justify-items-center gap-8 md:w-full md:max-w-none md:grid-cols-2 md:gap-x-8 lg:gap-x-12"
+>
     {#each content.stories as story}
         <StoryPreview {story} {content} />
     {/each}
