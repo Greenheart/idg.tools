@@ -6,12 +6,7 @@
         DialogDescription,
     } from '@rgossiaux/svelte-headlessui'
 
-    import {
-        selectedSkills,
-        filtersExpanded,
-        isDimensionOpen,
-        selectedTags,
-    } from '$lib/stores'
+    import { selectedSkills, filtersExpanded, isDimensionOpen, selectedTags } from '$lib/stores'
 
     import type { ToolsContent, Dimension } from '$shared/types'
     import Button from '$shared/components/Button.svelte'
@@ -25,21 +20,9 @@
 
     $: title =
         $selectedSkills.length || $selectedTags.length
-            ? `${
-                  $selectedSkills.length
-                      ? pluralize('skill', $selectedSkills.length)
-                      : ''
-              }${
-                  $selectedSkills.length
-                      ? $selectedTags.length
-                          ? ' and '
-                          : ''
-                      : ''
-              }${
-                  $selectedTags.length
-                      ? pluralize('tag', $selectedTags.length)
-                      : ''
-              } selected`
+            ? `${$selectedSkills.length ? pluralize('skill', $selectedSkills.length) : ''}${
+                  $selectedSkills.length ? ($selectedTags.length ? ' and ' : '') : ''
+              }${$selectedTags.length ? pluralize('tag', $selectedTags.length) : ''} selected`
             : 'Filter tools based on skills and tags'
 
     function close() {
@@ -54,8 +37,8 @@
                         const skillsInDimension = content.dimensions.find(
                             ({ id }) => id === dimensionId,
                         )!.skills
-                        isSectionOpen[dimensionId] = skillsInDimension.some(
-                            (skillId) => $selectedSkills.includes(skillId),
+                        isSectionOpen[dimensionId] = skillsInDimension.some((skillId) =>
+                            $selectedSkills.includes(skillId),
                         )
                     }
                     return isSectionOpen
@@ -98,8 +81,7 @@
                 bind:element={applyButton}
                 on:click={close}
                 on:keydown={onKeydown(close)}
-                class="col-span-full my-4 max-w-xs justify-self-center"
-                >Show content</Button
+                class="col-span-full my-4 max-w-xs justify-self-center">Show content</Button
             >
         </div>
     </div>
