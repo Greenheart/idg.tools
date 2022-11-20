@@ -36,7 +36,7 @@
     >
         <div class="flex items-center space-x-2 md:space-x-3">
             <Expand open={$filtersExpanded} />
-            <p class="text-xs sm:text-sm md:text-base">{title}</p>
+            <p class="xs:text-sm text-xs md:text-base">{title}</p>
         </div>
         {#if $selectedSkills.length || $selectedTags.length}
             <Button
