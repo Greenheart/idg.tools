@@ -46,3 +46,8 @@ export const DIMENSION_IDS = [
     'ckzi3951t0293e2n0n3bykbg5',
     'ckzi39fwv0374e2n0d2eynda4',
 ]
+
+export const GITHUB_LINK = 'https://github.com/Greenheart/idg.tools'
+export const ELEMENT_LINK = 'https://app.element.io/#/room/#idg:community.innerdevelopmentgoals.org'
+export const FRAMEWORK_LINK = 'https://www.innerdevelopmentgoals.org/framework'
+export const COMMUNITY_LINK = 'https://www.innerdevelopmentgoals.org/community'
