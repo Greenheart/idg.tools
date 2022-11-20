@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { afterNavigate, beforeNavigate } from '$app/navigation'
     import Header from '$components/Header.svelte'
     import { TAGLINE } from '$lib/constants'
     import { page } from '$app/stores'
@@ -18,6 +19,20 @@
     }
 </style>
 `
+
+    // Workaround to allow smooth scrolling in Firefox
+    // https://github.com/sveltejs/kit/issues/2733#issuecomment-1050779671
+    beforeNavigate(({ to, from }) => {
+        if (to?.route?.id !== from?.route?.id) {
+            console.log('navigating away')
+            document.documentElement.style.scrollBehavior = 'auto'
+        }
+    })
+    afterNavigate(({ to, from }) => {
+        if (to?.route?.id !== from?.route?.id) {
+            document.documentElement.style.scrollBehavior = ''
+        }
+    })
 </script>
 
 <svelte:head>
