@@ -28,21 +28,21 @@
             > (SDGs).
         </p>
 
-        <div class="flex gap-4 pt-8">
+        <div class="flex flex-wrap justify-center gap-4 sm:justify-start">
             <LinkButton href={COMMUNITY_LINK} variant="secondary">Learn more</LinkButton>
             <LinkButton href="#participate" variant="primary">Get involved</LinkButton>
         </div>
     </div>
 </div>
 
-<p class="text-center text-sm uppercase">Our three pillars:</p>
+<p class="text-center text-base uppercase">Our three pillars:</p>
 
 <div
-    class="mt-8 grid justify-items-center gap-8 text-center text-stone-900 md:grid-cols-3 md:text-stone-50"
+    class="mx-auto mt-8 grid max-w-lg justify-items-center gap-4 text-center text-stone-50 md:max-w-none md:grid-cols-3 md:text-stone-50 lg:gap-8"
 >
-    <div class="flex w-4/5 flex-col rounded-2xl bg-stone-50 p-4 md:w-full md:bg-transparent md:p-0">
+    <div class="border-being flex flex-col rounded-2xl border-2 p-4 md:w-full md:bg-transparent">
         <Heading size={2}>Tools</Heading>
-        <p class="my-4 flex-1 text-left">
+        <p class="my-4 flex-1">
             We're creating an open source library of scientifically-validated tools to develop the
             skills outlined by the IDG framework. Here you can find methods, workshops and resources
             relevant to the skills you want to practice.
@@ -50,9 +50,9 @@
         <Link href="https://idg.tools" variant="pink">Explore IDG.tools</Link>
     </div>
 
-    <div class="flex w-4/5 flex-col rounded-2xl bg-stone-50 p-4 md:w-full md:bg-transparent md:p-0">
+    <div class="border-relating flex flex-col rounded-2xl border-2 p-4 md:w-full md:bg-transparent">
         <Heading size={2}>Community</Heading>
-        <p class="my-4 flex-1 text-left">
+        <p class="my-4 flex-1">
             With hubs in almost 100 cities, this is an emerging network eager to participate,
             explore and co-create. Join local events, connect with the global community and learn
             together.
@@ -60,9 +60,11 @@
         <Link href={COMMUNITY_LINK} variant="pink">Find your community</Link>
     </div>
 
-    <div class="flex w-4/5 flex-col rounded-2xl bg-stone-50 p-4 md:w-full md:bg-transparent md:p-0">
+    <div
+        class="border-collaborating flex flex-col rounded-2xl border-2 p-4 md:w-full md:bg-transparent"
+    >
         <Heading size={2}>Stories</Heading>
-        <p class="my-4 flex-1 text-left">
+        <p class="my-4 flex-1">
             Read stories of how people around the world are using the IDG framework in practice.
             Learn from others and try it with your local hub. Share your own story and help make the
             IDG resources even better!
@@ -76,7 +78,7 @@
 <Heading class="mb-4 mt-16">Featured stories</Heading>
 
 <div
-    class="mx-auto grid max-w-lg items-start justify-items-center gap-8 md:w-full md:max-w-none md:grid-cols-2 md:gap-x-8 lg:gap-x-12"
+    class="mx-auto grid max-w-lg items-start justify-items-center gap-8 md:w-full md:max-w-none md:grid-cols-2 lg:gap-x-12"
 >
     {#each content.stories as story}
         <StoryPreview {story} {content} />
