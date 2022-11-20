@@ -13,13 +13,16 @@
     }
 </script>
 
+<!-- IDEA: We could show the heading above first, and then the featured stories, and finally list all other stories, filtering out the featured ones -->
+<!-- IDEA: If filters are applied, the featured stories will be hidden and only the relevant stories are shown, sorted by most relevant first -->
+
+<!-- IDEA: Make it possible to explore stories based on dimensions and contributors -->
+
 {#each stories.slice(0, visibleItems) as story (story.link)}
     <StoryPreview {story} {content} />
 {/each}
 
-<div
-    class="flex flex-col items-center justify-center space-y-4 pt-8 lg:col-span-2"
->
+<div class="flex flex-col items-center justify-center space-y-4 pt-8 lg:col-span-2">
     {#if visibleItems < stories.length}
         <Button on:click={showMore}>Show more</Button>
     {:else if stories.length}
