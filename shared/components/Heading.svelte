@@ -18,9 +18,10 @@
     export let size: Size = 2
     let className = ''
     export { className as class }
+    export let id = ''
     const tag = `h${size}`
 </script>
 
-<svelte:element this={tag} class={cx(classes[size], className)}>
+<svelte:element this={tag} class={cx(classes[size], className)} {id}>
     <slot />
 </svelte:element>
