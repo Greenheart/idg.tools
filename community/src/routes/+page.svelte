@@ -4,6 +4,8 @@
     import { isMenuOpen } from '$lib/stores'
     import type { PageData } from './$types'
     import LinkButton from '$shared/components/LinkButton.svelte'
+    import StoryPreview from '$components/StoryPreview.svelte'
+    import GetInvolvedSection from '$components/GetInvolvedSection.svelte'
 
     export let data: PageData
     $: ({ content } = data)
@@ -68,44 +70,12 @@
     </div>
 </div>
 
-<p>
-    We're launching the IDG.community stories as an experiment. However, we need your help to
-    sustain this, and realize the full potential. Therefore, we like to invite anyone who want to
-    see more IDG community stories in the future to help out. This is a community-driven project,
-    and a great opportunity to make a meaningful contribution to further help people engage with the
-    IDGs to reach the SDGs.
-</p>
-
-<!-- <div class="mt-8 grid gap-x-8 py-12">
-    <Heading size={2} class="mb-4">Featured stories</Heading>
-    <div class="bg-relating flex h-64 flex-col justify-between rounded-2xl p-4">
-        <div class="flex flex-col space-y-2">
-            {#each content.stories as story}
-                <Link
-                    href={`/stories/${story.link}`}
-                    variant="black"
-                    class="grid grid-cols-[min-content_1fr] gap-x-2 rounded-lg bg-stone-50 p-2 no-underline shadow-lg"
-                >
-                    📝
-                    <span>{story.title}</span>
-                </Link>
-            {/each}
-        </div>
-        <Link href="/stories" class="self-end" variant="black">See all &rarr</Link>
-    </div>
-</div> -->
+<GetInvolvedSection />
 
 <Heading class="mb-4 mt-16">Featured stories</Heading>
 
-<div class="grid grid-cols-2 gap-32">
+<div class="grid grid-cols-2 items-start gap-x-8 gap-y-8 md:gap-x-16">
     {#each content.stories as story}
-        <Link
-            href={`/stories/${story.link}`}
-            variant="black"
-            class="grid grid-cols-[min-content_1fr] gap-x-2 rounded-lg bg-stone-50 p-2 no-underline shadow-lg"
-        >
-            📝
-            <span>{story.title}</span>
-        </Link>
+        <StoryPreview {story} {content} />
     {/each}
 </div>
