@@ -67,13 +67,13 @@
             Learn from others and try it with your local hub. Share your own story and help make the
             IDG resources even better!
         </p>
-        <Link href="/stories" variant="pink">Inspire and get inspired</Link>
+        <Link href="#stories" variant="pink">Inspire and get inspired</Link>
     </div>
 </div>
 
 <StoriesSection />
 
-<Heading class="mb-4 mt-16">Featured stories</Heading>
+<Heading class="mb-4 pt-16" id="stories">Featured stories</Heading>
 
 <div
     class="mx-auto grid max-w-lg items-start justify-items-center gap-8 md:w-full md:max-w-none md:grid-cols-2 lg:gap-x-12"
