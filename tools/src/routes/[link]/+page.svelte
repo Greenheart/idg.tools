@@ -44,6 +44,6 @@
     </div>
 
     <div class="mt-8 flex justify-center">
-        <Link href="/" variant="pink">See more tools</Link>
+        <Link href="/#explore" variant="pink">See more tools</Link>
     </div>
 </div>
