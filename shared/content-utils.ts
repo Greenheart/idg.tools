@@ -14,10 +14,8 @@ export const getDimension = (
     { dimensions }: Pick<ToolsContent, 'dimensions'>,
 ) => dimensions.find((c) => c.id === id) as Dimension
 
-export const getSkill = (
-    id: Skill['id'],
-    { skills }: Pick<ToolsContent, 'skills'>,
-) => skills.find((s) => s.id === id) as Skill
+export const getSkill = (id: Skill['id'], { skills }: Pick<ToolsContent, 'skills'>) =>
+    skills.find((s) => s.id === id) as Skill
 
 export const getTag = (id: Tag['id'], { tags }: Pick<ToolsContent, 'tags'>) =>
     tags.find((t) => t.id === id) as Tag
@@ -36,10 +34,8 @@ export const getContributor = (
  *
  * With the third case, we get built-in support for short URLs. Not that easy to type, but at least they are few characters.
  */
-export const getToolByLink = (
-    link: Tool['link'],
-    { tools }: Pick<ToolsContent, 'tools'>,
-) => tools.find((t) => t.link === link || link.endsWith(t.slug)) as Tool
+export const getToolByLink = (link: Tool['link'], { tools }: Pick<ToolsContent, 'tools'>) =>
+    tools.find((t) => t.link === link || link.endsWith(t.slug)) as Tool
 
 /**
  * By supporting backwards compatible links that end with a `cuid.slug()`,
@@ -54,6 +50,18 @@ export const getStoryByLink = (
     link: Story['link'],
     { stories }: Pick<CommunityContent, 'stories'>,
 ) => stories.find((t) => t.link === link || link.endsWith(t.slug)) as Story
+
+/**
+ * Given a specific story, get the next story before and after.
+ * NOTE: This assumes the stories passed in are sorted by publishing date.
+ */
+export const getAdjacentStories = (
+    id: Story['id'],
+    { stories }: Pick<CommunityContent, 'stories'>,
+) => {
+    const index = stories.findIndex((story) => story.id === id)
+    return { prev: stories[index - 1], next: stories[index + 1] }
+}
 
 export const getSkillsInDimension = (
     id: Dimension['id'],
@@ -71,10 +79,9 @@ export const getTotalRelevancyScore = (
         return totalRelevancy
     }, 0)
 
-export const mostRelevantContentFirst =
-    (selectedSkills: Skill['id'][]) => (a: Tool, b: Tool) =>
-        getTotalRelevancyScore(b.relevancy, selectedSkills) -
-        getTotalRelevancyScore(a.relevancy, selectedSkills)
+export const mostRelevantContentFirst = (selectedSkills: Skill['id'][]) => (a: Tool, b: Tool) =>
+    getTotalRelevancyScore(b.relevancy, selectedSkills) -
+    getTotalRelevancyScore(a.relevancy, selectedSkills)
 
 export const getMostRelevantContent = (
     content: ToolsContent,
@@ -87,9 +94,7 @@ export const getMostRelevantContent = (
                 tool.relevancy.some(({ skill }) => skill === skillId),
             )
             const hasMatchingTags = selectedTags.length
-                ? selectedTags.some((tagId) =>
-                      tool.tags.some((id) => id === tagId),
-                  )
+                ? selectedTags.some((tagId) => tool.tags.some((id) => id === tagId))
                 : true
 
             return hasMatchingSkills && hasMatchingTags

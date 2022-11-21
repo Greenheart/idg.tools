@@ -2,6 +2,7 @@ import { redirect, error } from '@sveltejs/kit'
 
 import { content } from '$lib/content-backend'
 import {
+    getAdjacentStories,
     getContributor,
     getDimension,
     getStoryByLink,
@@ -10,19 +11,13 @@ import {
 import type { PageServerLoad } from './$types'
 
 /** @type {PageServerLoad} */
-export async function load({
-    params: { link },
-}: {
-    params: Record<string, string>
-}) {
+export async function load({ params: { link } }: { params: Record<string, string> }) {
     const story = getStoryByLink(link, content)
     if (story) {
-        const dimensions = story.dimensions.map((id) =>
-            getDimension(id, content),
-        )
-        const contributors = story.contributors.map((id) =>
-            getContributor(id, content),
-        )
+        const dimensions = story.dimensions.map((id) => getDimension(id, content))
+        const { prev, next } = getAdjacentStories(story.id, content)
+
+        const contributors = story.contributors.map((id) => getContributor(id, content))
         const tags = story.tags.map((tagId) => getTag(tagId, content))
 
         // If page was found on a different URL,
@@ -33,7 +28,14 @@ export async function load({
             throw redirect(301, location)
         }
 
-        return { story, dimensions, contributors, tags }
+        return {
+            story,
+            dimensions,
+            contributors,
+            tags,
+            prev: prev ? { link: prev.link, title: prev.title } : undefined,
+            next: next ? { link: next.link, title: next.title } : undefined,
+        }
     }
 
     throw error(404, `No story found with the link: "${link}"`)
