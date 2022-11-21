@@ -28,7 +28,9 @@
 
         {#if dimensions?.length}
             <div>
-                <p class="mb-2 text-sm uppercase">Dimensions</p>
+                <p class="mb-2 text-sm uppercase">
+                    {pluralize('Dimension', dimensions.length, false)}
+                </p>
                 <div class="flex gap-1">
                     {#each dimensions as dimension}
                         {@const color = getColor(dimension.id)}
@@ -42,7 +44,7 @@
 
         {#if tags?.length}
             <div>
-                <p class="mb-2 text-sm uppercase">Tags</p>
+                <p class="mb-2 text-sm uppercase">{pluralize('Tag', tags.length, false)}</p>
                 <!-- IDEA: Make Tags into clickable links that navigate back to the homepage and shows the content with only that content shown -->
                 <Tags {tags} size="md" class="!gap-1" />
             </div>
