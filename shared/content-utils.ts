@@ -7,6 +7,7 @@ import type {
     CommunityContent,
     Story,
     Contributor,
+    FeaturedContent,
 } from './types'
 
 export const getDimension = (
@@ -59,7 +60,7 @@ export const getAdjacentStories = (
     id: Story['id'],
     { stories }: Pick<CommunityContent, 'stories'>,
 ) => {
-    const index = stories.findIndex((story) => story.id === id)
+    const index = stories.sort(sortByPublishingDate).findIndex((story) => story.id === id)
     return { prev: stories[index - 1], next: stories[index + 1] }
 }
 
@@ -100,6 +101,24 @@ export const getMostRelevantContent = (
             return hasMatchingSkills && hasMatchingTags
         })
         .sort(mostRelevantContentFirst(selectedSkills))
+
+export const sortByPublishingDate = (a: Story, b: Story) =>
+    new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+
+export const showFeaturedFirstAndThenByPublishingDate =
+    (featured: FeaturedContent) => (a: Story, b: Story) => {
+        const aFeatured = featured.stories.includes(a.id)
+        const bFeatured = featured.stories.includes(b.id)
+        if (aFeatured && bFeatured) {
+            // Preserve featured order controlled by the CMS
+            return featured.stories.indexOf(a.id) < featured.stories.indexOf(b.id) ? -1 : 1
+        } else if (aFeatured) {
+            return -1
+        } else if (bFeatured) {
+            return 1
+        }
+        return sortByPublishingDate(a, b)
+    }
 
 export const getDateString = (date: string) =>
     new Intl.DateTimeFormat('sv-SE', {

@@ -1,4 +1,4 @@
-import { getTag } from '$shared/content-utils'
+import { getTag, showFeaturedFirstAndThenByPublishingDate } from '$shared/content-utils'
 import type {
     Dimension,
     CommunityContent,
@@ -16,7 +16,6 @@ import {
     getConsistentAssetURL,
     getContentPaths,
     readJSON,
-    sortByPublishingDate,
     sortNamesAlphabetically,
 } from '../utils'
 
@@ -75,7 +74,6 @@ const prepareStories = (
                 )
             }
 
-            // TODO: If we only load content for each language, this step can be avoided.
             const relevantTags = translatedTags.reduce((relevantTags, tag) => {
                 const translatedTag = tag[language as Language]
                 if (translatedTag) relevantTags.push(translatedTag)
@@ -168,21 +166,6 @@ function getSingletonByLang<T>(content: Translated<T>, lang: Language): T {
     return content[lang] as T
 }
 
-const showFeaturedFirstAndThenByPublishingDate =
-    (featured: FeaturedContent) => (a: Story, b: Story) => {
-        const aFeatured = featured.stories.includes(a.id)
-        const bFeatured = featured.stories.includes(b.id)
-        if (aFeatured && bFeatured) {
-            // Preserve featured order controlled by the CMS
-            return featured.stories.indexOf(a.id) < featured.stories.indexOf(b.id) ? -1 : 1
-        } else if (aFeatured) {
-            return -1
-        } else if (bFeatured) {
-            return 1
-        }
-        return sortByPublishingDate(a, b)
-    }
-
 const splitContentByLang = (
     content: ProcessingTranslatedCommunityContent,
     selectedLanguages: Language[],
@@ -190,9 +173,9 @@ const splitContentByLang = (
     selectedLanguages.reduce<Translated<CommunityContent>>((result, lang: Language) => {
         const featured = getSingletonByLang(content.featured, lang)
         result[lang] = {
-            stories: getByLang(content.stories, lang).sort(
-                showFeaturedFirstAndThenByPublishingDate(featured),
-            ),
+            stories: getByLang(content.stories, lang)
+                .slice()
+                .sort(showFeaturedFirstAndThenByPublishingDate(featured)),
             contributors: content.contributors as Contributor[],
             dimensions: getByLang(content.dimensions, lang),
             // IDEA: Or should tags be sorted by number of stories using them?
