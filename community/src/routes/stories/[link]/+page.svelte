@@ -1,6 +1,7 @@
 <script lang="ts">
     import Heading from '$shared/components/Heading.svelte'
     import Link from '$shared/components/Link.svelte'
+    import Breadcrumbs from '$shared/components/Breadcrumbs.svelte'
     import LinkButton from '$shared/components/LinkButton.svelte'
     import Markdown from '$shared/components/Markdown.svelte'
     import Tags from '$components/Tags.svelte'
@@ -12,11 +13,9 @@
     $: ({ story, dimensions, contributors, tags, prev, next } = data)
 </script>
 
-<div class="flex items-center gap-2 pb-8">
-    <Link href="/#stories">Stories</Link><Arrow right /><span>{story.title}</span>
-</div>
+<Breadcrumbs sections={[{ text: 'Stories', link: '/#stories' }, { text: story.title }]} />
 
-<Heading size={1}>{story.title}</Heading>
+<Heading size={1} class="pt-8">{story.title}</Heading>
 
 <div class="mx-auto max-w-3xl">
     <div
