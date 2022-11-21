@@ -5,10 +5,11 @@
     import Markdown from '$shared/components/Markdown.svelte'
     import Tags from '$components/Tags.svelte'
     import { cx, getColor, pluralize } from '$lib/utils'
+    import Arrow from '$shared/icons/Arrow.svelte'
 
     import type { PageData } from './$types'
     export let data: PageData
-    $: ({ story, dimensions, contributors, tags } = data)
+    $: ({ story, dimensions, contributors, tags, prev, next } = data)
 </script>
 
 <!-- IDEA: add breadcrumbs navigation component at the top -->
@@ -73,6 +74,29 @@
     <img src={story.image} alt={story.imageAlt} class="my-8 rounded-2xl" />
 
     <Markdown source={story.story} formatting="article" />
+
+    <div class="my-16 flex items-center justify-center gap-2">
+        <hr class="h-1 w-full" />
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <hr class="h-1 w-full" />
+    </div>
+
+    <Heading class="text-center">More stories</Heading>
+
+    <div class="mt-16 flex items-start gap-8">
+        <div class="flex flex-1 items-center space-x-2">
+            {#if prev}
+                <Arrow left /><Link href={prev.link} class="text-left">{prev.title}</Link>
+            {/if}
+        </div>
+        <div class="flex flex-1 items-center space-x-2">
+            {#if next}
+                <Link href={next.link} class="text-right">{next.title}</Link><Arrow right />
+            {/if}
+        </div>
+    </div>
 
     <div class="mt-16 flex justify-center">
         <LinkButton href="/#stories" variant="primary">See all stories</LinkButton>
