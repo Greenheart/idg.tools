@@ -18,8 +18,10 @@ export const getColor = (id: Dimension['id'] | Skill['id'], colorType: 'bg' | 't
     `${colorType}-${COLORS[id]}`
 
 // TODO: This needs to be updated to support other languages than English, but is good enough for now.
-export const pluralize = (item: string, count: number) =>
-    count === 1 ? `1 ${item}` : `${count} ${item}s`
+export const pluralize = (item: string, count: number, showCount = true) => {
+    const formattedItems = count === 1 ? item : `${item}s`
+    return showCount ? `${count} ${formattedItems}` : formattedItems
+}
 
 export const shouldTriggerKeyboardInteraction = (event: KeyboardEvent) =>
     event.code === 'Return' || event.key === 'Space'
