@@ -37,44 +37,6 @@ export const writeJSON = (path: string, data: any, indentation: number = 0) =>
         encoding: 'utf-8',
     })
 
-// const getCollectionPaths = (baseDir: string) => (collection: string) =>
-//     FastGlob(resolve(baseDir, `${collection}/*.json`))
-
-// const getSingletonPaths = (baseDir: string) => (singleton: string) => {
-//     console.log(resolve(baseDir, `${singleton}.json`))
-
-//     return FastGlob(resolve(baseDir, `${singleton}.json`))
-// }
-
-// export const getContentPaths = (contentTypes: Array<keyof AllContent>, baseDir: string) => {
-//     // IDEA: Maybe we need the types of collections later on too. If so this reduce could be used in an earlier step to reuse the organized content types
-//     const paths = contentTypes.reduce(
-//         (paths, contentType) => {
-//             const singleton = SINGELTONS[contentType as keyof typeof SINGELTONS]
-//             console.log(singleton)
-
-//             if (singleton) {
-//                 console.log(singleton)
-//                 paths.singletons.push(singleton)
-//             } else {
-//                 paths.collections.push(contentType)
-//             }
-//             return paths
-//         },
-//         { singletons: [], collections: [] } as {
-//             singletons: string[]
-//             collections: Array<keyof AllContent>
-//         },
-//     )
-
-//     return Promise.all(
-//         [
-//             paths.collections.map(getCollectionPaths(baseDir)),
-//             paths.singletons.map(getSingletonPaths(baseDir)),
-//         ].flat(),
-//     )
-// }
-
 const getPaths = (...paths: string[]) => FastGlob(resolve(...paths))
 
 export const getContentPaths = async (selected: SelectedCollections, baseDir: string) => {
