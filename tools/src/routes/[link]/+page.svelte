@@ -5,23 +5,17 @@
     import Resources from '$components/Resources.svelte'
     import FeedbackForm from '$components/FeedbackForm.svelte'
     import Tags from '$components/Tags.svelte'
+    import Breadcrumbs from '$shared/components/Breadcrumbs.svelte'
+    import Link from '$shared/components/Link.svelte'
 
     import type { PageData } from './$types'
-    import Link from '$shared/components/Link.svelte'
-    import Arrow from '$shared/icons/Arrow.svelte'
     export let data: PageData
     $: ({ tool, skills, tags } = data)
 </script>
 
-<!--
-    TODO: Refactor into shared Breadcrumb component that takes { text: '', link?: '' }
-    then renders links, text, and joins it all with arrows
--->
-<div class="flex items-center gap-2 pb-8">
-    <Link href="/#explore">Tools</Link><Arrow right /><span>{tool.name}</span>
-</div>
+<Breadcrumbs sections={[{ text: 'Tools', link: '/#explore' }, { text: tool.name }]} />
 
-<Heading size={1}>{tool.name}</Heading>
+<Heading size={1} class="pt-8">{tool.name}</Heading>
 
 <Tags {tags} visible={3} class="pt-4" inverted size="md" />
 
