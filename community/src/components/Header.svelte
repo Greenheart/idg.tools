@@ -18,7 +18,7 @@
 <header class="relative flex items-center justify-between pt-6 pb-12">
     <Link href="/" unstyled class="flex h-[60px] items-center">
         <span class="text-2xl font-bold">IDG.community</span>
-        <!-- TODO: Add proper IDG.community logo -->
+        <!-- TODO: Add proper IDG.community or IDG logo -->
         <!-- <img src="/images/IDG-tools.svg" alt="IDG.tools logo" class="mx-auto" /> -->
     </Link>
 
