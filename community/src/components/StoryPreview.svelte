@@ -26,7 +26,7 @@
             class="transform-gpu rounded-lg object-fill shadow-lg transition-transform duration-300 group-hover:scale-105"
         />
     </div>
-    <Heading class="py-2 group-hover:underline">{story.title}</Heading>
+    <Heading class="pt-3 pb-2 group-hover:underline">{story.title}</Heading>
     <div class="flex items-center pb-2">
         <span>{new Date(story.publishedAt).toLocaleDateString('sv-SE')}</span>
         {#if tags.length}

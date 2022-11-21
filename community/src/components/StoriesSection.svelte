@@ -12,9 +12,9 @@
     <Heading size={2} class="py-2 text-center">Stories by and for the community</Heading>
 
     <p class="px-4 pb-4 text-left">
-        Stories help us learn together with the global network and share inspiration and insights
-        along the journey. Our vision is to bring people together, and create a vast library of
-        stories exploring how to use the IDGs in practice to reach the SDGs.
+        Stories help us learn together with the global IDG community and share inspiration and
+        insights along the journey. Our vision is to bring people together, and create a vast
+        library of stories exploring how to use the IDGs in practice to reach the SDGs.
     </p>
 
     <p class="px-4 pb-4 text-left">
