@@ -1,12 +1,6 @@
 import { CmsField } from 'netlify-cms-core'
 import { STORIES_LEARN_MORE } from '../constants'
-import {
-    CustomCmsField,
-    ID,
-    MARKDOWN_ARTICLE,
-    MARKDOWN_LINKS_ONLY,
-    TITLE,
-} from './shared'
+import { CustomCmsField, ID, MARKDOWN_ARTICLE, MARKDOWN_LINKS_ONLY, TITLE } from './shared'
 
 export const StoriesFields: CustomCmsField[] = [
     ID,
@@ -86,6 +80,7 @@ export const StoriesFields: CustomCmsField[] = [
         required: false,
         date_format: 'YYYY-MM-DD',
         time_format: '',
+        i18n: 'duplicate',
         default: '',
     } as CmsField,
     {
