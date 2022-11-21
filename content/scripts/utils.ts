@@ -4,7 +4,7 @@ import { resolve } from 'path'
 import slugify from 'slugify'
 
 import { DEFAULT_LANGUAGE_TAG } from '$shared/constants'
-import type { AllContent, Tag } from '$shared/types'
+import type { AllContent, Story, Tag } from '$shared/types'
 
 export const slugifyName = (string: string, language = DEFAULT_LANGUAGE_TAG) =>
     slugify(string, {
@@ -29,8 +29,7 @@ export const createBackwardsCompatibleLink = (
     language = DEFAULT_LANGUAGE_TAG,
 ) => `${slugifyName(name, language)}-${uniqueSlug}`
 
-export const readJSON = (path: string) =>
-    readFile(path, { encoding: 'utf-8' }).then(JSON.parse)
+export const readJSON = (path: string) => readFile(path, { encoding: 'utf-8' }).then(JSON.parse)
 
 export const writeJSON = (path: string, data: any, indentation: number = 0) =>
     writeFile(path, JSON.stringify(data, null, indentation), {
@@ -39,15 +38,8 @@ export const writeJSON = (path: string, data: any, indentation: number = 0) =>
 
 // TODO: Add support for loading collections with specific files rather than entire directories
 // This would be a good utility function to complement getContentPaths
-export const getContentPaths = (
-    contentTypes: Array<keyof AllContent>,
-    baseDir: string,
-) =>
-    Promise.all(
-        contentTypes.map((type) =>
-            FastGlob(resolve(baseDir, `${type}/*.json`)),
-        ),
-    )
+export const getContentPaths = (contentTypes: Array<keyof AllContent>, baseDir: string) =>
+    Promise.all(contentTypes.map((type) => FastGlob(resolve(baseDir, `${type}/*.json`))))
 
 /**
  * Ensures the url works in the live app or website by removing the full prefix added by the CMS.
@@ -55,5 +47,7 @@ export const getContentPaths = (
 export const getConsistentAssetURL = (url: string, unwantedPrefix: string) =>
     url.replace(unwantedPrefix, '')
 
-export const sortNamesAlphabetically = (a: Tag, b: Tag) =>
-    a.name.localeCompare(b.name)
+export const sortNamesAlphabetically = (a: Tag, b: Tag) => a.name.localeCompare(b.name)
+
+export const sortByPublishingDate = (a: Story, b: Story) =>
+    new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()

@@ -14,6 +14,7 @@ import {
     getConsistentAssetURL,
     getContentPaths,
     readJSON,
+    sortByPublishingDate,
     sortNamesAlphabetically,
 } from '../utils'
 
@@ -51,9 +52,9 @@ const prepareStories = (
                 throw new Error(
                     `[content] Slugs should be the same for all translations for story "${
                         story.title
-                    }" and language "${language}": Slugs found was ${JSON.stringify(
-                        [...uniqueSlugs],
-                    )}`,
+                    }" and language "${language}": Slugs found was ${JSON.stringify([
+                        ...uniqueSlugs,
+                    ])}`,
                 )
             }
 
@@ -64,9 +65,7 @@ const prepareStories = (
 
             // Consider removing duplicate tags check, since this is taken care of by the relation widget in the CMS
             // Or maybe only enable it when running in local development and not in the production build
-            const firstDuplicateTag = story.tags.find(
-                (t, i) => story.tags.lastIndexOf(t) !== i,
-            )
+            const firstDuplicateTag = story.tags.find((t, i) => story.tags.lastIndexOf(t) !== i)
             if (firstDuplicateTag) {
                 throw new Error(
                     `[content] Story "${story.title}" has a duplicate tag: ${firstDuplicateTag}`,
@@ -85,17 +84,11 @@ const prepareStories = (
                 .sort(sortNamesAlphabetically)
                 .map((t) => t.id)
 
-            story.image = getConsistentAssetURL(
-                story.image,
-                '/community/static',
-            )
+            story.image = getConsistentAssetURL(story.image, '/community/static')
 
             story.tags = tagsSortedAlphabetically
 
-            const newLink = createBackwardsCompatibleLink(
-                story.title,
-                story.slug,
-            )
+            const newLink = createBackwardsCompatibleLink(story.title, story.slug)
             if (newLink !== story.link) {
                 if (story.link !== undefined) {
                     console.warn(
@@ -131,11 +124,8 @@ const prepareTags = (
                 )
             }
 
-            const tagIsUsedBySomeStory = translatedStories.some(
-                (translatedStory) =>
-                    translatedStory[language as Language]?.tags?.includes?.(
-                        tag.id,
-                    ),
+            const tagIsUsedBySomeStory = translatedStories.some((translatedStory) =>
+                translatedStory[language as Language]?.tags?.includes?.(tag.id),
             )
             if (!tagIsUsedBySomeStory) {
                 console.warn(
@@ -147,14 +137,9 @@ const prepareTags = (
         return true
     }, {})
 
-const loadContent = async (
-    contentTypes: CommunityCollections,
-    contentDir: string,
-) => {
+const loadContent = async (contentTypes: CommunityCollections, contentDir: string) => {
     const paths = await getContentPaths(contentTypes, contentDir)
-    const content = await Promise.all(
-        paths.map((paths) => Promise.all(paths.map(readJSON))),
-    )
+    const content = await Promise.all(paths.map((paths) => Promise.all(paths.map(readJSON))))
 
     return contentTypes.reduce((rawContent, type, i) => {
         rawContent[type] = content[i]
@@ -170,32 +155,23 @@ const splitContentByLang = (
     content: ProcessingTranslatedCommunityContent,
     selectedLanguages: Language[],
 ) =>
-    selectedLanguages.reduce<Translated<CommunityContent>>(
-        (result, lang: Language) => {
-            result[lang] = {
-                stories: getByLang(content.stories, lang),
-                contributors: content.contributors as Contributor[],
-                dimensions: getByLang(content.dimensions, lang),
-                // IDEA: Or should tags be sorted by number of stories using them?
-                // This would make the popular tags appear first and might give a better UX
-                tags: getByLang(content.tags, lang).sort(
-                    sortNamesAlphabetically,
-                ),
-            }
-            return result
-        },
-        {} as Translated<CommunityContent>,
-    )
+    selectedLanguages.reduce<Translated<CommunityContent>>((result, lang: Language) => {
+        result[lang] = {
+            stories: getByLang(content.stories, lang).sort(sortByPublishingDate),
+            contributors: content.contributors as Contributor[],
+            dimensions: getByLang(content.dimensions, lang),
+            // IDEA: Or should tags be sorted by number of stories using them?
+            // This would make the popular tags appear first and might give a better UX
+            tags: getByLang(content.tags, lang).sort(sortNamesAlphabetically),
+        }
+        return result
+    }, {} as Translated<CommunityContent>)
 
 const prepareContent = (
     content: ProcessingTranslatedCommunityContent,
     selectedLanguages: Language[],
 ) => {
-    const stories = prepareStories(
-        content.stories,
-        content.tags,
-        selectedLanguages,
-    )
+    const stories = prepareStories(content.stories, content.tags, selectedLanguages)
     const tags = prepareTags(stories, content.tags, selectedLanguages)
     return { ...content, stories, tags }
 }
@@ -210,8 +186,5 @@ export default async function buildCommunity(
     // IDEA: Perhaps we could split content by language first, and then prepare content only for the languages wanted?
     // This would allow to filter out missing content in the beginning and only implement the selectedLanguages filering in one place.
 
-    return splitContentByLang(
-        prepareContent(rawContent, selectedLanguages),
-        selectedLanguages,
-    )
+    return splitContentByLang(prepareContent(rawContent, selectedLanguages), selectedLanguages)
 }
