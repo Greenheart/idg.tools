@@ -12,7 +12,9 @@
     $: ({ story, dimensions, contributors, tags, prev, next } = data)
 </script>
 
-<!-- IDEA: add breadcrumbs navigation component at the top -->
+<div class="flex items-center gap-2 pb-8">
+    <Link href="/#stories">Stories</Link><Arrow right /><span>{story.title}</span>
+</div>
 
 <Heading size={1}>{story.title}</Heading>
 
