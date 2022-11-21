@@ -1,11 +1,7 @@
 import { performance } from 'perf_hooks'
 import { dirname, resolve } from 'path'
 
-import type {
-    Language,
-    ToolsCollections,
-    CommunityCollections,
-} from '$shared/types'
+import type { Language, ToolsCollections, CommunityCollections } from '$shared/types'
 import community from './builders/community'
 import tools from './builders/tools'
 import { fileURLToPath } from 'url'
@@ -26,13 +22,29 @@ const BUILDERS: Record<BuilderName, Builder<any>> = {
     community: community as unknown as Builder<CommunityCollections>,
 }
 
+export const SINGLETONS = {
+    featured: 'settings/featured',
+}
+export type SingletonName = keyof typeof SINGLETONS
+
 const COLLECTIONS: Record<
     BuilderName,
-    CommunityCollections | ToolsCollections
+    {
+        collections: CommunityCollections | ToolsCollections
+        singletons: SingletonName[]
+    }
 > = {
-    tools: ['tools', 'skills', 'dimensions', 'tags'],
-    community: ['stories', 'contributors', 'dimensions', 'tags'],
+    tools: {
+        collections: ['tools', 'skills', 'dimensions', 'tags'],
+        singletons: [],
+    },
+    community: {
+        collections: ['stories', 'contributors', 'dimensions', 'tags'],
+        singletons: ['featured'],
+    },
 }
+
+export type SelectedCollections = typeof COLLECTIONS[BuilderName]
 
 // NOTE: We currently only build the English content since no translations are available yet
 const SELECTED_LANGUAGES: Language[] = ['en']
@@ -50,33 +62,22 @@ async function build(selectedBuilders: BuilderName[]) {
                 COLLECTIONS[builder],
             )
 
-            const outputFile = resolve(
-                __dirname,
-                `../../../${builder}/static/content.json`,
-            )
+            const outputFile = resolve(__dirname, `../../../${builder}/static/content.json`)
 
             return writeJSON(outputFile, content)
         }),
     )
 
-    const buildTime = ((performance.now() - startTime) / 1000).toLocaleString(
-        'en-US',
-        {
-            minimumFractionDigits: 3,
-            maximumFractionDigits: 3,
-        },
-    )
+    const buildTime = ((performance.now() - startTime) / 1000).toLocaleString('en-US', {
+        minimumFractionDigits: 3,
+        maximumFractionDigits: 3,
+    })
 
-    const updatedProjects = selectedBuilders
-        .map((b) => `IDG.${b}`)
-        .join(' and ')
+    const updatedProjects = selectedBuilders.map((b) => `IDG.${b}`).join(' and ')
     console.log(`✅ Built content for ${updatedProjects} in ${buildTime} s\n`)
 }
 
-export default async function run(
-    selectedBuilders: BuilderName[] = BUILDER_NAMES,
-    path: string,
-) {
+export default async function run(selectedBuilders: BuilderName[] = BUILDER_NAMES, path: string) {
     // Remove any invalid arguments
     selectedBuilders = selectedBuilders.filter((b) => BUILDER_NAMES.includes(b))
 
@@ -86,11 +87,14 @@ export default async function run(
 
     if (path) {
         // If a path just changed, we only re-execute the builders that are using that type of content
-        selectedBuilders = selectedBuilders.filter((builder) =>
-            COLLECTIONS[builder].some((collection) =>
-                path.includes(`/${collection}/`),
-            ),
-        )
+        selectedBuilders = selectedBuilders.filter((builder) => {
+            return (
+                COLLECTIONS[builder].collections.some((collection) =>
+                    path.includes(`/${collection}`),
+                ) ||
+                COLLECTIONS[builder].singletons.some((singleton) => path.includes(`/${singleton}`))
+            )
+        })
     }
 
     return build(selectedBuilders)

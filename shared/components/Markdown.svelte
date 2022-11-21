@@ -15,8 +15,8 @@
     import EmptyComponent from './EmptyComponent.svelte'
     import { cx } from '../utils'
 
-    // TODO: Move this component to the $shared/components folder, and export the types and constants from $shared too.
-    // TODO: Ideally align the enabled formatting options with the enabled formatting in the CMS editor, to make it easy to sync updates
+    // IDEA: Ideally align the enabled formatting options with the enabled formatting in the CMS editor, to make it easy to sync updates
+    // The CMS config can be found in cms/src/fields/shared.ts
     type MarkdownRenderer = 'linksOnly' | 'limited' | 'article'
 
     const getRenderers = (type: MarkdownRenderer) => {

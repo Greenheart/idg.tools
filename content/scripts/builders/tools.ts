@@ -9,6 +9,7 @@ import type {
     Translated,
     ToolsCollections,
 } from '$shared/types'
+import type { SelectedCollections } from 'scripts/build-content'
 import {
     createBackwardsCompatibleLink,
     getContentPaths,
@@ -48,9 +49,9 @@ const prepareTools = (
                 throw new Error(
                     `[content] Slugs should be the same for all translations for tool "${
                         tool.name
-                    }" and language "${language}": Slugs found was ${JSON.stringify(
-                        [...uniqueSlugs],
-                    )}`,
+                    }" and language "${language}": Slugs found was ${JSON.stringify([
+                        ...uniqueSlugs,
+                    ])}`,
                 )
             }
 
@@ -61,9 +62,7 @@ const prepareTools = (
 
             // Consider removing duplicate tags check, since this is taken care of by the relation widget in the CMS
             // Or maybe only enable it when running in local development and not in the production build
-            const firstDuplicateTag = tool.tags.find(
-                (t, i) => tool.tags.lastIndexOf(t) !== i,
-            )
+            const firstDuplicateTag = tool.tags.find((t, i) => tool.tags.lastIndexOf(t) !== i)
             if (firstDuplicateTag) {
                 throw new Error(
                     `[content] Tool "${tool.name}" has a duplicate tag: ${firstDuplicateTag}`,
@@ -147,19 +146,27 @@ const prepareTags = (
         return true
     }, {})
 
-const loadContent = async (
-    contentTypes: ToolsCollections,
-    contentDir: string,
-) => {
-    const paths = await getContentPaths(contentTypes, contentDir)
-    const content = await Promise.all(
-        paths.map((paths) => Promise.all(paths.map(readJSON))),
-    )
+const loadContent = async (selected: SelectedCollections, baseDir: string) => {
+    const paths = await getContentPaths(selected, baseDir)
 
-    return contentTypes.reduce((rawContent, type, i) => {
-        rawContent[type] = content[i]
-        return rawContent
-    }, {} as ProcessingTranslatedToolsContent)
+    const [
+        collectionsByType,
+        // singletonsByType
+    ] = await Promise.all([
+        Promise.all(paths.collections.map((collection) => Promise.all(collection.map(readJSON)))),
+        // Promise.all(paths.singletons.map((singleton) => Promise.all(singleton.map(readJSON)))),
+    ])
+
+    const rawContent = {} as ProcessingTranslatedToolsContent
+
+    ;(selected.collections as ToolsCollections).forEach((contentType, i) => {
+        rawContent[contentType] = collectionsByType[i]
+    })
+    // ;(selected.singletons).forEach((contentType, i) => {
+    //     rawContent[contentType] = singletonsByType[i]
+    // })
+
+    return rawContent
 }
 
 function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
@@ -170,22 +177,17 @@ const splitContentByLang = (
     content: ProcessingTranslatedToolsContent,
     selectedLanguages: Language[],
 ) =>
-    selectedLanguages.reduce<Translated<ToolsContent>>(
-        (result, lang: Language) => {
-            result[lang] = {
-                tools: getByLang(content.tools, lang),
-                skills: getByLang(content.skills, lang),
-                dimensions: getByLang(content.dimensions, lang),
-                // IDEA: Or should tags be sorted by number of tools using them?
-                // This would make the popular tags appear first and might give a better UX
-                tags: getByLang(content.tags, lang).sort(
-                    sortNamesAlphabetically,
-                ),
-            }
-            return result
-        },
-        {} as Translated<ToolsContent>,
-    )
+    selectedLanguages.reduce<Translated<ToolsContent>>((result, lang: Language) => {
+        result[lang] = {
+            tools: getByLang(content.tools, lang),
+            skills: getByLang(content.skills, lang),
+            dimensions: getByLang(content.dimensions, lang),
+            // IDEA: Or should tags be sorted by number of tools using them?
+            // This would make the popular tags appear first and might give a better UX
+            tags: getByLang(content.tags, lang).sort(sortNamesAlphabetically),
+        }
+        return result
+    }, {} as Translated<ToolsContent>)
 
 const prepareContent = (
     content: ProcessingTranslatedToolsContent,
@@ -201,9 +203,7 @@ const orderToolsConsistently = (builtContent: Translated<ToolsContent>) => {
         builtContent[language as Language] = {
             ...content,
             tools: content.tools.sort(
-                mostRelevantContentFirst(
-                    content.skills.map((skill) => skill.id),
-                ),
+                mostRelevantContentFirst(content.skills.map((skill) => skill.id)),
             ),
         }
     }
@@ -214,7 +214,7 @@ const orderToolsConsistently = (builtContent: Translated<ToolsContent>) => {
 export default async function buildTools(
     selectedLanguages: Language[],
     contentDir: string,
-    selectedCollections: ToolsCollections,
+    selectedCollections: SelectedCollections,
 ) {
     const rawContent = await loadContent(selectedCollections, contentDir)
 

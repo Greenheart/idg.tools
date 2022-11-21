@@ -1,1 +1,123 @@
-{"en":{"stories":[{"publishedAt":"2022-11-09T23:00:00.000Z","slug":"lj124tg","intro":"What we've learned from practicing IDGs together with friends, and how you can get started too.","dimensions":["ckzi38wix0218e2n09ncgnmxx","ckzi39fwv0374e2n0d2eynda4"],"imageAlt":"Dewdrop on grass","story":"Something interesting","title":"One Year of Exploring the IDGs with 29k","contributors":["cla8up9cc00022e64vyvimesw","cla8vdpi400032e64780t7x8e"],"id":"cla8umwjn00002e64u4qcrrks","image":"/images/aaron-burden-Kp9z6zcUfGw-unsplash.jpg","tags":[],"link":"one-year-of-exploring-the-idgs-with-29k-lj124tg"},{"publishedAt":"2022-11-04T18:21:18.662Z","slug":"8z124t8","intro":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis.","dimensions":["ckzi38wix0218e2n09ncgnmxx"],"imageAlt":"Spruce","story":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis.\n\nLorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis.","title":"Prototyping with the IDGs in Education","contributors":["cla8wakd600042e648gvcbz7z"],"id":"cla2tp16e00002e64ckncctre","image":"/images/matthew-smith-Rfflri94rs8-unsplash.jpg","tags":[],"link":"prototyping-with-the-idgs-in-education-8z124t8"},{"publishedAt":"2022-11-03T16:53:43.557Z","slug":"do324k8","intro":"Getting started is often the hardest part. That's why 10+ existing hubs are inviting you to learn more about a new IDG dimension each month, starting January 2023.","dimensions":["ckzi3855r0086e2n0smi0mew5"],"imageAlt":"Seedling","story":"Whether you're new to the IDGs or already familiar with the framework, you're invited to join this upcoming theme and learn more about each of the IDG dimensions.\n\nThere will be discussions, events and opportunities to learn together with people from different parts of the world.\n\nThe first month, we're starting with the Being dimension.","title":"Invitation: Join 10+ Hubs and Explore One IDG Dimension Every Month","contributors":["cla2qy3dn00042e64fyiccgpm"],"tags":["cl37epfsz0159jgn0ytt4k64j","cl7lzoeqy00002e62ke8rog8l"],"id":"cla2qkebe00022e64hnecvmkt","image":"/images/austin-d-72XZgeY3IY4-unsplash.jpg","link":"invitation-join-10-hubs-and-explore-one-idg-dimension-every-month-do324k8"}],"contributors":[{"id":"cla2qy3dn00042e64fyiccgpm","name":"Jenny Frick"},{"id":"cla8up9cc00022e64vyvimesw","name":"Samuel Plumppu","link":"https://samuelplumppu.se"},{"id":"cla8vdpi400032e64780t7x8e","name":"Sara Nyberg"},{"id":"cla8wakd600042e648gvcbz7z","name":"Patrick Mc Namara"}],"dimensions":[{"id":"ckzi3855r0086e2n0smi0mew5","name":"Being","description":"Relationship to Self","skills":["ckzi3a4z90431e2n04kx2pbq2","ckzi3am4y0486e2n04obcy6hi","ckzi3ayvo0547e2n03lvu0goo","ckzi3b8sz0614e2n0ijnnazce","ckzi3blfz0687e2n0huf88a8y"]},{"id":"ckzi38ilp0149e2n0idgw5zqv","name":"Thinking","description":"Cognitive Skills","skills":["ckzi3cikk0766e2n0j9my4e46","ckzi3cvpf0851e2n00bcmzsgz","ckzi3d9gp0942e2n0lvc6k1nh","ckzi3dk3h1039e2n0qxij7ooh","ckzi3dtdk1142e2n0m9v02uf5"]},{"id":"ckzi38wix0218e2n09ncgnmxx","name":"Relating","description":"Caring for Others and the World","skills":["ckzi3e4as1251e2n0fz614xn4","ckzi3ef9s1366e2n082dhihsm","ckzi3eor91487e2n0qdoa639u","ckzi3ezut1614e2n07fab18pt"]},{"id":"ckzi3951t0293e2n0n3bykbg5","name":"Collaborating","description":"Social Skills","skills":["ckzi3f9cj1747e2n0taoxah1j","ckzi3fnea2022e2n0r588if1r","ckzi3g17e2167e2n055jpiaaz","ckzi3gb7f2318e2n04kesx118","ckzi3gknp2475e2n0dm59ikcn"]},{"id":"ckzi39fwv0374e2n0d2eynda4","name":"Acting","description":"Driving change","skills":["ckzi3gu6u2638e2n0fmr9gv86","ckzi3h80v2807e2n0l44d20qr","ckzi3hi072982e2n0r4cdkqjy","ckzi3hqs63163e2n03h36pb73"]}],"tags":[{"id":"cl37epfsz0159jgn0ytt4k64j","name":"Non-profit"},{"id":"cl7lzoeqy00002e62ke8rog8l","name":"Self-directed"}]}}
+{
+    "en": {
+        "stories": [
+            {
+                "publishedAt": "2022-11-09T23:00:00.000Z",
+                "slug": "lj124tg",
+                "intro": "What we've learned from practicing IDGs together with friends, and how you can get started too.",
+                "dimensions": ["ckzi38wix0218e2n09ncgnmxx", "ckzi39fwv0374e2n0d2eynda4"],
+                "imageAlt": "Dewdrop on grass",
+                "story": "Something interesting",
+                "title": "One Year of Exploring the IDGs with 29k",
+                "contributors": ["cla8up9cc00022e64vyvimesw", "cla8vdpi400032e64780t7x8e"],
+                "id": "cla8umwjn00002e64u4qcrrks",
+                "image": "/images/aaron-burden-Kp9z6zcUfGw-unsplash.jpg",
+                "tags": [],
+                "link": "one-year-of-exploring-the-idgs-with-29k-lj124tg"
+            },
+            {
+                "publishedAt": "2022-11-04T18:21:18.662Z",
+                "slug": "8z124t8",
+                "intro": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis.",
+                "dimensions": ["ckzi38wix0218e2n09ncgnmxx"],
+                "imageAlt": "Spruce",
+                "story": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis.\n\nLorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nobis officiis voluptatum aliquid perspiciatis.",
+                "title": "Prototyping with the IDGs in Education",
+                "contributors": ["cla8wakd600042e648gvcbz7z"],
+                "id": "cla2tp16e00002e64ckncctre",
+                "image": "/images/matthew-smith-Rfflri94rs8-unsplash.jpg",
+                "tags": [],
+                "link": "prototyping-with-the-idgs-in-education-8z124t8"
+            },
+            {
+                "publishedAt": "2022-11-03T16:53:43.557Z",
+                "slug": "do324k8",
+                "intro": "Getting started is often the hardest part. That's why 10+ existing hubs are inviting you to learn more about a new IDG dimension each month, starting January 2023.",
+                "dimensions": ["ckzi3855r0086e2n0smi0mew5"],
+                "imageAlt": "Seedling",
+                "story": "Whether you're new to the IDGs or already familiar with the framework, you're invited to join this upcoming theme and learn more about each of the IDG dimensions.\n\nThere will be discussions, events and opportunities to learn together with people from different parts of the world.\n\nThe first month, we're starting with the Being dimension.",
+                "title": "Invitation: Join 10+ Hubs and Explore One IDG Dimension Every Month",
+                "contributors": ["cla2qy3dn00042e64fyiccgpm"],
+                "tags": ["cl37epfsz0159jgn0ytt4k64j", "cl7lzoeqy00002e62ke8rog8l"],
+                "id": "cla2qkebe00022e64hnecvmkt",
+                "image": "/images/austin-d-72XZgeY3IY4-unsplash.jpg",
+                "link": "invitation-join-10-hubs-and-explore-one-idg-dimension-every-month-do324k8"
+            }
+        ],
+        "contributors": [
+            { "id": "cla2qy3dn00042e64fyiccgpm", "name": "Jenny Frick" },
+            {
+                "id": "cla8up9cc00022e64vyvimesw",
+                "name": "Samuel Plumppu",
+                "link": "https://samuelplumppu.se"
+            },
+            { "id": "cla8vdpi400032e64780t7x8e", "name": "Sara Nyberg" },
+            { "id": "cla8wakd600042e648gvcbz7z", "name": "Patrick Mc Namara" }
+        ],
+        "dimensions": [
+            {
+                "id": "ckzi3855r0086e2n0smi0mew5",
+                "name": "Being",
+                "description": "Relationship to Self",
+                "skills": [
+                    "ckzi3a4z90431e2n04kx2pbq2",
+                    "ckzi3am4y0486e2n04obcy6hi",
+                    "ckzi3ayvo0547e2n03lvu0goo",
+                    "ckzi3b8sz0614e2n0ijnnazce",
+                    "ckzi3blfz0687e2n0huf88a8y"
+                ]
+            },
+            {
+                "id": "ckzi38ilp0149e2n0idgw5zqv",
+                "name": "Thinking",
+                "description": "Cognitive Skills",
+                "skills": [
+                    "ckzi3cikk0766e2n0j9my4e46",
+                    "ckzi3cvpf0851e2n00bcmzsgz",
+                    "ckzi3d9gp0942e2n0lvc6k1nh",
+                    "ckzi3dk3h1039e2n0qxij7ooh",
+                    "ckzi3dtdk1142e2n0m9v02uf5"
+                ]
+            },
+            {
+                "id": "ckzi38wix0218e2n09ncgnmxx",
+                "name": "Relating",
+                "description": "Caring for Others and the World",
+                "skills": [
+                    "ckzi3e4as1251e2n0fz614xn4",
+                    "ckzi3ef9s1366e2n082dhihsm",
+                    "ckzi3eor91487e2n0qdoa639u",
+                    "ckzi3ezut1614e2n07fab18pt"
+                ]
+            },
+            {
+                "id": "ckzi3951t0293e2n0n3bykbg5",
+                "name": "Collaborating",
+                "description": "Social Skills",
+                "skills": [
+                    "ckzi3f9cj1747e2n0taoxah1j",
+                    "ckzi3fnea2022e2n0r588if1r",
+                    "ckzi3g17e2167e2n055jpiaaz",
+                    "ckzi3gb7f2318e2n04kesx118",
+                    "ckzi3gknp2475e2n0dm59ikcn"
+                ]
+            },
+            {
+                "id": "ckzi39fwv0374e2n0d2eynda4",
+                "name": "Acting",
+                "description": "Driving change",
+                "skills": [
+                    "ckzi3gu6u2638e2n0fmr9gv86",
+                    "ckzi3h80v2807e2n0l44d20qr",
+                    "ckzi3hi072982e2n0r4cdkqjy",
+                    "ckzi3hqs63163e2n03h36pb73"
+                ]
+            }
+        ],
+        "tags": [
+            { "id": "cl37epfsz0159jgn0ytt4k64j", "name": "Non-profit" },
+            { "id": "cl7lzoeqy00002e62ke8rog8l", "name": "Self-directed" }
+        ],
+        "featured": { "stories": ["cla2qkebe00022e64hnecvmkt"] }
+    }
+}
