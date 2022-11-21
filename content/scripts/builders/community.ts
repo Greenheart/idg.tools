@@ -8,7 +8,9 @@ import type {
     Contributor,
     Tag,
     CommunityCollections,
+    FeaturedContent,
 } from '$shared/types'
+import type { SelectedCollections, SingletonName } from 'scripts/build-content'
 import {
     createBackwardsCompatibleLink,
     getConsistentAssetURL,
@@ -24,6 +26,7 @@ type ProcessingTranslatedCommunityContent = {
     contributors: Translated<Contributor>[]
     dimensions: Translated<Dimension>[]
     tags: Translated<Tag>[]
+    featured: Translated<FeaturedContent>
 }
 
 const prepareStories = (
@@ -137,18 +140,32 @@ const prepareTags = (
         return true
     }, {})
 
-const loadContent = async (contentTypes: CommunityCollections, contentDir: string) => {
-    const paths = await getContentPaths(contentTypes, contentDir)
-    const content = await Promise.all(paths.map((paths) => Promise.all(paths.map(readJSON))))
+const loadContent = async (selected: SelectedCollections, baseDir: string) => {
+    const paths = await getContentPaths(selected, baseDir)
 
-    return contentTypes.reduce((rawContent, type, i) => {
-        rawContent[type] = content[i]
-        return rawContent
-    }, {} as ProcessingTranslatedCommunityContent)
+    const [collectionsByType, singletonsByType] = await Promise.all([
+        Promise.all(paths.collections.map((collection) => Promise.all(collection.map(readJSON)))),
+        Promise.all(paths.singletons.map(readJSON)),
+    ])
+
+    const rawContent = {} as ProcessingTranslatedCommunityContent
+
+    ;(selected.collections as CommunityCollections).forEach((contentType, i) => {
+        rawContent[contentType] = collectionsByType[i]
+    })
+    ;(selected.singletons as SingletonName[]).forEach((contentType, i) => {
+        rawContent[contentType] = singletonsByType[i]
+    })
+
+    return rawContent
 }
 
 function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
     return content.map((item) => item[lang]).filter(Boolean) as T[]
+}
+
+function getSingletonByLang<T>(content: Translated<T>, lang: Language): T {
+    return content[lang] as T
 }
 
 const splitContentByLang = (
@@ -163,7 +180,11 @@ const splitContentByLang = (
             // IDEA: Or should tags be sorted by number of stories using them?
             // This would make the popular tags appear first and might give a better UX
             tags: getByLang(content.tags, lang).sort(sortNamesAlphabetically),
+            featured: getSingletonByLang(content.featured, lang),
         }
+
+        console.log(content.featured)
+
         return result
     }, {} as Translated<CommunityContent>)
 
@@ -179,9 +200,11 @@ const prepareContent = (
 export default async function buildCommunity(
     selectedLanguages: Language[],
     contentDir: string,
-    selectedCollections: CommunityCollections,
+    selectedCollections: SelectedCollections,
 ) {
     const rawContent = await loadContent(selectedCollections, contentDir)
+
+    // console.log('RAW FEATURED', rawContent.featured)
 
     // IDEA: Perhaps we could split content by language first, and then prepare content only for the languages wanted?
     // This would allow to filter out missing content in the beginning and only implement the selectedLanguages filering in one place.

@@ -4,7 +4,8 @@ import { resolve } from 'path'
 import slugify from 'slugify'
 
 import { DEFAULT_LANGUAGE_TAG } from '$shared/constants'
-import type { AllContent, Story, Tag } from '$shared/types'
+import type { Story, Tag } from '$shared/types'
+import { SelectedCollections, SINGLETONS } from './build-content'
 
 export const slugifyName = (string: string, language = DEFAULT_LANGUAGE_TAG) =>
     slugify(string, {
@@ -36,10 +37,67 @@ export const writeJSON = (path: string, data: any, indentation: number = 0) =>
         encoding: 'utf-8',
     })
 
-// TODO: Add support for loading collections with specific files rather than entire directories
-// This would be a good utility function to complement getContentPaths
-export const getContentPaths = (contentTypes: Array<keyof AllContent>, baseDir: string) =>
-    Promise.all(contentTypes.map((type) => FastGlob(resolve(baseDir, `${type}/*.json`))))
+// const getCollectionPaths = (baseDir: string) => (collection: string) =>
+//     FastGlob(resolve(baseDir, `${collection}/*.json`))
+
+// const getSingletonPaths = (baseDir: string) => (singleton: string) => {
+//     console.log(resolve(baseDir, `${singleton}.json`))
+
+//     return FastGlob(resolve(baseDir, `${singleton}.json`))
+// }
+
+// export const getContentPaths = (contentTypes: Array<keyof AllContent>, baseDir: string) => {
+//     // IDEA: Maybe we need the types of collections later on too. If so this reduce could be used in an earlier step to reuse the organized content types
+//     const paths = contentTypes.reduce(
+//         (paths, contentType) => {
+//             const singleton = SINGELTONS[contentType as keyof typeof SINGELTONS]
+//             console.log(singleton)
+
+//             if (singleton) {
+//                 console.log(singleton)
+//                 paths.singletons.push(singleton)
+//             } else {
+//                 paths.collections.push(contentType)
+//             }
+//             return paths
+//         },
+//         { singletons: [], collections: [] } as {
+//             singletons: string[]
+//             collections: Array<keyof AllContent>
+//         },
+//     )
+
+//     return Promise.all(
+//         [
+//             paths.collections.map(getCollectionPaths(baseDir)),
+//             paths.singletons.map(getSingletonPaths(baseDir)),
+//         ].flat(),
+//     )
+// }
+
+const getPaths = (...paths: string[]) => FastGlob(resolve(...paths))
+
+export const getContentPaths = async (selected: SelectedCollections, baseDir: string) => {
+    const collections = selected.collections.length
+        ? await Promise.all(
+              selected.collections.flatMap((collection) =>
+                  getPaths(baseDir, `${collection}/*.json`),
+              ),
+          )
+        : []
+
+    const singletons = selected.singletons.length
+        ? (
+              await Promise.all(
+                  selected.singletons.flatMap((singleton) =>
+                      getPaths(baseDir, `${SINGLETONS[singleton]}.json`),
+                  ),
+              )
+          ).flat()
+        : []
+
+    return { collections, singletons }
+}
 
 /**
  * Ensures the url works in the live app or website by removing the full prefix added by the CMS.

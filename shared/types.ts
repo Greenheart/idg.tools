@@ -48,6 +48,10 @@ export type Story = {
     tags: Tag['id'][]
 }
 
+export type FeaturedContent = {
+    stories: Story['id'][]
+}
+
 export type ToolsContent = {
     dimensions: Dimension[]
     tools: Tool[]
@@ -60,6 +64,7 @@ export type CommunityContent = {
     contributors: Contributor[]
     dimensions: Dimension[]
     tags: Tag[]
+    featured: FeaturedContent
 }
 
 export type ToolsCollections = (keyof ToolsContent)[]
