@@ -88,7 +88,6 @@
 <!-- TODO: add filters based on tags to be able to find the most relevant types of stories -->
 <!-- TODO: add tags to content for testing purposes -->
 <!-- TODO: fix images within posts in the CMS - until it works, it's possible to work around it by adding images using the global asset upload, and then referencing them using markdown formatting -->
-<!-- TODO: Improve the layout of posts, wider title, better display of the image, show relevant posts beneath (and link back to start page) -->
 <!-- TODO: Write contributing markdown document that can also be rendered as a page - stories, content, design and development -->
 <!--
     IDEA: UI for filters could be to select the tags you want to find
