@@ -77,25 +77,26 @@ async function build(selectedBuilders: BuilderName[]) {
     console.log(`✅ Built content for ${updatedProjects} in ${buildTime} s\n`)
 }
 
+const hasMatchingPath = (path: string) => (contentPath: string) => path.includes(`/${contentPath}`)
+
 export default async function run(selectedBuilders: BuilderName[] = BUILDER_NAMES, path: string) {
     // Remove any invalid arguments
-    selectedBuilders = selectedBuilders.filter((b) => BUILDER_NAMES.includes(b))
+    let builders = selectedBuilders.filter((b) => BUILDER_NAMES.includes(b))
 
-    if (!selectedBuilders.length) {
-        selectedBuilders = BUILDER_NAMES
+    if (!builders.length) {
+        builders = BUILDER_NAMES
     }
 
     if (path) {
+        const shouldBuild = hasMatchingPath(path)
         // If a path just changed, we only re-execute the builders that are using that type of content
-        selectedBuilders = selectedBuilders.filter((builder) => {
+        builders = builders.filter((builder) => {
             return (
-                COLLECTIONS[builder].collections.some((collection) =>
-                    path.includes(`/${collection}`),
-                ) ||
-                COLLECTIONS[builder].singletons.some((singleton) => path.includes(`/${singleton}`))
+                COLLECTIONS[builder].collections.some(shouldBuild) ||
+                COLLECTIONS[builder].singletons.some(shouldBuild)
             )
         })
     }
 
-    return build(selectedBuilders)
+    return build(builders)
 }

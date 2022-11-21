@@ -182,9 +182,6 @@ const splitContentByLang = (
             tags: getByLang(content.tags, lang).sort(sortNamesAlphabetically),
             featured: getSingletonByLang(content.featured, lang),
         }
-
-        console.log(content.featured)
-
         return result
     }, {} as Translated<CommunityContent>)
 
@@ -203,8 +200,6 @@ export default async function buildCommunity(
     selectedCollections: SelectedCollections,
 ) {
     const rawContent = await loadContent(selectedCollections, contentDir)
-
-    // console.log('RAW FEATURED', rawContent.featured)
 
     // IDEA: Perhaps we could split content by language first, and then prepare content only for the languages wanted?
     // This would allow to filter out missing content in the beginning and only implement the selectedLanguages filering in one place.
