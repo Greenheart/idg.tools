@@ -7,9 +7,22 @@
     import StoryPreview from '$components/StoryPreview.svelte'
     import StoriesSection from '$components/StoriesSection.svelte'
     import { COMMUNITY_LINK, FRAMEWORK_LINK } from '$shared/constants'
+    import type { Story } from '$shared/types'
 
     export let data: PageData
     $: ({ content } = data)
+
+    $: [featuredStories, nonFeaturedStories] = (content?.stories ?? []).reduce(
+        (result, story) => {
+            if (content.featured.stories.includes(story.id)) {
+                result[0].push(story)
+            } else {
+                result[1].push(story)
+            }
+            return result
+        },
+        [[], []] as Story[][],
+    )
 </script>
 
 <div class:hidden={$isMenuOpen}>
@@ -78,7 +91,10 @@
 <div
     class="mx-auto grid max-w-lg items-start justify-items-center gap-8 md:w-full md:max-w-none md:grid-cols-2 lg:gap-x-12"
 >
-    {#each content.stories as story}
+    {#each featuredStories as story (story.id)}
+        <StoryPreview {story} {content} />
+    {/each}
+    {#each nonFeaturedStories as story (story.id)}
         <StoryPreview {story} {content} />
     {/each}
 </div>
