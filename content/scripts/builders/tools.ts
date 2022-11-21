@@ -69,7 +69,6 @@ const prepareTools = (
                 )
             }
 
-            // TODO: If we only load content for each language, this step can be avoided.
             const relevantTags = translatedTags.reduce((relevantTags, tag) => {
                 const translatedTag = tag[language as Language]
                 if (translatedTag) relevantTags.push(translatedTag)

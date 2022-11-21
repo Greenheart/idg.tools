@@ -7,22 +7,9 @@
     import StoryPreview from '$components/StoryPreview.svelte'
     import StoriesSection from '$components/StoriesSection.svelte'
     import { COMMUNITY_LINK, FRAMEWORK_LINK } from '$shared/constants'
-    import type { Story } from '$shared/types'
 
     export let data: PageData
     $: ({ content } = data)
-
-    $: [featuredStories, nonFeaturedStories] = (content?.stories ?? []).reduce(
-        (result, story) => {
-            if (content.featured.stories.includes(story.id)) {
-                result[0].push(story)
-            } else {
-                result[1].push(story)
-            }
-            return result
-        },
-        [[], []] as Story[][],
-    )
 </script>
 
 <div class:hidden={$isMenuOpen}>
@@ -86,21 +73,17 @@
 
 <StoriesSection />
 
+<!-- TODO: Change title when filters are applies, and show Featured by default -->
 <Heading class="mb-4 pt-16" id="stories">Featured stories</Heading>
 
 <div
     class="mx-auto grid max-w-lg items-start justify-items-center gap-8 md:w-full md:max-w-none md:grid-cols-2 lg:gap-x-12"
 >
-    {#each featuredStories as story (story.id)}
-        <StoryPreview {story} {content} />
-    {/each}
-    {#each nonFeaturedStories as story (story.id)}
+    {#each content.stories as story (story.id)}
         <StoryPreview {story} {content} />
     {/each}
 </div>
 
-<!-- TODO: only include featured stories in the top section -->
-<!-- TODO: show all stories here below -->
 <!-- TODO: add filters based on tags to be able to find the most relevant types of stories -->
 <!-- TODO: add tags to content for testing purposes -->
 <!-- TODO: fix images within posts in the CMS - until it works, it's possible to work around it by adding images using the global asset upload, and then referencing them using markdown formatting -->

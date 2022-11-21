@@ -68,6 +68,3 @@ export const getConsistentAssetURL = (url: string, unwantedPrefix: string) =>
     url.replace(unwantedPrefix, '')
 
 export const sortNamesAlphabetically = (a: Tag, b: Tag) => a.name.localeCompare(b.name)
-
-export const sortByPublishingDate = (a: Story, b: Story) =>
-    new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
