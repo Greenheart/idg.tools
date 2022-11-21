@@ -29,7 +29,7 @@
 <div class:hidden={$isMenuOpen}>
     <Heading size={1}>Change starts within</Heading>
 
-    <div class="space-y-4 py-12 text-lg sm:text-xl">
+    <div class="space-y-4 pt-12 pb-16 text-lg sm:text-xl">
         <p>
             IDG.tools is the open source toolkit from the <Link
                 href="https://www.innerdevelopmentgoals.org/framework"
@@ -61,7 +61,7 @@
 <Heading size={2} class="pb-4">1. Choose skills to practice</Heading>
 <Filters {content} />
 
-<Heading size={2} class="pb-4 pt-16" id="explore">2. Explore relevant tools</Heading>
+<Heading size={2} class="pb-4 pt-20" id="explore">2. Explore relevant tools</Heading>
 <div class="grid gap-8 lg:grid-cols-2" class:hidden={$isMenuOpen}>
     <Tools tools={mostRelevantTools} {content} />
 </div>

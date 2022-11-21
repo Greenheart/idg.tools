@@ -8,9 +8,18 @@
 
     import type { PageData } from './$types'
     import Link from '$shared/components/Link.svelte'
+    import Arrow from '$shared/icons/Arrow.svelte'
     export let data: PageData
     $: ({ tool, skills, tags } = data)
 </script>
+
+<!--
+    TODO: Refactor into shared Breadcrumb component that takes { text: '', link?: '' }
+    then renders links, text, and joins it all with arrows
+-->
+<div class="flex items-center gap-2 pb-8">
+    <Link href="/#explore">Tools</Link><Arrow right /><span>{tool.name}</span>
+</div>
 
 <Heading size={1}>{tool.name}</Heading>
 
@@ -20,7 +29,7 @@
     <Markdown source={tool.intro} class="pt-4 font-bold" />
 {/if}
 
-<Markdown source={tool.description} class="pt-8" />
+<Markdown source={tool.description} formatting="limited" class="pt-8" />
 
 <div class="mt-8 rounded-2xl bg-stone-50 p-4 text-stone-900">
     <Heading class="pb-2 text-2xl">How to practice</Heading>
@@ -39,6 +48,6 @@
     <FeedbackForm />
 </div>
 
-<div class="flex mt-8 justify-center">
+<div class="mt-8 flex justify-center">
     <Link href="/" variant="pink">See more tools</Link>
 </div>
