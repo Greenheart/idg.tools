@@ -168,19 +168,37 @@ function getSingletonByLang<T>(content: Translated<T>, lang: Language): T {
     return content[lang] as T
 }
 
+const showFeaturedFirstAndThenByPublishingDate =
+    (featured: FeaturedContent) => (a: Story, b: Story) => {
+        const aFeatured = featured.stories.includes(a.id)
+        const bFeatured = featured.stories.includes(b.id)
+        if (aFeatured && bFeatured) {
+            // Preserve featured order controlled by the CMS
+            return featured.stories.indexOf(a.id) < featured.stories.indexOf(b.id) ? -1 : 1
+        } else if (aFeatured) {
+            return -1
+        } else if (bFeatured) {
+            return 1
+        }
+        return sortByPublishingDate(a, b)
+    }
+
 const splitContentByLang = (
     content: ProcessingTranslatedCommunityContent,
     selectedLanguages: Language[],
 ) =>
     selectedLanguages.reduce<Translated<CommunityContent>>((result, lang: Language) => {
+        const featured = getSingletonByLang(content.featured, lang)
         result[lang] = {
-            stories: getByLang(content.stories, lang).sort(sortByPublishingDate),
+            stories: getByLang(content.stories, lang).sort(
+                showFeaturedFirstAndThenByPublishingDate(featured),
+            ),
             contributors: content.contributors as Contributor[],
             dimensions: getByLang(content.dimensions, lang),
             // IDEA: Or should tags be sorted by number of stories using them?
             // This would make the popular tags appear first and might give a better UX
             tags: getByLang(content.tags, lang).sort(sortNamesAlphabetically),
-            featured: getSingletonByLang(content.featured, lang),
+            featured,
         }
         return result
     }, {} as Translated<CommunityContent>)
