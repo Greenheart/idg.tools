@@ -8,6 +8,7 @@
 
     import '../app.css'
     import CommunitySection from '$components/CommunitySection.svelte'
+    import StoriesSection from '$components/StoriesSection.svelte'
 
     export const csr = false
     export const prerender = true
@@ -49,5 +50,9 @@
 </main>
 
 <div class="mx-auto w-full max-w-2xl px-4 pb-16 sm:max-w-3xl" class:hidden={$isMenuOpen}>
-    <CommunitySection />
+    {#if $page?.route?.id === '/'}
+        <CommunitySection />
+    {:else}
+        <StoriesSection />
+    {/if}
 </div>
