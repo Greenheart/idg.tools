@@ -85,17 +85,17 @@
 
     <Heading class="text-center">More stories</Heading>
 
-    <div class="mt-16 flex items-start gap-8">
-        <div class="flex flex-1 items-center space-x-2">
-            {#if prev}
+    <div class="mt-8 flex items-start space-x-8">
+        {#if prev}
+            <div class="flex flex-1 items-center justify-start space-x-2">
                 <Arrow left /><Link href={prev.link} class="text-left">{prev.title}</Link>
-            {/if}
-        </div>
-        <div class="flex flex-1 items-center space-x-2">
-            {#if next}
+            </div>
+        {/if}
+        {#if next}
+            <div class="flex flex-1 items-center justify-end space-x-2">
                 <Link href={next.link} class="text-right">{next.title}</Link><Arrow right />
-            {/if}
-        </div>
+            </div>
+        {/if}
     </div>
 
     <div class="mt-16 flex justify-center">
