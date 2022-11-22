@@ -21,6 +21,7 @@ export const StoriesFields: CustomCmsField[] = [
         name: 'imageAlt',
         i18n: true,
     },
+    // TODO: Add image credit field
     {
         label: 'Intro',
         name: 'intro',
