@@ -6,7 +6,7 @@
     import Tools from '$components/Tools.svelte'
     import { selectedSkills, selectedTags, isMenuOpen, visibleItems } from '$lib/stores'
     import type { PageData } from './$types'
-    import { getMostRelevantContent } from '$shared/content-utils'
+    import { getMostRelevantTools } from '$shared/content-utils'
     import Filters from '$components/Filters.svelte'
     import { FEEDBACK_FORM_LINK } from '$lib/constants'
 
@@ -22,7 +22,7 @@
 
     $: mostRelevantTools =
         $selectedSkills.length || $selectedTags.length
-            ? getMostRelevantContent(content, $selectedSkills, $selectedTags)
+            ? getMostRelevantTools(content, $selectedSkills, $selectedTags)
             : content.tools
 </script>
 

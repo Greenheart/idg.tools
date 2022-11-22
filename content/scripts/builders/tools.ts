@@ -1,4 +1,4 @@
-import { getTag, mostRelevantContentFirst } from '$shared/content-utils'
+import { getTag, mostRelevantToolsFirst } from '$shared/content-utils'
 import type {
     Dimension,
     ToolsContent,
@@ -202,7 +202,7 @@ const orderToolsConsistently = (builtContent: Translated<ToolsContent>) => {
         builtContent[language as Language] = {
             ...content,
             tools: content.tools.sort(
-                mostRelevantContentFirst(content.skills.map((skill) => skill.id)),
+                mostRelevantToolsFirst(content.skills.map((skill) => skill.id)),
             ),
         }
     }

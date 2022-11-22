@@ -80,11 +80,11 @@ export const getTotalRelevancyScore = (
         return totalRelevancy
     }, 0)
 
-export const mostRelevantContentFirst = (selectedSkills: Skill['id'][]) => (a: Tool, b: Tool) =>
+export const mostRelevantToolsFirst = (selectedSkills: Skill['id'][]) => (a: Tool, b: Tool) =>
     getTotalRelevancyScore(b.relevancy, selectedSkills) -
     getTotalRelevancyScore(a.relevancy, selectedSkills)
 
-export const getMostRelevantContent = (
+export const getMostRelevantTools = (
     content: ToolsContent,
     selectedSkills: Skill['id'][],
     selectedTags: Tag['id'][],
@@ -100,7 +100,7 @@ export const getMostRelevantContent = (
 
             return hasMatchingSkills && hasMatchingTags
         })
-        .sort(mostRelevantContentFirst(selectedSkills))
+        .sort(mostRelevantToolsFirst(selectedSkills))
 
 export const sortByPublishingDate = (a: Story, b: Story) =>
     new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
