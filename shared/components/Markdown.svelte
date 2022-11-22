@@ -49,7 +49,6 @@
             ...limited,
             blockquote: Blockquote,
             heading: Heading,
-            // TODO: Add custom renderer for images to style them consistently with other images.
             image: Image,
         }
 
@@ -66,7 +65,7 @@
     }
 
     const baseClasses =
-        'prose prose-lg lg:prose-xl prose-stone prose-p:leading-7 prose-li:my-4 prose-a:text-thinking'
+        'prose prose-lg lg:prose-xl prose-stone prose-p:leading-7 prose-li:my-4 prose-a:text-thinking prose-img:rounded-2xl'
     const defaultVariant = 'default'
     const defaultRenderer: MarkdownRenderer = 'linksOnly'
 
