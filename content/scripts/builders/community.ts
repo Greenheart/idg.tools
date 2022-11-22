@@ -1,4 +1,4 @@
-import { getTag, showFeaturedFirstAndThenByPublishingDate } from '$shared/content-utils'
+import { getSortedStories, getTag } from '$shared/content-utils'
 import type {
     Dimension,
     CommunityContent,
@@ -172,10 +172,10 @@ const splitContentByLang = (
 ) =>
     selectedLanguages.reduce<Translated<CommunityContent>>((result, lang: Language) => {
         const featured = getSingletonByLang(content.featured, lang)
+        const sortedStories = getSortedStories(getByLang(content.stories, lang), featured)
+
         result[lang] = {
-            stories: getByLang(content.stories, lang)
-                .slice()
-                .sort(showFeaturedFirstAndThenByPublishingDate(featured)),
+            stories: sortedStories,
             contributors: content.contributors as Contributor[],
             dimensions: getByLang(content.dimensions, lang),
             // IDEA: Or should tags be sorted by number of stories using them?

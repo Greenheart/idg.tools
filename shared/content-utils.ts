@@ -105,20 +105,16 @@ export const getMostRelevantTools = (
 export const sortByPublishingDate = (a: Story, b: Story) =>
     new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
 
-export const showFeaturedFirstAndThenByPublishingDate =
-    (featured: FeaturedContent) => (a: Story, b: Story) => {
-        const aFeatured = featured.stories.includes(a.id)
-        const bFeatured = featured.stories.includes(b.id)
-        if (aFeatured && bFeatured) {
-            // Preserve featured order controlled by the CMS
-            return featured.stories.indexOf(a.id) < featured.stories.indexOf(b.id) ? -1 : 1
-        } else if (aFeatured) {
-            return -1
-        } else if (bFeatured) {
-            return 1
-        }
-        return sortByPublishingDate(a, b)
-    }
+export const getSortedStories = (unsortedStories: Story[], featured: FeaturedContent) => {
+    const featuredStories = featured.stories.map((storyId) =>
+        unsortedStories.find((s) => s.id === storyId),
+    ) as Story[]
+    const sortedStories = unsortedStories
+        .filter((s) => !featured.stories.includes(s.id))
+        .sort(sortByPublishingDate)
+
+    return featuredStories.concat(sortedStories)
+}
 
 export const getDateString = (date: string) =>
     new Intl.DateTimeFormat('sv-SE', {
