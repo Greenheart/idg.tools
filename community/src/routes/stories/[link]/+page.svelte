@@ -33,7 +33,7 @@
                 <p class="mb-2 text-sm uppercase">
                     {pluralize('Dimension', dimensions.length, false)}
                 </p>
-                <div class="flex gap-1">
+                <div class="flex flex-wrap gap-1">
                     {#each dimensions as dimension}
                         {@const color = getColor(dimension.id)}
                         <span class={cx('px-2 py-1 text-sm text-white rounded-lg', color)}
@@ -56,7 +56,7 @@
             <p class="mb-2 text-sm uppercase">
                 {pluralize('Contributor', contributors.length, false)}
             </p>
-            <div class="flex space-x-1">
+            <div class="flex flex-wrap space-x-1 whitespace-nowrap">
                 {#each contributors as { link, name }, i}
                     {#if link}
                         <Link href={link} variant="black">{name}</Link>
@@ -71,6 +71,9 @@
     {#if story.intro}
         <Markdown source={story.intro} class="prose-p:!leading-10 mt-8 !text-3xl" />
     {/if}
+
+    <!-- TODO: Make intro image responsive to follow other content width -->
+    <!-- TODO: Keep larger font sizes for a bit longer, scale the same way as tools are doing -->
 
     <img src={story.image} alt={story.imageAlt} class="my-8 rounded-2xl" />
 
