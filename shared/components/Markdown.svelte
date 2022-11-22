@@ -49,6 +49,7 @@
             ...limited,
             blockquote: Blockquote,
             heading: Heading,
+            // TODO: Add custom renderer for images to style them consistently with other images.
             image: Image,
         }
 
