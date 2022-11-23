@@ -59,9 +59,9 @@
 
     const variants = {
         default:
-            'prose-p:text-stone-50 prose-li:text-stone-50 marker:text-stone-50 prose-strong:text-stone-50 prose-em:text-stone-50',
+            'prose-p:text-stone-50 prose-li:text-stone-50 prose-h2:text-stone-50 marker:text-stone-50 prose-strong:text-stone-50 prose-em:text-stone-50',
         inverted:
-            'prose-p:text-stone-900 prose-li:text-stone-900 marker:text-stone-900 prose-strong:text-stone-900 prose-em:text-stone-900',
+            'prose-p:text-stone-900 prose-li:text-stone-900 prose-h2:text-stone-900 marker:text-stone-900 prose-strong:text-stone-900 prose-em:text-stone-900',
     }
 
     const baseClasses =
