@@ -40,6 +40,8 @@
             > (SDGs) through inner development.
         </p>
 
+        <!-- TODO: Change the framing that this is a first draft -->
+
         <p>
             We’re creating a library of scientifically-validated methods to develop the skills
             outlined by the IDG framework. Just select which ones you want to practice and find
