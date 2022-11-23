@@ -10,7 +10,7 @@
     const links = [
         // { href: '/', text: 'Home' },
         // { href: '/about', text: 'About' },
-        { href: 'https://github.com/Greenheart/idg.tools', text: 'GitHub' },
+        { href: '/contribute', text: 'Contribute' },
         // { href: ELEMENT_LINK, text: 'Community' },
     ]
 </script>
