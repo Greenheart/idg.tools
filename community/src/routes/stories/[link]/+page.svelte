@@ -69,7 +69,7 @@
     </div>
 
     {#if story.intro}
-        <Markdown source={story.intro} class="prose-p:!leading-10 mt-8 !text-3xl" />
+        <Markdown source={story.intro} class="mt-8 !text-2xl" />
     {/if}
 
     <!-- TODO: Make intro image responsive to follow other content width -->
