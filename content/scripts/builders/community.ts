@@ -42,6 +42,10 @@ const prepareStories = (
 
         for (const [language, story] of Object.entries(translatedStory)) {
             if (!selectedLanguages.includes(language as Language)) continue
+            if (!story.publishedAt) {
+                console.log('[content] Skipping unpublished story', story.title)
+                continue
+            }
             if (!story.slug) {
                 throw new Error(
                     `[content] Missing slug for story "${story.title}" and language "${language}"`,
