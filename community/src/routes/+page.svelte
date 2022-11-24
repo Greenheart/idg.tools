@@ -4,9 +4,9 @@
     import { isMenuOpen } from '$lib/stores'
     import type { PageData } from './$types'
     import LinkButton from '$shared/components/LinkButton.svelte'
-    import StoryPreview from '$components/StoryPreview.svelte'
     import StoriesSection from '$components/StoriesSection.svelte'
     import { COMMUNITY_LINK, FRAMEWORK_LINK } from '$shared/constants'
+    import Stories from '$components/Stories.svelte'
 
     export let data: PageData
     $: ({ content } = data)
@@ -51,7 +51,7 @@
     </div>
 
     <div class="border-relating flex flex-col rounded-2xl border-2 p-4">
-        <Heading size={2}>Community</Heading>
+        <Heading size={2}>Hubs</Heading>
         <p class="my-4 flex-1">
             With hubs in almost 100 cities, this is an emerging network eager to participate,
             explore and co-create. Join local events, connect with the global community and learn
@@ -71,30 +71,16 @@
     </div>
 </div>
 
+<!-- Maybe add calendar widget -->
+<!-- <div class="mt-16">
+    <div data-tockify-component="calendar" data-tockify-calendar="idghub" />
+    <script
+        data-cfasync="true"
+        data-tockify-script="embed"
+        src="https://public.tockify.com/browser/embed.js"
+    ></script>
+</div> -->
+
 <StoriesSection />
 
-<!-- TODO: Change title when filters are applies, and show Featured by default -->
-<Heading class="mb-4 pt-16" id="stories">Featured stories</Heading>
-
-<div
-    class="mx-auto grid max-w-lg items-start justify-items-center gap-8 md:w-full md:max-w-none md:grid-cols-2 lg:gap-x-12"
->
-    {#each content.stories as story (story.id)}
-        <StoryPreview {story} {content} />
-    {/each}
-</div>
-
-<!-- TODO: add filters based on tags to be able to find the most relevant types of stories -->
-<!-- TODO: add tags to content for testing purposes -->
-<!-- TODO: fix images within posts in the CMS - until it works, it's possible to work around it by adding images using the global asset upload, and then referencing them using markdown formatting -->
-<!-- TODO: Write contributing markdown document that can also be rendered as a page - stories, content, design and development -->
-<!--
-    IDEA: UI for filters could be to select the tags you want to find
-    This would make stories re-order based on the nice transition in the svelte todo list example
-
-    Selecting multiple tags should be possible to filter for the comibinations.default
-
-    Add a clear button to remove
-
-    Refactor the display of stories and filters into a <Stories /> component to keep the landing page clean.
--->
+<Stories {content} />
