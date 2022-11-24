@@ -17,6 +17,7 @@
 
 <Heading size={1} class="pt-8">{story.title}</Heading>
 
+<!-- IDEA: move this header into a separate component since it takes so much space -->
 <div class="mx-auto max-w-3xl">
     <div
         class="mt-8 flex flex-wrap gap-4 gap-x-8 rounded-2xl bg-stone-50 p-4 text-stone-900 shadow-2xl"
@@ -76,7 +77,13 @@
     <!-- TODO: Make intro image responsive to follow other content width -->
     <!-- TODO: Keep larger font sizes for a bit longer, scale the same way as tools are doing -->
 
-    <img src={story.image} alt={story.imageAlt} class="my-8 mx-auto rounded-2xl" />
+    <!-- IDEA: use picture tag and a text description inside -->
+    <img
+        src={story.image}
+        alt={story.imageAlt}
+        class="mx-auto mt-8 w-full rounded-2xl shadow-2xl"
+    />
+    <p class="mt-2 mb-8 text-center text-sm italic text-stone-50">{story.imageAlt}</p>
 
     <Markdown source={story.story} formatting="article" />
 

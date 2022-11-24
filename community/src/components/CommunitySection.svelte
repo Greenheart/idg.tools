@@ -16,5 +16,5 @@
         together. And with your help, we can make IDG.community even better!
     </p>
 
-    <LinkButton href={GITHUB_LINK} variant="inverted">Contribute on GitHub</LinkButton>
+    <LinkButton href={GITHUB_LINK} variant="inverted">How to contribute</LinkButton>
 </div>
