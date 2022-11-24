@@ -83,6 +83,7 @@ export const StoriesFields: CustomCmsField[] = [
         time_format: '',
         i18n: 'duplicate',
         default: '',
+        hint: 'By leaving the publishing date empty, it will not be visible on the webpage.',
     } as CmsField,
     {
         label: 'Slug',
