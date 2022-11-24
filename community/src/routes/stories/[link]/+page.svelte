@@ -28,6 +28,7 @@
             </p>
         </div>
 
+        <!-- IDEA: sort dimensions so they show up in a consistent order with the IDGs. Likely do this already at build time. -->
         {#if dimensions?.length}
             <div>
                 <p class="mb-2 text-sm uppercase">
