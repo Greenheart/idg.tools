@@ -49,15 +49,15 @@
 
 <Heading class="mb-4 mt-16">Featured stories</Heading>
 
-<!-- 
+<!--
 
 
     - intro: welcome, thank you for being here. This community will only be as good as we make it together. There are several ways you can contribute in a meaningful way, which will have a significant impact for the development of the IDGs.
     
-    There are several ways to contribute:
+    There are several ways to participate and contribute:
     - To begin with, please participate in hubs local events, global events.
     - Use the IDGs in practice to reach the SDGs
-        - Use th toolkit - try it in practice, see what works for you
+        - Use the toolkit - try it in practice, see what works for you
         - Give feedback and help improve the toolkit
     - Help organising a local IDG hub in your area and bridge the existing communities related to the SDGs and inner development. The IDG community doesn't aim to be "the movement", but rather a place where different SDG-related communities connect and work on their inner development.
     - Translations
