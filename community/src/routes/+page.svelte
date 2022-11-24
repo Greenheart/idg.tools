@@ -19,7 +19,7 @@
         <p>Welcome to the Inner Development Goals Community!</p>
 
         <p class="mt-4">
-            This is an emerging network of hubs who are using the <Link
+            This is an emerging network of IDG Hubs who are using the <Link
                 href={FRAMEWORK_LINK}
                 class="mt-6 font-bold underline">Inner Development Goals</Link
             > (IDGs) to achieve the <Link
@@ -53,9 +53,8 @@
     <div class="border-relating flex flex-col rounded-2xl border-2 p-4">
         <Heading size={2}>Hubs</Heading>
         <p class="my-4 flex-1">
-            With almost 100 hubs, this is an emerging network eager to participate,
-            explore and co-create. Join local events, connect with the global community and learn
-            together.
+            With almost 100 Hubs, this is an emerging network eager to participate, explore and
+            co-create. Join local events, connect with the global community and learn together.
         </p>
         <Link href={COMMUNITY_LINK} variant="pink">Find your community</Link>
     </div>
@@ -70,16 +69,6 @@
         <Link href="#stories" variant="pink">Inspire and get inspired</Link>
     </div>
 </div>
-
-<!-- Maybe add calendar widget -->
-<!-- <div class="mt-16">
-    <div data-tockify-component="calendar" data-tockify-calendar="idghub" />
-    <script
-        data-cfasync="true"
-        data-tockify-script="embed"
-        src="https://public.tockify.com/browser/embed.js"
-    ></script>
-</div> -->
 
 <StoriesSection />
 
