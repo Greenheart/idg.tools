@@ -18,9 +18,9 @@
     </p>
 
     <p class="px-4 pb-4 text-left">
-        But to make this happen, our small editorial team needs your help. This is a
-        community-driven project where you can make a meaningful contribution to not just learn more
-        about the IDGs yourself - but also empower many others.
+        To make this happen, our small editorial team needs your help. This is a community-driven
+        project where you can make a meaningful contribution to not just learn more about the IDGs
+        yourself - but also empower many others.
     </p>
 
     <div class="flex flex-wrap justify-center gap-4">
