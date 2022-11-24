@@ -53,7 +53,7 @@
     <div class="border-relating flex flex-col rounded-2xl border-2 p-4">
         <Heading size={2}>Hubs</Heading>
         <p class="my-4 flex-1">
-            With hubs in almost 100 cities, this is an emerging network eager to participate,
+            With almost 100 hubs, this is an emerging network eager to participate,
             explore and co-create. Join local events, connect with the global community and learn
             together.
         </p>
