@@ -23,7 +23,7 @@
         <img
             src={story.image}
             alt={story.imageAlt}
-            class="transform-gpu rounded-lg object-fill shadow-lg transition-transform duration-300 group-hover:scale-105"
+            class="h-full w-full transform-gpu rounded-lg object-cover shadow-lg transition-transform duration-300 group-hover:scale-105"
         />
     </div>
     <Heading class="pt-3 pb-2 group-hover:underline">{story.title}</Heading>

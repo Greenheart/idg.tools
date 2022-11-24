@@ -75,7 +75,7 @@
     <!-- TODO: Make intro image responsive to follow other content width -->
     <!-- TODO: Keep larger font sizes for a bit longer, scale the same way as tools are doing -->
 
-    <img src={story.image} alt={story.imageAlt} class="my-8 rounded-2xl" />
+    <img src={story.image} alt={story.imageAlt} class="my-8 mx-auto rounded-2xl" />
 
     <Markdown source={story.story} formatting="article" />
 
