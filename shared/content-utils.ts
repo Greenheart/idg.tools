@@ -102,6 +102,14 @@ export const getMostRelevantTools = (
         })
         .sort(mostRelevantToolsFirst(selectedSkills))
 
+export const getMostRelevantStories = (content: CommunityContent, selectedTags: Tag['id'][]) =>
+    content.stories.filter((story) => {
+        const hasMatchingTags = selectedTags.length
+            ? selectedTags.some((tagId) => story.tags.some((id) => id === tagId))
+            : true
+        return hasMatchingTags
+    })
+
 export const sortByPublishingDate = (a: Story, b: Story) =>
     new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
 

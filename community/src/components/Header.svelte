@@ -10,7 +10,7 @@
     const links = [
         // { href: '/', text: 'Home' },
         // { href: '/about', text: 'About' },
-        { href: '/contribute', text: 'Contribute' },
+        { href: '/contributing', text: 'Contribute' },
         // { href: ELEMENT_LINK, text: 'Community' },
     ]
 </script>
