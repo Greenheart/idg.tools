@@ -24,7 +24,7 @@
 
 <div class="pt-16">
     <Heading class="mb-4 pt-16" id="stories"
-        >{#if $selectedTags.length}Relevant{:else}Featured{/if} stories</Heading
+        >{#if $selectedTags.length}Most relevant{:else}Featured{/if} stories</Heading
     >
 
     <div class="mb-4">
