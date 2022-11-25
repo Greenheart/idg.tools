@@ -102,12 +102,21 @@ export const getMostRelevantTools = (
         })
         .sort(mostRelevantToolsFirst(selectedSkills))
 
-export const getMostRelevantStories = (content: CommunityContent, selectedTags: Tag['id'][]) =>
+export const getMostRelevantStories = (
+    content: CommunityContent,
+    selectedTags: Tag['id'][],
+    selectedDimensions: Dimension['id'][],
+) =>
     content.stories.filter((story) => {
         const hasMatchingTags = selectedTags.length
             ? selectedTags.some((tagId) => story.tags.some((id) => id === tagId))
             : true
-        return hasMatchingTags
+        const hasMatchingDimensions = selectedDimensions.length
+            ? selectedDimensions.some((dimensionId) =>
+                  story.dimensions.some((id) => id === dimensionId),
+              )
+            : true
+        return hasMatchingTags || hasMatchingDimensions
     })
 
 export const sortByPublishingDate = (a: Story, b: Story) =>
