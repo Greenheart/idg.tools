@@ -48,6 +48,7 @@ export const DIMENSION_IDS = [
 ]
 
 export const GITHUB_LINK = 'https://github.com/Greenheart/idg.tools'
+export const HOW_TO_CONTRIBUTE_LINK = 'https://idg.community/contribute'
 export const ELEMENT_LINK = 'https://app.element.io/#/room/#idg:community.innerdevelopmentgoals.org'
 export const ELEMENT_TOOLS_LINK =
     'https://app.element.io/#/room/#idg-tools:community.innerdevelopmentgoals.org'

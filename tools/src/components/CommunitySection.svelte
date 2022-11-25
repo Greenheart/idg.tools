@@ -2,7 +2,7 @@
     import UserGroup from '$shared/icons/UserGroup.svelte'
     import Heading from '$shared/components/Heading.svelte'
     import LinkButton from '$shared/components/LinkButton.svelte'
-    import { GITHUB_LINK } from '$shared/constants'
+    import { HOW_TO_CONTRIBUTE_LINK } from '$shared/constants'
 </script>
 
 <div
@@ -16,5 +16,5 @@
         together. And with your help, we can make IDG.tools even better!
     </p>
 
-    <LinkButton href={GITHUB_LINK} variant="inverted">Contribute on GitHub</LinkButton>
+    <LinkButton href={HOW_TO_CONTRIBUTE_LINK} variant="inverted">How to contribute</LinkButton>
 </div>
