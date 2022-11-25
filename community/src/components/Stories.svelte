@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { selectedTags } from '$lib/stores'
+    import { selectedTags, selectedDimensions } from '$lib/stores'
     import type { CommunityContent } from '$shared/types'
     import StoryPreview from './StoryPreview.svelte'
     import Button from '$shared/components/Button.svelte'
@@ -9,13 +9,16 @@
     import Link from '$shared/components/Link.svelte'
     import { STORIES_ABOUT_LINK } from '$lib/constants'
     import Divider from './Divider.svelte'
+    import Dimensions from './Dimensions.svelte'
 
     export let content: CommunityContent
 
     let visibleItems = 10
 
     $: stories = (
-        $selectedTags.length ? getMostRelevantStories(content, $selectedTags) : content.stories
+        $selectedTags.length || $selectedDimensions.length
+            ? getMostRelevantStories(content, $selectedTags, $selectedDimensions)
+            : content.stories
     ).slice(0, visibleItems)
 
     const showMore = () => {
@@ -35,8 +38,9 @@
         Select tags to filter:
     </p>
 
-    <div class="mb-4">
-        <Tags tags={content.tags} size="md" interactive inverted />
+    <div class="mb-4 space-y-1 bg-stone-50 p-2 text-stone-900">
+        Skills: <Tags tags={content.tags} size="md" interactive />
+        Dimensions: <Dimensions dimensions={content.dimensions} size="md" interactive />
     </div>
 
     <div
