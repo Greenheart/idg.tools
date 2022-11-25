@@ -32,6 +32,8 @@
         src={story.image}
         alt={story.imageAlt}
         class="mx-auto mt-8 w-full rounded-2xl shadow-2xl"
+        width={768}
+        height={576}
     />
     <p class="mt-2 mb-8 text-center text-sm italic text-stone-50">{story.imageAlt}</p>
 

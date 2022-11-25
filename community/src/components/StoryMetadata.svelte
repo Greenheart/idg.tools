@@ -26,13 +26,14 @@
         <p class="mb-2 text-sm uppercase">
             {pluralize('Contributor', contributors.length, false)}
         </p>
-        <div class="flex flex-wrap space-x-1 whitespace-nowrap">
+        <div class="flex flex-wrap whitespace-nowrap">
             {#each contributors as { link, name }, i}
+                {@const formatted = `${name}${i < contributors.length - 1 ? ',' : ''}`}
                 {#if link}
-                    <Link href={link} variant="black">{name}</Link>
+                    <Link href={link} variant="black">{formatted}&nbsp;</Link>
                 {:else}
-                    <span>{name}</span>
-                {/if}<span class="!m-0">{i < contributors.length - 1 ? ',' : ''}</span>
+                    <span>{formatted}&nbsp;</span>
+                {/if}
             {/each}
         </div>
     </div>
