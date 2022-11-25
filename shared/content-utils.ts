@@ -116,7 +116,7 @@ export const getMostRelevantStories = (
                   story.dimensions.some((id) => id === dimensionId),
               )
             : true
-        return hasMatchingTags || hasMatchingDimensions
+        return hasMatchingTags && hasMatchingDimensions
     })
 
 export const sortByPublishingDate = (a: Story, b: Story) =>
