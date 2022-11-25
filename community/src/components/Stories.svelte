@@ -6,6 +6,9 @@
     import Heading from '$shared/components/Heading.svelte'
     import Tags from './Tags.svelte'
     import { getMostRelevantStories } from '$shared/content-utils'
+    import Link from '$shared/components/Link.svelte'
+    import { STORIES_ABOUT_LINK } from '$lib/constants'
+    import Divider from './Divider.svelte'
 
     export let content: CommunityContent
 
@@ -16,7 +19,7 @@
     ).slice(0, visibleItems)
 
     const showMore = () => {
-        visibleItems += 2
+        visibleItems += 10
     }
 </script>
 
@@ -44,6 +47,22 @@
         {/each}
     </div>
 
+    <Divider />
+
+    <div class="flex flex-col items-center justify-center space-y-4 lg:col-span-2">
+        <p>
+            Showing {stories.length} of {content.stories.length} stories.
+        </p>
+
+        {#if visibleItems < content.stories.length}
+            <Button on:click={showMore}>Show more</Button>
+        {:else}
+            <p>
+                Welcome to <Link href={STORIES_ABOUT_LINK} variant="pink">share your story</Link>!
+            </p>
+        {/if}
+    </div>
+
     <!--
         IDEA: UI for filters could be to select the tags you want to find
         This would make stories re-order based on the nice transition in the svelte todo list example
@@ -61,18 +80,4 @@
     {#each stories.slice(0, visibleItems) as story (story.link)}
         <StoryPreview {story} {content} />
     {/each}
-
-    <div class="flex flex-col items-center justify-center space-y-4 pt-8 lg:col-span-2">
-        {#if visibleItems < stories.length}
-            <Button on:click={showMore}>Show more</Button>
-        {:else if stories.length}
-            <p>These are all published stories so far.</p>
-            <!-- TODO: Add a way to submit a new story -->
-            <!-- <p>
-            Welcome to <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink"
-                >suggest a new story here</Link
-            >!
-        </p> -->
-        {/if}
-    </div>
 </div>
