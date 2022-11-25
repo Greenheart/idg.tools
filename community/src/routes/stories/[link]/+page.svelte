@@ -4,11 +4,10 @@
     import Breadcrumbs from '$shared/components/Breadcrumbs.svelte'
     import LinkButton from '$shared/components/LinkButton.svelte'
     import Markdown from '$shared/components/Markdown.svelte'
-    import Tags from '$components/Tags.svelte'
-    import { cx, getColor, pluralize } from '$lib/utils'
     import Arrow from '$shared/icons/Arrow.svelte'
 
     import type { PageData } from './$types'
+    import StoryMetadata from '$components/StoryMetadata.svelte'
     export let data: PageData
     $: ({ story, dimensions, contributors, tags, prev, next } = data)
 </script>
@@ -17,58 +16,8 @@
 
 <Heading size={1} class="pt-8">{story.title}</Heading>
 
-<!-- IDEA: move this header into a separate component since it takes so much space -->
 <div class="mx-auto max-w-3xl">
-    <div
-        class="mt-8 flex flex-wrap gap-4 gap-x-8 rounded-2xl bg-stone-50 p-4 text-stone-900 shadow-2xl"
-    >
-        <div>
-            <p class="mb-2 text-sm uppercase">Published</p>
-            <p class="font-bold">
-                {new Date(story.publishedAt).toLocaleDateString('en-US', { dateStyle: 'long' })}
-            </p>
-        </div>
-
-        <!-- IDEA: sort dimensions so they show up in a consistent order with the IDGs. Likely do this already at build time. -->
-        {#if dimensions?.length}
-            <div>
-                <p class="mb-2 text-sm uppercase">
-                    {pluralize('Dimension', dimensions.length, false)}
-                </p>
-                <div class="flex flex-wrap gap-1">
-                    {#each dimensions as dimension}
-                        {@const color = getColor(dimension.id)}
-                        <span class={cx('px-2 py-1 text-sm text-white rounded-lg', color)}
-                            >{dimension.name}</span
-                        >
-                    {/each}
-                </div>
-            </div>
-        {/if}
-
-        {#if tags?.length}
-            <div>
-                <p class="mb-2 text-sm uppercase">{pluralize('Tag', tags.length, false)}</p>
-                <!-- IDEA: Make Tags into clickable links that navigate back to the homepage and shows the content with only that content shown -->
-                <Tags {tags} size="md" class="!gap-1" />
-            </div>
-        {/if}
-
-        <div>
-            <p class="mb-2 text-sm uppercase">
-                {pluralize('Contributor', contributors.length, false)}
-            </p>
-            <div class="flex flex-wrap space-x-1 whitespace-nowrap">
-                {#each contributors as { link, name }, i}
-                    {#if link}
-                        <Link href={link} variant="black">{name}</Link>
-                    {:else}
-                        <span>{name}</span>
-                    {/if}<span class="!m-0">{i < contributors.length - 1 ? ',' : ''}</span>
-                {/each}
-            </div>
-        </div>
-    </div>
+    <StoryMetadata {story} {dimensions} {contributors} {tags} />
 
     {#if story.intro}
         <Markdown source={story.intro} class="mt-8 !text-2xl" />
