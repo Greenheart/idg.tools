@@ -19,7 +19,7 @@
     let className = ''
     export { className as class }
     export let id: string | undefined = undefined
-    const tag = `h${size}`
+    export let tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' = `h${size}`
 </script>
 
 <svelte:element this={tag} class={cx(classes[size], className)} {id}>
