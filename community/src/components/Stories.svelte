@@ -81,7 +81,7 @@
 </div>
 
 <div class="hidden">
-    {#each stories.slice(0, visibleItems) as story (story.link)}
+    {#each stories as story (story.link)}
         <StoryPreview {story} {content} />
     {/each}
 </div>
