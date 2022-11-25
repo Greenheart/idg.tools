@@ -2,7 +2,7 @@
     "name": "innerdevelopmentgoals",
     "private": true,
     "engines": {
-        "node": "16",
+        "node": ">=16 <19",
         "pnpm": "7"
     },
     "scripts": {
