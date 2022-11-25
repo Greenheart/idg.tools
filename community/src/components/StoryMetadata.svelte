@@ -22,6 +22,21 @@
         </p>
     </div>
 
+    <div>
+        <p class="mb-2 text-sm uppercase">
+            {pluralize('Contributor', contributors.length, false)}
+        </p>
+        <div class="flex flex-wrap space-x-1 whitespace-nowrap">
+            {#each contributors as { link, name }, i}
+                {#if link}
+                    <Link href={link} variant="black">{name}</Link>
+                {:else}
+                    <span>{name}</span>
+                {/if}<span class="!m-0">{i < contributors.length - 1 ? ',' : ''}</span>
+            {/each}
+        </div>
+    </div>
+
     <!-- IDEA: sort dimensions so they show up in a consistent order with the IDGs. Likely do this already at build time. -->
     {#if dimensions?.length}
         <div>
@@ -46,19 +61,4 @@
             <Tags {tags} size="md" class="!gap-1" />
         </div>
     {/if}
-
-    <div>
-        <p class="mb-2 text-sm uppercase">
-            {pluralize('Contributor', contributors.length, false)}
-        </p>
-        <div class="flex flex-wrap space-x-1 whitespace-nowrap">
-            {#each contributors as { link, name }, i}
-                {#if link}
-                    <Link href={link} variant="black">{name}</Link>
-                {:else}
-                    <span>{name}</span>
-                {/if}<span class="!m-0">{i < contributors.length - 1 ? ',' : ''}</span>
-            {/each}
-        </div>
-    </div>
 </div>
