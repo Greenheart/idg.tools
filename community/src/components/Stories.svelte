@@ -28,12 +28,12 @@
     >
 
     <p class="my-2 text-sm">
-        {#if $selectedTags.length}Showing {stories.length}/{content.stories.length}. {/if}Select
-        tags:
+        {#if $selectedTags.length}Showing {stories.length}/{content.stories.length} stories.{/if}
+        Select tags to filter:
     </p>
 
     <div class="mb-4">
-        <Tags tags={content.tags} size="lg" interactive inverted />
+        <Tags tags={content.tags} size="md" interactive inverted />
     </div>
 
     <div
