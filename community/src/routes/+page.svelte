@@ -30,7 +30,7 @@
 
         <div class="mt-8 flex flex-wrap justify-center gap-4 sm:justify-start">
             <LinkButton href={COMMUNITY_LINK} variant="secondary">Learn more</LinkButton>
-            <LinkButton href="#participate" variant="primary">Get involved</LinkButton>
+            <LinkButton href="/contribute" variant="primary">Get involved</LinkButton>
         </div>
     </div>
 </div>
