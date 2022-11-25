@@ -17,10 +17,7 @@
 <div class={className}>
     {#if visibleResources < allResources.length}
         <Markdown source={allResources.slice(0, visibleResources).join('\n')} />
-        <button
-            class="text-thinking mt-4 font-semibold underline"
-            on:click={showAll}
-        >
+        <button class="text-thinking mt-4 font-semibold underline" on:click={showAll}>
             Show {allResources.length - visibleResources ?? ''} more
         </button>
     {:else}

@@ -18,9 +18,7 @@
     ) => {
         $isDimensionOpen = {
             ...$isDimensionOpen,
-            [dimensionId]: (
-                event?.target as unknown as EventTarget & HTMLDetailsElement
-            ).open,
+            [dimensionId]: (event?.target as unknown as EventTarget & HTMLDetailsElement).open,
         }
     }
 
@@ -44,12 +42,8 @@
                 tabindex={index + 1}
             >
                 <span>
-                    <span
-                        class="flex items-center text-xs sm:text-base md:text-base"
-                    >
-                        <span class="text-base font-bold sm:text-lg md:text-xl"
-                            >{name}</span
-                        >
+                    <span class="flex items-center text-xs sm:text-base md:text-base">
+                        <span class="text-base font-bold sm:text-lg md:text-xl">{name}</span>
                         <span class="px-1 md:px-2">&mdash;</span>
                         {description}
                         <NumberOfSelectedSkills {skillsInDimension} />

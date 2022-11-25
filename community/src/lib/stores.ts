@@ -32,11 +32,8 @@ export const selectedTags = createPersistedStore<ItemId[]>('selectedTags', [])
 export const isMenuOpen = writable<boolean>(false)
 
 export const isDimensionOpen = writable<Record<Dimension['id'], boolean>>(
-    DIMENSION_IDS.reduce(
-        (isDimensionOpen: Record<Dimension['id'], boolean>, dimensionId) => {
-            isDimensionOpen[dimensionId] = false
-            return isDimensionOpen
-        },
-        {},
-    ),
+    DIMENSION_IDS.reduce((isDimensionOpen: Record<Dimension['id'], boolean>, dimensionId) => {
+        isDimensionOpen[dimensionId] = false
+        return isDimensionOpen
+    }, {}),
 )

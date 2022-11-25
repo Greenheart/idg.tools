@@ -25,9 +25,7 @@
             }
         }}
     >
-        <label for="description" class="absolute -left-full text-stone-50"
-            >Description</label
-        >
+        <label for="description" class="absolute -left-full text-stone-50">Description</label>
         <input type="text" name="description" class="absolute -left-full p-2" />
         <label for="liked" class="text-stone-50">What do you like?</label>
         <input type="text" name="liked" bind:value={liked} class="p-2" />
@@ -41,8 +39,6 @@
     </form>
 {:else}
     <div class="flex justify-center">
-        <Button on:click={() => (expanded = true)}
-            >Help improve this tool</Button
-        >
+        <Button on:click={() => (expanded = true)}>Help improve this tool</Button>
     </div>
 {/if}
