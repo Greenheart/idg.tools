@@ -1,53 +1,96 @@
 <script lang="ts">
     import Link from '$shared/components/Link.svelte'
     import Heading from '$shared/components/Heading.svelte'
+    import {
+        ELEMENT_COMMUNITY_LINK,
+        ELEMENT_STORIES_LINK,
+        ELEMENT_TOOLS_LINK,
+        GITHUB_LINK,
+    } from '$shared/constants'
+    import { STORIES_ABOUT_LINK } from '$lib/constants'
     import LinkButton from '$shared/components/LinkButton.svelte'
-    import { COMMUNITY_LINK } from '$shared/constants'
 </script>
 
-<Heading size={1}>How you can contribute</Heading>
+<div class="mx-auto max-w-3xl">
+    <Heading size={1}>How you can contribute</Heading>
+    <p class="my-8">
+        First of all - thanks for being here! There are several ways you can contribute in a
+        meaningful way, which could make a significant impact for the development of the IDGs and
+        the SDGs.
+    </p>
 
-<div class="space-y-4 py-12 text-lg sm:text-xl">
-    <p>First of all - thanks for taking the time to contribute!</p>
+    <div class="space-y-16 text-lg sm:text-xl">
+        <div class="space-y-4">
+            <Heading>1. Use the IDG toolkit and give feedback</Heading>
+            <p>
+                Use <Link href="https://idg.tools" variant="pink">IDG.tools</Link> in practice. Learn
+                what works for you and what needs to be improved. Give feedback via the forms on the
+                website. This will help the team better understand how to continously improve the content,
+                research, design and tech. Thank you!
+            </p>
+        </div>
+        <div class="space-y-4">
+            <Heading>2. Using the IDGs in practice? Share your stories</Heading>
+            <p>
+                This is a community-driven project where you can make a meaningful contribution to
+                not just learn more about the IDGs yourself - but also empower many others. Welcome
+                to get started by learning more <Link href={STORIES_ABOUT_LINK} variant="pink"
+                    >about IDG community stories</Link
+                >!
+            </p>
+        </div>
+        <div class="space-y-4">
+            <Heading>3. Storyteller? Join the editorial team for IDG Community Stories</Heading>
+            <p>
+                Our vision is to bring people together, and create a vast library of stories
+                exploring how to use the IDGs in practice to reach the SDGs. To make this happen, we
+                need your help to gather stories from around the world, edit them together with the
+                main authors, and help them get published. To get started, <Link
+                    href={STORIES_ABOUT_LINK}
+                    variant="pink">learn more about stories</Link
+                > and <Link href={ELEMENT_STORIES_LINK} variant="pink"
+                    >introduce yourself in the stories chat room</Link
+                >.
+            </p>
+        </div>
+        <!-- <div>
+        <Heading>Translate the IDGs into your language</Heading>
+        <p>
+            Help make the IDGs accessible in your local language. Both IDG.tools and IDG.community
+            are built to handle translations.
+        </p>
+    </div> -->
+        <div class="space-y-4">
+            <Heading>4. Design and software development</Heading>
+            <p>
+                Help create digital experiences that make it easy and fun to use the IDGs in
+                practice to reach the SDGs. Want to get involved? <Link
+                    href={GITHUB_LINK}
+                    variant="pink">Check us out on GitHub</Link
+                > and join chat rooms where we talk about <Link
+                    href={ELEMENT_TOOLS_LINK}
+                    variant="pink">tools</Link
+                > and <Link href={ELEMENT_COMMUNITY_LINK} variant="pink">community website</Link>.
+            </p>
+        </div>
 
-    <p>The Inner Development Goals Community</p>
+        <Heading>Welcome! Looking forward to co-create with you :)</Heading>
+    </div>
 </div>
 
-<p class="text-center text-sm uppercase">Our three pillars:</p>
-
-<div class="mt-8 grid grid-cols-3 gap-8">
-    <div class="text-center">
-        <Heading size={2}>Tools</Heading>
-        <p class="my-4">
-            We're creating an open source library of scientifically-validated tools to develop the
-            skills outlined by the IDG framework. Here you can find methods, workshops and resources
-            relevant to the skills you want to practice.
-        </p>
-        <Link href="https://idg.tools" variant="pink">Explore IDG.tools</Link>
-    </div>
-
-    <div class="text-center">
-        <Heading size={2}>Community</Heading>
-        <p class="my-4">
-            With hubs in almost 100 cities, this is an emerging network eager to participate,
-            explore and co-create. Join local events, connect with the global community and learn
-            together.
-        </p>
-        <Link href={COMMUNITY_LINK} variant="pink">Find your community</Link>
-    </div>
-
-    <div class="text-center">
-        <Heading size={2}>Stories</Heading>
-        <p class="my-4">
-            Read stories of how people around the world are using the IDG framework in practice.
-            Learn from others and try it with your local hub. Share your own story and help make the
-            IDG resources even better!
-        </p>
-        <Link href="/#stories" variant="pink">Inspire and get inspired</Link>
-    </div>
+<div class="flex justify-center py-12">
+    <LinkButton href="/" variant="primary" size="lg">Back to IDG.community</LinkButton>
 </div>
 
-<Heading class="mb-4 mt-16">Featured stories</Heading>
+<!-- <div>
+        <Heading>Participate in local or global events</Heading>
+        <p>
+            Help organising a local IDG hub in your area and bridge the existing communities related
+            to the SDGs and inner development. The IDG community doesn't aim to be "the movement",
+            but rather a place where different SDG-related communities connect and work on their
+            inner development.
+        </p>
+    </div> -->
 
 <!--
 

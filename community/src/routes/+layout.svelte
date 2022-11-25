@@ -47,7 +47,7 @@
 <div class="mx-auto w-full max-w-2xl px-4 pb-16 sm:max-w-3xl" class:hidden={$isMenuOpen}>
     {#if $page?.route?.id === '/'}
         <CommunitySection />
-    {:else}
+    {:else if $page?.route?.id === '/stories/[link]'}
         <StoriesSection />
     {/if}
 </div>
