@@ -24,12 +24,15 @@
     const showMore = () => {
         visibleItems += 10
     }
+
+    const resetFilters = () => {
+        $selectedTags = []
+        $selectedDimensions = []
+    }
 </script>
 
 <div class="pt-16">
-    <Heading class="pt-16" id="stories" size={1} tag="h2"
-        >{#if $selectedTags.length || $selectedDimensions.length}Most relevant{:else}Featured{/if} stories</Heading
-    >
+    <Heading class="pt-16" id="stories" size={1} tag="h2">Featured stories</Heading>
 
     <p class="my-2 text-sm">
         {#if $selectedTags.length || $selectedDimensions.length}Showing {stories.length}/{content
@@ -37,9 +40,25 @@
         Select tags to filter:
     </p>
 
-    <div class="mb-4 space-y-1 bg-stone-50 p-2 text-stone-900">
-        Skills: <Tags tags={content.tags} size="md" interactive />
-        Dimensions: <Dimensions dimensions={content.dimensions} size="md" interactive />
+    <div class="relative mb-4 -mr-4 -ml-4 space-y-1 bg-stone-50 p-2 text-stone-900">
+        <div class="flex flex-wrap items-center justify-between">
+            <Heading size={3}>Filters</Heading>
+            <Button on:click={resetFilters} size="md" class="text-xs" variant="inverted"
+                >Clear filters</Button
+            >
+        </div>
+
+        <p>Skills:</p>
+        <Tags tags={content.tags} size="md" interactive />
+        <p>Dimensions:</p>
+        <Dimensions dimensions={content.dimensions} size="md" interactive />
+        <div class="absolute left-0 bottom-0 right-0 grid h-2 grid-cols-5">
+            <div class="bg-being" />
+            <div class="bg-thinking" />
+            <div class="bg-relating" />
+            <div class="bg-collaborating" />
+            <div class="bg-acting" />
+        </div>
     </div>
 
     <div
