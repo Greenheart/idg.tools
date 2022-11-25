@@ -59,7 +59,7 @@
     initialFocus={applyButton}
 >
     <div
-        class="fixed inset-0 -z-20 bg-stone-900 bg-[url(/images/david-marcu-78A265wPiO4-unsplash.jpg)] bg-cover bg-fixed bg-center bg-no-repeat"
+        class="fixed inset-0 -z-20 bg-stone-900 bg-[url(/images/david-marcu-78A265wPiO4-unsplash.webp)] bg-cover bg-fixed bg-center bg-no-repeat"
     />
     <DialogOverlay class="filters-backdrop fixed inset-0 -z-10" />
 
