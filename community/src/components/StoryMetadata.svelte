@@ -30,7 +30,7 @@
             {#each contributors as { link, name }, i}
                 {@const formatted = `${name}${i < contributors.length - 1 ? ',' : ''}`}
                 {#if link}
-                    <Link href={link} variant="black">{formatted}&nbsp;</Link>
+                    <Link href={link} variant="black">{formatted}</Link>&nbsp;
                 {:else}
                     <span>{formatted}&nbsp;</span>
                 {/if}
