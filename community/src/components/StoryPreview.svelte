@@ -14,11 +14,7 @@
     let tags = story.tags.map((tagId) => getTag(tagId, content))
 </script>
 
-<Link
-    href={`/stories/${story.link}`}
-    variant="black"
-    class="group grid p-2 font-normal text-stone-50 no-underline"
->
+<Link href={`/stories/${story.link}`} variant="black" unstyled class="group grid p-2 text-stone-50">
     <div class="grid aspect-[3/2] overflow-hidden rounded-lg">
         <img
             src={story.image}
