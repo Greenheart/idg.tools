@@ -49,6 +49,7 @@
             ...limited,
             blockquote: Blockquote,
             heading: Heading,
+            // IDEA: Show alt texts as image descriptions also for inline images in articles.
             image: Image,
         }
 
@@ -65,7 +66,7 @@
     }
 
     const baseClasses =
-        'prose prose-lg lg:prose-xl prose-stone prose-p:leading-7 prose-li:my-4 prose-a:text-thinking prose-img:rounded-2xl'
+        'prose prose-lg lg:prose-xl prose-stone prose-p:leading-7 prose-li:my-4 prose-a:text-thinking prose-img:rounded-2xl prose-img:w-full'
     const defaultVariant = 'default'
     const defaultRenderer: MarkdownRenderer = 'linksOnly'
 
