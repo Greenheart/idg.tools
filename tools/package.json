@@ -7,6 +7,7 @@
         "dev": "GIT_COMMIT=`git rev-parse --short HEAD` vite dev",
         "dev:host": "GIT_COMMIT=`git rev-parse --short HEAD` vite dev --host",
         "build": "GIT_COMMIT=`git rev-parse --short HEAD` vite build",
+        "build:all": "pnpm --filter content build tools && pnpm --filter tools build",
         "preview": "GIT_COMMIT=`git rev-parse --short HEAD` vite preview",
         "check": "svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
