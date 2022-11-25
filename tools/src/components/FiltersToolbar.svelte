@@ -30,8 +30,8 @@
 >
     <div
         class={cx(
-            'relative flex h-16 cursor-pointer select-none items-center justify-between bg-stone-50 px-2 pt-2 pb-4 md:px-4 -mr-4',
-            $filtersExpanded ? '' : '-ml-4',
+            'relative flex h-16 cursor-pointer select-none items-center justify-between bg-stone-50 px-2 pt-2 pb-4 md:px-4',
+            $filtersExpanded ? '' : '-ml-4 -mr-4',
         )}
     >
         <div class="flex items-center space-x-2 md:space-x-3">
