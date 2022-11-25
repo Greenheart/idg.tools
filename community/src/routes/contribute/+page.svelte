@@ -2,6 +2,8 @@
     import Link from '$shared/components/Link.svelte'
     import Heading from '$shared/components/Heading.svelte'
     import {
+        COMMUNITY_HUBS_LINK,
+        COMMUNITY_LINK,
         ELEMENT_COMMUNITY_LINK,
         ELEMENT_STORIES_LINK,
         ELEMENT_TOOLS_LINK,
@@ -12,7 +14,7 @@
 </script>
 
 <div class="mx-auto max-w-3xl">
-    <Heading size={1}>How you can contribute</Heading>
+    <Heading size={1}>How you can support the IDG community</Heading>
     <p class="my-8">
         First of all - thanks for being here! There are several ways you can contribute in a
         meaningful way, which could make a significant impact for the development of the IDGs and
@@ -21,7 +23,16 @@
 
     <div class="space-y-16 text-lg sm:text-xl">
         <div class="space-y-4">
-            <Heading>1. Use the IDG toolkit and give feedback</Heading>
+            <Heading>1. Join or start an IDG Hub in your area</Heading>
+            <p>
+                One of the best way to get started is to join one of the existing IDG Hubs and get
+                familiar with the concepts.
+                <Link href={COMMUNITY_LINK} variant="pink">Learn more</Link> and
+                <Link href={COMMUNITY_HUBS_LINK} variant="pink">find IDG Hubs near you</Link>.
+            </p>
+        </div>
+        <div class="space-y-4">
+            <Heading>2. Use the IDG toolkit and give feedback</Heading>
             <p>
                 Use <Link href="https://idg.tools" variant="pink">IDG.tools</Link> in practice. Learn
                 what works for you and what needs to be improved. Give feedback via the forms on the
@@ -30,7 +41,7 @@
             </p>
         </div>
         <div class="space-y-4">
-            <Heading>2. Using the IDGs in practice? Share your stories</Heading>
+            <Heading>3. Using the IDGs in practice? Share your stories</Heading>
             <p>
                 This is a community-driven project where you can make a meaningful contribution to
                 not just learn more about the IDGs yourself - but also empower many others. Welcome
@@ -40,7 +51,7 @@
             </p>
         </div>
         <div class="space-y-4">
-            <Heading>3. Storyteller? Join the editorial team for IDG Community Stories</Heading>
+            <Heading>4. Storyteller? Join the editorial team for IDG Community Stories</Heading>
             <p>
                 Our vision is to bring people together, and create a vast library of stories
                 exploring how to use the IDGs in practice to reach the SDGs. To make this happen, we
@@ -61,7 +72,7 @@
         </p>
     </div> -->
         <div class="space-y-4">
-            <Heading>4. Design and software development</Heading>
+            <Heading>5. Design and software development</Heading>
             <p>
                 Help create digital experiences that make it easy and fun to use the IDGs in
                 practice to reach the SDGs. Want to get involved? <Link
@@ -85,7 +96,7 @@
 <!-- <div>
         <Heading>Participate in local or global events</Heading>
         <p>
-            Help organising a local IDG hub in your area and bridge the existing communities related
+            Help organising a local IDG Hub in your area and bridge the existing communities related
             to the SDGs and inner development. The IDG community doesn't aim to be "the movement",
             but rather a place where different SDG-related communities connect and work on their
             inner development.
@@ -98,11 +109,11 @@
     - intro: welcome, thank you for being here. This community will only be as good as we make it together. There are several ways you can contribute in a meaningful way, which will have a significant impact for the development of the IDGs.
     
     There are several ways to participate and contribute:
-    - To begin with, please participate in hubs local events, global events.
+    - To begin with, please participate in IDG Hubs local events, global events.
     - Use the IDGs in practice to reach the SDGs
         - Use the toolkit - try it in practice, see what works for you
         - Give feedback and help improve the toolkit
-    - Help organising a local IDG hub in your area and bridge the existing communities related to the SDGs and inner development. The IDG community doesn't aim to be "the movement", but rather a place where different SDG-related communities connect and work on their inner development.
+    - Help organising a local IDG Hub in your area and bridge the existing communities related to the SDGs and inner development. The IDG community doesn't aim to be "the movement", but rather a place where different SDG-related communities connect and work on their inner development.
     - Translations
         - Help the IDGs become a global movement by translating resources into your own language! In that way, the IDGs become more accessible for more people and we can get inputs from a larger variety of people.
         - ... so we can get help to understand more international nuances and perspecives to help the IDG framework, toolkit and resources more useful.
