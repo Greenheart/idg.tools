@@ -53,6 +53,7 @@ importers:
       strip-markdown: ^5.0.0
       svelte: ^3.53.1
       svelte-check: ^2.9.2
+      svelte-meta-tags: ^2.6.4
       svelte-preprocess: ^4.10.7
       tailwindcss: ^3.2.4
       tslib: ^2.4.1
@@ -64,6 +65,7 @@ importers:
       remark: 14.0.2
       sanitize-html: 2.7.3
       strip-markdown: 5.0.0
+      svelte-meta-tags: 2.6.4_7dvewpees4iyn2tkw2qzal77a4
     devDependencies:
       '@rgossiaux/svelte-headlessui': 1.0.2_svelte@3.53.1
       '@sveltejs/adapter-vercel': 1.0.0-next.84
@@ -6258,6 +6260,14 @@ packages:
       object-assign: 4.1.1
     dev: false
 
+  /schema-dts/1.1.0_typescript@4.9.3:
+    resolution: {integrity: sha512-vdmbs/5ycj4zyKpZIDqTcy+IZi4s7c38RVAYuDmRi7zgxUT8wRWPMLzg0jr7FjdVunYu9yZ00F3+XcZTTFcTOQ==}
+    peerDependencies:
+      typescript: '>=4.1.0'
+    dependencies:
+      typescript: 4.9.3
+    dev: false
+
   /section-matter/1.0.0:
     resolution: {integrity: sha512-vfD3pmTzGpufjScBh50YHKzEu2lxBWhVEHsNGoEXmCmn2hKGfeNLYMzCJpe8cD7gqX7TJluOVpBkAequ6dgMmA==}
     engines: {node: '>=4'}
@@ -6735,6 +6745,17 @@ packages:
       svelte: 3.53.1
     dev: false
 
+  /svelte-meta-tags/2.6.4_7dvewpees4iyn2tkw2qzal77a4:
+    resolution: {integrity: sha512-S4CfxkLfPzAFRTRlF5YX5BEbU36CpC63cG86pXgsQQZun5kQ1JY7jLFTrb5hfHnvFFjkss52kq4+M53mTLfcig==}
+    peerDependencies:
+      svelte: ^3.44.0
+    dependencies:
+      schema-dts: 1.1.0_typescript@4.9.3
+      svelte: 3.53.1
+    transitivePeerDependencies:
+      - typescript
+    dev: false
+
   /svelte-preprocess/4.10.7_jgeygver3mevbte7srfft5qwby:
     resolution: {integrity: sha512-sNPBnqYD6FnmdBrUmBCaqS00RyCsCpj2BG58A1JBswNF7b0OKviwxqVrOL/CKyJrLSClrSeqQv5BXNg2RUbPOw==}
     engines: {node: '>= 9.11.2'}
@@ -6980,7 +7001,6 @@ packages:
     resolution: {integrity: sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
