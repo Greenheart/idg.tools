@@ -15,7 +15,6 @@ const config = {
             dir: '.',
             publicPrefix: 'PUBLIC_',
         },
-        outDir: 'dist',
     },
     vitePlugin: {
         experimental: {
