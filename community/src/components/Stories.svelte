@@ -9,7 +9,8 @@
     import Link from '$shared/components/Link.svelte'
     import { STORIES_ABOUT_LINK } from '$lib/constants'
     import Divider from './Divider.svelte'
-    import Dimensions from './Dimensions.svelte'
+    // import Dimensions from './Dimensions.svelte'
+    // import StoryFilters from './StoryFilters.svelte'
 
     export let content: CommunityContent
 
@@ -34,32 +35,30 @@
 <div class="pt-16">
     <Heading class="pt-16" id="stories" size={1} tag="h2">Featured stories</Heading>
 
-    <p class="my-2 text-sm">
+    <p class="pt-4 pb-2">Select tags to filter:</p>
+    <Tags tags={content.tags} size="md" interactive inverted class="pb-4" />
+
+    <!-- <StoryFilters tags={content.tags} dimensions={content.dimensions} /> -->
+
+    <!-- <p class="my-2 text-sm">
         {#if $selectedTags.length || $selectedDimensions.length}Showing {stories.length}/{content
                 .stories.length} stories.{/if}
         Select tags to filter:
     </p>
 
-    <div class="relative mb-4 -mr-4 -ml-4 space-y-1 bg-stone-50 p-2 text-stone-900">
+    <div class="relative mb-4 rounded-2xl bg-stone-50 p-4 text-base text-stone-900">
         <div class="flex flex-wrap items-center justify-between">
-            <Heading size={3}>Filters</Heading>
+            <p class="font-bold">Select filters</p>
             <Button on:click={resetFilters} size="md" class="text-xs" variant="inverted"
                 >Clear filters</Button
             >
         </div>
 
-        <p>Skills:</p>
+        <p>Tags:</p>
         <Tags tags={content.tags} size="md" interactive />
         <p>Dimensions:</p>
         <Dimensions dimensions={content.dimensions} size="md" interactive />
-        <div class="absolute left-0 bottom-0 right-0 grid h-2 grid-cols-5">
-            <div class="bg-being" />
-            <div class="bg-thinking" />
-            <div class="bg-relating" />
-            <div class="bg-collaborating" />
-            <div class="bg-acting" />
-        </div>
-    </div>
+    </div> -->
 
     <div
         class="mx-auto grid max-w-lg items-start justify-items-center gap-8 md:w-full md:max-w-none md:grid-cols-2 lg:gap-x-12"
