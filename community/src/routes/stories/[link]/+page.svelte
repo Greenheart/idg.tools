@@ -8,6 +8,7 @@
 
     import type { PageData } from './$types'
     import StoryMetadata from '$components/StoryMetadata.svelte'
+    import Divider from '$components/Divider.svelte'
     export let data: PageData
     $: ({ story, dimensions, contributors, tags, prev, next } = data)
 </script>
@@ -36,13 +37,7 @@
 
     <Markdown source={story.story} formatting="article" />
 
-    <div class="my-16 flex items-center justify-center gap-2">
-        <hr class="h-1 w-full" />
-        <span>|</span>
-        <span>|</span>
-        <span>|</span>
-        <hr class="h-1 w-full" />
-    </div>
+    <Divider />
 
     <Heading class="text-center">More stories</Heading>
 
