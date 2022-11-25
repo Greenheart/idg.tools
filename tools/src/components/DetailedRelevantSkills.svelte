@@ -9,10 +9,9 @@
     let className = ''
     export { className as class }
 
-    let [mostRelevant, remaining] = [
-        relevancy.slice(0, 5),
-        relevancy.slice(5).length,
-    ]
+    let [mostRelevant, remaining] = [relevancy.slice(0, 5), relevancy.slice(5).length]
+
+    // TODO: Maybe remove skill relevancies for skills with less than 30/100 relevancy. This will make it more focused and clean.
 
     let visibleSkills = mostRelevant
     function showAll() {
@@ -41,10 +40,7 @@
     </div>
 
     {#if visibleSkills.length < relevancy.length}
-        <button
-            class="text-thinking mt-4 font-semibold underline"
-            on:click={showAll}
-        >
+        <button class="text-thinking mt-4 font-semibold underline" on:click={showAll}>
             Show {remaining ?? ''} more
         </button>
     {/if}

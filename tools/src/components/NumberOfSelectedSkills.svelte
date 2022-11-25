@@ -5,8 +5,7 @@
     export let skillsInDimension: Dimension['skills']
 
     $: selectedInDimension = skillsInDimension.reduce(
-        (count, skill) =>
-            $selectedSkills.some((s) => s === skill) ? count + 1 : count,
+        (count, skill) => ($selectedSkills.some((s) => s === skill) ? count + 1 : count),
         0,
     )
 </script>

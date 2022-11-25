@@ -9,15 +9,10 @@ import { createIssue } from '$lib/github'
 
 const sanitizer = remark().use(stripMarkdown)
 
-const sanitizeInput = (raw: string) =>
-    sanitizer.process(raw).then((value) => value.toString())
+const sanitizeInput = (raw: string) => sanitizer.process(raw).then((value) => value.toString())
 
 /** @type {PageServerLoad} */
-export async function load({
-    params: { link },
-}: {
-    params: Record<string, string>
-}) {
+export async function load({ params: { link } }: { params: Record<string, string> }) {
     const tool = getToolByLink(link, content)
 
     if (tool) {
