@@ -5,7 +5,7 @@
     import type { PageData } from './$types'
     import LinkButton from '$shared/components/LinkButton.svelte'
     import StoriesSection from '$components/StoriesSection.svelte'
-    import { COMMUNITY_LINK, FRAMEWORK_LINK } from '$shared/constants'
+    import { COMMUNITY_LINK, FRAMEWORK_LINK, IDG_TOOLKIT_LAUNCH } from '$shared/constants'
     import Stories from '$components/Stories.svelte'
 
     export let data: PageData
@@ -47,7 +47,8 @@
             skills outlined by the IDG framework. Here you can find methods, workshops and resources
             relevant to the skills you want to practice.
         </p>
-        <Link href="https://idg.tools" variant="pink">Explore IDG.tools</Link>
+        <!-- <Link href="https://idg.tools" variant="pink">Explore IDG.tools</Link> -->
+        <Link href={IDG_TOOLKIT_LAUNCH} variant="pink">Join the launch December 15th</Link>
     </div>
 
     <div class="border-relating flex flex-col rounded-2xl border-2 p-4">

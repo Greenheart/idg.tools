@@ -31,7 +31,7 @@
                 <Link href={COMMUNITY_HUBS_LINK} variant="pink">find IDG Hubs near you</Link>.
             </p>
         </div>
-        <div class="space-y-4">
+        <!-- <div class="space-y-4">
             <Heading>2. Use the IDG toolkit and give feedback</Heading>
             <p>
                 Use <Link href="https://idg.tools" variant="pink">IDG.tools</Link> in practice. Learn
@@ -39,9 +39,9 @@
                 website. This will help the team better understand how to continously improve the content,
                 research, design and tech. Thank you!
             </p>
-        </div>
+        </div> -->
         <div class="space-y-4">
-            <Heading>3. Using the IDGs in practice? Share your stories</Heading>
+            <Heading>2. Using the IDGs in practice? Share your stories</Heading>
             <p>
                 This is a community-driven project where you can make a meaningful contribution to
                 not just learn more about the IDGs yourself - but also empower many others. Welcome
@@ -51,7 +51,7 @@
             </p>
         </div>
         <div class="space-y-4">
-            <Heading>4. Storyteller? Join the editorial team for IDG Community Stories</Heading>
+            <Heading>3. Storyteller? Join the editorial team for IDG Community Stories</Heading>
             <p>
                 Our vision is to bring people together, and create a vast library of stories
                 exploring how to use the IDGs in practice to reach the SDGs. To make this happen, we
@@ -72,7 +72,7 @@
         </p>
     </div> -->
         <div class="space-y-4">
-            <Heading>5. Design and software development</Heading>
+            <Heading>4. Design and software development</Heading>
             <p>
                 Help create digital experiences that make it easy and fun to use the IDGs in
                 practice to reach the SDGs. Want to get involved? <Link
@@ -81,7 +81,8 @@
                 > and join chat rooms where we talk about <Link
                     href={ELEMENT_TOOLS_LINK}
                     variant="pink">tools</Link
-                > and <Link href={ELEMENT_COMMUNITY_LINK} variant="pink">community website</Link>.
+                > and the <Link href={ELEMENT_COMMUNITY_LINK} variant="pink">community website</Link
+                >.
             </p>
         </div>
 
