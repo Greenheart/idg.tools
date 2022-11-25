@@ -23,7 +23,7 @@
 <!-- IDEA: If filters are applied, the featured stories will be hidden and only the relevant stories are shown, sorted by most relevant first -->
 
 <div class="pt-16">
-    <Heading class="pt-16" id="stories"
+    <Heading class="pt-16" id="stories" size={1} tag="h2"
         >{#if $selectedTags.length}Most relevant{:else}Featured{/if} stories</Heading
     >
 
