@@ -17,10 +17,7 @@ export async function load({ params: { link } }: { params: Record<string, string
         // If page was found on a different URL,
         // permanently redirect to the updated url (HTTP 301)
         // to prevent multiple URLs publishing the same content.
-        if (link !== story.link) {
-            const location = `/stories/${story.link}`
-            throw redirect(301, location)
-        }
+        if (link !== story.link) throw redirect(301, `/stories/${story.link}`)
 
         const dimensions = story.dimensions.map((id) => getDimension(id, content))
         const { prev, next } = getAdjacentStories(story.id, content)
