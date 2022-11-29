@@ -1,3 +1,14 @@
+<script lang="ts" context="module">
+    import { BASE_URL, DEFAULT_OG_IMAGE } from '$lib/constants'
+    const DEFAULT_IMAGE = [
+        {
+            url: DEFAULT_OG_IMAGE,
+            width: 1200,
+            height: 736,
+        },
+    ]
+</script>
+
 <script lang="ts">
     import Heading from '$shared/components/Heading.svelte'
     import Link from '$shared/components/Link.svelte'
@@ -11,34 +22,17 @@
     import StoryMetadata from '$components/StoryMetadata.svelte'
     import Divider from '$components/Divider.svelte'
     import Meta from '$components/Meta.svelte'
-    import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_SQUARE } from '$lib/constants'
     import { truncateText } from '$shared/utils'
     export let data: PageData
     $: ({ story, dimensions, contributors, tags, prev, next } = data)
 
     $: intro = truncateText(story.intro ?? story.story, 300)
     const url = $page.url.toString()
+
+    $: images = story.image ? [{ url: BASE_URL + story.image }] : DEFAULT_IMAGE
 </script>
 
-<Meta
-    title={story.title}
-    description={intro}
-    {url}
-    images={[
-        // TODO: Add the first image, and the dimensions for it.
-        // IDEA: It might be possible to send image information from the backend, for example reading file stats with Node.js
-        {
-            url: DEFAULT_OG_IMAGE,
-            width: 1200,
-            height: 736,
-        },
-        {
-            url: DEFAULT_OG_IMAGE_SQUARE,
-            width: 1000,
-            height: 1000,
-        },
-    ]}
-/>
+<Meta title={story.title} description={intro} {url} {images} />
 
 <Breadcrumbs sections={[{ text: 'Stories', link: '/#stories' }, { text: story.title }]} />
 
