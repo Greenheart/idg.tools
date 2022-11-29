@@ -34,9 +34,10 @@
 {/each}
 
 <div class="flex flex-col items-center justify-center space-y-4 pt-8 lg:col-span-2">
-    <div class="text-sm">
+    <!-- TODO: Fix formatting bug to make sure this makes sense -->
+    <!-- <div class="text-sm">
         Showing {$visibleItems} of {tools.length} tools.
-    </div>
+    </div> -->
     {#if $visibleItems < tools.length}
         <Button on:click={showMore}>Show more</Button>
     {:else if tools.length}
