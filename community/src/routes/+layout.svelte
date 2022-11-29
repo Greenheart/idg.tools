@@ -1,22 +1,13 @@
 <script lang="ts">
-    import { afterNavigate, beforeNavigate } from '$app/navigation'
     import Header from '$components/Header.svelte'
+    import CommunitySection from '$components/CommunitySection.svelte'
+    import StoriesSection from '$components/StoriesSection.svelte'
+    import { afterNavigate, beforeNavigate } from '$app/navigation'
     import { page } from '$app/stores'
     import { getBgOpacity } from './+layout'
     import { isMenuOpen } from '$lib/stores'
-    import { MetaTags } from 'svelte-meta-tags'
-
-    import {
-        BASE_URL,
-        DEFAULT_DESCRIPTION,
-        DEFAULT_OG_IMAGE,
-        DEFAULT_OG_IMAGE_SQUARE,
-        TAGLINE,
-    } from '$lib/constants'
 
     import '../app.css'
-    import CommunitySection from '$components/CommunitySection.svelte'
-    import StoriesSection from '$components/StoriesSection.svelte'
 
     export const csr = false
     export const prerender = true
@@ -38,32 +29,6 @@
     })
     afterNavigate(() => (document.documentElement.style.scrollBehavior = ''))
 </script>
-
-<!-- titleTemplate={`%s | ${TAGLINE}`} -->
-<MetaTags
-    title={TAGLINE}
-    description={DEFAULT_DESCRIPTION}
-    canonical={BASE_URL}
-    openGraph={{
-        url: BASE_URL,
-        title: TAGLINE,
-        description: DEFAULT_DESCRIPTION,
-        images: [
-            {
-                url: DEFAULT_OG_IMAGE,
-                width: 1200,
-                height: 736,
-                alt: 'Inner Development Goals Community logo',
-            },
-            {
-                url: DEFAULT_OG_IMAGE_SQUARE,
-                width: 1000,
-                height: 1000,
-                alt: 'Inner Development Goals Community logo',
-            },
-        ],
-    }}
-/>
 
 <svelte:head>
     {@html bodyStyle}

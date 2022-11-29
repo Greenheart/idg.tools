@@ -5,13 +5,40 @@
     import LinkButton from '$shared/components/LinkButton.svelte'
     import Markdown from '$shared/components/Markdown.svelte'
     import Arrow from '$shared/icons/Arrow.svelte'
+    import { page } from '$app/stores'
 
     import type { PageData } from './$types'
     import StoryMetadata from '$components/StoryMetadata.svelte'
     import Divider from '$components/Divider.svelte'
+    import Meta from '$components/Meta.svelte'
+    import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_SQUARE } from '$lib/constants'
+    import { truncateText } from '$shared/utils'
     export let data: PageData
     $: ({ story, dimensions, contributors, tags, prev, next } = data)
+
+    $: intro = truncateText(story.intro ?? story.story, 300)
+    const url = $page.url.toString()
 </script>
+
+<Meta
+    title={story.title}
+    description={intro}
+    {url}
+    images={[
+        // TODO: Add the first image, and the dimensions for it.
+        // IDEA: It might be possible to send image information from the backend, for example reading file stats with Node.js
+        {
+            url: DEFAULT_OG_IMAGE,
+            width: 1200,
+            height: 736,
+        },
+        {
+            url: DEFAULT_OG_IMAGE_SQUARE,
+            width: 1000,
+            height: 1000,
+        },
+    ]}
+/>
 
 <Breadcrumbs sections={[{ text: 'Stories', link: '/#stories' }, { text: story.title }]} />
 
@@ -26,6 +53,7 @@
 
     <!-- TODO: Make intro image responsive to follow other content width -->
     <!-- TODO: Keep larger font sizes for a bit longer, scale the same way as tools are doing -->
+    <!-- TODO: consider supporting other image formats in addition to webp -->
 
     <!-- IDEA: use picture tag and a text description inside -->
     <img

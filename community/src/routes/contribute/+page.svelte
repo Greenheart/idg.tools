@@ -1,6 +1,7 @@
 <script lang="ts">
     import Link from '$shared/components/Link.svelte'
     import Heading from '$shared/components/Heading.svelte'
+    import Meta from '$components/Meta.svelte'
     import {
         COMMUNITY_HUBS_LINK,
         COMMUNITY_LINK,
@@ -9,9 +10,11 @@
         ELEMENT_TOOLS_LINK,
         GITHUB_LINK,
     } from '$shared/constants'
-    import { STORIES_ABOUT_LINK } from '$lib/constants'
     import LinkButton from '$shared/components/LinkButton.svelte'
+    import { STORIES_ABOUT_LINK } from '$lib/constants'
 </script>
+
+<Meta title="How to contribute" />
 
 <div class="mx-auto max-w-3xl">
     <Heading size={1}>How you can support the IDG community</Heading>

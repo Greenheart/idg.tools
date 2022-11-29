@@ -1,6 +1,7 @@
 <script lang="ts">
     import Link from '$shared/components/Link.svelte'
     import Heading from '$shared/components/Heading.svelte'
+    import Meta from '$components/Meta.svelte'
     import { isMenuOpen } from '$lib/stores'
     import type { PageData } from './$types'
     import LinkButton from '$shared/components/LinkButton.svelte'
@@ -11,6 +12,8 @@
     export let data: PageData
     $: ({ content } = data)
 </script>
+
+<Meta />
 
 <div class:hidden={$isMenuOpen}>
     <Heading size={1}>Change starts within</Heading>
