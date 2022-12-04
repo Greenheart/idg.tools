@@ -1,12 +1,12 @@
 <script lang="ts" context="module">
-    import { BASE_URL, DEFAULT_OG_IMAGE } from '$lib/constants'
-    const DEFAULT_IMAGE = [
-        {
-            url: DEFAULT_OG_IMAGE,
-            width: 1200,
-            height: 736,
-        },
-    ]
+    // import { BASE_URL, DEFAULT_OG_IMAGE } from '$lib/constants'
+    // const DEFAULT_IMAGE = [
+    //     {
+    //         url: DEFAULT_OG_IMAGE,
+    //         width: 1200,
+    //         height: 736,
+    //     },
+    // ]
 </script>
 
 <script lang="ts">
@@ -29,10 +29,13 @@
     $: intro = truncateText(story.intro ?? story.story, 300)
     const url = $page.url.toString()
 
-    $: images = story.image ? [{ url: BASE_URL + story.image }] : DEFAULT_IMAGE
+    // TODO: LinkedIn doesn't support WebP for OG images, and possibly other clients too.
+    // We need to serve the original, or optimized image in png/jpg format here instead.
+    // $: images = story.image ? [{ url: BASE_URL + story.image }] : DEFAULT_IMAGE
 </script>
 
-<Meta title={story.title} description={intro} {url} {images} />
+<!-- TODO: Add back images once it's ready -->
+<Meta title={story.title} description={intro} {url} />
 
 <Breadcrumbs sections={[{ text: 'Stories', link: '/#stories' }, { text: story.title }]} />
 
