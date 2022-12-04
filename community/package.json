@@ -30,6 +30,8 @@
         "autoprefixer": "^10.4.13",
         "cssnano": "^5.1.14",
         "dotenv": "^16.0.3",
+        "fast-glob": "^3.2.12",
+        "sharp": "^0.31.2",
         "native-fetch": "^4.0.2",
         "postcss": "^8.4.19",
         "postcss-load-config": "^4.0.1",
