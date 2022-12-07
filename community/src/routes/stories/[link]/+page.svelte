@@ -15,6 +15,7 @@
     import Breadcrumbs from '$shared/components/Breadcrumbs.svelte'
     import LinkButton from '$shared/components/LinkButton.svelte'
     import Markdown from '$shared/components/Markdown.svelte'
+    import Picture from '$shared/components/Picture.svelte'
     import Arrow from '$shared/icons/Arrow.svelte'
     import { page } from '$app/stores'
 
@@ -51,12 +52,12 @@
 
     <!-- TODO: Make intro image responsive to follow other content width -->
     <!-- TODO: Keep larger font sizes for a bit longer, scale the same way as tools are doing -->
-    <!-- TODO: consider supporting other image formats in addition to webp -->
+    <!-- This layout issue is caused when font sizes decreases for `prose` content, which no longer fills the full width of parent container -->
 
-    <!-- IDEA: use picture tag and a text description inside -->
-    <img
+    <Picture
         src={story.image}
         alt={story.imageAlt}
+        sources={[{ srcset: story.image.replace(/\.webp$/, '.jpg'), type: 'image/jpg' }]}
         class="mx-auto mt-8 w-full rounded-2xl shadow-2xl"
         width={768}
         height={576}
