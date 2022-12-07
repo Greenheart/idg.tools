@@ -19,19 +19,24 @@
 
 <Tags {tags} visible={3} class="pt-4" inverted size="md" />
 
-{#if tool.intro}
-    <Markdown source={tool.intro} class="pt-4 font-bold" />
-{/if}
+<div class="gap-8 lg:grid lg:grid-cols-[4fr_2fr]">
+    <div>
+        {#if tool.intro}
+            <Markdown source={tool.intro} class="pt-4 font-bold" />
+        {/if}
 
-<Markdown source={tool.description} formatting="limited" class="pt-8" />
+        <Markdown source={tool.description} formatting="limited" class="pt-8" />
+    </div>
+    <div>
+        <Heading class="pb-2 pt-4">Most relevant skills</Heading>
+        <DetailedRelevantSkills {skills} relevancy={tool.relevancy} />
+    </div>
+</div>
 
-<div class="mt-8 rounded-2xl bg-stone-50 p-4 text-stone-900">
+<div class="xs:p-8 mx-auto mt-8 grid max-w-max rounded-2xl bg-stone-50 p-4 text-stone-900">
     <Heading class="pb-2 text-2xl">How to practice</Heading>
     <Markdown source={tool.actions} variant="inverted" formatting="limited" />
 </div>
-
-<Heading class="pt-8 pb-2">Most relevant skills</Heading>
-<DetailedRelevantSkills {skills} relevancy={tool.relevancy} />
 
 {#if tool.resources}
     <Heading class="pt-8 pb-2">Research and resources</Heading>
