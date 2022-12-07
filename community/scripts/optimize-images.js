@@ -33,8 +33,6 @@ const existing = (await FastGlob(resolve(outputDir, '*.{jpg,webp}'))).map((image
     basename(image),
 )
 
-console.log({ images, existing })
-
 const outputTypes = ['webp', 'jpg']
 
 await Promise.all(
@@ -46,7 +44,7 @@ await Promise.all(
         // Early exit if we don't need to build this image
         if (!missingTypes.length) return
 
-        console.log(image, missingTypes)
+        console.log(`Missing formats [${missingTypes.join(', ')}] for "${basename(image)}"`)
 
         const input = sharp(image).rotate()
         const meta = await input.metadata()
