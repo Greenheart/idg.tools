@@ -7,9 +7,7 @@
     import { FEEDBACK_FORM_LINK, SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
 </script>
 
-<div
-    class="mt-16 flex flex-col items-center justify-between rounded-2xl bg-stone-50 p-4 text-stone-900"
->
+<div class="flex flex-col items-center justify-between rounded-2xl bg-stone-50 p-4 text-stone-900">
     <UserGroup />
     <Heading size={2} class="py-2 text-center">Created by and for the community</Heading>
 
