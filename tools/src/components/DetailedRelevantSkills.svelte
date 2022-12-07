@@ -11,8 +11,6 @@
 
     let [mostRelevant, remaining] = [relevancy.slice(0, 5), relevancy.slice(5).length]
 
-    // TODO: Maybe remove skill relevancies for skills with less than 30/100 relevancy. This will make it more focused and clean.
-
     let visibleSkills = mostRelevant
     function showAll() {
         visibleSkills = relevancy
@@ -20,7 +18,7 @@
 </script>
 
 <div class={className}>
-    <div class={'grid grid-cols-1 gap-3'}>
+    <div class="grid grid-cols-1 gap-3">
         {#each visibleSkills as { skill: skillId, score }}
             {@const skill = getSkill(skillId, { skills })}
             {@const color = getColor(skillId)}
@@ -28,7 +26,7 @@
             <div class="flex items-center justify-between gap-4">
                 <span
                     class={cx(
-                        'overflow-hidden text-ellipsis whitespace-nowrap rounded-lg px-2 py-1 text-white text-sm',
+                        'overflow-hidden text-ellipsis whitespace-nowrap rounded-lg px-2 py-1 text-sm text-white',
                         color,
                     )}
                 >
