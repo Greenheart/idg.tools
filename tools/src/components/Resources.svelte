@@ -17,7 +17,7 @@
 </script>
 
 <div class={className}>
-    <Markdown {source} formatting="limited" />
+    <Markdown {source} formatting="limited" class="!prose-base" />
     {#if visibleResources < allResources.length}
         <button class="text-thinking mt-4 font-semibold underline" on:click={showAll}>
             Show {allResources.length - visibleResources ?? ''} more
