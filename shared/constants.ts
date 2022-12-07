@@ -58,6 +58,7 @@ export const ELEMENT_STORIES_LINK =
     'https://app.element.io/#/room/#stories:community.innerdevelopmentgoals.org'
 export const FRAMEWORK_LINK = 'https://www.innerdevelopmentgoals.org/framework'
 export const COMMUNITY_LINK = 'https://www.innerdevelopmentgoals.org/community'
+// Maybe change to include the #Hubs anchor
 export const COMMUNITY_HUBS_LINK = 'https://www.innerdevelopmentgoals.org/community'
 
 export const IDG_TOOLKIT_LAUNCH = 'https://forms.gle/reTb1sCQwkuyTBV79'
