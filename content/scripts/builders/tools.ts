@@ -85,14 +85,14 @@ const prepareTools = (
             if (!tool.relevancy) tool.relevancy = []
 
             const sortedRelevancyScores = tool.relevancy
-                .filter((t) => t.score > 0) // Filter out skills with 0 relevancy
+                .filter((t) => t.score > 30) // Filter out irrelevant skills
                 .sort((a, b) => b.score - a.score) // Most relevant first
 
             if (sortedRelevancyScores.length < tool.relevancy.length) {
                 console.warn(
                     `[content] Removed ${
                         tool.relevancy.length - sortedRelevancyScores.length
-                    } relevancy scores with 0 relevancy from tool "${
+                    } relevancy scores with <= 30 relevancy from tool "${
                         tool.name
                     }" for language "${language}"`,
                 )
