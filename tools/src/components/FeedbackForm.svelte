@@ -27,9 +27,9 @@
     >
         <label for="description" class="absolute -left-full text-stone-50">Description</label>
         <textarea type="text" name="description" class="absolute -left-full p-2" />
-        <label for="liked" class="text-stone-50">What do you like?</label>
+        <label for="liked" class="text-stone-50">What do you like about this tool?</label>
         <textarea type="text" name="liked" bind:value={liked} class="p-2" />
-        <label for="improve" class="text-stone-50">What can be improved?</label>
+        <label for="improve" class="text-stone-50">What can be improved for this tool?</label>
         <textarea type="text" name="improve" bind:value={improve} class="p-2" />
         <Button
             type="submit"
