@@ -15,6 +15,7 @@ Curious to learn how you can contribute? Come say hi in our chat room and we'll 
 
 There are many ways to help out so don't be afraid to ask!
 
+-   Get an overview of ways to contribute at <https://idg.community/contribute>
 -   [Element chat room](https://app.element.io/#/room/#idg-tools:community.innerdevelopmentgoals.org)
 
 ## Technologies used
