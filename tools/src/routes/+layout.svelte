@@ -33,8 +33,6 @@
 </script>
 
 <svelte:head>
-    <title>IDG.tools | {TAGLINE}</title>
-
     {@html bodyStyle}
 </svelte:head>
 
