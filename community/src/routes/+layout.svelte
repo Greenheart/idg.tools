@@ -4,7 +4,7 @@
     import StoriesSection from '$components/StoriesSection.svelte'
     import { afterNavigate, beforeNavigate } from '$app/navigation'
     import { page } from '$app/stores'
-    import { getBgOpacity } from './+layout'
+    import { _getBgOpacity } from './+layout'
     import { isMenuOpen } from '$lib/stores'
 
     import '../app.css'
@@ -15,7 +15,7 @@
     $: bodyStyle = `
 <style>
     body, .filters-backdrop {
-        background: linear-gradient(0deg, #000, rgb(0 0 0 / ${getBgOpacity($page?.route?.id)}%));
+        background: linear-gradient(0deg, #000, rgb(0 0 0 / ${_getBgOpacity($page?.route?.id)}%));
     }
 </style>
 `

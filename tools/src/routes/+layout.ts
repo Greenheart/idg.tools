@@ -1,1 +1,1 @@
-export { getBgOpacity } from '$lib/utils'
+export { _getBgOpacity } from '$lib/utils'
