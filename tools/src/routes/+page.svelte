@@ -46,9 +46,10 @@
         > (SDGs).
     </p>
 
-    <div class="mt-8 flex flex-wrap justify-center gap-4 sm:justify-start">
-        <LinkButton href={COMMUNITY_LINK} variant="secondary">Learn more</LinkButton>
-        <LinkButton href="/contribute" variant="primary">Get involved</LinkButton>
+
+    <div class="mt-8 flex flex-wrap justify-center gap-x-4 gap-y-2 sm:justify-start">
+        <LinkButton href="#about" variant="secondary">Learn more</LinkButton>
+        <LinkButton href="/#explore" variant="primary">Explore tools</LinkButton>
     </div>
 </div>
 

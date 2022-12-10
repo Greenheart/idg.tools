@@ -21,8 +21,10 @@
         yourself - but also empower many others.
     </p>
 
-    <div class="flex flex-wrap justify-center gap-4">
+    <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
         <LinkButton href={STORIES_ABOUT_LINK} variant="inverted">Share your story</LinkButton>
-        <LinkButton href={STORIES_ABOUT_LINK} variant="secondary-inverted">Join the editorial team</LinkButton>
+        <LinkButton href={STORIES_ABOUT_LINK} variant="secondary-inverted"
+            >Join the editorial team</LinkButton
+        >
     </div>
 </div>
