@@ -1,5 +1,6 @@
 <script lang="ts">
     import Link from '$shared/components/Link.svelte'
+    import MenuButton from '$shared/components/MenuButton.svelte'
     import { isMenuOpen } from '$lib/stores'
     import { onKeydown } from '$lib/utils'
 
@@ -34,17 +35,7 @@
         </nav>
     {/if}
 
-    <button
-        class="hamburger hamburger--spring z-10 !-mr-4 justify-evenly sm:hidden"
-        class:is-active={$isMenuOpen}
-        type="button"
-        on:click={toggleMenu}
-        on:keydown={onKeydown(toggleMenu)}
-    >
-        <span class="hamburger-box">
-            <span class="hamburger-inner" />
-        </span>
-    </button>
+    <MenuButton isOpen={$isMenuOpen} onToggle={toggleMenu} />
 
     <nav class="z-10 hidden justify-evenly sm:flex">
         {#each links as { href, text }}
