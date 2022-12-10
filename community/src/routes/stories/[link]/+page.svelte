@@ -50,10 +50,6 @@
         <Markdown source={story.intro} class="mt-8 !text-2xl" />
     {/if}
 
-    <!-- TODO: Make intro image responsive to follow other content width -->
-    <!-- TODO: Keep larger font sizes for a bit longer, scale the same way as tools are doing -->
-    <!-- This layout issue is caused when font sizes decreases for `prose` content, which no longer fills the full width of parent container -->
-
     <Picture
         src={story.image}
         alt={story.imageAlt}
