@@ -17,7 +17,7 @@
 
 <header class="relative flex items-center justify-between pt-6 pb-12">
     <Link href="/" unstyled class="flex h-[60px] items-center">
-        <img src="/images/IDG-tools.svg" alt="IDG.tools logo" class="mx-auto" />
+        <img src="/images/IDG-logo.svg" alt="IDG logo" class="h-[60px]" />
     </Link>
 
     {#if $isMenuOpen}
