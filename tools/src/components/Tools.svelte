@@ -3,8 +3,6 @@
     import { selectedSkills, visibleItems, selectedTags } from '$lib/stores'
     import ToolPreview from './ToolPreview.svelte'
     import Button from '$shared/components/Button.svelte'
-    import Link from '$shared/components/Link.svelte'
-    import { SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
 
     export let tools: Tool[]
     export let content: ToolsContent
@@ -25,11 +23,6 @@
     <div class="flex flex-col items-center space-y-4 lg:col-span-2">
         <p>There are no published tools matching your search yet.</p>
         <Button on:click={showAll}>Show all tools</Button>
-        <p>
-            Welcome to <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink"
-                >suggest a new tool here</Link
-            >!
-        </p>
     </div>
 {/each}
 
@@ -40,15 +33,8 @@
     </div> -->
     {#if $visibleItems < tools.length}
         <Button on:click={showMore}>Show more</Button>
-    {:else if tools.length}
-        {#if $selectedSkills.length || $selectedTags.length}
-            <p>These are all tools matching your search so far.</p>
-            <Button on:click={showAll}>Show all tools</Button>
-        {/if}
-        <p>
-            Welcome to <Link href={SUGGEST_NEW_TOOL_LINK} variant="pink"
-                >suggest a new tool here</Link
-            >!
-        </p>
+    {:else if tools.length && ($selectedSkills.length || $selectedTags.length)}
+        <p>These are all tools matching your search so far.</p>
+        <Button on:click={showAll}>Show all tools</Button>
     {/if}
 </div>

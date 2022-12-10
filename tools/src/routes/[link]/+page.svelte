@@ -8,10 +8,19 @@
     import Breadcrumbs from '$shared/components/Breadcrumbs.svelte'
     import Link from '$shared/components/Link.svelte'
 
+    import { page } from '$app/stores'
+
     import type { PageData } from './$types'
+    import Meta from '$components/Meta.svelte'
+    import { truncateText } from '$shared/utils'
     export let data: PageData
     $: ({ tool, skills, tags } = data)
+    $: intro = truncateText(tool.intro ?? tool.description, 300)
+
+    const url = $page.url.toString()
 </script>
+
+<Meta title={tool.name} description={intro} {url} />
 
 <Breadcrumbs sections={[{ text: 'Tools', link: '/#explore' }, { text: tool.name }]} />
 

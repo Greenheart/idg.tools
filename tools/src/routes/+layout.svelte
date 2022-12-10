@@ -3,11 +3,13 @@
     import Header from '$components/Header.svelte'
     import { TAGLINE } from '$lib/constants'
     import { page } from '$app/stores'
-    import { getBgOpacity } from './+layout'
+    import { _getBgOpacity } from './+layout'
     import { isMenuOpen } from '$lib/stores'
 
     import '../app.css'
     import CommunitySection from '$components/CommunitySection.svelte'
+    import Link from '$shared/components/Link.svelte'
+    import { GITHUB_LINK } from '$shared/constants'
 
     export const csr = false
     export const prerender = true
@@ -15,7 +17,7 @@
     $: bodyStyle = `
 <style>
     body, .filters-backdrop {
-        background: linear-gradient(0deg, #000, rgb(0 0 0 / ${getBgOpacity($page?.route?.id)}%));
+        background: linear-gradient(0deg, #000, rgb(0 0 0 / ${_getBgOpacity($page?.route?.id)}%));
     }
 </style>
 `
@@ -31,8 +33,6 @@
 </script>
 
 <svelte:head>
-    <title>IDG.tools | {TAGLINE}</title>
-
     {@html bodyStyle}
 </svelte:head>
 
@@ -45,4 +45,15 @@
 
 <div class="mx-auto w-full max-w-2xl px-4 pb-16 sm:max-w-3xl" class:hidden={$isMenuOpen}>
     <CommunitySection />
+</div>
+
+<div
+    class="mx-auto w-full max-w-2xl px-12 pb-16 text-stone-50 sm:max-w-3xl"
+    class:hidden={$isMenuOpen}
+>
+    <p class="text-stone-50">
+        IDG.tools uses two licenses: the CC-BY-SA-4.0 license for content (except images), and the
+        AGPL-3.0 license for the software.
+        <Link href={GITHUB_LINK} variant="pink">Learn more on GitHub</Link>
+    </p>
 </div>

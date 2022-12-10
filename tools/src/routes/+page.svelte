@@ -9,6 +9,7 @@
     import { getMostRelevantTools } from '$shared/content-utils'
     import Filters from '$components/Filters.svelte'
     import { FEEDBACK_FORM_LINK } from '$lib/constants'
+    import Meta from '$components/Meta.svelte'
 
     export let data: PageData
     $: ({ content } = data)
@@ -25,6 +26,8 @@
             ? getMostRelevantTools(content, $selectedSkills, $selectedTags)
             : content.tools
 </script>
+
+<Meta />
 
 <div class:hidden={$isMenuOpen}>
     <Heading size={1}>Change starts within</Heading>
