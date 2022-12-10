@@ -23,10 +23,6 @@
 
     <div class="flex flex-wrap justify-center gap-4">
         <LinkButton href={STORIES_ABOUT_LINK} variant="inverted">Share your story</LinkButton>
-        <LinkButton
-            href={STORIES_ABOUT_LINK}
-            variant="secondary"
-            class="border-stone-900 !text-stone-900">Join the editorial team</LinkButton
-        >
+        <LinkButton href={STORIES_ABOUT_LINK} variant="secondary-inverted">Join the editorial team</LinkButton>
     </div>
 </div>

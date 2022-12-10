@@ -2,13 +2,7 @@
     import { onMount } from 'svelte'
 
     import { isExternalURL, cx } from '../utils'
-    import {
-        variants,
-        defaultVariant,
-        defaultClasses,
-        sizes,
-        defaultSize,
-    } from './Button.svelte'
+    import { variants, defaultVariant, defaultClasses, sizes, defaultSize } from './Button.svelte'
     import Link from './Link.svelte'
 </script>
 
@@ -33,7 +27,6 @@
 <Link
     {href}
     unstyled
-    {...$$props}
     class={cx(
         defaultClasses,
         variants[disabled ? 'disabled' : variant],

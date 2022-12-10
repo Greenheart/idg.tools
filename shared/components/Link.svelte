@@ -36,7 +36,7 @@
 <a
     {href}
     {tabindex}
-    class={cx(unstyled ? '' : defaultClasses, variants[variant], className)}
+    class={cx(unstyled ? '' : defaultClasses, unstyled ? '' : variants[variant], className)}
     {...additionalProps}
 >
     <slot />

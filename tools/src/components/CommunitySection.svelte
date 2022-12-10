@@ -18,11 +18,7 @@
 
     <div class="my-4 flex flex-wrap justify-center gap-x-4 gap-y-2">
         <LinkButton href={SUGGEST_NEW_TOOL_LINK} variant="inverted">Suggest new tool</LinkButton>
-        <LinkButton
-            href={FEEDBACK_FORM_LINK}
-            variant="secondary"
-            class="border-stone-900 !text-stone-900">Give feedback</LinkButton
-        >
+        <LinkButton href={FEEDBACK_FORM_LINK} variant="secondary-inverted">Give feedback</LinkButton>
     </div>
 
     <Link href={HOW_TO_CONTRIBUTE_LINK} variant="pink">Explore more ways to contribute</Link>
