@@ -20,15 +20,14 @@
     afterNavigate(() => (document.documentElement.style.scrollBehavior = ''))
 </script>
 
-<main class="mx-auto w-full max-w-2xl px-4 pb-16 text-stone-50 sm:max-w-6xl sm:text-lg">
+<main class="mx-auto w-full max-w-2xl px-4 pb-16 text-stone-50 sm:max-w-6xl sm:px-8 sm:text-lg">
     <Header />
     <slot />
+    <div class="mx-auto max-w-2xl px-4 sm:max-w-3xl sm:px-8">
+        {#if $page?.route?.id === '/'}
+            <CommunitySection />
+        {:else if $page?.route?.id === '/stories/[link]'}
+            <StoriesSection />
+        {/if}
+    </div>
 </main>
-
-<div class="mx-auto w-full max-w-2xl px-4 pb-16 sm:max-w-3xl">
-    {#if $page?.route?.id === '/'}
-        <CommunitySection />
-    {:else if $page?.route?.id === '/stories/[link]'}
-        <StoriesSection />
-    {/if}
-</div>
