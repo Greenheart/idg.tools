@@ -33,8 +33,9 @@
 <Heading size={1} class="text-collaborating">Change starts within</Heading>
 
 <div class="py-12 text-lg sm:text-xl">
-    <p>Welcome to the Inner Development Goals Community!</p>
+    <p>Welcome to the Inner Development Goals Toolkit!</p>
 
+    <!-- TODO: Update copy for the intro -->
     <p class="mt-4">
         This is an emerging network of IDG Hubs who are using the <Link
             href={FRAMEWORK_LINK}
