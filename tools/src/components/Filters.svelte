@@ -58,9 +58,7 @@
     unmount={false}
     initialFocus={applyButton}
 >
-    <div
-        class="fixed inset-0 -z-20 bg-stone-900 bg-[url(/images/david-marcu-78A265wPiO4-unsplash.webp)] bg-cover bg-fixed bg-center bg-no-repeat"
-    />
+    <div class="fixed inset-0 -z-20 bg-black" />
     <DialogOverlay class="filters-backdrop fixed inset-0 -z-10" />
 
     <div class="w-full max-w-2xl sm:max-w-6xl">
