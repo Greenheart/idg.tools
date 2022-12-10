@@ -17,7 +17,7 @@
 <Meta title="How to contribute" />
 
 <div class="mx-auto max-w-3xl">
-    <Heading size={1}>How you can support the IDG community</Heading>
+    <Heading size={1} class="text-collaborating">How you can support the IDG community</Heading>
     <p class="my-8">
         First of all - thanks for being here! There are several ways you can contribute in a
         meaningful way, which could make a significant impact for the development of the IDGs and
