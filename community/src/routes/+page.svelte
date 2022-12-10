@@ -14,7 +14,7 @@
 
 <Meta />
 
-<Heading size={1} class="text-relating">Change starts within</Heading>
+<Heading size={1} class="text-collaborating">Change starts within</Heading>
 
 <div class="py-12 text-lg sm:text-xl">
     <p>Welcome to the Inner Development Goals Community!</p>
@@ -51,8 +51,8 @@
         <Link href={IDG_TOOLKIT_LAUNCH} variant="pink">Join the launch December 15th</Link>
     </div>
 
-    <div class="border-relating flex flex-col border-2 p-4">
-        <Heading size={2} class="text-relating">Hubs</Heading>
+    <div class="border-collaborating flex flex-col border-2 p-4">
+        <Heading size={2} class="text-collaborating">Hubs</Heading>
         <p class="my-4 flex-1">
             With almost 100 Hubs, this is an emerging network eager to participate, explore and
             co-create. Join local events, connect with the global community and learn together.
@@ -60,8 +60,8 @@
         <Link href={COMMUNITY_LINK} variant="pink">Find your community</Link>
     </div>
 
-    <div class="border-collaborating flex flex-col border-2 p-4">
-        <Heading size={2} class="text-collaborating">Stories</Heading>
+    <div class="border-relating flex flex-col border-2 p-4">
+        <Heading size={2} class="text-relating">Stories</Heading>
         <p class="my-4 flex-1">
             Read stories of how people around the world are using the IDG framework in practice.
             Learn from others and try it with your local hub. Share your own story and help make the
