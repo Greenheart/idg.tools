@@ -14,7 +14,7 @@
 
 <Meta />
 
-<Heading size={1}>Change starts within</Heading>
+<Heading size={1} class="text-relating">Change starts within</Heading>
 
 <div class="py-12 text-lg sm:text-xl">
     <p>Welcome to the Inner Development Goals Community!</p>
@@ -41,7 +41,7 @@
     class="mx-auto mt-8 grid max-w-lg justify-items-center gap-4 text-center text-stone-50 md:max-w-none md:grid-cols-3 lg:gap-8"
 >
     <div class="border-being flex flex-col border-2 p-4">
-        <Heading size={2}>Tools</Heading>
+        <Heading size={2} class="text-being">Tools</Heading>
         <p class="my-4 flex-1">
             We're creating an open source library of scientifically-validated tools to develop the
             skills outlined by the IDG framework. Here you can find methods, workshops and resources
@@ -52,7 +52,7 @@
     </div>
 
     <div class="border-relating flex flex-col border-2 p-4">
-        <Heading size={2}>Hubs</Heading>
+        <Heading size={2} class="text-relating">Hubs</Heading>
         <p class="my-4 flex-1">
             With almost 100 Hubs, this is an emerging network eager to participate, explore and
             co-create. Join local events, connect with the global community and learn together.
@@ -61,7 +61,7 @@
     </div>
 
     <div class="border-collaborating flex flex-col border-2 p-4">
-        <Heading size={2}>Stories</Heading>
+        <Heading size={2} class="text-collaborating">Stories</Heading>
         <p class="my-4 flex-1">
             Read stories of how people around the world are using the IDG framework in practice.
             Learn from others and try it with your local hub. Share your own story and help make the
