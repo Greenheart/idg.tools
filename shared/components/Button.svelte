@@ -5,6 +5,7 @@
         primary: 'bg-stone-50 text-stone-900',
         inverted: 'bg-stone-900 text-stone-50',
         secondary: 'bg-transparent text-stone-50 border-stone-50 border',
+        'secondary-inverted': 'border-stone-900 text-stone-900',
         danger: 'bg-red-700 text-stone-50',
         disabled: 'bg-stone-50 text-stone-900 opacity-60 pointer-events-none',
         active: 'bg-purple-500 text-stone-50',
