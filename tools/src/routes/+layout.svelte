@@ -25,7 +25,7 @@
     <slot />
     <div class="mx-auto mt-16 max-w-2xl px-4 sm:max-w-3xl sm:px-8">
         <CommunitySection />
-        <p class="mt-16 text-center text-stone-50">
+        <p class="mt-16 text-center">
             IDG.tools uses two licenses: CC-BY-SA-4.0 for content (except images), and AGPL-3.0 for
             software.
             <Link href={GITHUB_LINK} variant="pink">Learn more on GitHub</Link>

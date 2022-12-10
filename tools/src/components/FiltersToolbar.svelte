@@ -24,14 +24,14 @@
 </script>
 
 <button
-    class={cx('sticky top-0 z-10 text-stone-900 shadow-2xl w-full', className)}
+    class={cx('sticky top-0 z-10 w-full text-stone-900 shadow-2xl', className)}
     on:click={onClick(toggleOpen)}
     on:keydown={onKeydown(toggleOpen)}
 >
     <div
         class={cx(
             'relative flex h-16 cursor-pointer select-none items-center justify-between bg-stone-50 px-2 pt-2 pb-4 md:px-4',
-            $filtersExpanded ? '' : '-ml-4 -mr-4',
+            $filtersExpanded ? '' : '-ml-4 -mr-4 sm:-ml-8 sm:-mr-8',
         )}
     >
         <div class="flex items-center space-x-2 md:space-x-3">

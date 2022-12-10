@@ -71,7 +71,7 @@
 
         <div class="mx-auto grid max-w-3xl gap-4 p-4 text-stone-50">
             <Heading>Select skills</Heading>
-            <Skills {content} class="-ml-4 -mr-4" />
+            <Skills {content} class="-ml-4 -mr-4 sm:-ml-8 sm:-mr-8" />
 
             <Heading class="mt-4">Content preferences</Heading>
             <Tags tags={content.tags} inverted interactive size="lg" />
