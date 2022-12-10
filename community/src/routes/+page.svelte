@@ -2,7 +2,6 @@
     import Link from '$shared/components/Link.svelte'
     import Heading from '$shared/components/Heading.svelte'
     import Meta from '$components/Meta.svelte'
-    import { isMenuOpen } from '$lib/stores'
     import type { PageData } from './$types'
     import LinkButton from '$shared/components/LinkButton.svelte'
     import StoriesSection from '$components/StoriesSection.svelte'
@@ -15,26 +14,24 @@
 
 <Meta />
 
-<div class:hidden={$isMenuOpen}>
-    <Heading size={1}>Change starts within</Heading>
+<Heading size={1}>Change starts within</Heading>
 
-    <div class="py-12 text-lg sm:text-xl">
-        <p>Welcome to the Inner Development Goals Community!</p>
+<div class="py-12 text-lg sm:text-xl">
+    <p>Welcome to the Inner Development Goals Community!</p>
 
-        <p class="mt-4">
-            This is an emerging network of IDG Hubs who are using the <Link
-                href={FRAMEWORK_LINK}
-                class="mt-6 font-bold underline">Inner Development Goals</Link
-            > (IDGs) to achieve the <Link
-                href="https://sdgs.un.org/goals#goals"
-                class="font-bold underline">UN Sustainable Development Goals</Link
-            > (SDGs).
-        </p>
+    <p class="mt-4">
+        This is an emerging network of IDG Hubs who are using the <Link
+            href={FRAMEWORK_LINK}
+            class="mt-6 font-bold underline">Inner Development Goals</Link
+        > (IDGs) to achieve the <Link
+            href="https://sdgs.un.org/goals#goals"
+            class="font-bold underline">UN Sustainable Development Goals</Link
+        > (SDGs).
+    </p>
 
-        <div class="mt-8 flex flex-wrap justify-center gap-4 sm:justify-start">
-            <LinkButton href={COMMUNITY_LINK} variant="secondary">Learn more</LinkButton>
-            <LinkButton href="/contribute" variant="primary">Get involved</LinkButton>
-        </div>
+    <div class="mt-8 flex flex-wrap justify-center gap-4 sm:justify-start">
+        <LinkButton href={COMMUNITY_LINK} variant="secondary">Learn more</LinkButton>
+        <LinkButton href="/contribute" variant="primary">Get involved</LinkButton>
     </div>
 </div>
 
