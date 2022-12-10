@@ -18,18 +18,13 @@
 </script>
 
 <div class={className}>
-    <div class="grid grid-cols-1 gap-2">
+    <div class="grid grid-cols-1 gap-2 text-ellipsis whitespace-nowrap text-sm text-white">
         {#each visibleSkills as { skill: skillId, score }}
             {@const skill = getSkill(skillId, { skills })}
             {@const color = getColor(skillId)}
 
             <div class="flex items-center justify-between gap-4">
-                <span
-                    class={cx(
-                        'overflow-hidden text-ellipsis whitespace-nowrap px-2 py-1 text-sm text-white',
-                        color,
-                    )}
-                >
+                <span class={cx('overflow-hidden px-2 py-1', color)}>
                     {skill.name}
                 </span>
                 <RelevancyScore {score} />
