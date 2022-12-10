@@ -1,14 +1,14 @@
 <script lang="ts">
-    import { selectedTags, selectedDimensions } from '$lib/stores'
-    import type { CommunityContent } from '$shared/types'
-    import StoryPreview from './StoryPreview.svelte'
     import Button from '$shared/components/Button.svelte'
     import Heading from '$shared/components/Heading.svelte'
+    import Link from '$shared/components/Link.svelte'
+    import Divider from '$shared/components/Divider.svelte'
+    import StoryPreview from './StoryPreview.svelte'
     import Tags from './Tags.svelte'
     import { getMostRelevantStories } from '$shared/content-utils'
-    import Link from '$shared/components/Link.svelte'
+    import { selectedTags, selectedDimensions } from '$lib/stores'
+    import type { CommunityContent } from '$shared/types'
     import { STORIES_ABOUT_LINK } from '$lib/constants'
-    import Divider from './Divider.svelte'
     // import Dimensions from './Dimensions.svelte'
     // import StoryFilters from './StoryFilters.svelte'
 
@@ -68,7 +68,7 @@
         {/each}
     </div>
 
-    <Divider />
+    <Divider class="my-16" />
 
     <div class="flex flex-col items-center justify-center space-y-4 lg:col-span-2">
         <p>

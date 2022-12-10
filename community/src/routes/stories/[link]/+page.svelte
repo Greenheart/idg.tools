@@ -17,11 +17,11 @@
     import Markdown from '$shared/components/Markdown.svelte'
     import Picture from '$shared/components/Picture.svelte'
     import Arrow from '$shared/icons/Arrow.svelte'
+    import Divider from '$shared/components/Divider.svelte'
     import { page } from '$app/stores'
 
     import type { PageData } from './$types'
     import StoryMetadata from '$components/StoryMetadata.svelte'
-    import Divider from '$components/Divider.svelte'
     import Meta from '$components/Meta.svelte'
     import { truncateText } from '$shared/utils'
     export let data: PageData
@@ -62,7 +62,7 @@
 
     <Markdown source={story.story} formatting="article" />
 
-    <Divider />
+    <Divider class="my-16" />
 
     <Heading class="text-center">More stories</Heading>
 
