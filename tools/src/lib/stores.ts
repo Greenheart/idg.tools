@@ -32,7 +32,7 @@ export const selectedSkills = createPersistedStore<ItemId[]>('selectedSkills', [
 export const selectedTags = createPersistedStore<ItemId[]>('selectedTags', [])
 export const isMenuOpen = writable<boolean>(false)
 export const filtersExpanded = writable<boolean>(false)
-export const visibleItems = createPersistedStore<number>('visibleItems', 10)
+export const visibleItems = writable<number>(10)
 
 export const isDimensionOpen = writable<Record<Dimension['id'], boolean>>(
     DIMENSION_IDS.reduce((isDimensionOpen: Record<Dimension['id'], boolean>, dimensionId) => {

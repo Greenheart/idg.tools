@@ -4,7 +4,7 @@
     import Link from '$shared/components/Link.svelte'
     import Heading from '$shared/components/Heading.svelte'
     import Tools from '$components/Tools.svelte'
-    import { selectedSkills, selectedTags, visibleItems } from '$lib/stores'
+    import { selectedSkills, selectedTags } from '$lib/stores'
     import type { PageData } from './$types'
     import { getMostRelevantTools } from '$shared/content-utils'
     import Filters from '$components/Filters.svelte'
@@ -19,7 +19,6 @@
         // NOTE: Maybe we could limit the number of re-renders by showing a loading state until all of these have updated?
         selectedSkills.useLocalStorage()
         selectedTags.useLocalStorage()
-        visibleItems.useLocalStorage()
     })
 
     $: mostRelevantTools =
