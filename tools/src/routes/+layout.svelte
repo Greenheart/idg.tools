@@ -21,7 +21,7 @@
     afterNavigate(() => (document.documentElement.style.scrollBehavior = ''))
 </script>
 
-<main class="mx-auto w-full max-w-2xl px-4 pb-16 text-stone-50 sm:max-w-6xl">
+<main class="mx-auto w-full max-w-2xl px-4 pb-16 text-stone-50 sm:max-w-6xl sm:text-lg">
     <Header />
     <div class:hidden={$isMenuOpen}>
         <slot />
