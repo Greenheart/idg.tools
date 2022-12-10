@@ -1,6 +1,7 @@
 <script lang="ts">
     import Heading from '$shared/components/Heading.svelte'
     import Markdown from '$shared/components/Markdown.svelte'
+    import Divider from '$shared/components/Divider.svelte'
     import DetailedRelevantSkills from '$components/DetailedRelevantSkills.svelte'
     import Resources from '$components/Resources.svelte'
     import FeedbackForm from '$components/FeedbackForm.svelte'
@@ -32,7 +33,9 @@
     <Markdown source={tool.intro} class="pt-8 !text-2xl" />
 {/if}
 
-<Markdown source={tool.description} formatting="limited" class="pt-8" />
+<Divider class="my-8" />
+
+<Markdown source={tool.description} formatting="limited" />
 
 <div class="mt-8 bg-stone-50 p-4 text-stone-900 sm:p-8">
     <Heading class="pb-2 text-2xl">How to practice</Heading>
