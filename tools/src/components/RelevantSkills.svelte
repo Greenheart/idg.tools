@@ -21,7 +21,7 @@
     {#each mostRelevantSkills as relevancy}
         {@const skill = getSkill(relevancy.skill, content)}
         {@const color = getColor(relevancy.skill)}
-        <span class={cx('rounded-lg px-2 py-1 text-white', color)}>
+        <span class={cx('px-2 py-1 text-white', color)}>
             {skill.name}
         </span>
     {/each}

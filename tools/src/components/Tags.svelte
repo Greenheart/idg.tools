@@ -28,18 +28,17 @@
     const renderAs = interactive ? 'button' : 'span'
 </script>
 
-<div class={cx('flex flex-wrap items-start select-none', sizes[size].wrapper, className)}>
+<div class={cx('flex select-none flex-wrap items-start', sizes[size].wrapper, className)}>
     {#each tags.slice(0, visible) as tag (tag.name)}
         <svelte:element
             this={renderAs}
             on:click={interactive ? () => toggleTag(tag.id) : () => {}}
             on:keydown={interactive ? onKeydown(() => toggleTag(tag.id)) : () => {}}
             class={cx(
-                'rounded-lg',
                 interactive
                     ? $selectedTags.includes(tag.id)
                         ? 'cursor-pointer'
-                        : 'bg-opacity-50 cursor-pointer'
+                        : 'cursor-pointer bg-opacity-50'
                     : '',
                 sizes[size].tag,
                 inverted ? 'bg-stone-50 text-stone-900' : 'bg-stone-900 text-stone-50',
