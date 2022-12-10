@@ -18,7 +18,7 @@
 </script>
 
 <div class={className}>
-    <div class="grid grid-cols-1 gap-3">
+    <div class="grid grid-cols-1 gap-2">
         {#each visibleSkills as { skill: skillId, score }}
             {@const skill = getSkill(skillId, { skills })}
             {@const color = getColor(skillId)}
