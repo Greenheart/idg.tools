@@ -33,7 +33,7 @@
 
     {#if $isMenuOpen}
         <nav
-            class="fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center bg-black text-6xl font-semibold"
+            class="xs:text-4xl fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center bg-black text-3xl font-semibold"
             on:click={toggleMenu}
             on:keydown={onKeydown(toggleMenu)}
         >
