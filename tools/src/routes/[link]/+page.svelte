@@ -34,7 +34,7 @@
 
 <Markdown source={tool.description} formatting="limited" class="pt-8" />
 
-<div class="mt-8 bg-stone-50 p-4 text-stone-900">
+<div class="mt-8 bg-stone-50 p-4 text-stone-900 sm:p-8">
     <Heading class="pb-2 text-2xl">How to practice</Heading>
     <Markdown source={tool.actions} variant="inverted" formatting="limited" />
 </div>
