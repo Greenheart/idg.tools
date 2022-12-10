@@ -4,7 +4,6 @@
     import StoriesSection from '$components/StoriesSection.svelte'
     import { afterNavigate, beforeNavigate } from '$app/navigation'
     import { page } from '$app/stores'
-    import { isMenuOpen } from '$lib/stores'
 
     import '../app.css'
 
@@ -23,12 +22,10 @@
 
 <main class="mx-auto w-full max-w-2xl px-4 pb-16 text-stone-50 sm:max-w-6xl sm:text-lg">
     <Header />
-    <div class:hidden={$isMenuOpen}>
-        <slot />
-    </div>
+    <slot />
 </main>
 
-<div class="mx-auto w-full max-w-2xl px-4 pb-16 sm:max-w-3xl" class:hidden={$isMenuOpen}>
+<div class="mx-auto w-full max-w-2xl px-4 pb-16 sm:max-w-3xl">
     {#if $page?.route?.id === '/'}
         <CommunitySection />
     {:else if $page?.route?.id === '/stories/[link]'}

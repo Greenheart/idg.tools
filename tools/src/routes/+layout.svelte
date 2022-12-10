@@ -1,7 +1,6 @@
 <script lang="ts">
     import { afterNavigate, beforeNavigate } from '$app/navigation'
     import Header from '$components/Header.svelte'
-    import { isMenuOpen } from '$lib/stores'
 
     import '../app.css'
     import CommunitySection from '$components/CommunitySection.svelte'
@@ -23,19 +22,14 @@
 
 <main class="mx-auto w-full max-w-2xl px-4 pb-16 text-stone-50 sm:max-w-6xl sm:text-lg">
     <Header />
-    <div class:hidden={$isMenuOpen}>
-        <slot />
-    </div>
+    <slot />
 </main>
 
-<div class="mx-auto w-full max-w-2xl px-4 pb-16 sm:max-w-3xl" class:hidden={$isMenuOpen}>
+<div class="mx-auto w-full max-w-2xl px-4 pb-16 sm:max-w-3xl">
     <CommunitySection />
 </div>
 
-<div
-    class="mx-auto w-full max-w-2xl px-12 pb-16 text-stone-50 sm:max-w-3xl"
-    class:hidden={$isMenuOpen}
->
+<div class="mx-auto w-full max-w-2xl px-12 pb-16 text-stone-50 sm:max-w-3xl">
     <p class="text-stone-50">
         IDG.tools uses two licenses: the CC-BY-SA-4.0 license for content (except images), and the
         AGPL-3.0 license for the software.

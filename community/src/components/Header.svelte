@@ -3,13 +3,21 @@
     import MenuButton from '$shared/components/MenuButton.svelte'
     import { isMenuOpen } from '$lib/stores'
     import { onKeydown } from '$lib/utils'
+    import { beforeNavigate } from '$app/navigation'
+    import { tick } from 'svelte'
 
     const toggleMenu = () => {
         $isMenuOpen = !$isMenuOpen
     }
 
+    beforeNavigate(async () => {
+        if ($isMenuOpen) {
+            $isMenuOpen = false
+            await tick()
+        }
+    })
+
     const links = [
-        // { href: '/', text: 'Home' },
         // { href: '/about', text: 'About' },
         { href: '/contribute', text: 'How to contribute' },
         // { href: ELEMENT_LINK, text: 'Community' },
@@ -17,7 +25,7 @@
 </script>
 
 <header class="relative flex items-center justify-between pt-6 pb-12">
-    <Link href="/" unstyled class="flex h-[60px] items-center gap-4">
+    <Link href="/" unstyled class="z-30 flex h-[60px] items-center gap-4">
         <img src="/images/IDG-logo.svg" alt="IDG logo" class="h-[60px]" />
         <div class="h-full w-px bg-white" />
         <span>Community</span>
@@ -25,7 +33,7 @@
 
     {#if $isMenuOpen}
         <nav
-            class="fixed inset-0 flex h-full w-full flex-col items-center justify-center text-6xl font-semibold backdrop-blur-2xl"
+            class="fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center bg-black text-6xl font-semibold"
             on:click={toggleMenu}
             on:keydown={onKeydown(toggleMenu)}
         >
@@ -35,7 +43,7 @@
         </nav>
     {/if}
 
-    <div class="z-10 !-mr-4 sm:hidden">
+    <div class="z-20 !-mr-4 sm:hidden">
         <MenuButton isOpen={$isMenuOpen} onToggle={toggleMenu} />
     </div>
 
