@@ -19,7 +19,7 @@
         <img
             src={story.image}
             alt={story.imageAlt}
-            class="h-full w-full transform-gpu object-cover shadow-lg transition-transform duration-300 group-hover:scale-105"
+            class="h-full w-full transform-gpu object-cover transition-transform duration-300 group-hover:scale-105"
             width={520}
             height={346}
             loading="lazy"
