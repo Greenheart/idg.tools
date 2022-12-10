@@ -20,19 +20,15 @@
     afterNavigate(() => (document.documentElement.style.scrollBehavior = ''))
 </script>
 
-<main class="mx-auto w-full max-w-2xl px-4 pb-16 text-stone-50 sm:max-w-6xl sm:text-lg">
+<main class="mx-auto w-full max-w-2xl px-4 pb-16 text-stone-50 sm:max-w-6xl sm:px-8 sm:text-lg">
     <Header />
     <slot />
+    <div class="mx-auto mt-16 max-w-2xl px-4 sm:max-w-3xl sm:px-8">
+        <CommunitySection />
+        <p class="mt-16 text-center text-stone-50">
+            IDG.tools uses two licenses: CC-BY-SA-4.0 for content (except images), and AGPL-3.0 for
+            software.
+            <Link href={GITHUB_LINK} variant="pink">Learn more on GitHub</Link>
+        </p>
+    </div>
 </main>
-
-<div class="mx-auto w-full max-w-2xl px-4 pb-16 sm:max-w-3xl">
-    <CommunitySection />
-</div>
-
-<div class="mx-auto w-full max-w-2xl px-12 pb-16 text-stone-50 sm:max-w-3xl">
-    <p class="text-stone-50">
-        IDG.tools uses two licenses: the CC-BY-SA-4.0 license for content (except images), and the
-        AGPL-3.0 license for the software.
-        <Link href={GITHUB_LINK} variant="pink">Learn more on GitHub</Link>
-    </p>
-</div>
