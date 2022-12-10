@@ -16,8 +16,10 @@
 </script>
 
 <header class="relative flex items-center justify-between pt-6 pb-12">
-    <Link href="/" unstyled class="flex h-[60px] items-center">
+    <Link href="/" unstyled class="flex h-[60px] items-center gap-4">
         <img src="/images/IDG-logo.svg" alt="IDG logo" class="h-[60px]" />
+        <div class="h-full w-px bg-white" />
+        <span>Community</span>
     </Link>
 
     {#if $isMenuOpen}
