@@ -28,8 +28,8 @@
         <div class="space-y-4">
             <Heading>1. Join or start an IDG Hub in your area</Heading>
             <p>
-                One of the best way to get started is to join one of the existing IDG Hubs and get
-                familiar with the concepts.
+                One of the best way to get started is to join one of the existing IDG Hubs and
+                explore the IDGs in practice together with others.
                 <Link href={COMMUNITY_LINK} variant="pink">Learn more</Link> and
                 <Link href={COMMUNITY_HUBS_LINK} variant="pink">find IDG Hubs near you</Link>.
             </p>
