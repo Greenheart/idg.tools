@@ -4,21 +4,12 @@
     import StoriesSection from '$components/StoriesSection.svelte'
     import { afterNavigate, beforeNavigate } from '$app/navigation'
     import { page } from '$app/stores'
-    import { _getBgOpacity } from './+layout'
     import { isMenuOpen } from '$lib/stores'
 
     import '../app.css'
 
     export const csr = false
     export const prerender = true
-
-    $: bodyStyle = `
-<style>
-    body, .filters-backdrop {
-        background: linear-gradient(0deg, #000, rgb(0 0 0 / ${_getBgOpacity($page?.route?.id)}%));
-    }
-</style>
-`
 
     // Workaround to allow smooth scrolling in Firefox
     // https://github.com/sveltejs/kit/issues/2733#issuecomment-1050779671
@@ -29,10 +20,6 @@
     })
     afterNavigate(() => (document.documentElement.style.scrollBehavior = ''))
 </script>
-
-<svelte:head>
-    {@html bodyStyle}
-</svelte:head>
 
 <main class="mx-auto w-full max-w-2xl px-4 pb-16 text-stone-50 sm:max-w-6xl sm:text-lg">
     <Header />
