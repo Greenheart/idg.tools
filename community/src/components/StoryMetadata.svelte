@@ -12,9 +12,7 @@
     export let tags: Tag[]
 </script>
 
-<div
-    class="mt-8 flex flex-wrap gap-4 gap-x-8 rounded-2xl bg-stone-50 p-4 text-stone-900 shadow-2xl"
->
+<div class="mt-8 flex flex-wrap gap-4 gap-x-8 bg-stone-50 p-4 text-stone-900 shadow-2xl">
     <div>
         <p class="mb-2 text-sm uppercase">Published</p>
         <p class="font-bold">
@@ -47,9 +45,7 @@
             <div class="flex flex-wrap gap-1">
                 {#each dimensions as dimension}
                     {@const color = getColor(dimension.id)}
-                    <span class={cx('px-2 py-1 text-sm text-white rounded-lg', color)}
-                        >{dimension.name}</span
-                    >
+                    <span class={cx('px-2 py-1 text-sm text-white', color)}>{dimension.name}</span>
                 {/each}
             </div>
         </div>

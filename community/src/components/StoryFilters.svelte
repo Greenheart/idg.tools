@@ -9,9 +9,7 @@
     export let tags: Tag[]
 </script>
 
-<div
-    class="mt-8 flex flex-wrap gap-4 gap-x-8 rounded-2xl bg-stone-50 p-4 text-stone-900 shadow-2xl"
->
+<div class="mt-8 flex flex-wrap gap-4 gap-x-8 bg-stone-50 p-4 text-stone-900 shadow-2xl">
     {#if dimensions?.length}
         <div class="flex flex-wrap items-center">
             <p class="mb-2 text-sm uppercase">Dimensions</p>

@@ -5,9 +5,7 @@
     import { STORIES_ABOUT_LINK } from '$lib/constants'
 </script>
 
-<div
-    class="mt-16 flex flex-col items-center justify-between rounded-2xl bg-stone-50 p-4 text-stone-900"
->
+<div class="mt-16 flex flex-col items-center justify-between bg-stone-50 p-4 text-stone-900">
     <UserGroup />
     <Heading size={2} class="py-2 text-center">Stories by and for the community</Heading>
 
