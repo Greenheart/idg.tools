@@ -1,7 +1,7 @@
 <script lang="ts">
     import { cx } from '$lib/utils'
     export let score: number
-    const baseClasses = 'h-5 w-5 border border-stone-50'
+    const baseClasses = 'h-4 w-4 rounded-full border border-stone-50'
     // This results in 1-5 dots that should be filled dependency on the relevancy
     const numberOfDots = (Math.ceil(score / 20) * 20) / 20
 </script>
