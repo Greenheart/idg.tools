@@ -29,7 +29,7 @@
 <Tags {tags} visible={3} class="pt-4" inverted size="md" />
 
 {#if tool.intro}
-    <Markdown source={tool.intro} class="pt-4 font-bold" />
+    <Markdown source={tool.intro} class="pt-8 !text-2xl" />
 {/if}
 
 <Markdown source={tool.description} formatting="limited" class="pt-8" />
