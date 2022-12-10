@@ -35,7 +35,9 @@
         </nav>
     {/if}
 
-    <MenuButton isOpen={$isMenuOpen} onToggle={toggleMenu} />
+    <div class="z-10 !-mr-4 sm:hidden">
+        <MenuButton isOpen={$isMenuOpen} onToggle={toggleMenu} />
+    </div>
 
     <nav class="z-10 hidden justify-evenly sm:flex">
         {#each links as { href, text }}

@@ -6,8 +6,8 @@
 </script>
 
 <button
-    class="hamburger hamburger--spring z-10 !-mr-4 justify-evenly sm:hidden"
     class:is-active={isOpen}
+    class="hamburger hamburger--spring"
     on:click={onToggle}
     on:keydown={onKeydown(onToggle)}
 >
