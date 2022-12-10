@@ -19,7 +19,7 @@
     export const defaultVariant = 'primary'
     export const defaultSize = 'lg'
     export const defaultClasses =
-        'transform-gpu hover:scale-105 duration-100 font-semibold rounded-full text-center'
+        'transform-gpu hover:scale-105 duration-100 font-semibold text-center'
 </script>
 
 <script lang="ts">
@@ -35,12 +35,7 @@
     bind:this={element}
     {...$$props}
     {disabled}
-    class={cx(
-        defaultClasses,
-        variants[disabled ? 'disabled' : variant],
-        sizes[size],
-        className,
-    )}
+    class={cx(defaultClasses, variants[disabled ? 'disabled' : variant], sizes[size], className)}
     on:click|trusted
 >
     <slot />

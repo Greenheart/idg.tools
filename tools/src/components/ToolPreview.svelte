@@ -24,7 +24,7 @@
     tabindex={0}
 >
     <div
-        class="relative max-h-max transform-gpu rounded-2xl bg-stone-50 p-4 text-stone-900 duration-100 hover:scale-[103%]"
+        class="relative max-h-max transform-gpu bg-stone-50 p-4 text-stone-900 duration-100 hover:scale-[103%]"
     >
         <div class="flex h-full max-h-max flex-col justify-between">
             <div>
