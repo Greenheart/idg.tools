@@ -29,7 +29,7 @@
 
 <Meta />
 
-<Heading size={1}>Change starts within</Heading>
+<Heading size={1} class="text-relating">Change starts within</Heading>
 
 <div class="space-y-4 pt-12 pb-16 text-lg sm:text-xl">
     <p>
