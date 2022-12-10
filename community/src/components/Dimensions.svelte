@@ -28,7 +28,7 @@
 
 <div
     class={cx(
-        'flex flex-wrap items-start select-none text-stone-50',
+        'flex select-none flex-wrap items-start text-stone-50',
         sizes[size].wrapper,
         className,
     )}
@@ -40,11 +40,10 @@
             on:click={interactive ? () => toggleDimension(dimension.id) : () => {}}
             on:keydown={interactive ? onKeydown(() => toggleDimension(dimension.id)) : () => {}}
             class={cx(
-                'rounded-lg',
                 interactive
                     ? $selectedDimensions.includes(dimension.id)
                         ? 'cursor-pointer'
-                        : 'bg-opacity-50 cursor-pointer'
+                        : 'cursor-pointer bg-opacity-50'
                     : '',
                 color,
                 sizes[size].element,

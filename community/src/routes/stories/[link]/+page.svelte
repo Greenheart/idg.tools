@@ -58,7 +58,7 @@
         src={story.image}
         alt={story.imageAlt}
         sources={[{ srcset: story.image.replace(/\.webp$/, '.jpg'), type: 'image/jpg' }]}
-        class="mx-auto mt-8 w-full rounded-2xl shadow-2xl"
+        class="mx-auto mt-8 w-full shadow-2xl"
         width={768}
         height={576}
     />

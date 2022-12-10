@@ -15,11 +15,11 @@
 </script>
 
 <Link href={`/stories/${story.link}`} variant="black" unstyled class="group grid p-2 text-stone-50">
-    <div class="grid aspect-[3/2] overflow-hidden rounded-lg">
+    <div class="grid aspect-[3/2] overflow-hidden">
         <img
             src={story.image}
             alt={story.imageAlt}
-            class="h-full w-full transform-gpu rounded-lg object-cover shadow-lg transition-transform duration-300 group-hover:scale-105"
+            class="h-full w-full transform-gpu object-cover shadow-lg transition-transform duration-300 group-hover:scale-105"
             width={520}
             height={346}
             loading="lazy"
