@@ -49,7 +49,8 @@
             href="/assets/220927_IDG_Toolkit_v6.pdf"
             class="font-underline font-bold"
             variant="black">IDG Phase 2 Research Report</Link
-        >. Now, you're invited to explore the IDGs in practice, and co-create the future toolkit!
+        >. Now, you're invited to explore the IDGs in practice, and help make this toolkit even
+        better!
     </div>
 
     <div class="mt-8 flex flex-wrap justify-center gap-x-4 gap-y-2 sm:justify-start">
@@ -76,17 +77,20 @@
     <div class="border-collaborating flex flex-col border-2 p-4">
         <Heading size={2} class="text-collaborating">Co-creation</Heading>
         <p class="my-4 flex-1">
-            We’re a non-profit, open source community, always learning and improving this library,
-            together. And with your help, we can make IDG.tools even better!
+            This toolkit is created by and for the community. Welcome to suggest improvements, new
+            tools or even design and develop the app. Read the principles of tools, and how to join
+            the co-creation.
         </p>
-        <Link href="#" variant="pink">Learn more</Link>
+        <!-- TODO: add contributing link relevant for tools -->
+        <Link href="#" variant="pink">Get involved</Link>
     </div>
 
     <div class="border-relating flex flex-col border-2 p-4">
         <Heading size={2} class="text-relating">Community</Heading>
         <p class="my-4 flex-1">
-            With almost 100 Hubs, this is an emerging network eager to participate, explore and
-            co-create. Join local events, connect with the global community and learn together.
+            With almost 100 IDG Hubs, these tools are used by an emerging network eager to
+            participate, explore and co-create. Join local events, connect with the global community
+            and learn together.
         </p>
         <Link href={COMMUNITY_LINK} variant="pink">Find your community</Link>
     </div>
