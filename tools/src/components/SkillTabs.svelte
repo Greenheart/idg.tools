@@ -34,6 +34,11 @@
         }
     }
 
+    // NOTE: Unsure why type for mouse event doesn't work
+    const scrollIntoView = (event: any) => {
+        event.target.scrollIntoView({ behavior: 'smooth' })
+    }
+
     const resetFilters = () => {
         $selectedSkills = []
         $selectedTags = []
@@ -75,6 +80,7 @@
                         {#each content.dimensions as { name, id: dimensionId } (dimensionId)}
                             {@const color = getColor(dimensionId, 'text')}
                             <Tab
+                                on:click={scrollIntoView}
                                 class={({ selected }) =>
                                     cx(
                                         'py-4 px-2 !text-base first:pl-4 last:pr-4 sm:!text-lg',
@@ -87,18 +93,22 @@
                         {#each content.dimensions as { id: dimensionId, skills } (dimensionId)}
                             {@const color = getColor(dimensionId)}
                             <!-- IDEA: Allow skills to wrap for desktop users -->
-                            <TabPanel class={cx('flex h-full flex-1 flex-wrap gap-2 p-2', color)}>
-                                <div class="flex justify-start border-r border-stone-900 pr-2">
-                                    <Button
-                                        variant="inverted"
-                                        size="sm"
-                                        on:click={() => toggleSkills(skills)}
-                                        on:keydown={onKeydown(() => toggleSkills(skills))}
-                                        class="whitespace-nowrap font-normal">Choose all</Button
-                                    >
-                                </div>
+                            <TabPanel
+                                class={cx(
+                                    'xs:gap-2 flex h-full flex-1 flex-wrap gap-1 overflow-auto p-2',
+                                    color,
+                                )}
+                            >
+                                <Button
+                                    variant="inverted"
+                                    size="sm"
+                                    on:click={() => toggleSkills(skills)}
+                                    on:keydown={onKeydown(() => toggleSkills(skills))}
+                                    class="xs:text-base whitespace-nowrap text-sm font-normal"
+                                    >Choose all</Button
+                                >
                                 {#each getSkillsInDimension(dimensionId, content) as skill (skill.name)}
-                                    <SkillButton {skill} class="whitespace-nowrap" />
+                                    <SkillButton {skill} class="xs:whitespace-nowrap" />
                                 {/each}
                             </TabPanel>
                         {/each}
