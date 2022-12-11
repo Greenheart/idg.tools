@@ -37,7 +37,13 @@
     export { className as class }
 </script>
 
-<div class={cx('sticky top-0 z-10 h-[146px] md:h-[131px]', className)}>
+<!-- TODO: Maybe we need to do something about the loading state to show relevant UI even before the TabGroup is ready? -->
+<div
+    class={cx(
+        'sticky top-0 z-10 -mr-4 -ml-4 h-[141px] bg-stone-900 px-4 sm:mx-0 sm:px-8 md:h-[116px]',
+        className,
+    )}
+>
     {#if loaded}
         <div class="relative" in:fade>
             <TabGroup
@@ -56,11 +62,13 @@
                         >
                     {/each}
                 </TabList>
-                <TabPanels class="skill-tabs grid overflow-x-scroll text-stone-900">
+                <TabPanels
+                    class="skill-tabs xs:overflow-x-auto grid overflow-x-scroll text-stone-900"
+                >
                     {#each content.dimensions as { id: dimensionId, skills } (dimensionId)}
                         {@const color = getColor(dimensionId)}
                         <!-- IDEA: Allow skills to wrap for desktop users, and hide the permanent scrollbar -->
-                        <TabPanel class={cx('flex flex-nowrap gap-2 p-4', color)}>
+                        <TabPanel class={cx('flex flex-nowrap gap-2 p-2', color)}>
                             <div class="flex justify-start border-r border-stone-900 pr-2">
                                 <Button
                                     variant="inverted"
