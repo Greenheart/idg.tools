@@ -36,7 +36,7 @@
 
     // NOTE: Unsure why type for mouse event doesn't work
     const scrollIntoView = (event: any) => {
-        event.target.scrollIntoView({ behavior: 'smooth' })
+        event.target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
     }
 
     const resetFilters = () => {
