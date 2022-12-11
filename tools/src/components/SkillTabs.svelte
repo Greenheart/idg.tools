@@ -101,7 +101,7 @@
                                         size="sm"
                                         on:click={() => toggleSkills(skills)}
                                         on:keydown={onKeydown(() => toggleSkills(skills))}
-                                        class="whitespace-nowrap">Toggle all</Button
+                                        class="whitespace-nowrap font-normal">Choose all</Button
                                     >
                                 </div>
                                 {#each getSkillsInDimension(dimensionId, content) as skill (skill.name)}
