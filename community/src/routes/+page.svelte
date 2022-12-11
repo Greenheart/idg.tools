@@ -47,6 +47,7 @@
             skills outlined by the IDG framework. Here you can find methods, workshops and resources
             relevant to the skills you want to practice.
         </p>
+        <!-- TODO: Update link before launch -->
         <!-- <Link href="https://idg.tools" variant="pink">Explore IDG.tools</Link> -->
         <Link href={IDG_TOOLKIT_LAUNCH} variant="pink">Join the launch December 15th</Link>
     </div>
@@ -54,7 +55,7 @@
     <div class="border-collaborating flex flex-col border-2 p-4">
         <Heading size={2} class="text-collaborating">Hubs</Heading>
         <p class="my-4 flex-1">
-            With almost 100 Hubs, this is an emerging network eager to participate, explore and
+            With almost 100 IDG Hubs, this is an emerging network eager to participate, explore and
             co-create. Join local events, connect with the global community and learn together.
         </p>
         <Link href={COMMUNITY_LINK} variant="pink">Find your community</Link>
