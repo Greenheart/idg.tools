@@ -20,6 +20,7 @@
     export let variant: keyof typeof variants = defaultVariant
     export let unstyled = false
     export let tabindex: number | undefined = undefined
+    export let title: string | undefined = undefined
 
     let additionalProps: object
     onMount(() => {
@@ -36,6 +37,7 @@
 <a
     {href}
     {tabindex}
+    {title}
     class={cx(unstyled ? '' : defaultClasses, unstyled ? '' : variants[variant], className)}
     {...additionalProps}
 >
