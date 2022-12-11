@@ -12,6 +12,8 @@
     import Meta from '$components/Meta.svelte'
     import { FRAMEWORK_LINK } from '$shared/constants'
     import LinkButton from '$shared/components/LinkButton.svelte'
+    import SkillTabs from '$components/SkillTabs.svelte'
+    import Button from '$shared/components/Button.svelte'
 
     export let data: PageData
     $: ({ content } = data)
@@ -26,6 +28,11 @@
         $selectedSkills.length || $selectedTags.length
             ? getMostRelevantTools(content, $selectedSkills, $selectedTags)
             : content.tools
+
+    const resetFilters = () => {
+        $selectedSkills = []
+        $selectedTags = []
+    }
 </script>
 
 <Meta />
@@ -71,6 +78,14 @@
     ></Heading
 >
 <!-- <Filters {content} /> -->
+
+<SkillTabs {content} class="pb-4" />
+
+<!-- TODO: Add option to open advanced filters -->
+
+<Button variant="unstyled" on:click={resetFilters} size="sm" class="font-bold underline"
+    >Reset</Button
+>
 
 <Heading size={2} class="pb-4 pt-20" id="explore">2. Explore relevant tools</Heading>
 <div class="grid gap-8 lg:grid-cols-2">
