@@ -5,6 +5,7 @@
     import { selectedSkills } from '$lib/stores'
 
     const toggleSkill = (skillId: Skill['id']) => {
+        // NOTE: Instead of recreating the array all the time, this might benefit from using a JS Set
         if ($selectedSkills.includes(skillId)) {
             $selectedSkills = $selectedSkills.filter((id) => id !== skillId)
         } else {
