@@ -22,6 +22,10 @@
 html {
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior-y: none;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 @media (prefers-reduced-motion: reduce) {
