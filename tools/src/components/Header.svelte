@@ -1,13 +1,16 @@
 <script lang="ts">
     import Link from '$shared/components/Link.svelte'
     import MenuButton from '$shared/components/MenuButton.svelte'
-    import { isMenuOpen } from '$lib/stores'
+    import { isMenuOpen, scrollbarWidth } from '$lib/stores'
     import { onKeydown } from '$lib/utils'
     import { beforeNavigate } from '$app/navigation'
     import { tick } from 'svelte'
 
     const toggleMenu = () => {
         $isMenuOpen = !$isMenuOpen
+        document.documentElement.classList.toggle('overflow-y-scroll', !$isMenuOpen)
+        document.documentElement.classList.toggle('overflow-hidden', $isMenuOpen)
+        document.documentElement.style.paddingRight = $isMenuOpen ? `${$scrollbarWidth}px` : ''
     }
 
     beforeNavigate(async () => {
@@ -33,7 +36,7 @@
 
     {#if $isMenuOpen}
         <nav
-            class="xs:text-4xl fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center bg-black text-3xl font-semibold"
+            class="xs:text-4xl fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center overflow-y-scroll bg-black text-3xl font-semibold"
             on:click={toggleMenu}
             on:keydown={onKeydown(toggleMenu)}
         >
@@ -43,7 +46,7 @@
         </nav>
     {/if}
 
-    <div class="z-20 !-mr-4 sm:hidden">
+    <div class="z-20 sm:hidden">
         <MenuButton isOpen={$isMenuOpen} onToggle={toggleMenu} />
     </div>
 

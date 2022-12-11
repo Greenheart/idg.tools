@@ -1,11 +1,14 @@
 <script lang="ts">
+    import { onMount } from 'svelte'
     import { afterNavigate, beforeNavigate } from '$app/navigation'
     import Header from '$components/Header.svelte'
 
     import '../app.css'
+    import { scrollbarWidth } from '$lib/stores'
     import CommunitySection from '$components/CommunitySection.svelte'
     import Link from '$shared/components/Link.svelte'
     import { GITHUB_LINK } from '$shared/constants'
+    import { getScrollbarWidth } from '$shared/utils'
 
     export const csr = false
     export const prerender = true
@@ -18,6 +21,10 @@
         }
     })
     afterNavigate(() => (document.documentElement.style.scrollBehavior = ''))
+
+    onMount(() => {
+        $scrollbarWidth = getScrollbarWidth()
+    })
 </script>
 
 <main class="mx-auto w-full max-w-2xl px-4 pb-16 text-stone-50 sm:max-w-6xl sm:px-8 sm:text-lg">
