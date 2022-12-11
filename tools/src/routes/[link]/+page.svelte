@@ -25,7 +25,7 @@
 
 <Breadcrumbs sections={[{ text: 'Tools', link: '/#explore' }, { text: tool.name }]} />
 
-<Heading size={1} class="pt-8">{tool.name}</Heading>
+<Heading size={1} class="text-collaborating pt-8">{tool.name}</Heading>
 
 <Tags {tags} visible={3} class="pt-4" inverted size="md" />
 
