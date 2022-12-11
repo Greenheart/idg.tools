@@ -69,7 +69,7 @@
     <div class="border-being flex flex-col border p-4">
         <Heading size={2} class="text-being">Tools</Heading>
         <p class="my-4 flex-1">
-            We're creating an open source library of scientifically-validated tools to develop the
+            We are creating an open source library of scientifically-validated tools to develop the
             skills outlined by the IDG framework. Here you can find methods, workshops and resources
             relevant to the skills you want to practice.
         </p>
@@ -79,9 +79,9 @@
     <div class="border-collaborating flex flex-col border p-4">
         <Heading size={2} class="text-collaborating">Co-creation</Heading>
         <p class="my-4 flex-1">
-            This toolkit is created by and for the community. Welcome to suggest improvements, new
-            tools or even design and develop the app. Read the principles of tools, and how to join
-            the co-creation.
+            This toolkit is created by and for the community. You are welcome to suggest
+            improvements, new tools or even design and develop the app. Read the principles of
+            tools, and how to join the co-creation.
         </p>
         <!-- TODO: add contributing link relevant for tools -->
         <Link href="#" variant="pink">Get involved</Link>

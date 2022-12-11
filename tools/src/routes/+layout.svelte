@@ -35,7 +35,9 @@
         <p class="mt-16 text-center">
             IDG.tools uses two licenses: CC-BY-SA-4.0 for content (except images), and AGPL-3.0 for
             software.
-            <Link href={GITHUB_LINK} variant="pink">Learn more on GitHub</Link>
+            <Link href={GITHUB_LINK} variant="pink" class="whitespace-nowrap"
+                >Learn more on GitHub</Link
+            >
         </p>
     </div>
 </main>
