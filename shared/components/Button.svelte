@@ -2,10 +2,11 @@
     import { cx } from '../utils'
 
     export const variants = {
-        primary: 'bg-stone-50 text-stone-900',
-        inverted: 'bg-stone-900 text-stone-50',
-        secondary: 'bg-transparent text-stone-50 border-stone-50 border',
-        'secondary-inverted': 'border-stone-900 text-stone-900 border',
+        primary: 'bg-stone-50 text-stone-900 hover:bg-stone-300',
+        inverted: 'bg-stone-900 text-stone-50 hover:bg-stone-800',
+        secondary: 'bg-black text-stone-50 border-stone-50 border hover:bg-stone-900',
+        'secondary-inverted':
+            'bg-stone-50 border-stone-900 text-stone-900 border hover:bg-stone-200',
         disabled: 'bg-stone-50 text-stone-900 opacity-60 pointer-events-none',
         unstyled: '',
     }
