@@ -15,15 +15,17 @@
         loaded = true
     })
 
-    const toggleSkills = (skills: Skill['id'][], alreadySelected: Skill['id'][]) => {
+    const toggleSkills = (skills: Skill['id'][]) => {
+        const alreadySelected = skills.filter((skillId) => $selectedSkills.includes(skillId))
+
         // Select all if not all skills are yet selected
         if (alreadySelected.length < skills.length) {
             $selectedSkills = [
                 ...$selectedSkills,
                 ...skills.filter((skillId) => !alreadySelected.includes(skillId)),
             ]
-            //  Unselect all if everything is already selected
         } else {
+            // Unselect all if everything is already selected
             $selectedSkills = $selectedSkills.filter(
                 (skillId) => !alreadySelected.includes(skillId),
             )
@@ -59,29 +61,12 @@
                         {@const color = getColor(dimensionId)}
                         <!-- IDEA: Allow skills to wrap for desktop users, and hide the permanent scrollbar -->
                         <TabPanel class={cx('flex flex-nowrap gap-2 p-4', color)}>
-                            {@const alreadySelected = skills.filter((skillId) =>
-                                $selectedSkills.includes(skillId),
-                            )}
                             <div class="flex justify-start border-r border-stone-900 pr-2">
-                                <!-- <Button
-                                    variant="inverted"
-                                    size="sm"
-                                    on:click={() => toggleSkills(skills, alreadySelected)}
-                                    on:keydown={onKeydown(() =>
-                                        toggleSkills(skills, alreadySelected),
-                                    )}
-                                    class="whitespace-nowrap"
-                                    >{alreadySelected.length < skills.length
-                                        ? 'Select all'
-                                        : 'Unselect all'}</Button
-                                > -->
                                 <Button
                                     variant="inverted"
                                     size="sm"
-                                    on:click={() => toggleSkills(skills, alreadySelected)}
-                                    on:keydown={onKeydown(() =>
-                                        toggleSkills(skills, alreadySelected),
-                                    )}
+                                    on:click={() => toggleSkills(skills)}
+                                    on:keydown={onKeydown(() => toggleSkills(skills))}
                                     class="whitespace-nowrap">Toggle all</Button
                                 >
                             </div>
