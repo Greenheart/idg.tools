@@ -60,14 +60,11 @@
 <!-- TODO: Maybe we need to do something about the loading state to show relevant UI even before the TabGroup is ready? -->
 <div
     class={cx(
-        'sticky top-0 z-10 -mr-4 -ml-4 h-[131px] px-4 sm:-mr-8 sm:-ml-8 sm:h-[148px] sm:px-8 md:h-[108px] lg:h-[108px]',
+        'sticky top-0 z-10 -mr-4 -ml-4 h-[116px] px-4 sm:-mr-8 sm:-ml-8 sm:h-[148px] sm:px-8 md:h-[108px] lg:h-[108px]',
         className,
     )}
 >
     <div class="relative">
-        <div
-            class="absolute top-0 left-0 right-0 -ml-4 -mr-4 h-[131px] bg-stone-900 sm:-mr-8 sm:-ml-8 sm:h-[148px] md:h-[108px] lg:h-[108px]"
-        />
         {#if loaded}
             <div in:fade>
                 <TabGroup
@@ -80,19 +77,17 @@
                             <Tab
                                 class={({ selected }) =>
                                     cx(
-                                        'py-4 px-2 text-lg first:pl-4 last:pr-4',
+                                        'py-4 px-2 !text-base first:pl-4 last:pr-4 sm:!text-lg',
                                         selected ? cx(color, 'underline') : 'text-stone-50',
                                     )}>{name}</Tab
                             >
                         {/each}
                     </TabList>
-                    <TabPanels
-                        class="skill-tabs xs:overflow-x-auto grid overflow-x-scroll text-stone-900"
-                    >
+                    <TabPanels class="skill-tabs flex h-full items-start text-stone-900">
                         {#each content.dimensions as { id: dimensionId, skills } (dimensionId)}
                             {@const color = getColor(dimensionId)}
-                            <!-- IDEA: Allow skills to wrap for desktop users, and hide the permanent scrollbar -->
-                            <TabPanel class={cx('flex flex-nowrap gap-2 p-2 sm:flex-wrap', color)}>
+                            <!-- IDEA: Allow skills to wrap for desktop users -->
+                            <TabPanel class={cx('flex h-full flex-1 flex-wrap gap-2 p-2', color)}>
                                 <div class="flex justify-start border-r border-stone-900 pr-2">
                                     <Button
                                         variant="inverted"
@@ -103,7 +98,7 @@
                                     >
                                 </div>
                                 {#each getSkillsInDimension(dimensionId, content) as skill (skill.name)}
-                                    <SkillButton {skill} class="whitespace-nowrap !py-2 sm:!py-1" />
+                                    <SkillButton {skill} class="whitespace-nowrap" />
                                 {/each}
                             </TabPanel>
                         {/each}
