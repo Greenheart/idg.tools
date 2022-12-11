@@ -26,6 +26,7 @@
     export let disabled: boolean = false
     export let size: keyof typeof sizes = defaultSize
     export let element: HTMLButtonElement | undefined = undefined
+    export let tabindex: HTMLButtonElement['tabIndex'] | undefined = undefined
     let className = ''
     export { className as class }
 </script>
@@ -33,6 +34,7 @@
 <button
     bind:this={element}
     {disabled}
+    {tabindex}
     class={cx(defaultClasses, variants[disabled ? 'disabled' : variant], sizes[size], className)}
     on:click|trusted
 >
