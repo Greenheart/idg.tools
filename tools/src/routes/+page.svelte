@@ -70,22 +70,23 @@
     </div>
 </div>
 
-<Heading size={2} class="flex items-center gap-3 pb-4 pt-16"
+<Heading size={2} class="flex items-center gap-2 pb-4 pt-16"
     >1. Choose skills to practice<Link
         unstyled
         href={FRAMEWORK_LINK}
-        title="Learn more about the IDG framework"><Info class="mt-1" /></Link
+        title="Learn more about the IDG framework"><Info class="xs:mr-0 mt-1 -mr-3" /></Link
     ></Heading
 >
-<!-- <Filters {content} /> -->
 
 <SkillTabs {content} class="pb-4" />
 
-<!-- TODO: Add option to open advanced filters -->
-
-<Button variant="unstyled" on:click={resetFilters} size="sm" class="font-bold underline"
-    >Reset</Button
->
+<div class="mt-4 flex gap-2 md:mt-8">
+    <!-- TODO: implement advanced filters as modal -->
+    <Button variant="unstyled" size="sm" class="font-bold underline">Advanced filters</Button>
+    <Button variant="unstyled" on:click={resetFilters} size="sm" class="font-bold underline"
+        >Reset</Button
+    >
+</div>
 
 <Heading size={2} class="pb-4 pt-20" id="explore">2. Explore relevant tools</Heading>
 <div class="grid gap-8 lg:grid-cols-2">

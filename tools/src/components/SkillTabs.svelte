@@ -40,7 +40,7 @@
 <!-- TODO: Maybe we need to do something about the loading state to show relevant UI even before the TabGroup is ready? -->
 <div
     class={cx(
-        'sticky top-0 z-10 -mr-4 -ml-4 h-[141px] bg-stone-900 px-4 sm:mx-0 sm:px-8 md:h-[116px]',
+        'sticky top-0 z-10 -mr-4 -ml-4 h-[131px] bg-stone-900 px-4 sm:mx-0 sm:px-8 md:h-[116px]',
         className,
     )}
 >
