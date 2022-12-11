@@ -8,6 +8,8 @@
         'secondary-inverted':
             'bg-stone-50 border-stone-900 text-stone-900 border hover:bg-stone-200',
         disabled: 'bg-stone-50 text-stone-900 opacity-60 pointer-events-none',
+        // TODO: Maybe replace the variant="unstyled" syntax with an `unstyled` boolean prop like for links
+        // This could give cleaner code, and make it consistent with other components
         unstyled: '',
     }
     export const sizes = {
