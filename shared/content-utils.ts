@@ -91,7 +91,7 @@ export const getMostRelevantTools = (
 ) =>
     content.tools
         .filter((tool) => {
-            const hasMatchingSkills = selectedSkills.every((skillId) =>
+            const hasMatchingSkills = selectedSkills.some((skillId) =>
                 tool.relevancy.some(({ skill }) => skill === skillId),
             )
             const hasMatchingTags = selectedTags.length
