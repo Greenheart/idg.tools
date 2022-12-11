@@ -55,7 +55,9 @@
 
     <div class="mt-8 flex flex-wrap justify-center gap-x-4 gap-y-2 sm:justify-start">
         <LinkButton href="#about" variant="secondary">Learn more</LinkButton>
-        <LinkButton href="#explore" variant="primary">Explore tools</LinkButton>
+        <LinkButton href="#explore" variant="primary" class="border border-transparent"
+            >Explore tools</LinkButton
+        >
     </div>
 </div>
 
