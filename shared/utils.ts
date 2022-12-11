@@ -23,9 +23,13 @@ export const pluralize = (item: string, count: number, showCount = true) => {
     return showCount ? `${count} ${formattedItems}` : formattedItems
 }
 
+// NOTE: Help wanted to improve the type definitions for this function
+// Open the files where it's used to see the TS error
 export const shouldTriggerKeyboardInteraction = (event: KeyboardEvent) =>
     event.code === 'Return' || event.key === 'Space'
 
+// NOTE: Help wanted to improve the type definitions for this function
+// Open the files where it's used to see the TS error
 export const onKeydown = (action: () => void) => (event: KeyboardEvent) => {
     if (shouldTriggerKeyboardInteraction(event)) {
         action()
