@@ -22,8 +22,8 @@
     size="sm"
     variant="unstyled"
     class={cx(
-        'xs:text-base bg-stone-50 text-sm !font-normal',
-        !$selectedSkills.includes(skill.id) && 'bg-opacity-50 shadow-lg',
+        'xs:text-base transform-gpu bg-stone-50 text-sm !font-normal duration-100',
+        !$selectedSkills.includes(skill.id) && 'bg-opacity-50 shadow-lg hover:bg-opacity-75',
         className,
     )}>{skill.name}</Button
 >
