@@ -85,4 +85,11 @@
     </div>
 </Dialog>
 
+<!-- IDEA: allow peple to filter tools based on dimension, and sort by the most relevant in each dimension -->
+
+<!-- TODO: display a button for each dimension, that when clicked selects all skills within that category -->
+<!-- TODO: Show a instruction explaining how it works, and where to learn more about the IDG framework -->
+<!-- TODO: Add button to open advanced filters, which opens the fullscreen Filters dialog -->
+<!-- IDEA: maybe use a `Set` instead of an `Array` to store the selectedSkills state. This migh help when selecting all skills in a specific dimension -->
+<!-- IDEA: possibly update the and/or logic of skills and tags in the filters and getMostRelevantTools() -->
 <FiltersToolbar {title} class={$filtersExpanded ? 'invisible' : ''} />
