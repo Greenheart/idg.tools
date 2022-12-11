@@ -24,7 +24,7 @@
             outlined by the IDG framework. Here you can find methods, workshops and resources relevant
             to the skills you want to practice.
         </p>
-        <Link href="#explore" variant="pink">Explore tools</Link>
+        <Link href="/#explore" variant="pink">Explore tools</Link>
     </div>
 
     <div class="border-collaborating flex flex-col border p-4">
