@@ -13,7 +13,6 @@
     import { FRAMEWORK_LINK } from '$shared/constants'
     import LinkButton from '$shared/components/LinkButton.svelte'
     import SkillTabs from '$components/SkillTabs.svelte'
-    import Button from '$shared/components/Button.svelte'
 
     export let data: PageData
     $: ({ content } = data)
@@ -28,11 +27,6 @@
         $selectedSkills.length || $selectedTags.length
             ? getMostRelevantTools(content, $selectedSkills, $selectedTags)
             : content.tools
-
-    const resetFilters = () => {
-        $selectedSkills = []
-        $selectedTags = []
-    }
 </script>
 
 <Meta />
@@ -78,17 +72,9 @@
     ></Heading
 >
 
-<SkillTabs {content} class="pb-4" />
+<SkillTabs {content} />
 
-<div class="mt-4 flex gap-2 md:mt-8">
-    <!-- TODO: implement advanced filters as modal -->
-    <Button variant="unstyled" size="sm" class="font-bold underline">Advanced filters</Button>
-    <Button variant="unstyled" on:click={resetFilters} size="sm" class="font-bold underline"
-        >Reset</Button
-    >
-</div>
-
-<Heading size={2} class="pb-4 pt-20" id="explore">2. Explore relevant tools</Heading>
+<Heading size={2} class="pb-4 pt-40" id="explore">2. Explore relevant tools</Heading>
 <div class="grid gap-8 lg:grid-cols-2">
     <Tools tools={mostRelevantTools} {content} />
 </div>
