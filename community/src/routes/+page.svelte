@@ -45,7 +45,7 @@
     <div class="border-being flex flex-col border p-4">
         <Heading size={2} class="text-being">Tools</Heading>
         <p class="my-4 flex-1">
-            We're creating an open source library of scientifically-validated tools to develop the
+            We are creating an open source library of scientifically-validated tools to develop the
             skills outlined by the IDG framework. Here you can find methods, workshops and resources
             relevant to the skills you want to practice.
         </p>
