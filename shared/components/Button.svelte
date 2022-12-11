@@ -3,7 +3,7 @@
 
     export const variants = {
         primary: 'bg-stone-50 text-stone-900 hover:bg-stone-300',
-        inverted: 'bg-stone-900 text-stone-50 hover:bg-stone-800',
+        inverted: 'bg-stone-900 text-stone-50 hover:bg-stone-700',
         secondary: 'bg-black text-stone-50 border-stone-50 border hover:bg-stone-900',
         'secondary-inverted':
             'bg-stone-50 border-stone-900 text-stone-900 border hover:bg-stone-200',
@@ -32,7 +32,6 @@
 
 <button
     bind:this={element}
-    {...$$props}
     {disabled}
     class={cx(defaultClasses, variants[disabled ? 'disabled' : variant], sizes[size], className)}
     on:click|trusted
