@@ -42,3 +42,24 @@ export function isExternalURL(href: string, staticPath = '/assets/'): boolean {
     a.href = href
     return location.host !== a.host || href.includes(staticPath)
 }
+
+export const hasScrollbar = () => window.innerWidth > document.documentElement.clientWidth
+
+export const getScrollbarWidth = () => {
+    const a: HTMLDivElement = document.createElement('div')
+    const b: HTMLDivElement = document.createElement('div')
+
+    a.style.width = '100px'
+    a.style.overflowX = 'scroll'
+    b.style.width = '100px'
+
+    document.body.appendChild(a)
+    document.body.appendChild(b)
+
+    let scrollbarSize = a.offsetHeight - b.offsetHeight
+
+    document.body.removeChild(a)
+    document.body.removeChild(b)
+
+    return scrollbarSize
+}
