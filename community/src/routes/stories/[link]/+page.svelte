@@ -41,7 +41,7 @@
 
 <Breadcrumbs sections={[{ text: 'Stories', link: '/#stories' }, { text: story.title }]} />
 
-<Heading size={1} class="pt-8">{story.title}</Heading>
+<Heading size={1} class="text-collaborating pt-8">{story.title}</Heading>
 
 <div class="mx-auto max-w-3xl">
     <StoryMetadata {story} {dimensions} {contributors} {tags} />
