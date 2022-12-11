@@ -60,15 +60,18 @@
 <!-- TODO: Maybe we need to do something about the loading state to show relevant UI even before the TabGroup is ready? -->
 <div
     class={cx(
-        'sticky top-0 z-10 -mr-4 -ml-4 h-[131px] bg-stone-900 px-4 sm:-mr-8 sm:-ml-8 sm:h-[148px] sm:px-8 md:h-[108px] lg:h-[108px]',
+        'sticky top-0 z-10 -mr-4 -ml-4 h-[131px] px-4 sm:-mr-8 sm:-ml-8 sm:h-[148px] sm:px-8 md:h-[108px] lg:h-[108px]',
         className,
     )}
 >
-    <div class="relative h-full">
+    <div class="relative">
+        <div
+            class="absolute top-0 left-0 right-0 -ml-4 -mr-4 h-[131px] bg-stone-900 sm:-mr-8 sm:-ml-8 sm:h-[148px] md:h-[108px] lg:h-[108px]"
+        />
         {#if loaded}
-            <div in:fade class="h-full">
+            <div in:fade>
                 <TabGroup
-                    class="absolute top-0 left-0 right-0 -ml-4 -mr-4 grid h-full grid-rows-[min-content_1fr] overflow-hidden bg-stone-900 text-stone-50 shadow-2xl sm:-mr-8 sm:-ml-8"
+                    class="absolute top-0 left-0 right-0 -ml-4 -mr-4 overflow-hidden bg-stone-900 text-stone-50 shadow-2xl sm:-mr-8 sm:-ml-8"
                     on:change={() => document.querySelector('.skill-tabs')?.scrollTo(0, 0)}
                 >
                     <TabList class="xs:overflow-auto flex flex-nowrap overflow-x-scroll">
@@ -84,17 +87,12 @@
                         {/each}
                     </TabList>
                     <TabPanels
-                        class="skill-tabs xs:overflow-x-auto overflow-x-scroll text-stone-900"
+                        class="skill-tabs xs:overflow-x-auto grid overflow-x-scroll text-stone-900"
                     >
                         {#each content.dimensions as { id: dimensionId, skills } (dimensionId)}
                             {@const color = getColor(dimensionId)}
                             <!-- IDEA: Allow skills to wrap for desktop users, and hide the permanent scrollbar -->
-                            <TabPanel
-                                class={cx(
-                                    'flex h-full flex-nowrap items-start gap-2 p-2 sm:flex-wrap',
-                                    color,
-                                )}
-                            >
+                            <TabPanel class={cx('flex flex-nowrap gap-2 p-2 sm:flex-wrap', color)}>
                                 <div class="flex justify-start border-r border-stone-900 pr-2">
                                     <Button
                                         variant="inverted"
