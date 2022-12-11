@@ -21,7 +21,7 @@
     })
 
     const links = [
-        // { href: '/about', text: 'About' },
+        { href: '/about', text: 'About' },
         { href: 'https://idg.community/contribute', text: 'How to contribute' },
         // { href: ELEMENT_LINK, text: 'Community' },
     ]
