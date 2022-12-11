@@ -11,6 +11,9 @@
 
 <!-- TODO: Maybe showcase the core team -->
 
+<!-- IDEA: Maybe explain the IDGs and the mission and vision on this page -->
+
+<!-- TODO: Maybe replace this heading with a short intro paragraph, or remove it entirely -->
 <p class="mt-8 text-center text-base uppercase">Our three pillars:</p>
 
 <div
