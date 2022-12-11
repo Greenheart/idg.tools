@@ -36,7 +36,7 @@
         >
             <summary
                 class={cx(
-                    'flex cursor-pointer select-none !list-none items-center justify-between px-2 py-4 sm:px-4 marker:!hidden',
+                    'flex cursor-pointer select-none !list-none items-center justify-between px-2 py-4 marker:!hidden sm:px-4',
                     color,
                 )}
                 tabindex={index + 1}
@@ -55,7 +55,7 @@
             </summary>
             <div
                 class={cx(
-                    'flex flex-wrap justify-center gap-3 bg-opacity-70 p-4 border-t border-stone-900 text-stone-900',
+                    'flex flex-wrap justify-center gap-3 border-t border-stone-900 bg-opacity-70 p-4 text-stone-900',
                     color,
                 )}
             >

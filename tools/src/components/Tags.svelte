@@ -14,7 +14,7 @@
     const sizes = {
         sm: { tag: 'p-1', wrapper: 'text-xs gap-1' },
         md: { tag: 'px-2 py-1', wrapper: 'text-sm gap-2' },
-        lg: { tag: 'px-2 py-1', wrapper: 'text-sm xs:text-base gap-3' },
+        lg: { tag: 'px-2 py-1', wrapper: 'text-sm xs:text-base gap-2 sm:gap-3' },
     }
 
     export let size: keyof typeof sizes = 'sm'
