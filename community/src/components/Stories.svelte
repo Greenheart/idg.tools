@@ -72,7 +72,7 @@
 
     <div class="flex flex-col items-center justify-center space-y-4 lg:col-span-2">
         <p>
-            Showing {stories.length} of {content.stories.length} stories.
+            Showing {stories.length} of {content.stories.length} stories
         </p>
 
         {#if visibleItems < content.stories.length}
