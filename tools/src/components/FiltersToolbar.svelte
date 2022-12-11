@@ -45,7 +45,7 @@
                 variant="inverted"
                 size="md"
                 class="text-xs"
-                tabindex="10">Clear filters</Button
+                tabindex={10}>Clear filters</Button
             >
         {/if}
         <div class="absolute left-0 bottom-0 right-0 grid h-2 grid-cols-5">
