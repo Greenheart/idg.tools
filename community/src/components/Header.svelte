@@ -34,6 +34,10 @@
         <span>Community</span>
     </Link>
 
+    <div class="z-30 -mr-4 sm:hidden">
+        <MenuButton isOpen={$isMenuOpen} onToggle={toggleMenu} />
+    </div>
+
     {#if $isMenuOpen}
         <nav
             class="xs:text-4xl fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center bg-black text-3xl font-semibold"
@@ -45,10 +49,6 @@
             {/each}
         </nav>
     {/if}
-
-    <div class="z-20 -mr-4 sm:hidden">
-        <MenuButton isOpen={$isMenuOpen} onToggle={toggleMenu} />
-    </div>
 
     <nav class="z-10 hidden justify-evenly sm:flex">
         {#each links as { href, text }}
