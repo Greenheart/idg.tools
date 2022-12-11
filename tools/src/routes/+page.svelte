@@ -64,7 +64,7 @@
 <div
     class="mx-auto mt-8 grid max-w-lg justify-items-center gap-4 text-center text-stone-50 md:max-w-none md:grid-cols-3 lg:gap-8"
 >
-    <div class="border-being flex flex-col border-2 p-4">
+    <div class="border-being flex flex-col border p-4">
         <Heading size={2} class="text-being">Tools</Heading>
         <p class="my-4 flex-1">
             We're creating an open source library of scientifically-validated tools to develop the
@@ -74,7 +74,7 @@
         <Link href="#explore" variant="pink">Explore tools</Link>
     </div>
 
-    <div class="border-collaborating flex flex-col border-2 p-4">
+    <div class="border-collaborating flex flex-col border p-4">
         <Heading size={2} class="text-collaborating">Co-creation</Heading>
         <p class="my-4 flex-1">
             This toolkit is created by and for the community. Welcome to suggest improvements, new
@@ -85,7 +85,7 @@
         <Link href="#" variant="pink">Get involved</Link>
     </div>
 
-    <div class="border-relating flex flex-col border-2 p-4">
+    <div class="border-relating flex flex-col border p-4">
         <Heading size={2} class="text-relating">Community</Heading>
         <p class="my-4 flex-1">
             With almost 100 IDG Hubs, these tools are used by an emerging network eager to
