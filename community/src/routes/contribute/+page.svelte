@@ -89,7 +89,9 @@
             </p>
         </div>
 
-        <Heading>Welcome! Looking forward to co-creating with you :)</Heading>
+        <p class="text-lg font-bold sm:text-xl md:text-2xl">
+            Welcome! Looking forward to co-creating with you :)
+        </p>
     </div>
 </div>
 
