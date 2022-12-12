@@ -6,7 +6,8 @@
     import { beforeNavigate } from '$app/navigation'
     import { tick } from 'svelte'
 
-    const toggleMenu = () => {
+    const toggleMenu = async () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
         $isMenuOpen = !$isMenuOpen
         document.documentElement.classList.toggle('overflow-y-scroll', !$isMenuOpen)
         document.documentElement.classList.toggle('overflow-hidden', $isMenuOpen)
