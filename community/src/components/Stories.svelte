@@ -46,7 +46,7 @@
         Select tags to filter:
     </p>
 
-    <div class="relative mb-4 bg-stone-50 p-4 text-base text-stone-900">
+    <div class="relative mb-4 bg-white p-4 text-base text-black">
         <div class="flex flex-wrap items-center justify-between">
             <p class="font-bold">Select filters</p>
             <Button on:click={resetFilters} size="md" class="text-xs" variant="inverted"

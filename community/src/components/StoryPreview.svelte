@@ -14,8 +14,9 @@
     let tags = story.tags.map((tagId) => getTag(tagId, content))
 </script>
 
-<Link href={`/stories/${story.link}`} variant="black" unstyled class="group grid p-2 text-stone-50">
+<Link href={`/stories/${story.link}`} variant="black" unstyled class="group grid p-2">
     <div class="grid aspect-[3/2] overflow-hidden">
+        <!-- TODO: Load with picture component here too to make sure images work even for older browsers -->
         <img
             src={story.image}
             alt={story.imageAlt}

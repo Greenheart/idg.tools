@@ -27,11 +27,7 @@
 </script>
 
 <div
-    class={cx(
-        'flex select-none flex-wrap items-start text-stone-50',
-        sizes[size].wrapper,
-        className,
-    )}
+    class={cx('flex select-none flex-wrap items-start text-black', sizes[size].wrapper, className)}
 >
     {#each dimensions as dimension (dimension.name)}
         {@const color = getColor(dimension.id)}

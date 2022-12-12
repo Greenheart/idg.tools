@@ -12,7 +12,7 @@
     export let tags: Tag[]
 </script>
 
-<div class="mt-8 flex flex-wrap gap-4 gap-x-8 bg-stone-50 p-4 text-stone-900">
+<div class="mt-8 flex flex-wrap gap-4 gap-x-8 bg-white p-4 shadow-xl">
     <div>
         <p class="mb-2 text-sm uppercase">Published</p>
         <p class="font-bold">
