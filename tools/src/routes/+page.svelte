@@ -2,13 +2,11 @@
     import { onMount } from 'svelte'
 
     import Link from '$shared/components/Link.svelte'
-    import Info from '$shared/icons/Info.svelte'
     import Heading from '$shared/components/Heading.svelte'
     import Tools from '$components/Tools.svelte'
     import { selectedSkills, selectedTags } from '$lib/stores'
     import type { PageData } from './$types'
     import { getMostRelevantTools } from '$shared/content-utils'
-    // import Filters from '$components/Filters.svelte'
     import Meta from '$components/Meta.svelte'
     import { FRAMEWORK_LINK } from '$shared/constants'
     import LinkButton from '$shared/components/LinkButton.svelte'
@@ -63,14 +61,6 @@
         >
     </div>
 </div>
-
-<Heading size={2} class="flex items-center gap-2 pb-4 pt-16"
-    >1. Choose skills to practice<Link
-        unstyled
-        href={FRAMEWORK_LINK}
-        title="Learn more about the IDG framework"><Info class="xs:mr-0 mt-1 -mr-3" /></Link
-    ></Heading
->
 
 <SkillTabs {content} />
 

@@ -9,6 +9,10 @@
     import type { Skill, ToolsContent } from '$shared/types'
     import SkillButton from './SkillButton.svelte'
     import Button from '$shared/components/Button.svelte'
+    import Link from '$shared/components/Link.svelte'
+    import { FRAMEWORK_LINK } from '$shared/constants'
+    import Info from '$shared/icons/Info.svelte'
+    import Heading from '$shared/components/Heading.svelte'
 
     let loaded = false
     onMount(() => {
@@ -48,6 +52,25 @@
     let className = ''
     export { className as class }
 </script>
+
+<div class="grid gap-y-2 pb-2 pt-16 sm:grid-cols-[1fr_max-content]">
+    <Heading size={2}>1. Choose skills to practice</Heading>
+    <div class="flex items-center sm:justify-end">
+        <Link unstyled href={FRAMEWORK_LINK} title="Learn more about the IDG framework" class="p-1">
+            <Info class="mt-0.5" />
+        </Link>
+        <!-- TODO: implement advanced filters as modal -->
+        <Button variant="unstyled" size="sm" class="text-sm font-bold underline"
+            >Advanced filters</Button
+        >
+        <Button
+            variant="unstyled"
+            on:click={resetFilters}
+            size="sm"
+            class="text-sm font-bold underline">Reset</Button
+        >
+    </div>
+</div>
 
 <div
     class={cx(
@@ -102,13 +125,4 @@
             </div>
         {/if}
     </div>
-</div>
-
-<!-- TODO: ensure this is shown in the correct place -->
-<div class="flex justify-center gap-2 pt-32">
-    <!-- TODO: implement advanced filters as modal -->
-    <Button variant="unstyled" size="sm" class="font-bold underline">Advanced filters</Button>
-    <Button variant="unstyled" on:click={resetFilters} size="sm" class="font-bold underline"
-        >Reset</Button
-    >
 </div>

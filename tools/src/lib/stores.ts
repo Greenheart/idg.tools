@@ -2,7 +2,6 @@ import { writable } from 'svelte/store'
 
 import type { Dimension, ItemId } from '$shared/types'
 import { DIMENSION_IDS } from '$shared/constants'
-import { getScrollbarWidth } from './utils'
 
 function createPersistedStore<T>(key: string, startValue: T) {
     const { subscribe, set } = writable(startValue)
