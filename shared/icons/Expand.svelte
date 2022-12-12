@@ -6,7 +6,7 @@
 
 <svg
     class={cx(
-        'h-6 w-6 transform transition duration-150 text-stone-900',
+        'h-6 w-6 transform text-black transition duration-150',
         open ? 'rotate-45' : 'rotate-0',
     )}
     xmlns="http://www.w3.org/2000/svg"
