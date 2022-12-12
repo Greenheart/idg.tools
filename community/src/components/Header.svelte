@@ -15,7 +15,7 @@
 
     beforeNavigate(async () => {
         if ($isMenuOpen) {
-            $isMenuOpen = false
+            toggleMenu()
             await tick()
         }
     })
