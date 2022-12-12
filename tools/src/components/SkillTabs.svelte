@@ -119,17 +119,24 @@
     export { className as class }
 </script>
 
-<div class="grid gap-y-2 pb-2 sm:grid-cols-[1fr_max-content]">
-    <Heading size={2}>1. Choose skills to practice</Heading>
+<!-- NOTE: Will need to update the breakpoint when adding more filter options -->
+<div class="xs:grid-cols-[1fr_max-content] grid gap-y-1 pb-2">
+    <Heading size={2} class="inline"
+        >1. Choose skills to <span class="whitespace-nowrap"
+            >practice<Link
+                unstyled
+                href={FRAMEWORK_LINK}
+                title="Learn more about the IDG framework"
+                class="pl-1"
+            >
+                <Info class="mb-0.5 inline" />
+            </Link></span
+        ></Heading
+    >
     <div class="flex items-center sm:justify-end">
-        <Link unstyled href={FRAMEWORK_LINK} title="Learn more about the IDG framework" class="p-1">
-            <Info class="mt-0.5" />
-        </Link>
         <!-- TODO: implement advanced filters as modal -->
-        <!-- <Button variant="unstyled" size="sm" class="text-sm unserline"
-            >Advanced filters</Button
-        > -->
-        <Button variant="unstyled" on:click={resetFilters} size="sm" class="text-sm underline"
+        <!-- <Button variant="unstyled" size="sm" class="text-sm underline">Advanced filters</Button> -->
+        <Button variant="unstyled" on:click={resetFilters} size="sm" class="!px-0 text-sm underline"
             >Reset</Button
         >
     </div>
