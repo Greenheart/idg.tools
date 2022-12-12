@@ -7,6 +7,8 @@
     import { tick } from 'svelte'
 
     const toggleMenu = () => {
+        // @ts-expect-error This is an invalid value for scroll behavior, but it produces the result we want so... :D
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
         $isMenuOpen = !$isMenuOpen
         document.documentElement.classList.toggle('overflow-y-scroll', !$isMenuOpen)
         document.documentElement.classList.toggle('overflow-hidden', $isMenuOpen)
@@ -23,7 +25,6 @@
     const links = [
         // { href: '/about', text: 'About' },
         { href: '/contribute', text: 'How to contribute' },
-        // { href: ELEMENT_LINK, text: 'Community' },
     ]
 </script>
 
@@ -52,7 +53,7 @@
 
     <nav class="z-10 hidden justify-evenly sm:flex">
         {#each links as { href, text }}
-            <Link {href} class="p-2" variant="black">{text}</Link>
+            <Link {href} class="p-2 text-base md:px-4" variant="black">{text}</Link>
         {/each}
     </nav>
 </header>
