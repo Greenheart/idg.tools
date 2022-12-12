@@ -89,7 +89,7 @@
             </p>
         </div>
 
-        <Heading>Welcome! Looking forward to co-create with you :)</Heading>
+        <Heading>Welcome! Looking forward to co-creating with you :)</Heading>
     </div>
 </div>
 
