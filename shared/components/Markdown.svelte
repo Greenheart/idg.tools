@@ -60,9 +60,9 @@
 
     const variants = {
         default:
-            'prose-p:text-black prose-li:text-black prose-h2:text-black marker:text-black prose-strong:text-black prose-em:text-black',
+            'prose-p:text-black prose-li:text-black prose-h2:text-black prose-h3:text-black prose-h4:text-black marker:text-black prose-strong:text-black prose-em:text-black',
         inverted:
-            'prose-p:text-white prose-li:text-white prose-h2:text-white marker:text-white prose-strong:text-white prose-em:text-white',
+            'prose-p:text-white prose-li:text-white prose-h2:text-white prose-h3:text-white prose-h4:text-white marker:text-white prose-strong:text-white prose-em:text-white',
     }
 
     const baseClasses =
