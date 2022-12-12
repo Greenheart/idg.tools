@@ -10,6 +10,8 @@ const config = {
     ]),
     theme: {
         screens: {
+            // IDEA: Might be useful in some cases to have another breakpoint
+            '2xs': '375px',
             xs: '475px',
             ...defaultTheme.screens,
         },

@@ -9,7 +9,6 @@
     import { getMostRelevantTools } from '$shared/content-utils'
     import Meta from '$components/Meta.svelte'
     import { FRAMEWORK_LINK } from '$shared/constants'
-    import LinkButton from '$shared/components/LinkButton.svelte'
     import SkillTabs from '$components/SkillTabs.svelte'
 
     export let data: PageData
