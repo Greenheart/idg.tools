@@ -22,7 +22,7 @@
         yourself - but also empower many others.
     </p>
 
-    <ButtonGroup>
+    <ButtonGroup breakpoint="sm">
         <LinkButton href={STORIES_ABOUT_LINK} variant="inverted" class="border border-transparent"
             >Share your story</LinkButton
         >
