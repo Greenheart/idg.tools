@@ -60,9 +60,9 @@
             <Info class="mt-0.5" />
         </Link>
         <!-- TODO: implement advanced filters as modal -->
-        <Button variant="unstyled" size="sm" class="text-sm font-bold underline"
+        <!-- <Button variant="unstyled" size="sm" class="text-sm font-bold underline"
             >Advanced filters</Button
-        >
+        > -->
         <Button
             variant="unstyled"
             on:click={resetFilters}
