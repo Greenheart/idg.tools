@@ -60,9 +60,9 @@
 
     const variants = {
         default:
-            'prose-p:text-stone-50 prose-li:text-stone-50 prose-h2:text-stone-50 marker:text-stone-50 prose-strong:text-stone-50 prose-em:text-stone-50',
+            'prose-p:text-black prose-li:text-black prose-h2:text-black marker:text-black prose-strong:text-black prose-em:text-black',
         inverted:
-            'prose-p:text-stone-900 prose-li:text-stone-900 prose-h2:text-stone-900 marker:text-stone-900 prose-strong:text-stone-900 prose-em:text-stone-900',
+            'prose-p:text-white prose-li:text-white prose-h2:text-white marker:text-white prose-strong:text-white prose-em:text-white',
     }
 
     const baseClasses =

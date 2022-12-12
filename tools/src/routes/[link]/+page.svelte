@@ -37,9 +37,9 @@
 
 <Markdown source={tool.description} formatting="limited" />
 
-<div class="mt-8 bg-stone-50 p-4 text-stone-900 sm:p-8">
+<div class="mt-8 bg-white p-4 text-black shadow-xl sm:p-8">
     <Heading class="pb-2 text-2xl">How to practice</Heading>
-    <Markdown source={tool.actions} variant="inverted" formatting="limited" />
+    <Markdown source={tool.actions} formatting="limited" />
 </div>
 
 <Heading class="pt-8 pb-2">Most relevant skills</Heading>

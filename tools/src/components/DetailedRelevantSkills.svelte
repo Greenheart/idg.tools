@@ -25,7 +25,10 @@
 
             <div class="flex items-center justify-between gap-4">
                 <span
-                    class={cx('overflow-hidden text-ellipsis whitespace-nowrap px-2 py-1', color)}
+                    class={cx(
+                        'overflow-hidden text-ellipsis whitespace-nowrap px-2 py-1 font-semibold',
+                        color,
+                    )}
                 >
                     {skill.name}
                 </span>

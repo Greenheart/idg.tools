@@ -24,13 +24,13 @@
     tabindex={0}
 >
     <div
-        class="relative max-h-max transform-gpu bg-stone-50 p-4 text-stone-900 duration-100 hover:scale-[103%]"
+        class="relative max-h-max transform-gpu bg-white p-4 shadow-md duration-100 hover:scale-[103%]"
     >
         <div class="flex h-full max-h-max flex-col justify-between">
             <div>
                 <Heading size={2}>{tool.name}</Heading>
                 <Tags {tags} visible={3} class="pt-2 pr-6" />
-                <Markdown source={intro} class="pt-2 pb-4" variant="inverted" />
+                <Markdown source={intro} class="pt-2 pb-4" />
             </div>
             <RelevantSkills {tool} {content} visible={4} />
         </div>

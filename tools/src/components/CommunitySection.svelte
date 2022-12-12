@@ -8,7 +8,7 @@
     import ButtonGroup from '$shared/components/ButtonGroup.svelte'
 </script>
 
-<div class="flex flex-col items-center justify-between bg-stone-50 p-4 text-stone-900">
+<div class="flex flex-col items-center justify-between bg-white p-4 shadow-md">
     <UserGroup />
     <Heading size={2} class="py-2 text-center">Created by and for the community</Heading>
 

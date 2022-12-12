@@ -89,7 +89,7 @@
 
         <FiltersToolbar {title} />
 
-        <div class="mx-auto grid max-w-3xl gap-4 p-4 text-stone-50">
+        <div class="mx-auto grid max-w-3xl gap-4 p-4 text-white">
             <Heading>Select skills</Heading>
             <Skills {content} class="-ml-4 -mr-4 sm:-ml-8 sm:-mr-8" />
 

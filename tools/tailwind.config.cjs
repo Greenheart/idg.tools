@@ -32,6 +32,7 @@ const config = {
                 relating: '#e84139',
                 collaborating: '#ff6821',
                 acting: '#661a30',
+                lightGray: '#f5f5f5',
             },
         },
     },
