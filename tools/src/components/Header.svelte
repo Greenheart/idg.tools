@@ -54,7 +54,7 @@
     <!-- TODO: Ideally try to implement the layour without negative margins and offsets everywhere. -->
     <nav class="z-10 hidden sm:flex">
         {#each links as { href, text }}
-            <Link {href} class="p-2 md:px-4">{text}</Link>
+            <Link {href} class="p-2 text-base md:px-4">{text}</Link>
         {/each}
     </nav>
 </header>
