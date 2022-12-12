@@ -3,6 +3,7 @@
 
     import Link from '$shared/components/Link.svelte'
     import Heading from '$shared/components/Heading.svelte'
+    import ButtonGroup from '$shared/components/ButtonGroup.svelte'
     import Tools from '$components/Tools.svelte'
     import { selectedSkills, selectedTags } from '$lib/stores'
     import type { PageData } from './$types'
@@ -54,14 +55,12 @@
         better!
     </div>
 
-    <div
-        class="xs:grid-cols-2 xs:max-w-max mt-8 grid gap-y-2 gap-x-4 whitespace-nowrap sm:place-content-start"
-    >
+    <ButtonGroup class="mt-8">
         <LinkButton href="/about" variant="secondary">Learn more</LinkButton>
         <LinkButton href="#explore" variant="primary" class="border border-transparent"
             >Explore tools</LinkButton
         >
-    </div>
+    </ButtonGroup>
 </div>
 
 <SkillTabs {content} />

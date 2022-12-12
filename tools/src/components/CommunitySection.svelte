@@ -5,6 +5,7 @@
     import { HOW_TO_CONTRIBUTE_LINK } from '$shared/constants'
     import Link from '$shared/components/Link.svelte'
     import { FEEDBACK_FORM_LINK, SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
+    import ButtonGroup from '$shared/components/ButtonGroup.svelte'
 </script>
 
 <div class="flex flex-col items-center justify-between bg-stone-50 p-4 text-stone-900">
@@ -16,7 +17,7 @@
         together. And with your help, we can make IDG.tools even better!
     </p>
 
-    <div class="my-4 flex flex-wrap justify-center gap-x-4 gap-y-2">
+    <ButtonGroup class="my-4">
         <LinkButton
             href={SUGGEST_NEW_TOOL_LINK}
             variant="inverted"
@@ -24,7 +25,7 @@
         >
         <LinkButton href={FEEDBACK_FORM_LINK} variant="secondary-inverted">Give feedback</LinkButton
         >
-    </div>
+    </ButtonGroup>
 
     <Link href={HOW_TO_CONTRIBUTE_LINK} variant="pink">Explore more ways to contribute</Link>
 </div>

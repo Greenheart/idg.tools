@@ -1,6 +1,7 @@
 <script lang="ts">
     import UserGroup from '$shared/icons/UserGroup.svelte'
     import Heading from '$shared/components/Heading.svelte'
+    import ButtonGroup from '$shared/components/ButtonGroup.svelte'
     import LinkButton from '$shared/components/LinkButton.svelte'
     import { STORIES_ABOUT_LINK } from '$lib/constants'
 </script>
@@ -21,12 +22,12 @@
         yourself - but also empower many others.
     </p>
 
-    <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
+    <ButtonGroup>
         <LinkButton href={STORIES_ABOUT_LINK} variant="inverted" class="border border-transparent"
             >Share your story</LinkButton
         >
         <LinkButton href={STORIES_ABOUT_LINK} variant="secondary-inverted"
             >Join the editorial team</LinkButton
         >
-    </div>
+    </ButtonGroup>
 </div>
