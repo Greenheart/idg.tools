@@ -124,7 +124,8 @@
         {#each content.dimensions as dimension}
             <Button
                 size="md"
-                on:click={onKeydown(() => toggleSkillsInDimension(dimension))}
+                on:click={() => toggleSkillsInDimension(dimension)}
+                on:keydown={onKeydown(() => toggleSkillsInDimension(dimension))}
                 class={cx(getColor(dimension.id), 'text-white hover:bg-opacity-75')}
                 variant="unstyled"
             >
@@ -134,6 +135,7 @@
     </div>
     <LinkButton
         size="sm"
+        on:click={openFilters}
         on:click={onKeydown(openFilters)}
         variant="unstyled"
         class="font-bold underline">Advanced filters</LinkButton
