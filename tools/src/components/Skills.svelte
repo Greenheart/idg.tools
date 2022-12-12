@@ -55,7 +55,7 @@
             </summary>
             <div
                 class={cx(
-                    'flex flex-wrap justify-center gap-2 border-t border-stone-900 bg-opacity-70 p-4 text-stone-900',
+                    'flex flex-wrap justify-center gap-2 border-t border-black bg-opacity-70 p-4 text-black',
                     color,
                 )}
             >

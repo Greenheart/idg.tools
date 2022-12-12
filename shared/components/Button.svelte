@@ -2,12 +2,12 @@
     import { cx } from '../utils'
 
     export const variants = {
-        primary: 'bg-stone-50 text-stone-900 hover:bg-stone-300',
-        inverted: 'bg-stone-900 text-stone-50 hover:bg-stone-700',
-        secondary: 'bg-black text-stone-50 border-stone-50 border hover:bg-stone-900',
+        primary: 'bg-white text-black hover:bg-lightGray shadow-xl',
+        inverted: 'bg-black text-white hover:bg-opacity-75 shadow-lg',
+        secondary: 'bg-black text-white border-black border hover:bg-opacity-80 shadow-lg',
         'secondary-inverted':
-            'bg-stone-50 border-stone-900 text-stone-900 border hover:bg-stone-200',
-        disabled: 'bg-stone-50 text-stone-900 opacity-60 pointer-events-none',
+            'bg-white border-black text-black border hover:bg-lightGray shadow-xl',
+        disabled: 'bg-white text-black opacity-60 pointer-events-none shadow-lg',
         // TODO: Maybe replace the variant="unstyled" syntax with an `unstyled` boolean prop like for links
         // This could give cleaner code, and make it consistent with other components
         unstyled: '',
@@ -29,6 +29,7 @@
     export let size: keyof typeof sizes = defaultSize
     export let element: HTMLButtonElement | undefined = undefined
     export let tabindex: HTMLButtonElement['tabIndex'] | undefined = undefined
+    export let type: HTMLButtonElement['type'] | undefined = undefined
     let className = ''
     export { className as class }
 </script>
@@ -37,6 +38,7 @@
     bind:this={element}
     {disabled}
     {tabindex}
+    {type}
     class={cx(defaultClasses, variants[disabled ? 'disabled' : variant], sizes[size], className)}
     on:click|trusted
 >

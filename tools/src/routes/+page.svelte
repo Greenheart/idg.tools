@@ -38,26 +38,26 @@
     <p class="mt-4">
         This is an emerging library of tools to explore the <Link
             href={FRAMEWORK_LINK}
-            class="mt-6 font-bold underline">Inner Development Goals</Link
+            class="mt-6"
+            variant="black">Inner Development Goals</Link
         > (IDGs) in practice, and help people and organizations reach the <Link
             href="https://sdgs.un.org/goals#goals"
-            class="font-bold underline">UN Sustainable Development Goals</Link
+            variant="black">UN Sustainable Development Goals</Link
         > (SDGs).
     </p>
 
-    <div class="mt-8 bg-stone-50 p-4 text-stone-900">
+    <div class="mt-8 bg-black p-4 text-white">
         <!-- TODO: clarify that this is a work in progress -->
         This early version is primarily based on the <Link
             href="/assets/220927_IDG_Toolkit_v6.pdf"
-            class="font-underline font-bold"
-            variant="black">IDG Phase 2 Research Report</Link
+            variant="white">IDG Phase 2 Research Report</Link
         >. Now, you're invited to explore the IDGs in practice, and help make this toolkit even
         better!
     </div>
 
     <ButtonGroup class="mt-8">
-        <LinkButton href="/about" variant="secondary">Learn more</LinkButton>
-        <LinkButton href="#explore" variant="primary" class="border border-transparent"
+        <LinkButton href="/about" variant="secondary-inverted">Learn more</LinkButton>
+        <LinkButton href="#explore" variant="secondary" class="border border-transparent"
             >Explore tools</LinkButton
         >
     </ButtonGroup>

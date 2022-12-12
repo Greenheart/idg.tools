@@ -63,7 +63,7 @@
         loaded = true
         setTimeout(() => {
             // This bg color is only used as a skeleton loader to create a smoother loading UX.
-            document.querySelector('.sticky.bg-stone-900')?.classList.remove('bg-stone-900')
+            document.querySelector('.sticky.bg-stone-300')?.classList.remove('bg-stone-300')
         }, 200)
 
         // Maybe debounce or throttle scroll handler. Look up what the modern, performant option is
@@ -140,15 +140,15 @@
 
 <div
     class={cx(
-        'sticky top-0 z-10 -mr-4 -ml-4 h-[116px] bg-stone-900 px-4 sm:-mr-8 sm:-ml-8 sm:h-[148px] sm:px-8 md:h-[108px] lg:h-[108px]',
+        'sticky top-0 z-10 -mr-4 -ml-4 h-[164px] bg-stone-300 px-4 sm:-mr-8 sm:-ml-8 sm:h-[148px] sm:px-8 md:h-[] lg:h-[108px]',
         className,
     )}
 >
-    <div class="relative h-[116px] sm:h-[148px] md:h-[108px] lg:h-[108px]">
+    <div class="relative h-[164px] sm:h-[148px] lg:h-[108px]">
         {#if loaded}
             <div in:fade>
                 <TabGroup
-                    class="absolute top-0 left-0 right-0 -ml-4 -mr-4 overflow-hidden bg-stone-900 text-stone-50 shadow-2xl sm:-mr-8 sm:-ml-8"
+                    class="absolute top-0 left-0 right-0 -ml-4 -mr-4 overflow-hidden bg-black text-white shadow-xl sm:-mr-8 sm:-ml-8"
                     on:change={onChange}
                 >
                     <TabList class="xs:overflow-auto flex flex-nowrap overflow-x-scroll">
@@ -160,12 +160,12 @@
                                 class={({ selected }) =>
                                     cx(
                                         'py-4 px-2 !text-base first:pl-4 last:pr-4 sm:!text-lg',
-                                        selected ? cx(color, 'underline') : 'text-stone-50',
+                                        selected ? cx(color, 'underline') : 'text-white',
                                     )}>{name}</Tab
                             >
                         {/each}
                     </TabList>
-                    <TabPanels class="skill-tabs flex h-full items-start text-stone-900">
+                    <TabPanels class="skill-tabs flex h-full items-start text-black">
                         {#each content.dimensions as { id: dimensionId, skills } (dimensionId)}
                             {@const color = getColor(dimensionId)}
                             <TabPanel

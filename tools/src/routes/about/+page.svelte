@@ -17,9 +17,9 @@
 <p class="mt-8 text-center text-base uppercase">Our three pillars:</p>
 
 <div
-    class="mx-auto mt-8 grid max-w-lg justify-items-center gap-4 text-center text-stone-50 md:max-w-none md:grid-cols-3 lg:gap-8"
+    class="mx-auto mt-8 grid max-w-lg justify-items-center gap-4 text-center md:max-w-none md:grid-cols-3 lg:gap-8"
 >
-    <div class="border-being flex flex-col border p-4">
+    <div class="border-being flex flex-col border bg-white p-4 shadow-md">
         <Heading size={2} class="text-being">Tools</Heading>
         <p class="my-4 flex-1">
             <!-- TODO: don't push as strongly for scientifically validated. Use the suggestion email instead -->
@@ -30,7 +30,7 @@
         <Link href="/#explore" variant="pink">Explore tools</Link>
     </div>
 
-    <div class="border-collaborating flex flex-col border p-4">
+    <div class="border-collaborating flex flex-col border bg-white p-4 shadow-md">
         <Heading size={2} class="text-collaborating">Co-creation</Heading>
         <p class="my-4 flex-1">
             This toolkit is created by and for the community. You are welcome to suggest
@@ -41,7 +41,7 @@
         <Link href="#" variant="pink">Get involved</Link>
     </div>
 
-    <div class="border-relating flex flex-col border p-4">
+    <div class="border-relating flex flex-col border bg-white p-4 shadow-md">
         <Heading size={2} class="text-relating">Community</Heading>
         <p class="my-4 flex-1">
             With almost 100 IDG Hubs, these tools are used by an emerging network eager to

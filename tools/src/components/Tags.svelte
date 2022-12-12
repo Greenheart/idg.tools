@@ -41,7 +41,7 @@
                         : 'cursor-pointer bg-opacity-50'
                     : '',
                 sizes[size].tag,
-                inverted ? 'bg-stone-50 text-stone-900' : 'bg-stone-900 text-stone-50',
+                inverted ? 'bg-white text-black shadow-xl' : 'bg-black text-white',
             )}
         >
             {tag.name}

@@ -15,7 +15,7 @@
 <div class="flex items-center gap-2">
     {#each sections as { text, link }, i}
         {#if link}
-            <Link href={link}>{text}</Link>
+            <Link href={link} variant="black">{text}</Link>
         {:else}
             <span>{text}</span>
         {/if}
