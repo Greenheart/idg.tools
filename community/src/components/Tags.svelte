@@ -35,13 +35,13 @@
             on:click={interactive ? () => toggleTag(tag.id) : () => {}}
             on:keydown={interactive ? onKeydown(() => toggleTag(tag.id)) : () => {}}
             class={cx(
+                sizes[size].tag,
+                inverted ? 'bg-white text-black' : 'bg-black text-white',
                 interactive
                     ? $selectedTags.includes(tag.id)
-                        ? 'cursor-pointer'
-                        : 'cursor-pointer bg-opacity-50'
+                        ? 'cursor-pointer bg-white shadow-xl'
+                        : 'cursor-pointer bg-stone-100 shadow-md'
                     : '',
-                sizes[size].tag,
-                inverted ? 'bg-white text-black shadow-md' : 'bg-black text-white',
             )}
         >
             {tag.name}
