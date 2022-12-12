@@ -101,16 +101,14 @@
                 </TabGroup>
             </div>
         {/if}
-
-        <!-- TODO: ensure this is shown in the correct place -->
-        <div class="absolute top-56 flex gap-2">
-            <!-- TODO: implement advanced filters as modal -->
-            <Button variant="unstyled" size="sm" class="font-bold underline"
-                >Advanced filters</Button
-            >
-            <Button variant="unstyled" on:click={resetFilters} size="sm" class="font-bold underline"
-                >Reset</Button
-            >
-        </div>
     </div>
+</div>
+
+<!-- TODO: ensure this is shown in the correct place -->
+<div class="flex justify-center gap-2 pt-32">
+    <!-- TODO: implement advanced filters as modal -->
+    <Button variant="unstyled" size="sm" class="font-bold underline">Advanced filters</Button>
+    <Button variant="unstyled" on:click={resetFilters} size="sm" class="font-bold underline"
+        >Reset</Button
+    >
 </div>
