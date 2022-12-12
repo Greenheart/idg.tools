@@ -34,6 +34,7 @@ export const isMenuOpen = writable<boolean>(false)
 export const filtersExpanded = writable<boolean>(false)
 export const visibleItems = writable<number>(10)
 export const scrollbarWidth = writable<number>(0)
+export const listenForScroll = writable<boolean>(true)
 
 export const isDimensionOpen = writable<Record<Dimension['id'], boolean>>(
     DIMENSION_IDS.reduce((isDimensionOpen: Record<Dimension['id'], boolean>, dimensionId) => {

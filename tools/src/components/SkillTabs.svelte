@@ -1,11 +1,11 @@
 <script lang="ts">
     import { TabGroup, Tab, TabList, TabPanel, TabPanels } from '@rgossiaux/svelte-headlessui'
-    import { onMount } from 'svelte'
+    import { onDestroy, onMount } from 'svelte'
     import { fade } from 'svelte/transition'
-    import { selectedSkills, selectedTags } from '$lib/stores'
+    import { selectedSkills, selectedTags, listenForScroll } from '$lib/stores'
 
     import { getSkillsInDimension } from '$shared/content-utils'
-    import { cx, getColor, onKeydown } from '$lib/utils'
+    import { cx, getColor, onKeydown, getOffset } from '$lib/utils'
     import type { Skill, ToolsContent } from '$shared/types'
     import SkillButton from './SkillButton.svelte'
     import Button from '$shared/components/Button.svelte'
@@ -13,17 +13,68 @@
     import { FRAMEWORK_LINK } from '$shared/constants'
     import Info from '$shared/icons/Info.svelte'
     import Heading from '$shared/components/Heading.svelte'
+    import { browser } from '$app/environment'
 
     let loaded = false
+    let lastScrollTop = 0
+    let skillTabs: HTMLDivElement
+    // Add a bit extra offset to prevent accidentally closing on initial page load
+    // if the user is navigating to an anchor link, and thus scrolling.
+    const offset = 20
+
+    const getSkillTabs = () => {
+        if (skillTabs) return skillTabs
+        skillTabs = document.querySelector('.skill-tabs') as HTMLDivElement
+        return skillTabs
+    }
+
+    const onScroll = async () => {
+        let st = window.pageYOffset || document.documentElement.scrollTop
+        // Prevent horizontal scrolling
+        if (st === lastScrollTop) return
+        // Prevent triggering scroll when layout changes due to for example selecting skills
+
+        if (!$listenForScroll) return
+
+        const element = getSkillTabs()
+        if (st > lastScrollTop) {
+            // Scrolling down - only hide when user has scrolled down a bit on the page
+            if (
+                window.scrollY - offset >
+                getOffset(document.querySelector('#explore') as HTMLElement).top
+            ) {
+                element.classList.add('hidden')
+            }
+        } else {
+            // Scrolling up
+            if (
+                window.scrollY - offset <=
+                getOffset(document.querySelector('#explore') as HTMLElement).top
+            ) {
+                element.classList.remove('hidden')
+            }
+        }
+        lastScrollTop = st <= 0 ? 0 : st // Handle mobile and negative scrolling
+    }
     onMount(() => {
         loaded = true
         setTimeout(() => {
             // This bg color is only used as a skeleton loader to create a smoother loading UX.
             document.querySelector('.sticky.bg-stone-900')?.classList.remove('bg-stone-900')
-        }, 1000)
+        }, 200)
+
+        // Maybe debounce or throttle scroll handler. Look up what the modern, performant option is
+        window.addEventListener('scroll', onScroll, false)
     })
 
-    const toggleSkills = (skills: Skill['id'][]) => {
+    onDestroy(() => {
+        if (browser) {
+            window.removeEventListener('scroll', onScroll, false)
+        }
+    })
+
+    const toggleSkills = async (skills: Skill['id'][]) => {
+        $listenForScroll = false
         const alreadySelected = skills.filter((skillId) => $selectedSkills.includes(skillId))
 
         // Select all if not all skills are yet selected
@@ -38,16 +89,26 @@
                 (skillId) => !alreadySelected.includes(skillId),
             )
         }
+        setTimeout(() => {
+            $listenForScroll = true
+        }, 100)
+    }
+
+    const onChange = () => {
+        getSkillTabs().classList.remove('hidden')
+        getSkillTabs().scrollTo(0, 0)
     }
 
     // NOTE: Unsure why type for mouse event doesn't work
-    const scrollIntoView = (event: any) => {
+    const onTabClick = (event: any) => {
+        getSkillTabs().classList.remove('hidden')
         event.target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
     }
 
     const resetFilters = () => {
         $selectedSkills = []
         $selectedTags = []
+        getSkillTabs().classList.remove('hidden')
     }
 
     export let content: ToolsContent
@@ -85,13 +146,14 @@
             <div in:fade>
                 <TabGroup
                     class="absolute top-0 left-0 right-0 -ml-4 -mr-4 overflow-hidden bg-stone-900 text-stone-50 shadow-2xl sm:-mr-8 sm:-ml-8"
-                    on:change={() => document.querySelector('.skill-tabs')?.scrollTo(0, 0)}
+                    on:change={onChange}
                 >
                     <TabList class="xs:overflow-auto flex flex-nowrap overflow-x-scroll">
                         {#each content.dimensions as { name, id: dimensionId } (dimensionId)}
                             {@const color = getColor(dimensionId, 'text')}
                             <Tab
-                                on:click={scrollIntoView}
+                                on:click={onTabClick}
+                                on:keydown={onKeydown(onTabClick)}
                                 class={({ selected }) =>
                                     cx(
                                         'py-4 px-2 !text-base first:pl-4 last:pr-4 sm:!text-lg',
