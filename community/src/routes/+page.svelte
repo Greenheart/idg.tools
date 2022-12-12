@@ -24,7 +24,7 @@
         This is an emerging network of IDG Hubs who are using the <Link
             href={FRAMEWORK_LINK}
             variant="black">Inner Development Goals</Link
-        > (IDGs) to achieve the <Link href="https://sdgs.un.org/goals#goals" variant="black"
+        > (IDGs) to meet the <Link href="https://sdgs.un.org/goals#goals" variant="black"
             >UN Sustainable Development Goals</Link
         > (SDGs).
     </p>
