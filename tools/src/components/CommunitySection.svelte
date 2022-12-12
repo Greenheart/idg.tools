@@ -17,7 +17,7 @@
         together. And with your help, we can make IDG.tools even better!
     </p>
 
-    <ButtonGroup class="my-4">
+    <ButtonGroup class="my-4" breakpoint="sm">
         <LinkButton
             href={SUGGEST_NEW_TOOL_LINK}
             variant="inverted"
