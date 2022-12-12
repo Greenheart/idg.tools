@@ -119,21 +119,18 @@
     export { className as class }
 </script>
 
-<div class="grid gap-y-2 pb-2 pt-16 sm:grid-cols-[1fr_max-content]">
+<div class="grid gap-y-2 pb-2 sm:grid-cols-[1fr_max-content]">
     <Heading size={2}>1. Choose skills to practice</Heading>
     <div class="flex items-center sm:justify-end">
         <Link unstyled href={FRAMEWORK_LINK} title="Learn more about the IDG framework" class="p-1">
             <Info class="mt-0.5" />
         </Link>
         <!-- TODO: implement advanced filters as modal -->
-        <!-- <Button variant="unstyled" size="sm" class="text-sm font-bold underline"
+        <!-- <Button variant="unstyled" size="sm" class="text-sm unserline"
             >Advanced filters</Button
         > -->
-        <Button
-            variant="unstyled"
-            on:click={resetFilters}
-            size="sm"
-            class="text-sm font-bold underline">Reset</Button
+        <Button variant="unstyled" on:click={resetFilters} size="sm" class="text-sm underline"
+            >Reset</Button
         >
     </div>
 </div>
