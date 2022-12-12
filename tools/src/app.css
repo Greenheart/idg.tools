@@ -39,6 +39,7 @@ html {
     }
 }
 
+/* TODO: This can be removed when we no longer need the Filters component with collapsible dimensions and skills */
 details > summary {
     list-style: none;
 }

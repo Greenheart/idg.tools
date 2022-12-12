@@ -17,14 +17,6 @@ const config = {
             fontFamily: {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
             },
-            // Our adapted colors
-            // colors: {
-            //     being: '#D9C7A7',
-            //     thinking: '#E0A1B4',
-            //     relating: '#DE7268',
-            //     collaborating: '#F18E61',
-            //     acting: '#9E7983',
-            // },
             // Original IDG colors
             colors: {
                 being: '#d4b88c',
