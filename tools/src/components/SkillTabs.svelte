@@ -16,9 +16,7 @@
 
     let loaded = false
     onMount(() => {
-        // setTimeout(() => {
         loaded = true
-        // }, 1000)
     })
 
     const toggleSkills = (skills: Skill['id'][]) => {
