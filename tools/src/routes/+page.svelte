@@ -54,7 +54,9 @@
         better!
     </div>
 
-    <div class="mt-8 flex flex-wrap justify-center gap-x-4 gap-y-2 sm:justify-start">
+    <div
+        class="xs:grid-cols-2 xs:max-w-max mt-8 grid gap-y-2 gap-x-4 whitespace-nowrap sm:place-content-start"
+    >
         <LinkButton href="/about" variant="secondary">Learn more</LinkButton>
         <LinkButton href="#explore" variant="primary" class="border border-transparent"
             >Explore tools</LinkButton
