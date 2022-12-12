@@ -79,7 +79,7 @@
             <Button on:click={showMore}>Show more</Button>
         {:else}
             <p>
-                Welcome to <Link href={STORIES_ABOUT_LINK} variant="pink">share your story</Link>!
+                Welcome to <Link href={STORIES_ABOUT_LINK} variant="orange">share your story</Link>!
             </p>
         {/if}
     </div>

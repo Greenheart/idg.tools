@@ -4,7 +4,7 @@
     import { cx, isExternalURL } from '../utils'
 
     export const variants = {
-        pink: 'text-thinking',
+        orange: 'text-collaborating',
         white: 'text-white',
         black: 'text-black',
     }

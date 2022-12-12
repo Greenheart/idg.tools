@@ -27,7 +27,7 @@
             outlined by the IDG framework. Here you can find methods, workshops and resources relevant
             to the skills you want to practice.
         </p>
-        <Link href="/#explore" variant="pink">Explore tools</Link>
+        <Link href="/#explore" variant="orange">Explore tools</Link>
     </div>
 
     <div class="border-collaborating flex flex-col border bg-white p-4 shadow-md">
@@ -38,7 +38,7 @@
             tools, and how to join the co-creation.
         </p>
         <!-- TODO: add contributing link relevant for tools -->
-        <Link href="#" variant="pink">Get involved</Link>
+        <Link href="#" variant="orange">Get involved</Link>
     </div>
 
     <div class="border-relating flex flex-col border bg-white p-4 shadow-md">
@@ -48,7 +48,7 @@
             participate, explore and co-create. Join local events, connect with the global community
             and learn together.
         </p>
-        <Link href={COMMUNITY_LINK} variant="pink">Find your community</Link>
+        <Link href={COMMUNITY_LINK} variant="orange">Find your community</Link>
     </div>
 </div>
 

@@ -52,7 +52,7 @@
             >. Now, you're invited to explore the IDGs in practice, and help make this toolkit even
             better!
         </p>
-        <Link href="/about" variant="pink" class="whitespace-nowrap text-right">Learn more</Link>
+        <Link href="/about" variant="orange" class="whitespace-nowrap text-right">Learn more</Link>
     </div>
 </div>
 

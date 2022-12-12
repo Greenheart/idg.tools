@@ -38,7 +38,7 @@
     </div>
 
     {#if visibleSkills.length < relevancy.length}
-        <button class="text-thinking mt-4 font-semibold underline" on:click={showAll}>
+        <button class="text-collaborating mt-4 font-semibold underline" on:click={showAll}>
             Show {remaining ?? ''} more
         </button>
     {/if}

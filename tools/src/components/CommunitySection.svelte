@@ -27,5 +27,5 @@
         >
     </ButtonGroup>
 
-    <Link href={HOW_TO_CONTRIBUTE_LINK} variant="pink">Explore more ways to contribute</Link>
+    <Link href={HOW_TO_CONTRIBUTE_LINK} variant="orange">Explore more ways to contribute</Link>
 </div>
