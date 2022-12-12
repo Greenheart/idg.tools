@@ -15,6 +15,7 @@
     import Heading from '$shared/components/Heading.svelte'
     import { browser } from '$app/environment'
 
+    let ticking = false
     let loaded = false
     let lastScrollTop = 0
     let skillTabs: HTMLDivElement
@@ -28,22 +29,12 @@
         return skillTabs
     }
 
-    // NOTE: Maybe reimplement this using IntersectionObserver to improve performance
-    // Or throttle the scroll event handler
-    // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
-    const onScroll = async () => {
-        let st = window.pageYOffset || document.documentElement.scrollTop
-        // Prevent horizontal scrolling
-        if (st === lastScrollTop) return
-        // Prevent triggering scroll when layout changes due to for example selecting skills
-
-        if (!$listenForScroll) return
-
+    const updateFiltersVisiblity = (newScrollTop: number) => {
         const element = getSkillTabs()
-        if (st > lastScrollTop) {
+        if (newScrollTop > lastScrollTop) {
             // Scrolling down - only hide when user has scrolled down a bit on the page
             if (
-                window.scrollY - offset >
+                newScrollTop - offset >
                 getOffset(document.querySelector('#explore') as HTMLElement).top
             ) {
                 element.classList.add('hidden')
@@ -51,14 +42,34 @@
         } else {
             // Scrolling up
             if (
-                window.scrollY - offset <=
+                newScrollTop - offset <=
                 getOffset(document.querySelector('#explore') as HTMLElement).top
             ) {
                 element.classList.remove('hidden')
             }
         }
-        lastScrollTop = st <= 0 ? 0 : st // Handle mobile and negative scrolling
+        lastScrollTop = newScrollTop <= 0 ? 0 : newScrollTop // Handle mobile and negative scrolling
     }
+
+    // NOTE: Maybe reimplement this using IntersectionObserver to improve performance
+    // Or throttle the scroll event handler
+    // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+    const onScroll = () => {
+        let newScrollTop = window.scrollY || document.documentElement.scrollTop
+        // Prevent horizontal scrolling
+        if (newScrollTop === lastScrollTop) return
+        // Prevent triggering scroll when layout changes due to for example selecting skills
+        if (!$listenForScroll) return
+
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateFiltersVisiblity(newScrollTop)
+                ticking = false
+            })
+        }
+        ticking = true
+    }
+
     onMount(() => {
         loaded = true
         setTimeout(() => {
