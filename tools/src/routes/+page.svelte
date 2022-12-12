@@ -3,7 +3,6 @@
 
     import Link from '$shared/components/Link.svelte'
     import Heading from '$shared/components/Heading.svelte'
-    import ButtonGroup from '$shared/components/ButtonGroup.svelte'
     import Tools from '$components/Tools.svelte'
     import { selectedSkills, selectedTags } from '$lib/stores'
     import type { PageData } from './$types'
@@ -32,13 +31,12 @@
 
 <Heading size={1} class="text-collaborating">Change starts within</Heading>
 
-<div class="py-12 text-lg sm:text-xl">
+<div class="py-12 text-lg">
     <p>Welcome to the Inner Development Goals Toolkit!</p>
 
     <p class="mt-4">
         This is an emerging library of tools to explore the <Link
             href={FRAMEWORK_LINK}
-            class="mt-6"
             variant="black">Inner Development Goals</Link
         > (IDGs) in practice, and help people and organizations reach the <Link
             href="https://sdgs.un.org/goals#goals"
@@ -46,21 +44,17 @@
         > (SDGs).
     </p>
 
-    <div class="mt-8 bg-black p-4 text-white">
+    <div class="mt-4 bg-black p-4 text-white">
         <!-- TODO: clarify that this is a work in progress -->
-        This early version is primarily based on the <Link
-            href="/assets/220927_IDG_Toolkit_v6.pdf"
-            variant="white">IDG Phase 2 Research Report</Link
-        >. Now, you're invited to explore the IDGs in practice, and help make this toolkit even
-        better!
+        <p class="pb-4">
+            This early version is primarily based on the <Link
+                href="/assets/220927_IDG_Toolkit_v6.pdf"
+                variant="white">IDG Phase 2 Research Report</Link
+            >. Now, you're invited to explore the IDGs in practice, and help make this toolkit even
+            better!
+        </p>
+        <Link href="/about" variant="pink" class="whitespace-nowrap text-right">Learn more</Link>
     </div>
-
-    <ButtonGroup class="mt-8">
-        <LinkButton href="/about" variant="secondary-inverted">Learn more</LinkButton>
-        <LinkButton href="#explore" variant="secondary" class="border border-transparent"
-            >Explore tools</LinkButton
-        >
-    </ButtonGroup>
 </div>
 
 <SkillTabs {content} />

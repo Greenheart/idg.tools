@@ -17,7 +17,7 @@
 
 <Heading size={1} class="text-collaborating">Change starts within</Heading>
 
-<div class="py-12 text-lg sm:text-xl">
+<div class="py-12 text-lg">
     <p>Welcome to the Inner Development Goals Community!</p>
 
     <p class="mt-4">
