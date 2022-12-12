@@ -28,6 +28,9 @@
         return skillTabs
     }
 
+    // NOTE: Maybe reimplement this using IntersectionObserver to improve performance
+    // Or throttle the scroll event handler
+    // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
     const onScroll = async () => {
         let st = window.pageYOffset || document.documentElement.scrollTop
         // Prevent horizontal scrolling
