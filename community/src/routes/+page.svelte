@@ -50,8 +50,8 @@
             relevant to the skills you want to practice.
         </p>
         <!-- TODO: Update link before launch -->
-        <!-- <Link href="https://idg.tools" variant="pink">Explore IDG.tools</Link> -->
-        <Link href={IDG_TOOLKIT_LAUNCH} variant="pink">Join the launch December 15th</Link>
+        <!-- <Link href="https://idg.tools" variant="orange">Explore IDG.tools</Link> -->
+        <Link href={IDG_TOOLKIT_LAUNCH} variant="orange">Join the launch December 15th</Link>
     </div>
 
     <div class="border-collaborating flex flex-col border bg-white p-4 shadow-md">
@@ -60,7 +60,7 @@
             With almost 100 IDG Hubs, this is an emerging network eager to participate, explore and
             co-create. Join local events, connect with the global community and learn together.
         </p>
-        <Link href={COMMUNITY_LINK} variant="pink">Find your community</Link>
+        <Link href={COMMUNITY_LINK} variant="orange">Find your community</Link>
     </div>
 
     <div class="border-relating flex flex-col border bg-white p-4 shadow-md">
@@ -70,7 +70,7 @@
             Learn from others and try it with your local hub. Share your own story and help make the
             IDG resources even better!
         </p>
-        <Link href="#stories" variant="pink">Inspire and get inspired</Link>
+        <Link href="#stories" variant="orange">Inspire and get inspired</Link>
     </div>
 </div>
 

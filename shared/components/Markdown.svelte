@@ -66,7 +66,7 @@
     }
 
     const baseClasses =
-        'prose prose-lg lg:prose-xl prose-stone prose-p:leading-7 prose-li:my-4 prose-a:text-thinking prose-img:w-full'
+        'prose prose-lg lg:prose-xl prose-stone prose-p:leading-7 prose-li:my-4 prose-a:text-collaborating prose-img:w-full'
     const defaultVariant = 'default'
     const defaultRenderer: MarkdownRenderer = 'linksOnly'
 

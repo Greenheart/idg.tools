@@ -30,14 +30,14 @@
             <p>
                 One of the best way to get started is to join one of the existing IDG Hubs and
                 explore the IDGs in practice together with others.
-                <Link href={COMMUNITY_LINK} variant="pink">Learn more</Link> and
-                <Link href={COMMUNITY_HUBS_LINK} variant="pink">find IDG Hubs near you</Link>.
+                <Link href={COMMUNITY_LINK} variant="orange">Learn more</Link> and
+                <Link href={COMMUNITY_HUBS_LINK} variant="orange">find IDG Hubs near you</Link>.
             </p>
         </div>
         <!-- <div class="space-y-4">
             <Heading>2. Use the IDG toolkit and give feedback</Heading>
             <p>
-                Use <Link href="https://idg.tools" variant="pink">IDG.tools</Link> in practice. Learn
+                Use <Link href="https://idg.tools" variant="orange">IDG.tools</Link> in practice. Learn
                 what works for you and what needs to be improved. Give feedback via the forms on the
                 website. This will help the team better understand how to continously improve the content,
                 research, design and tech. Thank you!
@@ -48,7 +48,7 @@
             <p>
                 This is a community-driven project where you can make a meaningful contribution to
                 not just learn more about the IDGs yourself - but also empower many others. Welcome
-                to get started by learning more <Link href={STORIES_ABOUT_LINK} variant="pink"
+                to get started by learning more <Link href={STORIES_ABOUT_LINK} variant="orange"
                     >about IDG community stories</Link
                 >!
             </p>
@@ -61,8 +61,8 @@
                 need your help to gather stories from around the world, edit them together with the
                 main authors, and help them get published. To get started, <Link
                     href={STORIES_ABOUT_LINK}
-                    variant="pink">learn more about stories</Link
-                > and <Link href={ELEMENT_STORIES_LINK} variant="pink"
+                    variant="orange">learn more about stories</Link
+                > and <Link href={ELEMENT_STORIES_LINK} variant="orange"
                     >introduce yourself in the stories chat room</Link
                 >.
             </p>
@@ -80,11 +80,12 @@
                 Help create digital experiences that make it easy and fun to use the IDGs in
                 practice to reach the SDGs. Want to get involved? <Link
                     href={GITHUB_LINK}
-                    variant="pink">Check us out on GitHub</Link
+                    variant="orange">Check us out on GitHub</Link
                 > and join chat rooms where we talk about <Link
                     href={ELEMENT_TOOLS_LINK}
-                    variant="pink">tools</Link
-                > and the <Link href={ELEMENT_COMMUNITY_LINK} variant="pink">community website</Link
+                    variant="orange">tools</Link
+                > and the <Link href={ELEMENT_COMMUNITY_LINK} variant="orange"
+                    >community website</Link
                 >.
             </p>
         </div>
