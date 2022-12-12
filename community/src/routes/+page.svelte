@@ -7,6 +7,7 @@
     import StoriesSection from '$components/StoriesSection.svelte'
     import { COMMUNITY_LINK, FRAMEWORK_LINK, IDG_TOOLKIT_LAUNCH } from '$shared/constants'
     import Stories from '$components/Stories.svelte'
+    import ButtonGroup from '$shared/components/ButtonGroup.svelte'
 
     export let data: PageData
     $: ({ content } = data)
@@ -29,12 +30,12 @@
         > (SDGs).
     </p>
 
-    <div class="mt-8 flex flex-wrap justify-center gap-x-4 gap-y-2 sm:justify-start">
+    <ButtonGroup class="mt-8">
         <LinkButton href={COMMUNITY_LINK} variant="secondary">Learn more</LinkButton>
         <LinkButton href="/contribute" variant="primary" class="border border-transparent"
             >Get involved</LinkButton
         >
-    </div>
+    </ButtonGroup>
 </div>
 
 <p class="text-center text-base uppercase">Our three pillars:</p>
