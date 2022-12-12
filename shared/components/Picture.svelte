@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { cx } from '../utils'
+
     type ImageSource = Pick<HTMLSourceElement, 'srcset' | 'type'>
 
     let className = ''
@@ -14,5 +16,5 @@
     {#each sources as { srcset, type }}
         <source {srcset} {type} {width} {height} />
     {/each}
-    <img {src} {width} {height} class={className} {alt} />
+    <img {src} {width} {height} class={cx('shadow-md', className)} {alt} />
 </picture>

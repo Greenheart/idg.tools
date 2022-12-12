@@ -23,16 +23,15 @@
     <p class="mt-4">
         This is an emerging network of IDG Hubs who are using the <Link
             href={FRAMEWORK_LINK}
-            class="mt-6 font-bold underline">Inner Development Goals</Link
-        > (IDGs) to achieve the <Link
-            href="https://sdgs.un.org/goals#goals"
-            class="font-bold underline">UN Sustainable Development Goals</Link
+            variant="black">Inner Development Goals</Link
+        > (IDGs) to achieve the <Link href="https://sdgs.un.org/goals#goals" variant="black"
+            >UN Sustainable Development Goals</Link
         > (SDGs).
     </p>
 
     <ButtonGroup class="mt-8">
-        <LinkButton href={COMMUNITY_LINK} variant="secondary">Learn more</LinkButton>
-        <LinkButton href="/contribute" variant="primary" class="border border-transparent"
+        <LinkButton href={COMMUNITY_LINK} variant="secondary-inverted">Learn more</LinkButton>
+        <LinkButton href="/contribute" variant="secondary" class="border border-transparent"
             >Get involved</LinkButton
         >
     </ButtonGroup>
@@ -41,9 +40,9 @@
 <p class="text-center text-base uppercase">Our three pillars:</p>
 
 <div
-    class="mx-auto mt-8 grid max-w-lg justify-items-center gap-4 text-center text-stone-50 md:max-w-none md:grid-cols-3 lg:gap-8"
+    class="mx-auto mt-8 grid max-w-lg justify-items-center gap-4 text-center md:max-w-none md:grid-cols-3 lg:gap-8"
 >
-    <div class="border-being flex flex-col border p-4">
+    <div class="border-being flex flex-col border bg-white p-4 shadow-md">
         <Heading size={2} class="text-being">Tools</Heading>
         <p class="my-4 flex-1">
             We are creating an open source library of scientifically-validated tools to develop the
@@ -55,7 +54,7 @@
         <Link href={IDG_TOOLKIT_LAUNCH} variant="pink">Join the launch December 15th</Link>
     </div>
 
-    <div class="border-collaborating flex flex-col border p-4">
+    <div class="border-collaborating flex flex-col border bg-white p-4 shadow-md">
         <Heading size={2} class="text-collaborating">Hubs</Heading>
         <p class="my-4 flex-1">
             With almost 100 IDG Hubs, this is an emerging network eager to participate, explore and
@@ -64,7 +63,7 @@
         <Link href={COMMUNITY_LINK} variant="pink">Find your community</Link>
     </div>
 
-    <div class="border-relating flex flex-col border p-4">
+    <div class="border-relating flex flex-col border bg-white p-4 shadow-md">
         <Heading size={2} class="text-relating">Stories</Heading>
         <p class="my-4 flex-1">
             Read stories of how people around the world are using the IDG framework in practice.
