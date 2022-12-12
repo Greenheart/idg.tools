@@ -17,6 +17,10 @@
     let loaded = false
     onMount(() => {
         loaded = true
+        setTimeout(() => {
+            // This bg color is only used as a skeleton loader to create a smoother loading UX.
+            document.querySelector('.sticky.bg-stone-900')?.classList.remove('bg-stone-900')
+        }, 1000)
     })
 
     const toggleSkills = (skills: Skill['id'][]) => {
@@ -72,7 +76,7 @@
 
 <div
     class={cx(
-        'sticky top-0 z-10 -mr-4 -ml-4 h-[116px] px-4 sm:-mr-8 sm:-ml-8 sm:h-[148px] sm:px-8 md:h-[108px] lg:h-[108px]',
+        'sticky top-0 z-10 -mr-4 -ml-4 h-[116px] bg-stone-900 px-4 sm:-mr-8 sm:-ml-8 sm:h-[148px] sm:px-8 md:h-[108px] lg:h-[108px]',
         className,
     )}
 >
