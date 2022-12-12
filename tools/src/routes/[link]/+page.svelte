@@ -35,7 +35,7 @@
 
 <Divider class="my-8" />
 
-<Markdown source={tool.description} formatting="limited" />
+<Markdown source={tool.description} formatting="article" />
 
 <div class="mt-8 bg-white p-4 text-black shadow-xl sm:p-8">
     <Heading class="pb-2 text-2xl">How to practice</Heading>
