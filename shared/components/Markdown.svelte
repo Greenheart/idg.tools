@@ -11,7 +11,7 @@
     import DOMPurify from 'dompurify'
 
     import Link from './Link.svelte'
-    import EmptyComponent from './EmptyComponent.svelte'
+    import Nothing from './Nothing.svelte'
     import { cx } from '../utils'
     import Picture from './Picture.svelte'
 
@@ -23,25 +23,25 @@
         const linksOnly = {
             text: Text,
             paragraph: Paragraph,
-            em: EmptyComponent,
-            strong: EmptyComponent,
-            hr: EmptyComponent,
-            blockquote: EmptyComponent,
-            del: EmptyComponent,
+            em: Nothing,
+            strong: Nothing,
+            hr: Nothing,
+            blockquote: Nothing,
+            del: Nothing,
             link: Link,
-            br: EmptyComponent,
-            image: EmptyComponent,
-            table: EmptyComponent,
-            tablehead: EmptyComponent,
-            tablebody: EmptyComponent,
-            tablerow: EmptyComponent,
-            tablecell: EmptyComponent,
-            list: EmptyComponent,
-            listitem: EmptyComponent,
-            heading: EmptyComponent,
-            codespan: EmptyComponent,
-            code: EmptyComponent,
-            html: EmptyComponent,
+            br: Nothing,
+            image: Nothing,
+            table: Nothing,
+            tablehead: Nothing,
+            tablebody: Nothing,
+            tablerow: Nothing,
+            tablecell: Nothing,
+            list: Nothing,
+            listitem: Nothing,
+            heading: Nothing,
+            codespan: Nothing,
+            code: Nothing,
+            html: Nothing,
         }
 
         const limited = { ...linksOnly, list: List, listitem: ListItem }
