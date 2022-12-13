@@ -135,6 +135,7 @@ importers:
       autoprefixer: ^10.4.13
       cssnano: ^5.1.14
       dotenv: ^16.0.3
+      fast-glob: ^3.2.12
       native-fetch: ^4.0.2
       postcss: ^8.4.19
       postcss-load-config: ^4.0.1
@@ -144,6 +145,7 @@ importers:
       remark: ^14.0.2
       remark-slate: ^1.8.6
       sanitize-html: ^2.7.3
+      sharp: ^0.31.2
       strip-markdown: ^5.0.0
       svelte: ^3.54.0
       svelte-check: ^2.10.2
@@ -169,6 +171,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       cssnano: 5.1.14_postcss@8.4.19
       dotenv: 16.0.3
+      fast-glob: 3.2.12
       native-fetch: 4.0.2_undici@5.14.0
       postcss: 8.4.19
       postcss-load-config: 4.0.1_postcss@8.4.19
@@ -176,6 +179,7 @@ importers:
       prettier-plugin-svelte: 2.8.1_sro2v6ld777payjtkjtiuogcxi
       prettier-plugin-tailwindcss: 0.2.1_prettier@2.8.1
       remark-slate: 1.8.6
+      sharp: 0.31.2
       svelte: 3.54.0
       svelte-check: 2.10.2_v4f7ozfe3bsi7lgm4qy7utpt3q
       svelte-preprocess: 4.10.7_gdssov3dhwivnidpnalytfzzhe
