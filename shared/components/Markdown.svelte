@@ -7,13 +7,13 @@
         Blockquote,
         List,
         ListItem,
-        Image,
     } from 'svelte-markdown/src/renderers'
     import DOMPurify from 'dompurify'
 
     import Link from './Link.svelte'
     import EmptyComponent from './EmptyComponent.svelte'
     import { cx } from '../utils'
+    import Picture from './Picture.svelte'
 
     // IDEA: Ideally align the enabled formatting options with the enabled formatting in the CMS editor, to make it easy to sync updates
     // The CMS config can be found in cms/src/fields/shared.ts
@@ -50,7 +50,9 @@
             blockquote: Blockquote,
             heading: Heading,
             // IDEA: Show alt texts as image descriptions also for inline images in articles.
-            image: Image,
+            // TODO: try if we can use the <Picture /> component here to add improved loading strategies for image formats
+            // This should be possible since we just need to support the props from the Image component.
+            image: Picture,
         }
 
         if (type === 'article') return article

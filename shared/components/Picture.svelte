@@ -4,9 +4,30 @@
     type ImageSource = Pick<HTMLSourceElement, 'srcset' | 'type'>
 
     let className = ''
+
+    /**
+     * Only used by `svelte-markdown` to pass image src
+     */
+    export let href: string | undefined = undefined
+    export let src: string = href
     export let sources: ImageSource[] = []
-    export let src: string
+
+    // Render fallback images even if `sources` are not exlpicitly defined.
+    // This happens when images are rendered by `svelte-markdown` which can only handle one image by default.
+    // NOTE: This also assumes the input `src` is always a `.webp` image so this might break with real usage.
+    // Though, we could protect against this by adding a validation to the content build step.
+    if (!sources.length) {
+        sources.push({
+            srcset: src.replace(/\.webp$/, '.jpg'),
+            type: 'jpg',
+        })
+    }
     export let alt: string
+    /*
+     * Only used when by `svelte-markdown` to render alt fallback
+     */
+    export let text: string | undefined = undefined
+    export let title: string | undefined = undefined
     export let width: number
     export let height: number
     export { className as class }
@@ -16,5 +37,5 @@
     {#each sources as { srcset, type }}
         <source {srcset} {type} {width} {height} />
     {/each}
-    <img {src} {width} {height} class={cx('shadow-md', className)} {alt} />
+    <img {src} {width} {height} {title} class={cx('shadow-md', className)} alt={alt ?? text} />
 </picture>
