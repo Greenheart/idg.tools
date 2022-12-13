@@ -58,7 +58,7 @@ await Promise.all(
 
         if (missingTypes.includes('webp')) {
             const webp = input
-                .resize(width, height)
+                .resize(width, height, { fit: 'inside' })
                 .webp({ effort: 6, quality })
                 .toBuffer()
                 .then((buffer) =>
@@ -77,7 +77,7 @@ await Promise.all(
 
         if (missingTypes.includes('jpg')) {
             const jpeg = input
-                .resize(width, height)
+                .resize(width, height, { fit: 'inside' })
                 .jpeg({ mozjpeg: true, quality })
                 .toBuffer()
                 .then((buffer) =>

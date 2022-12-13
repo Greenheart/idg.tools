@@ -46,6 +46,8 @@ await Promise.all(
 
         console.log(`Missing formats [${missingTypes.join(', ')}] for "${basename(image)}"`)
 
+        const height = Math.min(1000, meta.height)
+        const width = Math.min(750, meta.width)
         const input = sharp(image).rotate()
         const meta = await input.metadata()
 
@@ -58,7 +60,7 @@ await Promise.all(
 
         if (missingTypes.includes('webp')) {
             const webp = input
-                .resize(meta.width, meta.height)
+                .resize(width, height, { fit: 'inside' })
                 .webp({ effort: 6, quality })
                 .toBuffer()
                 .then((buffer) =>
@@ -77,7 +79,7 @@ await Promise.all(
 
         if (missingTypes.includes('jpg')) {
             const jpeg = input
-                .resize(meta.width, meta.height)
+                .resize(width, height, { fit: 'inside' })
                 .jpeg({ mozjpeg: true, quality })
                 .toBuffer()
                 .then((buffer) =>
