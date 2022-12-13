@@ -9,6 +9,7 @@
      * Only used by `svelte-markdown` to pass image src
      */
     export let href: string | undefined = undefined
+
     export let src: string = href
     export let sources: ImageSource[] = []
 
@@ -22,14 +23,15 @@
             type: 'jpg',
         })
     }
-    export let alt: string
     /*
      * Only used when by `svelte-markdown` to render alt fallback
      */
     export let text: string | undefined = undefined
+    export let alt: string = text
     export let title: string | undefined = undefined
-    export let width: number
-    export let height: number
+    // NOTE: We might need to specify width and height when rendering images through `svelte-markdown`. Not sure.
+    export let width: number | undefined
+    export let height: number | undefined
     export { className as class }
 </script>
 
