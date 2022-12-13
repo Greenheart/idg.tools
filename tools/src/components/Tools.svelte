@@ -28,7 +28,8 @@
 
 <div class="flex flex-col items-center justify-center space-y-4 pt-8 text-sm lg:col-span-2">
     <p>
-        Showing {Math.min($visibleItems, tools.length)} of {tools.length} tools matching your search.
+        Showing {Math.min($visibleItems, tools.length)} of {tools.length} tools{#if $selectedSkills.length || $selectedTags.length}
+            matching your search{/if}.
     </p>
     {#if $visibleItems < tools.length}
         <Button on:click={showMore}>Show more</Button>
