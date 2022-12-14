@@ -28,6 +28,8 @@
     const renderAs = interactive ? 'button' : 'span'
 </script>
 
+<!-- IDEA: Potentially split this component into a rendering component with various variants, and one separate for the logic -->
+
 <div class={cx('flex select-none flex-wrap items-start', sizes[size].wrapper, className)}>
     {#each tags.slice(0, visible) as tag (tag.name)}
         <svelte:element
