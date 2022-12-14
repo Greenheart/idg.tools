@@ -1,7 +1,7 @@
 export const SUGGEST_NEW_TOOL_LINK =
-    'https://docs.google.com/forms/d/e/1FAIpQLSdV5Hvpu4TGdXXlBHl5r_ncFn8NDkvHvZH_Ik8wbL-RJYGJdA/viewform'
+    'https://docs.google.com/forms/d/e/1FAIpQLSdgaN8dI0-YUj5Y6_q8kKsL6aGH5RQL-qBisa9jp0gSJ7HUFg/viewform'
 export const FEEDBACK_FORM_LINK =
-    'https://docs.google.com/forms/d/e/1FAIpQLScb13hBp6qsezaqjpzUvfnvJZrX21qaDQ3k3vDbim3BOvjk0g/viewform'
+    'https://docs.google.com/forms/d/e/1FAIpQLSeANPY1OFrQMRFHDhcYjiJ9s-kSRt8dHH5IWFhFTXkU-PH6Bw/viewform'
 
 export const TAGLINE = 'IDG.tools - Inner Development Toolkit - Change starts within'
 export const DEFAULT_DESCRIPTION =
