@@ -43,16 +43,17 @@
         > (SDGs).
     </p>
 
-    <div class="mt-4 bg-black p-4 text-white">
+    <div class="mt-6 bg-black p-4 text-white">
         <!-- TODO: clarify that this is a work in progress -->
         <p class="pb-4">
-            This early version is primarily based on the <Link
+            This is a beta version of the IDG Toolkit. It is primarily based on the <Link
                 href="/assets/220927_IDG_Toolkit_v6.pdf"
                 variant="white">IDG Phase 2 Research Report</Link
-            >. Now, you're invited to explore the IDGs in practice, and help make this toolkit even
-            better!
+            >, and research from <Link href="https://29k.org" variant="white">29k</Link>. Please add
+            your comments or make suggestions for tools that should be featured here.
         </p>
         <Link href="/about" variant="orange" class="whitespace-nowrap text-right">Learn more</Link>
+        <!-- TODO: Add link to the /contribute page for tools, with specific instructions on how to contribute. -->
     </div>
 </div>
 
