@@ -21,7 +21,7 @@
     <ToolPreview {tool} {content} />
 {:else}
     <div class="flex flex-col items-center space-y-4 lg:col-span-2 text-sm">
-        <p>There are no published tools matching your search yet.</p>
+        <p>There are no published tools matching your search yet</p>
         <Button on:click={showAll}>Show all tools</Button>
     </div>
 {/each}
@@ -29,7 +29,7 @@
 <div class="flex flex-col items-center justify-center space-y-4 pt-8 text-sm lg:col-span-2">
     <p>
         Showing {Math.min($visibleItems, tools.length)} of {tools.length} tools{#if $selectedSkills.length || $selectedTags.length}
-            &nbsp;matching your search{/if}.
+            &nbsp;matching your search{/if}
     </p>
     {#if $visibleItems < tools.length}
         <Button on:click={showMore}>Show more</Button>
