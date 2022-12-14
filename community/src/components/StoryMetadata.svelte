@@ -20,21 +20,23 @@
         </p>
     </div>
 
-    <div>
-        <p class="mb-2 text-sm uppercase">
-            {pluralize('Contributor', contributors.length, false)}
-        </p>
-        <div class="flex flex-wrap whitespace-nowrap">
-            {#each contributors as { link, name }, i}
-                {@const formatted = `${name}${i < contributors.length - 1 ? ',' : ''}`}
-                {#if link}
-                    <Link href={link} variant="black">{formatted}</Link>&nbsp;
-                {:else}
-                    <span>{formatted}&nbsp;</span>
-                {/if}
-            {/each}
+    {#if contributors?.length}
+        <div>
+            <p class="mb-2 text-sm uppercase">
+                {pluralize('Contributor', contributors.length, false)}
+            </p>
+            <div class="flex flex-wrap whitespace-nowrap">
+                {#each contributors as { link, name }, i}
+                    {@const formatted = `${name}${i < contributors.length - 1 ? ',' : ''}`}
+                    {#if link}
+                        <Link href={link} variant="black">{formatted}</Link>&nbsp;
+                    {:else}
+                        <span>{formatted}&nbsp;</span>
+                    {/if}
+                {/each}
+            </div>
         </div>
-    </div>
+    {/if}
 
     <!-- IDEA: sort dimensions so they show up in a consistent order with the IDGs. Likely do this already at build time. -->
     {#if dimensions?.length}
