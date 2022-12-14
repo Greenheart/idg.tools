@@ -2,38 +2,55 @@
     import Divider from '$shared/components/Divider.svelte'
     import Heading from '$shared/components/Heading.svelte'
     import Link from '$shared/components/Link.svelte'
-    import { COMMUNITY_LINK } from '$shared/constants'
+    import { COMMUNITY_LINK, FRAMEWORK_LINK, GITHUB_LINK } from '$shared/constants'
 </script>
 
-<Heading size={1} class="text-collaborating">About the IDG toolkit</Heading>
+<Heading size={1} class="text-collaborating">About the IDG Toolkit</Heading>
 
-<!-- TODO: maybe add a short intro here -->
+<div class="py-12 text-lg">
+    <p>
+        The <Link href="https://innerdevelopmentgoals.org" variant="black"
+            >Inner Development Goals</Link
+        > is a non-profit initiative to bring the power of inner development to all global challenges
+        faced by humanity.
+    </p>
+    <p class="mt-4">
+        The <Link href={FRAMEWORK_LINK} variant="black">IDG framework</Link> describes the collective
+        inner skills needed to deal with complex global challenges, such as the Sustainable Development
+        Goals. The IDG Toolkit aims to be a library of useful methods and approaches to practice these
+        skills.
+    </p>
+    <p class="mt-4">
+        This is the public beta version of the IDG Toolkit. It is primarily based on the <Link
+            href="/assets/220927_IDG_Toolkit_v6.pdf"
+            variant="black">IDG Phase 2 Research Report</Link
+        >, and research from <Link href="https://29k.org" variant="black">29k</Link>. We invite you
+        <!-- TODO: Replace the span with link to contributing guide specifically for the toolkit -->
+        to both <span>help improve and expand this open source toolkit</span>, and join the growing
+        worldwide <Link href={COMMUNITY_LINK} variant="black">IDG community</Link> coming together to
+        work on inner development for sustainable development.
+    </p>
+</div>
 
 <!-- TODO: Maybe showcase the core team -->
 
-<!-- IDEA: Maybe explain the IDGs and the mission and vision on this page -->
-
-<!-- TODO: Maybe replace this heading with a short intro paragraph, or remove it entirely -->
-<p class="mt-8 text-center text-base uppercase">Our three pillars:</p>
-
 <div
-    class="mx-auto mt-8 grid max-w-lg justify-items-center gap-4 text-center md:max-w-none md:grid-cols-3 lg:gap-8"
+    class="mx-auto grid max-w-lg justify-items-center gap-4 text-center md:max-w-none md:grid-cols-3 lg:gap-8"
 >
     <div class="border-being flex flex-col border bg-white p-4 shadow-md">
-        <Heading size={2} class="text-being">Tools</Heading>
+        <Heading size={2} class="text-being">Open source</Heading>
         <p class="my-4 flex-1">
-            <!-- TODO: don't push as strongly for scientifically validated. Use the suggestion email instead -->
-            We are creating an open source library of scientifically-validated tools to develop the skills
-            outlined by the IDG framework. Here you can find methods, workshops and resources relevant
-            to the skills you want to practice.
+            This is an open source library of tools that both people and organizations can use to
+            develop the skills outlined by the IDG framework. Here you can find methods, workshops
+            and resources relevant to the skills you want to practice.
         </p>
-        <Link href="/#explore" variant="orange">Explore tools</Link>
+        <Link href={GITHUB_LINK} variant="orange">Contribute on GitHub</Link>
     </div>
 
     <div class="border-collaborating flex flex-col border bg-white p-4 shadow-md">
         <Heading size={2} class="text-collaborating">Co-creation</Heading>
         <p class="my-4 flex-1">
-            This toolkit is created by and for the community. You are welcome to suggest
+            The IDG toolkit is created by and for the community. You are welcome to suggest
             improvements, new tools or even design and develop the app. Read the principles of
             tools, and how to join the co-creation.
         </p>
@@ -54,4 +71,7 @@
 
 <Divider class="my-16" />
 
-<!-- TODO: maybe show principles and governance for the IDG toolkit down here, with support for anchor links -->
+<!--
+    TODO: maybe show principles and governance for the IDG Toolkit down here, with support for anchor links
+    These should likely have their own pages though, so they can easily be linked to.
+-->

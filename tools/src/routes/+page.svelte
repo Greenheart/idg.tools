@@ -49,6 +49,7 @@
                 href="/assets/220927_IDG_Toolkit_v6.pdf"
                 variant="white">IDG Phase 2 Research Report</Link
             >, and research from <Link href="https://29k.org" variant="white">29k</Link>. Please add
+            <!-- TODO: update with link to the page about how to contribute -->
             your comments or make suggestions for tools that should be featured here.
         </p>
         <Link href="/about" variant="orange" class="whitespace-nowrap text-right">Learn more</Link>
