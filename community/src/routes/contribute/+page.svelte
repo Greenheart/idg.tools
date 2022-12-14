@@ -35,7 +35,7 @@
             </p>
         </div>
         <!-- <div class="space-y-4">
-            <Heading>2. Use the IDG toolkit and give feedback</Heading>
+            <Heading>2. Use the IDG Toolkit and give feedback</Heading>
             <p>
                 Use <Link href="https://idg.tools" variant="orange">IDG.tools</Link> in practice. Learn
                 what works for you and what needs to be improved. Give feedback via the forms on the
