@@ -51,7 +51,7 @@
             workshops and resources relevant to the skills you want to practice.
         </p>
         <!-- TODO: Update link before launch -->
-        <!-- <Link href="https://idg.tools" variant="orange">Explore IDG.tools</Link> -->
+        <!-- <Link href="https://idg.tools" variant="orange">Explore the IDG Toolkit</Link> -->
         <Link href={IDG_TOOLKIT_LAUNCH} variant="orange">Join the launch December 15th</Link>
     </div>
 

@@ -37,7 +37,7 @@
         <!-- <div class="space-y-4">
             <Heading>2. Use the IDG Toolkit and give feedback</Heading>
             <p>
-                Use <Link href="https://idg.tools" variant="orange">IDG.tools</Link> in practice. Learn
+                Use the <Link href="https://idg.tools" variant="orange">IDG Toolkit</Link> in practice. Learn
                 what works for you and what needs to be improved. Give feedback via the forms on the
                 website. This will help the team better understand how to continously improve the content,
                 research, design and tech. Thank you!

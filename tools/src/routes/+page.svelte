@@ -44,9 +44,8 @@
     </p>
 
     <div class="mt-6 bg-black p-4 text-white">
-        <!-- TODO: clarify that this is a work in progress -->
         <p class="pb-4">
-            This is a beta version of the IDG Toolkit. It is primarily based on the <Link
+            This is the public beta version of the IDG Toolkit. It is primarily based on the <Link
                 href="/assets/220927_IDG_Toolkit_v6.pdf"
                 variant="white">IDG Phase 2 Research Report</Link
             >, and research from <Link href="https://29k.org" variant="white">29k</Link>. Please add

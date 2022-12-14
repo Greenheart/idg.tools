@@ -14,7 +14,7 @@
 
     <p class="px-4 text-left">
         We’re a non-profit, open source community, always learning and improving this library,
-        together. And with your help, we can make IDG.tools even better!
+        together. And with your help, we can make the IDG Toolkit even better!
     </p>
 
     <ButtonGroup class="my-4" breakpoint="sm">
