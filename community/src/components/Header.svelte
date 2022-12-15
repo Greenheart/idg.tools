@@ -23,6 +23,7 @@
     })
 
     const links = [
+        { href: 'https://idg.tools', text: 'Toolkit' },
         { href: 'https://innerdevelopmentgoals.org', text: 'IDG website' },
         { href: '/contribute', text: 'How to contribute' },
     ]

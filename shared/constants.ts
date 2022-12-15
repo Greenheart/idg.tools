@@ -60,6 +60,4 @@ export const FRAMEWORK_LINK = 'https://www.innerdevelopmentgoals.org/framework'
 export const COMMUNITY_LINK = 'https://www.innerdevelopmentgoals.org/community'
 // Maybe change to include the #Hubs anchor, or replace this entirely
 export const COMMUNITY_HUBS_LINK = 'https://www.innerdevelopmentgoals.org/community'
-
-export const IDG_TOOLKIT_LAUNCH = 'https://forms.gle/reTb1sCQwkuyTBV79'
 export const IDG_PDF_TOOLKIT = '/assets/221215_IDG_Toolkit_v1.pdf'
