@@ -2,7 +2,7 @@
     import Divider from '$shared/components/Divider.svelte'
     import Heading from '$shared/components/Heading.svelte'
     import Link from '$shared/components/Link.svelte'
-    import { COMMUNITY_LINK, FRAMEWORK_LINK, GITHUB_LINK } from '$shared/constants'
+    import { COMMUNITY_LINK, FRAMEWORK_LINK, GITHUB_LINK, IDG_PDF_TOOLKIT } from '$shared/constants'
 </script>
 
 <Heading size={1} class="text-collaborating">About the IDG Toolkit</Heading>
@@ -22,7 +22,7 @@
     </p>
     <p class="mt-4">
         This is the public beta version of the IDG Toolkit. It is primarily based on the <Link
-            href="/assets/220927_IDG_Toolkit_v6.pdf"
+            href={IDG_PDF_TOOLKIT}
             variant="black">IDG Phase 2 Research Report</Link
         >, and research from <Link href="https://29k.org" variant="black">29k</Link>. We invite you
         <!-- TODO: Replace the span with link to contributing guide specifically for the toolkit -->
