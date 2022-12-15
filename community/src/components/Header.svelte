@@ -23,7 +23,7 @@
     })
 
     const links = [
-        // { href: '/about', text: 'About' },
+        { href: 'https://innerdevelopmentgoals.org', text: 'IDG website' },
         { href: '/contribute', text: 'How to contribute' },
     ]
 </script>
