@@ -58,7 +58,7 @@
     <div class="border-collaborating flex flex-col border bg-white p-4 shadow-md">
         <Heading size={2} class="text-collaborating">Hubs</Heading>
         <p class="my-4 flex-1">
-            With almost 100 IDG Hubs, this is an emerging network eager to participate, explore and
+            With more than 100 IDG Hubs, this is an emerging network eager to participate, explore and
             co-create. Join local events, connect with the global community and learn together.
         </p>
         <Link href={COMMUNITY_LINK} variant="orange">Find your community</Link>

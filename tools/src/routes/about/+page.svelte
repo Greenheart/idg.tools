@@ -61,7 +61,7 @@
     <div class="border-relating flex flex-col border bg-white p-4 shadow-md">
         <Heading size={2} class="text-relating">Community</Heading>
         <p class="my-4 flex-1">
-            With almost 100 IDG Hubs, these tools are used by an emerging network eager to
+            With more than 100 IDG Hubs, these tools are used by an emerging network eager to
             participate, explore and co-create. Join local events, connect with the global community
             and learn together.
         </p>
