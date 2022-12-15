@@ -13,6 +13,7 @@
     }
 
     const showMore = () => {
+        // TODO: this might not be what we want -> show 10 or 20 more at a time
         $visibleItems = Math.max(tools.length, Math.min($visibleItems + 10, tools.length))
     }
 </script>

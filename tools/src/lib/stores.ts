@@ -32,7 +32,7 @@ export const selectedSkills = createPersistedStore<ItemId[]>('selectedSkills', [
 export const selectedTags = createPersistedStore<ItemId[]>('selectedTags', [])
 export const isMenuOpen = writable<boolean>(false)
 export const filtersExpanded = writable<boolean>(false)
-export const visibleItems = writable<number>(10)
+export const visibleItems = writable<number>(20)
 export const scrollbarWidth = writable<number>(0)
 export const listenForScroll = writable<boolean>(true)
 
