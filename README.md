@@ -9,14 +9,15 @@ Our projects include:
 -   [idg.tools](https://idg.tools) - A free, open source and co-created library of tools and resources to help people and organizations practice inner development.
 -   [idg.community](https://idg.community) - A website created by and for the IDG community. A place to share stories and get involved in various activities.
 
-## Get involved
+## Contributing
 
-Curious to learn how you can contribute? Come say hi in our chat room and we'll help you get started.
+First of all, thank you for being here! Curious to learn how you can contribute? Come say hi in our chat room and we'll help you get started.
 
 There are many ways to help out so don't be afraid to ask!
 
 -   Get an overview of ways to contribute at <https://idg.community/contribute>
--   [Element chat room](https://app.element.io/#/room/#idg-tools:community.innerdevelopmentgoals.org)
+-   [Element chat room for IDG.tools](https://app.element.io/#/room/#idg-tools:community.innerdevelopmentgoals.org)
+-   [Element chat room for IDG.community](https://app.element.io/#/room/#website:community.innerdevelopmentgoals.org)
 
 ## Technologies used
 
