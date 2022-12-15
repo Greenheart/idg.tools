@@ -24,6 +24,7 @@
 
     const links = [
         { href: '/about', text: 'About' },
+        { href: '/roadmap', text: 'Roadmap' },
         { href: 'https://innerdevelopmentgoals.org', text: 'IDG website' },
         { href: 'https://idg.community/contribute', text: 'How to contribute' },
     ]
@@ -36,7 +37,7 @@
         <span>Toolkit</span>
     </Link>
 
-    <div class="z-30 sm:hidden">
+    <div class="z-30 md:hidden">
         <MenuButton isOpen={$isMenuOpen} onToggle={toggleMenu} />
     </div>
 
@@ -54,9 +55,9 @@
 
     <!-- NOTE: Breakpoints might be messed up by the negative margins that extend the actual width of the layout -->
     <!-- TODO: Ideally try to implement the layour without negative margins and offsets everywhere. -->
-    <nav class="z-10 hidden sm:flex">
+    <nav class="z-10 hidden md:flex">
         {#each links as { href, text }}
-            <Link {href} class="p-2 text-base md:px-4" variant="black">{text}</Link>
+            <Link {href} class="p-2 px-4 text-base" variant="black">{text}</Link>
         {/each}
     </nav>
 </header>

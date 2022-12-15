@@ -2,7 +2,13 @@
     import Divider from '$shared/components/Divider.svelte'
     import Heading from '$shared/components/Heading.svelte'
     import Link from '$shared/components/Link.svelte'
-    import { COMMUNITY_LINK, FRAMEWORK_LINK, GITHUB_LINK, IDG_PDF_TOOLKIT } from '$shared/constants'
+    import {
+        COMMUNITY_LINK,
+        FRAMEWORK_LINK,
+        GITHUB_LINK,
+        HOW_TO_CONTRIBUTE_LINK,
+        IDG_PDF_TOOLKIT,
+    } from '$shared/constants'
 </script>
 
 <Heading size={1} class="text-collaborating">About the IDG Toolkit</Heading>
@@ -54,8 +60,7 @@
             improvements, new tools or even design and develop the app. Read the principles of
             tools, and how to join the co-creation.
         </p>
-        <!-- TODO: add contributing link relevant for tools -->
-        <Link href="#" variant="orange">Get involved</Link>
+        <Link href={HOW_TO_CONTRIBUTE_LINK} variant="orange">Get involved</Link>
     </div>
 
     <div class="border-relating flex flex-col border bg-white p-4 shadow-md">

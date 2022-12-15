@@ -99,7 +99,7 @@
 </div>
 
 <div class="flex justify-center py-12">
-    <LinkButton href="/" variant="primary" size="lg">Back to IDG.community</LinkButton>
+    <LinkButton href="/" variant="secondary-inverted" size="lg">Back to IDG.community</LinkButton>
 </div>
 
 <!-- <div>
