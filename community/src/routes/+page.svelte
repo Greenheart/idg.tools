@@ -32,9 +32,7 @@
 
     <ButtonGroup class="mt-8">
         <LinkButton href={COMMUNITY_LINK} variant="secondary-inverted">Learn more</LinkButton>
-        <LinkButton href="/contribute" variant="secondary" class="border border-transparent"
-            >Get involved</LinkButton
-        >
+        <LinkButton href="/contribute" variant="secondary-inverted">Get involved</LinkButton>
     </ButtonGroup>
 </div>
 
@@ -58,8 +56,8 @@
     <div class="border-collaborating flex flex-col border bg-white p-4 shadow-md">
         <Heading size={2} class="text-collaborating">Hubs</Heading>
         <p class="my-4 flex-1">
-            With more than 100 IDG Hubs, this is an emerging network eager to participate, explore and
-            co-create. Join local events, connect with the global community and learn together.
+            With more than 100 IDG Hubs, this is an emerging network eager to participate, explore
+            and co-create. Join local events, connect with the global community and learn together.
         </p>
         <Link href={COMMUNITY_LINK} variant="orange">Find your community</Link>
     </div>
