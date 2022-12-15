@@ -16,15 +16,17 @@
 
 <Meta title="How to contribute" />
 
-<div class="mx-auto max-w-3xl">
-    <Heading size={1} class="text-collaborating">How you can support the IDG community</Heading>
+<div class="mx-auto max-w-3xl sm:text-lg">
+    <Heading size={1} class="text-collaborating"
+        >How you can co-create with the IDG community</Heading
+    >
     <p class="my-8">
         First of all - thanks for being here! There are several ways you can contribute in a
         meaningful way, which could make a significant impact for the development of the IDGs and
         the SDGs.
     </p>
 
-    <div class="space-y-16 text-lg sm:text-xl">
+    <div class="space-y-16">
         <div class="space-y-4">
             <Heading>1. Join or start an IDG Hub in your area</Heading>
             <p>
@@ -34,17 +36,17 @@
                 <Link href={COMMUNITY_HUBS_LINK} variant="orange">find IDG Hubs near you</Link>.
             </p>
         </div>
-        <!-- <div class="space-y-4">
+        <div class="space-y-4">
             <Heading>2. Use the IDG Toolkit and give feedback</Heading>
             <p>
-                Use the <Link href="https://idg.tools" variant="orange">IDG Toolkit</Link> in practice. Learn
-                what works for you and what needs to be improved. Give feedback via the forms on the
-                website. This will help the team better understand how to continously improve the content,
-                research, design and tech. Thank you!
+                Use the <Link href="https://idg.tools" variant="orange">IDG Toolkit</Link> in practice.
+                Learn what works for you and what needs to be improved. Give feedback via the forms on
+                the website. This will help the team better understand how to continously improve the
+                content, research, design and tech. Thank you!
             </p>
-        </div> -->
+        </div>
         <div class="space-y-4">
-            <Heading>2. Using the IDGs in practice? Share your stories</Heading>
+            <Heading>3. Using the IDGs in practice? Share your stories</Heading>
             <p>
                 This is a community-driven project where you can make a meaningful contribution to
                 not just learn more about the IDGs yourself - but also empower many others. Welcome
@@ -54,7 +56,7 @@
             </p>
         </div>
         <div class="space-y-4">
-            <Heading>3. Storyteller? Join the editorial team for IDG Community Stories</Heading>
+            <Heading>4. Storyteller? Join the editorial team for IDG Community Stories</Heading>
             <p>
                 Our vision is to bring people together, and create a vast library of stories
                 exploring how to use the IDGs in practice to reach the SDGs. To make this happen, we
@@ -75,7 +77,7 @@
         </p>
     </div> -->
         <div class="space-y-4">
-            <Heading>4. Design and software development</Heading>
+            <Heading>5. Design and software development</Heading>
             <p>
                 Help create digital experiences that make it easy and fun to use the IDGs in
                 practice to reach the SDGs. Want to get involved? <Link
