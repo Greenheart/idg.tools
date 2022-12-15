@@ -67,7 +67,7 @@
         <p class="my-4 flex-1">
             Read stories of how people around the world are using the IDG framework in practice.
             Learn from others and try it with your local hub. Share your own story and help make the
-            IDG resources even better!
+            IDG community even better!
         </p>
         <Link href="#stories" variant="orange">Inspire and get inspired</Link>
     </div>
