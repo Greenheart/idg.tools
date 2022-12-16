@@ -80,15 +80,18 @@
             <Heading>5. Design and software development</Heading>
             <p>
                 Help create digital experiences that make it easy and fun to use the IDGs in
-                practice to reach the SDGs. Want to get involved? <Link
-                    href={GITHUB_LINK}
-                    variant="orange">Check us out on GitHub</Link
+                practice to reach the SDGs. We're a small team with high ambitions and would love to
+                get your help! This is only the beginning of what we want to create - an active open
+                source community where people use technology to make meaningful contributions for a
+                future where humanity and the living planet thrive together 🌱
+            </p>
+            <p>
+                Want to get involved? <Link href={GITHUB_LINK} variant="orange"
+                    >Check us out on GitHub</Link
                 > and join chat rooms where we talk about <Link
                     href={ELEMENT_TOOLS_LINK}
-                    variant="orange">tools</Link
-                > and the <Link href={ELEMENT_COMMUNITY_LINK} variant="orange"
-                    >community website</Link
-                >.
+                    variant="orange">IDG.tools</Link
+                > and <Link href={ELEMENT_COMMUNITY_LINK} variant="orange">IDG.community</Link>.
             </p>
         </div>
 

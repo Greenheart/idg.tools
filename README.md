@@ -6,14 +6,16 @@ Welcome! This is a collection of free and open source projects supporting the [I
 
 Our projects include:
 
--   [idg.tools](https://idg.tools) - A free, open source and co-created library of tools and resources to help people and organizations practice inner development.
--   [idg.community](https://idg.community) - A website created by and for the IDG community. A place to share stories and get involved in various activities.
+-   [IDG.tools](https://idg.tools) - A free, open source and co-created library of tools and resources to help people and organizations practice inner development.
+-   [IDG.community](https://idg.community) - A website created by and for the IDG community. A place to share stories and get involved in various activities.
 
 ## Contributing
 
-First of all, thank you for being here! Curious to learn how you can contribute? Come say hi in our chat room and we'll help you get started.
+First of all, thank you for being here! 🎉
 
-There are many ways to help out so don't be afraid to ask!
+We're a small team with high ambitions, and would love to get your help! This is only the beginning of what we want to create - an active open source community where people use technology to make meaningful contributions for a future where humanity and the living planet thrive together 🌱
+
+Curious to learn how you can contribute? Come say hi in our chat rooms and we'll help you get started. There are many ways to help out so don't be afraid to ask!
 
 -   Get an overview of ways to contribute at <https://idg.community/contribute>
 -   [Element chat room for IDG.tools](https://app.element.io/#/room/#idg-tools:community.innerdevelopmentgoals.org)
@@ -21,15 +23,18 @@ There are many ways to help out so don't be afraid to ask!
 
 ## Technologies used
 
--   [SvelteKit](https://kit.svelte.dev) - Modern web app framework.
--   [Netlify CMS](https://netlify.com) - CMS to simplify both content co-creation and development, integrated with Git.
--   [Tailwind CSS](https://tailwindcss.com/) - Simple and efficient styling.
+-   [Svelte](https://svelte.dev) - One of the most approachable frontend web technologies, making development more accessible and fun.
+-   [SvelteKit](https://kit.svelte.dev) - Modern fullstack web app framework with a great developer experience.
+-   [Netlify CMS](https://www.netlifycms.org/) - CMS to simplify both content co-creation and development, integrated with Git.
+-   [Tailwind CSS](https://tailwindcss.com/) - Simple and efficient styling, especially useful for rapid prototyping and collaboration.
+-   [TypeScript](https://www.typescriptlang.org/) - Simplifying maintainance as projects grow and needs change.
+-   [Sharp](https://github.com/lovell/sharp) -
 -   [pnpm](https://pnpm.io) - Fast, disk space efficient package manager.
 
 ## Credits
 
 -   Icons by [Heroicons](https://heroicons.com)
--   Photos from Unsplash and Pexels. The original filenames have been preserved to make it easier to find the photobgraphers (including names, photo ID and service).
+-   Photos from Unsplash and Pexels. The original filenames have been preserved to make it easier to find the photographers (including names, photo ID and service).
 
 ## License
 
