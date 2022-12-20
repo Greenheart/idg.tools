@@ -54,11 +54,11 @@
         src={story.image}
         alt={story.imageAlt}
         sources={[{ srcset: story.image.replace(/\.webp$/, '.jpg'), type: 'image/jpg' }]}
-        class="mx-auto mt-8 w-full"
+        class="mx-auto mt-8 mb-2 w-full"
         width={768}
         height={576}
     />
-    <p class="mt-2 mb-8 text-center text-sm italic">{story.imageAlt}</p>
+    <p class="mb-8 text-center text-sm italic">{story.imageAlt}</p>
 
     <Markdown source={story.story} formatting="article" />
 
