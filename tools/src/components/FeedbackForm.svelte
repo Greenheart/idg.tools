@@ -4,7 +4,7 @@
     import Link from '$shared/components/Link.svelte'
     import { GITHUB_ISSUES_LINK } from '$shared/constants'
 
-    let expanded = true
+    let expanded = false
     let submitted = false
     let liked = ''
     let improve = ''
