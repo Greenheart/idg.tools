@@ -74,7 +74,7 @@ export async function createIssue({
 
     const newIssue = {
         repositoryId: REPOSITORY.id,
-        title: `[${title}]: ${name || new Date().toISOString()}`,
+        title: `[${title}]: ${name}`,
         body,
         labelIds,
     }
