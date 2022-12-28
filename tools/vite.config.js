@@ -13,11 +13,11 @@ export default defineConfig({
             presets: [presetWind(), presetTypography()],
             extractors: [extractorSvelte],
             safelist: ['being', 'thinking', 'relating', 'collaborating', 'acting'].flatMap(
-                (name) => [`bg-${name}`, `text-${name}`],
+                (name) => [`bg-${name}`, `text-${name}`, `border-${name}`],
             ),
             theme: {
                 fontFamily: {
-                    sans: ['Inter var', ...theme.fontFamily.sans],
+                    sans: ['Inter var', theme.fontFamily.sans].join(','),
                 },
                 // Original IDG colors
                 colors: {
