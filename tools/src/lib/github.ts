@@ -55,6 +55,11 @@ export async function createIssue({
     type: ISSUE_TYPES
     url: string
 }) {
+     name: string
+     userContent: string
+     type: ISSUE_TYPES
+     url: string
+}) {
     const { title, labelIds, disclaimer } = TEMPLATES[type]
 
     const body = `${disclaimer}
