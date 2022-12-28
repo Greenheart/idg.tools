@@ -7,6 +7,7 @@
         Blockquote,
         List,
         ListItem,
+        Hr,
     } from 'svelte-markdown/src/renderers'
     import DOMPurify from 'dompurify'
 
@@ -14,7 +15,6 @@
     import Nothing from './Nothing.svelte'
     import { cx } from '../utils'
     import Picture from './Picture.svelte'
-    import Hr from 'svelte-markdown/src/renderers/Hr.svelte'
 
     // IDEA: Ideally align the enabled formatting options with the enabled formatting in the CMS editor, to make it easy to sync updates
     // The CMS config can be found in cms/src/fields/shared.ts
