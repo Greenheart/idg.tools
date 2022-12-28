@@ -15,7 +15,7 @@ const sanitizeInput = (raw: string) => sanitizer.process(raw).then((value) => va
 
 /** @type {PageServerLoad} */
 export async function load({ params: { link } }: { params: Record<string, string> }) {
-    tool = getToolByLink(link, content)
+    const tool = getToolByLink(link, content)
 
     if (tool) {
         // If page was found on a different URL,
