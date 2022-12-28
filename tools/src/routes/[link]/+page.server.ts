@@ -7,7 +7,6 @@ import { getSkill, getTag, getToolByLink } from '$shared/content-utils'
 import type { Tool, Actions, PageServerLoad } from './$types'
 import { createIssue } from '$lib/github'
 
-
 const sanitizer = remark().use(stripMarkdown)
 
 const sanitizeInput = (raw: string) => sanitizer.process(raw).then((value) => value.toString())
