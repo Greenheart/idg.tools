@@ -16,10 +16,12 @@
     },
     "dependencies": {
         "@octokit/graphql": "^5.0.4",
+        "@unocss/reset": "^0.48.0",
         "remark": "^14.0.2",
         "sanitize-html": "^2.8.1",
         "strip-markdown": "^5.0.0",
-        "svelte-meta-tags": "^2.6.4"
+        "svelte-meta-tags": "^2.6.4",
+        "unocss": "^0.48.0"
     },
     "devDependencies": {
         "@rgossiaux/svelte-headlessui": "^1.0.2",

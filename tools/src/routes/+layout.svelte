@@ -3,6 +3,8 @@
     import { afterNavigate, beforeNavigate } from '$app/navigation'
     import Header from '$components/Header.svelte'
 
+    import '@unocss/reset/tailwind.css'
+    import 'uno.css'
     import '../app.css'
     import { scrollbarWidth } from '$lib/stores'
     import CommunitySection from '$components/CommunitySection.svelte'
