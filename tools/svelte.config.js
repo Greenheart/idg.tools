@@ -1,10 +1,10 @@
-import preprocess from 'svelte-preprocess'
 import { resolve } from 'path'
+import { vitePreprocess } from '@sveltejs/kit/vite'
 import adapter from '@sveltejs/adapter-vercel'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-    preprocess: [preprocess({ postcss: true })],
+    preprocess: [vitePreprocess()],
     kit: {
         adapter: adapter(),
         alias: {

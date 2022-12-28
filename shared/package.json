@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "type": "module",
     "dependencies": {
-        "svelte": "^3.54.0",
+        "svelte": "^3.55.0",
         "dompurify": "^2.4.1",
         "svelte-markdown": "^0.2.3"
     },
