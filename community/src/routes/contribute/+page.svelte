@@ -78,7 +78,7 @@
 
     <div class="space-y-16">
         {#each options as { title, text, link }, i}
-            <div class="space-y-4" id={`#${link}`}>
+            <div class="space-y-4" id={link}>
                 <Heading>{i + 1}. {title}</Heading>
                 <Markdown formatting="linksOnly" source={text} />
             </div>
