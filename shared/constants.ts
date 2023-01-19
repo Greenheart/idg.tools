@@ -1,5 +1,24 @@
 import type { Dimension, Language, Skill } from './types'
 
+export const GITHUB_LINK = 'https://github.com/Greenheart/idg.tools'
+export const GITHUB_ISSUES_LINK = `${GITHUB_LINK}/issues`
+export const HOW_TO_CONTRIBUTE_LINK = 'https://idg.community/contribute'
+export const ELEMENT_LINK = 'https://matrix.to/#/#idg:community.innerdevelopmentgoals.org'
+export const ELEMENT_TOOLS_LINK =
+    'https://matrix.to/#/#idg-tools:community.innerdevelopmentgoals.org'
+export const ELEMENT_COMMUNITY_LINK =
+    'https://matrix.to/#/#website:community.innerdevelopmentgoals.org'
+export const ELEMENT_STORIES_LINK =
+    'https://matrix.to/#/#stories:community.innerdevelopmentgoals.org'
+export const ELEMENT_LOCALIZATION_LINK =
+    'https://matrix.to/#/#localization:community.innerdevelopmentgoals.org'
+export const FRAMEWORK_LINK = 'https://www.innerdevelopmentgoals.org/framework'
+export const COMMUNITY_LINK = 'https://www.innerdevelopmentgoals.org/community'
+export const COMMUNITY_HUBS_LINK = 'https://www.innerdevelopmentgoals.org/community#Hubs'
+export const IDG_PDF_TOOLKIT = '/assets/221215_IDG_Toolkit_v1.pdf'
+// TODO: This link should lead directly to our Weblate project to help people find it easily
+export const WEBLATE_LINK = 'https://weblate.org'
+
 export const LANGUAGES = {
     en: 'English',
     sv: 'Svenska',
@@ -46,22 +65,3 @@ export const DIMENSION_IDS = [
     'ckzi3951t0293e2n0n3bykbg5',
     'ckzi39fwv0374e2n0d2eynda4',
 ]
-
-export const GITHUB_LINK = 'https://github.com/Greenheart/idg.tools'
-export const GITHUB_ISSUES_LINK = `${GITHUB_LINK}/issues`
-export const HOW_TO_CONTRIBUTE_LINK = 'https://idg.community/contribute'
-export const ELEMENT_LINK = 'https://matrix.to/#/#idg:community.innerdevelopmentgoals.org'
-export const ELEMENT_TOOLS_LINK =
-    'https://matrix.to/#/#idg-tools:community.innerdevelopmentgoals.org'
-export const ELEMENT_COMMUNITY_LINK =
-    'https://matrix.to/#/#website:community.innerdevelopmentgoals.org'
-export const ELEMENT_STORIES_LINK =
-    'https://matrix.to/#/#stories:community.innerdevelopmentgoals.org'
-export const ELEMENT_LOCALIZATION_LINK =
-    'https://matrix.to/#/#localization:community.innerdevelopmentgoals.org'
-export const FRAMEWORK_LINK = 'https://www.innerdevelopmentgoals.org/framework'
-export const COMMUNITY_LINK = 'https://www.innerdevelopmentgoals.org/community'
-// Maybe change to include the #Hubs anchor, or replace this entirely
-export const COMMUNITY_HUBS_LINK = 'https://www.innerdevelopmentgoals.org/community#Hubs'
-export const IDG_PDF_TOOLKIT = '/assets/221215_IDG_Toolkit_v1.pdf'
-export const WEBLATE_LINK = 'https://weblate.org'
