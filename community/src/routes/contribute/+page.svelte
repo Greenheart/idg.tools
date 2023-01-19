@@ -39,7 +39,7 @@
             link: 'stories',
         },
         {
-            title: 'Storyteller? Join the editorial team for IDG Community Stories',
+            title: 'Storyteller? Join the editorial team for IDG community stories',
             text: `Our vision is to bring people together, and create a vast library of stories exploring how to use the IDGs in practice to reach the SDGs. To make this happen, we need your help to gather stories from around the world, edit them together with the main authors, and help them get published. To get started, [learn more about stories](${STORIES_ABOUT_LINK}) and [introduce yourself in the stories Element chat room](${ELEMENT_STORIES_LINK}).`,
             link: 'stories-curation',
         },
