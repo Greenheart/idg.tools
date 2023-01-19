@@ -18,8 +18,16 @@ We're a small team with high ambitions, and would love to get your help! This is
 Curious to learn how you can contribute? Come say hi in our chat rooms and we'll help you get started. There are many ways to help out so don't be afraid to ask!
 
 -   Get an overview of ways to contribute at <https://idg.community/contribute>
--   [Element chat room for IDG.tools](https://app.element.io/#/room/#idg-tools:community.innerdevelopmentgoals.org)
--   [Element chat room for IDG.community](https://app.element.io/#/room/#website:community.innerdevelopmentgoals.org)
+-   Join our Element chat rooms:
+    -   [IDG Localization Team](https://app.element.io/#/room/#localization:community.innerdevelopmentgoals.org)
+    -   [IDG.tools - design, content and development](https://app.element.io/#/room/#idg-tools:community.innerdevelopmentgoals.org)
+    -   [IDG.community - design, content and development](https://app.element.io/#/room/#website:community.innerdevelopmentgoals.org)
+
+### Localization & translation
+
+To support the emerging IDG movement to become truly global, we need to make the IDGs both relevant and accessible to people all around the world. This is not just about translations - but also about adapting the content and language so that it makes sense in the local context.
+
+We use [Weblate](https://weblate.org/) to coordinate our localization efforts. Welcome to contribute!
 
 ## Technologies used
 
@@ -28,8 +36,9 @@ Curious to learn how you can contribute? Come say hi in our chat rooms and we'll
 -   [Netlify CMS](https://www.netlifycms.org/) - CMS to simplify both content co-creation and development, integrated with Git.
 -   [Tailwind CSS](https://tailwindcss.com/) - Simple and efficient styling, especially useful for rapid prototyping and collaboration.
 -   [TypeScript](https://www.typescriptlang.org/) - Simplifying maintainance as projects grow and needs change.
--   [Sharp](https://github.com/lovell/sharp) -
+-   [Sharp](https://github.com/lovell/sharp) - Image optimization to improve performance and reduce network bandwidth usage.
 -   [pnpm](https://pnpm.io) - Fast, disk space efficient package manager.
+-   [Weblate](https://weblate.org/) - Web-based continuous localization - and also libre software like this project! 🎉
 
 ## Credits
 
