@@ -6,12 +6,54 @@
         COMMUNITY_HUBS_LINK,
         COMMUNITY_LINK,
         ELEMENT_COMMUNITY_LINK,
+        ELEMENT_LOCALIZATION_LINK,
         ELEMENT_STORIES_LINK,
         ELEMENT_TOOLS_LINK,
         GITHUB_LINK,
+        WEBLATE_LINK,
     } from '$shared/constants'
     import LinkButton from '$shared/components/LinkButton.svelte'
     import { STORIES_ABOUT_LINK } from '$lib/constants'
+    import Markdown from '$shared/components/Markdown.svelte'
+    import Divider from '$shared/components/Divider.svelte'
+
+    type Option = {
+        title: string
+        text: string
+        link: string
+    }
+    const options: Option[] = [
+        {
+            title: 'Join or start an IDG Hub in your area',
+            text: `One of the best way to get started is to join one of the existing IDG Hubs and explore the IDGs in practice together with others. [Learn more](${COMMUNITY_LINK}) and [find IDG Hubs near you](${COMMUNITY_HUBS_LINK}).`,
+            link: 'hubs',
+        },
+        {
+            title: 'Use the IDG Toolkit and give feedback',
+            text: `Use the [IDG Toolkit](https://idg.tools) in practice. Learn what works for you and what needs to be improved. Give feedback via the forms on the website. This will help the team better understand how to continously improve the content, research, design and tech. Thank you!`,
+            link: 'toolkit',
+        },
+        {
+            title: 'Using the IDGs in practice? Share your stories',
+            text: `This is a community-driven project where you can make a meaningful contribution to not just learn more about the IDGs yourself - but also empower many others. Welcome to get started by learning more about [IDG community stories](${STORIES_ABOUT_LINK})!`,
+            link: 'stories',
+        },
+        {
+            title: 'Storyteller? Join the editorial team for IDG Community Stories',
+            text: `Our vision is to bring people together, and create a vast library of stories exploring how to use the IDGs in practice to reach the SDGs. To make this happen, we need your help to gather stories from around the world, edit them together with the main authors, and help them get published. To get started, [learn more about stories](${STORIES_ABOUT_LINK}) and [introduce yourself in the stories Element chat room](${ELEMENT_STORIES_LINK}).`,
+            link: 'stories-curation',
+        },
+        {
+            title: 'Localize and translate the IDGs into your language',
+            text: `To support the emerging IDG movement to become truly global, we need to make the IDGs relevant and accessible to people all around the world. This is not just about translations - but more importantly, it's about adapting the content and language so it makes sense in your local context. And to make this happen, we need your help! We use [Weblate](${WEBLATE_LINK}) to coordinate our localization efforts. Welcome to join the Element chat room for the [IDG Localization Team](${ELEMENT_LOCALIZATION_LINK}) to get involved!`,
+            link: 'localization',
+        },
+        {
+            title: 'Design and software development',
+            text: `Help create digital experiences that make it easy and fun to use the IDGs in practice to reach the SDGs. We're a small team with high ambitions and would love to get your help! This is only the beginning of what we want to create - an active open source community where people use technology to make meaningful contributions for a future where humanity and the living planet thrive together 🌱\n\nWant to get involved? Visit our [GitHub project](${GITHUB_LINK}) and join the Element chat rooms where we talk about [IDG.tools](${ELEMENT_TOOLS_LINK}) and [IDG.community](${ELEMENT_COMMUNITY_LINK}).`,
+            link: 'design-and-development',
+        },
+    ]
 </script>
 
 <Meta title="How to contribute" />
@@ -26,75 +68,34 @@
         the SDGs.
     </p>
 
+    <div class="mb-8 grid gap-y-2">
+        {#each options as { title, link }, i}
+            <Link href={`#${link}`} variant="orange">{i + 1}. {title}</Link>
+        {/each}
+    </div>
+
+    <Divider class="my-12" />
+
     <div class="space-y-16">
-        <div class="space-y-4">
-            <Heading>1. Join or start an IDG Hub in your area</Heading>
-            <p>
-                One of the best way to get started is to join one of the existing IDG Hubs and
-                explore the IDGs in practice together with others.
-                <Link href={COMMUNITY_LINK} variant="orange">Learn more</Link> and
-                <Link href={COMMUNITY_HUBS_LINK} variant="orange">find IDG Hubs near you</Link>.
-            </p>
-        </div>
-        <div class="space-y-4">
-            <Heading>2. Use the IDG Toolkit and give feedback</Heading>
-            <p>
-                Use the <Link href="https://idg.tools" variant="orange">IDG Toolkit</Link> in practice.
-                Learn what works for you and what needs to be improved. Give feedback via the forms on
-                the website. This will help the team better understand how to continously improve the
-                content, research, design and tech. Thank you!
-            </p>
-        </div>
-        <div class="space-y-4">
-            <Heading>3. Using the IDGs in practice? Share your stories</Heading>
-            <p>
-                This is a community-driven project where you can make a meaningful contribution to
-                not just learn more about the IDGs yourself - but also empower many others. Welcome
-                to get started by learning more <Link href={STORIES_ABOUT_LINK} variant="orange"
-                    >about IDG community stories</Link
-                >!
-            </p>
-        </div>
-        <div class="space-y-4">
-            <Heading>4. Storyteller? Join the editorial team for IDG Community Stories</Heading>
-            <p>
-                Our vision is to bring people together, and create a vast library of stories
-                exploring how to use the IDGs in practice to reach the SDGs. To make this happen, we
-                need your help to gather stories from around the world, edit them together with the
-                main authors, and help them get published. To get started, <Link
-                    href={STORIES_ABOUT_LINK}
-                    variant="orange">learn more about stories</Link
-                > and <Link href={ELEMENT_STORIES_LINK} variant="orange"
-                    >introduce yourself in the stories chat room</Link
-                >.
-            </p>
-        </div>
-        <!-- <div>
-        <Heading>Translate the IDGs into your language</Heading>
+        {#each options as { title, text, link }, i}
+            <div class="space-y-4" id={`#${link}`}>
+                <Heading>{i + 1}. {title}</Heading>
+                <Markdown formatting="linksOnly" source={text} />
+            </div>
+        {/each}
+
+        <!-- 
+            IDEA: Maybe add this as the first option since this is most welcoming to new people
+
+            <div>
+        <Heading>Participate in local or global events</Heading>
         <p>
-            Help make the IDGs accessible in your local language. Both IDG.tools and IDG.community
-            are built to handle translations.
+            Help organising a local IDG Hub in your area and bridge the existing communities related
+            to the SDGs and inner development. The IDG community doesn't aim to be "the movement",
+            but rather a place where different SDG-related communities connect and work on their
+            inner development.
         </p>
     </div> -->
-        <div class="space-y-4">
-            <Heading>5. Design and software development</Heading>
-            <p>
-                Help create digital experiences that make it easy and fun to use the IDGs in
-                practice to reach the SDGs. We're a small team with high ambitions and would love to
-                get your help! This is only the beginning of what we want to create - an active open
-                source community where people use technology to make meaningful contributions for a
-                future where humanity and the living planet thrive together 🌱
-            </p>
-            <p>
-                Want to get involved? <Link href={GITHUB_LINK} variant="orange"
-                    >Check us out on GitHub</Link
-                > and join chat rooms where we talk about <Link
-                    href={ELEMENT_TOOLS_LINK}
-                    variant="orange">IDG.tools</Link
-                > and <Link href={ELEMENT_COMMUNITY_LINK} variant="orange">IDG.community</Link>.
-            </p>
-        </div>
-
         <p class="text-lg font-bold sm:text-xl md:text-2xl">
             Welcome! Looking forward to co-creating with you :)
         </p>
@@ -104,44 +105,3 @@
 <div class="flex justify-center py-12">
     <LinkButton href="/" variant="secondary-inverted" size="lg">Back to IDG.community</LinkButton>
 </div>
-
-<!-- <div>
-        <Heading>Participate in local or global events</Heading>
-        <p>
-            Help organising a local IDG Hub in your area and bridge the existing communities related
-            to the SDGs and inner development. The IDG community doesn't aim to be "the movement",
-            but rather a place where different SDG-related communities connect and work on their
-            inner development.
-        </p>
-    </div> -->
-
-<!--
-
-
-    - intro: welcome, thank you for being here. This community will only be as good as we make it together. There are several ways you can contribute in a meaningful way, which will have a significant impact for the development of the IDGs.
-    
-    There are several ways to participate and contribute:
-    - To begin with, please participate in IDG Hubs local events, global events.
-    - Use the IDGs in practice to reach the SDGs
-        - Use the toolkit - try it in practice, see what works for you
-        - Give feedback and help improve the toolkit
-    - Help organising a local IDG Hub in your area and bridge the existing communities related to the SDGs and inner development. The IDG community doesn't aim to be "the movement", but rather a place where different SDG-related communities connect and work on their inner development.
-    - Translations
-        - Help the IDGs become a global movement by translating resources into your own language! In that way, the IDGs become more accessible for more people and we can get inputs from a larger variety of people.
-        - ... so we can get help to understand more international nuances and perspecives to help the IDG framework, toolkit and resources more useful.
-    - Stories
-        - (text finns redan)
-        - Share your story!
-        - Whether you are a storyteller, writer/journalist or you ...
-        - Help us find and share the stories from the IDG community to empower and inspire others to practice the IDG skills. (typ)
-        - Join the editorial team for the IDG stories!
-    - Design and development
-        - Design and develop idg.tools, idg.community and other ways to support the emerging IDG community with tech.
-        - (Introduce GitHub...) - this is our main way of collaborating with these Element chat rooms. Everything we are doing is free and open source, so your contributions will be visible.
-        - As technologists we have a special responsibility to follow the principles of Humane Technology (LINK) to make sure we use tech to strengthen the IDG movement and create good conditions to help people practice the IDGs (compared to tech which doesn't respect people's attention and agency).
-
-
-
-
-
- -->

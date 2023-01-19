@@ -64,3 +64,4 @@ export const COMMUNITY_LINK = 'https://www.innerdevelopmentgoals.org/community'
 // Maybe change to include the #Hubs anchor, or replace this entirely
 export const COMMUNITY_HUBS_LINK = 'https://www.innerdevelopmentgoals.org/community#Hubs'
 export const IDG_PDF_TOOLKIT = '/assets/221215_IDG_Toolkit_v1.pdf'
+export const WEBLATE_LINK = 'https://weblate.org'
