@@ -19,13 +19,13 @@ Curious to learn how you can contribute? Come say hi in our chat rooms and we'll
 
 -   Get an overview of ways to contribute at <https://idg.community/contribute>
 -   Join our Element chat rooms:
-    -   [IDG Localization Team](https://app.element.io/#/room/#localization:community.innerdevelopmentgoals.org)
-    -   [IDG.tools - design, content and development](https://app.element.io/#/room/#idg-tools:community.innerdevelopmentgoals.org)
-    -   [IDG.community - design, content and development](https://app.element.io/#/room/#website:community.innerdevelopmentgoals.org)
+    -   [IDG Localization Team](https://matrix.to/#/#localization:community.innerdevelopmentgoals.org)
+    -   [IDG.tools - design, content and development](https://matrix.to/#/#idg-tools:community.innerdevelopmentgoals.org)
+    -   [IDG.community - design, content and development](https://matrix.to/#/#website:community.innerdevelopmentgoals.org)
 
 ### Localization & translation
 
-To support the emerging IDG movement to become truly global, we need to make the IDGs both relevant and accessible to people all around the world. This is not just about translations - but also about adapting the content and language so that it makes sense in the local context.
+To support the emerging IDG movement to become truly global, we need to make the IDGs relevant and accessible to people all around the world. This is not just about translations - but more importantly, it's about adapting the content and language so it makes sense in your local context. And to make this happen, we need your help!
 
 We use [Weblate](https://weblate.org/) to coordinate our localization efforts. Welcome to contribute!
 

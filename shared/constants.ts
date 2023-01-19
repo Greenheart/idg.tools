@@ -50,13 +50,15 @@ export const DIMENSION_IDS = [
 export const GITHUB_LINK = 'https://github.com/Greenheart/idg.tools'
 export const GITHUB_ISSUES_LINK = `${GITHUB_LINK}/issues`
 export const HOW_TO_CONTRIBUTE_LINK = 'https://idg.community/contribute'
-export const ELEMENT_LINK = 'https://app.element.io/#/room/#idg:community.innerdevelopmentgoals.org'
+export const ELEMENT_LINK = 'https://matrix.to/#/#idg:community.innerdevelopmentgoals.org'
 export const ELEMENT_TOOLS_LINK =
-    'https://app.element.io/#/room/#idg-tools:community.innerdevelopmentgoals.org'
+    'https://matrix.to/#/#idg-tools:community.innerdevelopmentgoals.org'
 export const ELEMENT_COMMUNITY_LINK =
-    'https://app.element.io/#/room/#website:community.innerdevelopmentgoals.org'
+    'https://matrix.to/#/#website:community.innerdevelopmentgoals.org'
 export const ELEMENT_STORIES_LINK =
-    'https://app.element.io/#/room/#stories:community.innerdevelopmentgoals.org'
+    'https://matrix.to/#/#stories:community.innerdevelopmentgoals.org'
+export const ELEMENT_LOCALIZATION_LINK =
+    'https://matrix.to/#/#localization:community.innerdevelopmentgoals.org'
 export const FRAMEWORK_LINK = 'https://www.innerdevelopmentgoals.org/framework'
 export const COMMUNITY_LINK = 'https://www.innerdevelopmentgoals.org/community'
 // Maybe change to include the #Hubs anchor, or replace this entirely
