@@ -3,6 +3,7 @@ import { STORIES_LEARN_MORE } from './constants'
 
 import { ContributorsFields } from './fields/contributors'
 import { DimensionsFields } from './fields/dimensions'
+import { FeaturedContentFields } from './fields/settings/featured'
 import { SkillsFields } from './fields/skills'
 import { StoriesFields } from './fields/stories'
 import { TagsFields } from './fields/tags'
@@ -78,22 +79,19 @@ export const COLLECTIONS = [
         description: 'Create tags and use them to organize different tools.',
     },
     // TODO: re-enable these settings once we have fixed localization support and converted to the new structure.
-    // {
-    //     i18n: true,
-    //     name: 'settings',
-    //     label: '⚙️ Settings',
-    //     description:
-    //         'Here you can change settings like which stories that should be featured.',
-    //     files: [
-    //         {
-    //             i18n: true,
-    //             label: 'Featured Content',
-    //             name: 'featured',
-    //             file: '/content/src/settings/featured.json',
-    //             fields: FeaturedContentFields,
-    //         },
-    //     ],
-    // },
+    {
+        name: 'settings',
+        label: '⚙️ Settings',
+        description: 'Here you can change settings like which stories that should be featured.',
+        files: [
+            {
+                label: 'Featured Content',
+                name: 'featured',
+                file: '/content/src/settings/featured.json',
+                fields: FeaturedContentFields,
+            },
+        ],
+    },
     {
         name: 'skills',
         label: '🌱 Skills',

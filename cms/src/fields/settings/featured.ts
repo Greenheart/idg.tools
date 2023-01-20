@@ -8,9 +8,6 @@ export const FeaturedContentFields: CustomCmsField[] = [
         label_singular: 'Featured Story',
         widget: 'relation',
         multiple: true,
-        // NOTE: Maybe we want the same featured content in all languages, or maybe not.
-        // With `duplicate` they will be consistent, but with `i18n: true` we could have variations
-        i18n: 'duplicate',
         collection: 'stories',
         value_field: 'id',
         search_fields: ['title', 'id'],
