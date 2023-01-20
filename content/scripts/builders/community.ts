@@ -142,8 +142,11 @@ const prepareTags = (
         return true
     }, {})
 
-const loadContent = async (selected: SelectedCollections, baseDir: string) => {
-    const paths = await getContentPaths(selected, baseDir)
+const loadContent = async (selected: SelectedCollections, baseDir: string, language: Language) => {
+    // TODO: change how content paths are retrieved, instead load all content one language at a time
+    const paths = await getContentPaths(selected, baseDir, language)
+
+    // for each language, load all content and adjust the paths
 
     const [collectionsByType, singletonsByType] = await Promise.all([
         Promise.all(paths.collections.map((collection) => Promise.all(collection.map(readJSON)))),
@@ -204,10 +207,23 @@ export default async function buildCommunity(
     contentDir: string,
     selectedCollections: SelectedCollections,
 ) {
-    const rawContent = await loadContent(selectedCollections, contentDir)
-
     // IDEA: Perhaps we could split content by language first, and then prepare content only for the languages wanted?
     // This would allow to filter out missing content in the beginning and only implement the selectedLanguages filering in one place.
 
-    return splitContentByLang(prepareContent(rawContent, selectedLanguages), selectedLanguages)
+    // TODO: this could be simplified to keep the complexity of multiple languages only at the top level
+    // for language of languages
+    //     loadContent()
+    //     prepareContent()
+    // add it all together into the final content.json output.
+
+    for (const language of selectedLanguages) {
+        const rawContent = await loadContent(selectedCollections, contentDir, language)
+        console.log({ rawContent })
+    }
+
+    // TODO:
+    // return splitContentByLang(prepareContent(rawContent, selectedLanguages), selectedLanguages)
+
+    // IDEA: Maybe in the future, we should split the content bundle into one bundle per language to reduce network usage
+    // However, this also introduces other complexity with fallback languages, and using SSR to give users the right language when they visit pages.
 }
