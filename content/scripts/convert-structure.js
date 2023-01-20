@@ -3,7 +3,7 @@ import { readFile, writeFile, mkdir, rm } from 'fs/promises'
 import { dirname, resolve, basename } from 'path'
 import { fileURLToPath } from 'url'
 
-const collections = ['dimensions', 'skills', 'tags', 'tools']
+const collections = ['dimensions', 'skills', 'tags', 'tools', 'stories']
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 

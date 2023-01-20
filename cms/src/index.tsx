@@ -15,7 +15,7 @@ CMS.init({
             name: 'github',
             repo: 'Greenheart/idg.tools',
             branch: 'main',
-            open_authoring: true,
+            open_authoring: false,
         },
         local_backend: {
             url: 'http://localhost:2030/api/v1',
