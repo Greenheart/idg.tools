@@ -22,7 +22,7 @@ CMS.init({
         },
         publish_mode: 'simple',
         i18n: {
-            structure: 'single_file',
+            structure: 'multiple_folders',
             locales: LANGUAGE_TAGS,
             default_locale: DEFAULT_LANGUAGE_TAG,
         },
