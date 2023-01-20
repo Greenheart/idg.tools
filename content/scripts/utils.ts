@@ -4,7 +4,7 @@ import { resolve } from 'path'
 import slugify from 'slugify'
 
 import { DEFAULT_LANGUAGE_TAG } from '$shared/constants'
-import type { Story, Tag } from '$shared/types'
+import type { Language, Story, Tag } from '$shared/types'
 import { SelectedCollections, SINGLETONS } from './build-content'
 
 export const slugifyName = (string: string, language = DEFAULT_LANGUAGE_TAG) =>
@@ -39,11 +39,15 @@ export const writeJSON = (path: string, data: any, indentation: number = 0) =>
 
 const getPaths = (...paths: string[]) => FastGlob(resolve(...paths))
 
-export const getContentPaths = async (selected: SelectedCollections, baseDir: string) => {
+export const getContentPaths = async (
+    selected: SelectedCollections,
+    baseDir: string,
+    language?: Language,
+) => {
     const collections = selected.collections.length
         ? await Promise.all(
               selected.collections.flatMap((collection) =>
-                  getPaths(baseDir, `${collection}/*.json`),
+                  getPaths(baseDir, `${collection}/${language ? `${language}/` : ''}*.json`),
               ),
           )
         : []

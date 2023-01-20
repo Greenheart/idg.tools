@@ -78,7 +78,6 @@ export const COLLECTIONS = [
         i18n: true,
         description: 'Create tags and use them to organize different tools.',
     },
-    // TODO: re-enable these settings once we have fixed localization support and converted to the new structure.
     {
         name: 'settings',
         label: '⚙️ Settings',

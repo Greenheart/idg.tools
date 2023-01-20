@@ -46,7 +46,7 @@ const COLLECTIONS: Record<
 
 export type SelectedCollections = typeof COLLECTIONS[BuilderName]
 
-// NOTE: We currently only build the English content since no translations are available yet
+// NOTE: We currently only build the English content since no other locales are available yet
 const SELECTED_LANGUAGES: Language[] = ['en']
 
 const contentDir = resolve(__dirname, '../../src')
