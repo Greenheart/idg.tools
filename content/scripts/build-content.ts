@@ -1,7 +1,7 @@
 import { performance } from 'perf_hooks'
 import { dirname, resolve } from 'path'
 
-import type { Language, ToolsCollections, CommunityCollections } from '$shared/types'
+import type { Locale, ToolsCollections, CommunityCollections } from '$shared/types'
 import community from './builders/community'
 import tools from './builders/tools'
 import { fileURLToPath } from 'url'
@@ -10,7 +10,7 @@ import { writeJSON } from './utils'
 const BUILDER_NAMES = ['community', 'tools']
 type BuilderName = typeof BUILDER_NAMES[number]
 export type Builder<T> = (
-    selectedLanguages: Language[],
+    selectedLocales: Locale[],
     contentDir: string,
     selectedCollections: T,
 ) => Promise<void>
@@ -44,10 +44,14 @@ const COLLECTIONS: Record<
     },
 }
 
+export const NON_LOCALIZED_COLLECTIONS: (CommunityCollections | ToolsCollections)[] = [
+    'contributors',
+] as unknown as (CommunityCollections | ToolsCollections)[]
+
 export type SelectedCollections = typeof COLLECTIONS[BuilderName]
 
 // NOTE: We currently only build the English content since no other locales are available yet
-const SELECTED_LANGUAGES: Language[] = ['en']
+const SELECTED_LANGUAGES: Locale[] = ['en']
 
 const contentDir = resolve(__dirname, '../../src')
 

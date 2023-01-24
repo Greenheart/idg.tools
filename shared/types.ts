@@ -1,4 +1,4 @@
-import type { LANGUAGES } from './constants'
+import type { LOCALES } from './constants'
 
 export type ItemId = string
 
@@ -88,6 +88,6 @@ export type IDGColorMap = {
 
 export type Tag = { id: ItemId; name: string }
 
-export type Language = keyof typeof LANGUAGES
+export type Locale = keyof typeof LOCALES
 
-export type Translated<T> = Partial<Record<Language, T>>
+export type Translated<T> = Partial<Record<Locale, T>>

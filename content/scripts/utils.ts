@@ -3,17 +3,17 @@ import { readFile, writeFile } from 'fs/promises'
 import { resolve } from 'path'
 import slugify from 'slugify'
 
-import { DEFAULT_LANGUAGE_TAG } from '$shared/constants'
-import type { Language, Story, Tag } from '$shared/types'
-import { SelectedCollections, SINGLETONS } from './build-content'
+import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
+import type { CommunityCollections, Locale, Tag, ToolsCollections } from '$shared/types'
+import { NON_LOCALIZED_COLLECTIONS, SelectedCollections, SINGLETONS } from './build-content'
 
-export const slugifyName = (string: string, language = DEFAULT_LANGUAGE_TAG) =>
+export const slugifyName = (string: string, locale = DEFAULT_LOCALE_IDENTIFIER) =>
     slugify(string, {
         replacement: '-', // replace spaces with replacement character, defaults to `-`
         remove: undefined, // remove characters that match regex, defaults to `undefined`
         lower: true, // convert to lower case, defaults to `false`
         strict: true, // strip special characters except replacement, defaults to `false`
-        locale: language, // language code of the locale to use
+        locale, // locale identifier of the locale to use
         trim: true, // trim leading and trailing replacement chars, defaults to `true`
     })
 
@@ -27,8 +27,8 @@ export const slugifyName = (string: string, language = DEFAULT_LANGUAGE_TAG) =>
 export const createBackwardsCompatibleLink = (
     name: string,
     uniqueSlug: string,
-    language = DEFAULT_LANGUAGE_TAG,
-) => `${slugifyName(name, language)}-${uniqueSlug}`
+    locale = DEFAULT_LOCALE_IDENTIFIER,
+) => `${slugifyName(name, locale)}-${uniqueSlug}`
 
 export const readJSON = (path: string) => readFile(path, { encoding: 'utf-8' }).then(JSON.parse)
 
@@ -39,15 +39,27 @@ export const writeJSON = (path: string, data: any, indentation: number = 0) =>
 
 const getPaths = (...paths: string[]) => FastGlob(resolve(...paths))
 
+const isCollectionLocalized = (collection: CommunityCollections | ToolsCollections) =>
+    !NON_LOCALIZED_COLLECTIONS.includes(collection)
+
 export const getContentPaths = async (
     selected: SelectedCollections,
     baseDir: string,
-    language?: Language,
+    locale?: Locale,
 ) => {
     const collections = selected.collections.length
         ? await Promise.all(
               selected.collections.flatMap((collection) =>
-                  getPaths(baseDir, `${collection}/${language ? `${language}/` : ''}*.json`),
+                  getPaths(
+                      baseDir,
+                      `${collection}/${
+                          isCollectionLocalized(
+                              collection as unknown as CommunityCollections | ToolsCollections,
+                          )
+                              ? `${locale}/`
+                              : ''
+                      }*.json`,
+                  ),
               ),
           )
         : []

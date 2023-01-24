@@ -17,7 +17,7 @@ export function truncateText(text: string, maxLength: number, separator = ' ') {
 export const getColor = (id: Dimension['id'] | Skill['id'], colorType: 'bg' | 'text' = 'bg') =>
     `${colorType}-${COLORS[id]}`
 
-// TODO: This needs to be updated to support other languages than English, but is good enough for now.
+// TODO: This needs to be updated to support other locales than English, but is good enough for now.
 export const pluralize = (item: string, count: number, showCount = true) => {
     const formattedItems = count === 1 ? item : `${item}s`
     return showCount ? `${count} ${formattedItems}` : formattedItems
