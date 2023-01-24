@@ -2,7 +2,7 @@ import { getSortedStories, getTag } from '$shared/content-utils'
 import type {
     Dimension,
     CommunityContent,
-    Language,
+    Locale,
     Translated,
     Story,
     Contributor,
@@ -28,109 +28,90 @@ type ProcessingTranslatedCommunityContent = {
     featured: Translated<FeaturedContent>
 }
 
-const prepareStories = (
-    translatedStories: Translated<Story>[],
-    translatedTags: Translated<Tag>[],
-    selectedLanguages: Language[],
-) => {
-    return translatedStories.map((translatedStory) => {
-        const updated = {} as Translated<Story>
+const prepareStories = (stories: Story[], tags: Tag[], locale: Locale) => {
+    const uniqueSlugs = new Set()
 
+    return stories.map((story) => {
         // IDEA: Maybe automatically title case story titles
 
-        const uniqueSlugs = new Set()
-
-        for (const [language, story] of Object.entries(translatedStory)) {
-            if (!selectedLanguages.includes(language as Language)) continue
-            if (!story.publishedAt) {
-                console.log('[content] Skipping unpublished story', story.title)
-                continue
-            }
-            if (!story.slug) {
-                throw new Error(
-                    `[content] Missing slug for story "${story.title}" and language "${language}"`,
-                )
-            }
-
-            // Ensure slugs are consistent across all translations
-            uniqueSlugs.add(story.slug)
-            if (uniqueSlugs.size > 1) {
-                throw new Error(
-                    `[content] Slugs should be the same for all translations for story "${
-                        story.title
-                    }" and language "${language}": Slugs found was ${JSON.stringify([
-                        ...uniqueSlugs,
-                    ])}`,
-                )
-            }
-
-            if (!story.tags) {
-                console.warn('[content] Missing tags for story', story.title)
-                story.tags = []
-            }
-
-            // Consider removing duplicate tags check, since this is taken care of by the relation widget in the CMS
-            // Or maybe only enable it when running in local development and not in the production build
-            const firstDuplicateTag = story.tags.find((t, i) => story.tags.lastIndexOf(t) !== i)
-            if (firstDuplicateTag) {
-                throw new Error(
-                    `[content] Story "${story.title}" has a duplicate tag: ${firstDuplicateTag}`,
-                )
-            }
-
-            const relevantTags = translatedTags.reduce((relevantTags, tag) => {
-                const translatedTag = tag[language as Language]
-                if (translatedTag) relevantTags.push(translatedTag)
-                return relevantTags
-            }, [] as Tag[])
-
-            const tagsSortedAlphabetically = story.tags
-                .map((t) => getTag(t, { tags: relevantTags }))
-                .sort(sortNamesAlphabetically)
-                .map((t) => t.id)
-
-            story.image = getConsistentAssetURL(story.image, '/community/static')
-
-            story.tags = tagsSortedAlphabetically
-
-            const newLink = createBackwardsCompatibleLink(story.title, story.slug)
-            if (newLink !== story.link) {
-                if (story.link !== undefined) {
-                    console.warn(
-                        `[content] Link has changed for story "${story.title}" from old: "${story.link}" to new: "${newLink}"`,
-                    )
-                }
-                story.link = newLink
-            }
-
-            if (!story.contributors) story.contributors = []
-            if (!story.dimensions) story.dimensions = []
-
-            updated[language as Language] = story
+        if (!story.publishedAt) {
+            console.log('[content] Skipping unpublished story', story.title)
+            return null
+        }
+        if (!story.slug) {
+            throw new Error(
+                `[content] Missing slug for story "${story.title}" and locale "${locale}"`,
+            )
         }
 
-        return updated
+        // Ensure slugs are consistent across all translations
+        uniqueSlugs.add(story.slug)
+        if (uniqueSlugs.size > 1) {
+            throw new Error(
+                `[content] Slugs should be the same for all translations for story "${
+                    story.title
+                }" and locale "${locale}": Slugs found was ${JSON.stringify([...uniqueSlugs])}`,
+            )
+        }
+
+        if (!story.tags) {
+            console.warn('[content] Missing tags for story', story.title)
+            story.tags = []
+        }
+
+        // Consider removing duplicate tags check, since this is taken care of by the relation widget in the CMS
+        // Or maybe only enable it when running in local development and not in the production build
+        const firstDuplicateTag = story.tags.find((t, i) => story.tags.lastIndexOf(t) !== i)
+        if (firstDuplicateTag) {
+            throw new Error(
+                `[content] Story "${story.title}" has a duplicate tag: ${firstDuplicateTag}`,
+            )
+        }
+
+        const tagsSortedAlphabetically = story.tags
+            .map((t) => getTag(t, { tags }))
+            .sort(sortNamesAlphabetically)
+            .map((t) => t.id)
+
+        story.image = getConsistentAssetURL(story.image, '/community/static')
+
+        story.tags = tagsSortedAlphabetically
+
+        const newLink = createBackwardsCompatibleLink(story.title, story.slug)
+        if (newLink !== story.link) {
+            if (story.link !== undefined) {
+                console.warn(
+                    `[content] Link has changed for story "${story.title}" from old: "${story.link}" to new: "${newLink}"`,
+                )
+            }
+            story.link = newLink
+        }
+
+        if (!story.contributors) story.contributors = []
+        if (!story.dimensions) story.dimensions = []
+
+        return story
     })
 }
 
 const prepareTags = (
     translatedStories: Translated<Story>[],
     translatedTags: Translated<Tag>[],
-    selectedLanguages: Language[],
+    selectedLocales: Locale[],
 ) =>
     translatedTags.filter((translatedTag) => {
-        for (const [language, tag] of Object.entries(translatedTag)) {
-            if (!selectedLanguages.includes(language as Language)) continue
+        for (const [locale, tag] of Object.entries(translatedTag)) {
+            if (!selectedLocales.includes(locale as Locale)) continue
             if (!tag) {
                 throw new Error(
-                    `[content] Tag is missing translation for language "${language}": ${JSON.stringify(
+                    `[content] Tag is missing translation for locale "${locale}": ${JSON.stringify(
                         translatedTag,
                     )}`,
                 )
             }
 
             const tagIsUsedBySomeStory = translatedStories.some((translatedStory) =>
-                translatedStory[language as Language]?.tags?.includes?.(tag.id),
+                translatedStory[locale as Locale]?.tags?.includes?.(tag.id),
             )
             if (!tagIsUsedBySomeStory) {
                 console.warn(
@@ -142,18 +123,16 @@ const prepareTags = (
         return true
     }, {})
 
-const loadContent = async (selected: SelectedCollections, baseDir: string, language: Language) => {
-    // TODO: change how content paths are retrieved, instead load all content one language at a time
-    const paths = await getContentPaths(selected, baseDir, language)
-
-    // for each language, load all content and adjust the paths
+const loadContent = async (selected: SelectedCollections, baseDir: string, locale: Locale) => {
+    const paths = await getContentPaths(selected, baseDir, locale)
 
     const [collectionsByType, singletonsByType] = await Promise.all([
         Promise.all(paths.collections.map((collection) => Promise.all(collection.map(readJSON)))),
         Promise.all(paths.singletons.map(readJSON)),
     ])
+    console.log({ paths, collectionsByType, singletonsByType })
 
-    const rawContent = {} as ProcessingTranslatedCommunityContent
+    const rawContent = {} as CommunityContent
 
     ;(selected.collections as CommunityCollections).forEach((contentType, i) => {
         rawContent[contentType] = collectionsByType[i]
@@ -165,19 +144,19 @@ const loadContent = async (selected: SelectedCollections, baseDir: string, langu
     return rawContent
 }
 
-function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
+function getByLang<T>(content: Translated<T>[], lang: Locale): T[] {
     return content.map((item) => item[lang]).filter(Boolean) as T[]
 }
 
-function getSingletonByLang<T>(content: Translated<T>, lang: Language): T {
+function getSingletonByLang<T>(content: Translated<T>, lang: Locale): T {
     return content[lang] as T
 }
 
 const splitContentByLang = (
     content: ProcessingTranslatedCommunityContent,
-    selectedLanguages: Language[],
+    selectedLocales: Locale[],
 ) =>
-    selectedLanguages.reduce<Translated<CommunityContent>>((result, lang: Language) => {
+    selectedLocales.reduce<Translated<CommunityContent>>((result, lang: Locale) => {
         const featured = getSingletonByLang(content.featured, lang)
         const sortedStories = getSortedStories(getByLang(content.stories, lang), featured)
 
@@ -193,37 +172,33 @@ const splitContentByLang = (
         return result
     }, {} as Translated<CommunityContent>)
 
-const prepareContent = (
-    content: ProcessingTranslatedCommunityContent,
-    selectedLanguages: Language[],
-) => {
-    const stories = prepareStories(content.stories, content.tags, selectedLanguages)
-    const tags = prepareTags(stories, content.tags, selectedLanguages)
+const prepareContent = (content: CommunityContent, locale: Locale) => {
+    const stories = prepareStories(content.stories, content.tags)
+    const tags = prepareTags(stories, content.tags, selectedLocales)
     return { ...content, stories, tags }
 }
 
 export default async function buildCommunity(
-    selectedLanguages: Language[],
+    selectedLocales: Locale[],
     contentDir: string,
     selectedCollections: SelectedCollections,
 ) {
-    // IDEA: Perhaps we could split content by language first, and then prepare content only for the languages wanted?
-    // This would allow to filter out missing content in the beginning and only implement the selectedLanguages filering in one place.
+    // IDEA: Perhaps we could split content by locale first, and then prepare content only for the locales wanted?
+    // This would allow to filter out missing content in the beginning and only implement the selectedLocales filering in one place.
 
-    // TODO: this could be simplified to keep the complexity of multiple languages only at the top level
-    // for language of languages
+    // TODO: this could be simplified to keep the complexity of multiple locales only at the top level
+    // for locale of locales
     //     loadContent()
     //     prepareContent()
     // add it all together into the final content.json output.
 
-    for (const language of selectedLanguages) {
-        const rawContent = await loadContent(selectedCollections, contentDir, language)
-        console.log({ rawContent })
+    const result: Translated<CommunityContent> = {}
+
+    for (const locale of selectedLocales) {
+        const rawContent = await loadContent(selectedCollections, contentDir, locale)
+        result[locale] = prepareContent(rawContent, locale)
     }
 
-    // TODO:
-    // return splitContentByLang(prepareContent(rawContent, selectedLanguages), selectedLanguages)
-
-    // IDEA: Maybe in the future, we should split the content bundle into one bundle per language to reduce network usage
-    // However, this also introduces other complexity with fallback languages, and using SSR to give users the right language when they visit pages.
+    // IDEA: Maybe in the future, we should split the content bundle into one bundle per locale to reduce network usage
+    // However, this also introduces other complexity with fallback locales, and using SSR to give users the right locale when they visit pages.
 }

@@ -1,4 +1,4 @@
-import type { Dimension, Language, Skill } from './types'
+import type { Dimension, Locale, Skill } from './types'
 
 export const GITHUB_LINK = 'https://github.com/Greenheart/idg.tools'
 export const GITHUB_ISSUES_LINK = `${GITHUB_LINK}/issues`
@@ -19,13 +19,13 @@ export const IDG_PDF_TOOLKIT = '/assets/221215_IDG_Toolkit_v1.pdf'
 // TODO: This link should lead directly to our Weblate project to help people find it easily
 export const WEBLATE_LINK = 'https://weblate.org'
 
-export const LANGUAGES = {
+export const LOCALES = {
     en: 'English',
     sv: 'Svenska',
 }
 
-export const LANGUAGE_TAGS = Object.keys(LANGUAGES) as Language[]
-export const DEFAULT_LANGUAGE_TAG = 'en'
+export const LOCALE_IDENTIFIERS = Object.keys(LOCALES) as Locale[]
+export const DEFAULT_LOCALE_IDENTIFIER = 'en'
 
 export const COLORS: Record<Dimension['id'] | Skill['id'], string> = {
     ckzi3855r0086e2n0smi0mew5: 'being',

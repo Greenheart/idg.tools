@@ -19,10 +19,10 @@ await Promise.all(
         return paths.flatMap(async (path) => {
             const translatedContent = await readFile(path, { encoding: 'utf-8' }).then(JSON.parse)
 
-            return Object.entries(translatedContent).flatMap(async ([language, content]) => {
-                await mkdir(resolve(dirname(path), language), { recursive: true })
+            return Object.entries(translatedContent).flatMap(async ([locale, content]) => {
+                await mkdir(resolve(dirname(path), locale), { recursive: true })
                 await writeFile(
-                    resolve(dirname(path), language, basename(path)),
+                    resolve(dirname(path), locale, basename(path)),
                     JSON.stringify(content, null, 4),
                     { encoding: 'utf-8' },
                 )

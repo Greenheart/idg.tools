@@ -2,7 +2,7 @@ import { getTag, mostRelevantToolsFirst } from '$shared/content-utils'
 import type {
     Dimension,
     ToolsContent,
-    Language,
+    Locale,
     Skill,
     Tag,
     Tool,
@@ -28,18 +28,18 @@ type ProcessingTranslatedToolsContent = {
 const prepareTools = (
     translatedTools: Translated<Tool>[],
     translatedTags: Translated<Tag>[],
-    selectedLanguages: Language[],
+    selectedLocales: Locale[],
 ) => {
     return translatedTools.map((translatedTool) => {
         const updated = {} as Translated<Tool>
 
         const uniqueSlugs = new Set()
 
-        for (const [language, tool] of Object.entries(translatedTool)) {
-            if (!selectedLanguages.includes(language as Language)) continue
+        for (const [locale, tool] of Object.entries(translatedTool)) {
+            if (!selectedLocales.includes(locale as Locale)) continue
             if (!tool.slug) {
                 throw new Error(
-                    `[content] Missing slug for tool "${tool.name}" and language "${language}"`,
+                    `[content] Missing slug for tool "${tool.name}" and locale "${locale}"`,
                 )
             }
 
@@ -49,9 +49,7 @@ const prepareTools = (
                 throw new Error(
                     `[content] Slugs should be the same for all translations for tool "${
                         tool.name
-                    }" and language "${language}": Slugs found was ${JSON.stringify([
-                        ...uniqueSlugs,
-                    ])}`,
+                    }" and locale "${locale}": Slugs found was ${JSON.stringify([...uniqueSlugs])}`,
                 )
             }
 
@@ -70,7 +68,7 @@ const prepareTools = (
             }
 
             const relevantTags = translatedTags.reduce((relevantTags, tag) => {
-                const translatedTag = tag[language as Language]
+                const translatedTag = tag[locale as Locale]
                 if (translatedTag) relevantTags.push(translatedTag)
                 return relevantTags
             }, [] as Tag[])
@@ -94,7 +92,7 @@ const prepareTools = (
                         tool.relevancy.length - sortedRelevancyScores.length
                     } relevancy scores with <= 30 relevancy from tool "${
                         tool.name
-                    }" for language "${language}"`,
+                    }" for locale "${locale}"`,
                 )
             }
 
@@ -109,7 +107,7 @@ const prepareTools = (
                 tool.link = newLink
             }
 
-            updated[language as Language] = tool
+            updated[locale as Locale] = tool
         }
 
         return updated
@@ -119,21 +117,21 @@ const prepareTools = (
 const prepareTags = (
     translatedTools: Translated<Tool>[],
     translatedTags: Translated<Tag>[],
-    selectedLanguages: Language[],
+    selectedLocales: Locale[],
 ) =>
     translatedTags.filter((translatedTag) => {
-        for (const [language, tag] of Object.entries(translatedTag)) {
-            if (!selectedLanguages.includes(language as Language)) continue
+        for (const [locale, tag] of Object.entries(translatedTag)) {
+            if (!selectedLocales.includes(locale as Locale)) continue
             if (!tag) {
                 throw new Error(
-                    `[content] Tag is missing translation for language "${language}": ${JSON.stringify(
+                    `[content] Tag is missing translation for locale "${locale}": ${JSON.stringify(
                         translatedTag,
                     )}`,
                 )
             }
 
             const tagIsUsedBySomeTool = translatedTools.some((translatedTool) =>
-                translatedTool[language as Language]?.tags?.includes?.(tag.id),
+                translatedTool[locale as Locale]?.tags?.includes?.(tag.id),
             )
             if (!tagIsUsedBySomeTool) {
                 console.warn(
@@ -168,15 +166,12 @@ const loadContent = async (selected: SelectedCollections, baseDir: string) => {
     return rawContent
 }
 
-function getByLang<T>(content: Translated<T>[], lang: Language): T[] {
+function getByLang<T>(content: Translated<T>[], lang: Locale): T[] {
     return content.map((item) => item[lang]).filter(Boolean) as T[]
 }
 
-const splitContentByLang = (
-    content: ProcessingTranslatedToolsContent,
-    selectedLanguages: Language[],
-) =>
-    selectedLanguages.reduce<Translated<ToolsContent>>((result, lang: Language) => {
+const splitContentByLang = (content: ProcessingTranslatedToolsContent, selectedLocales: Locale[]) =>
+    selectedLocales.reduce<Translated<ToolsContent>>((result, lang: Locale) => {
         result[lang] = {
             tools: getByLang(content.tools, lang),
             skills: getByLang(content.skills, lang),
@@ -188,18 +183,15 @@ const splitContentByLang = (
         return result
     }, {} as Translated<ToolsContent>)
 
-const prepareContent = (
-    content: ProcessingTranslatedToolsContent,
-    selectedLanguages: Language[],
-) => {
-    const tools = prepareTools(content.tools, content.tags, selectedLanguages)
-    const tags = prepareTags(tools, content.tags, selectedLanguages)
+const prepareContent = (content: ProcessingTranslatedToolsContent, selectedLocales: Locale[]) => {
+    const tools = prepareTools(content.tools, content.tags, selectedLocales)
+    const tags = prepareTags(tools, content.tags, selectedLocales)
     return { ...content, tools, tags }
 }
 
 const orderToolsConsistently = (builtContent: Translated<ToolsContent>) => {
-    for (const [language, content] of Object.entries(builtContent)) {
-        builtContent[language as Language] = {
+    for (const [locale, content] of Object.entries(builtContent)) {
+        builtContent[locale as Locale] = {
             ...content,
             tools: content.tools.sort(
                 mostRelevantToolsFirst(content.skills.map((skill) => skill.id)),
@@ -211,18 +203,18 @@ const orderToolsConsistently = (builtContent: Translated<ToolsContent>) => {
 }
 
 export default async function buildTools(
-    selectedLanguages: Language[],
+    selectedLocales: Locale[],
     contentDir: string,
     selectedCollections: SelectedCollections,
 ) {
     const rawContent = await loadContent(selectedCollections, contentDir)
 
-    // IDEA: Perhaps we could split content by language first, and then prepare content only for the languages wanted?
-    // This would allow to filter out missing content in the beginning and only implement the selectedLanguages filering in one place.
+    // IDEA: Perhaps we could split content by locale first, and then prepare content only for the locales wanted?
+    // This would allow to filter out missing content in the beginning and only implement the selectedLocales filering in one place.
 
     const builtContent = splitContentByLang(
-        prepareContent(rawContent, selectedLanguages),
-        selectedLanguages,
+        prepareContent(rawContent, selectedLocales),
+        selectedLocales,
     )
 
     return orderToolsConsistently(builtContent)

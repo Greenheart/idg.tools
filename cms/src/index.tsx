@@ -3,7 +3,7 @@ import CMS from 'netlify-cms-app'
 import { default as UniqueId } from './widgets/UniqueId'
 import { default as UniqueSlug } from './widgets/UniqueSlug'
 
-import { DEFAULT_LANGUAGE_TAG, LANGUAGE_TAGS } from '../../shared/constants'
+import { DEFAULT_LOCALE_IDENTIFIER, LOCALE_IDENTIFIERS } from '../../shared/constants'
 import { COLLECTIONS } from './collections'
 
 CMS.init({
@@ -23,8 +23,8 @@ CMS.init({
         publish_mode: 'simple',
         i18n: {
             structure: 'multiple_folders',
-            locales: LANGUAGE_TAGS,
-            default_locale: DEFAULT_LANGUAGE_TAG,
+            locales: LOCALE_IDENTIFIERS,
+            default_locale: DEFAULT_LOCALE_IDENTIFIER,
         },
         collections: COLLECTIONS,
     },
