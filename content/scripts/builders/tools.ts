@@ -9,7 +9,7 @@ import type {
     Translated,
     ToolsCollections,
 } from '$shared/types'
-import type { SelectedCollections } from 'scripts/build-content'
+import type { SelectedContent } from 'scripts/old-build-content'
 import {
     createBackwardsCompatibleLink,
     getContentPaths,
@@ -143,8 +143,8 @@ const prepareTags = (
         return true
     }, {})
 
-const loadContent = async (selected: SelectedCollections, baseDir: string) => {
-    const paths = await getContentPaths(selected, baseDir)
+const loadContent = async (selected: SelectedContent, contentDir: string) => {
+    const paths = await getContentPaths(selected, contentDir)
 
     const [
         collectionsByType,
@@ -205,9 +205,9 @@ const orderToolsConsistently = (builtContent: Translated<ToolsContent>) => {
 export default async function buildTools(
     selectedLocales: Locale[],
     contentDir: string,
-    selectedCollections: SelectedCollections,
+    selectedContent: SelectedContent,
 ) {
-    const rawContent = await loadContent(selectedCollections, contentDir)
+    const rawContent = await loadContent(selectedContent, contentDir)
 
     // IDEA: Perhaps we could split content by locale first, and then prepare content only for the locales wanted?
     // This would allow to filter out missing content in the beginning and only implement the selectedLocales filering in one place.
