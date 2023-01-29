@@ -5,7 +5,7 @@ import slugify from 'slugify'
 
 import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
 import type { CommunityCollections, Locale, Tag, ToolsCollections } from '$shared/types'
-import { NON_LOCALIZED_COLLECTIONS, SelectedCollections, SINGLETONS } from './build-content'
+import { NON_LOCALIZED_COLLECTIONS, SelectedContent, SINGLETONS } from './old-build-content'
 
 export const slugifyName = (string: string, locale = DEFAULT_LOCALE_IDENTIFIER) =>
     slugify(string, {
@@ -37,13 +37,13 @@ export const writeJSON = (path: string, data: any, indentation: number = 0) =>
         encoding: 'utf-8',
     })
 
-const getPaths = (...paths: string[]) => FastGlob(resolve(...paths))
+export const getPaths = (...paths: string[]) => FastGlob(resolve(...paths))
 
 const isCollectionLocalized = (collection: CommunityCollections | ToolsCollections) =>
     !NON_LOCALIZED_COLLECTIONS.includes(collection)
 
 export const getContentPaths = async (
-    selected: SelectedCollections,
+    selected: SelectedContent,
     baseDir: string,
     locale?: Locale,
 ) => {
