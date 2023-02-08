@@ -45,7 +45,7 @@ import type {
 } from '$shared/types'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
-import { getPaths, readJSON, writeJSON } from './utils'
+import { getConsistentAssetURL, getPaths, readJSON, writeJSON } from './utils'
 
 type LoaderInput = {
     contentDir: string
@@ -59,6 +59,10 @@ const loadLocalizedContent = <T>(
     { contentDir, locale }: LoaderInput,
 ): Promise<T[]> => getPaths(contentDir, `${contentType}/${locale}/*.json`).then(loadJSONPaths)
 
+/**
+ * Loaders are a set of functions responsible for loading specific content types.
+ * Depending on the structure, some content types are localized while others are not.
+ */
 const LOADERS = {
     async contributors({ contentDir }: LoaderInput): Promise<Contributor[]> {
         return getPaths(contentDir, `contributors/*.json`).then(loadJSONPaths)
@@ -121,6 +125,17 @@ async function loadContent<T>({
     }, {} as Localized<T>)
 }
 
+/**
+ * Transformers process the content to prepare it for usage in the apps and websites.
+ * Each transformer function should have a distinct purpose, and a clear name.
+ *
+ * They all follow the type signature (content: T) => T, meaning they process content and returns it in the same format.
+ *
+ * Some transformers may need additional arguments, for example other parts of preprocessed content.
+ * These transformers then return the actual transformer function.
+ *
+ * Arguments are provided via a process called currying (https://en.wikipedia.org/wiki/Currying)
+ */
 const TRANSFORMERS = {
     keepPublishedStories(stories: Story[]) {
         return stories.filter((story) => story.publishedAt)
@@ -135,6 +150,12 @@ const TRANSFORMERS = {
     },
     keepRelevantTags(entities: Story[] | Tool[]) {
         return (tags: Tag[]) => tags.filter((tag) => entities.some((e) => e.tags.includes(tag.id)))
+    },
+    useConsistentStoryImageURLs(stories: Story[]) {
+        return stories.map((story) => {
+            story.image = getConsistentAssetURL(story.image, '/community/static')
+            return story
+        })
     },
 }
 
@@ -177,7 +198,11 @@ export default async function run() {
     const transformedContent = Object.entries(localizedContent).reduce<Localized<CommunityContent>>(
         (result, [locale, content]) => {
             const stories = applyAllTransformations(
-                [TRANSFORMERS.keepPublishedStories, TRANSFORMERS.ensureTagsExist],
+                [
+                    TRANSFORMERS.keepPublishedStories,
+                    TRANSFORMERS.ensureTagsExist,
+                    TRANSFORMERS.useConsistentStoryImageURLs,
+                ],
                 content.stories,
             )
 
