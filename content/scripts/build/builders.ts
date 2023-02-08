@@ -4,9 +4,10 @@ import { runAllTransformers, transformContent, TRANSFORMERS } from './transforme
 import { writeJSON } from '../utils'
 import { VALIDATORS } from './validators'
 
-export type BuilderInput = {
+export type BuilderInput<T> = {
     selectedLocales: Locale[]
     contentDir: string
+    selectedContent: (keyof T)[]
 }
 
 /**
@@ -16,7 +17,10 @@ export type BuilderInput = {
  * Each builder is responsible for loading the right content, transforming and validating it, and finally saving the output.
  */
 export const BUILDERS = {
-    async community(localizedContent: Localized<CommunityContent>, builderInput: BuilderInput) {
+    async community(
+        localizedContent: Localized<CommunityContent>,
+        builderInput: BuilderInput<CommunityContent>,
+    ) {
         const transformedContent = transformContent(
             localizedContent,
             (result, [locale, content]) => {
@@ -58,7 +62,10 @@ export const BUILDERS = {
             0,
         )
     },
-    async tools(localizedContent: Localized<ToolsContent>, builderInput: BuilderInput) {
+    async tools(
+        localizedContent: Localized<ToolsContent>,
+        builderInput: BuilderInput<ToolsContent>,
+    ) {
         const transformedContent = transformContent(
             localizedContent,
             (result, [locale, content]) => {
