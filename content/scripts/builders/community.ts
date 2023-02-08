@@ -4,7 +4,6 @@ import type {
     Locale,
     Localized,
     Story,
-    Contributor,
     Tag,
     CommunityCollections,
 } from '$shared/types'
@@ -139,7 +138,7 @@ const prepareContent = (content: CommunityContent, locale: Locale) => {
 
     const result = {
         stories: getSortedStories(stories, content.featured),
-        contributors: content.contributors as Contributor[],
+        contributors: content.contributors,
         dimensions: content.dimensions,
         // IDEA: Or should tags be sorted by number of stories using them?
         // This would make the popular tags appear first and might give a better UX

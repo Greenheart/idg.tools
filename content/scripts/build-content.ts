@@ -333,7 +333,22 @@ export default async function run() {
 
     VALIDATORS.ensureSlugsAreConsistentForAllLocales(transformedContent as Localized<AllContent>)
 
-    await writeJSON(resolve(__dirname, '../../test-content.json'), transformedContent, 0)
+    // TODO: Change output depending on which bundle we're building.
+    const output = Object.entries(transformedContent).reduce<Localized<CommunityContent>>(
+        (result, [locale, content]) => {
+            result[locale as Locale] = {
+                stories: content.stories,
+                contributors: content.contributors,
+                dimensions: content.dimensions,
+                tags: content.tags,
+                featured: content.featured,
+            }
+            return result
+        },
+        {},
+    )
+
+    await writeJSON(resolve(__dirname, '../../../community/static/content.json'), output, 0)
 }
 
 // New idea (2023-01-29)
