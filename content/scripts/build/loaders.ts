@@ -61,17 +61,11 @@ export const LOADERS = {
  * They return localized content that can be further processed.
  */
 export const BUNDLE_LOADERS = {
-    community: (builderInput: BuilderInput) => {
-        return loadContent<CommunityContent>({
-            ...builderInput,
-            selectedContent: ['stories', 'contributors', 'dimensions', 'tags', 'featured'],
-        })
+    community: (builderInput: BuilderInput<CommunityContent>) => {
+        return loadContent<CommunityContent>(builderInput)
     },
-    tools: (builderInput: BuilderInput) => {
-        return loadContent<ToolsContent>({
-            ...builderInput,
-            selectedContent: ['tools', 'skills', 'dimensions', 'tags'],
-        })
+    tools: (builderInput: BuilderInput<ToolsContent>) => {
+        return loadContent<ToolsContent>(builderInput)
     },
 }
 
