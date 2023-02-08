@@ -155,6 +155,22 @@ const TRANSFORMERS = {
             return entity as T
         })
     },
+    ensureDimensionsExist(entities: Story[]) {
+        return entities.map((entity) => {
+            if (!entity.dimensions) {
+                entity.dimensions = []
+            }
+            return entity
+        })
+    },
+    ensureContributorsExist(entities: Story[]) {
+        return entities.map((entity) => {
+            if (!entity.contributors) {
+                entity.contributors = []
+            }
+            return entity
+        })
+    },
     keepRelevantTags(entities: Story[] | Tool[]) {
         return (tags: Tag[]) =>
             tags.filter((tag) => entities.some((entity) => entity.tags.includes(tag.id)))
@@ -222,6 +238,8 @@ export default async function run() {
                 [
                     TRANSFORMERS.keepPublishedStories,
                     TRANSFORMERS.ensureTagsExist,
+                    TRANSFORMERS.ensureDimensionsExist,
+                    TRANSFORMERS.ensureContributorsExist,
                     TRANSFORMERS.useConsistentStoryImageURLs,
                     TRANSFORMERS.sortTagsAlphabetically(content.tags),
                 ],
