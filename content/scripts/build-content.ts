@@ -116,52 +116,6 @@ const BUNDLE_LOADERS = {
     },
 }
 
-async function loadContent1<T>({
-    selectedLocales,
-    contentDir,
-}: {
-    selectedLocales: Locale[]
-    contentDir: string
-}) {
-    // Load all selectedLocales in parallell
-    const loadedContent: [Locale, T][] = await Promise.all(
-        selectedLocales.map(async (locale) => {
-            const loaderInput = { locale, contentDir }
-            // Load all content types in parallell to improve performance
-            // TODO: Maybe create loader presets for different content bundles, to avoid loading content that won't be used by the current bundle.
-            // This would allow us to only build the relevant content, and improve performance.
-            const [contributors, tags, skills, dimensions, tools, stories, featured] =
-                await Promise.all([
-                    LOADERS.contributors(loaderInput),
-                    LOADERS.tags(loaderInput),
-                    LOADERS.skills(loaderInput),
-                    LOADERS.dimensions(loaderInput),
-                    LOADERS.tools(loaderInput),
-                    LOADERS.stories(loaderInput),
-                    LOADERS.featured(loaderInput),
-                ])
-            return [
-                locale,
-                {
-                    contributors,
-                    tags,
-                    skills,
-                    dimensions,
-                    tools,
-                    stories,
-                    featured,
-                } as T,
-            ]
-        }),
-    )
-
-    // Combine all locales into one object that is easier to work with during transformations
-    return loadedContent.reduce((allContent, [locale, content]) => {
-        allContent[locale] = content
-        return allContent
-    }, {} as Localized<T>)
-}
-
 async function loadContent<T>({
     selectedLocales,
     selectedContent,
@@ -312,7 +266,6 @@ const VALIDATORS = {
         localizedContent: Localized<T>,
         contentTypes: (keyof T)[],
     ) {
-        // const contentTypes: (keyof Pick<T, 'tools' | 'stories'>)[] = ['tools', 'stories']
         for (const contentType of contentTypes) {
             const occurences: Record<
                 Tool['id'] | Story['id'],
