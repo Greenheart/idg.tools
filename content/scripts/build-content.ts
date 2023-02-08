@@ -198,79 +198,37 @@ const TRANSFORMERS = {
     },
 }
 
-// IDEA: Maybe introduce content validation to catch errors, and let this run before the build is finished.
-// By letting this be a separate part, it will be more clear what code is transforming content, and what code is validating it
+/**
+ * Validators are run after transformations are complete, and are small functions to help us catch errors.
+ * These functions should be clearly defined in purpose and naming.
+ * Most importantly, if something severe is wrong, they should throw an error and abort the build.
+ * For less important things, a warning may be sufficient.
+ */
 const VALIDATORS = {
     // For example:
-    // ensureSlugsAreConsistentForAllLocales - this is really important for tools and stories
     // Warn for duplicate tags - or just deal with it directly
-    // remove relevnacy scores that are not useful - maybe even add this as input validation in the CMS to prevent it from happening in the first place, to avoid confusion?
+    // remove relevancy scores that are not useful - maybe even add this as input validation in the CMS to prevent it from happening in the first place, to avoid confusion?
     // warn if some tags are unused - or simply remove them
     // warn if missing translation for locale - or let this appear in the localization software instead
 
     ensureSlugsAreConsistentForAllLocales(localizedContent: Localized<AllContent>) {
-        /**
-        get all storyIds that exist in more than one language
-        get all toolIds that exist in more than one language
-
-        first get all known tool/story ids into a Set
-        if a story/tool id is already found in another language
-            then it needs to be checked that the slug is consistent
-            Add the slug to a new Set.
-
-        after looping through all the tool/story ids that exist in more than one language
-        
-        for each of these tool/story ids
-            create a Set to store unique slugs found    
-            for each language
-                find the tool/story and add its slug to the Set above
-                if the Set size > 1, then throw an error and show details
-        
-
-
-        // Add more contentTypes if they need to be checked too
-        const contentTypes = ['tools', 'stories']
-        for contentType of contentTypes
-            // These occurences is a record contentIds and in which locales they are present.
-            // IDEA: This could be useful for displaying "this contnet is also available in X, Y, Z" or similar in the future.
-            // The main use for now however is to use the found locales to ensure the content id has consistent slugs
-            const occurences: Record<Story['id'] | Tool['id'], Locale[]> = {}
-
-            for [locale, content] of Object.entries(localizedContent)
-                for entity of content[locale][contentType]
-                    if (!occurences[entity.id]) occurences[entity.id] = []
-                    occurences[entity.id].push(locale)
-
-
-            for [contentId, locales] of Object.entries(occuerences)
-                const uniqueSlugs = new Set(locales.map(locale => content[locale][contentType][contentId].slug))
-                if (uniqueSlugs.size > 1) {
-                    throw new Error(`For content type ${contentType}, the content with id ${contentId} needs to have consistent slugs across all locales. Found ${uniqueSlugs}`)
-                }
-        */
-
         const contentTypes: (keyof Pick<AllContent, 'tools' | 'stories'>)[] = ['tools', 'stories']
         for (const contentType of contentTypes) {
-            // IDEA: Maybe this could store the stories or tools directly, to simplify the next step significantly. We would lose the information about which locales they were found in, but that could easily be solved with a very similar piece of code
-            const occurences: Record<Tool['id'] | Story['id'], Locale[]> = {}
+            const occurences: Record<
+                Tool['id'] | Story['id'],
+                Set<Tool['slug'] | Story['slug']>
+            > = {}
 
-            for (const [locale, content] of Object.entries(localizedContent)) {
+            // IDEA: This code could be a useful staring point if we want to display "this content is also available in X, Y, Z" or similar in the future.
+            // Alternatively, we could just display all locales by default, falling back to a supported locale. Then encourage contributions, or listing other supported locales.
+            for (const content of Object.values(localizedContent)) {
                 for (const entity of content[contentType]) {
-                    if (!occurences[entity.id]) occurences[entity.id] = []
-                    occurences[entity.id].push(locale as Locale)
+                    if (!occurences[entity.id]) occurences[entity.id] = new Set()
+                    occurences[entity.id].add(entity.slug)
                 }
             }
 
-            for (const [contentId, locales] of Object.entries(occurences)) {
-                const uniqueSlugs = new Set(
-                    locales.map(
-                        (locale) =>
-                            (localizedContent[locale]?.[contentType] as Tool[] | Story[]).find(
-                                (entity: Tool | Story) => entity.id === contentId,
-                            ).slug,
-                    ),
-                )
-
+            for (const [contentId, uniqueSlugs] of Object.entries(occurences)) {
                 if (uniqueSlugs.size > 1) {
                     throw new Error(
                         `${contentType} with id ${contentId} need to have consistent slugs for all locales. Found slugs: ${Array.from(
