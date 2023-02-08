@@ -399,33 +399,9 @@ const BUILDERS = {
             'stories',
         ])
 
-        // TODO: create two different builder functions that encapsulate all the logic for building tools and community
-        // IDEA: Maybe also try to only load and build the needed content types to improve performance
-        // we could reuse the old-build-content script, or create something similar without the hardcoded collections and singletons
-        // instead, have separate loaders for community and tools
-        // then use separate builders (which combine different sets of transformers and validators)
-        // then finally the builders output in their desired format, to their desired location.
-        // this way, the main build step is clean, the transformers are clean,
-        // and the loaders and builders take care of the details for each specific content bundle
-
-        // TODO: Might not need the ordering once we are only loading the relevant content
-        const output = Object.entries(transformedContent).reduce<Localized<CommunityContent>>(
-            (result, [locale, content]) => {
-                result[locale as Locale] = {
-                    stories: content.stories,
-                    contributors: content.contributors,
-                    dimensions: content.dimensions,
-                    tags: content.tags,
-                    featured: content.featured,
-                }
-                return result
-            },
-            {},
-        )
-
         await writeJSON(
             resolve(builderInput.contentDir, '../../community/static/content.json'),
-            output,
+            transformedContent,
             0,
         )
     },
