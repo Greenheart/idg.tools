@@ -287,6 +287,45 @@ function applyAllTransformations<T>(fns: ((content: T) => T)[], initialValue: T)
     return fns.reduce((prevResult, fn) => fn(prevResult), initialValue)
 }
 
+type BuilderInput = {
+    selectedLocales: Locale[]
+    contentDir: string
+}
+
+/**
+ * Builders creates different output bundles to be used by specific apps.
+ * This allows the content to be reused in multiple contexts.
+ *
+ * Each builder is responsible for loading the right content, transforming and validating it, and finally saving the output.
+ */
+const BUILDERS = {
+    async community(builderInput: BuilderInput) {
+        // load
+        // transform
+        // validate
+        // output
+    },
+    async tools(builderInput: BuilderInput) {
+        // load
+        // transform
+        // validate
+        // output
+    },
+}
+
+/**
+ * Apply a given localeTransformer callback to process the content of each locale.
+ */
+function transformContent<T>(
+    localizedContent: Localized<T>,
+    localeTransformer: (result: Localized<T>, [locale, content]: [Locale, T]) => Localized<T>,
+) {
+    return Object.entries(localizedContent).reduce<Localized<T>>(
+        localeTransformer as (result: Localized<T>, [locale, content]: [string, T]) => Localized<T>,
+        {},
+    )
+}
+
 export default async function run() {
     const __dirname = dirname(fileURLToPath(import.meta.url))
     const contentDir = resolve(__dirname, '../../src')
@@ -300,36 +339,30 @@ export default async function run() {
         contentDir,
     })
 
-    const transformedContent = Object.entries(localizedContent).reduce<Localized<CommunityContent>>(
-        (result, [locale, content]) => {
-            const stories = applyAllTransformations(
-                [
-                    TRANSFORMERS.keepPublishedStories,
-                    TRANSFORMERS.ensureTagsExist,
-                    TRANSFORMERS.ensureDimensionsExist,
-                    TRANSFORMERS.ensureContributorsExist,
-                    TRANSFORMERS.useConsistentStoryImageURLs,
-                    TRANSFORMERS.sortTagsAlphabetically(content.tags),
-                    TRANSFORMERS.updateLink,
-                    TRANSFORMERS.sortStories(content.featured),
-                ],
-                content.stories,
-            )
+    const transformedContent = transformContent(localizedContent, (result, [locale, content]) => {
+        const stories = applyAllTransformations(
+            [
+                TRANSFORMERS.keepPublishedStories,
+                TRANSFORMERS.ensureTagsExist,
+                TRANSFORMERS.ensureDimensionsExist,
+                TRANSFORMERS.ensureContributorsExist,
+                TRANSFORMERS.useConsistentStoryImageURLs,
+                TRANSFORMERS.sortTagsAlphabetically(content.tags),
+                TRANSFORMERS.updateLink,
+                TRANSFORMERS.sortStories(content.featured),
+            ],
+            content.stories,
+        )
 
-            const tags = applyAllTransformations(
-                [TRANSFORMERS.keepRelevantTags(stories)],
-                content.tags,
-            )
+        const tags = applyAllTransformations([TRANSFORMERS.keepRelevantTags(stories)], content.tags)
 
-            result[locale as Locale] = {
-                ...content,
-                stories,
-                tags,
-            }
-            return result
-        },
-        {},
-    )
+        result[locale as Locale] = {
+            ...content,
+            stories,
+            tags,
+        }
+        return result
+    })
 
     VALIDATORS.ensureSlugsAreConsistentForAllLocales(transformedContent as Localized<AllContent>)
 
