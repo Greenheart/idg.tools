@@ -31,7 +31,7 @@ Create another module with builders, where we use the right loaders and transfor
 
 */
 
-import { getTag, getSortedStories } from '$shared/content-utils'
+import { getTag, getSortedStories, mostRelevantToolsFirst } from '$shared/content-utils'
 import type {
     CommunityContent,
     Contributor,
@@ -243,6 +243,10 @@ const TRANSFORMERS = {
     sortStories(featured: FeaturedContent) {
         return (stories: Story[]) => getSortedStories(stories, featured)
     },
+    sortTools(skills: Skill[]) {
+        const skillIds = skills.map((skill) => skill.id)
+        return (tools: Tool[]) => tools.slice().sort(mostRelevantToolsFirst(skillIds))
+    },
 }
 
 /**
@@ -368,6 +372,7 @@ const BUILDERS = {
                         TRANSFORMERS.ensureTagsExists,
                         TRANSFORMERS.sortTagsAlphabetically(content.tags),
                         TRANSFORMERS.updateLink,
+                        TRANSFORMERS.sortTools(content.skills),
                     ],
                     content.tools,
                 )
