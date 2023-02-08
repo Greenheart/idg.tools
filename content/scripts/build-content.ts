@@ -49,6 +49,7 @@ import type {
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 import {
+    createBackwardsCompatibleLink,
     getConsistentAssetURL,
     getPaths,
     readJSON,
@@ -196,6 +197,30 @@ const TRANSFORMERS = {
                 return entity as T
             })
     },
+    /**
+     * This processing enables one of the key features: backwards compatible links thanks to the slug staying the same
+     * This also enables built-in short links.
+     */
+    updateLink<T>(entities: Story[] | Tool[]) {
+        return entities.map((entity) => {
+            const name = (entity as Story).title ?? (entity as Tool).name
+            if (!name) {
+                throw new Error(
+                    `content with id "${entity.id}" has no title or name, needed for creating the link. Seems like some localized version of the content might be broken.`,
+                )
+            }
+            const newLink = createBackwardsCompatibleLink(name, entity.slug)
+            if (newLink !== entity.link) {
+                if (entity.link !== undefined) {
+                    console.warn(
+                        `[content] Link has changed for "${name}" from old: "${entity.link}" to new: "${newLink}"`,
+                    )
+                }
+                entity.link = newLink
+            }
+            return entity
+        }) as T
+    },
 }
 
 /**
@@ -211,6 +236,10 @@ const VALIDATORS = {
     // warn if some tags are unused - or simply remove them
     // warn if missing translation for locale - or let this appear in the localization software instead
 
+    /**
+     * This is really important to make it easy to switch the language, but letting other parts of links work the same.
+     * For example, by enforcing the same slug for all locales of content, we can let the user change their language, but still know which content they are trying to access.
+     */
     ensureSlugsAreConsistentForAllLocales(localizedContent: Localized<AllContent>) {
         const contentTypes: (keyof Pick<AllContent, 'tools' | 'stories'>)[] = ['tools', 'stories']
         for (const contentType of contentTypes) {
@@ -253,7 +282,7 @@ export default async function run() {
     const contentDir = resolve(__dirname, '../../src')
 
     // TODO: Make sure it works well with multiple locales
-    const SELECTED_LOCALES: Locale[] = ['en', 'sv']
+    const SELECTED_LOCALES: Locale[] = ['en']
     // const SELECTED_LOCALES: Locale[] = ['en', 'sv']
 
     const localizedContent = await loadContent<CommunityContent>({
@@ -276,6 +305,7 @@ export default async function run() {
                     TRANSFORMERS.ensureContributorsExist,
                     TRANSFORMERS.useConsistentStoryImageURLs,
                     TRANSFORMERS.sortTagsAlphabetically(content.tags),
+                    TRANSFORMERS.updateLink,
                 ],
                 content.stories,
             )
