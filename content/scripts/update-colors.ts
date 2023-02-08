@@ -1,4 +1,4 @@
-import type { IDGColorMap, ToolsContent, Translated } from '$shared/types'
+import type { IDGColorMap, ToolsContent, Localized } from '$shared/types'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { readJSON, writeJSON } from './utils'
@@ -24,7 +24,7 @@ async function buildIDGColors({ dimensions }: ToolsContent) {
     })
 }
 
-const content = (await readJSON(inputFile)) as Required<Translated<ToolsContent>>
+const content = (await readJSON(inputFile)) as Required<Localized<ToolsContent>>
 
 await buildIDGColors(content['en'])
 
