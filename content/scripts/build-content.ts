@@ -208,6 +208,8 @@ const TRANSFORMERS = {
             entities.map((entity) => {
                 const tagsSortedAlphabetically = entity.tags
                     .map((tag) => getTag(tag, { tags }))
+                    // IDEA: Or should tags be sorted by number of stories/tools using them?
+                    // This would make the popular tags appear first and might give a better UX
                     .sort(sortNamesAlphabetically)
                     .map((tag) => tag.id)
 
@@ -246,6 +248,27 @@ const TRANSFORMERS = {
     sortTools(skills: Skill[]) {
         const skillIds = skills.map((skill) => skill.id)
         return (tools: Tool[]) => tools.slice().sort(mostRelevantToolsFirst(skillIds))
+    },
+    filterAndSortRelevancyScores(locale: Locale) {
+        return (tools: Tool[]) =>
+            tools.map((tool) => {
+                const sortedRelevancyScores = tool.relevancy
+                    .filter((t) => t.score > 30) // Filter out irrelevant skills
+                    .sort((a, b) => b.score - a.score) // Most relevant first
+
+                if (sortedRelevancyScores.length < tool.relevancy.length) {
+                    console.warn(
+                        `[content] Removed ${
+                            tool.relevancy.length - sortedRelevancyScores.length
+                        } relevancy scores with <= 30 relevancy from tool "${
+                            tool.name
+                        }" for locale "${locale}"`,
+                    )
+                }
+
+                tool.relevancy = sortedRelevancyScores
+                return tool
+            })
     },
 }
 
@@ -369,6 +392,7 @@ const BUILDERS = {
                 const tools = runAllTransformers(
                     [
                         TRANSFORMERS.ensureRelevancyExists,
+                        TRANSFORMERS.filterAndSortRelevancyScores(locale),
                         TRANSFORMERS.ensureTagsExists,
                         TRANSFORMERS.sortTagsAlphabetically(content.tags),
                         TRANSFORMERS.updateLink,
