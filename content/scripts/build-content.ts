@@ -31,6 +31,7 @@ Create another module with builders, where we use the right loaders and transfor
 
 */
 
+import { getTag } from '$shared/content-utils'
 import type {
     CommunityContent,
     Contributor,
@@ -45,7 +46,13 @@ import type {
 } from '$shared/types'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
-import { getConsistentAssetURL, getPaths, readJSON, writeJSON } from './utils'
+import {
+    getConsistentAssetURL,
+    getPaths,
+    readJSON,
+    sortNamesAlphabetically,
+    writeJSON,
+} from './utils'
 
 type LoaderInput = {
     contentDir: string
@@ -141,21 +148,35 @@ const TRANSFORMERS = {
         return stories.filter((story) => story.publishedAt)
     },
     ensureTagsExist<T>(entities: Story[] | Tool[]) {
-        return entities.map((e) => {
-            if (!e.tags) {
-                e.tags = []
+        return entities.map((entity) => {
+            if (!entity.tags) {
+                entity.tags = []
             }
-            return e as T
+            return entity as T
         })
     },
     keepRelevantTags(entities: Story[] | Tool[]) {
-        return (tags: Tag[]) => tags.filter((tag) => entities.some((e) => e.tags.includes(tag.id)))
+        return (tags: Tag[]) =>
+            tags.filter((tag) => entities.some((entity) => entity.tags.includes(tag.id)))
     },
     useConsistentStoryImageURLs(stories: Story[]) {
         return stories.map((story) => {
             story.image = getConsistentAssetURL(story.image, '/community/static')
             return story
         })
+    },
+    sortTagsAlphabetically(tags: Tag[]) {
+        return <T>(entities: Story[] | Tool[]) =>
+            entities.map((entity) => {
+                const tagsSortedAlphabetically = entity.tags
+                    .map((tag) => getTag(tag, { tags }))
+                    .sort(sortNamesAlphabetically)
+                    .map((tag) => tag.id)
+
+                entity.tags = tagsSortedAlphabetically
+
+                return entity as T
+            })
     },
 }
 
@@ -202,6 +223,7 @@ export default async function run() {
                     TRANSFORMERS.keepPublishedStories,
                     TRANSFORMERS.ensureTagsExist,
                     TRANSFORMERS.useConsistentStoryImageURLs,
+                    TRANSFORMERS.sortTagsAlphabetically(content.tags),
                 ],
                 content.stories,
             )
