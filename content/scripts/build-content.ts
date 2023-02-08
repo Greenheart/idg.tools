@@ -125,6 +125,17 @@ const TRANSFORMERS = {
     keepPublishedStories(stories: Story[]) {
         return stories.filter((story) => story.publishedAt)
     },
+    ensureTagsExist<T>(entities: Story[] | Tool[]) {
+        return entities.map((e) => {
+            if (!e.tags) {
+                e.tags = []
+            }
+            return e as T
+        })
+    },
+    keepRelevantTags(entities: Story[] | Tool[]) {
+        return (tags: Tag[]) => tags.filter((tag) => entities.some((e) => e.tags.includes(tag.id)))
+    },
 }
 
 // IDEA: Maybe introduce content validation to catch errors, and let this run before the build is finished.
@@ -159,18 +170,26 @@ export default async function run() {
     })
 
     console.log(
-        localizedContent.en!.stories.length,
-        localizedContent.en!.stories.map((s) => s.title),
+        localizedContent.en!.tags.length,
+        localizedContent.en!.tags.map((s) => s.name),
     )
 
     const transformedContent = Object.entries(localizedContent).reduce<Localized<CommunityContent>>(
         (result, [locale, content]) => {
+            const stories = applyAllTransformations(
+                [TRANSFORMERS.keepPublishedStories, TRANSFORMERS.ensureTagsExist],
+                content.stories,
+            )
+
+            const tags = applyAllTransformations(
+                [TRANSFORMERS.keepRelevantTags(stories)],
+                content.tags,
+            )
+
             result[locale as Locale] = {
                 ...content,
-                stories: applyAllTransformations(
-                    [TRANSFORMERS.keepPublishedStories],
-                    content.stories,
-                ),
+                stories,
+                tags,
             }
             return result
         },
@@ -178,8 +197,8 @@ export default async function run() {
     )
 
     console.log(
-        transformedContent.en!.stories.length,
-        transformedContent.en!.stories.map((s) => s.title),
+        transformedContent.en!.tags.length,
+        transformedContent.en!.tags.map((s) => s.name),
     )
 
     // const transfomredContent = applyAllTransformations([TRANSFORMERS.keepPublishedStories], content)
