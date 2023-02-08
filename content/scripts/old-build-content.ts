@@ -3,7 +3,7 @@ import { dirname, resolve } from 'path'
 
 import type { Locale, ToolsCollections, CommunityCollections } from '$shared/types'
 // import community from './builders/community'
-import tools from './builders/tools'
+// import tools from './builders/tools'
 import { fileURLToPath } from 'url'
 import { writeJSON } from './utils'
 
@@ -18,7 +18,7 @@ export type Builder<T> = (
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const BUILDERS: Record<BuilderName, Builder<any>> = {
-    tools: tools as unknown as Builder<ToolsCollections>,
+    // tools: tools as unknown as Builder<ToolsCollections>,
     // community: community as unknown as Builder<CommunityCollections>,
 }
 
