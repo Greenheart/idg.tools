@@ -43,6 +43,8 @@ import type {
     Tool,
     Localized,
     AllContent,
+    ToolsCollections,
+    ToolsContent,
 } from '$shared/types'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
@@ -205,6 +207,80 @@ const VALIDATORS = {
     // remove relevnacy scores that are not useful - maybe even add this as input validation in the CMS to prevent it from happening in the first place, to avoid confusion?
     // warn if some tags are unused - or simply remove them
     // warn if missing translation for locale - or let this appear in the localization software instead
+
+    ensureSlugsAreConsistentForAllLocales(localizedContent: Localized<AllContent>) {
+        /**
+        get all storyIds that exist in more than one language
+        get all toolIds that exist in more than one language
+
+        first get all known tool/story ids into a Set
+        if a story/tool id is already found in another language
+            then it needs to be checked that the slug is consistent
+            Add the slug to a new Set.
+
+        after looping through all the tool/story ids that exist in more than one language
+        
+        for each of these tool/story ids
+            create a Set to store unique slugs found    
+            for each language
+                find the tool/story and add its slug to the Set above
+                if the Set size > 1, then throw an error and show details
+        
+
+
+        // Add more contentTypes if they need to be checked too
+        const contentTypes = ['tools', 'stories']
+        for contentType of contentTypes
+            // These occurences is a record contentIds and in which locales they are present.
+            // IDEA: This could be useful for displaying "this contnet is also available in X, Y, Z" or similar in the future.
+            // The main use for now however is to use the found locales to ensure the content id has consistent slugs
+            const occurences: Record<Story['id'] | Tool['id'], Locale[]> = {}
+
+            for [locale, content] of Object.entries(localizedContent)
+                for entity of content[locale][contentType]
+                    if (!occurences[entity.id]) occurences[entity.id] = []
+                    occurences[entity.id].push(locale)
+
+
+            for [contentId, locales] of Object.entries(occuerences)
+                const uniqueSlugs = new Set(locales.map(locale => content[locale][contentType][contentId].slug))
+                if (uniqueSlugs.size > 1) {
+                    throw new Error(`For content type ${contentType}, the content with id ${contentId} needs to have consistent slugs across all locales. Found ${uniqueSlugs}`)
+                }
+        */
+
+        const contentTypes: (keyof Pick<AllContent, 'tools' | 'stories'>)[] = ['tools', 'stories']
+        for (const contentType of contentTypes) {
+            // IDEA: Maybe this could store the stories or tools directly, to simplify the next step significantly. We would lose the information about which locales they were found in, but that could easily be solved with a very similar piece of code
+            const occurences: Record<Tool['id'] | Story['id'], Locale[]> = {}
+
+            for (const [locale, content] of Object.entries(localizedContent)) {
+                for (const entity of content[contentType]) {
+                    if (!occurences[entity.id]) occurences[entity.id] = []
+                    occurences[entity.id].push(locale as Locale)
+                }
+            }
+
+            for (const [contentId, locales] of Object.entries(occurences)) {
+                const uniqueSlugs = new Set(
+                    locales.map(
+                        (locale) =>
+                            (localizedContent[locale]?.[contentType] as Tool[] | Story[]).find(
+                                (entity: Tool | Story) => entity.id === contentId,
+                            ).slug,
+                    ),
+                )
+
+                if (uniqueSlugs.size > 1) {
+                    throw new Error(
+                        `${contentType} with id ${contentId} need to have consistent slugs for all locales. Found slugs: ${Array.from(
+                            uniqueSlugs,
+                        )}`,
+                    )
+                }
+            }
+        }
+    },
 }
 
 /**
@@ -219,7 +295,7 @@ export default async function run() {
     const contentDir = resolve(__dirname, '../../src')
 
     // TODO: Make sure it works well with multiple locales
-    const SELECTED_LOCALES: Locale[] = ['en']
+    const SELECTED_LOCALES: Locale[] = ['en', 'sv']
     // const SELECTED_LOCALES: Locale[] = ['en', 'sv']
 
     const localizedContent = await loadContent<CommunityContent>({
@@ -227,10 +303,10 @@ export default async function run() {
         contentDir,
     })
 
-    console.log(
-        localizedContent.en!.tags.length,
-        localizedContent.en!.tags.map((s) => s.name),
-    )
+    // console.log(
+    //     localizedContent.en!.tags.length,
+    //     localizedContent.en!.tags.map((s) => s.name),
+    // )
 
     const transformedContent = Object.entries(localizedContent).reduce<Localized<CommunityContent>>(
         (result, [locale, content]) => {
@@ -261,10 +337,12 @@ export default async function run() {
         {},
     )
 
-    console.log(
-        transformedContent.en!.tags.length,
-        transformedContent.en!.tags.map((s) => s.name),
-    )
+    // console.log(
+    //     transformedContent.en!.tags.length,
+    //     transformedContent.en!.tags.map((s) => s.name),
+    // )
+
+    VALIDATORS.ensureSlugsAreConsistentForAllLocales(transformedContent as Localized<AllContent>)
 
     // const transfomredContent = applyAllTransformations([TRANSFORMERS.keepPublishedStories], content)
 
