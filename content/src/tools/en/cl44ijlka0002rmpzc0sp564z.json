@@ -1,37 +1,29 @@
 {
-    "resources": "* Hayes, Steven. (2005). [Get out of your mind and into your life. The new acceptance and commitment therapy.](https://www.goodreads.com/en/book/show/25348.Get_Out_of_Your_Mind_and_Into_Your_Life) New Harbinger Publications, Oakland, California\n\n* Hayes, S. C., Luoma, J. B., Bond, F. W., Masuda, A., & Lillis, J. (2006). [Acceptance and commitment therapy: Model, processes and outcomes.](https://www.sciencedirect.com/science/article/abs/pii/S0005796705002147) Behaviour Research and Therapy, 44(1).\n\n* Bond, F. W., & Dowling, J. R. (Manuscript in preparation) Actively Living as an Individual Vitally Embodied (ALIVE).\n\n* Eifert, G. H., & Forsyth, J. P. (2005). [Acceptance and commitment therapy for anxiety disorders: A practitioner's treatment guide to using mindfulness, acceptance, and values-based behavior change strategies.](https://www.newharbinger.com/9781572244276/acceptance-and-commitment-therapy-for-anxiety-disorders/) New Harbinger Publications, Oakland, California.",
-    "name": "Acting with Purpose",
-    "slug": "z33tz83",
-    "intro": "A course that provides three tools to create a healthier and more constructive relationship to the global and societal challenges we face through individual action.",
-    "relevancy": [
-        {
-            "skill": "ckzi3am4y0486e2n04obcy6hi",
-            "score": 80
-        },
-        {
-            "skill": "ckzi3a4z90431e2n04kx2pbq2",
-            "score": 70
-        },
-        {
-            "skill": "ckzi3blfz0687e2n0huf88a8y",
-            "score": 40
-        },
-        {
-            "skill": "ckzi3dtdk1142e2n0m9v02uf5",
-            "score": 30
-        },
-        {
-            "skill": "ckzi3hqs63163e2n03h36pb73",
-            "score": 20
-        }
-    ],
-    "tags": [
-        "cl4mbwmh400002e64dj6n7abw",
-        "cl4mbzx5z00042e64g1ueu8vj",
-        "cl37epfsz0159jgn0ytt4k64j"
-    ],
-    "link": "acting-with-purpose-z33tz83",
-    "id": "cl44ijlka0002rmpzc0sp564z",
-    "description": "What would your life look like if you lived in accordance with what's most important to you?\n\n## About the course\n\nIn this course you'll get to explore ways to reflect on who you want to be as a person, reconnect to your values and take meaningful action in every moment of our lives.\n\nThroughout our lives it's easy to lose touch with – or even forget about – what matters to us.\n\nEspecially when we’re dealing with a challenging situation. Taking the time to really understand what's important to us helps us take meaningful action in every moment of our lives.\n\n“Every person has the power to affect and change their world. One must start by looking inwards. That gives confidence, strength and the courage to stand up for one’s beliefs” – Jan Eliasson, former Deputy Secretary-General of the United Nations.\n\n## What will I learn?\n\n* Connect to your personal values.\n* Act according to what's important to you.\n* Strategies to cope better with anxiety.\n\n## How does it work?\n\n- This course consists of 3 lessons.\n- By doing this course together with a group of friends, colleagues or other people in the 29k app, you gain more value from the course, and get support along the journey.\n- After completing each lesson, you can have a sharing session with your group to dive deeper into each topic. This is an opportunity to be present, learn from each other, and create a safe space for meaningful human connection.\n\n#### Who created this course?\n\nThis course has been co-created by researchers and psychologists at 29k and the Karolinska Institute.\n\n#### About 29k\n\n29k is a Swedish foundation and one of the initiating partners of the IDGs initiative. 29k's mission is to democratise access to inner development. 29k does this via a non-profit, open-source digital platform that provides free access to evidence-based psychological tools for mental health and inner development. All interventions are co-created together with leading researchers on the topic in question. Check out more at [www.29k.org](https://29k.org).",
-    "actions": "* [Try \"Acting with Purpose\" in the 29k app!](https://app.29k.org/acting-with-purpose-idg)"
+  "resources": "* Hayes, Steven. (2005). [Get out of your mind and into your life. The new acceptance and commitment therapy.](https://www.goodreads.com/en/book/show/25348.Get_Out_of_Your_Mind_and_Into_Your_Life) New Harbinger Publications, Oakland, California\n\n* Hayes, S. C., Luoma, J. B., Bond, F. W., Masuda, A., & Lillis, J. (2006). [Acceptance and commitment therapy: Model, processes and outcomes.](https://www.sciencedirect.com/science/article/abs/pii/S0005796705002147) Behaviour Research and Therapy, 44(1).\n\n* Bond, F. W., & Dowling, J. R. (Manuscript in preparation) Actively Living as an Individual Vitally Embodied (ALIVE).\n\n* Eifert, G. H., & Forsyth, J. P. (2005). [Acceptance and commitment therapy for anxiety disorders: A practitioner's treatment guide to using mindfulness, acceptance, and values-based behavior change strategies.](https://www.newharbinger.com/9781572244276/acceptance-and-commitment-therapy-for-anxiety-disorders/) New Harbinger Publications, Oakland, California.",
+  "name": "Acting with Purpose",
+  "slug": "z33tz83",
+  "intro": "A course that provides three tools to create a healthier and more constructive relationship to the global and societal challenges we face through individual action.",
+  "relevancy": [
+    {
+      "skill": "ckzi3am4y0486e2n04obcy6hi",
+      "score": 80
+    },
+    {
+      "skill": "ckzi3a4z90431e2n04kx2pbq2",
+      "score": 70
+    },
+    {
+      "skill": "ckzi3blfz0687e2n0huf88a8y",
+      "score": 40
+    }
+  ],
+  "tags": [
+    "cl4mbwmh400002e64dj6n7abw",
+    "cl4mbzx5z00042e64g1ueu8vj",
+    "cl37epfsz0159jgn0ytt4k64j"
+  ],
+  "link": "acting-with-purpose-z33tz83",
+  "id": "cl44ijlka0002rmpzc0sp564z",
+  "description": "What would your life look like if you lived in accordance with what's most important to you?\n\n## About the course\n\nIn this course you'll get to explore ways to reflect on who you want to be as a person, reconnect to your values and take meaningful action in every moment of our lives.\n\nThroughout our lives it's easy to lose touch with – or even forget about – what matters to us.\n\nEspecially when we’re dealing with a challenging situation. Taking the time to really understand what's important to us helps us take meaningful action in every moment of our lives.\n\n“Every person has the power to affect and change their world. One must start by looking inwards. That gives confidence, strength and the courage to stand up for one’s beliefs” – Jan Eliasson, former Deputy Secretary-General of the United Nations.\n\n## What will I learn?\n\n* Connect to your personal values.\n* Act according to what's important to you.\n* Strategies to cope better with anxiety.\n\n## How does it work?\n\n- This course consists of 3 lessons.\n- By doing this course together with a group of friends, colleagues or other people in the 29k app, you gain more value from the course, and get support along the journey.\n- After completing each lesson, you can have a sharing session with your group to dive deeper into each topic. This is an opportunity to be present, learn from each other, and create a safe space for meaningful human connection.\n\n#### Who created this course?\n\nThis course has been co-created by researchers and psychologists at 29k and the Karolinska Institute.\n\n#### About 29k\n\n29k is a Swedish foundation and one of the initiating partners of the IDGs initiative. 29k's mission is to democratise access to inner development. 29k does this via a non-profit, open-source digital platform that provides free access to evidence-based psychological tools for mental health and inner development. All interventions are co-created together with leading researchers on the topic in question. Check out more at [www.29k.org](https://29k.org).",
+  "actions": "* [Try \"Acting with Purpose\" in the 29k app!](https://app.29k.org/acting-with-purpose-idg)"
 }
