@@ -13,10 +13,12 @@ type Bundle<T> = {
 
 function getWatchPaths<T>(selectedContent: (keyof T)[]) {
     const special = {
-        featured: 'settings/featured',
+        featured: 'settings',
     }
     return selectedContent.map((contentType) => {
         const specialPath = special[contentType as keyof typeof special]
+        console.log(specialPath)
+
         return specialPath ? specialPath : contentType
     }) as string[]
 }
