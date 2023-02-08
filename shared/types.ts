@@ -90,4 +90,4 @@ export type Tag = { id: ItemId; name: string }
 
 export type Locale = keyof typeof LOCALES
 
-export type Translated<T> = Partial<Record<Locale, T>>
+export type Localized<T> = Partial<Record<Locale, T>>

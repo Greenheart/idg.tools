@@ -40,7 +40,7 @@ import type {
     Story,
     Tag,
     Tool,
-    Translated,
+    Localized,
     AllContent,
 } from '$shared/types'
 import { dirname, resolve } from 'path'
@@ -78,13 +78,6 @@ const LOADERS = {
     async stories(loaderInput: LoaderInput): Promise<Story[]> {
         return loadLocalizedContent('stories', loaderInput)
     },
-}
-
-/**
- * Run all content transformations, passing the result forward until we get a final result.
- */
-function applyAllTransformations<T>(fns: ((content: T) => T)[], initialValue: T) {
-    return fns.reduce((prevResult, fn) => fn(prevResult), initialValue)
 }
 
 async function loadContent<T>({
@@ -125,7 +118,31 @@ async function loadContent<T>({
     return loadedContent.reduce((allContent, [locale, content]) => {
         allContent[locale] = content
         return allContent
-    }, {} as Translated<T>)
+    }, {} as Localized<T>)
+}
+
+const TRANSFORMERS = {
+    keepPublishedStories(stories: Story[]) {
+        return stories.filter((story) => story.publishedAt)
+    },
+}
+
+// IDEA: Maybe introduce content validation to catch errors, and let this run before the build is finished.
+// By letting this be a separate part, it will be more clear what code is transforming content, and what code is validating it
+const VALIDATORS = {
+    // For example:
+    // ensureSlugsAreConsistentForAllLocales - this is really important for tools and stories
+    // Warn for duplicate tags - or just deal with it directly
+    // remove relevnacy scores that are not useful - maybe even add this as input validation in the CMS to prevent it from happening in the first place, to avoid confusion?
+    // warn if some tags are unused - or simply remove them
+    // warn if missing translation for locale - or let this appear in the localization software instead
+}
+
+/**
+ * Run all content transformations, passing the result forward until we get a final result.
+ */
+function applyAllTransformations<T>(fns: ((content: T) => T)[], initialValue: T) {
+    return fns.reduce((prevResult, fn) => fn(prevResult), initialValue)
 }
 
 export default async function run() {
@@ -136,14 +153,38 @@ export default async function run() {
     const SELECTED_LOCALES: Locale[] = ['en']
     // const SELECTED_LOCALES: Locale[] = ['en', 'sv']
 
-    const content = await loadContent<CommunityContent>({
+    const localizedContent = await loadContent<CommunityContent>({
         selectedLocales: SELECTED_LOCALES,
         contentDir,
     })
 
-    console.log(Object.keys(content))
+    console.log(
+        localizedContent.en!.stories.length,
+        localizedContent.en!.stories.map((s) => s.title),
+    )
 
-    await writeJSON(resolve(__dirname, '../../test-content.json'), content, 2)
+    const transformedContent = Object.entries(localizedContent).reduce<Localized<CommunityContent>>(
+        (result, [locale, content]) => {
+            result[locale as Locale] = {
+                ...content,
+                stories: applyAllTransformations(
+                    [TRANSFORMERS.keepPublishedStories],
+                    content.stories,
+                ),
+            }
+            return result
+        },
+        {},
+    )
+
+    console.log(
+        transformedContent.en!.stories.length,
+        transformedContent.en!.stories.map((s) => s.title),
+    )
+
+    // const transfomredContent = applyAllTransformations([TRANSFORMERS.keepPublishedStories], content)
+
+    await writeJSON(resolve(__dirname, '../../test-content.json'), transformedContent, 2)
 }
 
 // New idea (2023-01-29)

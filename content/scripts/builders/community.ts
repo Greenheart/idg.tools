@@ -2,7 +2,7 @@ import { getSortedStories, getTag } from '$shared/content-utils'
 import type {
     CommunityContent,
     Locale,
-    Translated,
+    Localized,
     Story,
     Contributor,
     Tag,
@@ -84,8 +84,8 @@ const prepareStories = (stories: Story[], tags: Tag[], locale: Locale) => {
 }
 
 const prepareTags = (
-    translatedStories: Translated<Story>[],
-    translatedTags: Translated<Tag>[],
+    translatedStories: Localized<Story>[],
+    translatedTags: Localized<Tag>[],
     selectedLocales: Locale[],
 ) =>
     translatedTags.filter((translatedTag) => {
@@ -163,7 +163,7 @@ export default async function buildCommunity(
     //     prepareContent()
     // add it all together into the final content.json output.
 
-    const result: Translated<CommunityContent> = {}
+    const result: Localized<CommunityContent> = {}
 
     for (const locale of selectedLocales) {
         result[locale] = await loadContent(selectedContent, contentDir, locale)

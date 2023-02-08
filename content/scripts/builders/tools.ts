@@ -6,7 +6,7 @@ import type {
     Skill,
     Tag,
     Tool,
-    Translated,
+    Localized,
     ToolsCollections,
 } from '$shared/types'
 import type { SelectedContent } from 'scripts/old-build-content'
@@ -19,19 +19,19 @@ import {
 
 // Only used while building the content
 type ProcessingTranslatedToolsContent = {
-    dimensions: Translated<Dimension>[]
-    tools: Translated<Tool>[]
-    skills: Translated<Skill>[]
-    tags: Translated<Tag>[]
+    dimensions: Localized<Dimension>[]
+    tools: Localized<Tool>[]
+    skills: Localized<Skill>[]
+    tags: Localized<Tag>[]
 }
 
 const prepareTools = (
-    translatedTools: Translated<Tool>[],
-    translatedTags: Translated<Tag>[],
+    translatedTools: Localized<Tool>[],
+    translatedTags: Localized<Tag>[],
     selectedLocales: Locale[],
 ) => {
     return translatedTools.map((translatedTool) => {
-        const updated = {} as Translated<Tool>
+        const updated = {} as Localized<Tool>
 
         const uniqueSlugs = new Set()
 
@@ -115,8 +115,8 @@ const prepareTools = (
 }
 
 const prepareTags = (
-    translatedTools: Translated<Tool>[],
-    translatedTags: Translated<Tag>[],
+    translatedTools: Localized<Tool>[],
+    translatedTags: Localized<Tag>[],
     selectedLocales: Locale[],
 ) =>
     translatedTags.filter((translatedTag) => {
@@ -166,12 +166,12 @@ const loadContent = async (selected: SelectedContent, contentDir: string) => {
     return rawContent
 }
 
-function getByLang<T>(content: Translated<T>[], lang: Locale): T[] {
+function getByLang<T>(content: Localized<T>[], lang: Locale): T[] {
     return content.map((item) => item[lang]).filter(Boolean) as T[]
 }
 
 const splitContentByLang = (content: ProcessingTranslatedToolsContent, selectedLocales: Locale[]) =>
-    selectedLocales.reduce<Translated<ToolsContent>>((result, lang: Locale) => {
+    selectedLocales.reduce<Localized<ToolsContent>>((result, lang: Locale) => {
         result[lang] = {
             tools: getByLang(content.tools, lang),
             skills: getByLang(content.skills, lang),
@@ -181,7 +181,7 @@ const splitContentByLang = (content: ProcessingTranslatedToolsContent, selectedL
             tags: getByLang(content.tags, lang).sort(sortNamesAlphabetically),
         }
         return result
-    }, {} as Translated<ToolsContent>)
+    }, {} as Localized<ToolsContent>)
 
 const prepareContent = (content: ProcessingTranslatedToolsContent, selectedLocales: Locale[]) => {
     const tools = prepareTools(content.tools, content.tags, selectedLocales)
@@ -189,7 +189,7 @@ const prepareContent = (content: ProcessingTranslatedToolsContent, selectedLocal
     return { ...content, tools, tags }
 }
 
-const orderToolsConsistently = (builtContent: Translated<ToolsContent>) => {
+const orderToolsConsistently = (builtContent: Localized<ToolsContent>) => {
     for (const [locale, content] of Object.entries(builtContent)) {
         builtContent[locale as Locale] = {
             ...content,
