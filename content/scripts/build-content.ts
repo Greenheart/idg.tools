@@ -31,7 +31,7 @@ Create another module with builders, where we use the right loaders and transfor
 
 */
 
-import { getTag } from '$shared/content-utils'
+import { getTag, getSortedStories } from '$shared/content-utils'
 import type {
     CommunityContent,
     Contributor,
@@ -43,8 +43,7 @@ import type {
     Tool,
     Localized,
     AllContent,
-    ToolsCollections,
-    ToolsContent,
+    FeaturedContent,
 } from '$shared/types'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
@@ -65,7 +64,7 @@ type LoaderInput = {
 const loadJSONPaths = (paths: string[]) => Promise.all(paths.map(readJSON))
 
 const loadLocalizedContent = <T>(
-    contentType: keyof AllContent,
+    contentType: Omit<keyof AllContent, 'contributors' | 'featured'>,
     { contentDir, locale }: LoaderInput,
 ): Promise<T[]> => getPaths(contentDir, `${contentType}/${locale}/*.json`).then(loadJSONPaths)
 
@@ -92,6 +91,9 @@ const LOADERS = {
     async stories(loaderInput: LoaderInput): Promise<Story[]> {
         return loadLocalizedContent('stories', loaderInput)
     },
+    async featured({ contentDir, locale }: LoaderInput): Promise<FeaturedContent> {
+        return readJSON(resolve(contentDir, `settings/${locale}/featured.json`))
+    },
 }
 
 async function loadContent<T>({
@@ -106,14 +108,16 @@ async function loadContent<T>({
         selectedLocales.map(async (locale) => {
             const loaderInput = { locale, contentDir }
             // Load all content types in parallell to improve performance
-            const [contributors, tags, skills, dimensions, tools, stories] = await Promise.all([
-                LOADERS.contributors(loaderInput),
-                LOADERS.tags(loaderInput),
-                LOADERS.skills(loaderInput),
-                LOADERS.dimensions(loaderInput),
-                LOADERS.tools(loaderInput),
-                LOADERS.stories(loaderInput),
-            ])
+            const [contributors, tags, skills, dimensions, tools, stories, featured] =
+                await Promise.all([
+                    LOADERS.contributors(loaderInput),
+                    LOADERS.tags(loaderInput),
+                    LOADERS.skills(loaderInput),
+                    LOADERS.dimensions(loaderInput),
+                    LOADERS.tools(loaderInput),
+                    LOADERS.stories(loaderInput),
+                    LOADERS.featured(loaderInput),
+                ])
             return [
                 locale,
                 {
@@ -123,6 +127,7 @@ async function loadContent<T>({
                     dimensions,
                     tools,
                     stories,
+                    featured,
                 } as T,
             ]
         }),
@@ -221,6 +226,9 @@ const TRANSFORMERS = {
             return entity
         }) as T
     },
+    sortStories(featured: FeaturedContent) {
+        return (stories: Story[]) => getSortedStories(stories, featured)
+    },
 }
 
 /**
@@ -306,6 +314,7 @@ export default async function run() {
                     TRANSFORMERS.useConsistentStoryImageURLs,
                     TRANSFORMERS.sortTagsAlphabetically(content.tags),
                     TRANSFORMERS.updateLink,
+                    TRANSFORMERS.sortStories(content.featured),
                 ],
                 content.stories,
             )
