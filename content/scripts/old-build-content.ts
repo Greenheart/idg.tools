@@ -2,7 +2,7 @@ import { performance } from 'perf_hooks'
 import { dirname, resolve } from 'path'
 
 import type { Locale, ToolsCollections, CommunityCollections } from '$shared/types'
-import community from './builders/community'
+// import community from './builders/community'
 import tools from './builders/tools'
 import { fileURLToPath } from 'url'
 import { writeJSON } from './utils'
@@ -19,7 +19,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const BUILDERS: Record<BuilderName, Builder<any>> = {
     tools: tools as unknown as Builder<ToolsCollections>,
-    community: community as unknown as Builder<CommunityCollections>,
+    // community: community as unknown as Builder<CommunityCollections>,
 }
 
 export const SINGLETONS = {
