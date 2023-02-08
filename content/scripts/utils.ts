@@ -4,9 +4,7 @@ import { resolve } from 'path'
 import slugify from 'slugify'
 
 import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
-import type { CommunityCollections, Locale, Tag, ToolsCollections } from '$shared/types'
-import { NON_LOCALIZED_COLLECTIONS, SelectedContent, SINGLETONS } from './old-build-content'
-import { getTag } from '$shared/content-utils'
+import type { Tag } from '$shared/types'
 
 export const slugifyName = (string: string, locale = DEFAULT_LOCALE_IDENTIFIER) =>
     slugify(string, {
@@ -39,44 +37,6 @@ export const writeJSON = (path: string, data: any, indentation: number = 0) =>
     })
 
 export const getPaths = (...paths: string[]) => FastGlob(resolve(...paths))
-
-const isCollectionLocalized = (collection: CommunityCollections | ToolsCollections) =>
-    !NON_LOCALIZED_COLLECTIONS.includes(collection)
-
-export const getContentPaths = async (
-    selected: SelectedContent,
-    baseDir: string,
-    locale?: Locale,
-) => {
-    const collections = selected.collections.length
-        ? await Promise.all(
-              selected.collections.flatMap((collection) =>
-                  getPaths(
-                      baseDir,
-                      `${collection}/${
-                          isCollectionLocalized(
-                              collection as unknown as CommunityCollections | ToolsCollections,
-                          )
-                              ? `${locale}/`
-                              : ''
-                      }*.json`,
-                  ),
-              ),
-          )
-        : []
-
-    const singletons = selected.singletons.length
-        ? (
-              await Promise.all(
-                  selected.singletons.flatMap((singleton) =>
-                      getPaths(baseDir, `${SINGLETONS[singleton]}.json`),
-                  ),
-              )
-          ).flat()
-        : []
-
-    return { collections, singletons }
-}
 
 /**
  * Ensures the url works in the live app or website by removing the full prefix added by the CMS.
