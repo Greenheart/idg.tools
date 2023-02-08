@@ -333,6 +333,15 @@ export default async function run() {
 
     VALIDATORS.ensureSlugsAreConsistentForAllLocales(transformedContent as Localized<AllContent>)
 
+    // TODO: create two different builder functions that encapsulate all the logic for building tools and community
+    // IDEA: Maybe also try to only load and build the needed content types to improve performance
+    // we could reuse the old-build-content script, or create something similar without the hardcoded collections and singletons
+    // instead, have separate loaders for community and tools
+    // then use separate builders (which combine different sets of transformers and validators)
+    // then finally the builders output in their desired format, to their desired location.
+    // this way, the main build step is clean, the transformers are clean,
+    // and the loaders and builders take care of the details for each specific content bundle
+
     // TODO: Change output depending on which bundle we're building.
     const output = Object.entries(transformedContent).reduce<Localized<CommunityContent>>(
         (result, [locale, content]) => {
