@@ -108,6 +108,8 @@ async function loadContent<T>({
         selectedLocales.map(async (locale) => {
             const loaderInput = { locale, contentDir }
             // Load all content types in parallell to improve performance
+            // TODO: Maybe create loader presets for different content bundles, to avoid loading content that won't be used by the current bundle.
+            // This would allow us to only build the relevant content, and improve performance.
             const [contributors, tags, skills, dimensions, tools, stories, featured] =
                 await Promise.all([
                     LOADERS.contributors(loaderInput),
@@ -289,7 +291,7 @@ export default async function run() {
     const __dirname = dirname(fileURLToPath(import.meta.url))
     const contentDir = resolve(__dirname, '../../src')
 
-    // TODO: Make sure it works well with multiple locales
+    // TODO: Maybe allow specifying selected locales from the outside. Or mayeb keep it like this for now.
     const SELECTED_LOCALES: Locale[] = ['en']
     // const SELECTED_LOCALES: Locale[] = ['en', 'sv']
 
@@ -297,11 +299,6 @@ export default async function run() {
         selectedLocales: SELECTED_LOCALES,
         contentDir,
     })
-
-    // console.log(
-    //     localizedContent.en!.tags.length,
-    //     localizedContent.en!.tags.map((s) => s.name),
-    // )
 
     const transformedContent = Object.entries(localizedContent).reduce<Localized<CommunityContent>>(
         (result, [locale, content]) => {
@@ -334,16 +331,9 @@ export default async function run() {
         {},
     )
 
-    // console.log(
-    //     transformedContent.en!.tags.length,
-    //     transformedContent.en!.tags.map((s) => s.name),
-    // )
-
     VALIDATORS.ensureSlugsAreConsistentForAllLocales(transformedContent as Localized<AllContent>)
 
-    // const transfomredContent = applyAllTransformations([TRANSFORMERS.keepPublishedStories], content)
-
-    await writeJSON(resolve(__dirname, '../../test-content.json'), transformedContent, 2)
+    await writeJSON(resolve(__dirname, '../../test-content.json'), transformedContent, 0)
 }
 
 // New idea (2023-01-29)
