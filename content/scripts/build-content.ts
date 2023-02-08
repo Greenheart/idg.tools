@@ -169,27 +169,27 @@ const TRANSFORMERS = {
     keepPublishedStories(stories: Story[]) {
         return stories.filter((story) => story.publishedAt)
     },
-    ensureTagsExist<T>(entities: Story[] | Tool[]) {
+    ensureTagsExists<T>(entities: Story[] | Tool[]) {
         return entities.map((entity) => {
-            if (!entity.tags) {
-                entity.tags = []
-            }
+            if (!entity.tags) entity.tags = []
             return entity as T
         })
     },
-    ensureDimensionsExist(entities: Story[]) {
+    ensureDimensionsExists(entities: Story[]) {
         return entities.map((entity) => {
-            if (!entity.dimensions) {
-                entity.dimensions = []
-            }
+            if (!entity.dimensions) entity.dimensions = []
             return entity
         })
     },
-    ensureContributorsExist(entities: Story[]) {
+    ensureContributorsExists(entities: Story[]) {
         return entities.map((entity) => {
-            if (!entity.contributors) {
-                entity.contributors = []
-            }
+            if (!entity.contributors) entity.contributors = []
+            return entity
+        })
+    },
+    ensureRelevancyExists(entities: Tool[]) {
+        return entities.map((entity) => {
+            if (!entity.relevancy) entity.relevancy = []
             return entity
         })
     },
@@ -323,9 +323,9 @@ const BUILDERS = {
                 const stories = runAllTransformers(
                     [
                         TRANSFORMERS.keepPublishedStories,
-                        TRANSFORMERS.ensureTagsExist,
-                        TRANSFORMERS.ensureDimensionsExist,
-                        TRANSFORMERS.ensureContributorsExist,
+                        TRANSFORMERS.ensureTagsExists,
+                        TRANSFORMERS.ensureDimensionsExists,
+                        TRANSFORMERS.ensureContributorsExists,
                         TRANSFORMERS.useConsistentStoryImageURLs,
                         TRANSFORMERS.sortTagsAlphabetically(content.tags),
                         TRANSFORMERS.updateLink,
@@ -359,10 +359,42 @@ const BUILDERS = {
         )
     },
     async tools(localizedContent: Localized<ToolsContent>, builderInput: BuilderInput) {
-        // load
-        // transform
-        // validate
-        // output
+        const transformedContent = transformContent(
+            localizedContent,
+            (result, [locale, content]) => {
+                const tools = runAllTransformers(
+                    [
+                        TRANSFORMERS.ensureRelevancyExists,
+                        TRANSFORMERS.ensureTagsExists,
+                        TRANSFORMERS.sortTagsAlphabetically(content.tags),
+                        TRANSFORMERS.updateLink,
+                    ],
+                    content.tools,
+                )
+
+                const tags = runAllTransformers(
+                    [TRANSFORMERS.keepRelevantTags(tools)],
+                    content.tags,
+                )
+
+                result[locale as Locale] = {
+                    ...content,
+                    tools,
+                    tags,
+                }
+                return result
+            },
+        )
+
+        VALIDATORS.ensureSlugsAreConsistentForAllLocales<ToolsContent>(transformedContent, [
+            'tools',
+        ])
+
+        await writeJSON(
+            resolve(builderInput.contentDir, '../../tools/static/content.json'),
+            transformedContent,
+            0,
+        )
     },
 }
 
@@ -399,7 +431,7 @@ export default async function run() {
     const __dirname = dirname(fileURLToPath(import.meta.url))
     const contentDir = resolve(__dirname, '../../src')
 
-    const selectedBundler = 'community'
+    const selectedBundler = 'tools'
     const bundler = BUNDLERS[selectedBundler]
 
     const builderInput: BuilderInput = { selectedLocales: ['en'], contentDir }
@@ -407,10 +439,3 @@ export default async function run() {
     const localizedContent = await bundler.load(builderInput)
     await bundler.build(localizedContent, builderInput)
 }
-
-// New idea (2023-01-29)
-// 1. Load Translated<ToolsContent | CommunityContent> which is set based on which content is loaded.
-//      Only load the selected locales to improve performance
-//      This loading happens by loaders for all content types
-// 2. Builders are presets of transformations, and for each content bundle, there are a number of transformations specified. This will increase the ability to reuse code between content bundles.
-// 3. Output either one big content.json file or one bundle for each locale - this can easily be changed in the future.
