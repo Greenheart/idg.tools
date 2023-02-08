@@ -1,4 +1,4 @@
-import type { CommunityContent, Localized, ToolsContent } from '$shared/types'
+import type { CommunityContent, Locale, Localized, ToolsContent } from '$shared/types'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { BuilderInput, BUILDERS } from './build/builders'
@@ -13,21 +13,63 @@ function createBundle<T>(load: Bundle<T>['load'], build: Bundle<T>['build']): Bu
     return { load, build }
 }
 
-const BUNDLERS = {
+const BUNDLES = {
     community: createBundle<CommunityContent>(BUNDLE_LOADERS.community, BUILDERS.community),
     tools: createBundle<ToolsContent>(BUNDLE_LOADERS.tools, BUILDERS.tools),
 }
 
-// TODO: run all selectedBuilders based on CLI arguments. Default to run all.
-export default async function run() {
-    const __dirname = dirname(fileURLToPath(import.meta.url))
-    const contentDir = resolve(__dirname, '../../src')
+type BundleName = keyof typeof BUNDLES
+const BUNDLE_NAMES = Object.keys(BUNDLES) as BundleName[]
 
-    const selectedBundler = 'tools'
-    const bundler = BUNDLERS[selectedBundler]
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const contentDir = resolve(__dirname, '../../src')
 
-    const builderInput: BuilderInput = { selectedLocales: ['en'], contentDir }
+const SELECTED_LOCALES: Locale[] = ['en']
 
-    const localizedContent = await bundler.load(builderInput)
-    await bundler.build(localizedContent, builderInput)
+async function runBundle(selectedBundle: BundleName) {
+    const bundle = BUNDLES[selectedBundle]
+    const input: BuilderInput = { selectedLocales: SELECTED_LOCALES, contentDir }
+
+    const localizedContent = await bundle.load(input)
+    await bundle.build(localizedContent as any, input)
+}
+
+async function build(selectedBundles: BundleName[]) {
+    const startTime = performance.now()
+
+    await Promise.all(selectedBundles.map(runBundle))
+
+    const buildTime = ((performance.now() - startTime) / 1000).toLocaleString('en-US', {
+        minimumFractionDigits: 3,
+        maximumFractionDigits: 3,
+    })
+
+    const updatedProjects = selectedBundles.map((b) => `IDG.${b}`).join(' and ')
+    console.log(`✅ Built content for ${updatedProjects} in ${buildTime} s\n`)
+}
+
+const hasMatchingPath = (path: string) => (contentPath: string) => path.includes(`/${contentPath}`)
+
+export default async function run(selectedBundles: BundleName[] = BUNDLE_NAMES, path: string) {
+    // Remove invalid arguments
+    let bundles = selectedBundles.filter((b) => BUNDLE_NAMES.includes(b))
+
+    if (!bundles.length) {
+        bundles = BUNDLE_NAMES
+    }
+
+    // TODO: Instead of relying on collections and singletons, let bundles define a set of paths they are watching for changes
+
+    // if (path) {
+    //     const shouldBuild = hasMatchingPath(path)
+    //     // If a path just changed, we only re-execute the bundles that are using that type of content
+    //     bundles = bundles.filter((builder) => {
+    //         return (
+    //             COLLECTIONS[builder].collections.some(shouldBuild) ||
+    //             COLLECTIONS[builder].singletons.some(shouldBuild)
+    //         )
+    //     })
+    // }
+
+    return build(bundles)
 }
