@@ -1,36 +1,3 @@
-/*
-
-Needs:
-
-1. Load selected types of content (collections and singletons)
-2. validate and normalize JSON content
-    - For each content type, implement a `loader` and `transformers` (one or more callback functions to process the content)
-    - When all content has been loaded, and transformed individually, it should be possible to run any kind of transformations
-    - Maybe transformations all happen at the end, and are expected to take the full content,
-    transforming i in some way, and then returning the updated content.
-        - Then the next transformer will be run based on the output content from the previous transformer.
-        - This would make content builders into a chain of content transformers
-3. output ready content.json that matches the expected format for CommunityContent and ToolsContent
-
-Maybe let the transformers operate on Translated<CommunityContent> or Translated<ToolsContent>
-In this case, we can more easily compare between different languages. And we can still output the format we want in the end (one global object with all content for a given locale)
-
-
-Create one module with loaders
-    - loaders should take the names of selectedContent to be included in the bundle
-    - loaders should know which selectedContent are collections vs singletons
-    - loaders should know which selectedContent that should be loaded with translations, and also those that are the same across languages
-    - loaders should return the content object mathcing
-
-Create another module with transformers
-    - each transformer is a function taking content in and transforming it, returning the updated content
-
-Create another module with builders, where we use the right loaders and transformers to get the desired output bundles.
-    - community
-    - tools
-
-*/
-
 import { getTag, getSortedStories, mostRelevantToolsFirst } from '$shared/content-utils'
 import type {
     CommunityContent,
@@ -280,12 +247,6 @@ const TRANSFORMERS = {
  * For less important things, a warning may be sufficient.
  */
 const VALIDATORS = {
-    // For example:
-    // Warn for duplicate tags - or just deal with it directly
-    // remove relevancy scores that are not useful - maybe even add this as input validation in the CMS to prevent it from happening in the first place, to avoid confusion?
-    // warn if some tags are unused - or simply remove them
-    // warn if missing translation for locale - or let this appear in the localization software instead
-
     /**
      * This is really important to make it easy to switch the language, but letting other parts of links work the same.
      * For example, by enforcing the same slug for all locales of content, we can let the user change their language, but still know which content they are trying to access.
