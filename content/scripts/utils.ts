@@ -6,6 +6,7 @@ import slugify from 'slugify'
 import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
 import type { CommunityCollections, Locale, Tag, ToolsCollections } from '$shared/types'
 import { NON_LOCALIZED_COLLECTIONS, SelectedContent, SINGLETONS } from './old-build-content'
+import { getTag } from '$shared/content-utils'
 
 export const slugifyName = (string: string, locale = DEFAULT_LOCALE_IDENTIFIER) =>
     slugify(string, {
@@ -84,3 +85,6 @@ export const getConsistentAssetURL = (url: string, unwantedPrefix: string) =>
     url.replace(unwantedPrefix, '')
 
 export const sortNamesAlphabetically = (a: Tag, b: Tag) => a.name.localeCompare(b.name)
+
+export const getTagsSortedAlphabetically = (tags: Tag[]) =>
+    tags.slice().sort(sortNamesAlphabetically)

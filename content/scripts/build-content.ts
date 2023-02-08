@@ -52,8 +52,8 @@ import {
     createBackwardsCompatibleLink,
     getConsistentAssetURL,
     getPaths,
+    getTagsSortedAlphabetically,
     readJSON,
-    sortNamesAlphabetically,
     writeJSON,
 } from './utils'
 
@@ -204,16 +204,17 @@ const TRANSFORMERS = {
         })
     },
     sortTagsAlphabetically(tags: Tag[]) {
+        return getTagsSortedAlphabetically(tags)
+    },
+    sortEntityTagsAlphabetically(tags: Tag[]) {
         return <T>(entities: Story[] | Tool[]) =>
             entities.map((entity) => {
-                const tagsSortedAlphabetically = entity.tags
-                    .map((tag) => getTag(tag, { tags }))
-                    // IDEA: Or should tags be sorted by number of stories/tools using them?
-                    // This would make the popular tags appear first and might give a better UX
-                    .sort(sortNamesAlphabetically)
-                    .map((tag) => tag.id)
+                // IDEA: Or should tags be sorted by number of stories/tools using them?
+                // This would make the popular tags appear first and might give a better UX
 
-                entity.tags = tagsSortedAlphabetically
+                entity.tags = getTagsSortedAlphabetically(
+                    entity.tags.map((tag) => getTag(tag, { tags })),
+                ).map((tag) => tag.id)
 
                 return entity as T
             })
@@ -354,7 +355,7 @@ const BUILDERS = {
                         TRANSFORMERS.ensureDimensionsExists,
                         TRANSFORMERS.ensureContributorsExists,
                         TRANSFORMERS.useConsistentStoryImageURLs,
-                        TRANSFORMERS.sortTagsAlphabetically(content.tags),
+                        TRANSFORMERS.sortEntityTagsAlphabetically(content.tags),
                         TRANSFORMERS.updateLink,
                         TRANSFORMERS.sortStories(content.featured),
                     ],
@@ -394,7 +395,7 @@ const BUILDERS = {
                         TRANSFORMERS.ensureRelevancyExists,
                         TRANSFORMERS.filterAndSortRelevancyScores(locale),
                         TRANSFORMERS.ensureTagsExists,
-                        TRANSFORMERS.sortTagsAlphabetically(content.tags),
+                        TRANSFORMERS.sortEntityTagsAlphabetically(content.tags),
                         TRANSFORMERS.updateLink,
                         TRANSFORMERS.sortTools(content.skills),
                     ],
@@ -402,7 +403,7 @@ const BUILDERS = {
                 )
 
                 const tags = runAllTransformers(
-                    [TRANSFORMERS.keepRelevantTags(tools)],
+                    [TRANSFORMERS.keepRelevantTags(tools), TRANSFORMERS.sortTagsAlphabetically],
                     content.tags,
                 )
 
