@@ -44,6 +44,7 @@ import type {
     Localized,
     AllContent,
     FeaturedContent,
+    ToolsContent,
 } from '$shared/types'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
@@ -69,7 +70,7 @@ const loadLocalizedContent = <T>(
 ): Promise<T[]> => getPaths(contentDir, `${contentType}/${locale}/*.json`).then(loadJSONPaths)
 
 /**
- * Loaders are a set of functions responsible for loading specific content types.
+ * Content loaders are a set of functions responsible for loading specific content types.
  * Depending on the structure, some content types are localized while others are not.
  */
 const LOADERS = {
@@ -96,7 +97,26 @@ const LOADERS = {
     },
 }
 
-async function loadContent<T>({
+/**
+ * Bundle loaders are responsible for loading the content types needed for specific bundles.
+ * They return localized content that can be further processed.
+ */
+const BUNDLE_LOADERS = {
+    community: (builderInput: BuilderInput) => {
+        return loadContent<CommunityContent>({
+            ...builderInput,
+            selectedContent: ['stories', 'contributors', 'dimensions', 'tags', 'featured'],
+        })
+    },
+    tools: (builderInput: BuilderInput) => {
+        return loadContent<ToolsContent>({
+            ...builderInput,
+            selectedContent: ['tools', 'skills', 'dimensions', 'tags'],
+        })
+    },
+}
+
+async function loadContent1<T>({
     selectedLocales,
     contentDir,
 }: {
@@ -132,6 +152,44 @@ async function loadContent<T>({
                     featured,
                 } as T,
             ]
+        }),
+    )
+
+    // Combine all locales into one object that is easier to work with during transformations
+    return loadedContent.reduce((allContent, [locale, content]) => {
+        allContent[locale] = content
+        return allContent
+    }, {} as Localized<T>)
+}
+
+async function loadContent<T>({
+    selectedLocales,
+    selectedContent,
+    contentDir,
+}: {
+    selectedLocales: Locale[]
+    selectedContent: (keyof T)[]
+    contentDir: string
+}) {
+    // Load all selectedLocales in parallell
+    const loadedContent: [Locale, T][] = await Promise.all(
+        selectedLocales.map(async (locale) => {
+            const loaderInput = { locale, contentDir }
+            // Load all content types in parallell to improve performance
+            const loadedContent = await Promise.all(
+                selectedContent.map((contentType) => {
+                    return LOADERS[contentType as keyof typeof LOADERS](loaderInput)
+                }),
+            )
+
+            const content = selectedContent.reduce<T>((result, contentType, i) => {
+                // Might be a better type instead of `any` here.
+                // Maybe define that T satisfies ToolsContent | CommunityContent or something like that.
+                result[contentType] = loadedContent[i] as any
+                return result
+            }, {} as T)
+
+            return [locale, content]
         }),
     )
 
@@ -250,8 +308,11 @@ const VALIDATORS = {
      * This is really important to make it easy to switch the language, but letting other parts of links work the same.
      * For example, by enforcing the same slug for all locales of content, we can let the user change their language, but still know which content they are trying to access.
      */
-    ensureSlugsAreConsistentForAllLocales(localizedContent: Localized<AllContent>) {
-        const contentTypes: (keyof Pick<AllContent, 'tools' | 'stories'>)[] = ['tools', 'stories']
+    ensureSlugsAreConsistentForAllLocales<T>(
+        localizedContent: Localized<T>,
+        contentTypes: (keyof T)[],
+    ) {
+        // const contentTypes: (keyof Pick<T, 'tools' | 'stories'>)[] = ['tools', 'stories']
         for (const contentType of contentTypes) {
             const occurences: Record<
                 Tool['id'] | Story['id'],
@@ -261,7 +322,8 @@ const VALIDATORS = {
             // IDEA: This code could be a useful staring point if we want to display "this content is also available in X, Y, Z" or similar in the future.
             // Alternatively, we could just display all locales by default, falling back to a supported locale. Then encourage contributions, or listing other supported locales.
             for (const content of Object.values(localizedContent)) {
-                for (const entity of content[contentType]) {
+                // Might be able to find a better type than `any` here, but not worth it at this point.
+                for (const entity of content[contentType] as any) {
                     if (!occurences[entity.id]) occurences[entity.id] = new Set()
                     occurences[entity.id].add(entity.slug)
                 }
@@ -270,7 +332,9 @@ const VALIDATORS = {
             for (const [contentId, uniqueSlugs] of Object.entries(occurences)) {
                 if (uniqueSlugs.size > 1) {
                     throw new Error(
-                        `${contentType} with id ${contentId} need to have consistent slugs for all locales. Found slugs: ${Array.from(
+                        `${String(
+                            contentType,
+                        )} with id ${contentId} need to have consistent slugs for all locales. Found slugs: ${Array.from(
                             uniqueSlugs,
                         )}`,
                     )
@@ -283,7 +347,7 @@ const VALIDATORS = {
 /**
  * Run all content transformations, passing the result forward until we get a final result.
  */
-function applyAllTransformations<T>(fns: ((content: T) => T)[], initialValue: T) {
+function runAllTransformers<T>(fns: ((content: T) => T)[], initialValue: T) {
     return fns.reduce((prevResult, fn) => fn(prevResult), initialValue)
 }
 
@@ -299,13 +363,73 @@ type BuilderInput = {
  * Each builder is responsible for loading the right content, transforming and validating it, and finally saving the output.
  */
 const BUILDERS = {
-    async community(builderInput: BuilderInput) {
-        // load
-        // transform
-        // validate
-        // output
+    async community(localizedContent: Localized<CommunityContent>, builderInput: BuilderInput) {
+        const transformedContent = transformContent(
+            localizedContent,
+            (result, [locale, content]) => {
+                const stories = runAllTransformers(
+                    [
+                        TRANSFORMERS.keepPublishedStories,
+                        TRANSFORMERS.ensureTagsExist,
+                        TRANSFORMERS.ensureDimensionsExist,
+                        TRANSFORMERS.ensureContributorsExist,
+                        TRANSFORMERS.useConsistentStoryImageURLs,
+                        TRANSFORMERS.sortTagsAlphabetically(content.tags),
+                        TRANSFORMERS.updateLink,
+                        TRANSFORMERS.sortStories(content.featured),
+                    ],
+                    content.stories,
+                )
+
+                const tags = runAllTransformers(
+                    [TRANSFORMERS.keepRelevantTags(stories)],
+                    content.tags,
+                )
+
+                result[locale as Locale] = {
+                    ...content,
+                    stories,
+                    tags,
+                }
+                return result
+            },
+        )
+
+        VALIDATORS.ensureSlugsAreConsistentForAllLocales<CommunityContent>(transformedContent, [
+            'stories',
+        ])
+
+        // TODO: create two different builder functions that encapsulate all the logic for building tools and community
+        // IDEA: Maybe also try to only load and build the needed content types to improve performance
+        // we could reuse the old-build-content script, or create something similar without the hardcoded collections and singletons
+        // instead, have separate loaders for community and tools
+        // then use separate builders (which combine different sets of transformers and validators)
+        // then finally the builders output in their desired format, to their desired location.
+        // this way, the main build step is clean, the transformers are clean,
+        // and the loaders and builders take care of the details for each specific content bundle
+
+        // TODO: Might not need the ordering once we are only loading the relevant content
+        const output = Object.entries(transformedContent).reduce<Localized<CommunityContent>>(
+            (result, [locale, content]) => {
+                result[locale as Locale] = {
+                    stories: content.stories,
+                    contributors: content.contributors,
+                    dimensions: content.dimensions,
+                    tags: content.tags,
+                    featured: content.featured,
+                }
+                return result
+            },
+            {},
+        )
+
+        await writeJSON(
+            resolve(builderInput.contentDir, '../../community/static/content.json'),
+            output,
+            0,
+        )
     },
-    async tools(builderInput: BuilderInput) {
+    async tools(localizedContent: Localized<ToolsContent>, builderInput: BuilderInput) {
         // load
         // transform
         // validate
@@ -313,8 +437,23 @@ const BUILDERS = {
     },
 }
 
+type Bundle<T> = {
+    load: (builderInput: BuilderInput) => Promise<Localized<T>>
+    build: (content: Localized<T>, builderInput: BuilderInput) => Promise<void>
+}
+
+function createBundle<T>(load: Bundle<T>['load'], build: Bundle<T>['build']): Bundle<T> {
+    return { load, build }
+}
+
+const BUNDLERS = {
+    community: createBundle<CommunityContent>(BUNDLE_LOADERS.community, BUILDERS.community),
+    tools: createBundle<ToolsContent>(BUNDLE_LOADERS.tools, BUILDERS.tools),
+}
+
 /**
  * Apply a given localeTransformer callback to process the content of each locale.
+ * Returns the new content after all locales have been transformed.
  */
 function transformContent<T>(
     localizedContent: Localized<T>,
@@ -326,71 +465,18 @@ function transformContent<T>(
     )
 }
 
+// TODO: run all selectedBuilders based on CLI arguments. Default to run all.
 export default async function run() {
     const __dirname = dirname(fileURLToPath(import.meta.url))
     const contentDir = resolve(__dirname, '../../src')
 
-    // TODO: Maybe allow specifying selected locales from the outside. Or mayeb keep it like this for now.
-    const SELECTED_LOCALES: Locale[] = ['en']
-    // const SELECTED_LOCALES: Locale[] = ['en', 'sv']
+    const selectedBundler = 'community'
+    const bundler = BUNDLERS[selectedBundler]
 
-    const localizedContent = await loadContent<CommunityContent>({
-        selectedLocales: SELECTED_LOCALES,
-        contentDir,
-    })
+    const builderInput: BuilderInput = { selectedLocales: ['en'], contentDir }
 
-    const transformedContent = transformContent(localizedContent, (result, [locale, content]) => {
-        const stories = applyAllTransformations(
-            [
-                TRANSFORMERS.keepPublishedStories,
-                TRANSFORMERS.ensureTagsExist,
-                TRANSFORMERS.ensureDimensionsExist,
-                TRANSFORMERS.ensureContributorsExist,
-                TRANSFORMERS.useConsistentStoryImageURLs,
-                TRANSFORMERS.sortTagsAlphabetically(content.tags),
-                TRANSFORMERS.updateLink,
-                TRANSFORMERS.sortStories(content.featured),
-            ],
-            content.stories,
-        )
-
-        const tags = applyAllTransformations([TRANSFORMERS.keepRelevantTags(stories)], content.tags)
-
-        result[locale as Locale] = {
-            ...content,
-            stories,
-            tags,
-        }
-        return result
-    })
-
-    VALIDATORS.ensureSlugsAreConsistentForAllLocales(transformedContent as Localized<AllContent>)
-
-    // TODO: create two different builder functions that encapsulate all the logic for building tools and community
-    // IDEA: Maybe also try to only load and build the needed content types to improve performance
-    // we could reuse the old-build-content script, or create something similar without the hardcoded collections and singletons
-    // instead, have separate loaders for community and tools
-    // then use separate builders (which combine different sets of transformers and validators)
-    // then finally the builders output in their desired format, to their desired location.
-    // this way, the main build step is clean, the transformers are clean,
-    // and the loaders and builders take care of the details for each specific content bundle
-
-    // TODO: Change output depending on which bundle we're building.
-    const output = Object.entries(transformedContent).reduce<Localized<CommunityContent>>(
-        (result, [locale, content]) => {
-            result[locale as Locale] = {
-                stories: content.stories,
-                contributors: content.contributors,
-                dimensions: content.dimensions,
-                tags: content.tags,
-                featured: content.featured,
-            }
-            return result
-        },
-        {},
-    )
-
-    await writeJSON(resolve(__dirname, '../../../community/static/content.json'), output, 0)
+    const localizedContent = await bundler.load(builderInput)
+    await bundler.build(localizedContent, builderInput)
 }
 
 // New idea (2023-01-29)
