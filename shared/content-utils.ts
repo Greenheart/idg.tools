@@ -8,17 +8,16 @@ import type {
     Story,
     Contributor,
     FeaturedContent,
+    AllContent,
 } from './types'
 
-export const getDimension = (
-    id: Dimension['id'],
-    { dimensions }: Pick<ToolsContent, 'dimensions'>,
-) => dimensions.find((c) => c.id === id) as Dimension
+export const getDimension = (id: Dimension['id'], { dimensions }: Pick<AllContent, 'dimensions'>) =>
+    dimensions.find((c) => c.id === id) as Dimension
 
-export const getSkill = (id: Skill['id'], { skills }: Pick<ToolsContent, 'skills'>) =>
+export const getSkill = (id: Skill['id'], { skills }: Pick<AllContent, 'skills'>) =>
     skills.find((s) => s.id === id) as Skill
 
-export const getTag = (id: Tag['id'], { tags }: Pick<ToolsContent, 'tags'>) =>
+export const getTag = (id: Tag['id'], { tags }: Pick<AllContent, 'tags'>) =>
     tags.find((t) => t.id === id) as Tag
 
 export const getContributor = (
@@ -35,7 +34,7 @@ export const getContributor = (
  *
  * With the third case, we get built-in support for short URLs. Not that easy to type, but at least they are few characters.
  */
-export const getToolByLink = (link: Tool['link'], { tools }: Pick<ToolsContent, 'tools'>) =>
+export const getToolByLink = (link: Tool['link'], { tools }: Pick<AllContent, 'tools'>) =>
     tools.find((t) => t.link === link || link.endsWith(t.slug)) as Tool
 
 /**
@@ -64,10 +63,8 @@ export const getAdjacentStories = (
     return { prev: stories[index - 1], next: stories[index + 1] }
 }
 
-export const getSkillsInDimension = (
-    id: Dimension['id'],
-    { skills }: Pick<ToolsContent, 'skills'>,
-) => skills.filter((s) => s.dimension === id)
+export const getSkillsInDimension = (id: Dimension['id'], { skills }: Pick<AllContent, 'skills'>) =>
+    skills.filter((s) => s.dimension === id)
 
 export const getTotalRelevancyScore = (
     relevancy: Tool['relevancy'],
