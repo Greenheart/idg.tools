@@ -17,8 +17,6 @@ function getWatchPaths<T>(selectedContent: (keyof T)[]) {
     }
     return selectedContent.map((contentType) => {
         const specialPath = special[contentType as keyof typeof special]
-        console.log(specialPath)
-
         return specialPath ? specialPath : contentType
     }) as string[]
 }
