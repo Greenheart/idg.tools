@@ -1,4 +1,47 @@
 {
+  "resources": "- Rosenberg, M. B. (2015). Nonviolent communication: a language of life. Encinitas, CA : PuddleDancer Press.\n\n- Rosenberg, M. B. (2005). Speak peace in a world of conflict.\nWhat you say next will change your world. PuddleDancer Press",
+  "name": "Nonviolent Communication",
+  "slug": "03524df",
+  "intro": "Nonviolent communication (NVC) aims at going beyond what people are saying and doing to make explicit people’s internal feelings and needs. It can help the practitioner open a room for shared understanding, discover needs that they were unaware of, and facilitate a solution in line with everyone’s needs that solves a conflict.",
+  "relevancy": [
+    {
+      "skill": "ckzi3blfz0687e2n0huf88a8y",
+      "score": 75
+    },
+    {
+      "skill": "ckzi3b8sz0614e2n0ijnnazce",
+      "score": 75
+    },
+    {
+      "skill": "ckzi3ezut1614e2n07fab18pt",
+      "score": 70
+    },
+    {
+      "skill": "ckzi3f9cj1747e2n0taoxah1j",
+      "score": 90
+    },
+    {
+      "skill": "ckzi3fnea2022e2n0r588if1r",
+      "score": 80
+    },
+    {
+      "skill": "ckzi3gu6u2638e2n0fmr9gv86",
+      "score": 60
+    },
+    {
+      "skill": "ckzi3gb7f2318e2n04kesx118",
+      "score": 60
+    },
+    {
+      "skill": "ckzi3g17e2167e2n055jpiaaz",
+      "score": 65
+    }
+  ],
+  "tags": [
+    "cl87r11sd00012e64lyugvbv2",
+    "cl7lzoeqy00002e62ke8rog8l"
+  ],
   "id": "cl80iaxwe00042e64bjqvh501",
-  "slug": "03524df"
+  "description": "When we listen to another person, there is always a risk that we draw conclusions about what the person is expressing that are not accurate and lead to misunderstandings. These conclusions are often just our own interpretations, which are coloured by our own thoughts, emotions and assumptions around this person as well as by our own (unfulfilled) needs in the situation. A nonviolent communication (NVC) approach asks us to go beyond our first interpretation of what is being expressed and try to listen deeper. \n\n## How it can help\n\nNVC can establish contact and conversation between all parties in cooperation or a conflict by identifying and expressing everyone’s needs, and then developing a shared strategy that leads to a solution to the tension as a next step. Acknowledge that there are different needs and that no strategy has yet been found to meet them amicably makes it easier to solve a conflict. NVC supports us to express what we want and ask for things in a way that is more transparent with our needs and feelings and in line with the needs of the other people in the situation.\n\n#### Learn more\n\nRead the [IDG Phase 2 Research Report](/assets/221215_IDG_Toolkit_v1.pdf) and get more in-depth information.",
+  "actions": "When starting with NVC for the first time, try the following: \n\n1. When listening to another, hold space within you for the other person’s view and emotions without subsuming your own needs and emotions. Go beyond your first interpretation of what is being expressed and try to listen deeper. \n\n2. Instead of instinctually responding as if you were being attacked, ask further questions on how this person feels and about needs that are not being met."
 }
