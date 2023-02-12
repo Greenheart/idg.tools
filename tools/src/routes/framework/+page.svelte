@@ -2,19 +2,16 @@
     import Divider from '$shared/components/Divider.svelte'
     import Heading from '$shared/components/Heading.svelte'
     import Link from '$shared/components/Link.svelte'
-    import IDGColors from '$shared/components/IDGColors.svelte'
-    import {
-        COMMUNITY_LINK,
-        FRAMEWORK_LINK,
-        GITHUB_LINK,
-        HOW_TO_CONTRIBUTE_LINK,
-        IDG_PDF_TOOLKIT,
-    } from '$shared/constants'
 
     import { page } from '$app/stores'
     import Meta from '$components/Meta.svelte'
+    import IdgFramework from '$components/IDGFramework.svelte'
+    import type { PageData } from './$types'
 
     const url = $page.url.toString()
+
+    export let data: PageData
+    $: ({ skills, dimensions } = data)
 </script>
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" {url} />
@@ -37,52 +34,6 @@
     </p>
 </div> -->
 
-<div class="grid gap-4 pt-12">
-    <div class="flex aspect-video items-center justify-between bg-white shadow-md">
-        <IDGColors />
-        <img src="/images/IDG-logo.svg" alt="IDG logo" width="400" height="220" />
-        <IDGColors />
-    </div>
-
-    <div class="flex aspect-video items-center justify-between bg-white shadow-md">
-        <IDGColors />
-        <img src="/images/IDG-logo.svg" alt="IDG logo" width="400" height="220" />
-        <IDGColors />
-    </div>
-</div>
-
-<!-- <div
-    class="mx-auto grid max-w-lg justify-items-center gap-4 text-center md:max-w-none md:grid-cols-3 lg:gap-8"
->
-    <div class="border-being flex flex-col border bg-white p-4 shadow-md">
-        <Heading size={2} class="text-being">Open source</Heading>
-        <p class="my-4 flex-1">
-            This is an open source library of tools that both people and organizations can use to
-            develop the skills outlined by the IDG framework. Here you can find methods, workshops
-            and resources relevant to the skills you want to practice.
-        </p>
-        <Link href={GITHUB_LINK} variant="orange">Contribute on GitHub</Link>
-    </div>
-
-    <div class="border-collaborating flex flex-col border bg-white p-4 shadow-md">
-        <Heading size={2} class="text-collaborating">Co-creation</Heading>
-        <p class="my-4 flex-1">
-            The IDG toolkit is created by and for the community. You are welcome to suggest
-            improvements, new tools or even design and develop the app. Read the principles of
-            tools, and how to join the co-creation.
-        </p>
-        <Link href={HOW_TO_CONTRIBUTE_LINK} variant="orange">Get involved</Link>
-    </div>
-
-    <div class="border-relating flex flex-col border bg-white p-4 shadow-md">
-        <Heading size={2} class="text-relating">Community</Heading>
-        <p class="my-4 flex-1">
-            With more than 100 IDG Hubs, these tools are used by an emerging network eager to
-            participate, explore and co-create. Join local events, connect with the global community
-            and learn together.
-        </p>
-        <Link href={COMMUNITY_LINK} variant="orange">Find your community</Link>
-    </div>
-</div> -->
+<IdgFramework {skills} {dimensions} />
 
 <Divider class="my-16" />
