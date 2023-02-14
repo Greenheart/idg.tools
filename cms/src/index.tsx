@@ -1,5 +1,4 @@
-import CMS from 'netlify-cms-app'
-
+import CMS from '@staticcms/core'
 import { default as UniqueId } from './widgets/UniqueId'
 import { default as UniqueSlug } from './widgets/UniqueSlug'
 
@@ -15,16 +14,17 @@ CMS.init({
             name: 'github',
             repo: 'Greenheart/idg.tools',
             branch: 'main',
-            open_authoring: false,
         },
         local_backend: {
             url: 'http://localhost:2030/api/v1',
         },
-        publish_mode: 'simple',
+        // TODO: find out what to do aboout publishing mode.
+        // publish_mode: 'simple',
         i18n: {
+            // @ts-expect-error This enum is not possible to import - maybe report issue or find a solution
             structure: 'multiple_folders',
             locales: LOCALE_IDENTIFIERS,
-            default_locale: DEFAULT_LOCALE_IDENTIFIER,
+            defaultLocale: DEFAULT_LOCALE_IDENTIFIER,
         },
         collections: COLLECTIONS,
     },

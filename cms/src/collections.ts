@@ -1,4 +1,4 @@
-import { CmsCollection } from 'netlify-cms-core'
+import { Collection } from '@staticcms/core'
 import { STORIES_LEARN_MORE } from './constants'
 
 import { ContributorsFields } from './fields/contributors'
@@ -125,4 +125,4 @@ export const COLLECTIONS = [
         i18n: true,
         description: 'The 5 dimensions of the Inner Development Goals.',
     },
-] as CmsCollection[]
+] as Collection[]
