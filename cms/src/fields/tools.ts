@@ -3,6 +3,7 @@ import {
     ID,
     MARKDOWN_MINIMAL,
     MARKDOWN_LINKS_ONLY,
+    MARKDOWN_ARTICLE,
     NAME,
 } from './shared'
 
@@ -20,7 +21,7 @@ export const ToolsFields: CustomCmsField[] = [
         label: 'Description',
         name: 'description',
         hint: 'Describe how and why this tool helps people practice inner development for sustainable development.',
-        ...MARKDOWN_MINIMAL,
+        ...MARKDOWN_ARTICLE,
     },
     {
         label: 'Actions',
