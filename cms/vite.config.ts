@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { setDefaultResultOrder } from 'dns'
+import { resolve } from 'path'
 
 setDefaultResultOrder('verbatim')
 
@@ -12,6 +13,6 @@ export default defineConfig({
         port: 2234,
     },
     build: {
-        outDir: 'build',
+        outDir: resolve('./build'),
     },
 })
