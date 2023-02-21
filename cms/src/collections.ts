@@ -78,19 +78,20 @@ export const COLLECTIONS = [
         i18n: true,
         description: 'Create tags and use them to organize different tools.',
     },
-    {
-        name: 'settings',
-        label: '⚙️ Settings',
-        description: 'Here you can change settings like which stories that should be featured.',
-        files: [
-            {
-                label: 'Featured Content',
-                name: 'featured',
-                file: '/content/src/settings/featured.json',
-                fields: FeaturedContentFields,
-            },
-        ],
-    },
+    // TODO: Find a way to support different featured content for each locale
+    // {
+    //     name: 'settings',
+    //     label: '⚙️ Settings',
+    //     description: 'Here you can change settings like which stories that should be featured.',
+    //     files: [
+    //         {
+    //             label: 'Featured Content',
+    //             name: 'featured',
+    //             file: '/content/src/settings/featured.json',
+    //             fields: FeaturedContentFields,
+    //         },
+    //     ],
+    // },
     {
         name: 'skills',
         label: '🌱 Skills',
