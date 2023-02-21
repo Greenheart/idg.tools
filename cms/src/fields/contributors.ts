@@ -1,9 +1,10 @@
-import { CustomCmsField, ID, NAME } from './shared'
+import { CustomField, ID, NAME } from './shared'
 
-export const ContributorsFields: CustomCmsField[] = [
+export const ContributorsFields: CustomField[] = [
     ID,
     NAME,
     {
+        widget: 'string',
         label: 'Link',
         name: 'link',
         required: false,

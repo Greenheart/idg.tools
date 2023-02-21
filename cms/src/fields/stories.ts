@@ -1,8 +1,8 @@
-import { CmsField } from 'netlify-cms-core'
+import { Field } from '@staticcms/core'
 import { STORIES_LEARN_MORE } from '../constants'
-import { CustomCmsField, ID, MARKDOWN_ARTICLE, MARKDOWN_LINKS_ONLY, TITLE } from './shared'
+import { CustomField, ID, MARKDOWN_ARTICLE, MARKDOWN_LINKS_ONLY, TITLE } from './shared'
 
-export const StoriesFields: CustomCmsField[] = [
+export const StoriesFields: CustomField[] = [
     ID,
     TITLE,
     {
@@ -13,7 +13,7 @@ export const StoriesFields: CustomCmsField[] = [
         name: 'image',
         choose_url: false,
         label: 'Featured image',
-    } as CmsField,
+    } as Field,
     {
         label: 'Image description (alt text)',
         hint: 'Describe what the image shows. This is important for accessibility.',
@@ -22,18 +22,22 @@ export const StoriesFields: CustomCmsField[] = [
         i18n: true,
     },
     // TODO: Add image credit field
+    // TODO: find a way to configure markdown fields, maybe a function to create a full field based on inputs
+    // This could similar to how createBundle<T>() works in the content build process, but here called createField<T>()
     {
+        widget: 'markdown',
         label: 'Intro',
         name: 'intro',
         hint: "A short intro to catch the reader's interest.",
-        ...MARKDOWN_LINKS_ONLY,
+        // ...MARKDOWN_LINKS_ONLY,
         required: false,
     },
     {
+        widget: 'markdown',
         label: 'Story',
         name: 'story',
         hint: `Your story of how you practiced inner development and how it helped you with sustainable development. [Click here to learn more about IDG.community stories](${STORIES_LEARN_MORE})`,
-        ...MARKDOWN_ARTICLE,
+        // ...MARKDOWN_ARTICLE,
     },
     {
         label: 'Relevant dimensions',
@@ -84,7 +88,7 @@ export const StoriesFields: CustomCmsField[] = [
         i18n: 'duplicate',
         default: '',
         hint: 'By leaving the publishing date empty, it will not be visible on the webpage.',
-    } as CmsField,
+    } as Field,
     {
         label: 'Slug',
         name: 'slug',

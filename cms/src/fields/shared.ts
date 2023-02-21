@@ -1,16 +1,16 @@
-import { CmsFieldBase, CmsField, CmsFieldMarkdown } from 'netlify-cms-core'
+import { BaseField, Field, MarkdownField } from '@staticcms/core'
 
-export type CmsFieldUniqueId = CmsFieldBase & {
+export type UniqueIdField = BaseField & {
     widget: 'uniqueId'
 }
 
-export type CmsFieldUniqueSlug = CmsFieldBase & {
+export type UniqueSlugField = BaseField & {
     widget: 'uniqueSlug'
 }
 
-export type CustomCmsField = CmsField | CmsFieldUniqueId | CmsFieldUniqueSlug
+export type CustomField = Field | UniqueIdField | UniqueSlugField
 
-export const ID: CmsFieldUniqueId = {
+export const ID: UniqueIdField = {
     label: 'ID',
     name: 'id',
     widget: 'uniqueId',
@@ -18,52 +18,55 @@ export const ID: CmsFieldUniqueId = {
     i18n: 'duplicate',
 }
 
-export const NAME: CmsField = {
+export const NAME: Field = {
     label: 'Name',
     name: 'name',
     i18n: true,
     widget: 'string',
 }
 
-export const TITLE: CmsField = {
+export const TITLE: Field = {
     label: 'Headline',
     name: 'title',
     i18n: true,
     widget: 'string',
 }
 
-export const DESCRIPTION: CmsField = {
+export const DESCRIPTION: Field = {
     label: 'Description',
     name: 'description',
     i18n: true,
     widget: 'string',
 }
 
-export const MARKDOWN_LINKS_ONLY: Partial<CmsFieldMarkdown & CmsFieldBase> = {
+// TODO: figure out how the new editor works and how to configure it
+export const MARKDOWN_LINKS_ONLY: Partial<MarkdownField & BaseField> = {
     widget: 'markdown',
-    buttons: ['link'],
-    editor_components: [],
+    // buttons: ['link'],
+    // editor_components: [],
     i18n: true,
-    minimal: true,
+    // minimal: true,
 }
 
-export const MARKDOWN_MINIMAL: Partial<CmsFieldMarkdown & CmsFieldBase> = {
+// TODO: figure out how the new editor works and how to configure it
+export const MARKDOWN_MINIMAL: Partial<MarkdownField & BaseField> = {
     ...MARKDOWN_LINKS_ONLY,
-    buttons: ['bulleted-list', 'numbered-list', 'link'],
+    // buttons: ['bulleted-list', 'numbered-list', 'link'],
 }
 
-export const MARKDOWN_ARTICLE: Partial<CmsFieldMarkdown & CmsFieldBase> = {
+// TODO: figure out how the new editor works and how to configure it
+export const MARKDOWN_ARTICLE: Partial<MarkdownField & BaseField> = {
     widget: 'markdown',
-    buttons: [
-        'heading-one',
-        'heading-two',
-        'heading-three',
-        'quote',
-        'bulleted-list',
-        'numbered-list',
-        'link',
-    ],
-    editor_components: ['image'],
+    // buttons: [
+    //     'heading-one',
+    //     'heading-two',
+    //     'heading-three',
+    //     'quote',
+    //     'bulleted-list',
+    //     'numbered-list',
+    //     'link',
+    // ],
+    // editor_components: ['image'],
     i18n: true,
-    minimal: true,
+    // minimal: true,
 }

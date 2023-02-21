@@ -1,12 +1,6 @@
-import {
-    CustomCmsField,
-    ID,
-    MARKDOWN_MINIMAL,
-    MARKDOWN_LINKS_ONLY,
-    NAME,
-} from './shared'
+import { CustomField, ID, MARKDOWN_MINIMAL, MARKDOWN_LINKS_ONLY, NAME } from './shared'
 
-export const ToolsFields: CustomCmsField[] = [
+export const ToolsFields: CustomField[] = [
     ID,
     NAME,
     {
