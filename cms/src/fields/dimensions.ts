@@ -1,6 +1,6 @@
-import { CustomCmsField, DESCRIPTION, ID, NAME } from './shared'
+import { CustomField, DESCRIPTION, ID, NAME } from './shared'
 
-export const DimensionsFields: CustomCmsField[] = [
+export const DimensionsFields: CustomField[] = [
     ID,
     NAME,
     DESCRIPTION,

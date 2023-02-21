@@ -1,9 +1,9 @@
-import { CustomCmsField } from '../shared'
+import { CustomField } from '../shared'
 
 // TODO: Fix bug that this doesn't show up after we changed to support multiple locales
 // IDEA: Maybe we have to live with a differnent format for now instead
 
-export const FeaturedContentFields: CustomCmsField[] = [
+export const FeaturedContentFields: CustomField[] = [
     {
         name: 'stories',
         required: false,

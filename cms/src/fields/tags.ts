@@ -1,3 +1,3 @@
-import { CustomCmsField, ID, NAME } from './shared'
+import { CustomField, ID, NAME } from './shared'
 
-export const TagsFields: CustomCmsField[] = [ID, NAME]
+export const TagsFields: CustomField[] = [ID, NAME]
