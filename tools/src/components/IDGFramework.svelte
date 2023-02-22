@@ -9,21 +9,26 @@
     export let dimensions: Dimension[]
 </script>
 
+<!-- TODO: Add all localized content from the existing translations -->
+<!-- TODO: Add allowed locales to the IDG CMS (pt, es, dk, ...) -->
+<!-- TODO: Build multiple locales for the content. For now include all in content.json to allow client side switching -->
+<!-- TODO: Add support for localized content in the IDG framework demo -->
+
 <div class="grid gap-4 pt-12">
     <div class="flex aspect-video items-center justify-between bg-white shadow-md">
         <IDGColors />
-        <img src="/images/IDG-logo.svg" alt="IDG logo" width="400" height="220" />
+        <img src="/images/IDG-logo.svg" alt="IDG logo" width="490" height="270" />
         <IDGColors />
     </div>
 
     <div class="grid aspect-video place-items-center bg-white p-4 shadow-md">
         <div class="grid h-full w-full grid-cols-5 gap-2 p-8 text-white">
-            {#each dimensions as dimension}
+            {#each dimensions as dimension, i}
                 {@const dimensionName = COLORS[dimension.id]}
                 <div
                     class={cx(
                         `bg-${dimensionName}`,
-                        'grid h-full grid-rows-[max-content_90px] gap-2 p-6 shadow-sm',
+                        'grid h-full grid-rows-[max-content_94px] gap-2 p-6 shadow-sm',
                     )}
                 >
                     <img
@@ -34,12 +39,16 @@
                         class="place-self-center"
                     />
                     <div class="border-y py-2">
-                        <h2>{dimension.name}</h2>
-                        <p class="text-sm">{dimension.description}</p>
+                        <h2 class="font-black">
+                            <span class="pr-2">{i + 1}</span>{dimension.name}
+                        </h2>
+                        <p class="text-sm font-semibold">{dimension.description}</p>
                     </div>
-                    {#each getSkillsInDimension(dimension.id, { skills }) as { name }}
-                        <p class="text-sm">{name}</p>
-                    {/each}
+                    <div class="flex flex-col justify-start gap-3 pt-1 text-sm font-semibold">
+                        {#each getSkillsInDimension(dimension.id, { skills }) as { name }}
+                            <p>{name}</p>
+                        {/each}
+                    </div>
                 </div>
             {/each}
         </div>
