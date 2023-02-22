@@ -8,6 +8,11 @@
     const roadmap = {
         current: [
             {
+                title: 'Support for translations and localization',
+                description:
+                    'This will make it possible to translate and localize the IDG framework and the IDG Toolkit into multiple languages and locales.',
+            },
+            {
                 title: 'Principles and Governance for the IDG Toolkit',
                 description:
                     'This is important because we want to make it easier to contribute, and have a transparent co-creation process.',
@@ -32,11 +37,6 @@
                 title: 'Self assessment that recommends tools',
                 description:
                     'This would make it easier to know where to get started, which IDG dimensions and skills to focus on - and which IDG tools to start with.',
-            },
-            {
-                title: 'Support for translations and localization',
-                description:
-                    'The IDGs - including the IDG Toolkit - wants to adapt and improve based on input and feedback in Phase 3. This includes supporting multiple languages and locales for the IDG Toolkit.',
             },
         ],
         future: [],
