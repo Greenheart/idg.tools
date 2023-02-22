@@ -15,22 +15,18 @@ CMS.init({
         media_folder: '/tools/static/images',
         backend: {
             name: 'github',
-            /**
-             * TODO: investigate if we can use open authoring to let anyone edit and open PRs with their GitHub account
-             * This requires us to add two more config fields, but is much better UX than making us into gatekeepers for who can edit or not.
-             * We shouldn't have to be the gatekeepers for quick updates or edits, but rather for publishing the changes.
-             *
-             // auth_type: 'pkce', // this is a client side auth
-             // app_id: '<string from GitHub / GitLab app config>'
-             */
+            auth_scope: 'public_repo',
             repo: 'Greenheart/idg.tools',
             branch: 'main',
             base_url: 'https://idg-cms-oauth.vercel.app',
+            open_authoring: true,
+            // NOTE: This might be needed for local CMS development to work properly
+            // site_domain: 'cms.idg.community'
         },
         local_backend: {
             url: 'http://localhost:2030/api/v1',
         },
-        publish_mode: 'simple',
+        publish_mode: 'editorial_workflow',
         i18n: {
             structure: 'multiple_folders',
             locales: LOCALE_IDENTIFIERS,
