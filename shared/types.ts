@@ -14,6 +14,7 @@ export type Skill = Item & {
 
 export type Dimension = Item & {
     color: string
+    subtitle: string
     skills: Skill['id'][]
 }
 
