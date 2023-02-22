@@ -78,19 +78,23 @@ export const COLLECTIONS = [
         i18n: true,
         description: 'Create tags and use them to organize different tools.',
     },
-    {
-        name: 'settings',
-        label: '⚙️ Settings',
-        description: 'Here you can change settings like which stories that should be featured.',
-        files: [
-            {
-                label: 'Featured Content',
-                name: 'featured',
-                file: '/content/src/settings/featured.json',
-                fields: FeaturedContentFields,
-            },
-        ],
-    },
+    // TODO: Find a way to support settings for localized content.
+    // Perhaps by using a folder collection but with specific file names?
+    // If we disable the possibility to add new "Setting" entries, this could be pretty straightforward.
+    // And it would reduce the complexity of the content build process since there would be no edge cases since everything would use the same structure.
+    // {
+    //     name: 'settings',
+    //     label: '⚙️ Settings',
+    //     description: 'Here you can change settings like which stories that should be featured.',
+    //     files: [
+    //         {
+    //             label: 'Featured Content',
+    //             name: 'featured',
+    //             file: '/content/src/settings/featured.json',
+    //             fields: FeaturedContentFields,
+    //         },
+    //     ],
+    // },
     {
         name: 'skills',
         label: '🌱 Skills',
