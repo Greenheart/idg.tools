@@ -27,7 +27,7 @@
 </script>
 
 <div class={cx('space-y-4', className)}>
-    {#each content.dimensions as { name, description, id: dimensionId, skills: skillsInDimension }, index}
+    {#each content.dimensions as { name, subtitle, id: dimensionId, skills: skillsInDimension }, index}
         {@const color = getColor(dimensionId)}
         <details
             class="text-white"
@@ -45,7 +45,7 @@
                     <span class="flex items-center text-xs sm:text-base md:text-base">
                         <span class="text-base font-bold sm:text-lg md:text-xl">{name}</span>
                         <span class="px-1 md:px-2">&mdash;</span>
-                        {description}
+                        {subtitle}
                         <NumberOfSelectedSkills {skillsInDimension} />
                     </span>
                 </span>
