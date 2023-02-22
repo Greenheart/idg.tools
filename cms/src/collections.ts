@@ -3,13 +3,47 @@ import { STORIES_LEARN_MORE } from './constants'
 
 import { ContributorsFields } from './fields/contributors'
 import { DimensionsFields } from './fields/dimensions'
-import { FeaturedContentFields } from './fields/settings/featured'
+import { FeaturedContentFields } from './fields/featured'
 import { SkillsFields } from './fields/skills'
 import { StoriesFields } from './fields/stories'
 import { TagsFields } from './fields/tags'
 import { ToolsFields } from './fields/tools'
 
 export const COLLECTIONS = [
+    {
+        name: 'skills',
+        label: '🌱 Skills',
+        label_singular: 'Skill',
+        folder: '/content/src/skills',
+        fields: SkillsFields,
+        extension: 'json',
+        format: 'json',
+        create: false,
+        delete: false,
+        publish: false,
+        summary: '{{fields.name}}',
+        identifier_field: 'id',
+        slug: '{{id}}',
+        i18n: true,
+        description: 'The 23 skills of the Inner Development Goals.',
+    },
+    {
+        name: 'dimensions',
+        label: '🌿 Dimensions',
+        label_singular: 'Dimension',
+        folder: '/content/src/dimensions',
+        fields: DimensionsFields,
+        extension: 'json',
+        format: 'json',
+        create: false,
+        delete: false,
+        publish: false,
+        summary: '{{fields.name}}',
+        identifier_field: 'id',
+        slug: '{{id}}',
+        i18n: true,
+        description: 'The 5 dimensions of the Inner Development Goals.',
+    },
     {
         name: 'tools',
         label: '📚 Tools',
@@ -78,10 +112,29 @@ export const COLLECTIONS = [
         i18n: true,
         description: 'Create tags and use them to organize different tools.',
     },
+    {
+        name: 'featured',
+        label: '⚙️ Featured',
+        folder: '/content/src/featured',
+        fields: FeaturedContentFields,
+        extension: 'json',
+        format: 'json',
+        create: false,
+        delete: false,
+        publish: false,
+        summary: '{{id}}',
+        identifier_field: 'id',
+        slug: '{{id}}',
+        i18n: true,
+        description: 'The 23 skills of the Inner Development Goals.',
+    },
     // TODO: Find a way to support settings for localized content.
     // Perhaps by using a folder collection but with specific file names?
     // If we disable the possibility to add new "Setting" entries, this could be pretty straightforward.
     // And it would reduce the complexity of the content build process since there would be no edge cases since everything would use the same structure.
+    // Maybe we can solve it with the `id` being a content type like "stories", and the "featured" field could be the array of contentIds that should be featured, in that order.
+    // This way, we can call the collection featuredContent
+    // If the quick add option is disabled too it will be pretty nice.
     // {
     //     name: 'settings',
     //     label: '⚙️ Settings',
@@ -95,38 +148,4 @@ export const COLLECTIONS = [
     //         },
     //     ],
     // },
-    {
-        name: 'skills',
-        label: '🌱 Skills',
-        label_singular: 'Skill',
-        folder: '/content/src/skills',
-        fields: SkillsFields,
-        extension: 'json',
-        format: 'json',
-        create: false,
-        delete: false,
-        publish: false,
-        summary: '{{fields.name}}',
-        identifier_field: 'id',
-        slug: '{{id}}',
-        i18n: true,
-        description: 'The 23 skills of the Inner Development Goals.',
-    },
-    {
-        name: 'dimensions',
-        label: '🌿 Dimensions',
-        label_singular: 'Dimension',
-        folder: '/content/src/dimensions',
-        fields: DimensionsFields,
-        extension: 'json',
-        format: 'json',
-        create: false,
-        delete: false,
-        publish: false,
-        summary: '{{fields.name}}',
-        identifier_field: 'id',
-        slug: '{{id}}',
-        i18n: true,
-        description: 'The 5 dimensions of the Inner Development Goals.',
-    },
 ] as CmsCollection[]
