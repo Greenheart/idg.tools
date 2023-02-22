@@ -7,7 +7,7 @@ import { getSkill, getTag, getToolByLink } from '$shared/content-utils'
 import type { Actions, PageServerLoad } from './$types'
 import { createIssue } from '$lib/github'
 
-// Disable prerendering since we want the server-side redirect, and also to support the feedback form
+// Disable prerendering only for this page, since we want the server-side redirect, and also to support the feedback form
 export const prerender = false
 
 const sanitizer = remark().use(stripMarkdown)

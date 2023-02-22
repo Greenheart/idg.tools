@@ -10,6 +10,7 @@ import {
 } from '$shared/content-utils'
 import type { PageServerLoad } from './$types'
 
+// Disable prerendering only for this page, since want the server-side redirect
 export const prerender = false
 
 export const load = (async ({ params: { link } }: { params: Record<string, string> }) => {
