@@ -1,3 +1,4 @@
+import { DEFAULT_LOCALE_IDENTIFIER, LOCALE_IDENTIFIERS } from './constants'
 import type {
     Dimension,
     ToolsContent,
@@ -9,7 +10,11 @@ import type {
     Contributor,
     FeaturedContent,
     AllContent,
+    Locale,
 } from './types'
+
+export const getLocale = (locale?: string) =>
+    LOCALE_IDENTIFIERS.includes(locale as Locale) ? (locale as Locale) : DEFAULT_LOCALE_IDENTIFIER
 
 export const getDimension = (id: Dimension['id'], { dimensions }: Pick<AllContent, 'dimensions'>) =>
     dimensions.find((c) => c.id === id) as Dimension
