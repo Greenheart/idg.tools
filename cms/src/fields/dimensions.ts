@@ -3,7 +3,13 @@ import { CustomCmsField, DESCRIPTION, ID, NAME } from './shared'
 export const DimensionsFields: CustomCmsField[] = [
     ID,
     NAME,
-    DESCRIPTION,
+    {
+        label: 'Subtitle',
+        name: 'subtitle',
+        i18n: true,
+        widget: 'string',
+    },
+    { ...DESCRIPTION, widget: 'text' } as CustomCmsField,
     {
         label: 'Skills',
         name: 'skills',
