@@ -1,5 +1,6 @@
 import { CustomCmsField, ID, NAME } from './shared'
 
+// IDEA: Maybe show the stories a contributor is associated with as a two way relationship.
 export const ContributorsFields: CustomCmsField[] = [
     ID,
     NAME,
