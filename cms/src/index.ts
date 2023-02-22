@@ -18,8 +18,6 @@ CMS.init({
             branch: 'main',
             base_url: 'https://idg-cms-oauth.vercel.app',
             open_authoring: true,
-            // NOTE: This might be needed for local CMS development to work properly
-            // site_domain: 'cms.idg.community'
         },
         local_backend: {
             url: 'http://localhost:2030/api/v1',
