@@ -9,7 +9,21 @@
         <script type="text/javascript">
             window.CMS_MANUAL_INIT = true
         </script>
-        <style>
+        <style id="idg-overrides">
+            /*
+             * Hide logo section during page load.
+             * NOTE: This needs to be the first rule in this style tag in order to work.
+             * See `index.ts` for more details
+             */
+            #nc-root section {
+                display: none;
+            }
+
+            /* Permanently hide the default logo, for example if the user logs out */
+            #nc-root section > span > svg {
+                display: none;
+            }
+
             /* Disable global media library to avoid confusion */
             nav > ul > li:last-child {
                 display: none;

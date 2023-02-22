@@ -6,8 +6,6 @@ import { default as UniqueSlug } from './widgets/UniqueSlug'
 import { DEFAULT_LOCALE_IDENTIFIER, LOCALE_IDENTIFIERS } from '../../shared/constants'
 import { COLLECTIONS } from './collections'
 
-// IDEA: Maybe replace the Netlify CMS logo with IDG logo, which would be very nice
-
 CMS.init({
     config: {
         load_config_file: false,
@@ -38,3 +36,31 @@ CMS.init({
 
 CMS.registerWidget(UniqueId)
 CMS.registerWidget(UniqueSlug)
+
+const replaceLogo = () => {
+    const styles = document.querySelector('#idg-overrides') as HTMLStyleElement
+    if (styles) {
+        // Since we don't know how long the React app takes to load and initialize,
+        // we run an interval during page load to show the IDG logo and login button as soon as possible
+        const interval = window.setInterval(() => {
+            const container = document.querySelector('section > span') as HTMLSpanElement
+            if (container) {
+                window.clearInterval(interval)
+                // Remove default logo
+                container.firstElementChild!.remove()
+
+                container.style.display = 'flex'
+                container.style.alignItems = 'center'
+                const img = document.createElement('img')
+                img.src = '/IDG-logo.svg'
+                img.onload = () => {
+                    // Show the IDG logo and the login button at the same moment
+                    styles!.sheet!.deleteRule(0)
+                }
+                container.prepend(img)
+            }
+        }, 30)
+    }
+}
+
+document.addEventListener('DOMContentLoaded', replaceLogo)
