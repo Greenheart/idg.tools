@@ -10,8 +10,9 @@ import {
 } from '$shared/content-utils'
 import type { PageServerLoad } from './$types'
 
-/** @type {PageServerLoad} */
-export async function load({ params: { link } }: { params: Record<string, string> }) {
+export const prerender = false
+
+export const load = (async ({ params: { link } }: { params: Record<string, string> }) => {
     const story = getStoryByLink(link, content)
     if (story) {
         // If page was found on a different URL,
@@ -35,4 +36,4 @@ export async function load({ params: { link } }: { params: Record<string, string
     }
 
     throw error(404, `No story found with the link: "${link}"`)
-}
+}) satisfies PageServerLoad

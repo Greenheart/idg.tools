@@ -10,9 +10,6 @@
     import { GITHUB_LINK } from '$shared/constants'
     import { getScrollbarWidth } from '$shared/utils'
 
-    export const csr = false
-    export const prerender = true
-
     // Workaround to allow smooth scrolling in Firefox
     // https://github.com/sveltejs/kit/issues/2733#issuecomment-1050779671
     beforeNavigate(({ to, from }) => {

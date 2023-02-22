@@ -3,8 +3,7 @@ import { content } from '$lib/content-backend'
 import type { PageServerLoad } from './$types'
 import { getSortedStories } from '$shared/content-utils'
 
-/** @type {PageServerLoad} */
-export async function load() {
+export const load = (async () => {
     if (content) {
         return {
             content: {
@@ -15,4 +14,4 @@ export async function load() {
     }
 
     throw error(500)
-}
+}) satisfies PageServerLoad

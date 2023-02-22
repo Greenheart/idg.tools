@@ -43,7 +43,7 @@ const TEMPLATES = {
 
 type ISSUE_TYPES = keyof typeof TEMPLATES
 
-// NOTE: Seems like there's a rate limiting of 5000/requests per hour, so it might be worth to write multiple issues at once in the future to scale up.
+// NOTE: Seems like there's a rate limiting, so it might be worth to write multiple issues at once in the future to scale up.
 export async function createIssue({
     userContent,
     type,

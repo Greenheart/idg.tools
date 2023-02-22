@@ -7,12 +7,14 @@ import { getSkill, getTag, getToolByLink } from '$shared/content-utils'
 import type { Actions, PageServerLoad } from './$types'
 import { createIssue } from '$lib/github'
 
+// Disable prerendering since we want the server-side redirect, and also to support the feedback form
+export const prerender = false
+
 const sanitizer = remark().use(stripMarkdown)
 
 const sanitizeInput = (raw: string) => sanitizer.process(raw).then((value) => value.toString())
 
-/** @type {PageServerLoad} */
-export async function load({ params: { link } }: { params: Record<string, string> }) {
+export const load = (async ({ params: { link } }: { params: Record<string, string> }) => {
     const tool = getToolByLink(link, content)
 
     if (tool) {
@@ -28,7 +30,7 @@ export async function load({ params: { link } }: { params: Record<string, string
     }
 
     throw error(404, `No tool found with the link: "${link}"`)
-}
+}) satisfies PageServerLoad
 
 export const actions: Actions = {
     default: async ({ request, url }) => {
