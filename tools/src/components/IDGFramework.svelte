@@ -63,7 +63,7 @@
         <div class="grid aspect-video place-items-center bg-white p-3 shadow-md">
             <div
                 class={cx(
-                    'relative grid h-full w-full grid-cols-[6fr_7fr] gap-2 px-8 py-3 text-white',
+                    'relative grid h-full w-full grid-cols-[6fr_7fr] gap-6 px-8 py-3 text-white',
                     color,
                 )}
             >
@@ -79,13 +79,18 @@
                     <h2 class="pb-2 text-6xl font-extrabold">{dimension.name}</h2>
                     <h3 class="pb-4 text-3xl font-bold">{dimension.subtitle}</h3>
 
-                    <p class="max-w-xs text-base font-semibold leading-5">
+                    <p class="max-w-xs text-base leading-5">
                         {dimension.description}
                     </p>
                     <IDGLogo class="absolute bottom-0 h-[60px] w-[110px] flex-grow text-white/50" />
                 </div>
-                <div class="">
-                    <!-- TODO: each skills: show skill name and skill description -->
+                <div class="my-8 mr-8 flex flex-col gap-6 text-base">
+                    {#each getSkillsInDimension(dimension.id, { skills }) as skill}
+                        <div>
+                            <p class="font-extrabold">{skill.name}</p>
+                            <p>{skill.description}</p>
+                        </div>
+                    {/each}
                 </div>
                 <IDGColors class="absolute right-0 top-1/2 -translate-y-1/2" />
             </div>
