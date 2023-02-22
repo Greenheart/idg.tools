@@ -76,7 +76,7 @@ export const COLLECTIONS = [
         slug: '{{id}}',
         identifier_field: 'id',
         i18n: true,
-        description: `Stories to share insights and learnings of how the IDGs are being used in practice, to reach the SDGs. Learn more about stories here: ${STORIES_LEARN_MORE}`,
+        description: `Stories to share insights and learnings of how the IDGs are being used in practice, to reach the SDGs.`,
     },
     {
         name: 'contributors',
