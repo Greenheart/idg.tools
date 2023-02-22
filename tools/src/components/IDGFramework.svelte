@@ -59,10 +59,12 @@
         <div class="grid aspect-video place-items-center bg-white p-3 shadow-md">
             <div
                 class={cx(
-                    'grid h-full w-full grid-cols-5 gap-2 p-8 text-white',
+                    'relative grid h-full w-full grid-cols-5 gap-2 p-8 text-white',
                     getColor(dimension.id),
                 )}
-            />
+            >
+                <IDGColors class="absolute right-0 top-1/2 -translate-y-1/2" />
+            </div>
         </div>
     {/each}
 </div>
