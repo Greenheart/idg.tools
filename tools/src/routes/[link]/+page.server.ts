@@ -21,6 +21,11 @@ export const load = (async ({ params: { link } }: { params: Record<string, strin
         // If page was found on a different URL,
         // permanently redirect to the updated url (HTTP 301)
         // to prevent multiple URLs publishing the same content.
+        // TODO: Make sure redirects target a valid locale.
+        // First try with the current locale but then with the default fallback one.
+        // Also beware that content may exist in one locale but not in others.
+        // TODO: Also redirect from `/${DEFAULT_LOCALE_IDENTIFIER}/path` to `/path`
+        // This is necessary to prevent duplicate content across multiple URLs.
         if (link !== tool.link) throw redirect(301, `/${tool.link}`)
 
         const tags = tool.tags.map((tagId) => getTag(tagId, content))

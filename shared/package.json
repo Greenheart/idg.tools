@@ -6,7 +6,8 @@
     "dependencies": {
         "svelte": "^3.55.1",
         "dompurify": "^3.0.0",
-        "svelte-markdown": "^0.2.3"
+        "svelte-markdown": "^0.2.3",
+        "@rgossiaux/svelte-headlessui": "^1.0.2"
     },
     "devDependencies": {
         "@types/dompurify": "^2.4.0"

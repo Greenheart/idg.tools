@@ -9,6 +9,10 @@
     import Link from '$shared/components/Link.svelte'
     import { GITHUB_LINK } from '$shared/constants'
     import { getScrollbarWidth } from '$shared/utils'
+    import type { PageData } from './$types'
+
+    export let data: PageData
+    $: ({ supportedLocales } = data)
 
     // Workaround to allow smooth scrolling in Firefox
     // https://github.com/sveltejs/kit/issues/2733#issuecomment-1050779671
@@ -25,7 +29,7 @@
 </script>
 
 <main class="mx-auto w-full max-w-2xl px-4 pb-16 text-black sm:max-w-6xl sm:px-8 sm:text-lg">
-    <Header />
+    <Header {supportedLocales} />
     <slot />
     <div class="mx-auto mt-16 max-w-2xl sm:max-w-3xl">
         <CommunitySection />
