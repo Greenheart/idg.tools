@@ -10,7 +10,7 @@
         ELEMENT_STORIES_LINK,
         ELEMENT_TOOLS_LINK,
         GITHUB_LINK,
-        WEBLATE_LINK,
+        IDG_CMS_LINK,
     } from '$shared/constants'
     import LinkButton from '$shared/components/LinkButton.svelte'
     import { STORIES_ABOUT_LINK } from '$lib/constants'
@@ -45,7 +45,7 @@
         },
         {
             title: 'Localize and translate the IDGs into your language',
-            text: `To support the emerging IDG movement to become truly global, we need to make the IDGs relevant and accessible to people all around the world. This is not just about translations - but more importantly, it's about adapting the content and language so it makes sense in your local context. And to make this happen, we need your help! We use [Weblate](${WEBLATE_LINK}) to coordinate our localization efforts. Welcome to join the Element chat room for the [IDG Localization Team](${ELEMENT_LOCALIZATION_LINK}) to get involved!`,
+            text: `To support the emerging IDG movement to become truly global, we need to make the IDGs relevant and accessible to people all around the world. This is not just about translations - but more importantly, it's about adapting the content and language so it makes sense in your local context. And to make this happen, we need your help! We use the [IDG Community CMS](${IDG_CMS_LINK}) to coordinate our localization efforts. Welcome to join the Element chat room for the [IDG Localization Team](${ELEMENT_LOCALIZATION_LINK}) to get involved!`,
             link: 'localization',
         },
         {

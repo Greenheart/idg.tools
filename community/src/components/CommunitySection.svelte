@@ -12,7 +12,6 @@
         We’re a non-profit, open source community, always learning and improving this library,
         together. And with your help, we can make IDG.community even better!
     </p>
-    <!-- TODO: improve with more specific ways to contribute -->
 
     <LinkButton href="/contribute" variant="inverted">How to contribute</LinkButton>
 </div>

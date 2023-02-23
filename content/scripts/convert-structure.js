@@ -9,9 +9,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 /**
  * This script converts selected collections to from working with the `single_files` config option in Netlify CMS.
- * Instead, content is convertes to work with the `multiple_folders` config.
+ * Instead, content is converted to work with the `multiple_folders` config.
  *
- * This adds support for managing localization using Weblate, which needs specific file paths for each locale.
+ * This gives more flexibility compared to having all content in the same files.
  */
 await Promise.all(
     collections.flatMap(async (collection) => {

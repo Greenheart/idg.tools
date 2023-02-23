@@ -27,7 +27,7 @@ Curious to learn how you can contribute? Come say hi in our chat rooms and we'll
 
 To support the emerging IDG movement to become truly global, we need to make the IDGs relevant and accessible to people all around the world. This is not just about translations - but more importantly, it's about adapting the content and language so it makes sense in your local context. And to make this happen, we need your help!
 
-We use [Weblate](https://weblate.org/) to coordinate our localization efforts. Welcome to contribute!
+We use the [IDG Community CMS](https://cms.idg.community) to coordinate our localization efforts. Welcome to contribute!
 
 ## Technologies used
 
@@ -38,7 +38,6 @@ We use [Weblate](https://weblate.org/) to coordinate our localization efforts. W
 -   [TypeScript](https://www.typescriptlang.org/) - Simplifying maintainance as projects grow and needs change.
 -   [Sharp](https://github.com/lovell/sharp) - Image optimization to improve performance and reduce network bandwidth usage.
 -   [pnpm](https://pnpm.io) - Fast, disk space efficient package manager.
--   [Weblate](https://weblate.org/) - Web-based continuous localization - and also libre software like this project! 🎉
 
 ## Credits
 
