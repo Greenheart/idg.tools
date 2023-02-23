@@ -99,6 +99,14 @@ export const BUILDERS = {
             'tools',
         ])
 
+        // NOTE: Temporarily only keep the localized content we care about to improve performance.
+        // TODO: Create a proper solution.
+        // If we output content as separate files for each locale instead, that might solve this in a nicer way
+        if (transformedContent.sv !== undefined) {
+            transformedContent.sv.tools = []
+            transformedContent.sv.tags = []
+        }
+
         await writeJSON(
             resolve(builderInput.contentDir, '../../tools/static/content.json'),
             transformedContent,
