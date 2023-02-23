@@ -15,7 +15,7 @@
         ><LocaleIcon /></MenuButton
     >
     <MenuItems
-        class="bg-being list-style-none absolute top-full right-0 grid space-y-1 p-3 text-base"
+        class="bg-being list-style-none absolute top-full right-0 grid space-y-1 p-3 text-base shadow-md"
         as="ul"
     >
         {#each supported as [locale, label]}
@@ -24,7 +24,7 @@
                 <Link
                     href={getLocalizedPath(locale, location.pathname)}
                     variant="black"
-                    class={cx('py-2', active ? 'text-collaborating' : 'text-being')}>{label}</Link
+                    class={cx('py-2', active ? 'text-white' : '')}>{label}</Link
                 >
             </MenuItem>
         {/each}
