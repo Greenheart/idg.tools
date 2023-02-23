@@ -11,16 +11,18 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const collections = ['dimensions', 'skills']
 // 2. Add the Locale you want to copy from
 const COPY_FROM = 'en'
-// 3. Add the Locale you want to initialize with content from the Locale to COPY_FROM
-const COPY_TO = 'pt-BR'
+// 3. Add the new locales you want to initialize with content from the Locale COPY_FROM
+const NEW_LOCALES = ['fr', 'de', 'nl', 'it', 'jp', 'dk']
 
 await Promise.all(
-    collections.map(async (collection) => {
-        console.log(`Copying ${collection} from "${COPY_FROM}" to "${COPY_TO}"`)
-        return cp(
-            resolve(`${__dirname}/../src/${collection}/${COPY_FROM}/`),
-            resolve(`${__dirname}/../src/${collection}/${COPY_TO}/`),
-            { recursive: true },
-        )
-    }),
+    NEW_LOCALES.flatMap((copyTo) =>
+        collections.map(async (collection) => {
+            console.log(`Copying ${collection} from "${COPY_FROM}" to "${copyTo}"`)
+            return cp(
+                resolve(`${__dirname}/../src/${collection}/${COPY_FROM}/`),
+                resolve(`${__dirname}/../src/${collection}/${copyTo}/`),
+                { recursive: true },
+            )
+        }),
+    ),
 )
