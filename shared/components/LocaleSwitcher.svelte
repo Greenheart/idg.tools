@@ -15,16 +15,16 @@
         ><LocaleIcon /></MenuButton
     >
     <MenuItems
-        class="bg-being list-style-none absolute top-full right-0 grid space-y-1 p-3 text-base shadow-md"
+        class="bg-being list-style-none absolute top-full right-0 grid text-base shadow-md"
         as="ul"
     >
         {#each supported as [locale, label]}
-            <MenuItem let:active as="li">
+            <MenuItem let:active as="li" class="grid first:pt-1 last:pb-1">
                 <!-- TODO: verify that keyboard navigation works as expected -->
                 <Link
                     href={getLocalizedPath(locale, location.pathname)}
                     variant="black"
-                    class={cx('py-2', active ? 'text-white' : '')}>{label}</Link
+                    class={cx('px-3 py-1', active ? 'text-white' : '')}>{label}</Link
                 >
             </MenuItem>
         {/each}
