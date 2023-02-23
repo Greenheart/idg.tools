@@ -1,12 +1,13 @@
 <script lang="ts">
+    import { tick } from 'svelte'
     import Link from '$shared/components/Link.svelte'
     import MenuButton from '$shared/components/MenuButton.svelte'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import { isMenuOpen, scrollbarWidth } from '$lib/stores'
     import { onKeydown } from '$lib/utils'
     import { beforeNavigate } from '$app/navigation'
-    import { tick } from 'svelte'
     import type { SupportedLocales } from '$shared/types'
+    import { page } from '$app/stores'
 
     export let supportedLocales: SupportedLocales
 
@@ -58,11 +59,14 @@
     {/if}
 
     <!-- NOTE: Breakpoints might be messed up by the negative margins that extend the actual width of the layout -->
-    <!-- TODO: Ideally try to implement the layour without negative margins and offsets everywhere. -->
+    <!-- TODO: Ideally try to implement the layout without negative margins and offsets everywhere. -->
     <nav class="z-10 hidden md:flex">
         {#each links as { href, text }}
             <Link {href} class="p-2 px-3 text-base" variant="black">{text}</Link>
         {/each}
-        <LocaleSwitcher {supportedLocales} />
+        <!-- TODO: Only show locales for pages where it makes sense -->
+        {#if $page?.route?.id?.includes('/framework')}
+            <LocaleSwitcher {supportedLocales} />
+        {/if}
     </nav>
 </header>

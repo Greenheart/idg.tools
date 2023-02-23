@@ -59,7 +59,8 @@ const SELECTED_LOCALES: Locale[] = ['en', 'sv']
 async function runBundle(selectedBundle: BundleName) {
     const bundle = BUNDLES[selectedBundle]
     const input = {
-        selectedLocales: SELECTED_LOCALES,
+        // TODO: Temporarily only build EN content for community since we don't use other locales there yet.
+        selectedLocales: selectedBundle === 'tools' ? SELECTED_LOCALES : (['en'] as Locale[]),
         contentDir,
         selectedContent: bundle.selectedContent,
     }
