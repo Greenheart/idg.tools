@@ -44,7 +44,7 @@
                         <p class="text-base font-semibold leading-5">{dimension.subtitle}</p>
                     </div>
                     <div
-                        class="flex flex-col justify-start gap-3 overflow-hidden break-words pt-1 text-base font-semibold leading-5"
+                        class="flex flex-col justify-start gap-4 overflow-hidden break-words pt-1 text-base font-semibold leading-5"
                     >
                         {#each getSkillsInDimension(dimension.id, { skills }) as { name }}
                             <p>{name}</p>
@@ -80,7 +80,7 @@
                     <p class="max-w-xs text-base leading-5">
                         {dimension.description}
                     </p>
-                    <IDGLogo class="absolute bottom-0 h-[60px] w-[110px] flex-grow text-white/50" />
+                    <IDGLogo class="absolute bottom-0 h-[60px] w-[110px] flex-grow text-white/40" />
                 </div>
                 <div class="my-8 mr-8 flex flex-col gap-6 text-base">
                     {#each getSkillsInDimension(dimension.id, { skills }) as skill}
