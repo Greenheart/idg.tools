@@ -1,10 +1,14 @@
 <script lang="ts">
     import Link from '$shared/components/Link.svelte'
     import MenuButton from '$shared/components/MenuButton.svelte'
+    import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import { isMenuOpen, scrollbarWidth } from '$lib/stores'
     import { onKeydown } from '$lib/utils'
     import { beforeNavigate } from '$app/navigation'
     import { tick } from 'svelte'
+    import type { SupportedLocales } from '$shared/types'
+
+    export let supportedLocales: SupportedLocales
 
     const toggleMenu = async () => {
         // @ts-expect-error This is an invalid value for scroll behavior, but it produces the result we want so... :D
@@ -59,5 +63,6 @@
         {#each links as { href, text }}
             <Link {href} class="p-2 px-4 text-base" variant="black">{text}</Link>
         {/each}
+        <LocaleSwitcher {supportedLocales} />
     </nav>
 </header>

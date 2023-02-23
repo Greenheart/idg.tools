@@ -1,5 +1,5 @@
-import { COLORS } from './constants'
-import type { Dimension, Skill } from './types'
+import { COLORS, DEFAULT_LOCALE_IDENTIFIER, LOCALE_IDENTIFIERS } from './constants'
+import type { Dimension, Locale, Skill } from './types'
 
 export const cx = (...classes: (string | undefined | false)[]) =>
     classes.filter(Boolean).join(' ').trim()
@@ -73,5 +73,29 @@ export function getOffset(element: HTMLElement) {
     return {
         left: rect.left + window.scrollX,
         top: rect.top + window.scrollY,
+    }
+}
+
+export const removeLeadingSlash = (string: string) => string.replace(/^\//, '')
+
+/**
+ * Get the localized version of location.pathname for a given locale.
+ * Adapts the output based on the currentLocale to keep URLs as simple as possible.
+ */
+export const getLocalizedPath = (locale: Locale, path: string) => {
+    const currentLocale = LOCALE_IDENTIFIERS.find((identifier) =>
+        path.startsWith(`/${identifier}/`),
+    )
+
+    if (locale === DEFAULT_LOCALE_IDENTIFIER) {
+        // No need to replace if we want the default locale and don't have any current one.
+        if (!currentLocale) return path
+        // Shorten down default locale to keep URLs simple and consistent.
+        return path.replace(`/${currentLocale}/`, '/')
+    } else if (currentLocale) {
+        // Replace with new locale.
+        return path.replace(`/${currentLocale}/`, `/${locale}/`)
+    } else {
+        return `/${locale}/${removeLeadingSlash(path)}`
     }
 }
