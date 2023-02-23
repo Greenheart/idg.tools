@@ -25,8 +25,7 @@ export const IDG_CMS_LINK = 'https://cms.idg.community'
  * IDEA: Maybe the supported locales could be managed via the CMS?
  * Add it in the CMS, which saves a JSON file with constants
  *
- * IDEA: Create a script that copies English when adding a new language, to make sure we get all IDs and other things.
- * Also add the relevant guards to minimize the output bundle to only build the relevant translated content.
+ * NOTE: For now, we can create instructions on how to add a new language
  */
 export const LOCALES = {
     en: 'English',

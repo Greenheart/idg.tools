@@ -54,6 +54,7 @@ const BUNDLE_NAMES = Object.keys(BUNDLES) as BundleName[]
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const contentDir = resolve(__dirname, '../../src')
 
+// TODO: Document how to update the selected Locales that should be published.
 const SELECTED_LOCALES: Locale[] = ['en', 'es', 'sv']
 
 async function runBundle(selectedBundle: BundleName) {
