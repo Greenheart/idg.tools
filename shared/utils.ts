@@ -78,14 +78,15 @@ export function getOffset(element: HTMLElement) {
 
 export const removeLeadingSlash = (string: string) => string.replace(/^\//, '')
 
+export const getCurrentLocale = (path: string) =>
+    LOCALE_IDENTIFIERS.find((identifier) => path.startsWith(`/${identifier}/`))
+
 /**
  * Get the localized version of location.pathname for a given locale.
  * Adapts the output based on the currentLocale to keep URLs as simple as possible.
  */
 export const getLocalizedPath = (locale: Locale, path: string) => {
-    const currentLocale = LOCALE_IDENTIFIERS.find((identifier) =>
-        path.startsWith(`/${identifier}/`),
-    )
+    const currentLocale = getCurrentLocale(path)
 
     if (locale === DEFAULT_LOCALE_IDENTIFIER) {
         // No need to replace if we want the default locale and don't have any current one.
