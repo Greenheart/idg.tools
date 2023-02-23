@@ -54,7 +54,7 @@
 
     <nav class="z-10 hidden justify-evenly sm:flex">
         {#each links as { href, text }}
-            <Link {href} class="p-2 text-base md:px-4" variant="black">{text}</Link>
+            <Link {href} class="p-2 text-base md:px-3" variant="black">{text}</Link>
         {/each}
     </nav>
 </header>

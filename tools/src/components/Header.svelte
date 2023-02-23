@@ -61,7 +61,7 @@
     <!-- TODO: Ideally try to implement the layour without negative margins and offsets everywhere. -->
     <nav class="z-10 hidden md:flex">
         {#each links as { href, text }}
-            <Link {href} class="p-2 px-4 text-base" variant="black">{text}</Link>
+            <Link {href} class="p-2 px-3 text-base" variant="black">{text}</Link>
         {/each}
         <LocaleSwitcher {supportedLocales} />
     </nav>
