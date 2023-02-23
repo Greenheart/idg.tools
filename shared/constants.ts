@@ -19,9 +19,7 @@ export const COMMUNITY_LINK = 'https://www.innerdevelopmentgoals.org/community'
 export const COMMUNITY_HUBS_LINK = 'https://www.innerdevelopmentgoals.org/community#Hubs'
 export const IDG_PDF_TOOLKIT = '/assets/221215_IDG_Toolkit_v1.pdf'
 export const IDG_REPORT_PDF = 'https://www.innerdevelopmentgoals.org/s/211201_IDG_Report_Full.pdf'
-// TODO: Remove mentions of Weblate and describe the new process with GitHub,
-// TODO: This link should lead directly to our Weblate project to help people find it easily
-export const WEBLATE_LINK = 'https://weblate.org'
+export const IDG_CMS_LINK = 'https://cms.idg.community.org'
 
 export const LOCALES = {
     en: 'English',
