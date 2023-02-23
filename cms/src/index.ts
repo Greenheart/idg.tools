@@ -18,9 +18,6 @@ CMS.init({
             branch: 'main',
             base_url: 'https://idg-cms-oauth.vercel.app',
             open_authoring: true,
-            // TODO: Test if `always_fork` works as expected.
-            // It might help reduce merge conflicts if multiple people try to update the same content but in multiple locales.
-            // always_fork: true,
         },
         local_backend: {
             url: 'http://localhost:2030/api/v1',

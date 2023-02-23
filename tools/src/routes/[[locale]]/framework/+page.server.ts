@@ -9,6 +9,8 @@ export const prerender = false
 
 export const load = (async ({ params }) => {
     // TODO: Get the user's preferred content locale via the `Accept-Language` HTTP header
+    // TODO: If the current locale is not found, redirect to a locale that does exist.
+    // Make sure to make the proper redirect to prevent dead/duplicate content links
     // Build this into getLocale() so it happens automatically
     const content = getContent(params.locale)
     if (content) {

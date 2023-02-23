@@ -21,9 +21,23 @@ export const IDG_PDF_TOOLKIT = '/assets/221215_IDG_Toolkit_v1.pdf'
 export const IDG_REPORT_PDF = 'https://www.innerdevelopmentgoals.org/s/211201_IDG_Report_Full.pdf'
 export const IDG_CMS_LINK = 'https://cms.idg.community'
 
+/**
+ * IDEA: Maybe the supported locales could be managed via the CMS?
+ * Add it in the CMS, which saves a JSON file with constants
+ *
+ * IDEA: Create a script that copies English when adding a new language, to make sure we get all IDs and other things.
+ * Also add the relevant guards to minimize the output bundle to only build the relevant translated content.
+ */
 export const LOCALES = {
     en: 'English',
     es: 'Español',
+    'pt-BR': 'Português (Brazil)',
+    fr: 'Français',
+    de: 'Deutsch',
+    nl: 'Nederlands',
+    it: 'Italiano',
+    jp: '日本 (Japanese)',
+    dk: 'Dansk',
     sv: 'Svenska',
 }
 
