@@ -1,6 +1,5 @@
-import FastGlob from 'fast-glob'
 import { cp } from 'fs/promises'
-import { dirname, resolve, basename } from 'path'
+import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
