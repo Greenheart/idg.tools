@@ -54,7 +54,7 @@ const BUNDLE_NAMES = Object.keys(BUNDLES) as BundleName[]
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const contentDir = resolve(__dirname, '../../src')
 
-const SELECTED_LOCALES: Locale[] = ['en', 'sv']
+const SELECTED_LOCALES: Locale[] = ['en', 'es', 'sv']
 
 async function runBundle(selectedBundle: BundleName) {
     const bundle = BUNDLES[selectedBundle]

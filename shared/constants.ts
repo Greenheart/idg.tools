@@ -23,6 +23,7 @@ export const IDG_CMS_LINK = 'https://cms.idg.community'
 
 export const LOCALES = {
     en: 'English',
+    es: 'Español',
     sv: 'Svenska',
 }
 

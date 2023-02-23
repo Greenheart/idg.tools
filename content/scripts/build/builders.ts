@@ -106,6 +106,10 @@ export const BUILDERS = {
             transformedContent.sv.tools = []
             transformedContent.sv.tags = []
         }
+        if (transformedContent.es !== undefined) {
+            transformedContent.es.tools = []
+            transformedContent.es.tags = []
+        }
 
         await writeJSON(
             resolve(builderInput.contentDir, '../../tools/static/content.json'),
