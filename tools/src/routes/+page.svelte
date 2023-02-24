@@ -38,7 +38,7 @@
         This is an emerging library of tools to explore the <Link
             href={FRAMEWORK_LINK}
             variant="black">Inner Development Goals</Link
-        > (IDGs) in practice, and help people and organizations accelerate progress towards the <Link
+        > (IDGs) in practice, and help people and organisations accelerate progress towards the <Link
             href="https://sdgs.un.org/goals#goals"
             variant="black">UN Sustainable Development Goals</Link
         > (SDGs).

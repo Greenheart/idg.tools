@@ -10,7 +10,7 @@
             {
                 title: 'Support for translations and localization',
                 description:
-                    'This will make it possible to translate and localize the IDG framework and the IDG Toolkit into multiple languages and locales.',
+                    'This will make it possible to translate and localise the IDG framework and the IDG Toolkit into multiple languages and locales.',
             },
             {
                 title: 'Principles and Governance for the IDG Toolkit',

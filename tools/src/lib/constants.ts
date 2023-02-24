@@ -5,7 +5,7 @@ export const FEEDBACK_FORM_LINK =
 
 export const TAGLINE = 'IDG.tools - Inner Development Toolkit - Change starts within'
 export const DEFAULT_DESCRIPTION =
-    'IDG.tools is the open source toolkit from the Inner Development Goals (IDGs) non-profit initiative. Explore a growing library of methods, exercises and workshops to help people and organizations reach the UN Sustainable Development Goals (SDGs) through inner development.'
+    'IDG.tools is the open source toolkit from the Inner Development Goals (IDGs) non-profit initiative. Explore a growing library of methods, exercises and workshops to help people and organisations reach the UN Sustainable Development Goals (SDGs) through inner development.'
 
 export const BASE_URL = 'https://idg.tools'
 export const DEFAULT_OG_IMAGE = `${BASE_URL}/images/idg-og-logo.jpg`

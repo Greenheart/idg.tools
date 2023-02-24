@@ -1,5 +1,5 @@
 import { resolve } from 'path'
-import type { CommunityContent, Locale, Localized, ToolsContent } from '$shared/types'
+import type { CommunityContent, Locale, Localised, ToolsContent } from '$shared/types'
 import { runAllTransformers, transformContent, TRANSFORMERS } from './transformers'
 import { writeJSON } from '../utils'
 import { VALIDATORS } from './validators'
@@ -18,11 +18,11 @@ export type BuilderInput<T> = {
  */
 export const BUILDERS = {
     async community(
-        localizedContent: Localized<CommunityContent>,
+        localisedContent: Localised<CommunityContent>,
         builderInput: BuilderInput<CommunityContent>,
     ) {
         const transformedContent = transformContent(
-            localizedContent,
+            localisedContent,
             (result, [locale, content]) => {
                 const stories = runAllTransformers(
                     [
@@ -63,11 +63,11 @@ export const BUILDERS = {
         )
     },
     async tools(
-        localizedContent: Localized<ToolsContent>,
+        localisedContent: Localised<ToolsContent>,
         builderInput: BuilderInput<ToolsContent>,
     ) {
         const transformedContent = transformContent(
-            localizedContent,
+            localisedContent,
             (result, [locale, content]) => {
                 const tools = runAllTransformers(
                     [
@@ -99,7 +99,7 @@ export const BUILDERS = {
             'tools',
         ])
 
-        // NOTE: Temporarily only keep the localized content we care about to improve performance.
+        // NOTE: Temporarily only keep the localised content we care about to improve performance.
         // TODO: Create a proper solution.
         // If we output content as separate files for each locale instead, that might solve this in a nicer way
         if (transformedContent.sv !== undefined) {

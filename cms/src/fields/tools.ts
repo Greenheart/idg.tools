@@ -64,7 +64,7 @@ export const ToolsFields: CustomCmsField[] = [
     {
         label: 'Tags',
         name: 'tags',
-        hint: 'Add tags to make it easier to categorize different tools, and allow filtering the content.',
+        hint: 'Add tags to make it easier to categorise different tools, and allow filtering the content.',
         multiple: true,
         widget: 'relation',
         collection: 'tags',
