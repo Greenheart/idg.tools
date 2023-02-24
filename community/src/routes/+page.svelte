@@ -44,7 +44,7 @@
     <div class="border-being flex flex-col border bg-white p-4 shadow-md">
         <Heading size={2} class="text-being">Tools</Heading>
         <p class="my-4 flex-1">
-            We are creating an open source library of tools that both people and organizations can
+            We are creating an open source library of tools that both people and organisations can
             use to develop the skills outlined by the IDG framework. Here you can find methods,
             workshops and resources relevant to the skills you want to practice.
         </p>

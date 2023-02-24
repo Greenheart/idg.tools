@@ -10,7 +10,7 @@
     export let dimensions: Dimension[]
 </script>
 
-<!-- TODO: Add all localized content from the existing translations -->
+<!-- TODO: Add all localised content from the existing translations -->
 <!-- TODO: Add allowed locales to the IDG CMS (pt, es, dk, ...) -->
 
 <div class="grid gap-4 pt-12">

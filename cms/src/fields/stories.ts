@@ -64,7 +64,7 @@ export const StoriesFields: CustomCmsField[] = [
     {
         label: 'Tags',
         name: 'tags',
-        hint: 'Add tags to make it easier to categorize different stories, and allow filtering the content.',
+        hint: 'Add tags to make it easier to categorise different stories, and allow filtering the content.',
         multiple: true,
         widget: 'relation',
         collection: 'tags',
