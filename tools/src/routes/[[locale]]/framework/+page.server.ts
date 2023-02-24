@@ -2,7 +2,7 @@ import { error } from '@sveltejs/kit'
 import { getContent } from '$lib/content-backend'
 import type { PageServerLoad } from './$types'
 
-// TODO: Figure out a way to prerender the localized routes.
+// TODO: Figure out a way to prerender the localised routes.
 // We have all content so we should be able to solve this if we either render all available locales and link to the content
 // or if we provide the routes that should be prerendered.
 export const prerender = false

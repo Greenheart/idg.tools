@@ -6,7 +6,7 @@ import type {
     Dimension,
     FeaturedContent,
     Locale,
-    Localized,
+    Localised,
     Skill,
     Story,
     Tag,
@@ -23,33 +23,33 @@ type LoaderInput = {
 
 const loadJSONPaths = (paths: string[]) => Promise.all(paths.map(readJSON))
 
-const loadLocalizedContent = <T>(
+const loadLocalisedContent = <T>(
     contentType: Omit<keyof AllContent, 'contributors' | 'featured'>,
     { contentDir, locale }: LoaderInput,
 ): Promise<T[]> => getPaths(contentDir, `${contentType}/${locale}/*.json`).then(loadJSONPaths)
 
 /**
  * Content loaders are a set of functions responsible for loading specific content types.
- * Depending on the structure, some content types are localized while others are not.
+ * Depending on the structure, some content types are localised while others are not.
  */
 export const LOADERS = {
     async contributors({ contentDir }: LoaderInput): Promise<Contributor[]> {
         return getPaths(contentDir, `contributors/*.json`).then(loadJSONPaths)
     },
     async tags(loaderInput: LoaderInput): Promise<Tag[]> {
-        return loadLocalizedContent('tags', loaderInput)
+        return loadLocalisedContent('tags', loaderInput)
     },
     async skills(loaderInput: LoaderInput): Promise<Skill[]> {
-        return loadLocalizedContent('skills', loaderInput)
+        return loadLocalisedContent('skills', loaderInput)
     },
     async dimensions(loaderInput: LoaderInput): Promise<Dimension[]> {
-        return loadLocalizedContent('dimensions', loaderInput)
+        return loadLocalisedContent('dimensions', loaderInput)
     },
     async tools(loaderInput: LoaderInput): Promise<Tool[]> {
-        return loadLocalizedContent('tools', loaderInput)
+        return loadLocalisedContent('tools', loaderInput)
     },
     async stories(loaderInput: LoaderInput): Promise<Story[]> {
-        return loadLocalizedContent('stories', loaderInput)
+        return loadLocalisedContent('stories', loaderInput)
     },
     async featured({ contentDir, locale }: LoaderInput): Promise<FeaturedContent> {
         return readJSON(resolve(contentDir, `settings/${locale}/featured.json`))
@@ -58,7 +58,7 @@ export const LOADERS = {
 
 /**
  * Bundle loaders are responsible for loading the content types needed for specific bundles.
- * They return localized content that can be further processed.
+ * They return localised content that can be further processed.
  */
 export const BUNDLE_LOADERS = {
     community: (builderInput: BuilderInput<CommunityContent>) => {
@@ -104,5 +104,5 @@ async function loadContent<T>({
     return loadedContent.reduce((allContent, [locale, content]) => {
         allContent[locale] = content
         return allContent
-    }, {} as Localized<T>)
+    }, {} as Localised<T>)
 }

@@ -1,4 +1,4 @@
-import type { Localized, Story, Tool } from '$shared/types'
+import type { Localised, Story, Tool } from '$shared/types'
 
 /**
  * Validators are run after transformations are complete, and are small functions to help us catch errors.
@@ -12,7 +12,7 @@ export const VALIDATORS = {
      * For example, by enforcing the same slug for all locales of content, we can let the user change their language, but still know which content they are trying to access.
      */
     ensureSlugsAreConsistentForAllLocales<T>(
-        localizedContent: Localized<T>,
+        localisedContent: Localised<T>,
         contentTypes: (keyof T)[],
     ) {
         for (const contentType of contentTypes) {
@@ -23,7 +23,7 @@ export const VALIDATORS = {
 
             // IDEA: This code could be a useful staring point if we want to display "this content is also available in X, Y, Z" or similar in the future.
             // Alternatively, we could just display all locales by default, falling back to a supported locale. Then encourage contributions, or listing other supported locales.
-            for (const content of Object.values(localizedContent)) {
+            for (const content of Object.values(localisedContent)) {
                 // Might be able to find a better type than `any` here, but not worth it at this point.
                 for (const entity of content[contentType] as any) {
                     if (!occurences[entity.id]) occurences[entity.id] = new Set()
