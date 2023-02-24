@@ -6,7 +6,7 @@ Welcome! This is a collection of free and open source projects supporting the [I
 
 Our projects include:
 
--   [IDG.tools](https://idg.tools) - A free, open source and co-created library of tools and resources to help people and organizations practice inner development.
+-   [IDG.tools](https://idg.tools) - A free, open source and co-created library of tools and resources to help people and organisations practice inner development.
 -   [IDG.community](https://idg.community) - A website created by and for the IDG community. A place to share stories and get involved in various activities.
 
 ## Contributing

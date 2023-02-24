@@ -110,7 +110,7 @@ export const COLLECTIONS = [
         identifier_field: 'id',
         slug: '{{id}}',
         i18n: true,
-        description: 'Create tags and use them to organize different tools.',
+        description: 'Create tags and use them to organise different tools.',
     },
     // NOTE: Since Netlify CMS doesn't support localization for file collections, we need to edit this manually for now
     // There are experiments available for how to solve this, but it's not worth the effort at the moment.
