@@ -31,6 +31,7 @@ export const LOCALES = {
     en: 'English',
     es: 'Español',
     'pt-BR': 'Português (Brazil)',
+    pt: 'Português',
     fr: 'Français',
     de: 'Deutsch',
     nl: 'Nederlands',
