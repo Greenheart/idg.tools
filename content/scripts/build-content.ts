@@ -1,12 +1,12 @@
-import type { CommunityContent, Locale, Localized, ToolsContent } from '$shared/types'
+import type { CommunityContent, Locale, Localised, ToolsContent } from '$shared/types'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { BuilderInput, BUILDERS } from './build/builders'
 import { BUNDLE_LOADERS } from './build/loaders'
 
 type Bundle<T> = {
-    load: <T>(builderInput: BuilderInput<T>) => Promise<Localized<T>>
-    build: <T>(content: Localized<T>, builderInput: BuilderInput<T>) => Promise<void>
+    load: <T>(builderInput: BuilderInput<T>) => Promise<Localised<T>>
+    build: <T>(content: Localised<T>, builderInput: BuilderInput<T>) => Promise<void>
     selectedContent: (keyof T)[]
     watchPaths: string[]
 }
@@ -66,8 +66,8 @@ async function runBundle(selectedBundle: BundleName) {
         selectedContent: bundle.selectedContent,
     }
 
-    const localizedContent = await bundle.load(input)
-    await bundle.build(localizedContent as any, input)
+    const localisedContent = await bundle.load(input)
+    await bundle.build(localisedContent as any, input)
 }
 
 async function build(selectedBundles: BundleName[]) {

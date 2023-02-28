@@ -3,7 +3,7 @@
     import type { Locale, SupportedLocales } from '../types'
     import Link from './Link.svelte'
     import LocaleIcon from '../icons/Locale.svelte'
-    import { cx, getLocalizedPath } from '../utils'
+    import { cx, getLocalisedPath } from '../utils'
 
     export let supportedLocales: SupportedLocales
 
@@ -22,7 +22,7 @@
             <MenuItem let:active as="li" class="grid first:pt-1 last:pb-1">
                 <!-- TODO: verify that keyboard navigation works as expected -->
                 <Link
-                    href={getLocalizedPath(locale, location.pathname)}
+                    href={getLocalisedPath(locale, location.pathname)}
                     variant="black"
                     class={cx('px-3 py-1', active ? 'text-white' : '')}>{label}</Link
                 >

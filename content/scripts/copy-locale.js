@@ -11,7 +11,7 @@ const collections = ['dimensions', 'skills']
 // 2. Add the Locale you want to copy from
 const COPY_FROM = 'en'
 // 3. Add the new locales you want to initialize with content from the Locale COPY_FROM
-const NEW_LOCALES = ['fr', 'de', 'nl', 'it', 'jp', 'dk']
+const NEW_LOCALES = ['pt']
 
 await Promise.all(
     NEW_LOCALES.flatMap((copyTo) =>

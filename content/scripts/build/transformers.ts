@@ -1,5 +1,5 @@
 import { getSortedStories, getTag, mostRelevantToolsFirst } from '$shared/content-utils'
-import type { FeaturedContent, Locale, Localized, Skill, Story, Tag, Tool } from '$shared/types'
+import type { FeaturedContent, Locale, Localised, Skill, Story, Tag, Tool } from '$shared/types'
 import {
     createBackwardsCompatibleLink,
     getConsistentAssetURL,
@@ -11,11 +11,11 @@ import {
  * Returns the new content after all locales have been transformed.
  */
 export function transformContent<T>(
-    localizedContent: Localized<T>,
-    localeTransformer: (result: Localized<T>, [locale, content]: [Locale, T]) => Localized<T>,
+    localisedContent: Localised<T>,
+    localeTransformer: (result: Localised<T>, [locale, content]: [Locale, T]) => Localised<T>,
 ) {
-    return Object.entries(localizedContent).reduce<Localized<T>>(
-        localeTransformer as (result: Localized<T>, [locale, content]: [string, T]) => Localized<T>,
+    return Object.entries(localisedContent).reduce<Localised<T>>(
+        localeTransformer as (result: Localised<T>, [locale, content]: [string, T]) => Localised<T>,
         {},
     )
 }
@@ -101,7 +101,7 @@ export const TRANSFORMERS = {
             const name = (entity as Story).title ?? (entity as Tool).name
             if (!name) {
                 throw new Error(
-                    `content with id "${entity.id}" has no title or name, needed for creating the link. Seems like some localized version of the content might be broken.`,
+                    `content with id "${entity.id}" has no title or name, needed for creating the link. Seems like some localised version of the content might be broken.`,
                 )
             }
             const newLink = createBackwardsCompatibleLink(name, entity.slug)

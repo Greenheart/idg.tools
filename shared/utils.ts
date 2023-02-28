@@ -82,10 +82,10 @@ export const getCurrentLocale = (path: string) =>
     LOCALE_IDENTIFIERS.find((identifier) => path.startsWith(`/${identifier}/`))
 
 /**
- * Get the localized version of location.pathname for a given locale.
+ * Get the localised version of location.pathname for a given locale.
  * Adapts the output based on the currentLocale to keep URLs as simple as possible.
  */
-export const getLocalizedPath = (locale: Locale, path: string) => {
+export const getLocalisedPath = (locale: Locale, path: string) => {
     const currentLocale = getCurrentLocale(path)
 
     if (locale === DEFAULT_LOCALE_IDENTIFIER) {

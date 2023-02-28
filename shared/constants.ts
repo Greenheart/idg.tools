@@ -12,7 +12,7 @@ export const ELEMENT_STORIES_LINK =
     'https://matrix.to/#/#stories:community.innerdevelopmentgoals.org'
 export const ELEMENT_LOCALIZATION_LINK =
     'https://matrix.to/#/#localization:community.innerdevelopmentgoals.org'
-// TODO: Localize the internal IDG.tools and IDG.community links so they can send people to the right language
+// TODO: Localise the internal IDG.tools and IDG.community links so they can send people to the right language
 // For example, it would be nice to be able to link people directly to the framework in their current locale.
 export const FRAMEWORK_LINK = 'https://idg.tools/framework'
 export const COMMUNITY_LINK = 'https://www.innerdevelopmentgoals.org/community'
@@ -31,6 +31,7 @@ export const LOCALES = {
     en: 'English',
     es: 'Español',
     'pt-BR': 'Português (Brazil)',
+    pt: 'Português',
     fr: 'Français',
     de: 'Deutsch',
     nl: 'Nederlands',
