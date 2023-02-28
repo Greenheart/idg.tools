@@ -26,7 +26,7 @@
                 {@const dimensionName = COLORS[dimension.id]}
                 <div
                     class={cx(
-                        'grid-cols-[repeat(1, minmax(0, max-content))] grid h-full grid-rows-[max-content_96px] gap-2 p-6 shadow-sm',
+                        'grid-cols-[repeat(1, minmax(0, max-content))] grid h-full grid-rows-[max-content_106px] gap-2 p-6 shadow-sm',
                         getColor(dimension.id),
                     )}
                 >
