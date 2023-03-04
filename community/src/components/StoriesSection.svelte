@@ -4,6 +4,7 @@
     import ButtonGroup from '$shared/components/ButtonGroup.svelte'
     import LinkButton from '$shared/components/LinkButton.svelte'
     import { STORIES_ABOUT_LINK } from '$lib/constants'
+    import Link from '$shared/components/Link.svelte'
 </script>
 
 <div class="mt-16 flex flex-col items-center justify-between bg-white p-4 shadow-lg">
@@ -30,4 +31,6 @@
             >Join the editorial team</LinkButton
         >
     </ButtonGroup>
+
+    <Link href="/contribute" variant="orange" class="mt-4">Explore more ways to contribute</Link>
 </div>

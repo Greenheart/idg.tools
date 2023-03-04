@@ -71,6 +71,4 @@
     </div>
 </div>
 
-<StoriesSection />
-
 <Stories {content} />

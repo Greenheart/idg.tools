@@ -33,7 +33,7 @@
 </script>
 
 <div class="pt-16">
-    <Heading class="pt-16" id="stories" size={1} tag="h2">Featured stories</Heading>
+    <Heading id="stories" size={1} tag="h2">Featured stories</Heading>
 
     <p class="pt-4 pb-2">Select tags to filter:</p>
     <Tags tags={content.tags} size="md" interactive inverted class="pb-4" />
