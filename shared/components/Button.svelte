@@ -30,7 +30,7 @@
     export let unstyled = false
     let className = ''
     export { className as class }
-    const classes = unstyled
+    $: classes = unstyled
         ? cx(defaultClasses, sizes[size], className)
         : cx(defaultClasses, variants[disabled ? 'disabled' : variant], sizes[size], className)
 </script>

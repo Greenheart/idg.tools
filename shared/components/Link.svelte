@@ -33,7 +33,7 @@
         }
     })
 
-    const classes = unstyled ? className : cx(defaultClasses, variants[variant], className)
+    $: classes = unstyled ? className : cx(defaultClasses, variants[variant], className)
 </script>
 
 <a {href} {tabindex} {title} class={classes} {...additionalProps}>
