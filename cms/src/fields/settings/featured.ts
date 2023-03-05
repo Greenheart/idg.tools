@@ -1,8 +1,5 @@
 import { CustomCmsField } from '../shared'
 
-// TODO: Fix bug that this doesn't show up after we changed to support multiple locales
-// IDEA: Maybe we have to live with a differnent format for now instead
-
 export const FeaturedContentFields: CustomCmsField[] = [
     {
         name: 'stories',
