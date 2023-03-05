@@ -5,6 +5,7 @@
     import Heading from '$shared/components/Heading.svelte'
     import Link from '$shared/components/Link.svelte'
     import Tags from './Tags.svelte'
+    import Picture from '$shared/components/Picture.svelte'
 
     export let story: Story
     export let content: CommunityContent
@@ -16,8 +17,7 @@
 
 <Link href={`/stories/${story.link}`} variant="black" unstyled class="group grid p-2">
     <div class="grid aspect-[3/2] overflow-hidden shadow-md">
-        <!-- TODO: Load with picture component here too to make sure images work even for older browsers -->
-        <img
+        <Picture
             src={story.image}
             alt={story.imageAlt}
             class="h-full w-full transform-gpu object-cover transition-transform duration-300 group-hover:scale-105"

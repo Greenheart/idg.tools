@@ -12,6 +12,7 @@
 
     export let src: string = href
     export let sources: ImageSource[] = []
+    export let loading: HTMLImageElement['loading'] = 'eager'
 
     // Render fallback images even if `sources` are not explicitly defined.
     // This happens when images are rendered by `svelte-markdown` which can only handle one image by default.
@@ -48,5 +49,6 @@
         {title}
         class={cx('shadow-md', className)}
         alt={alt ?? text}
+        {loading}
     />
 </picture>
