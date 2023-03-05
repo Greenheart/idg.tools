@@ -102,14 +102,11 @@ export const BUILDERS = {
         // NOTE: Temporarily only keep the localised content we care about to improve performance.
         // TODO: Create a proper solution.
         // If we output content as separate files for each locale instead, that might solve this in a nicer way
-        if (transformedContent.sv !== undefined) {
-            transformedContent.sv.tools = []
-            transformedContent.sv.tags = []
-        }
-        if (transformedContent.es !== undefined) {
-            transformedContent.es.tools = []
-            transformedContent.es.tags = []
-        }
+        builderInput.selectedLocales.forEach((locale) => {
+            if (locale === 'en') return
+            transformedContent[locale]!.tools = []
+            transformedContent[locale]!.tags = []
+        })
 
         await writeJSON(
             resolve(builderInput.contentDir, '../../tools/static/content.json'),
