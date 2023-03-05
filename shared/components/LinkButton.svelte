@@ -14,12 +14,14 @@
     export { className as class }
 
     export let href = ''
-    let additionalProps: object
+    let additionalProps: object = {}
     onMount(() => {
         if (isExternalURL(href)) {
-            additionalProps = { rel: 'noopener noreferrer', target: '_blank' }
-        } else {
-            additionalProps = { 'sveltekit:prefetch': true }
+            additionalProps = {
+                rel: 'noopener noreferrer',
+                target: '_blank',
+                'data-sveltekit-reload': true,
+            }
         }
     })
 </script>
