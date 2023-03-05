@@ -62,7 +62,7 @@
     <Heading size={1} class="text-collaborating"
         >How you can co-create with the IDG community</Heading
     >
-    <p class="my-8">
+    <p class="my-8 text-lg lg:text-xl">
         First of all - thanks for being here! There are several ways you can contribute in a
         meaningful way, which could make a significant impact for the development of the IDGs and
         the SDGs.
