@@ -1,7 +1,9 @@
 <script lang="ts">
     import { cx } from '../utils'
 
-    type ImageSource = Pick<HTMLSourceElement, 'srcset' | 'type'>
+    type ImageSource = Pick<HTMLSourceElement, 'srcset'> & {
+        type: 'image/webp' | 'image/jpeg' | 'image/png'
+    }
 
     let className = ''
 
