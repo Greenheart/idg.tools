@@ -29,7 +29,7 @@
     export let size: keyof typeof sizes = defaultSize
     export let element: HTMLButtonElement | undefined = undefined
     export let tabindex: HTMLButtonElement['tabIndex'] | undefined = undefined
-    export let type: HTMLButtonElement['type'] | undefined = undefined
+    export let type: 'submit' | undefined = undefined
     let className = ''
     export { className as class }
 </script>
