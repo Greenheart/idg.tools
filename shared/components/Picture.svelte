@@ -13,16 +13,18 @@
     export let src: string = href
     export let sources: ImageSource[] = []
 
-    // Render fallback images even if `sources` are not exlpicitly defined.
+    // Render fallback images even if `sources` are not explicitly defined.
     // This happens when images are rendered by `svelte-markdown` which can only handle one image by default.
-    // NOTE: This also assumes the input `src` is always a `.webp` image so this might break with real usage.
-    // Though, we could protect against this by adding a validation to the content build step.
     if (!sources.length) {
         sources.push({
-            srcset: src.replace(/\.webp$/, '.jpg'),
-            type: 'jpg',
+            srcset: src.replace(/\.jpg$/, '.webp'),
+            type: 'image/webp',
         })
     }
+
+    // Always fallback to a well-supported format
+    const fallbackSrc = src.replace(/\.webp$/, '.jpg')
+
     /*
      * Only used when by `svelte-markdown` to render alt fallback
      */
@@ -39,5 +41,12 @@
     {#each sources as { srcset, type }}
         <source {srcset} {type} {width} {height} />
     {/each}
-    <img {src} {width} {height} {title} class={cx('shadow-md', className)} alt={alt ?? text} />
+    <img
+        src={fallbackSrc}
+        {width}
+        {height}
+        {title}
+        class={cx('shadow-md', className)}
+        alt={alt ?? text}
+    />
 </picture>

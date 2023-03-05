@@ -33,7 +33,7 @@
     // NOTE: Until major platforms and apps support webp for OG images, we need to serve OG images in jpg format.
     // NOTE: This assumes images have been correctly optimized as part of the build process.
     $: images = story.image
-        ? [{ url: BASE_URL + story.image.replace('.webp', '.jpg') }]
+        ? [{ url: BASE_URL + story.image.replace(/\.webp$/, '.jpg') }]
         : DEFAULT_IMAGE
 </script>
 
@@ -53,7 +53,6 @@
     <Picture
         src={story.image}
         alt={story.imageAlt}
-        sources={[{ srcset: story.image.replace(/\.webp$/, '.jpg'), type: 'image/jpg' }]}
         class="mx-auto mt-8 mb-2 w-full"
         width={768}
         height={576}
