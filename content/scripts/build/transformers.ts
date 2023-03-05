@@ -73,6 +73,7 @@ export const TRANSFORMERS = {
     useConsistentStoryImageURLs(stories: Story[]) {
         return stories.map((story) => {
             story.image = getConsistentAssetURL(story.image, '/community/static')
+            story.story = story.story.replace(/\/community\/static\/images/g, '/images')
             return story
         })
     },
