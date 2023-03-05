@@ -3,7 +3,6 @@
     import Heading from '$shared/components/Heading.svelte'
     import ButtonGroup from '$shared/components/ButtonGroup.svelte'
     import LinkButton from '$shared/components/LinkButton.svelte'
-    import { STORIES_ABOUT_LINK } from '$lib/constants'
     import Link from '$shared/components/Link.svelte'
 </script>
 
@@ -24,10 +23,10 @@
     </p>
 
     <ButtonGroup breakpoint="sm">
-        <LinkButton href={STORIES_ABOUT_LINK} variant="inverted" class="border border-transparent"
+        <LinkButton href="/contribute#stories" variant="inverted" class="border border-transparent"
             >Share your story</LinkButton
         >
-        <LinkButton href={STORIES_ABOUT_LINK} variant="secondary-inverted"
+        <LinkButton href="/contribute#stories-curation" variant="secondary-inverted"
             >Join the editorial team</LinkButton
         >
     </ButtonGroup>
