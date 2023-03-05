@@ -25,7 +25,7 @@
 <Button
     on:click={() => toggleSkill(skill.id)}
     size="sm"
-    variant="unstyled"
+    unstyled
     class={cx(
         'xs:text-base transform-gpu bg-white text-sm !font-normal duration-100',
         !$selectedSkills.includes(skill.id) && 'bg-opacity-50 shadow-lg hover:bg-opacity-75',

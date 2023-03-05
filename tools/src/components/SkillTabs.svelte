@@ -146,8 +146,8 @@
     >
     <div class="flex items-center sm:justify-end">
         <!-- TODO: implement advanced filters as modal -->
-        <!-- <Button variant="unstyled" size="sm" class="text-sm underline">Advanced filters</Button> -->
-        <Button variant="unstyled" on:click={resetFilters} size="sm" class="!px-0 text-sm underline"
+        <!-- <Button unstyled size="sm" class="text-sm underline">Advanced filters</Button> -->
+        <Button unstyled on:click={resetFilters} size="sm" class="!px-0 text-sm underline"
             >Reset</Button
         >
     </div>

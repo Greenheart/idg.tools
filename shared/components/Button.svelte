@@ -8,9 +8,6 @@
         'secondary-inverted':
             'bg-white border-black text-black border hover:bg-lightGray shadow-xl',
         disabled: 'bg-white text-black opacity-60 pointer-events-none shadow-lg',
-        // TODO: Maybe replace the variant="unstyled" syntax with an `unstyled` boolean prop like for links
-        // This could give cleaner code, and make it consistent with other components
-        unstyled: '',
     }
     export const sizes = {
         lg: 'px-12 py-3 text-lg',
@@ -30,17 +27,14 @@
     export let element: HTMLButtonElement | undefined = undefined
     export let tabindex: HTMLButtonElement['tabIndex'] | undefined = undefined
     export let type: 'submit' | undefined = undefined
+    export let unstyled = false
     let className = ''
     export { className as class }
+    const classes = unstyled
+        ? cx(defaultClasses, sizes[size], className)
+        : cx(defaultClasses, variants[disabled ? 'disabled' : variant], sizes[size], className)
 </script>
 
-<button
-    bind:this={element}
-    {disabled}
-    {tabindex}
-    {type}
-    class={cx(defaultClasses, variants[disabled ? 'disabled' : variant], sizes[size], className)}
-    on:click|trusted
->
+<button bind:this={element} {disabled} {tabindex} {type} class={classes} on:click|trusted>
     <slot />
 </button>
