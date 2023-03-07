@@ -17,9 +17,17 @@
     <!-- <Search class="cursor-pointer" on:click={toggleSearch} /> -->
     <!-- {#if searchVisible} -->
     <!-- TBD: remove padding of search result for full link width -->
-    <Typeahead {data} {extract} limit={10} hideLabel class="fuzzysearch" let:result>
-        <Link href={`/${result.original.link}`} unstyled class="flex flex-1">
-            <span class="inline py-1 px-4">{@html result.string}</span>
+    <Typeahead
+        {data}
+        {extract}
+        limit={10}
+        hideLabel
+        class="fuzzysearch !px-4"
+        let:result
+        id="fuzzysearch"
+    >
+        <Link href={`/${result.original.link}`} unstyled class="flex flex-1 py-1 px-4">
+            <span class="inline">{@html result.string}</span>
         </Link>
     </Typeahead>
     <!-- {/if} -->
@@ -28,5 +36,9 @@
 <style>
     :global([data-svelte-typeahead]) {
         z-index: 50 !important;
+    }
+
+    :global([data-svelte-typeahead] > ul#fuzzysearch-listbox > li) {
+        padding: 0 !important;
     }
 </style>

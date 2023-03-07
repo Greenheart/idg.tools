@@ -38,17 +38,3 @@ html {
         animation-delay: 0.01ms !important;
     }
 }
-
-/* TODO: This can be removed when we no longer need the Filters component with collapsible dimensions and skills */
-details > summary {
-    list-style: none;
-}
-
-details > summary::-webkit-details-marker {
-    display: none;
-}
-
-[data-svelte-typeahead].fuzzysearch > ul > li.selected {
-    background-color: 'red' !important;
-    padding: 0 !important;
-}
