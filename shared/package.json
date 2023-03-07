@@ -7,7 +7,8 @@
         "@rgossiaux/svelte-headlessui": "^1.0.2",
         "dompurify": "^3.0.1",
         "svelte": "^3.55.1",
-        "svelte-markdown": "^0.2.3"
+        "svelte-markdown": "^0.2.3",
+        "svelte-typeahead": "^4.4.1"
     },
     "devDependencies": {
         "@types/dompurify": "^2.4.0"
