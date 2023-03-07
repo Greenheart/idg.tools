@@ -6,7 +6,7 @@
 
     import { getSkillsInDimension } from '$shared/content-utils'
     import { cx, getColor, onKeydown, getOffset } from '$lib/utils'
-    import type { Skill, ToolsContent } from '$shared/types'
+    import type { Skill, Tool, ToolsContent } from '$shared/types'
     import SkillButton from './SkillButton.svelte'
     import Button from '$shared/components/Button.svelte'
     import Link from '$shared/components/Link.svelte'
@@ -14,6 +14,7 @@
     import Info from '$shared/icons/Info.svelte'
     import Heading from '$shared/components/Heading.svelte'
     import { browser } from '$app/environment'
+    import FuzzySearch from '$shared/components/FuzzySearch.svelte'
 
     let ticking = false
     let loaded = false
@@ -125,6 +126,10 @@
         getSkillTabs().classList.remove('hidden')
     }
 
+    // TODO: Add support for searching tool description, actions, resources, and more
+    // But always show the name of the tool, or the excerpt of the relevant text
+    const extract = (tool: Tool) => tool.name
+
     export let content: ToolsContent
     let className = ''
     export { className as class }
@@ -144,11 +149,14 @@
             </Link></span
         ></Heading
     >
-    <div class="flex items-center sm:justify-end">
+    <div class="flex items-center gap-4 sm:justify-end">
         <!-- TODO: implement advanced filters as modal -->
+        <br />
+        <FuzzySearch data={content.tools} {extract} />
+        <br />
         <!-- <Button unstyled size="sm" class="text-sm underline">Advanced filters</Button> -->
         <Button unstyled on:click={resetFilters} size="sm" class="!px-0 text-sm underline"
-            >Reset</Button
+            >Reset filters</Button
         >
     </div>
 </div>

@@ -47,3 +47,8 @@ details > summary {
 details > summary::-webkit-details-marker {
     display: none;
 }
+
+[data-svelte-typeahead].fuzzysearch > ul > li.selected {
+    background-color: 'red' !important;
+    padding: 0 !important;
+}

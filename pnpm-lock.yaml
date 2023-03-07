@@ -116,11 +116,13 @@ importers:
       dompurify: ^3.0.1
       svelte: ^3.55.1
       svelte-markdown: ^0.2.3
+      svelte-typeahead: ^4.4.1
     dependencies:
       '@rgossiaux/svelte-headlessui': 1.0.2_svelte@3.55.1
       dompurify: 3.0.1
       svelte: 3.55.1
       svelte-markdown: 0.2.3_svelte@3.55.1
+      svelte-typeahead: 4.4.1
     devDependencies:
       '@types/dompurify': 2.4.0
 
@@ -150,6 +152,7 @@ importers:
       svelte: ^3.55.1
       svelte-check: ^3.1.0
       svelte-meta-tags: ^2.6.5
+      svelte-typeahead: ^4.4.1
       tailwindcss: ^3.2.7
       tslib: ^2.5.0
       typescript: ^4.9.5
@@ -161,6 +164,7 @@ importers:
       sanitize-html: 2.10.0
       strip-markdown: 5.0.0
       svelte-meta-tags: 2.6.5_4x7phaipmicbaooxtnresslofa
+      svelte-typeahead: 4.4.1
     devDependencies:
       '@rgossiaux/svelte-headlessui': 1.0.2_svelte@3.55.1
       '@sveltejs/adapter-vercel': 2.3.0_@sveltejs+kit@1.10.0
@@ -7348,6 +7352,17 @@ packages:
       svelte: 3.55.1
       typescript: 4.9.5
     dev: true
+
+  /svelte-search/1.1.0:
+    resolution: {integrity: sha512-e5hci9fZPMXb3fuRZvcYJGqh448M8vV3biY4lN4Nr9fqrG/HBnTjWYstKb399aUe9tsBxRbxRAWgtKicisL23g==}
+    dev: false
+
+  /svelte-typeahead/4.4.1:
+    resolution: {integrity: sha512-U8EYkCQ1HaDrQq1fnkVCEm8emZrdEfgfHhMulgOdoYnWV5PTvypiwCTNvqqxFHbz9ZGe5juAR9ok5tEcfnP9zw==}
+    dependencies:
+      fuzzy: 0.1.3
+      svelte-search: 1.1.0
+    dev: false
 
   /svelte/3.55.1:
     resolution: {integrity: sha512-S+87/P0Ve67HxKkEV23iCdAh/SX1xiSfjF1HOglno/YTbSTW7RniICMCofWGdJJbdjw3S+0PfFb1JtGfTXE0oQ==}

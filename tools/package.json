@@ -19,7 +19,8 @@
         "remark": "^14.0.2",
         "sanitize-html": "^2.10.0",
         "strip-markdown": "^5.0.0",
-        "svelte-meta-tags": "^2.6.5"
+        "svelte-meta-tags": "^2.6.5",
+        "svelte-typeahead": "^4.4.1"
     },
     "devDependencies": {
         "@rgossiaux/svelte-headlessui": "^1.0.2",
