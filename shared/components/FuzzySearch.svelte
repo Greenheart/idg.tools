@@ -25,6 +25,10 @@
         class="fuzzysearch !px-4"
         let:result
         id="fuzzysearch"
+        on:select={() => {
+            // TODO: Navigate when selecting a link, rather than adding it to the input
+            // Maybe inject the sveltekit goto function to allow this.
+        }}
     >
         <Link href={`/${result.original.link}`} unstyled class="flex flex-1 py-1 px-4">
             <span class="inline">{@html result.string}</span>
