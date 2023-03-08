@@ -12,15 +12,16 @@
 
     // TODO: Add support for searching tool description, actions, resources, and more
     // But always show the name of the tool, or the excerpt of the relevant text
+    // IDEA: Maybe extract all relevant strings and let them be searched
     const extract = (tool: Tool) => tool.name
 
     export let content: ToolsContent
 </script>
 
-<div class="toolbar grid grid-cols-2">
+<div class="toolbar grid grid-cols-[300px_1fr] gap-4 pb-3">
     <FuzzySearch data={content.tools} {extract} {goto} />
 
-    <div class="flex items-center">
+    <div class="flex items-center justify-end">
         <Button size="sm" on:click={resetFilters}>Reset Filters</Button>
     </div>
 </div>
