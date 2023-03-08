@@ -3,8 +3,9 @@
     import { selectedSkills, visibleItems, selectedTags } from '$lib/stores'
     import ToolPreview from './ToolPreview.svelte'
     import Button from '$shared/components/Button.svelte'
+    import VisibleToolsCount from './VisibleToolsCount.svelte'
 
-    export let tools: Tool[]
+    export let mostRelevantTools: Tool[]
     export let content: ToolsContent
 
     const showAll = () => {
@@ -13,12 +14,14 @@
     }
 
     const showMore = () => {
-        // TODO: this might not be what we want -> show 10 or 20 more at a time
-        $visibleItems = Math.max(tools.length, Math.min($visibleItems + 10, tools.length))
+        $visibleItems = Math.max(
+            mostRelevantTools.length,
+            Math.min($visibleItems + 10, mostRelevantTools.length),
+        )
     }
 </script>
 
-{#each tools.slice(0, $visibleItems) as tool (tool.link)}
+{#each mostRelevantTools.slice(0, $visibleItems) as tool (tool.link)}
     <ToolPreview {tool} {content} />
 {:else}
     <div class="flex flex-col items-center space-y-4 lg:col-span-2 text-sm">
@@ -28,13 +31,10 @@
 {/each}
 
 <div class="flex flex-col items-center justify-center space-y-4 pt-8 text-sm lg:col-span-2">
-    <p>
-        Showing {Math.min($visibleItems, tools.length)} of {tools.length} tools{#if $selectedSkills.length || $selectedTags.length}
-            &nbsp;matching your search{/if}
-    </p>
-    {#if $visibleItems < tools.length}
+    <VisibleToolsCount {mostRelevantTools} allToolsCount={content.tools.length} />
+    {#if $visibleItems < mostRelevantTools.length}
         <Button on:click={showMore}>Show more</Button>
-    {:else if tools.length && ($selectedSkills.length || $selectedTags.length)}
+    {:else if mostRelevantTools.length && ($selectedSkills.length || $selectedTags.length)}
         <Button on:click={showAll}>Show all tools</Button>
     {/if}
 </div>

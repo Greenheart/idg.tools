@@ -63,10 +63,10 @@
 <SkillTabs {content} />
 
 <div id="explore" class="pt-60 sm:pt-48 md:pt-40">
-    <NewFiltersToolbar {content} />
+    <NewFiltersToolbar {mostRelevantTools} {content} />
 </div>
 
 <Heading size={2} class="pb-4 pt-8">2. Explore relevant tools</Heading>
 <div class="grid gap-8 lg:grid-cols-2">
-    <Tools tools={mostRelevantTools} {content} />
+    <Tools {mostRelevantTools} {content} />
 </div>

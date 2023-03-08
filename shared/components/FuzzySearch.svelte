@@ -9,7 +9,7 @@
     const label = 'Search tools...'
 </script>
 
-<div class="relative grid max-w-[300px] grid-cols-[max-content_1fr]">
+<div class="relative grid grid-cols-[max-content_1fr]">
     <Search class="pointer-events-none absolute left-2 !z-[9] h-full" />
     <Typeahead
         {data}
@@ -18,7 +18,7 @@
         {label}
         placeholder={label}
         hideLabel
-        class="!h-full !border-0 !bg-white !pr-4 !pl-10 shadow-md !outline-offset-0"
+        class="!h-full max-w-[250px] !border-0 !bg-white !pr-4 !pl-10 shadow-md !outline-offset-0 sm:max-w-[300px]"
         inputAfterSelect="clear"
         on:select={({ detail }) => goto(detail.original.link)}
     />
