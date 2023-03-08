@@ -152,9 +152,7 @@
     >
     <div class="flex items-center gap-4 sm:justify-end">
         <!-- TODO: implement advanced filters as modal -->
-        <br />
         <FuzzySearch data={content.tools} {extract} {goto} />
-        <br />
         <!-- <Button unstyled size="sm" class="text-sm underline">Advanced filters</Button> -->
         <Button unstyled on:click={resetFilters} size="sm" class="!px-0 text-sm underline"
             >Reset filters</Button
