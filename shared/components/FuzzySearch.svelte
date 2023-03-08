@@ -1,12 +1,11 @@
 <script lang="ts">
-    import { tick } from 'svelte'
-
     import Typeahead from 'svelte-typeahead'
     import Search from '../icons/Search.svelte'
 
     export let data: any
     export let extract: (item: any) => any
     export let goto: (url: string) => Promise<void>
+    export let preloadData: (href: string) => Promise<void>
 
     const label = 'Search tools...'
 </script>
@@ -23,8 +22,10 @@
         class="!h-full max-w-[240px] !border-0 !bg-white !pr-4 !pl-10 shadow-md !outline-offset-0 sm:max-w-[300px]"
         inputAfterSelect="clear"
         on:select={async ({ detail }) => {
+            // Preload data to ensure the navigation can happen smoothly.
+            // IDEA: Maybe trigger preload already when selecting an option from the dropdown to improve perceived performance
+            await preloadData(detail.original.link)
             await goto(detail.original.link)
-            await tick()
         }}
     />
 </div>

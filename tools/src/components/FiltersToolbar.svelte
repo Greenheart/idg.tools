@@ -6,7 +6,7 @@
     import Filters from '$shared/icons/Filters.svelte'
     import VisibleToolsCount from './VisibleToolsCount.svelte'
 
-    import { goto } from '$app/navigation'
+    import { goto, preloadData } from '$app/navigation'
     import type { Tag, Tool, ToolsContent } from '$shared/types'
     import { listenForScroll, selectedSkills, selectedTags } from '$lib/stores'
     import { cx } from '$shared/utils'
@@ -41,7 +41,7 @@
 </script>
 
 <div class="toolbar grid grid-cols-2 pb-3">
-    <FuzzySearch data={content.tools} {extract} {goto} />
+    <FuzzySearch data={content.tools} {extract} {goto} {preloadData} />
 
     <Button
         size="sm"
