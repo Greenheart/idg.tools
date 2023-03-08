@@ -21,8 +21,8 @@
 <div class="toolbar grid grid-cols-[300px_1fr] gap-4 pb-3">
     <FuzzySearch data={content.tools} {extract} {goto} />
 
-    <div class="flex items-center justify-end">
-        <Button size="sm" on:click={resetFilters}>Reset Filters</Button>
+    <div class="flex justify-end">
+        <Button size="md" on:click={resetFilters}>Reset Filters</Button>
     </div>
 </div>
 
