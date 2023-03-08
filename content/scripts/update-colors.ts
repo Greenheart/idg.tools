@@ -18,10 +18,7 @@ async function buildIDGColors({ dimensions }: ToolsContent) {
         return COLORS
     }, {} as IDGColorMap)
 
-    return writeJSON(outputFile, {
-        COLORS,
-        DIMENSION_IDS: dimensions.map((d) => d.id),
-    })
+    return writeJSON(outputFile, COLORS)
 }
 
 const content = (await readJSON(inputFile)) as Required<Localised<ToolsContent>>

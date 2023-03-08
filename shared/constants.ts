@@ -74,11 +74,3 @@ export const COLORS: Record<Dimension['id'] | Skill['id'], string> = {
     ckzi3hi072982e2n0r4cdkqjy: 'acting',
     ckzi3hqs63163e2n03h36pb73: 'acting',
 }
-
-export const DIMENSION_IDS = [
-    'ckzi3855r0086e2n0smi0mew5',
-    'ckzi38ilp0149e2n0idgw5zqv',
-    'ckzi38wix0218e2n09ncgnmxx',
-    'ckzi3951t0293e2n0n3bykbg5',
-    'ckzi39fwv0374e2n0d2eynda4',
-]
