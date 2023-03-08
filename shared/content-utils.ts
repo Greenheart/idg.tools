@@ -93,9 +93,12 @@ export const getMostRelevantTools = (
 ) =>
     content.tools
         .filter((tool) => {
-            const hasMatchingSkills = selectedSkills.some((skillId) =>
-                tool.relevancy.some(({ skill }) => skill === skillId),
-            )
+            const hasMatchingSkills = selectedSkills.length
+                ? selectedSkills.some((skillId) =>
+                      tool.relevancy.some(({ skill }) => skill === skillId),
+                  )
+                : true
+
             const hasMatchingTags = selectedTags.length
                 ? selectedTags.some((tagId) => tool.tags.some((id) => id === tagId))
                 : true
