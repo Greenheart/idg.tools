@@ -1,13 +1,15 @@
 <script lang="ts">
     import FuzzySearch from '$shared/components/FuzzySearch.svelte'
-    import { goto } from '$app/navigation'
-    import type { Tag, Tool, ToolsContent } from '$shared/types'
-    import { listenForScroll, selectedSkills, selectedTags, visibleItems } from '$lib/stores'
     import Button from '$shared/components/Button.svelte'
-    import { cx } from '$shared/utils'
+    import Filters from '$shared/icons/Filters.svelte'
     import VisibleToolsCount from './VisibleToolsCount.svelte'
 
-    const showAll = () => {
+    import { goto } from '$app/navigation'
+    import type { Tag, Tool, ToolsContent } from '$shared/types'
+    import { listenForScroll, selectedSkills, selectedTags } from '$lib/stores'
+    import { cx } from '$shared/utils'
+
+    const resetFilters = () => {
         $selectedSkills = []
         $selectedTags = []
     }
@@ -32,43 +34,55 @@
 
     export let content: ToolsContent
     export let mostRelevantTools: Tool[]
+
+    let advancedFilters = false
 </script>
 
-<div class="toolbar grid grid-cols-[max-content_1fr] gap-4 pb-3">
+<div class="toolbar grid grid-cols-2 gap-4 pb-3">
     <FuzzySearch data={content.tools} {extract} {goto} />
 
-    <div class="col-span-full">
-        <h3>Select tags</h3>
-        <div class="bg-being/20 flex flex-wrap gap-2 p-2">
-            {#each content.tags as tag}
-                <Button
-                    size="sm"
-                    unstyled
-                    on:click={() => toggleTag(tag.id)}
-                    class={cx(
-                        'xs:text-base transform-gpu bg-white text-sm !font-normal duration-100',
-                        !$selectedTags.includes(tag.id) &&
-                            'bg-opacity-50 shadow-lg hover:bg-opacity-75',
-                    )}>{tag.name}</Button
-                >
-            {/each}
+    <Button
+        size="sm"
+        class="xs:rounded-none xs:px-4 flex items-center gap-2 justify-self-end rounded-full"
+        on:click={() => {
+            advancedFilters = !advancedFilters
+        }}><Filters /> <span class="xs:inline hidden">Filters</span></Button
+    >
+
+    {#if advancedFilters}
+        <div class="col-span-full">
+            <h3 class="pb-2 text-sm">Select tags</h3>
+            <div class="bg-being/20 flex flex-wrap gap-2 p-2">
+                {#each content.tags as tag}
+                    <Button
+                        size="sm"
+                        unstyled
+                        on:click={() => toggleTag(tag.id)}
+                        class={cx(
+                            'xs:text-base transform-gpu bg-white text-sm !font-normal duration-100',
+                            !$selectedTags.includes(tag.id) &&
+                                'bg-opacity-50 shadow-lg hover:bg-opacity-75',
+                        )}>{tag.name}</Button
+                    >
+                {/each}
+            </div>
         </div>
-    </div>
+    {/if}
+
     <div class="col-span-full flex items-center justify-between gap-2 text-sm">
         <span class="py-1">
             <VisibleToolsCount {mostRelevantTools} allToolsCount={content.tools.length} />
         </span>
         <Button
-            on:click={showAll}
+            on:click={resetFilters}
             unstyled
             size="sm"
             class="px-0 text-sm underline disabled:opacity-70"
-            disabled={mostRelevantTools.length === content.tools.length}>Show all</Button
+            disabled={mostRelevantTools.length === content.tools.length}>Reset</Button
         >
     </div>
 </div>
 
-<!-- TODO: Make filters responsive -->
 <style>
     .toolbar {
         border-bottom: 0.25rem solid;
