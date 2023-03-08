@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { tick } from 'svelte'
+
     import Typeahead from 'svelte-typeahead'
     import Search from '../icons/Search.svelte'
 
@@ -20,7 +22,10 @@
         hideLabel
         class="!h-full max-w-[240px] !border-0 !bg-white !pr-4 !pl-10 shadow-md !outline-offset-0 sm:max-w-[300px]"
         inputAfterSelect="clear"
-        on:select={({ detail }) => goto(detail.original.link)}
+        on:select={async ({ detail }) => {
+            await goto(detail.original.link)
+            await tick()
+        }}
     />
 </div>
 
