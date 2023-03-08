@@ -2,7 +2,6 @@
     import { TabGroup, Tab, TabList, TabPanel, TabPanels } from '@rgossiaux/svelte-headlessui'
     import { onDestroy, onMount } from 'svelte'
     import { fade } from 'svelte/transition'
-    import { goto } from '$app/navigation'
     import { selectedSkills, selectedTags, listenForScroll } from '$lib/stores'
 
     import { getSkillsInDimension } from '$shared/content-utils'
@@ -15,7 +14,6 @@
     import Info from '$shared/icons/Info.svelte'
     import Heading from '$shared/components/Heading.svelte'
     import { browser } from '$app/environment'
-    import FuzzySearch from '$shared/components/FuzzySearch.svelte'
 
     let ticking = false
     let loaded = false
@@ -136,6 +134,7 @@
     export { className as class }
 </script>
 
+<!-- TODO: simplify this layout if we go for the separate toolbar solution -->
 <!-- NOTE: Will need to update the breakpoint when adding more filter options -->
 <div class="xs:grid-cols-[1fr_max-content] grid items-center gap-y-1 pb-2">
     <Heading size={2} class="inline"
@@ -150,14 +149,14 @@
             </Link></span
         ></Heading
     >
-    <div class="flex items-center gap-4 sm:justify-end">
-        <!-- TODO: implement advanced filters as modal -->
-        <FuzzySearch data={content.tools} {extract} {goto} />
-        <!-- <Button unstyled size="sm" class="text-sm underline">Advanced filters</Button> -->
-        <Button unstyled on:click={resetFilters} size="sm" class="!px-0 text-sm underline"
+    <!-- <div class="flex items-center gap-4 sm:justify-end"> -->
+    <!-- TODO: Make filters responsive -->
+    <!-- IDEA: Add advanced filters below the standard filters as a separate section. Allow them to be toggled on or off -->
+    <!-- <FuzzySearch data={content.tools} {extract} {goto} /> -->
+    <!-- <Button unstyled on:click={resetFilters} size="sm" class="!px-0 text-sm underline"
             >Reset</Button
-        >
-    </div>
+        > -->
+    <!-- </div> -->
 </div>
 
 <div
