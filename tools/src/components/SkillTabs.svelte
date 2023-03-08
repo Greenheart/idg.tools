@@ -2,6 +2,7 @@
     import { TabGroup, Tab, TabList, TabPanel, TabPanels } from '@rgossiaux/svelte-headlessui'
     import { onDestroy, onMount } from 'svelte'
     import { fade } from 'svelte/transition'
+    import { goto } from '$app/navigation'
     import { selectedSkills, selectedTags, listenForScroll } from '$lib/stores'
 
     import { getSkillsInDimension } from '$shared/content-utils'
@@ -152,7 +153,7 @@
     <div class="flex items-center gap-4 sm:justify-end">
         <!-- TODO: implement advanced filters as modal -->
         <br />
-        <FuzzySearch data={content.tools} {extract} />
+        <FuzzySearch data={content.tools} {extract} {goto} />
         <br />
         <!-- <Button unstyled size="sm" class="text-sm underline">Advanced filters</Button> -->
         <Button unstyled on:click={resetFilters} size="sm" class="!px-0 text-sm underline"
