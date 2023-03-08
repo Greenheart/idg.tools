@@ -47,6 +47,10 @@
             <ToolPreview {tool} {content} />
         </div>
     {:else}
+        <!--
+            TODO: hide previous tools quicker when showing the empty message,
+            IDEA: or add a delay before showing it so the other content can fade out first
+        -->
         <div
             class="flex flex-col items-center space-y-4 lg:col-span-2 text-sm"
             in:fade={{ duration: 250 }}
