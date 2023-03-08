@@ -11,7 +11,7 @@
     import { FRAMEWORK_LINK, IDG_PDF_TOOLKIT } from '$shared/constants'
     import SkillTabs from '$components/SkillTabs.svelte'
     import { FEEDBACK_FORM_LINK, SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
-    import NewFiltersToolbar from '$components/NewFiltersToolbar.svelte'
+    import FiltersToolbar from '$components/FiltersToolbar.svelte'
 
     export let data: PageData
     $: ({ content } = data)
@@ -63,7 +63,7 @@
 <SkillTabs {content} />
 
 <div id="explore" class="pt-60 sm:pt-48 md:pt-40">
-    <NewFiltersToolbar {mostRelevantTools} {content} />
+    <FiltersToolbar {mostRelevantTools} {content} />
 </div>
 
 <Heading size={2} class="pb-4 pt-8">2. Explore relevant tools</Heading>
