@@ -5,6 +5,7 @@
 
     export let data: any
     export let extract: (item: any) => any
+    export let goto: (url: string) => Promise<void>
 
     // let searchVisible = false
 
@@ -21,14 +22,13 @@
         {data}
         {extract}
         limit={10}
+        label="Search tools"
         hideLabel
         class="fuzzysearch !px-4"
         let:result
+        inputAfterSelect="clear"
         id="fuzzysearch"
-        on:select={() => {
-            // TODO: Navigate when selecting a link, rather than adding it to the input
-            // Maybe inject the sveltekit goto function to allow this.
-        }}
+        on:select={({ detail }) => goto(detail.original.link)}
     >
         <Link href={`/${result.original.link}`} unstyled class="flex flex-1 py-1 px-4">
             <span class="inline">{@html result.string}</span>
