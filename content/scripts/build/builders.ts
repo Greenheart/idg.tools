@@ -69,22 +69,33 @@ export const BUILDERS = {
         const transformedContent = transformContent(
             localisedContent,
             (result, [locale, content]) => {
-                const tools = runAllTransformers(
-                    [
-                        TRANSFORMERS.ensureRelevancyExists,
-                        TRANSFORMERS.filterAndSortRelevancyScores(locale),
-                        TRANSFORMERS.ensureTagsExists,
-                        TRANSFORMERS.sortEntityTagsAlphabetically(content.tags),
-                        TRANSFORMERS.updateLink,
-                        TRANSFORMERS.sortTools(content.skills),
-                    ],
-                    content.tools,
-                )
+                // HACK: temporarily disable transformations for other locales
+                // This is needed to prevent crashes when critical content is missing
+                const tools =
+                    locale === 'en'
+                        ? runAllTransformers(
+                              [
+                                  TRANSFORMERS.ensureRelevancyExists,
+                                  TRANSFORMERS.filterAndSortRelevancyScores(locale),
+                                  TRANSFORMERS.ensureTagsExists,
+                                  TRANSFORMERS.sortEntityTagsAlphabetically(content.tags),
+                                  TRANSFORMERS.updateLink,
+                                  TRANSFORMERS.sortTools(content.skills),
+                              ],
+                              content.tools,
+                          )
+                        : []
 
-                const tags = runAllTransformers(
-                    [TRANSFORMERS.keepRelevantTags(tools), TRANSFORMERS.sortTagsAlphabetically],
-                    content.tags,
-                )
+                const tags =
+                    locale === 'en'
+                        ? runAllTransformers(
+                              [
+                                  TRANSFORMERS.keepRelevantTags(tools),
+                                  TRANSFORMERS.sortTagsAlphabetically,
+                              ],
+                              content.tags,
+                          )
+                        : []
 
                 result[locale as Locale] = {
                     ...content,

@@ -100,7 +100,7 @@ export const getMostRelevantTools = (
                 : true
 
             const hasMatchingTags = selectedTags.length
-                ? selectedTags.some((tagId) => tool.tags.some((id) => id === tagId))
+                ? selectedTags.every((tagId) => tool.tags.some((id) => id === tagId))
                 : true
 
             return hasMatchingSkills && hasMatchingTags
