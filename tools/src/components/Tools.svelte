@@ -30,7 +30,7 @@
     </div>
 {/each}
 
-<div class="flex flex-col items-center justify-center space-y-4 pt-8 text-sm lg:col-span-2">
+<div class="flex flex-col items-center justify-center gap-4 space-y-4 pt-8 text-sm lg:col-span-2">
     <VisibleToolsCount {mostRelevantTools} allToolsCount={content.tools.length} />
     {#if $visibleItems < mostRelevantTools.length}
         <Button on:click={showMore}>Show more</Button>
