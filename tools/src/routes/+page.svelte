@@ -16,10 +16,13 @@
     export let data: PageData
     $: ({ content } = data)
 
+    let reduceMotion = true
+
     onMount(() => {
         // NOTE: Maybe we could limit the number of re-renders by showing a loading state until all of these have updated?
         selectedSkills.useLocalStorage()
         selectedTags.useLocalStorage()
+        reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     })
 
     $: mostRelevantTools =
@@ -67,6 +70,6 @@
 </div>
 
 <Heading size={2} class="pb-4 pt-8">2. Explore relevant tools</Heading>
-<div class="grid gap-8 lg:grid-cols-2">
-    <Tools {mostRelevantTools} {content} />
-</div>
+<Tools {mostRelevantTools} {content} />
+
+<!-- <Tools {mostRelevantTools} {content} reduceMotion={reduceMotion.matches} /> -->
