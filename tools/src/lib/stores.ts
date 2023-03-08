@@ -33,4 +33,7 @@ export const isMenuOpen = writable<boolean>(false)
 export const filtersExpanded = writable<boolean>(false)
 export const visibleItems = writable<number>(20)
 export const scrollbarWidth = writable<number>(0)
+/**
+ * This store is used to disable scrolling when updating filters.
+ */
 export const listenForScroll = writable<boolean>(true)
