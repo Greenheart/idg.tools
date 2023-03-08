@@ -5,10 +5,22 @@
     export { className as class }
 </script>
 
-<div class={cx('w-3 flex-col', className)}>
-    <div class="bg-being h-16 w-3" />
-    <div class="bg-thinking h-16 w-3" />
-    <div class="bg-relating h-16 w-3" />
-    <div class="bg-collaborating h-16 w-3" />
-    <div class="bg-acting h-16 w-3" />
-</div>
+<div class={cx('gradient h-80 w-3 flex-col', className)} />
+
+<style>
+    .gradient {
+        background: linear-gradient(
+            to bottom,
+            var(--being) 0%,
+            var(--being) 20%,
+            var(--thinking) 20%,
+            var(--thinking) 40%,
+            var(--relating) 40%,
+            var(--relating) 60%,
+            var(--collaborating) 60%,
+            var(--collaborating) 80%,
+            var(--acting) 80%,
+            var(--acting) 100%
+        );
+    }
+</style>
