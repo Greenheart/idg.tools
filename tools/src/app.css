@@ -38,3 +38,11 @@ html {
         animation-delay: 0.01ms !important;
     }
 }
+
+:root {
+    --being: #d4b88c;
+    --thinking: #e585a1;
+    --relating: #e84139;
+    --collaborating: #ff6821;
+    --acting: #661a30;
+}

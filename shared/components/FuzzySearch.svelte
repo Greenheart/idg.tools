@@ -10,7 +10,7 @@
 </script>
 
 <div class="relative grid grid-cols-[max-content_1fr]">
-    <Search class="pointer-events-none absolute left-2 !z-[60] h-full" />
+    <Search class="pointer-events-none absolute left-2 !z-[9] h-full" />
     <Typeahead
         {data}
         {extract}
@@ -26,6 +26,6 @@
 
 <style>
     :global([data-svelte-typeahead]) {
-        z-index: 50 !important;
+        z-index: 8 !important;
     }
 </style>
