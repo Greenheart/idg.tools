@@ -155,7 +155,7 @@
         <FuzzySearch data={content.tools} {extract} {goto} />
         <!-- <Button unstyled size="sm" class="text-sm underline">Advanced filters</Button> -->
         <Button unstyled on:click={resetFilters} size="sm" class="!px-0 text-sm underline"
-            >Reset filters</Button
+            >Reset</Button
         >
     </div>
 </div>

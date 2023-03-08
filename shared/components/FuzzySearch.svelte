@@ -5,26 +5,21 @@
     export let data: any
     export let extract: (item: any) => any
     export let goto: (url: string) => Promise<void>
+
+    const label = 'Search tools...'
 </script>
 
-<div class="grid grid-cols-[max-content_1fr]">
-    <button
-        class="px-2"
-        on:click={() => {
-            document.querySelector('#fuzzysearch')?.focus()
-        }}
-    >
-        <Search />
-    </button>
+<div class="relative grid grid-cols-[max-content_1fr]">
+    <Search class="pointer-events-none absolute left-2 !z-[60] h-full" />
     <Typeahead
         {data}
         {extract}
         limit={10}
-        label="Search tools"
+        {label}
+        placeholder={label}
         hideLabel
-        class="!border-0 !px-4 shadow-md !outline-offset-0"
+        class="!border-0 !pr-4 !pl-10 shadow-md !outline-offset-0"
         inputAfterSelect="clear"
-        id="fuzzysearch"
         on:select={({ detail }) => goto(detail.original.link)}
     />
 </div>
