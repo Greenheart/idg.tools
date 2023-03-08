@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { slide } from 'svelte/transition'
+    import { cubicOut } from 'svelte/easing'
     import FuzzySearch from '$shared/components/FuzzySearch.svelte'
     import Button from '$shared/components/Button.svelte'
     import Filters from '$shared/icons/Filters.svelte'
@@ -38,7 +40,7 @@
     let advancedFilters = false
 </script>
 
-<div class="toolbar grid grid-cols-2 gap-4 pb-3">
+<div class="toolbar grid grid-cols-2 pb-3">
     <FuzzySearch data={content.tools} {extract} {goto} />
 
     <Button
@@ -50,7 +52,11 @@
     >
 
     {#if advancedFilters}
-        <div class="col-span-full">
+        <div
+            class="col-span-full pt-4"
+            in:slide={{ easing: cubicOut, duration: 300 }}
+            out:slide={{ easing: cubicOut, duration: 300 }}
+        >
             <h3 class="pb-2 text-sm">Select tags</h3>
             <div class="bg-being/20 flex flex-wrap gap-2 p-2">
                 {#each content.tags as tag}
@@ -69,7 +75,7 @@
         </div>
     {/if}
 
-    <div class="col-span-full flex items-center justify-between gap-2 text-sm">
+    <div class="col-span-full flex items-center justify-between gap-2 pt-4 text-sm">
         <span class="py-1">
             <VisibleToolsCount {mostRelevantTools} allToolsCount={content.tools.length} />
         </span>
