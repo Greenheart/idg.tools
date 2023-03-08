@@ -54,34 +54,21 @@
             {/each}
         </div>
     </div>
-
-    <!-- {#if visibleCount < content.tools.length}
-        <div class="col-span-full flex items-center gap-2">
-            <span>Showing {visibleCount} of {content.tools.length} tools.</span>
-            <Button on:click={showAll} unstyled size="sm" class="text-base underline"
-                >Show all</Button
-            >
-        </div>
-    {/if} -->
     <div class="col-span-full flex items-center justify-between gap-2 text-sm">
         <span class="py-1">
             <VisibleToolsCount {mostRelevantTools} allToolsCount={content.tools.length} />
         </span>
-        <!-- <span class="py-1">Showing {$visibleItems} of {content.tools.length} tools.</span> -->
-        {#if mostRelevantTools.length < content.tools.length}
-            <Button on:click={showAll} unstyled size="sm" class="text-sm underline">Show all</Button
-            >
-        {/if}
+        <Button
+            on:click={showAll}
+            unstyled
+            size="sm"
+            class="px-0 text-sm underline disabled:opacity-70"
+            disabled={mostRelevantTools.length === content.tools.length}>Show all</Button
+        >
     </div>
-
-    <!-- <div class="col-span-full flex justify-end">
-        <Button size="md" on:click={showAll}>Reset Filters</Button>
-    </div> -->
 </div>
 
 <!-- TODO: Make filters responsive -->
-
-<!-- IDEA: Add advanced filters below the standard filters as a separate section. Allow them to be toggled on or off -->
 <style>
     .toolbar {
         border-bottom: 0.25rem solid;
