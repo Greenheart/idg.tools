@@ -7,16 +7,24 @@
     export let goto: (url: string) => Promise<void>
 </script>
 
-<div class="flex items-center gap-4">
-    <Search class="cursor-pointer" />
+<div class="grid grid-cols-[max-content_1fr]">
+    <button
+        class="px-2"
+        on:click={() => {
+            document.querySelector('#fuzzysearch')?.focus()
+        }}
+    >
+        <Search />
+    </button>
     <Typeahead
         {data}
         {extract}
         limit={10}
         label="Search tools"
         hideLabel
-        class="!px-4"
+        class="!border-0 !px-4 shadow-md !outline-offset-0"
         inputAfterSelect="clear"
+        id="fuzzysearch"
         on:select={({ detail }) => goto(detail.original.link)}
     />
 </div>
