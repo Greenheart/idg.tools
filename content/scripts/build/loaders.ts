@@ -62,9 +62,11 @@ export const LOADERS = {
  */
 export const BUNDLE_LOADERS = {
     community: (builderInput: BuilderInput<CommunityContent>) => {
+        // IDEA: Maybe use Zod to parse input data and ensure it matches the expected format
         return loadContent<CommunityContent>(builderInput)
     },
     tools: (builderInput: BuilderInput<ToolsContent>) => {
+        // IDEA: Maybe use Zod to parse input data and ensure it matches the expected format
         return loadContent<ToolsContent>(builderInput)
     },
 }
