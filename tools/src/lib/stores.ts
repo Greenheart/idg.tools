@@ -1,7 +1,6 @@
 import { writable } from 'svelte/store'
 
-import type { Dimension, ItemId } from '$shared/types'
-import { DIMENSION_IDS } from '$shared/constants'
+import type { ItemId } from '$shared/types'
 
 function createPersistedStore<T>(key: string, startValue: T) {
     const { subscribe, set } = writable(startValue)
@@ -35,10 +34,3 @@ export const filtersExpanded = writable<boolean>(false)
 export const visibleItems = writable<number>(20)
 export const scrollbarWidth = writable<number>(0)
 export const listenForScroll = writable<boolean>(true)
-
-export const isDimensionOpen = writable<Record<Dimension['id'], boolean>>(
-    DIMENSION_IDS.reduce((isDimensionOpen: Record<Dimension['id'], boolean>, dimensionId) => {
-        isDimensionOpen[dimensionId] = false
-        return isDimensionOpen
-    }, {}),
-)
