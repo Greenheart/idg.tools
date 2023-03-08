@@ -137,7 +137,7 @@
 </script>
 
 <!-- NOTE: Will need to update the breakpoint when adding more filter options -->
-<div class="xs:grid-cols-[1fr_max-content] grid gap-y-1 pb-2">
+<div class="xs:grid-cols-[1fr_max-content] grid items-center gap-y-1 pb-2">
     <Heading size={2} class="inline"
         >1. Choose skills to <span class="whitespace-nowrap"
             >practice<Link
