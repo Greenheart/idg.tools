@@ -1,5 +1,4 @@
 import { CmsCollection } from 'netlify-cms-core'
-import { STORIES_LEARN_MORE } from './constants'
 
 import { ContributorsFields } from './fields/contributors'
 import { DimensionsFields } from './fields/dimensions'
@@ -8,8 +7,25 @@ import { SkillsFields } from './fields/skills'
 import { StoriesFields } from './fields/stories'
 import { TagsFields } from './fields/tags'
 import { ToolsFields } from './fields/tools'
+import { HubsFields } from './fields/hubs'
 
 export const COLLECTIONS = [
+    {
+        name: 'hubs',
+        label: '🌐 IDG Hubs and Networks',
+        label_singular: 'Hub or Network',
+        folder: '/content/src/hubs',
+        fields: HubsFields,
+        extension: 'json',
+        create: true,
+        delete: false,
+        publish: false,
+        summary: '{{fields.name}}',
+        identifier_field: 'id',
+        slug: '{{id}}',
+        i18n: false,
+        description: 'IDG Community Hubs and Networks',
+    },
     {
         name: 'skills',
         label: '🌱 Skills',
