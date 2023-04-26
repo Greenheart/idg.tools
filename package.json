@@ -2,8 +2,8 @@
     "name": "innerdevelopmentgoals",
     "private": true,
     "engines": {
-        "node": ">=16 <19",
-        "pnpm": "7"
+        "node": ">=16",
+        "pnpm": "8"
     },
     "scripts": {
         "dev": "pnpm --filter \"./(tools|cms|content|community)\" --parallel dev",
