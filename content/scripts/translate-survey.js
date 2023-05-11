@@ -1,10 +1,56 @@
 // import { v3 } from '@google-cloud/translate'
 // const translationClient = new v3()
 
-const input = `
-"Language Code";"Question";"Description"
-"en";"What skills are needed to reach the SDGs?";"Some description to give more context"
-`
+import { google } from 'googleapis'
+import key from './key.json' assert {
+    type: 'json',
+    integrity: 'sha384-ABC123'
+};
+
+// const input = `
+// "Language Code";"Question";"Description"
+// "en";"What skills are needed to reach the SDGs?";"Some description to give more context"
+// `
+
+const client = new google.auth.JWT(
+    key.client_email,
+    null,
+    key.private_key,
+    ['https://www.googleapis.com/auth/spreadsheets']
+)
+
+client.authorize((err, tokens) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    console.log('Authorized!')
+})
+
+const sheets = google.sheets({ version: 'v4', auth: client })
+
+sheets.spreadsheets.values.get({
+    spreadsheetId: key.spreadsheet_id,
+    range: 'Ark2!F2:G2',
+}, (err, res) => {
+    if (err) {
+        console.error(err)
+        return
+    }
+    const rows = res.data.values;
+    if (rows.length) {
+        console.log('Data:');
+        rows.map((row) => {
+            console.log("===================\nQuestion in English:\n")
+            console.log(row[0])
+            console.log("===================\nDescription in English:\n")
+            console.log(row[1])
+            // console.log(`${row[0]}, ${row[1]}`);
+        });
+    } else {
+        console.log('No data found.')
+    }
+});
 
 // Use the `csv` library from npm - this will help us with parsing and stringifying to cover edge cases
 // https://csv.js.org/
@@ -59,9 +105,9 @@ curl  'https://api-free.deepl.com/v2/languages?type=target' -H 'Authorization: D
 for each language (each row of the CSV file)// start from 3rd row (first is heading, second is English)
     for all strings (columns) of row
         const language = row.split(';')[]
-        
+
         googleTranslate() // read always second row
-    
+
     add a new line to the output
 
 
