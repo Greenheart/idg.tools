@@ -5,52 +5,81 @@ import { google } from 'googleapis'
 import key from './key.json' assert {
     type: 'json',
     integrity: 'sha384-ABC123'
-};
+}
+import * as deepl from 'deepl-node'
 
 // const input = `
 // "Language Code";"Question";"Description"
 // "en";"What skills are needed to reach the SDGs?";"Some description to give more context"
 // `
 
-const client = new google.auth.JWT(
-    key.client_email,
-    null,
-    key.private_key,
-    ['https://www.googleapis.com/auth/spreadsheets']
-)
+/* IMPORTING FROM GOOGLE DOCS */
+const importFromGoogleDocs = async () => {
+    const client = new google.auth.JWT(
+        key.googleDocs.client_email,
+        null,
+        key.googleDocs.private_key,
+        ['https://www.googleapis.com/auth/spreadsheets']
+    )
 
-client.authorize((err, tokens) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
-    console.log('Authorized!')
-})
+    client.authorize((err, tokens) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        console.log('Authorized!')
+    })
 
-const sheets = google.sheets({ version: 'v4', auth: client })
+    const sheets = google.sheets({ version: 'v4', auth: client })
 
-sheets.spreadsheets.values.get({
-    spreadsheetId: key.spreadsheet_id,
-    range: 'Ark2!F2:G2',
-}, (err, res) => {
-    if (err) {
-        console.error(err)
-        return
-    }
-    const rows = res.data.values;
-    if (rows.length) {
-        console.log('Data:');
-        rows.map((row) => {
-            console.log("===================\nQuestion in English:\n")
-            console.log(row[0])
-            console.log("===================\nDescription in English:\n")
-            console.log(row[1])
-            // console.log(`${row[0]}, ${row[1]}`);
-        });
-    } else {
-        console.log('No data found.')
-    }
-});
+    sheets.spreadsheets.values.get({
+        spreadsheetId: key.googleDocs.spreadsheet_id,
+        range: 'Ark2!F2:G2',
+    }, (err, res) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        const rows = res.data.values;
+        if (rows.length) {
+            console.log('Data:');
+            rows.map((row) => {
+                console.log("===================\nQuestion in English:\n")
+                console.log(row[0])
+                console.log("===================\nDescription in English:\n")
+                console.log(row[1])
+                console.log("===================")
+                return row
+                // console.log(`${row[0]}, ${row[1]}`);
+            });
+        } else {
+            console.log('No data found.')
+        }
+    })
+}
+
+const sourceText = await importFromGoogleDocs()
+//console.log("Imported source question from google docs: " + sourceText)
+
+const sourceTextTest = ["What was the question?", "And here is some description for the question."]
+
+/* TRNASLATING WITH DEEPL */
+const translateWithDeepL = async (text, toLang) => {
+    const translator = new deepl.Translator(key.deepl.auth_key)
+    const translatedText = await translator.translateText(text, "en", toLang)
+    return translatedText
+}
+
+// // Need to loop over languages
+let translatedText = {}
+translatedText.de = await translateWithDeepL(sourceTextTest[0], "de")
+translatedText.es = await translateWithDeepL(sourceTextTest[0], "es")
+translatedText.sv = await translateWithDeepL(sourceTextTest[0], "sv")
+translatedText.da = await translateWithDeepL(sourceTextTest[0], "da")
+
+for (let lang in translatedText) {
+    console.log(`${lang}:  ${translatedText[lang].text}`)
+}
 
 // Use the `csv` library from npm - this will help us with parsing and stringifying to cover edge cases
 // https://csv.js.org/
