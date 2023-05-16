@@ -147,6 +147,9 @@ importers:
       chokidar:
         specifier: ^3.5.3
         version: 3.5.3
+      csv:
+        specifier: ^6.3.0
+        version: 6.3.0
       esbuild:
         specifier: ~0.17.18
         version: 0.17.18
@@ -2530,6 +2533,28 @@ packages:
 
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
+
+  /csv-generate@4.2.6:
+    resolution: {integrity: sha512-VtnYqhWLcsUocA346ewFOk+rrqcoT663j11vXzD2uelXq9WguQ3QzDeVD8ISso7hhVtkDSHcWl9psdemeiEHDA==}
+    dev: true
+
+  /csv-parse@5.3.10:
+    resolution: {integrity: sha512-cTXY6iy0gN5Ha/cGILeDgQE+nKiKDU2m0DjSRdJhr86BN3cM7oefBsTk2aH0LQeaYtL7Z7HvW+jYoadmdhzeDA==}
+    dev: true
+
+  /csv-stringify@6.4.0:
+    resolution: {integrity: sha512-HQsw0QXiN5fdlO+R8/JzCZnR3Fqp8E87YVnhHlaPtNGJjt6ffbV0LpOkieIb1x6V1+xt878IYq77SpXHWAqKkA==}
+    dev: true
+
+  /csv@6.3.0:
+    resolution: {integrity: sha512-wXakaMNIz6qe/a15AXQ6JA9urN2lEx08J/3xpxv7Ke3GOrio300Ikbqzrlg1ML0fuEOULHhswvSxtN5h/72sHg==}
+    engines: {node: '>= 0.1.90'}
+    dependencies:
+      csv-generate: 4.2.6
+      csv-parse: 5.3.10
+      csv-stringify: 6.4.0
+      stream-transform: 3.2.6
+    dev: true
 
   /cuid@2.1.8:
     resolution: {integrity: sha512-xiEMER6E7TlTPnDxrM4eRiC6TRgjNX9xzEZ5U/Se2YJKr7Mq4pJn/2XEHjl3STcSh96GmkHPcBXLES8M29wyyg==}
@@ -8158,6 +8183,10 @@ packages:
   /stream-shift@1.0.1:
     resolution: {integrity: sha512-AiisoFqQ0vbGcZgQPY1cdP2I76glaVA/RauYR4G4thNFgkTqr90yXTo4LYX60Jl+sIlPNHHdGSwo01AvbKUSVQ==}
     dev: false
+
+  /stream-transform@3.2.6:
+    resolution: {integrity: sha512-/pyOvaCQFqYTmrFhmMbnAEVo3SsTx1H39eUVPOtYeAgbEUc+rDo7GoP8LbHJgU83mKtzJe/7Nq/ipaAnUOHgJQ==}
+    dev: true
 
   /streamsearch@1.1.0:
     resolution: {integrity: sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==}

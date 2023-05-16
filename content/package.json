@@ -7,7 +7,8 @@
         "dev": "node scripts/compile.js && node scripts/dev.js --",
         "build": "node scripts/compile.js && node scripts/build.js --",
         "colors": "node scripts/compile.js && node scripts/compiled/update-colors.js",
-        "translate": "node scripts/translate-survey.js"
+        "translate-survey": "node scripts/translate-survey.js",
+        "translate": "node scripts/translate.js"
     },
     "devDependencies": {
         "@types/node": "^18.16.1",
@@ -15,7 +16,8 @@
         "esbuild": "~0.17.18",
         "fast-glob": "^3.2.12",
         "lodash.debounce": "^4.0.8",
-        "slugify": "^1.6.6"
+        "slugify": "^1.6.6",
+        "csv": "^6.3.0"
     },
     "dependencies": {
         "@google-cloud/translate": "^7.2.1",
