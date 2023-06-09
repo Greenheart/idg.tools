@@ -1,136 +1,136 @@
-GoogleLanguage;GoogleLangugeCode;DeepLLanguageCode;DeepLLanguageName;DeepLFormalitySupport;Question;Description
-Original;;;;;"What skills are needed, according to your opinion, to reach the SDG?";Some description to give more context
-Afrikaans;af;;;;;
-Albanian;sq;;;;;
-Amharic;am;;;;;
-Arabic;ar;;;;;
-Armenian;hy;;;;;
-Assamese;as;;;;;
-Aymara;ay;;;;;
-Azerbaijani;az;;;;;
-Bambara;bm;;;;;
-Basque;eu;;;;;
-Belarusian;be;;;;;
-Bengali;bn;;;;;
-Bhojpuri;bho;;;;;
-Bosnian;bs;;;;;
-Bulgarian;bg;BG;Bulgarian;FALSE;;
-Catalan;ca;;;;;
-Cebuano;ceb;;;;;
-Chinese (Simplified);zh;ZH;Chinese (simplified);FALSE;;
-Chinese (Traditional);zh-TW;;;;;
-Corsican;co;;;;;
-Croatian;hr;;;;;
-Czech;cs;CS;Czech;FALSE;;
-Danish;da;DA;Danish;FALSE;;
-Dhivehi;dv;;;;;
-Dogri;doi;;;;;
-Dutch;nl;NL;Dutch;TRUE;;
-Esperanto;eo;;;;;
-Estonian;et;ET;Estonian;FALSE;;
-Ewe;ee;;;;;
-Filipino (Tagalog);fil;;;;;
-Finnish;fi;FI;Finnish;FALSE;;
-French;fr;FR;French;TRUE;;
-Frisian;fy;;;;;
-Galician;gl;;;;;
-Georgian;ka;;;;;
-German;de;DE;German;TRUE;;
-Greek;el;EL;Greek;FALSE;;
-Guarani;gn;;;;;
-Gujarati;gu;;;;;
-Haitian Creole;ht;;;;;
-Hausa;ha;;;;;
-Hawaiian;haw;;;;;
-Hebrew;he ;;;;;
-Hindi;hi;;;;;
-Hmong;hmn;;;;;
-Hungarian;hu;HU;Hungarian;FALSE;;
-Icelandic;is;;;;;
-Igbo;ig;;;;;
-Ilocano;ilo;;;;;
-Indonesian;id;ID;Indonesian;FALSE;;
-Irish;ga;;;;;
-Italian;it;IT;Italian;TRUE;;
-Japanese;ja;JA;Japenese;FALSE;;
-Javanese;jv;;;;;
-Kannada;kn;;;;;
-Kazakh;kk;;;;;
-Khmer;km;;;;;
-Kinyarwanda;rw;;;;;
-Konkani;gom;;;;;
-Korean;ko;KO;Korean;FALSE;;
-Krio;kri;;;;;
-Kurdish;ku;;;;;
-Kurdish (Sorani);ckb;;;;;
-Kyrgyz;ky;;;;;
-Lao;lo;;;;;
-Latin;la;;;;;
-Latvian;lv;LV;Latvian;FALSE;;
-Lingala;ln;;;;;
-Lithuanian;lt;LT;Lithuanian;FALSE;;
-Luganda;lg;;;;;
-Luxembourgish;lb;;;;;
-Macedonian;mk;;;;;
-Maithili;mai;;;;;
-Malagasy;mg;;;;;
-Malay;ms;;;;;
-Malayalam;ml;;;;;
-Maltese;mt;;;;;
-Maori;mi;;;;;
-Marathi;mr;;;;;
-Meiteilon (Manipuri);mni-Mtei;;;;;
-Mizo;lus;;;;;
-Mongolian;mn;;;;;
-Myanmar (Burmese);my;;;;;
-Nepali;ne;;;;;
-Norwegian;no;NB;Norwegian (Bokmål);FALSE;;
-Nyanja (Chichewa);ny;;;;;
-Odia (Oriya);or;;;;;
-Oromo;om;;;;;
-Pashto;ps;;;;;
-Persian;fa;;;;;
-Polish;pl;PL;Polish;TRUE;;
-;;PT-BR;Portuguese (Brazilian);TRUE;;
-"Portuguese (Portugal, Brazil)";pt;PT-PT;Portuguese (European);TRUE;;
-Punjabi;pa;;;;;
-Quechua;qu;;;;;
-Romanian;ro;RO;Romanian;FALSE;;
-Russian;ru;RU;Russian;TRUE;;
-Samoan;sm;;;;;
-Sanskrit;sa;;;;;
-Scots Gaelic;gd;;;;;
-Sepedi;nso;;;;;
-Serbian;sr;;;;;
-Sesotho;st;;;;;
-Shona;sn;;;;;
-Sindhi;sd;;;;;
-Sinhala (Sinhalese);si;;;;;
-Slovak;sk;SK;Slovak;FALSE;;
-Slovenian;sl;;;;;
-Somali;so;;;;;
-Spanish;es;ES;Spanish;TRUE;;
-Sundanese;su;;;;;
-Swahili;sw;;;;;
-Swedish;sv;SV;Swedish;FALSE;;
-Tagalog (Filipino);tl;;;;;
-Tajik;tg;;;;;
-Tamil;ta;;;;;
-Tatar;tt;;;;;
-Telugu;te;;;;;
-Thai;th;;;;;
-Tigrinya;ti;;;;;
-Tsonga;ts;;;;;
-Turkish;tr;TR;Turkish;FALSE;;
-Turkmen;tk;;;;;
-Twi (Akan);ak;;;;;
-Ukrainian;uk;UK;Ukrainian;FALSE;;
-Urdu;ur;;;;;
-Uyghur;ug;;;;;
-Uzbek;uz;;;;;
-Vietnamese;vi;;;;;
-Welsh;cy;;;;;
-Xhosa;xh;;;;;
-Yiddish;yi;;;;;
-Yoruba;yo;;;;;
-Zulu;zu;;;;;
+GoogleLanguage,GoogleLanguageCode,DeepLLanguageCode,DeepLLanguageName,DeepLFormalitySupport,SDG1,SDG2,People,Welcome,Wisdom,Prompt,Question,Info1,Info2,Info3,AboutSurvey,Thanks,Delphi,Email,Time,Team,Consent,Yes,No,FollowUp,Next,BackgroundQuestion,Familiar5,Familiar4,Familiar3,Familiar2,Familiar1,Live,Grow,Age,Gender,Female,Male,OtherGender,Activity,Work,Retired,Study,Home,Sector,Private,Public,Academic,NGO,OtherSector
+English,en,,,,"In 2015, all members of the United Nations agreed on 17 goals to build a world of peace, dignity and prosperity on a healthy planet.","The Sustainable Development Goals (SDGs) lay out a detailed plan for a sustainable future for people and planet. Our target for reaching these goals is 2030 - but our progress on these challenges is far too slow.","People created these challenges and only people can solve them. Which individual and collective skills and abilities do we need to succeed?","Welcome to this global survey, created by Inner Development Goals (IDGs) - a non-profit and open source organisation with the purpose of bringing the power of inner development to global challenges faced by humanity.","We need your wisdom!","Here is our One BIG Question:","What qualities, abilities or skills do we need to develop to build a sustainable future for people and planet?","Please write ONE quality, ability or skill in each textbox.","We ask you to suggest up to 10 individual or collective skills.","Feel free to explain your suggestions with short comments.","Please click here for more about the IDG Global Survey and our data management.","Thank you for contributing to the Inner Development Goals initiative and framework!","Your answers to this Global IDG Survey will be analyzed collaboratively by researchers across the world. We will run a so-called “Delphi process” to collectively generate a list of essential skills and seek your help to establish their order of priority. In addition, we would like to follow up with other questions related to your experience regarding these skills.","Please use this link to share your email address, so we can invite you to further co-create with us toward a sustainable future for people and planet through the power of inner development!","Thank you for your time!","IDG team through","Do you consent to Inner Development Goals to register and use your email to contact you regarding follow up questions about Inner Development Goals?","Yes","No","Please provide your email here to give us the opportunity to follow up with information about this study and other questions on this topic.","Thank you so much, until next time! You will hear from us soon again!","How familiar are you with UN Agenda 2030 and the Sustainable Development Goals?","Extremely familiar","Very familiar","Somewhat familiar","Not so familiar","Not at all familiar","In which country did you live most of your time during the last five years?","In which country did you primarily grow up?","What is your age?","What is your gender?","Female","Male","Other/prefer not to answer","Which option best describes your daily activity?","I work","I am retired from work","I study","I am at home with caring for children or other family members","Which sector are you working in or were you working in before retiring?","Private sector","Public sector","Academic sector/Research institutes","Non-governmental organization (NGO)","Other, please specify"
+Afrikaans,af,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Albanian,sq,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Amharic,am,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Arabic,ar,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Armenian,hy,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Assamese,as,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Aymara,ay,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Azerbaijani,az,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Bambara,bm,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Basque,eu,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Belarusian,be,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Bengali,bn,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Bhojpuri,bho,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Bosnian,bs,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Bulgarian,bg,BG,Bulgarian,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Catalan,ca,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Cebuano,ceb,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Chinese (Simplified),zh,ZH,Chinese (simplified),FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Chinese (Traditional),zh-TW,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Corsican,co,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Croatian,hr,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Czech,cs,CS,Czech,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Danish,da,DA,Danish,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Dhivehi,dv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Dogri,doi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Dutch,nl,NL,Dutch,TRUE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Esperanto,eo,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Estonian,et,ET,Estonian,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Ewe,ee,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Filipino (Tagalog),fil,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Finnish,fi,FI,Finnish,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+French,fr,FR,French,TRUE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Frisian,fy,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Galician,gl,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Georgian,ka,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+German,de,DE,German,TRUE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Greek,el,EL,Greek,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Guarani,gn,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Gujarati,gu,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Haitian Creole,ht,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Hausa,ha,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Hawaiian,haw,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Hebrew,he,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Hindi,hi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Hmong,hmn,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Hungarian,hu,HU,Hungarian,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Icelandic,is,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Igbo,ig,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Ilocano,ilo,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Indonesian,id,ID,Indonesian,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Irish,ga,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Italian,it,IT,Italian,TRUE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Japanese,ja,JA,Japenese,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Javanese,jv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Kannada,kn,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Kazakh,kk,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Khmer,km,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Kinyarwanda,rw,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Konkani,gom,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Korean,ko,KO,Korean,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Krio,kri,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Kurdish,ku,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Kurdish (Sorani),ckb,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Kyrgyz,ky,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Lao,lo,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Latin,la,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Latvian,lv,LV,Latvian,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Lingala,ln,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Lithuanian,lt,LT,Lithuanian,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Luganda,lg,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Luxembourgish,lb,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Macedonian,mk,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Maithili,mai,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Malagasy,mg,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Malay,ms,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Malayalam,ml,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Maltese,mt,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Maori,mi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Marathi,mr,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Meiteilon (Manipuri),mni-Mtei,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mizo,lus,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Mongolian,mn,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Myanmar (Burmese),my,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Nepali,ne,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Norwegian (Bokmål),no,NB,Norwegian (Bokmål),FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Nyanja (Chichewa),ny,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Odia (Oriya),or,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Oromo,om,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Pashto,ps,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Persian,fa,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Polish,pl,PL,Polish,TRUE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Portuguese (Brazilian)",,PT-BR,Portuguese (Brazilian),TRUE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Portuguese (European)",pt,PT-PT,Portuguese (European),TRUE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Punjabi,pa,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Quechua,qu,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Romanian,ro,RO,Romanian,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Russian,ru,RU,Russian,TRUE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Samoan,sm,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Sanskrit,sa,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Scots Gaelic,gd,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Sepedi,nso,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Serbian,sr,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Sesotho,st,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Shona,sn,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Sindhi,sd,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Sinhala (Sinhalese),si,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Slovak,sk,SK,Slovak,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Slovenian,sl,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Somali,so,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Spanish,es,ES,Spanish,TRUE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Sundanese,su,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Swahili,sw,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Swedish,sv,SV,Swedish,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Tagalog (Filipino),tl,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Tajik,tg,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Tamil,ta,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Tatar,tt,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Telugu,te,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Thai,th,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Tigrinya,ti,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Tsonga,ts,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Turkish,tr,TR,Turkish,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Turkmen,tk,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Twi (Akan),ak,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Ukrainian,uk,UK,Ukrainian,FALSE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Urdu,ur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Uyghur,ug,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Uzbek,uz,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Vietnamese,vi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Welsh,cy,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Xhosa,xh,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Yiddish,yi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Yoruba,yo,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Zulu,zu,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

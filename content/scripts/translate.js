@@ -1,16 +1,17 @@
 import * as deepl from 'deepl-node'
-// import { v3 } from '@google-cloud/translate'
-
-import { readFile, writeFile } from 'fs/promises'
-import { resolve } from 'path'
+import dotenv from 'dotenv'
+import { v2 } from '@google-cloud/translate'
 import { parse, stringify } from 'csv/sync'
 
-import key from './key.json' assert {
-    type: 'json',
-    integrity: 'sha384-ABC123'
-}
+import { readFile, writeFile } from 'fs/promises'
+import { dirname, resolve } from 'path'
+import { fileURLToPath } from 'url'
 
-// const translationClient = new v3()
+const __dirname = dirname(fileURLToPath(import.meta.url))
+dotenv.config({ path: resolve(__dirname, '..', '.env') })
+
+const deeplTranslate = new deepl.Translator(process.env.DEEPL_API_KEY)
+const googleTranslate = new v2.Translate()
 
 /**
  * 1. read config csv file to learn which languages are supported
@@ -19,50 +20,32 @@ import key from './key.json' assert {
  * 4. upload manually to google sheet where peer review happens
  */
 
-const config = await readFile(resolve('./scripts/data/survey.csv'), { encoding: 'utf-8' })
+const config = await readFile(resolve(__dirname, 'data/survey.csv'), { encoding: 'utf-8' })
 
-const records = parse(config, { columns: true, skip_empty_lines: true, delimiter: ';' })
-
-// const example = {
-//     GoogleLanguage: 'Galician',
-//     GoogleLangugeCode: 'gl',
-//     DeeplLanguageCode: '',
-//     DeeplLanguageName: '',
-//     DeeplFormalitySupport: '',
-//     Question: '',
-//     Description: ''
-// }
-
-// const sourceExample = {
-//     GoogleLanguage: 'Original',
-//     GoogleLangugeCode: '',
-//     DeeplLanguageCode: '',
-//     DeeplLanguageName: '',
-//     DeeplFormalitySupport: '',
-//     Question: 'What skills are needed, according to your opinion, to reach the SDG?',
-//     Description: 'Some description to give more context'
-// }
+const records = parse(config, { columns: true, skip_empty_lines: true, delimiter: ',' })
 
 /**
- * Ignore these when translating
+ * Ignore these keys when translating
  */
 const SYSTEM_KEYS = [
     'GoogleLanguage',
-    'GoogleLangugeCode',
+    'GoogleLanguageCode',
     'DeepLLanguageCode',
     'DeepLLanguageName',
     'DeepLFormalitySupport',
 ]
 
-const translateWithDeepL = async (text, toLang) => {
-    const translator = new deepl.Translator(key.deepl.auth_key)
-    const translatedText = await translator.translateText(text, "EN", toLang)
-    return translatedText.text
+const translateWithDeepL = async (texts, toLang) => {
+    const translatedTexts = await deeplTranslate.translateText(texts, 'EN', toLang)
+    return translatedTexts.map(({ text }) => text)
 }
 
-const translateWithGoogle = async (text, toLang) => {
-    // TODO
-    return ''
+const translateWithGoogle = async (texts, toLang) => {
+    const [results] = await googleTranslate.translate(texts, {
+        from: 'en',
+        to: toLang,
+    })
+    return results
 }
 
 const translateRecords = async (records) => {
@@ -72,17 +55,25 @@ const translateRecords = async (records) => {
     for (const record of records.slice(1)) {
         const updated = { ...record }
 
-        const translate = record.DeepLLanguageCode
-            ? translateWithDeepL
-            : translateWithGoogle
-        const targetLang = record.DeepLLanguageCode ? record.DeepLLanguageCode : record.GoogleLangugeCode
+        const translate = record.DeepLLanguageCode ? translateWithDeepL : translateWithGoogle
+        const targetLang = record.DeepLLanguageCode
+            ? record.DeepLLanguageCode
+            : record.GoogleLanguageCode
 
-        for (const [key, value] of Object.entries(record)) {
-            if (SYSTEM_KEYS.includes(key)) continue
+        const actualKeys = Object.keys(record).filter((key) => {
+            if (source[key] === '') return false
+            if (SYSTEM_KEYS.includes(key)) return false
+            return true
+        })
 
+        const translated = await translate(
+            actualKeys.map((key) => source[key]),
+            targetLang.trim(),
+        )
 
-            updated[key] = await translate(source[key], targetLang)
-        }
+        actualKeys.forEach((key, i) => {
+            updated[key] = translated[i]
+        })
 
         updatedRecords.push(updated)
     }
@@ -92,9 +83,8 @@ const translateRecords = async (records) => {
 
 const updated = await translateRecords(records)
 
-const output = stringify(updated, { delimiter: ';' })
+const output = stringify(updated, { delimiter: ',', header: true })
 
-await writeFile(resolve('./scripts/data/2023-05-17-translated-survey.csv'), output, { encoding: 'utf-8' })
-
-
-
+await writeFile(resolve(__dirname, `data/${Date.now()}-2023-05-26-translated-survey.csv`), output, {
+    encoding: 'utf-8',
+})

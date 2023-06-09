@@ -13,15 +13,17 @@
     "devDependencies": {
         "@types/node": "^18.16.1",
         "chokidar": "^3.5.3",
+        "csv": "^6.3.0",
+        "dotenv": "^16.0.3",
         "esbuild": "~0.17.18",
         "fast-glob": "^3.2.12",
         "lodash.debounce": "^4.0.8",
-        "slugify": "^1.6.6",
-        "csv": "^6.3.0"
+        "slugify": "^1.6.6"
     },
     "dependencies": {
         "@google-cloud/translate": "^7.2.1",
         "deepl-node": "^1.9.0",
-        "googleapis": "^118.0.0"
+        "googleapis": "^118.0.0",
+        "xlsx": "^0.18.5"
     }
 }
