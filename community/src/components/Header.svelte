@@ -39,7 +39,7 @@
     </div>
 
     {#if $isMenuOpen}
-        <nav
+        <button
             class="xs:text-4xl bg-lightGray fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center text-3xl font-semibold"
             on:click={toggleMenu}
             on:keydown={onKeydown(toggleMenu)}
@@ -47,7 +47,7 @@
             {#each links as { href, text }}
                 <Link {href} class="p-4" variant="black">{text}</Link>
             {/each}
-        </nav>
+        </button>
     {/if}
 
     <nav class="z-10 hidden justify-evenly sm:flex">
