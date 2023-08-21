@@ -30,10 +30,11 @@
 
 <div class={cx('flex select-none flex-wrap items-start', sizes[size].wrapper, className)}>
     {#each tags.slice(0, visible) as tag (tag.name)}
+        <!-- svelte-ignore a11y-no-static-element-interactions (false positive since only the button element will be interactive) -->
         <svelte:element
             this={renderAs}
-            on:click={interactive ? () => toggleTag(tag.id) : () => {}}
-            on:keydown={interactive ? onKeydown(() => toggleTag(tag.id)) : () => {}}
+            on:click={interactive ? () => toggleTag(tag.id) : null}
+            on:keydown={interactive ? onKeydown(() => toggleTag(tag.id)) : null}
             class={cx(
                 interactive
                     ? $selectedTags.includes(tag.id)
