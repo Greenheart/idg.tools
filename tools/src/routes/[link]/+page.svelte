@@ -1,13 +1,9 @@
 <script lang="ts">
-    import Heading from '$shared/components/Heading.svelte'
-    import Markdown from '$shared/components/Markdown.svelte'
-    import Divider from '$shared/components/Divider.svelte'
+    import { Heading, Markdown, Divider, Breadcrumbs, Link } from '$shared/components'
     import DetailedRelevantSkills from '$components/DetailedRelevantSkills.svelte'
     import Resources from '$components/Resources.svelte'
     import FeedbackForm from '$components/FeedbackForm.svelte'
     import Tags from '$components/Tags.svelte'
-    import Breadcrumbs from '$shared/components/Breadcrumbs.svelte'
-    import Link from '$shared/components/Link.svelte'
 
     import { page } from '$app/stores'
 

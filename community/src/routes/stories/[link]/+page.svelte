@@ -10,14 +10,16 @@
 </script>
 
 <script lang="ts">
-    import Heading from '$shared/components/Heading.svelte'
-    import Link from '$shared/components/Link.svelte'
-    import Breadcrumbs from '$shared/components/Breadcrumbs.svelte'
-    import LinkButton from '$shared/components/LinkButton.svelte'
-    import Markdown from '$shared/components/Markdown.svelte'
-    import Picture from '$shared/components/Picture.svelte'
-    import Arrow from '$shared/icons/Arrow.svelte'
-    import Divider from '$shared/components/Divider.svelte'
+    import {
+        Heading,
+        Link,
+        Breadcrumbs,
+        LinkButton,
+        Markdown,
+        Picture,
+        Divider,
+    } from '$shared/components'
+    import { Arrow } from '$shared/icons'
     import { page } from '$app/stores'
 
     import type { PageData } from './$types'

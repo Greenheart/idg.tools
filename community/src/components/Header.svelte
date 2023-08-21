@@ -1,13 +1,11 @@
 <script lang="ts">
-    import Link from '$shared/components/Link.svelte'
-    import MenuButton from '$shared/components/MenuButton.svelte'
+    import { Link, MenuButton } from '$shared/components'
     import { isMenuOpen, scrollbarWidth } from '$lib/stores'
     import { onKeydown } from '$lib/utils'
     import { beforeNavigate } from '$app/navigation'
     import { tick } from 'svelte'
 
     const toggleMenu = () => {
-        // @ts-expect-error This is an invalid value for scroll behavior, but it produces the result we want so... :D
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
         $isMenuOpen = !$isMenuOpen
         document.documentElement.classList.toggle('overflow-y-scroll', !$isMenuOpen)

@@ -4,7 +4,7 @@
     import { getSkillsInDimension } from '$shared/content-utils'
     import type { Dimension, Skill } from '$shared/types'
     import { cx, getColor } from '$shared/utils'
-    import IDGLogo from '$shared/icons/IDGLogo.svelte'
+    import { IDGLogo } from '$shared/icons'
 
     export let skills: Skill[]
     export let dimensions: Dimension[]

@@ -1,6 +1,5 @@
 <script lang="ts">
-    import Link from '$shared/components/Link.svelte'
-    import Heading from '$shared/components/Heading.svelte'
+    import { Link, Heading, LinkButton, Markdown, Divider } from '$shared/components'
     import Meta from '$components/Meta.svelte'
     import {
         COMMUNITY_HUBS_LINK,
@@ -12,10 +11,7 @@
         GITHUB_LINK,
         IDG_CMS_LINK,
     } from '$shared/constants'
-    import LinkButton from '$shared/components/LinkButton.svelte'
     import { STORIES_ABOUT_LINK } from '$lib/constants'
-    import Markdown from '$shared/components/Markdown.svelte'
-    import Divider from '$shared/components/Divider.svelte'
 
     type Option = {
         title: string

@@ -1,7 +1,6 @@
 <script lang="ts">
     import { applyAction, enhance } from '$app/forms'
-    import Button from '$shared/components/Button.svelte'
-    import Link from '$shared/components/Link.svelte'
+    import { Button, Link } from '$shared/components'
     import { GITHUB_ISSUES_LINK } from '$shared/constants'
 
     let expanded = false

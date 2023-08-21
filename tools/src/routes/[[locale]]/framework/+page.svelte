@@ -1,11 +1,9 @@
 <script lang="ts">
-    import Divider from '$shared/components/Divider.svelte'
-    import Heading from '$shared/components/Heading.svelte'
-    import Link from '$shared/components/Link.svelte'
+    import { Divider, Heading, Link } from '$shared/components'
 
     import { page } from '$app/stores'
     import Meta from '$components/Meta.svelte'
-    import IdgFramework from '$components/IDGFramework.svelte'
+    import IDGFramework from '$components/IDGFramework.svelte'
     import type { PageData } from './$types'
     import { IDG_REPORT_PDF } from '$shared/constants'
 
@@ -29,6 +27,6 @@
     </p>
 </div>
 
-<IdgFramework {skills} {dimensions} />
+<IDGFramework {skills} {dimensions} />
 
 <Divider class="my-16" />

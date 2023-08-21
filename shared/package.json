@@ -3,11 +3,12 @@
     "private": true,
     "version": "1.0.0",
     "type": "module",
+    "svelte": "components/index.js",
     "dependencies": {
         "@rgossiaux/svelte-headlessui": "^2.0.0",
         "dompurify": "^3.0.5",
         "svelte": "^4.2.0",
-        "svelte-markdown": "^0.3.0",
+        "svelte-markdown": "github:nwaughachukwuma/svelte-markdown#upgrade-markded-to-v5",
         "svelte-typeahead": "^4.4.1"
     },
     "devDependencies": {

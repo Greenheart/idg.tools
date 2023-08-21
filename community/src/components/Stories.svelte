@@ -1,8 +1,5 @@
 <script lang="ts">
-    import Button from '$shared/components/Button.svelte'
-    import Heading from '$shared/components/Heading.svelte'
-    import Link from '$shared/components/Link.svelte'
-    import Divider from '$shared/components/Divider.svelte'
+    import { Button, Heading, Link, Divider } from '$shared/components'
     import StoryPreview from './StoryPreview.svelte'
     import Tags from './Tags.svelte'
     import { getMostRelevantStories } from '$shared/content-utils'

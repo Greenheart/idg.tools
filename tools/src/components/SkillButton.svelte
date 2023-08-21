@@ -1,6 +1,6 @@
 <script lang="ts">
     import { cx } from '$lib/utils'
-    import Button from '$shared/components/Button.svelte'
+    import { Button } from '$shared/components'
     import type { Skill } from '$shared/types'
     import { selectedSkills, listenForScroll } from '$lib/stores'
 

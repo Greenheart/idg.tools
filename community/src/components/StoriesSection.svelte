@@ -1,9 +1,6 @@
 <script lang="ts">
-    import UserGroup from '$shared/icons/UserGroup.svelte'
-    import Heading from '$shared/components/Heading.svelte'
-    import ButtonGroup from '$shared/components/ButtonGroup.svelte'
-    import LinkButton from '$shared/components/LinkButton.svelte'
-    import Link from '$shared/components/Link.svelte'
+    import { UserGroup } from '$shared/icons'
+    import { Heading, ButtonGroup, Link, LinkButton } from '$shared/components'
 </script>
 
 <div class="mt-16 flex flex-col items-center justify-between bg-white p-4 shadow-lg">
