@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
     import type { Contributor, Dimension, Story, Tag } from '$shared/types'
     import { cx, getColor, pluralize } from '$shared/utils'
-    import Link from '$shared/components/Link.svelte'
+    import { Link } from '$shared/components'
     import Tags from './Tags.svelte'
 </script>
 

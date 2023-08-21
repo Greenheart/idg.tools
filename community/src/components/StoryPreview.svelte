@@ -2,10 +2,8 @@
     import { truncateText } from '$lib/utils'
     import { getTag } from '$shared/content-utils'
     import type { Story, CommunityContent } from '$shared/types'
-    import Heading from '$shared/components/Heading.svelte'
-    import Link from '$shared/components/Link.svelte'
+    import { Heading, Link, Picture } from '$shared/components'
     import Tags from './Tags.svelte'
-    import Picture from '$shared/components/Picture.svelte'
 
     export let story: Story
     export let content: CommunityContent

@@ -6,7 +6,7 @@
     import type { ToolsContent, Tool } from '$shared/types'
     import { selectedSkills, visibleItems, selectedTags } from '$lib/stores'
     import ToolPreview from './ToolPreview.svelte'
-    import Button from '$shared/components/Button.svelte'
+    import { Button } from '$shared/components'
     import VisibleToolsCount from './VisibleToolsCount.svelte'
 
     export let mostRelevantTools: Tool[]

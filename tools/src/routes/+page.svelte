@@ -1,8 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte'
 
-    import Link from '$shared/components/Link.svelte'
-    import Heading from '$shared/components/Heading.svelte'
+    import { Link, Heading } from '$shared/components'
     import Tools from '$components/Tools.svelte'
     import { selectedSkills, selectedTags } from '$lib/stores'
     import type { PageData } from './$types'

@@ -1,11 +1,8 @@
 <script lang="ts">
-    import UserGroup from '$shared/icons/UserGroup.svelte'
-    import Heading from '$shared/components/Heading.svelte'
-    import LinkButton from '$shared/components/LinkButton.svelte'
+    import { UserGroup } from '$shared/icons'
+    import { Heading, LinkButton, Link, ButtonGroup } from '$shared/components'
     import { HOW_TO_CONTRIBUTE_LINK } from '$shared/constants'
-    import Link from '$shared/components/Link.svelte'
     import { FEEDBACK_FORM_LINK, SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
-    import ButtonGroup from '$shared/components/ButtonGroup.svelte'
 </script>
 
 <div class="flex flex-col items-center justify-between bg-white p-4 shadow-md">

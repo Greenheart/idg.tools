@@ -1,9 +1,8 @@
 <script lang="ts">
     import { slide } from 'svelte/transition'
     import { cubicOut } from 'svelte/easing'
-    import FuzzySearch from '$shared/components/FuzzySearch.svelte'
-    import Button from '$shared/components/Button.svelte'
-    import Filters from '$shared/icons/Filters.svelte'
+    import { FuzzySearch, Button } from '$shared/components'
+    import { Filters } from '$shared/icons'
     import VisibleToolsCount from './VisibleToolsCount.svelte'
 
     import { goto, preloadData } from '$app/navigation'

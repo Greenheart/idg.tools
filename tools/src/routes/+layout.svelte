@@ -6,7 +6,7 @@
     import '../app.css'
     import { scrollbarWidth } from '$lib/stores'
     import CommunitySection from '$components/CommunitySection.svelte'
-    import Link from '$shared/components/Link.svelte'
+    import { Link } from '$shared/components'
     import { GITHUB_LINK } from '$shared/constants'
     import { getScrollbarWidth } from '$shared/utils'
     import type { PageData } from './$types'

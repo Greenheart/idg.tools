@@ -8,11 +8,9 @@
     import { cx, getColor, onKeydown, getOffset } from '$lib/utils'
     import type { Skill, Tool, ToolsContent } from '$shared/types'
     import SkillButton from './SkillButton.svelte'
-    import Button from '$shared/components/Button.svelte'
-    import Link from '$shared/components/Link.svelte'
+    import { Button, Link, Heading } from '$shared/components'
     import { FRAMEWORK_LINK } from '$shared/constants'
-    import Info from '$shared/icons/Info.svelte'
-    import Heading from '$shared/components/Heading.svelte'
+    import { Info } from '$shared/icons'
     import { browser } from '$app/environment'
 
     let ticking = false
