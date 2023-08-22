@@ -4,7 +4,7 @@ import stripMarkdown from 'strip-markdown'
 
 import { content } from '$lib/content-backend'
 import { getSkill, getTag, getToolByLink } from '$shared/content-utils'
-import type { Actions, PageServerLoad } from './$types'
+import type { Tool, Actions, PageServerLoad } from './$types'
 import { createIssue } from '$lib/github'
 
 // Disable prerendering only for this page, since we want the server-side redirect, and also to support the feedback form
@@ -58,6 +58,7 @@ export const actions: Actions = {
         if (!Boolean(data.liked || data.improve)) return { success: false }
 
         await createIssue({
+	    name: tool.name,
             userContent: `## What do you like?\n> ${data.liked}\n\n## What can be improved?\n> ${data.improve}`,
             type: 'FEEDBACK',
             url: url.href,

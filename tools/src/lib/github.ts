@@ -33,6 +33,7 @@ const TEMPLATES = {
         disclaimer:
             '## Disclaimer\nThe following feedback was submitted by an user of https://idg.tools. This has not yet been reviewed or approved by the contributors.\n\n---\n',
     },
+    // NOTE: Seems like this template is currently not used anywhere - in case it is used in future, the call to createIssue() also requires a <name> parameter.
     CONTENT_SUGGESTION: {
         title: 'App Content Suggestion',
         labelIds: [LABEL_IDS.NEEDS_REVIEW, LABEL_IDS.CONTENT_SUGGESTION],
@@ -45,6 +46,7 @@ type ISSUE_TYPES = keyof typeof TEMPLATES
 
 // NOTE: Seems like there's a rate limiting, so it might be worth to write multiple issues at once in the future to scale up.
 export async function createIssue({
+    name,
     userContent,
     type,
     url,
@@ -53,19 +55,26 @@ export async function createIssue({
     type: ISSUE_TYPES
     url: string
 }) {
+     name: string
+     userContent: string
+     type: ISSUE_TYPES
+     url: string
+}) {
     const { title, labelIds, disclaimer } = TEMPLATES[type]
 
     const body = `${disclaimer}
+    ${userContent}
+    ---
 - URL: ${url}
 - Git commit: \`${GIT_COMMIT}\`
 
 ---
 
-${userContent}`
+`
 
     const newIssue = {
         repositoryId: REPOSITORY.id,
-        title: `[${title}]: ${new Date().toISOString()}`,
+        title: `[${title}]: ${name}`,
         body,
         labelIds,
     }
