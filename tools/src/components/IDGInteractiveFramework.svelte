@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { getRGBColor } from '$shared/utils'
     import {
         hierarchy,
         interpolateZoom,
@@ -85,9 +86,7 @@
                         ? 'node'
                         : 'node node--leaf'
                     : 'node node--root'}
-                fill={rootData.children
-                    ? IDG_COLORS[rootData.data.name?.toLowerCase()] ?? '#f5f5f5'
-                    : '#f5f5f5'}
+                fill={rootData.children ? getRGBColor(rootData.data.id) ?? '#f5f5f5' : '#f5f5f5'}
                 on:click={(e) => {
                     if (activeFocus !== rootData) zoom(rootData, e)
                 }}
@@ -143,7 +142,7 @@
             0 -1px 0 #fff;
     }
 
-    /* .label, */
+    .label,
     .node--root {
         pointer-events: none;
         user-select: none;

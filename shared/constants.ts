@@ -44,7 +44,7 @@ export const LOCALES = {
 export const LOCALE_IDENTIFIERS = Object.keys(LOCALES) as Locale[]
 export const DEFAULT_LOCALE_IDENTIFIER = 'en'
 
-export const COLORS: Record<Dimension['id'] | Skill['id'], string> = {
+export const COLORS: Record<Dimension['id'] | Skill['id'], keyof typeof IDG_COLORS_RGB> = {
     ckzi3855r0086e2n0smi0mew5: 'being',
     ckzi3a4z90431e2n04kx2pbq2: 'being',
     ckzi3am4y0486e2n04obcy6hi: 'being',
@@ -73,4 +73,12 @@ export const COLORS: Record<Dimension['id'] | Skill['id'], string> = {
     ckzi3h80v2807e2n0l44d20qr: 'acting',
     ckzi3hi072982e2n0r4cdkqjy: 'acting',
     ckzi3hqs63163e2n03h36pb73: 'acting',
+}
+
+export const IDG_COLORS_RGB = {
+    being: '#d4b88c',
+    thinking: '#e585a1',
+    relating: '#e84139',
+    collaborating: '#ff6821',
+    acting: '#661a30',
 }
