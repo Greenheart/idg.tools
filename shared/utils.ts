@@ -1,4 +1,4 @@
-import { COLORS, DEFAULT_LOCALE_IDENTIFIER, LOCALE_IDENTIFIERS } from './constants'
+import { COLORS, DEFAULT_LOCALE_IDENTIFIER, IDG_COLORS_RGB, LOCALE_IDENTIFIERS } from './constants'
 import type { Dimension, Locale, Skill } from './types'
 
 export const cx = (...classes: (string | undefined | false)[]) =>
@@ -14,8 +14,11 @@ export function truncateText(text: string, maxLength: number, separator = ' ') {
     return res.endsWith('.') ? res : res + '…'
 }
 
-export const getColor = (id: Dimension['id'] | Skill['id'], colorType: 'bg' | 'text' = 'bg') =>
-    `${colorType}-${COLORS[id]}`
+export const getColor = (id: Dimension['id'] | Skill['id'], colorType: 'bg' | 'text' = 'bg') => {
+    return `${colorType}-${COLORS[id]}`
+}
+
+export const getRGBColor = (id: Dimension['id'] | Skill['id']) => IDG_COLORS_RGB[COLORS[id]]
 
 // TODO: This needs to be updated to support other locales than English, but is good enough for now.
 export const pluralize = (item: string, count: number, showCount = true) => {
