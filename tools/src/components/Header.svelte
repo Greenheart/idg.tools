@@ -7,7 +7,7 @@
     import type { SupportedLocales } from '$shared/types'
     import { page } from '$app/stores'
 
-    export let supportedLocales: SupportedLocales
+    export let supportedLocales: SupportedLocales | undefined = undefined
 
     const toggleMenu = async () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
@@ -61,8 +61,8 @@
         {#each links as { href, text }}
             <Link {href} class="p-2 px-3 text-base" variant="black">{text}</Link>
         {/each}
-        <!-- TODO: Only show locales for pages where it makes sense -->
-        {#if $page?.route?.id?.includes('/framework')}
+        <!-- Only show locales for pages where it makes sense -->
+        {#if $page?.route?.id?.includes('/framework') && supportedLocales}
             <LocaleSwitcher {supportedLocales} />
         {/if}
     </nav>
