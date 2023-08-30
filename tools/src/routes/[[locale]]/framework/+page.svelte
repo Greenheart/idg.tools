@@ -5,12 +5,13 @@
     import { Heading, Link } from '$shared/components'
     import Meta from '$components/Meta.svelte'
     import type { PageData } from './$types'
-    import { IDG_REPORT_PDF } from '$shared/constants'
+    import { COLORS, IDG_REPORT_PDF } from '$shared/constants'
     import { getDimension, getSkill } from '$shared/content-utils'
     import type { Dimension, Skill } from '$shared/types'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import Arrow from '$shared/icons/Arrow.svelte'
     import Button from '$shared/components/Button.svelte'
+    import { cx, getColor } from '$shared/utils'
 
     // TODO: find a way to use the page url without the store, since that causes some error
     // const url = $page.url.toString()
@@ -28,6 +29,31 @@
     <div class="col-span-2 flex items-center justify-between">
         <Button size="sm"><Arrow left /></Button>
         <LocaleSwitcher {supportedLocales} />
+    </div>
+    <div class="p-4">
+        <!-- TODO: list all dimensions, with the correct icon -->
+        <!-- TODO: list all skills in that dimension -->
+        <!-- TODO: Ensure the symbols are positioned correctly, for example the acting symbol needs adjusted margin/padding -->
+        <div
+            class="grid grid-cols-{dimensions.length} text-xs font-semibold text-center text-white"
+        >
+            {#each dimensions as dimension (dimension.id)}
+                {@const dimensionName = COLORS[dimension.id]}
+                <div class={cx(getColor(dimension.id), 'py-2')}>
+                    <img
+                        src={`/images/symbols/${dimensionName}.svg`}
+                        alt={`IDG ${dimensionName} symbol`}
+                        width="80"
+                        height="80"
+                        class={cx(
+                            'mx-auto p-2 invert',
+                            dimensionName === 'acting' ? 'mr-1.5' : undefined,
+                        )}
+                    />
+                    <h2>{dimension.name}</h2>
+                </div>
+            {/each}
+        </div>
     </div>
     <div class="bg-white p-4 shadow-lg">
         <Heading size={2} class="mt-4 mb-4">{$selected?.name ?? 'Inner Development Goals'}</Heading>
