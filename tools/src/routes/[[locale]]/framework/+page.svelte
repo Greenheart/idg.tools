@@ -12,6 +12,8 @@
     import { getIDGFrameworkData } from '$lib/getIDGFrameworkData'
     import type { HierarchyCircularNode } from 'd3'
     import { getDimension, getSkill } from '$shared/content-utils'
+    import { writable } from 'svelte/store'
+    import { browser } from '$app/environment'
 
     // TODO: find a way to use the page url without the store, since that causes some error
     // const url = $page.url.toString()
@@ -19,13 +21,20 @@
     export let data: PageData
     $: ({ skills, dimensions } = data)
 
-    $: frameworkData = getIDGFrameworkData(dimensions, skills)
+    const frameworkData = writable()
+    const activeFocus = writable<HierarchyCircularNode<FrameworkData>>()
+    $: {
+        frameworkData.set(getIDGFrameworkData(dimensions, skills))
+        if (browser) {
+            document
+                .querySelector<SVGElement>('.interactive-framework')
+                ?.dispatchEvent(new Event('click'))
+        }
+    }
 
-    let selected: HierarchyCircularNode<FrameworkData>
-
-    $: selectedSkill = selected?.data?.id ? getSkill(selected?.data?.id, { skills }) : null
-    $: selectedDimension = selected?.data?.id
-        ? getDimension(selected?.data?.id, { dimensions })
+    $: selectedSkill = $activeFocus?.data?.id ? getSkill($activeFocus?.data?.id, { skills }) : null
+    $: selectedDimension = $activeFocus?.data?.id
+        ? getDimension($activeFocus?.data?.id, { dimensions })
         : null
 </script>
 
@@ -47,8 +56,10 @@
 
 <div class="grid grid-cols-[1fr_400px]">
     <!-- TODO: Maybe use a svelte store instead of a prop in order to make it easier to susbscribe to updates -->
-    <IDGInteractiveFramework data={frameworkData} bind:activeFocus={selected} />
-    <div class="bg-green-400 p-4">
+    {#key $frameworkData}
+        <IDGInteractiveFramework data={frameworkData} {activeFocus} />
+    {/key}
+    <div class="bg-white p-4 shadow-lg">
         <Heading size={2} class="mt-4 mb-4"
             >{selectedSkill?.name || selectedDimension?.name || 'Inner Development Goals'}</Heading
         >

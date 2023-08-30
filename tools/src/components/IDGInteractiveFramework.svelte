@@ -15,8 +15,10 @@
         type HierarchyCircularNode,
         type ZoomView,
     } from 'd3'
+    import type { Writable } from 'svelte/store'
 
-    export let data: unknown
+    export let data: Writable<unknown>
+    export let activeFocus: Writable<HierarchyCircularNode<FrameworkData>>
 
     const width = 800
     const height = width
@@ -31,13 +33,7 @@
                 .sort((a, b) => (b?.value ?? 0) - (a?.value ?? 0)),
         )
 
-    const root = packFunction(data) as HierarchyCircularNode<FrameworkData>
-
-    /**
-     * Expose the activeFocus to let other components react when this value changes
-     * Learn more: https://svelte.dev/docs/component-directives#bind-property
-     */
-    export let activeFocus = root
+    const root = packFunction($data) as HierarchyCircularNode<FrameworkData>
 
     let view = [width / 2, height / 2, width] as ZoomView
     let activeZoomK = (width / root.r) * 2
@@ -56,15 +52,15 @@
     const zoom = (d: HierarchyCircularNode<FrameworkData>, e: Event) => {
         e.stopPropagation()
 
-        activeFocus = d
+        $activeFocus = d
 
         transition()
             .duration(600)
             .tween('zoom', () => {
                 var i = interpolateZoom(view, [
-                    activeFocus.x,
-                    activeFocus.y,
-                    activeFocus.r * 2 + margin,
+                    $activeFocus.x,
+                    $activeFocus.y,
+                    $activeFocus.r * 2 + margin,
                 ])
                 return function (t) {
                     inactiveZoomTo(i(t))
@@ -79,7 +75,7 @@
 -->
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
-<svg {width} {height} on:click={(e) => zoom(root, e)}>
+<svg {width} {height} on:click={(e) => zoom(root, e)} class="interactive-framework">
     <g transform="translate({width / 2},{height / 2})">
         {#each root.descendants().slice(1) as rootData}
             <!-- svelte-ignore a11y-mouse-events-have-key-events -->
@@ -91,7 +87,7 @@
                     : 'node node--root'}
                 fill={rootData.children ? getRGBColor(rootData.data.id) ?? '#f5f5f5' : '#f5f5f5'}
                 on:click={(e) => {
-                    if (activeFocus !== rootData) zoom(rootData, e)
+                    if ($activeFocus !== rootData) zoom(rootData, e)
                 }}
                 transform="translate({(rootData.x - activeZoomA) * activeZoomK},{(rootData.y -
                     activeZoomB) *
@@ -103,12 +99,12 @@
             This always renders all the descendants of the root.
             It would be useful to know it was showing a skill or a dimension
         -->
-        {#each root.descendants() as rootDes}
+        {#each root.descendants() as rootDes (rootDes.data.name)}
             <text
                 class="label"
-                style="fill-opacity: {rootDes.parent === activeFocus
+                style="fill-opacity: {rootDes.parent === $activeFocus
                     ? 1
-                    : 0}; display: {rootDes.parent === activeFocus ? 'inline' : 'none'};"
+                    : 0}; display: {rootDes.parent === $activeFocus ? 'inline' : 'none'};"
                 transform="translate({(rootDes.x - activeZoomA) * activeZoomK},{(rootDes.y -
                     activeZoomB) *
                     activeZoomK})">{rootDes.data.name}</text
