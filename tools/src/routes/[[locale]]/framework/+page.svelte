@@ -6,7 +6,9 @@
     // import IDGFramework from '$components/IDGFramework.svelte'
     import type { PageData } from './$types'
     import { IDG_REPORT_PDF } from '$shared/constants'
-    import IDGInteractiveFramework from '$components/IDGInteractiveFramework.svelte'
+    import IDGInteractiveFramework, {
+        type FrameworkData,
+    } from '$components/IDGInteractiveFramework.svelte'
     import { getIDGFrameworkData } from '$lib/getIDGFrameworkData'
     import type { HierarchyCircularNode } from 'd3'
     import { getDimension, getSkill } from '$shared/content-utils'
@@ -17,10 +19,14 @@
     export let data: PageData
     $: ({ skills, dimensions } = data)
 
-    let test: HierarchyCircularNode<unknown>
+    $: frameworkData = getIDGFrameworkData(dimensions, skills)
 
-    $: selectedSkill = test?.data?.id ? getSkill(test?.data?.id, { skills }) : null
-    $: selectedDimension = test?.data?.id ? getDimension(test?.data?.id, { dimensions }) : null
+    let selected: HierarchyCircularNode<FrameworkData>
+
+    $: selectedSkill = selected?.data?.id ? getSkill(selected?.data?.id, { skills }) : null
+    $: selectedDimension = selected?.data?.id
+        ? getDimension(selected?.data?.id, { dimensions })
+        : null
 </script>
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
@@ -40,10 +46,8 @@
 <!-- <IDGFramework {skills} {dimensions} /> -->
 
 <div class="grid grid-cols-[1fr_400px]">
-    <IDGInteractiveFramework
-        data={getIDGFrameworkData(dimensions, skills)}
-        bind:activeFocus={test}
-    />
+    <!-- TODO: Maybe use a svelte store instead of a prop in order to make it easier to susbscribe to updates -->
+    <IDGInteractiveFramework data={frameworkData} bind:activeFocus={selected} />
     <div class="bg-green-400 p-4">
         <Heading size={2} class="mt-4 mb-4"
             >{selectedSkill?.name || selectedDimension?.name || 'Inner Development Goals'}</Heading

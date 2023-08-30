@@ -1,3 +1,10 @@
+<script lang="ts" context="module">
+    export type FrameworkData = {
+        id: string
+        name: string
+    }
+</script>
+
 <script lang="ts">
     import { getRGBColor } from '$shared/utils'
     import {
@@ -11,11 +18,11 @@
 
     export let data: unknown
 
-    const width = 800 //the outer width of the chart, in pixels
-    const height = width // the outer height of the chart, in pixels
-    const margin = 20 //the overall margin between the circle packs to the viewport edge
+    const width = 800
+    const height = width
+    const margin = 20
 
-    const packFunc = (packData: any) =>
+    const packFunction = (packData: any) =>
         pack()
             .size([width - margin, height - margin])
             .padding(3)(
@@ -24,7 +31,7 @@
                 .sort((a, b) => (b?.value ?? 0) - (a?.value ?? 0)),
         )
 
-    const root = packFunc(data)
+    const root = packFunction(data) as HierarchyCircularNode<FrameworkData>
 
     /**
      * Expose the activeFocus to let other components react when this value changes
@@ -32,7 +39,7 @@
      */
     export let activeFocus = root
 
-    let view: ZoomView
+    let view = [width / 2, height / 2, width] as ZoomView
     let activeZoomK = (width / root.r) * 2
     let activeZoomA = root.x
     let activeZoomB = root.y
@@ -46,7 +53,7 @@
 
     inactiveZoomTo([root.x, root.y, root.r * 2 + margin])
 
-    const zoom = (d: HierarchyCircularNode<unknown>, e: Event) => {
+    const zoom = (d: HierarchyCircularNode<FrameworkData>, e: Event) => {
         e.stopPropagation()
 
         activeFocus = d
@@ -64,20 +71,16 @@
                 }
             })
     }
-
-    const IDG_COLORS = {
-        being: '#d4b88c',
-        thinking: '#e585a1',
-        relating: '#e84139',
-        collaborating: '#ff6821',
-        acting: '#661a30',
-    }
 </script>
+
+<!--
+    TODO: Maybe the d3 animated SVG is not performant enough since it is animating on the CPU.
+    Would be much better with a technique that allows rendering on the GPU.
+-->
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
 <svg {width} {height} on:click={(e) => zoom(root, e)}>
     <g transform="translate({width / 2},{height / 2})">
-        <!-- IDEA: Maybe making the skills selectable too would be a good idea, since that would allow opening details with more information -->
         {#each root.descendants().slice(1) as rootData}
             <!-- svelte-ignore a11y-mouse-events-have-key-events -->
             <circle
