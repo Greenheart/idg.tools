@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit'
-import { getContent } from '$lib/content-backend'
+import { getContent, getSupportedLocales } from '$lib/content-backend'
 import type { PageServerLoad } from './$types'
 
 // TODO: Figure out a way to prerender the localised routes.
@@ -13,9 +13,11 @@ export const load = (async ({ params }) => {
     // Make sure to make the proper redirect to prevent dead/duplicate content links
     // Build this into getLocale() so it happens automatically
     const content = getContent(params.locale)
-    if (content) {
+    const supportedLocales = getSupportedLocales()
+
+    if (content && supportedLocales) {
         const { skills, dimensions } = content
-        return { skills, dimensions }
+        return { skills, dimensions, supportedLocales }
     }
 
     throw error(500)
