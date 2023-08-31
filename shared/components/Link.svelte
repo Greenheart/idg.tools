@@ -36,6 +36,6 @@
     $: classes = unstyled ? className : cx(defaultClasses, variants[variant], className)
 </script>
 
-<a {href} {tabindex} {title} class={classes} {...additionalProps}>
+<a {href} {tabindex} {title} class={classes} {...additionalProps} on:click>
     <slot />
 </a>

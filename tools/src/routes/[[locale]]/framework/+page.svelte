@@ -8,7 +8,7 @@
     import { getDimension, getSkill, getSkillsInDimension } from '$shared/content-utils'
     import type { Dimension, Skill } from '$shared/types'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
-    import { Arrow } from '$shared/icons'
+    import { Arrow, IDGSymbol } from '$shared/icons'
     import { cx, getColor, getDimensionSlug } from '$shared/utils'
     import persistedStore from '$lib/persistedStore'
     import { onMount } from 'svelte'
@@ -75,7 +75,7 @@
                 <div />
             {/if}
             <!-- TODO: fix the z-index for position relative. It has to be on top of the symbols -->
-            <LocaleSwitcher {supportedLocales} />
+            <LocaleSwitcher {supportedLocales} pathname={$page.url.pathname} />
         </div>
         {#if !$selectedDimension}
             <div class="py-4">
@@ -94,13 +94,7 @@
                             $selectedDimensionId = dimension.id
                         }}
                     >
-                        <img
-                            src={`/images/symbols/${dimensionSlug}.svg`}
-                            alt={`IDG ${dimensionSlug} symbol`}
-                            width="48"
-                            height="48"
-                            class="invert flex pointer-events-none"
-                        />
+                        <IDGSymbol slug={dimensionSlug} class="pointer-events-none w-12 h-12" />
                         <span>
                             {dimension.name}
                         </span>
@@ -114,12 +108,9 @@
                     >{$selectedDimension?.name}</Heading
                 >
                 <Heading size={4} class="px-4">{$selectedDimension?.subtitle}</Heading>
-                <img
-                    src={`/images/symbols/${dimensionSlug}.svg`}
-                    alt={`IDG ${dimensionSlug} symbol`}
-                    width="150"
-                    height="150"
-                    class="invert pointer-events-none mx-auto py-4"
+                <IDGSymbol
+                    slug={dimensionSlug}
+                    class="pointer-events-none w-36 h-36 my-4 mx-auto"
                 />
                 <p class="px-4">{$selectedDimension.description}</p>
 
@@ -135,13 +126,7 @@
                                 $selectedSkillId = skill.id
                             }}
                         >
-                            <img
-                                src={`/images/symbols/${dimensionSlug}.svg`}
-                                alt={`IDG ${dimensionSlug} symbol`}
-                                width="48"
-                                height="48"
-                                class="invert pointer-events-none"
-                            />
+                            <IDGSymbol slug={dimensionSlug} class="pointer-events-none w-12 h-12" />
                             <p>
                                 {skill.name}
                             </p>
@@ -151,11 +136,6 @@
             </div>
         {:else}
             {@const dimensionSlug = getDimensionSlug($selectedDimension.id)}
-            <!--
-                1) 64
-                2) 96
-                3) 128
-            -->
             <Heading
                 size={2}
                 class={cx('p-4 break-words hyphens-auto h-32', getColor($selectedSkill.id, 'text'))}
@@ -167,12 +147,9 @@
                     getColor($selectedSkill.id),
                 )}
             >
-                <img
-                    src={`/images/symbols/${dimensionSlug}.svg`}
-                    alt={`IDG ${dimensionSlug} symbol`}
-                    width="150"
-                    height="150"
-                    class="invert pointer-events-none"
+                <IDGSymbol
+                    slug={dimensionSlug}
+                    class="pointer-events-none w-36 h-36 my-4 mx-auto text-white"
                 />
             </div>
             <p class="px-4">{$selectedSkill.description}</p>
@@ -196,13 +173,7 @@
                     {/if}
 
                     <div class="flex gap-2">
-                        <img
-                            src={`/images/symbols/${dimensionSlug}.svg`}
-                            alt={`IDG ${dimensionSlug} symbol`}
-                            width="20"
-                            height="20"
-                            class="invert pointer-events-none"
-                        />
+                        <IDGSymbol slug={dimensionSlug} class="pointer-events-none w-5 h-5" />
                         <p>{$selectedSkillIndex + 1}</p>
                     </div>
 
