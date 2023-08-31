@@ -85,31 +85,29 @@
         -->
 
         <!-- Option 3 -->
-        <div class="mt-16 grid font-semibold text-white gap-2">
+        <div class="grid font-semibold text-white gap-2">
             {#each dimensions as dimension (dimension.id)}
                 {@const dimensionName = COLORS[dimension.id]}
-                <div class={cx(getColor(dimension.id), 'p-2 flex gap-2 items-center')}>
-                    <button
-                        class="p-1"
-                        on:click={() => {
-                            $selected = dimension
-                        }}
-                    >
-                        <img
-                            src={`/images/symbols/${dimensionName}.svg`}
-                            alt={`IDG ${dimensionName} symbol`}
-                            width="50"
-                            height="50"
-                            class={cx(
-                                'mx-auto invert pointer-events-none',
-                                dimensionName === 'acting' ? 'translate-x-1' : undefined,
-                            )}
-                        />
-                    </button>
-                    <h2>
+                <button
+                    class={cx(
+                        getColor(dimension.id),
+                        'p-2 flex gap-2 items-center hover:shadow-xl',
+                    )}
+                    on:click={() => {
+                        $selected = dimension
+                    }}
+                >
+                    <img
+                        src={`/images/symbols/${dimensionName}.svg`}
+                        alt={`IDG ${dimensionName} symbol`}
+                        width="50"
+                        height="50"
+                        class="invert pointer-events-none"
+                    />
+                    <span>
                         {dimension.name}
-                    </h2>
-                </div>
+                    </span>
+                </button>
             {/each}
         </div>
     </div>
