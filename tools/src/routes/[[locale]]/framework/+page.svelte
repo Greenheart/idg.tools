@@ -75,6 +75,7 @@
             {:else}
                 <div />
             {/if}
+            <!-- TODO: fix the z-index for position relative. It has to be on top of the symbols -->
             <LocaleSwitcher {supportedLocales} />
         </div>
         {#if !$selectedDimension}
@@ -110,7 +111,9 @@
         {:else if !$selectedSkill}
             {@const dimensionSlug = getDimensionSlug($selectedDimension.id)}
             <div class={cx(getColor($selectedDimension.id), 'text-white')}>
-                <Heading size={2} class="p-4 pb-1">{$selectedDimension?.name}</Heading>
+                <Heading size={2} class="p-4 pb-1 break-words hyphens-auto"
+                    >{$selectedDimension?.name}</Heading
+                >
                 <Heading size={4} class="px-4">{$selectedDimension?.subtitle}</Heading>
                 <img
                     src={`/images/symbols/${dimensionSlug}.svg`}
@@ -149,7 +152,9 @@
             </div>
         {:else}
             {@const dimensionSlug = getDimensionSlug($selectedDimension.id)}
-            <Heading size={2} class={cx('p-4', getColor($selectedSkill.id, 'text'))}
+            <Heading
+                size={2}
+                class={cx('p-4 break-words hyphens-auto', getColor($selectedSkill.id, 'text'))}
                 >{$selectedSkill?.name}</Heading
             >
             <div
@@ -168,18 +173,19 @@
             </div>
             <p class="px-4">{$selectedSkill.description}</p>
 
+            <!-- TODO: Ensure there is consistent height so the layout doesn't jump around. -->
             <div
                 class={cx(
                     'flex items-center justify-between mt-8 p-1',
                     getColor($selectedDimension.id),
                 )}
             >
-                {#if $selectedDimensionId}
+                {#if $selectedSkillIndex > 0}
                     <button class="hover:bg-stone-100 h-10 w-10" on:click={prevSkill}>
                         <Arrow left /></button
                     >
                 {:else}
-                    <div />
+                    <div class="w-10" />
                 {/if}
 
                 <div>
@@ -187,12 +193,12 @@
                     <p>{$selectedSkillIndex + 1}</p>
                 </div>
 
-                {#if $selectedDimensionId}
+                {#if $selectedSkillIndex < $selectedDimension.skills.length - 1}
                     <button class="hover:bg-stone-100 h-10 w-10" on:click={nextSkill}>
                         <Arrow right /></button
                     >
                 {:else}
-                    <div />
+                    <div class="w-10" />
                 {/if}
             </div>
         {/if}
