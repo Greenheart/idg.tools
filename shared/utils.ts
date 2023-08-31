@@ -18,6 +18,8 @@ export const getColor = (id: Dimension['id'] | Skill['id'], colorType: 'bg' | 't
     return `${colorType}-${COLORS[id]}`
 }
 
+export const getDimensionSlug = (id: Dimension['id']) => COLORS[id]
+
 export const getRGBColor = (id: Dimension['id'] | Skill['id']) => IDG_COLORS_RGB[COLORS[id]]
 
 // TODO: This needs to be updated to support other locales than English, but is good enough for now.
