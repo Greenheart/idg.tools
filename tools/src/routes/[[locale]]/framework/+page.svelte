@@ -10,7 +10,7 @@
     import type { Dimension, Skill } from '$shared/types'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import { Arrow } from '$shared/icons'
-    import { cx, getColor } from '$shared/utils'
+    import { cx, getColor, getDimensionSlug } from '$shared/utils'
     import persistedStore from '$lib/persistedStore'
     import { onMount } from 'svelte'
 
@@ -48,7 +48,7 @@
 
 <div class="grid bg-white min-h-[680px]">
     <div class="p-2 max-w-xs text-base" class:hidden={!mounted}>
-        <div class="flex items-center justify-between shadow-md mb-2">
+        <div class="flex items-center justify-between shadow-md">
             {#if $selectedDimensionId}
                 <button class="hover:bg-stone-100 h-10 w-10" on:click={onBack}>
                     <Arrow left /></button
@@ -59,9 +59,13 @@
             <LocaleSwitcher {supportedLocales} />
         </div>
         {#if !$selectedDimension}
+            <div class="py-4">
+                <Heading size={2}>Inner Development Goals</Heading>
+            </div>
+
             <div class="grid font-semibold text-white gap-2 leading-5">
                 {#each dimensions as dimension (dimension.name)}
-                    {@const dimensionName = COLORS[dimension.id]}
+                    {@const dimensionSlug = getDimensionSlug(dimension.id)}
                     <button
                         class={cx(
                             getColor(dimension.id),
@@ -72,8 +76,8 @@
                         }}
                     >
                         <img
-                            src={`/images/symbols/${dimensionName}.svg`}
-                            alt={`IDG ${dimensionName} symbol`}
+                            src={`/images/symbols/${dimensionSlug}.svg`}
+                            alt={`IDG ${dimensionSlug} symbol`}
                             width="50"
                             height="50"
                             class="invert pointer-events-none"
@@ -85,51 +89,48 @@
                 {/each}
             </div>
         {:else if !$selectedSkill}
-            <div class="grid font-semibold text-white gap-2 leading-5">
-                {#each getSkillsInDimension( $selectedDimension.id, { skills }, ) as skill (skill.name)}
-                    <!-- TODO: Replace with the skill symbols -->
-                    {@const dimensionName = COLORS[skill.id]}
-                    <button
-                        class={cx(
-                            getColor(skill.id),
-                            'p-2 flex gap-2 items-center hover:drop-shadow-lg text-left',
-                        )}
-                        on:click={() => {
-                            $selectedSkillId = skill.id
-                        }}
-                    >
-                        <img
-                            src={`/images/symbols/${dimensionName}.svg`}
-                            alt={`IDG ${dimensionName} symbol`}
-                            width="50"
-                            height="50"
-                            class="invert pointer-events-none"
-                        />
-                        <p>
-                            {skill.name}
-                        </p>
-                    </button>
-                {/each}
-            </div>
-        {/if}
+            {@const dimensionSlug = getDimensionSlug($selectedDimension.id)}
+            <div class={cx(getColor($selectedDimension.id), 'text-white')}>
+                <Heading size={2} class="p-4 pb-1">{$selectedDimension?.name}</Heading>
+                <Heading size={4} class="px-4">{$selectedDimension?.subtitle}</Heading>
+                <img
+                    src={`/images/symbols/${dimensionSlug}.svg`}
+                    alt={`IDG ${dimensionSlug} symbol`}
+                    width="150"
+                    height="150"
+                    class="invert pointer-events-none mx-auto py-4"
+                />
+                <p class="px-4">{$selectedDimension.description}</p>
 
-        <div class="bg-white p-4 shadow-lg">
-            {#if $selectedSkill}
-                <Heading size={2} class="mt-4 mb-4">{$selectedSkill?.name}</Heading>
-                <p>{$selectedSkill.description}</p>
-            {:else if $selectedDimension}
-                <Heading size={2} class="mt-4 mb-4">{$selectedDimension?.name}</Heading>
-                <p>{$selectedDimension.description}</p>
-            {:else}
-                <Heading size={2} class="mt-4 mb-4">Inner Development Goals</Heading>
-                <p>
-                    The 5 dimensions with the 23 skills and qualities. Read the full report <Link
-                        href={IDG_REPORT_PDF}
-                        variant="black"
-                        >“Inner Development Goals: Background, method and the IDG framework”</Link
-                    > to learn more.
-                </p>
-            {/if}
-        </div>
+                <div class="pt-4 grid font-semibold text-white leading-5">
+                    {#each getSkillsInDimension( $selectedDimension.id, { skills }, ) as skill (skill.name)}
+                        <!-- TODO: Replace with the skill symbols -->
+                        <button
+                            class={cx(
+                                getColor(skill.id),
+                                'p-2 flex gap-2 items-center hover:drop-shadow-lg text-left',
+                            )}
+                            on:click={() => {
+                                $selectedSkillId = skill.id
+                            }}
+                        >
+                            <img
+                                src={`/images/symbols/${dimensionSlug}.svg`}
+                                alt={`IDG ${dimensionSlug} symbol`}
+                                width="50"
+                                height="50"
+                                class="invert pointer-events-none"
+                            />
+                            <p>
+                                {skill.name}
+                            </p>
+                        </button>
+                    {/each}
+                </div>
+            </div>
+        {:else}
+            <Heading size={2} class="mt-4 mb-4">{$selectedSkill?.name}</Heading>
+            <p>{$selectedSkill.description}</p>
+        {/if}
     </div>
 </div>

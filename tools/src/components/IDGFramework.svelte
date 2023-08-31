@@ -3,7 +3,7 @@
     import { COLORS } from '$shared/constants'
     import { getSkillsInDimension } from '$shared/content-utils'
     import type { Dimension, Skill } from '$shared/types'
-    import { cx, getColor } from '$shared/utils'
+    import { cx, getColor, getDimensionSlug } from '$shared/utils'
     import { IDGLogo } from '$shared/icons'
 
     export let skills: Skill[]
@@ -23,7 +23,7 @@
     <div class="grid aspect-video place-items-center bg-white p-3 shadow-md">
         <div class="grid h-full w-full grid-cols-5 gap-2 text-white">
             {#each dimensions as dimension, i}
-                {@const dimensionName = COLORS[dimension.id]}
+                {@const dimensionSlug = getDimensionSlug(dimension.id)}
                 <div
                     class={cx(
                         'grid-cols-[repeat(1, minmax(0, max-content))] grid h-full grid-rows-[max-content_106px] gap-2 p-6 shadow-sm',
@@ -31,8 +31,8 @@
                     )}
                 >
                     <img
-                        src={`/images/symbols/${dimensionName}.png`}
-                        alt={`IDG ${dimensionName} symbol`}
+                        src={`/images/symbols/${dimensionSlug}.png`}
+                        alt={`IDG ${dimensionSlug} symbol`}
                         width="150"
                         height="150"
                         class="place-self-center"
@@ -56,7 +56,7 @@
     </div>
 
     {#each dimensions as dimension}
-        {@const dimensionName = COLORS[dimension.id]}
+        {@const dimensionSlug = getDimensionSlug(dimension.id)}
         {@const color = getColor(dimension.id)}
         <div class="grid aspect-video place-items-center bg-white p-3 shadow-md">
             <div
@@ -68,8 +68,8 @@
                 <div class="relative my-8 ml-8">
                     <!-- NOTE: Since the exported symbols have excess whitespace in them, we have to compensate with a negative margin to fix alignment -->
                     <img
-                        src={`/images/symbols/${dimensionName}.png`}
-                        alt={`IDG ${dimensionName} symbol`}
+                        src={`/images/symbols/${dimensionSlug}.png`}
+                        alt={`IDG ${dimensionSlug} symbol`}
                         width="130"
                         height="130"
                         class="-ml-2 pb-2"
