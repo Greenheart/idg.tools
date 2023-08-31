@@ -10,12 +10,10 @@
     const supported = Object.entries(supportedLocales) as [Locale, string][]
 
     let open = false
+    let target: HTMLDivElement
 </script>
 
-<!-- TODO: implement ESC to close -->
-<!-- TODO: implement click outside -->
-<!-- TODO: close when clicking on one of the links -->
-<div class="relative grid">
+<div class="relative grid" bind:this={target}>
     <button
         class="grid place-items-center hover:bg-stone-100 h-10 w-10"
         title="Change language"
@@ -28,7 +26,6 @@
     >
         {#each supported as [locale, label]}
             <li class="grid">
-                <!-- TODO: verify that keyboard navigation works as expected -->
                 <Link
                     href={getLocalisedPath(locale, pathname)}
                     variant="black"
@@ -42,24 +39,15 @@
     </ul>
 </div>
 
-<!-- <Menu class="relative grid">
-    <MenuButton
-        class="grid place-items-center hover:bg-stone-100 h-10 w-10"
-        title="Change language"
-        aria-label="Change language"><LocaleIcon /></MenuButton
-    >
-    <MenuItems
-        class="bg-white list-style-none absolute top-full right-0 grid text-base drop-shadow"
-        as="ul"
-    >
-        {#each supported as [locale, label]}
-            <MenuItem let:active as="li" class="grid first:pt-1 last:pb-1">
-                <Link
-                    href={getLocalisedPath(locale, location.pathname)}
-                    variant="black"
-                    class={cx('px-3 py-1', active ? 'bg-stone-100' : 'no-underline')}>{label}</Link
-                >
-            </MenuItem>
-        {/each}
-    </MenuItems>
-</Menu> -->
+<svelte:body
+    on:click={(event) => {
+        if (open && !event.composedPath().includes(target)) {
+            open = false
+        }
+    }}
+    on:keyup={(event) => {
+        if (open && event.key === 'Escape') {
+            open = false
+        }
+    }}
+/>
