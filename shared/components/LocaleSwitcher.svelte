@@ -17,7 +17,7 @@
         aria-label="Change language"><LocaleIcon /></MenuButton
     >
     <MenuItems
-        class="bg-white z-10 list-style-none absolute top-full right-0 grid text-base drop-shadow"
+        class="bg-white list-style-none absolute top-full right-0 grid text-base drop-shadow z-30"
         as="ul"
     >
         {#each supported as [locale, label]}
