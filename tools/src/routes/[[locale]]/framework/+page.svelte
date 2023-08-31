@@ -35,19 +35,19 @@
         <!-- TODO: list all skills in that dimension -->
         <!-- TODO: Ensure the symbols are positioned correctly, for example the acting symbol needs adjusted margin/padding -->
         <div
-            class="grid grid-cols-{dimensions.length} text-xs font-semibold text-center text-white"
+            class="grid grid-cols-{dimensions.length} text-[0.625rem] tracking-tighter text-center text-white"
         >
             {#each dimensions as dimension (dimension.id)}
                 {@const dimensionName = COLORS[dimension.id]}
-                <div class={cx(getColor(dimension.id), 'py-2')}>
+                <div class={cx(getColor(dimension.id), 'py-2 px-1')}>
                     <img
                         src={`/images/symbols/${dimensionName}.svg`}
                         alt={`IDG ${dimensionName} symbol`}
-                        width="80"
-                        height="80"
+                        width="40"
+                        height="40"
                         class={cx(
-                            'mx-auto p-2 invert',
-                            dimensionName === 'acting' ? 'mr-1.5' : undefined,
+                            'mx-auto invert',
+                            dimensionName === 'acting' ? 'translate-x-1' : undefined,
                         )}
                     />
                     <h2>{dimension.name}</h2>
