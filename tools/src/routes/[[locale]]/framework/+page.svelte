@@ -1,16 +1,15 @@
 <script lang="ts">
-    import { writable } from 'svelte/store'
+    import { derived, writable } from 'svelte/store'
 
-    // import { page } from '$app/stores'
+    import { page } from '$app/stores'
     import { Heading, Link } from '$shared/components'
     import Meta from '$components/Meta.svelte'
     import type { PageData } from './$types'
     import { COLORS, IDG_REPORT_PDF } from '$shared/constants'
-    import { getDimension, getSkill } from '$shared/content-utils'
+    import { getItem } from '$shared/content-utils'
     import type { Dimension, Skill } from '$shared/types'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import Arrow from '$shared/icons/Arrow.svelte'
-    import Button from '$shared/components/Button.svelte'
     import { cx, getColor } from '$shared/utils'
 
     // TODO: find a way to use the page url without the store, since that causes some error
@@ -19,8 +18,11 @@
     export let data: PageData
     $: ({ skills, dimensions, supportedLocales } = data)
 
-    // Save selected ID so we can keep tit selected even if the language changes.
-    const selected = writable<Skill | Dimension>()
+    // Maybe save the selected ID item so we can keep it selected even if the language changes.
+    const selectedId = writable<Skill['id'] | Dimension['id'] | undefined>()
+    const selected = derived([selectedId, page], ([id]) =>
+        id ? getItem(id, { skills, dimensions }) : undefined,
+    )
 </script>
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
@@ -32,7 +34,7 @@
             <LocaleSwitcher {supportedLocales} />
         </div>
         <div class="grid font-semibold text-white gap-2">
-            {#each dimensions as dimension (dimension.id)}
+            {#each dimensions as dimension (dimension.name)}
                 {@const dimensionName = COLORS[dimension.id]}
                 <button
                     class={cx(
@@ -40,7 +42,7 @@
                         'p-2 flex gap-2 items-center hover:drop-shadow-lg',
                     )}
                     on:click={() => {
-                        $selected = dimension
+                        $selectedId = dimension.id
                     }}
                 >
                     <img
