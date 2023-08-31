@@ -35,7 +35,7 @@
         <!-- TODO: list all skills in that dimension -->
         <!-- TODO: Ensure the symbols are positioned correctly, for example the acting symbol needs adjusted margin/padding -->
         <!-- Option 1 -->
-        <div
+        <!-- <div
             class="grid grid-cols-{dimensions.length} text-[0.625rem] tracking-tighter text-center text-white"
         >
             {#each dimensions as dimension (dimension.id)}
@@ -56,7 +56,7 @@
             {/each}
         </div>
 
-        <!-- Option 2 -->
+        < !-- Option 2 -- >
         <div class="mt-16 grid grid-cols-{dimensions.length} text-xs text-center text-white">
             {#each dimensions as dimension (dimension.id)}
                 {@const dimensionName = COLORS[dimension.id]}
@@ -78,9 +78,39 @@
                     />
                 </button>
             {/each}
-            <h2 class="font-bold col-span-full text-center py-2 {getColor($selected?.id)}">
+            <h2 class="font-bold col-span-full py-2 {getColor($selected?.id)}">
                 {$selected?.name}
             </h2>
+        </div>
+        -->
+
+        <!-- Option 3 -->
+        <div class="mt-16 grid font-semibold text-white gap-2">
+            {#each dimensions as dimension (dimension.id)}
+                {@const dimensionName = COLORS[dimension.id]}
+                <div class={cx(getColor(dimension.id), 'p-2 flex gap-2 items-center')}>
+                    <button
+                        class="p-1"
+                        on:click={() => {
+                            $selected = dimension
+                        }}
+                    >
+                        <img
+                            src={`/images/symbols/${dimensionName}.svg`}
+                            alt={`IDG ${dimensionName} symbol`}
+                            width="50"
+                            height="50"
+                            class={cx(
+                                'mx-auto invert pointer-events-none',
+                                dimensionName === 'acting' ? 'translate-x-1' : undefined,
+                            )}
+                        />
+                    </button>
+                    <h2>
+                        {dimension.name}
+                    </h2>
+                </div>
+            {/each}
         </div>
     </div>
     <div class="bg-white p-4 shadow-lg">
