@@ -126,7 +126,10 @@
                                 $selectedSkillId = skill.id
                             }}
                         >
-                            <IDGSymbol slug={dimensionSlug} class="pointer-events-none w-12 h-12" />
+                            <IDGSymbol
+                                slug={dimensionSlug}
+                                class="pointer-events-none w-12 h-12 shrink-0"
+                            />
                             <p>
                                 {skill.name}
                             </p>
