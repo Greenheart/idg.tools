@@ -20,7 +20,7 @@
     $: ({ skills, dimensions, supportedLocales } = data)
 
     // Save selected ID so we can keep tit selected even if the language changes.
-    const selected = writable<Skill | Dimension | null>()
+    const selected = writable<Skill | Dimension>()
 </script>
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
@@ -34,6 +34,7 @@
         <!-- TODO: list all dimensions, with the correct icon -->
         <!-- TODO: list all skills in that dimension -->
         <!-- TODO: Ensure the symbols are positioned correctly, for example the acting symbol needs adjusted margin/padding -->
+        <!-- Option 1 -->
         <div
             class="grid grid-cols-{dimensions.length} text-[0.625rem] tracking-tighter text-center text-white"
         >
@@ -46,13 +47,40 @@
                         width="40"
                         height="40"
                         class={cx(
-                            'mx-auto invert',
+                            'mx-auto invert pointer-events-none',
                             dimensionName === 'acting' ? 'translate-x-1' : undefined,
                         )}
                     />
                     <h2>{dimension.name}</h2>
                 </div>
             {/each}
+        </div>
+
+        <!-- Option 2 -->
+        <div class="mt-16 grid grid-cols-{dimensions.length} text-xs text-center text-white">
+            {#each dimensions as dimension (dimension.id)}
+                {@const dimensionName = COLORS[dimension.id]}
+                <button
+                    class={cx(getColor(dimension.id), 'py-2 px-1')}
+                    on:click={() => {
+                        $selected = dimension
+                    }}
+                >
+                    <img
+                        src={`/images/symbols/${dimensionName}.svg`}
+                        alt={`IDG ${dimensionName} symbol`}
+                        width="40"
+                        height="40"
+                        class={cx(
+                            'mx-auto invert pointer-events-none',
+                            dimensionName === 'acting' ? 'translate-x-1' : undefined,
+                        )}
+                    />
+                </button>
+            {/each}
+            <h2 class="font-bold col-span-full text-center py-2 {getColor($selected?.id)}">
+                {$selected?.name}
+            </h2>
         </div>
     </div>
     <div class="bg-white p-4 shadow-lg">
