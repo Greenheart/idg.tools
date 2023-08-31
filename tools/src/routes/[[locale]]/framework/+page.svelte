@@ -34,6 +34,13 @@
     const selectedDimension = derived([selectedDimensionId, page], ([id]) =>
         id ? getDimension(id as unknown as Dimension['id'], { dimensions }) : undefined,
     )
+    const selectedSkillIndex = derived(selectedSkill, (skill) =>
+        skill
+            ? getSkillsInDimension(skill.dimension, { skills }).findIndex(
+                  (s) => s.id === skill.id,
+              ) ?? 0
+            : 0,
+    )
 
     function onBack() {
         if ($selectedSkillId) {
@@ -42,13 +49,25 @@
             $selectedDimensionId = ''
         }
     }
+
+    function prevSkill() {
+        if ($selectedDimension && $selectedSkillIndex > 0) {
+            $selectedSkillId = $selectedDimension.skills[$selectedSkillIndex - 1]
+        }
+    }
+
+    function nextSkill() {
+        if ($selectedDimension && $selectedSkillIndex < $selectedDimension.skills.length - 1) {
+            $selectedSkillId = $selectedDimension.skills[$selectedSkillIndex + 1]
+        }
+    }
 </script>
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
-<div class="grid bg-white min-h-[680px]">
+<div class="grid bg-white min-h-[700px]">
     <div class="p-2 max-w-xs text-base" class:hidden={!mounted}>
-        <div class="flex items-center justify-between shadow-md">
+        <div class="flex items-center justify-between drop-shadow-md p-1">
             {#if $selectedDimensionId}
                 <button class="hover:bg-stone-100 h-10 w-10" on:click={onBack}>
                     <Arrow left /></button
@@ -129,8 +148,53 @@
                 </div>
             </div>
         {:else}
-            <Heading size={2} class="mt-4 mb-4">{$selectedSkill?.name}</Heading>
-            <p>{$selectedSkill.description}</p>
+            {@const dimensionSlug = getDimensionSlug($selectedDimension.id)}
+            <Heading size={2} class={cx('p-4', getColor($selectedSkill.id, 'text'))}
+                >{$selectedSkill?.name}</Heading
+            >
+            <div
+                class={cx(
+                    'm-4 p-4 rounded-lg aspect-square flex items-center justify-center',
+                    getColor($selectedSkill.id),
+                )}
+            >
+                <img
+                    src={`/images/symbols/${dimensionSlug}.svg`}
+                    alt={`IDG ${dimensionSlug} symbol`}
+                    width="150"
+                    height="150"
+                    class="invert pointer-events-none"
+                />
+            </div>
+            <p class="px-4">{$selectedSkill.description}</p>
+
+            <div
+                class={cx(
+                    'flex items-center justify-between mt-8 p-1',
+                    getColor($selectedDimension.id),
+                )}
+            >
+                {#if $selectedDimensionId}
+                    <button class="hover:bg-stone-100 h-10 w-10" on:click={prevSkill}>
+                        <Arrow left /></button
+                    >
+                {:else}
+                    <div />
+                {/if}
+
+                <div>
+                    <!-- dimension symbol -->
+                    <p>{$selectedSkillIndex + 1}</p>
+                </div>
+
+                {#if $selectedDimensionId}
+                    <button class="hover:bg-stone-100 h-10 w-10" on:click={nextSkill}>
+                        <Arrow right /></button
+                    >
+                {:else}
+                    <div />
+                {/if}
+            </div>
         {/if}
     </div>
 </div>
