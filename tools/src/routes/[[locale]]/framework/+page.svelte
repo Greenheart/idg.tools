@@ -11,12 +11,21 @@
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import { Arrow } from '$shared/icons'
     import { cx, getColor } from '$shared/utils'
+    import persistedStore from '$lib/persistedStore'
+    import { onMount } from 'svelte'
 
     export let data: PageData
     $: ({ skills, dimensions, supportedLocales } = data)
 
-    const selectedSkillId = writable<Skill['id'] | undefined>()
-    const selectedDimensionId = writable<Dimension['id'] | undefined>()
+    const selectedSkillId = persistedStore<Skill['id']>('framework_skillId', '')
+    const selectedDimensionId = persistedStore<Dimension['id']>('framework_dimensionId', '')
+    let mounted = false
+
+    onMount(() => {
+        selectedSkillId.useLocalStorage()
+        selectedDimensionId.useLocalStorage()
+        mounted = true
+    })
 
     // Derive from page store to keep selection even when the page language changes
     const selectedSkill = derived([selectedSkillId, page], ([id]) =>
@@ -28,17 +37,17 @@
 
     function onBack() {
         if ($selectedSkillId) {
-            $selectedSkillId = undefined
+            $selectedSkillId = ''
         } else if ($selectedDimensionId) {
-            $selectedDimensionId = undefined
+            $selectedDimensionId = ''
         }
     }
 </script>
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
-<div class="grid bg-white">
-    <div class="p-2 max-w-xs text-base">
+<div class="grid bg-white min-h-[680px]">
+    <div class="p-2 max-w-xs text-base" class:hidden={!mounted}>
         <div class="flex items-center justify-between shadow-md mb-2">
             {#if $selectedDimensionId}
                 <button class="hover:bg-stone-100 h-10 w-10" on:click={onBack}>
@@ -49,7 +58,6 @@
             {/if}
             <LocaleSwitcher {supportedLocales} />
         </div>
-
         {#if !$selectedDimension}
             <div class="grid font-semibold text-white gap-2 leading-5">
                 {#each dimensions as dimension (dimension.name)}
