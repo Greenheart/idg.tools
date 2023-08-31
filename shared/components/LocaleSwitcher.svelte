@@ -17,7 +17,7 @@
         aria-label="Change language"><LocaleIcon /></MenuButton
     >
     <MenuItems
-        class="bg-white list-style-none absolute top-full right-0 grid text-base drop-shadow z-30"
+        class="bg-white list-style-none absolute top-full right-0 grid text-base drop-shadow"
         as="ul"
     >
         {#each supported as [locale, label]}
@@ -26,8 +26,7 @@
                 <Link
                     href={getLocalisedPath(locale, location.pathname)}
                     variant="black"
-                    class={cx('px-3 py-1', active ? 'underline bg-stone-100' : 'no-underline')}
-                    >{label}</Link
+                    class={cx('px-3 py-1', active ? 'bg-stone-100' : 'no-underline')}>{label}</Link
                 >
             </MenuItem>
         {/each}

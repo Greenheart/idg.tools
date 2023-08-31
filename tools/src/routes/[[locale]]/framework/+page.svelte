@@ -1,12 +1,11 @@
 <script lang="ts">
-    import { derived, writable } from 'svelte/store'
+    import { derived } from 'svelte/store'
 
     import { page } from '$app/stores'
-    import { Heading, Link } from '$shared/components'
+    import { Heading } from '$shared/components'
     import Meta from '$components/Meta.svelte'
     import type { PageData } from './$types'
-    import { COLORS, IDG_REPORT_PDF } from '$shared/constants'
-    import { getDimension, getItem, getSkill, getSkillsInDimension } from '$shared/content-utils'
+    import { getDimension, getSkill, getSkillsInDimension } from '$shared/content-utils'
     import type { Dimension, Skill } from '$shared/types'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import { Arrow } from '$shared/icons'
@@ -65,8 +64,8 @@
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
-<div class="grid bg-white min-h-[700px]">
-    <div class="p-2 max-w-xs text-base" class:hidden={!mounted}>
+<div class="min-h-[700px] bg-white relative pb-16 max-w-xs">
+    <div class="p-2 text-base h-full" class:hidden={!mounted}>
         <div class="flex items-center justify-between drop-shadow-md p-1">
             {#if $selectedDimensionId}
                 <button class="hover:bg-stone-100 h-10 w-10" on:click={onBack}>
@@ -83,7 +82,7 @@
                 <Heading size={2}>Inner Development Goals</Heading>
             </div>
 
-            <div class="grid font-semibold text-white gap-2 leading-5">
+            <div class="grid font-medium text-white gap-2 leading-5">
                 {#each dimensions as dimension (dimension.name)}
                     {@const dimensionSlug = getDimensionSlug(dimension.id)}
                     <button
@@ -98,9 +97,9 @@
                         <img
                             src={`/images/symbols/${dimensionSlug}.svg`}
                             alt={`IDG ${dimensionSlug} symbol`}
-                            width="50"
-                            height="50"
-                            class="invert pointer-events-none"
+                            width="48"
+                            height="48"
+                            class="invert flex pointer-events-none"
                         />
                         <span>
                             {dimension.name}
@@ -124,7 +123,7 @@
                 />
                 <p class="px-4">{$selectedDimension.description}</p>
 
-                <div class="pt-4 grid font-semibold text-white leading-5">
+                <div class="pt-4 grid font-medium text-white leading-5">
                     {#each getSkillsInDimension( $selectedDimension.id, { skills }, ) as skill (skill.name)}
                         <!-- TODO: Replace with the skill symbols -->
                         <button
@@ -139,8 +138,8 @@
                             <img
                                 src={`/images/symbols/${dimensionSlug}.svg`}
                                 alt={`IDG ${dimensionSlug} symbol`}
-                                width="50"
-                                height="50"
+                                width="48"
+                                height="48"
                                 class="invert pointer-events-none"
                             />
                             <p>
@@ -152,9 +151,14 @@
             </div>
         {:else}
             {@const dimensionSlug = getDimensionSlug($selectedDimension.id)}
+            <!--
+                1) 64
+                2) 96
+                3) 128
+            -->
             <Heading
                 size={2}
-                class={cx('p-4 break-words hyphens-auto', getColor($selectedSkill.id, 'text'))}
+                class={cx('p-4 break-words hyphens-auto h-32', getColor($selectedSkill.id, 'text'))}
                 >{$selectedSkill?.name}</Heading
             >
             <div
@@ -173,45 +177,46 @@
             </div>
             <p class="px-4">{$selectedSkill.description}</p>
 
-            <!-- TODO: Ensure there is consistent height so the layout doesn't jump around. -->
-            <div
-                class={cx(
-                    'flex items-center justify-between mt-8 p-1 text-white',
-                    getColor($selectedDimension.id),
-                )}
-            >
-                {#if $selectedSkillIndex > 0}
-                    <button
-                        class="hover:bg-stone-100 hover:text-black h-10 w-10"
-                        on:click={prevSkill}
-                    >
-                        <Arrow left /></button
-                    >
-                {:else}
-                    <div class="w-10" />
-                {/if}
+            <div class="absolute bottom-0 left-0 right-0">
+                <div
+                    class={cx(
+                        'flex items-center justify-between mt-8 p-1 gap-2 text-white select-none shadow-xl',
+                        getColor($selectedDimension.id),
+                    )}
+                >
+                    {#if $selectedSkillIndex > 0}
+                        <button
+                            class="hover:bg-white hover:text-black h-10 w-10"
+                            on:click={prevSkill}
+                        >
+                            <Arrow left /></button
+                        >
+                    {:else}
+                        <div class="w-10" />
+                    {/if}
 
-                <div class="flex gap-2">
-                    <img
-                        src={`/images/symbols/${dimensionSlug}.svg`}
-                        alt={`IDG ${dimensionSlug} symbol`}
-                        width="20"
-                        height="20"
-                        class="invert pointer-events-none"
-                    />
-                    <p>{$selectedSkillIndex + 1}</p>
+                    <div class="flex gap-2">
+                        <img
+                            src={`/images/symbols/${dimensionSlug}.svg`}
+                            alt={`IDG ${dimensionSlug} symbol`}
+                            width="20"
+                            height="20"
+                            class="invert pointer-events-none"
+                        />
+                        <p>{$selectedSkillIndex + 1}</p>
+                    </div>
+
+                    {#if $selectedSkillIndex < $selectedDimension.skills.length - 1}
+                        <button
+                            class="hover:bg-white hover:text-black h-10 w-10"
+                            on:click={nextSkill}
+                        >
+                            <Arrow right /></button
+                        >
+                    {:else}
+                        <div class="w-10" />
+                    {/if}
                 </div>
-
-                {#if $selectedSkillIndex < $selectedDimension.skills.length - 1}
-                    <button
-                        class="hover:bg-stone-100 hover:text-black h-10 w-10"
-                        on:click={nextSkill}
-                    >
-                        <Arrow right /></button
-                    >
-                {:else}
-                    <div class="w-10" />
-                {/if}
             </div>
         {/if}
     </div>
