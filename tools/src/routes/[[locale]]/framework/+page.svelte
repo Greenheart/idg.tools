@@ -176,25 +176,37 @@
             <!-- TODO: Ensure there is consistent height so the layout doesn't jump around. -->
             <div
                 class={cx(
-                    'flex items-center justify-between mt-8 p-1',
+                    'flex items-center justify-between mt-8 p-1 text-white',
                     getColor($selectedDimension.id),
                 )}
             >
                 {#if $selectedSkillIndex > 0}
-                    <button class="hover:bg-stone-100 h-10 w-10" on:click={prevSkill}>
+                    <button
+                        class="hover:bg-stone-100 hover:text-black h-10 w-10"
+                        on:click={prevSkill}
+                    >
                         <Arrow left /></button
                     >
                 {:else}
                     <div class="w-10" />
                 {/if}
 
-                <div>
-                    <!-- dimension symbol -->
+                <div class="flex gap-2">
+                    <img
+                        src={`/images/symbols/${dimensionSlug}.svg`}
+                        alt={`IDG ${dimensionSlug} symbol`}
+                        width="20"
+                        height="20"
+                        class="invert pointer-events-none"
+                    />
                     <p>{$selectedSkillIndex + 1}</p>
                 </div>
 
                 {#if $selectedSkillIndex < $selectedDimension.skills.length - 1}
-                    <button class="hover:bg-stone-100 h-10 w-10" on:click={nextSkill}>
+                    <button
+                        class="hover:bg-stone-100 hover:text-black h-10 w-10"
+                        on:click={nextSkill}
+                    >
                         <Arrow right /></button
                     >
                 {:else}
