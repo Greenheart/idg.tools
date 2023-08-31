@@ -120,7 +120,7 @@
                         <button
                             class={cx(
                                 getColor(skill.id),
-                                'p-2 flex gap-2 items-center hover:drop-shadow-lg text-left',
+                                'p-2 flex gap-2 items-center hover:bg-white hover:text-black text-left group',
                             )}
                             on:click={() => {
                                 $selectedSkillId = skill.id
@@ -128,7 +128,7 @@
                         >
                             <IDGSymbol
                                 slug={dimensionSlug}
-                                class="pointer-events-none w-12 h-12 shrink-0"
+                                class="w-12 h-12 shrink-0 group-hover:!{getColor(skill.id, 'text')}"
                             />
                             <p>
                                 {skill.name}
