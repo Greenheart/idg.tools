@@ -64,7 +64,7 @@
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
-<div class="min-h-[700px] bg-white relative pb-16 max-w-xs">
+<div class="min-h-[700px] bg-white relative pb-16 max-w-sm mx-auto">
     <div class="p-2 text-base h-full" class:hidden={!mounted}>
         <div class="flex items-center justify-between drop-shadow-md p-1">
             {#if $selectedDimensionId}
