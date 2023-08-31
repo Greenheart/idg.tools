@@ -10,12 +10,14 @@
     const supported = Object.entries(supportedLocales) as [Locale, string][]
 </script>
 
-<Menu class="relative grid p-2">
-    <MenuButton class="grid place-items-center" title="Change language" aria-label="Change language"
-        ><LocaleIcon /></MenuButton
+<Menu class="relative grid">
+    <MenuButton
+        class="grid place-items-center hover:bg-stone-100 h-10 w-10"
+        title="Change language"
+        aria-label="Change language"><LocaleIcon /></MenuButton
     >
     <MenuItems
-        class="bg-being list-style-none absolute top-full right-0 grid text-base shadow-md"
+        class="bg-white z-10 list-style-none absolute top-full right-0 grid text-base drop-shadow"
         as="ul"
     >
         {#each supported as [locale, label]}
@@ -24,7 +26,8 @@
                 <Link
                     href={getLocalisedPath(locale, location.pathname)}
                     variant="black"
-                    class={cx('px-3 py-1', active ? 'text-white' : '')}>{label}</Link
+                    class={cx('px-3 py-1', active ? 'underline bg-stone-100' : 'no-underline')}
+                    >{label}</Link
                 >
             </MenuItem>
         {/each}
