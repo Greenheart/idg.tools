@@ -29,6 +29,7 @@
                 <Link
                     href={getLocalisedPath(locale, pathname)}
                     variant="black"
+                    noScroll
                     on:click={() => {
                         open = false
                     }}
