@@ -22,6 +22,11 @@
     export let tabindex: number | undefined = undefined
     export let title: string | undefined = undefined
 
+    /**
+     * Disable scrolling on navigation. This only makes sense for internal links.
+     */
+    export let noScroll: boolean = false
+
     let additionalProps: object
     onMount(() => {
         if (isExternalURL(href)) {
@@ -29,6 +34,10 @@
                 rel: 'noopener noreferrer',
                 target: '_blank',
                 'data-sveltekit-reload': true,
+            }
+        } else if (noScroll) {
+            additionalProps = {
+                'data-sveltekit-noscroll': true,
             }
         }
     })
