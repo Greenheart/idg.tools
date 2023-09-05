@@ -8,12 +8,10 @@
     import { getDimension, getSkill, getSkillsInDimension } from '$shared/content-utils'
     import type { Dimension, Skill } from '$shared/types'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
-    import { Arrow, IDGSymbol } from '$shared/icons'
+    import { IDGSymbol } from '$shared/icons'
     import { cx, getColor, getDimensionSlug } from '$shared/utils'
     import persistedStore from '$lib/persistedStore'
     import { onMount } from 'svelte'
-    import { tweened } from 'svelte/motion'
-    import { cubicOut } from 'svelte/easing'
 
     export let data: PageData
     $: ({ skills, dimensions, supportedLocales } = data)
@@ -43,76 +41,15 @@
             : 0,
     )
     const selectedDimensionIndex = derived(selectedDimension, (dimension) =>
-        dimension ? dimensions.findIndex((d) => d.id === dimension.id) ?? 2 : 2,
+        dimension ? dimensions.findIndex((d) => d.id === dimension.id) ?? 0 : 0,
     )
-
-    function onBack() {
-        if ($selectedSkillId) {
-            $selectedSkillId = ''
-        } else if ($selectedDimensionId) {
-            $selectedDimensionId = ''
-        }
-    }
-
-    function setAnimatedAngle(selectedIndex: number) {
-        switch (selectedIndex) {
-            case 0:
-                $animationAngle = -60
-                break
-            case 1:
-                $animationAngle = -30
-                break
-            case 2:
-                $animationAngle = 0
-                break
-            case 3:
-                $animationAngle = 30
-                break
-            case 4:
-                $animationAngle = 60
-                break
-        }
-    }
-
-    function prevDimension() {
-        if ($selectedDimension && $selectedDimensionIndex > 0) {
-            $selectedDimensionId = dimensions[$selectedDimensionIndex - 1].id
-            setAnimatedAngle($selectedDimensionIndex)
-        }
-    }
-
-    function nextDimension() {
-        if ($selectedDimension && $selectedDimensionIndex < dimensions.length - 1) {
-            $selectedDimensionId = dimensions[$selectedDimensionIndex + 1].id
-            setAnimatedAngle($selectedDimensionIndex)
-        }
-    }
-
-    function prevSkill() {
-        if ($selectedDimension && $selectedSkillIndex > 0) {
-            $selectedSkillId = $selectedDimension.skills[$selectedSkillIndex - 1]
-        }
-    }
-
-    function nextSkill() {
-        if ($selectedDimension && $selectedSkillIndex < $selectedDimension.skills.length - 1) {
-            $selectedSkillId = $selectedDimension.skills[$selectedSkillIndex + 1]
-        }
-    }
-
-    const angle = 30
-    const animationAngle = tweened(0, {
-        easing: cubicOut,
-        duration: 600,
-    })
 </script>
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
 <div class="min-h-[700px] bg-white relative pb-16 max-w-sm mx-auto">
     <div class="p-2 text-base h-full" class:hidden={!mounted}>
-        <div class="flex justify-between">
-            <button on:click={onBack}>back</button>
+        <div class="flex justify-end">
             <LocaleSwitcher
                 {supportedLocales}
                 pathname={$page.url.pathname}
@@ -120,59 +57,33 @@
             />
         </div>
 
-        <div
-            style:transform="rotate({$animationAngle}deg)"
-            class="text-white relative w-80 h-80 rounded-full center"
-        >
-            {#each dimensions as dimension, i (dimension.name)}
+        <div class="text-white grid grid-cols-5">
+            {#each dimensions as dimension (dimension.name)}
                 {@const dimensionSlug = getDimensionSlug(dimension.id)}
                 <button
-                    class="p-2 hover:drop-shadow-lg symbol"
-                    style:transform="rotate({180 - angle * (i + 1)}deg) translate(120px)"
+                    class="p-2 grid place-items-center hover:outline hover:outline-1 hover:outline-black hover:-outline-offset-1 {$selectedDimensionId ===
+                    dimension.id
+                        ? `${getColor(dimension.id)}`
+                        : 'bg-white'}"
                     on:click={() => {
                         $selectedDimensionId = dimension.id
-                        setAnimatedAngle($selectedDimensionIndex)
                     }}
                 >
                     <IDGSymbol
                         slug={dimensionSlug}
-                        style="transform: rotate({180 + angle * (i + 1) - $animationAngle}deg)"
-                        class="pointer-events-none w-12 h-12 {getColor(dimension.id, 'text')}"
+                        class="pointer-events-none w-12 h-12 {$selectedDimensionId === dimension.id
+                            ? 'text-white'
+                            : getColor(dimension.id, 'text')}"
                     />
                 </button>
             {/each}
         </div>
-        <div class="flex justify-between mx-auto w-48 gap-2 items-center mt-8">
-            <button class="px-2 py-1 hover:bg-lightGray" on:click={prevDimension}
-                ><Arrow left /></button
-            >
-            <h2 class="text-black text-center">
+
+        <div class={cx('p-2', getColor($selectedDimensionId))}>
+            <Heading size={3} class="text-white text-center font-normal">
+                {$selectedDimensionIndex + 1}
                 {$selectedDimension?.name}
-            </h2>
-            <button class="px-2 py-1 hover:bg-lightGray" on:click={nextDimension}
-                ><Arrow right /></button
-            >
+            </Heading>
         </div>
     </div>
 </div>
-
-<style>
-    .center:before {
-        position: absolute;
-        height: 90px;
-        width: 180px;
-        border-radius: 90px 90px 0 0;
-        background: transparent;
-        content: '';
-    }
-
-    .symbol {
-        border-radius: 50%;
-        display: block;
-        position: absolute;
-        overflow: hidden;
-        top: 50%;
-        left: 50%;
-        margin: -15px;
-    }
-</style>
