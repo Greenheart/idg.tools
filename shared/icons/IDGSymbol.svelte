@@ -12,6 +12,7 @@
 
     let className = ''
     export { className as class }
+    export let style = ''
 
     export let slug: keyof typeof IDG_SYMBOLS
 </script>
@@ -22,6 +23,7 @@
     stroke="currentColor"
     viewBox="0 0 1024 1024"
     class={className}
+    {style}
 >
     {#if slug === 'being'}
         {@html IDG_SYMBOLS[slug]}
