@@ -2,10 +2,13 @@
     import type { Locale, SupportedLocales } from '../types'
     import Link from './Link.svelte'
     import LocaleIcon from '../icons/Locale.svelte'
-    import { getLocalisedPath } from '../utils'
+    import { cx, getLocalisedPath } from '../utils'
+    import { DEFAULT_LOCALE_IDENTIFIER } from '../constants'
+    import ChevronDown from '../icons/ChevronDown.svelte'
 
     export let supportedLocales: SupportedLocales
     export let pathname: string
+    export let currentLocale: string = DEFAULT_LOCALE_IDENTIFIER
 
     const supported = Object.entries(supportedLocales) as [Locale, string][]
 
@@ -15,10 +18,12 @@
 
 <div class="relative grid" bind:this={target}>
     <button
-        class="grid place-items-center hover:bg-stone-100 h-10 w-10"
+        class="flex items-center gap-2 hover:bg-stone-100 h-10 px-2"
         title="Change language"
         aria-label="Change language"
-        on:click={() => (open = !open)}><LocaleIcon /></button
+        on:click={() => (open = !open)}
+        ><LocaleIcon />{supportedLocales[currentLocale ?? DEFAULT_LOCALE_IDENTIFIER]}<ChevronDown
+        /></button
     >
     <ul
         class="bg-white list-style-none absolute top-full right-0 grid text-base drop-shadow py-1 z-30"
