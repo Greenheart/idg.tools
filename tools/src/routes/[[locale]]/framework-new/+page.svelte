@@ -42,13 +42,9 @@
               ) ?? 0
             : 0,
     )
-    // const selectedDimensionIndex = derived(selectedDimension, (dimension) =>
-    //     dimension
-    //         ? getSkillsInDimension(skill.dimension, { skills }).findIndex(
-    //               (s) => s.id === skill.id,
-    //           ) ?? 0
-    //         : 0,
-    // )
+    const selectedDimensionIndex = derived(selectedDimension, (dimension) =>
+        dimension ? dimensions.findIndex((d) => d.id === dimension.id) ?? 2 : 2,
+    )
 
     function onBack() {
         if ($selectedSkillId) {
@@ -58,17 +54,39 @@
         }
     }
 
-    // function prevDimension() {
-    //     if ($selectedDimension && $selectedDimensionIndex > 0) {
-    //         $selectedDimensionId = dimensions[$selectedDimensionIndex - 1].id
-    //     }
-    // }
+    function setAnimatedAngle(selectedIndex: number) {
+        switch (selectedIndex) {
+            case 0:
+                $animationAngle = -60
+                break
+            case 1:
+                $animationAngle = -30
+                break
+            case 2:
+                $animationAngle = 0
+                break
+            case 3:
+                $animationAngle = 30
+                break
+            case 4:
+                $animationAngle = 60
+                break
+        }
+    }
 
-    // function nextDimension() {
-    //     if ($selectedDimension && $selectedDimensionIndex < dimensions.length - 1) {
-    //         $selectedDimensionId = dimensions[$selectedDimensionIndex + 1].id
-    //     }
-    // }
+    function prevDimension() {
+        if ($selectedDimension && $selectedDimensionIndex > 0) {
+            $selectedDimensionId = dimensions[$selectedDimensionIndex - 1].id
+            setAnimatedAngle($selectedDimensionIndex)
+        }
+    }
+
+    function nextDimension() {
+        if ($selectedDimension && $selectedDimensionIndex < dimensions.length - 1) {
+            $selectedDimensionId = dimensions[$selectedDimensionIndex + 1].id
+            setAnimatedAngle($selectedDimensionIndex)
+        }
+    }
 
     function prevSkill() {
         if ($selectedDimension && $selectedSkillIndex > 0) {
@@ -113,23 +131,7 @@
                     style:transform="rotate({180 - angle * (i + 1)}deg) translate(120px)"
                     on:click={() => {
                         $selectedDimensionId = dimension.id
-                        switch (i) {
-                            case 0:
-                                $animationAngle = -60
-                                break
-                            case 1:
-                                $animationAngle = -30
-                                break
-                            case 2:
-                                $animationAngle = 0
-                                break
-                            case 3:
-                                $animationAngle = 30
-                                break
-                            case 4:
-                                $animationAngle = 60
-                                break
-                        }
+                        setAnimatedAngle($selectedDimensionIndex)
                     }}
                 >
                     <IDGSymbol
@@ -140,13 +142,17 @@
                 </button>
             {/each}
         </div>
-        <div class="flex justify-between items-center">
-            <!-- <button class="" on:click={prevDimension}><Arrow left /></button> -->
-            <!-- <button class="" on:click={nextDimension}><Arrow right /></button> -->
+        <div class="flex justify-between mx-auto w-48 gap-2 items-center mt-8">
+            <button class="px-2 py-1 hover:bg-lightGray" on:click={prevDimension}
+                ><Arrow left /></button
+            >
+            <h2 class="text-black text-center">
+                {$selectedDimension?.name}
+            </h2>
+            <button class="px-2 py-1 hover:bg-lightGray" on:click={nextDimension}
+                ><Arrow right /></button
+            >
         </div>
-        <h2 class="text-black mt-8 text-center">
-            {$selectedDimension?.name}
-        </h2>
     </div>
 </div>
 
