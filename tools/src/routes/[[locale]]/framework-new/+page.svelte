@@ -51,8 +51,8 @@
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
 <div class="min-h-[700px] bg-white relative pb-16 max-w-xs mx-auto">
-    <div class="p-2 text-base h-full" class:hidden={!mounted}>
-        <div class="flex justify-end">
+    <div class="text-base h-full" class:hidden={!mounted}>
+        <div class="flex justify-end p-2">
             <LocaleSwitcher
                 {supportedLocales}
                 pathname={$page.url.pathname}
@@ -84,58 +84,78 @@
             {/each}
         </div>
 
-        <div class={cx('p-2 drop-shadow-xl', getColor($selectedDimensionId))}>
+        <!-- <div class={cx('p-2 drop-shadow-xl', getColor($selectedDimensionId))}>
             <Heading size={3} class="text-white text-center font-normal">
                 {$selectedDimensionIndex + 1}
                 {$selectedDimension?.name}
             </Heading>
-        </div>
+        </div> -->
 
-        <div class="w-full max-w-md py-2 bg-white grid gap-2 text-white">
-            {#if $selectedDimension}
-                {#each getSkillsInDimension( $selectedDimension.id, { skills }, ) as skill (skill.name)}
-                    {@const dimensionSlug = getDimensionSlug(skill.id)}
-                    {@const bgColor = getColor(skill.id, 'bg')}
-                    {@const textColor = getColor(skill.id, 'text')}
-                    <Disclosure class="grid" let:open>
-                        <DisclosureButton
-                            class={cx(
-                                'p-2 flex gap-2 items-center hover:bg-white hover:text-black text-left group drop-shadow-xl',
-                                bgColor,
-                            )}
-                        >
-                            <!-- TODO: Replace with the skill symbols -->
-                            <IDGSymbol
-                                slug={dimensionSlug}
-                                class="w-10 h-10 shrink-0 group-hover:!{textColor}"
-                            />
-                            <p class="text-sm w-full">
-                                {skill.name}
-                            </p>
-                            <ChevronDown
-                                class={cx('mx-1 flex-grow', open ? 'rotate-180' : 'rotate-0')}
-                            />
-                        </DisclosureButton>
-                        <DisclosurePanel>
-                            <Heading size={2} class={cx('p-4 break-words hyphens-auto', textColor)}
-                                >{skill.name}</Heading
-                            >
-                            <div
-                                class={cx(
-                                    'mx-4 p-2 rounded-lg aspect-square flex items-center justify-center',
-                                    bgColor,
-                                )}
-                            >
-                                <IDGSymbol
-                                    slug={dimensionSlug}
-                                    class="pointer-events-none w-36 h-36 my-4 mx-auto text-white"
-                                />
-                            </div>
-                            <p class="p-4 text-black">{skill.description}</p>
-                        </DisclosurePanel>
-                    </Disclosure>
-                {/each}
-            {/if}
-        </div>
+        <!-- TODO: Rewrite this to use the Tab components and render using the context instead of relying on stores -->
+        {#if $selectedDimension}
+            <div class={cx('w-full max-w-md grid text-white', getColor($selectedDimension.id))}>
+                <Heading size={2} class="p-4 pb-1 break-words hyphens-auto"
+                    >{$selectedDimensionIndex + 1} {$selectedDimension?.name}</Heading
+                >
+                <Heading size={4} class="px-4">{$selectedDimension?.subtitle}</Heading>
+                <IDGSymbol
+                    slug={getDimensionSlug($selectedDimension.id)}
+                    class="pointer-events-none w-36 h-36 my-4 mx-auto"
+                />
+                <p class="p-4 pt-0 drop-shadow-xl">{$selectedDimension.description}</p>
+
+                <div class="py-2 bg-black bg-opacity-5 space-y-2">
+                    {#if $selectedDimension}
+                        {#each getSkillsInDimension( $selectedDimension.id, { skills }, ) as skill (skill.name)}
+                            {@const dimensionSlug = getDimensionSlug(skill.id)}
+                            {@const bgColor = getColor(skill.id, 'bg')}
+                            {@const textColor = getColor(skill.id, 'text')}
+                            <Disclosure class="grid" let:open>
+                                <DisclosureButton
+                                    class={cx(
+                                        'p-2 flex gap-2 items-center hover:bg-white hover:text-black text-left group drop-shadow-xl',
+                                        bgColor,
+                                    )}
+                                >
+                                    <!-- TODO: Replace with the skill symbols -->
+                                    <IDGSymbol
+                                        slug={dimensionSlug}
+                                        class="w-10 h-10 shrink-0 group-hover:!{textColor}"
+                                    />
+                                    <p class="text-sm w-full">
+                                        {skill.name}
+                                    </p>
+                                    <ChevronDown
+                                        class={cx(
+                                            'mx-1 flex-grow',
+                                            open ? 'rotate-180' : 'rotate-0',
+                                        )}
+                                    />
+                                </DisclosureButton>
+                                <DisclosurePanel class="bg-white">
+                                    <Heading
+                                        size={2}
+                                        class={cx('p-4 break-words hyphens-auto', textColor)}
+                                        >{skill.name}</Heading
+                                    >
+                                    <div
+                                        class={cx(
+                                            'mx-4 p-2 rounded-lg aspect-square flex items-center justify-center',
+                                            bgColor,
+                                        )}
+                                    >
+                                        <IDGSymbol
+                                            slug={dimensionSlug}
+                                            class="pointer-events-none w-36 h-36 my-4 mx-auto text-white"
+                                        />
+                                    </div>
+                                    <p class="p-4 text-black">{skill.description}</p>
+                                </DisclosurePanel>
+                            </Disclosure>
+                        {/each}
+                    {/if}
+                </div>
+            </div>
+        {/if}
     </div>
 </div>
