@@ -61,10 +61,9 @@
             {#each dimensions as dimension (dimension.name)}
                 {@const dimensionSlug = getDimensionSlug(dimension.id)}
                 <button
-                    class="p-2 grid place-items-center hover:outline hover:outline-1 hover:outline-black hover:-outline-offset-1 {$selectedDimensionId ===
-                    dimension.id
+                    class="p-2 grid place-items-center {$selectedDimensionId === dimension.id
                         ? `${getColor(dimension.id)}`
-                        : 'bg-white'}"
+                        : 'bg-white hover:outline hover:outline-1 hover:outline-black hover:-outline-offset-1'}"
                     on:click={() => {
                         $selectedDimensionId = dimension.id
                     }}
