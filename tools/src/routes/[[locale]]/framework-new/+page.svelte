@@ -95,16 +95,16 @@
         {#if $selectedDimension}
             <div class={cx('w-full max-w-md grid text-white', getColor($selectedDimension.id))}>
                 <Heading size={2} class="p-4 pb-1 break-words hyphens-auto"
-                    >{$selectedDimensionIndex + 1} {$selectedDimension?.name}</Heading
+                    >{$selectedDimensionIndex + 1}. {$selectedDimension?.name}</Heading
                 >
                 <Heading size={4} class="px-4">{$selectedDimension?.subtitle}</Heading>
                 <IDGSymbol
                     slug={getDimensionSlug($selectedDimension.id)}
                     class="pointer-events-none w-36 h-36 my-4 mx-auto"
                 />
-                <p class="p-4 pt-0 drop-shadow-xl">{$selectedDimension.description}</p>
+                <p class="p-4 pt-0">{$selectedDimension.description}</p>
 
-                <div class="py-2 bg-black bg-opacity-5 space-y-2">
+                <div class="py-2 bg-white space-y-2">
                     {#if $selectedDimension}
                         {#each getSkillsInDimension( $selectedDimension.id, { skills }, ) as skill (skill.name)}
                             {@const dimensionSlug = getDimensionSlug(skill.id)}
@@ -113,7 +113,8 @@
                             <Disclosure class="grid" let:open>
                                 <DisclosureButton
                                     class={cx(
-                                        'p-2 flex gap-2 items-center hover:bg-white hover:text-black text-left group drop-shadow-xl',
+                                        'p-2 flex gap-2 items-center hover:bg-white hover:text-black text-left group drop-shadow-xl max-w-xs',
+                                        `hover:outline hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`,
                                         bgColor,
                                     )}
                                 >
@@ -132,7 +133,7 @@
                                         )}
                                     />
                                 </DisclosureButton>
-                                <DisclosurePanel class="bg-white">
+                                <DisclosurePanel class="bg-white max-w-xs">
                                     <Heading
                                         size={2}
                                         class={cx('p-4 break-words hyphens-auto', textColor)}
