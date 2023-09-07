@@ -8,6 +8,7 @@ const config = {
         `bg-${name}`,
         `text-${name}`,
         `group-hover:!text-${name}`,
+        `hover:outline-${name}`,
     ]),
     theme: {
         screens: {
