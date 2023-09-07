@@ -9,6 +9,7 @@
         TabPanel,
         TabPanels,
     } from '@rgossiaux/svelte-headlessui'
+    import { derived, writable } from 'svelte/store'
 
     import { page } from '$app/stores'
     import { Heading } from '$shared/components'
@@ -18,9 +19,10 @@
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import { IDGSymbol, ChevronDown } from '$shared/icons'
     import { cx, getColor, getDimensionSlug } from '$shared/utils'
-    import { derived } from 'svelte/store'
 
     export let data: PageData
+
+    const selectedDimensionIndex = writable(0)
 
     // Ensure the page re-renders when the URL (and the data) changes.
     const dimensions = derived(page, () => data.dimensions)
@@ -41,7 +43,7 @@
                     />
                 </div>
 
-                <TabGroup>
+                <TabGroup defaultIndex={$selectedDimensionIndex}>
                     <TabList class="text-white grid grid-cols-5" let:selectedIndex>
                         {#each $dimensions as dimension, i (dimension.name)}
                             {@const dimensionSlug = getDimensionSlug(dimension.id)}
@@ -49,6 +51,11 @@
                                 class="p-2 grid place-items-center {selectedIndex === i
                                     ? `${getColor(dimension.id)}`
                                     : `bg-white hover:outline hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
+                                on:click={() => {
+                                    if (selectedIndex) {
+                                        $selectedDimensionIndex = selectedIndex
+                                    }
+                                }}
                             >
                                 <IDGSymbol
                                     slug={dimensionSlug}
