@@ -84,13 +84,6 @@
             {/each}
         </div>
 
-        <!-- <div class={cx('p-2 drop-shadow-xl', getColor($selectedDimensionId))}>
-            <Heading size={3} class="text-white text-center font-normal">
-                {$selectedDimensionIndex + 1}
-                {$selectedDimension?.name}
-            </Heading>
-        </div> -->
-
         <!-- TODO: Rewrite this to use the Tab components and render using the context instead of relying on stores -->
         {#if $selectedDimension}
             <div class={cx('w-full max-w-md grid text-white', getColor($selectedDimension.id))}>
