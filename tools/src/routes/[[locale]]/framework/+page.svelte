@@ -1,197 +1,124 @@
 <script lang="ts">
-    import { derived } from 'svelte/store'
+    import {
+        Disclosure,
+        DisclosureButton,
+        DisclosurePanel,
+        Tab,
+        TabGroup,
+        TabList,
+        TabPanel,
+        TabPanels,
+    } from '@rgossiaux/svelte-headlessui'
 
     import { page } from '$app/stores'
     import { Heading } from '$shared/components'
     import Meta from '$components/Meta.svelte'
     import type { PageData } from './$types'
-    import { getDimension, getSkill, getSkillsInDimension } from '$shared/content-utils'
-    import type { Dimension, Skill } from '$shared/types'
+    import { getSkillsInDimension } from '$shared/content-utils'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
-    import { Arrow, IDGSymbol } from '$shared/icons'
+    import { IDGSymbol, ChevronDown } from '$shared/icons'
     import { cx, getColor, getDimensionSlug } from '$shared/utils'
-    import persistedStore from '$lib/persistedStore'
-    import { onMount } from 'svelte'
 
     export let data: PageData
     $: ({ skills, dimensions, supportedLocales } = data)
-
-    const selectedSkillId = persistedStore<Skill['id']>('framework_skillId', '')
-    const selectedDimensionId = persistedStore<Dimension['id']>('framework_dimensionId', '')
-    let mounted = false
-
-    onMount(() => {
-        selectedSkillId.useLocalStorage()
-        selectedDimensionId.useLocalStorage()
-        mounted = true
-    })
-
-    // Derive from page store to keep selection even when the page language changes
-    const selectedSkill = derived([selectedSkillId, page], ([id]) =>
-        id ? getSkill(id as unknown as Skill['id'], { skills }) : undefined,
-    )
-    const selectedDimension = derived([selectedDimensionId, page], ([id]) =>
-        id ? getDimension(id as unknown as Dimension['id'], { dimensions }) : undefined,
-    )
-    const selectedSkillIndex = derived(selectedSkill, (skill) =>
-        skill
-            ? getSkillsInDimension(skill.dimension, { skills }).findIndex(
-                  (s) => s.id === skill.id,
-              ) ?? 0
-            : 0,
-    )
-
-    function onBack() {
-        if ($selectedSkillId) {
-            $selectedSkillId = ''
-        } else if ($selectedDimensionId) {
-            $selectedDimensionId = ''
-        }
-    }
-
-    function prevSkill() {
-        if ($selectedDimension && $selectedSkillIndex > 0) {
-            $selectedSkillId = $selectedDimension.skills[$selectedSkillIndex - 1]
-        }
-    }
-
-    function nextSkill() {
-        if ($selectedDimension && $selectedSkillIndex < $selectedDimension.skills.length - 1) {
-            $selectedSkillId = $selectedDimension.skills[$selectedSkillIndex + 1]
-        }
-    }
 </script>
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
-<div class="min-h-[700px] bg-white relative pb-16 max-w-sm mx-auto">
-    <div class="p-2 text-base h-full" class:hidden={!mounted}>
-        <div class="flex items-center justify-between drop-shadow-md p-1">
-            {#if $selectedDimensionId}
-                <button class="hover:bg-stone-100 h-10 w-10" on:click={onBack}>
-                    <Arrow left /></button
-                >
-            {:else}
-                <div />
-            {/if}
-            <!-- TODO: fix the z-index for position relative. It has to be on top of the symbols -->
-            <LocaleSwitcher {supportedLocales} pathname={$page.url.pathname} />
+<div class="min-h-[700px] bg-white relative pb-16 max-w-xs mx-auto">
+    <div class="text-base h-full">
+        <div class="flex justify-end p-2">
+            <LocaleSwitcher
+                {supportedLocales}
+                pathname={$page.url.pathname}
+                currentLocale={$page.params.locale}
+            />
         </div>
-        {#if !$selectedDimension}
-            <div class="py-4">
-                <Heading size={2}>Inner Development Goals</Heading>
-            </div>
 
-            <div class="grid font-medium text-white gap-2 leading-5">
-                {#each dimensions as dimension (dimension.name)}
+        <TabGroup>
+            <TabList class="text-white grid grid-cols-5" let:selectedIndex>
+                {#each dimensions as dimension, i (dimension.name)}
                     {@const dimensionSlug = getDimensionSlug(dimension.id)}
-                    <button
-                        class={cx(
-                            getColor(dimension.id),
-                            'p-2 flex gap-2 items-center hover:drop-shadow-lg text-left',
-                        )}
-                        on:click={() => {
-                            $selectedDimensionId = dimension.id
-                        }}
+                    <Tab
+                        class="p-2 grid place-items-center {selectedIndex === i
+                            ? `${getColor(dimension.id)}`
+                            : `bg-white hover:outline hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
                     >
-                        <IDGSymbol slug={dimensionSlug} class="pointer-events-none w-12 h-12" />
-                        <span>
-                            {dimension.name}
-                        </span>
-                    </button>
+                        <IDGSymbol
+                            slug={dimensionSlug}
+                            class="pointer-events-none w-12 h-12 {selectedIndex === i
+                                ? 'text-white'
+                                : getColor(dimension.id, 'text')}"
+                        />
+                    </Tab>
                 {/each}
-            </div>
-        {:else if !$selectedSkill}
-            {@const dimensionSlug = getDimensionSlug($selectedDimension.id)}
-            <div class={cx(getColor($selectedDimension.id), 'text-white')}>
-                <Heading size={2} class="p-4 pb-1 break-words hyphens-auto"
-                    >{$selectedDimension?.name}</Heading
-                >
-                <Heading size={4} class="px-4">{$selectedDimension?.subtitle}</Heading>
-                <IDGSymbol
-                    slug={dimensionSlug}
-                    class="pointer-events-none w-36 h-36 my-4 mx-auto"
-                />
-                <p class="px-4">{$selectedDimension.description}</p>
+            </TabList>
+            <TabPanels>
+                {#each dimensions as dimension, i (dimension.name)}
+                    {@const dimensionSlug = getDimensionSlug(dimension.id)}
+                    {@const bgColor = getColor(dimension.id, 'bg')}
+                    {@const textColor = getColor(dimension.id, 'text')}
+                    <TabPanel class={cx('w-full max-w-md grid text-white', bgColor)}>
+                        <Heading size={2} class="p-4 pb-1 break-words hyphens-auto"
+                            >{i + 1}. {dimension.name}</Heading
+                        >
+                        <Heading size={4} class="px-4">{dimension.subtitle}</Heading>
+                        <IDGSymbol
+                            slug={dimensionSlug}
+                            class="pointer-events-none w-36 h-36 my-4 mx-auto"
+                        />
+                        <p class="p-4 pt-0">{dimension.description}</p>
 
-                <div class="pt-4 grid font-medium text-white leading-5">
-                    {#each getSkillsInDimension( $selectedDimension.id, { skills }, ) as skill (skill.name)}
-                        <!-- TODO: Replace with the skill symbols -->
-                        <button
-                            class={cx(
-                                getColor(skill.id),
-                                'p-2 flex gap-2 items-center hover:bg-white hover:text-black text-left group',
-                            )}
-                            on:click={() => {
-                                $selectedSkillId = skill.id
-                            }}
-                        >
-                            <IDGSymbol
-                                slug={dimensionSlug}
-                                class="w-12 h-12 shrink-0 group-hover:!{getColor(skill.id, 'text')}"
-                            />
-                            <p>
-                                {skill.name}
-                            </p>
-                        </button>
-                    {/each}
-                </div>
-            </div>
-        {:else}
-            {@const dimensionSlug = getDimensionSlug($selectedDimension.id)}
-            <Heading
-                size={2}
-                class={cx('p-4 break-words hyphens-auto h-32', getColor($selectedSkill.id, 'text'))}
-                >{$selectedSkill?.name}</Heading
-            >
-            <div
-                class={cx(
-                    'm-4 p-4 rounded-lg aspect-square flex items-center justify-center',
-                    getColor($selectedSkill.id),
-                )}
-            >
-                <IDGSymbol
-                    slug={dimensionSlug}
-                    class="pointer-events-none w-36 h-36 my-4 mx-auto text-white"
-                />
-            </div>
-            <p class="px-4">{$selectedSkill.description}</p>
-
-            <div class="absolute bottom-0 left-0 right-0">
-                <div
-                    class={cx(
-                        'flex items-center justify-between mt-8 p-1 gap-2 text-white select-none shadow-xl',
-                        getColor($selectedDimension.id),
-                    )}
-                >
-                    {#if $selectedSkillIndex > 0}
-                        <button
-                            class="hover:bg-white hover:text-black h-10 w-10"
-                            on:click={prevSkill}
-                        >
-                            <Arrow left /></button
-                        >
-                    {:else}
-                        <div class="w-10" />
-                    {/if}
-
-                    <div class="flex gap-2">
-                        <IDGSymbol slug={dimensionSlug} class="pointer-events-none w-5 h-5" />
-                        <p>{$selectedSkillIndex + 1}</p>
-                    </div>
-
-                    {#if $selectedSkillIndex < $selectedDimension.skills.length - 1}
-                        <button
-                            class="hover:bg-white hover:text-black h-10 w-10"
-                            on:click={nextSkill}
-                        >
-                            <Arrow right /></button
-                        >
-                    {:else}
-                        <div class="w-10" />
-                    {/if}
-                </div>
-            </div>
-        {/if}
+                        <div class="py-2 bg-white space-y-2">
+                            {#each getSkillsInDimension( dimension.id, { skills }, ) as skill (skill.name)}
+                                <Disclosure class="grid" let:open>
+                                    <DisclosureButton
+                                        class={cx(
+                                            'p-2 flex gap-2 items-center hover:bg-white hover:text-black text-left group drop-shadow-xl max-w-xs',
+                                            `hover:outline hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`,
+                                            bgColor,
+                                        )}
+                                    >
+                                        <!-- TODO: Replace with the skill symbols -->
+                                        <IDGSymbol
+                                            slug={dimensionSlug}
+                                            class="w-10 h-10 shrink-0 group-hover:!{textColor}"
+                                        />
+                                        <p class="text-sm w-full">
+                                            {skill.name}
+                                        </p>
+                                        <ChevronDown
+                                            class={cx(
+                                                'mx-1 flex-grow',
+                                                open ? 'rotate-180' : 'rotate-0',
+                                            )}
+                                        />
+                                    </DisclosureButton>
+                                    <DisclosurePanel class="bg-white max-w-xs">
+                                        <Heading
+                                            size={2}
+                                            class={cx('p-4 break-words hyphens-auto', textColor)}
+                                            >{skill.name}</Heading
+                                        >
+                                        <div
+                                            class={cx(
+                                                'mx-4 p-2 rounded-lg aspect-square flex items-center justify-center',
+                                                bgColor,
+                                            )}
+                                        >
+                                            <IDGSymbol
+                                                slug={dimensionSlug}
+                                                class="pointer-events-none w-36 h-36 my-4 mx-auto text-white"
+                                            />
+                                        </div>
+                                        <p class="p-4 text-black">{skill.description}</p>
+                                    </DisclosurePanel>
+                                </Disclosure>
+                            {/each}
+                        </div>
+                    </TabPanel>
+                {/each}
+            </TabPanels>
+        </TabGroup>
     </div>
 </div>
