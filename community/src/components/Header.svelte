@@ -4,6 +4,7 @@
     import { onKeydown } from '$lib/utils'
     import { beforeNavigate } from '$app/navigation'
     import { tick } from 'svelte'
+    import { IDG_WEBSITE } from '$shared/constants'
 
     const toggleMenu = () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
@@ -22,7 +23,7 @@
 
     const links = [
         { href: 'https://idg.tools', text: 'Toolkit' },
-        { href: 'https://innerdevelopmentgoals.org', text: 'IDG website' },
+        { href: IDG_WEBSITE, text: 'IDG website' },
         { href: '/contribute', text: 'How to contribute' },
     ]
 </script>
