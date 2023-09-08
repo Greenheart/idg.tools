@@ -18,7 +18,7 @@
         howText:
             'The global study is run as a distributed global collaborative process where country- and language based research team, established in as many countries as possible will collaborate.\n\nCountry teams will be coordinated by two co-leads who are able to work in the key languages of the participating countries and have at least earned a PhD in relevant areas. The teams will include up to ten co-researchers that represent a mix of the relevant cultural/language variations in the country.\n\nThe data for each country and language will be gathered anonymously through the same survey, administered through the Survey Monkey Platform (SMP) where possible and a special questionnaire where SMPis not feasible. In this case, SMP is ran from the Republic of Ireland within the European Union. No identifiable information about participants is collected without direct consent provided.\n\nAll teams will follow the same 4-phase process and ethical procedures (see next slide). Active global coordination will happen through the team co-leads working with the core team led by the Head of Research Co-creation at IDGs. These meet regularly for support, learning and joint quality assurance throughout the four main phases.',
         journeyTitle: 'Join the journey',
-        journeyTitle2: "Let's be part of the co-creation",
+        journeyTitle2: "Let's be part of\nco-creation",
         milestones: 'Milestones',
         researchers: 'Researchers',
         multipliers: 'Multipliers/Networks',
@@ -68,7 +68,10 @@
 
     <IDGDivider />
 
-    <Heading size={1} tag="h2" class="mb-4 text-collaborating uppercase font-black"
+    <Heading
+        size={1}
+        tag="h2"
+        class="mb-4 text-collaborating uppercase font-black whitespace-pre-line"
         ><span class="text-acting">{t.journeyTitle}</span><br />{t.journeyTitle2}</Heading
     >
 
