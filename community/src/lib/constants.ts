@@ -8,3 +8,5 @@ export const DEFAULT_DESCRIPTION =
 export const BASE_URL = 'https://idg.community'
 export const DEFAULT_OG_IMAGE = `${BASE_URL}/images/idg-og-logo.jpg`
 export const DEFAULT_OG_IMAGE_SQUARE = `${BASE_URL}/images/idg-og-logo-square.jpg`
+
+export const SURVEY_EMAIL = 'onequestion@innerdevelopmentgoals.org'
