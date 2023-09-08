@@ -73,7 +73,7 @@
             >{t.title2}</span
         ></Heading
     >
-    <p class="text-xl md:text-2xl font-medium">{t.subtitle}</p>
+    <p class="text-xl md:text-2xl font-medium max-w-prose">{t.subtitle}</p>
 
     <IDGDivider />
 
@@ -210,9 +210,9 @@
 
     <Heading size={1} tag="h2" class="mb-4 text-collaborating">{t.ethicsPrivacyTitle}</Heading>
     <Heading size={3} class="mb-4 mt-8">{t.ethicsTitle}</Heading>
-    <p>{t.ethicsText}</p>
+    <Markdown formatting="linksOnly" source={t.ethicsText} />
     <Heading size={3} class="mb-4 mt-8">{t.privacyTitle}</Heading>
-    <p>{t.privacyText}</p>
+    <Markdown formatting="linksOnly" source={t.privacyText} />
 
     <IDGDivider />
 
