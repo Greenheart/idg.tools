@@ -1,5 +1,7 @@
 <script lang="ts">
     import { Heading, IDGDivider, Markdown } from '$shared/components'
+    import Arrow from '$shared/icons/Arrow.svelte'
+    import Info from '$shared/icons/Info.svelte'
 
     const t = {
         title1: 'One-Question',
@@ -37,6 +39,7 @@
         multiplier2: 'Share widely across the globe',
         multiplier3: 'Engage in Delphi prioritisation process',
         multiplier4: 'Present the updated framework at the IDG Summit in October 2024',
+        note: 'Scroll the table to see all details',
     }
 </script>
 
@@ -68,59 +71,18 @@
     <Heading size={1} tag="h2" class="mb-4 text-collaborating uppercase font-black"
         ><span class="text-acting">{t.journeyTitle}</span><br />{t.journeyTitle2}</Heading
     >
-    <div class="grid grid-cols-3 gap-8 mt-8">
-        <div class="grid gap-4 text-right content-start">
-            <Heading size={3} class="uppercase">{t.milestones}</Heading>
-            <p>
-                <span class="font-semibold text-collaborating">{t.date1}</span><br />
-                {t.milestone1}
-            </p>
-            <p>
-                <span class="font-semibold text-collaborating">{t.date2}</span><br />
-                {t.milestone2}
-            </p>
-            <p>
-                <span class="font-semibold text-collaborating">{t.date3}</span><br />
-                {t.milestone3}
-            </p>
-            <p>
-                <span class="font-semibold text-collaborating">{t.date4}</span><br />
-                {t.milestone4}
-            </p>
-        </div>
-        <div class="grid gap-4 content-start">
-            <Heading size={3} class="uppercase">{t.researchers}</Heading>
-            <p>
-                {t.research1}
-            </p>
-            <p>
-                {t.research2}
-            </p>
-            <p>
-                {t.research3}
-            </p>
-            <p>
-                {t.research4}
-            </p>
-        </div>
-        <div class="grid gap-4 content-start">
-            <Heading size={3} class="uppercase">{t.multipliers}</Heading>
-            <p>
-                {t.multiplier1}
-            </p>
-            <p>
-                {t.multiplier2}
-            </p>
-            <p>
-                {t.multiplier3}
-            </p>
-            <p>
-                {t.multiplier4}
-            </p>
-        </div>
-    </div>
 
-    <table class="mt-8 text-sm">
+    <p class="sm:hidden flex items-center p-2 bg-being text-sm">
+        <Info class="mr-2" />{t.note}
+        <span class="ml-2">
+            (<Arrow left class="font-light !text-base" /><Arrow
+                right
+                class="font-light !text-base"
+            />)
+        </span>
+    </p>
+
+    <table class="mt-4 text-sm">
         <thead>
             <tr>
                 <th class="font-bold uppercase text-xl text-right">{t.milestones}</th>
