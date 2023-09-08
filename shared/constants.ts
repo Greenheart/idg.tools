@@ -15,6 +15,7 @@ export const ELEMENT_LOCALIZATION_LINK =
 // TODO: Localise the internal IDG.tools and IDG.community links so they can send people to the right language
 // For example, it would be nice to be able to link people directly to the framework in their current locale.
 export const FRAMEWORK_LINK = 'https://idg.tools/framework'
+export const IDG_WEBSITE = 'https://innerdevelopmentgoals.org'
 export const COMMUNITY_LINK = 'https://www.innerdevelopmentgoals.org/community'
 export const COMMUNITY_HUBS_LINK = 'https://www.innerdevelopmentgoals.org/community#Hubs'
 export const IDG_PDF_TOOLKIT = '/assets/221215_IDG_Toolkit_v1.pdf'
