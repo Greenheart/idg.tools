@@ -16,7 +16,7 @@
             "In 2015, all members of the United Nations agreed on 17 goals to build a world of peace, dignity and prosperity on a healthy planet. The initiative ”Inner Development Goals” is convinced that understanding and building transformational skills is essential to achieve this global ambition, critical for developing a sustainable future for humanity and planet.\n\nTo understand these transformational skills across the globe, we invite participants to make a Global Impact with one of the most inclusive studies ever on this theme. With your co-creation, we will achieve the vision of being a solid bridge between your knowledge and the impact of people's inner and outer development to manage a better world. Better people, better planet.\n\nThis process will develop a Global IDG Framework, for the first time solidly based on input from all around the world. Answers to this One-Big-Question will be analyzed and processed collaboratively by researchers in many countries across the world.",
         howTitle: 'How is it done?',
         howText:
-            'The global study is run as a distributed global collaborative process where country- and language based research team, established in as many countries as possible will collaborate.\n\nCountry teams will be coordinated by two co-leads who are able to work in the key languages of the participating countries and have at least earned a PhD in relevant areas. The teams will include up to ten co-researchers that represent a mix of the relevant cultural/language variations in the country.\n\nThe data for each country and language will be gathered anonymously through the same survey, administered through the Survey Monkey Platform (SMP) where possible and a special questionnaire where SMPis not feasible. In this case, SMP is ran from the Republic of Ireland within the European Union. No identifiable information about participants is collected without direct consent provided.\n\nAll teams will follow the same 4-phase process and ethical procedures (see next slide). Active global coordination will happen through the team co-leads working with the core team led by the Head of Research Co-creation at IDGs. These meet regularly for support, learning and joint quality assurance throughout the four main phases.',
+            'The global study is run as a distributed global collaborative process where country- and language based research team, established in as many countries as possible will collaborate.\n\nCountry teams will be coordinated by two co-leads who are able to work in the key languages of the participating countries and have at least earned a PhD in relevant areas. The teams will include up to ten co-researchers that represent a mix of the relevant cultural/language variations in the country.\n\nThe data for each country and language will be gathered anonymously through the same survey, administered through the Survey Monkey Platform (SMP) where possible and a special questionnaire where SMP is not feasible. In this case, SMP is ran from the Republic of Ireland within the European Union. No identifiable information about participants is collected without direct consent provided.\n\nAll teams will follow the same 4-phase process and ethical procedures (read more below). Active global coordination will happen through the team co-leads working with the core team led by the Head of Research Co-creation at IDGs. These meet regularly for support, learning and joint quality assurance throughout the four main phases.',
         journeyTitle: 'Join the journey',
         journeyTitle2: "Let's be part of\nco-creation",
         milestones: 'Milestones',
@@ -61,6 +61,9 @@
         privacyText:
             'All information gathered for the One Question. Global Impact Survey is collected fully anonymously without any opportunity to be traced back to any respondent. The data is protected for use only for the purposes of understanding and acting according to the ethical principles in the section above. No IP-addresses or other sensitive personal identifiable information such as emails is gathered without explicit consent given by the respondent.  Consent to provide email addresses is only used in order to contact respondents for further questions. We will never use any information that respondents consent to provide for any other purpose than what is consented and in line with the ethical principles stated above.',
         contactTitle: 'Who to contact for further questions',
+    }
+
+    const people = {
         fredrik:
             'Dr. Fredrik Lindencrona, PhD\nHead of Research Co-Creation\nInner Development Goals',
         jan: 'Jan Artem Henriksson\nExecutive Director\nInner Development Goals',
@@ -229,7 +232,7 @@
                 width={300}
                 height={400}
             />
-            <p class="whitespace-pre-line">{t.fredrik}</p>
+            <p class="whitespace-pre-line">{people.fredrik}</p>
             <Link href={`mailto:${SURVEY_EMAIL}`} variant="orange">{SURVEY_EMAIL}</Link>
         </div>
         <div>
@@ -240,7 +243,7 @@
                 width={300}
                 height={400}
             />
-            <p class="whitespace-pre-line">{t.jan}</p>
+            <p class="whitespace-pre-line">{people.jan}</p>
             <Link href={`mailto:${SURVEY_EMAIL}`} variant="orange">{SURVEY_EMAIL}</Link>
         </div>
     </div>
