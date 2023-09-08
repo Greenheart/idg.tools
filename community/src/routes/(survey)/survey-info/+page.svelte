@@ -246,9 +246,6 @@
     </div>
 </div>
 
-<!-- TODO: Remove the community footer -->
-<!-- TODO: Decide if we should have a /survey/ page or just link directly to /survey-info -->
-
 <style lang="postcss">
     td {
         @apply align-top;
