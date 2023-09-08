@@ -119,4 +119,123 @@
             </p>
         </div>
     </div>
+
+    <table class="mt-8 text-sm">
+        <thead>
+            <tr>
+                <th class="font-bold uppercase text-xl text-right">{t.milestones}</th>
+                <th class="font-bold uppercase text-xl text-left">{t.researchers}</th>
+                <th class="font-bold uppercase text-xl text-left">{t.multipliers}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-right">
+                    <p>
+                        <span class="font-semibold text-collaborating">{t.date1}</span><br />
+                        {t.milestone1}
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        {t.research1}
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        {t.multiplier1}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">
+                    <p>
+                        <span class="font-semibold text-collaborating">{t.date2}</span><br />
+                        {t.milestone2}
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        {t.research2}
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        {t.multiplier2}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">
+                    <p>
+                        <span class="font-semibold text-collaborating">{t.date3}</span><br />
+                        {t.milestone3}
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        {t.research3}
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        {t.multiplier3}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">
+                    <p>
+                        <span class="font-semibold text-collaborating">{t.date4}</span><br />
+                        {t.milestone4}
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        {t.research4}
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        {t.multiplier4}
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
+
+<style lang="postcss">
+    td {
+        @apply align-top;
+    }
+
+    tr {
+        border-top: 1rem solid transparent;
+    }
+
+    tr:first-child {
+        border: 0;
+    }
+
+    td,
+    th {
+        border-left: 2rem solid transparent;
+    }
+    tr > td:first-child {
+        border: 0;
+    }
+
+    table {
+        overflow-x: auto;
+        border-collapse: collapse;
+        border-spacing: 0;
+        max-width: 100%;
+        vertical-align: top;
+        display: inline-block;
+    }
+
+    tbody {
+        -webkit-overflow-scrolling: touch;
+    }
+</style>
