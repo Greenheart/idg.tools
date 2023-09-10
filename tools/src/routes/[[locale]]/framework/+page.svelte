@@ -10,15 +10,16 @@
         TabPanels,
     } from '@rgossiaux/svelte-headlessui'
     import { derived, writable } from 'svelte/store'
+    import { Node, Svelvet, Edge } from 'svelvet'
 
     import { page } from '$app/stores'
     import { Heading } from '$shared/components'
     import Meta from '$components/Meta.svelte'
     import type { PageData } from './$types'
-    import { getSkillsInDimension } from '$shared/content-utils'
+    import { getSkill, getSkillsInDimension } from '$shared/content-utils'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import { IDGSymbol, ChevronDown } from '$shared/icons'
-    import { cx, getColor, getDimensionSlug } from '$shared/utils'
+    import { cx, getColor, getDimensionSlug, getRGBColor } from '$shared/utils'
 
     export let data: PageData
 
@@ -31,7 +32,44 @@
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
-<div class="min-h-[700px] bg-white relative pb-16 max-w-xs mx-auto">
+<Svelvet width={600} height={800} id="idg-framework" TD controls fitView>
+    {#each $dimensions as dimension, i (dimension.name)}
+        <!-- {@const dimensionSlug = getDimensionSlug(dimension.id)} -->
+        <Node
+            borderRadius={9999}
+            bgColor="#{getRGBColor(dimension.id).slice(1)}"
+            editable
+            width={200}
+            height={200}
+            label={dimension.name}
+            textColor="black"
+            position={{ x: i * 750 + 40 * dimension.skills.length, y: 0 }}
+            id={dimension.id}
+            connections={dimension.skills}
+            inputs={0}
+            outputs={dimension.skills.length}
+        />
+
+        {#each getSkillsInDimension(dimension.id, { skills: $skills }) as skill, j (skill.name)}
+            <Node
+                borderRadius={9999}
+                bgColor="#{getRGBColor(dimension.id).slice(1)}"
+                editable
+                width={100}
+                height={100}
+                label={skill.name}
+                textColor="black"
+                position={{ x: i * 750 + j * 125, y: 400 }}
+                id={skill.id}
+                connections={[dimension.id]}
+                inputs={1}
+                outputs={0}
+            />
+        {/each}
+    {/each}
+</Svelvet>
+
+<!-- <div class="min-h-[700px] bg-white relative pb-16 max-w-xs mx-auto">
     {#key $dimensions}
         {#if $dimensions}
             <div class="text-base h-full">
@@ -92,7 +130,6 @@
                                                     bgColor,
                                                 )}
                                             >
-                                                <!-- TODO: Replace with the skill symbols -->
                                                 <IDGSymbol
                                                     slug={dimensionSlug}
                                                     class="w-10 h-10 shrink-0 group-hover:!{textColor}"
@@ -138,4 +175,4 @@
             </div>
         {/if}
     {/key}
-</div>
+</div> -->

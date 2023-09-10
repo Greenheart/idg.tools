@@ -190,6 +190,9 @@ importers:
       svelte-typeahead:
         specifier: ^4.4.1
         version: 4.4.1
+      svelvet:
+        specifier: ^8.1.0
+        version: 8.1.0(svelte@4.2.0)
     devDependencies:
       '@rgossiaux/svelte-headlessui':
         specifier: ^2.0.0
@@ -7326,6 +7329,14 @@ packages:
       locate-character: 3.0.0
       magic-string: 0.30.2
       periscopic: 3.1.0
+
+  /svelvet@8.1.0(svelte@4.2.0):
+    resolution: {integrity: sha512-rH67tgb7e2aTBQZBCW+V5hSvulLwvzBiOml9Dzdz2ATkgQr58mHi2WtlQFOOb+eZt6zH/J10a2MataC29Qdpuw==}
+    peerDependencies:
+      svelte: '>=3.59.2 || ^4.0.0'
+    dependencies:
+      svelte: 4.2.0
+    dev: false
 
   /svgo@3.0.2:
     resolution: {integrity: sha512-Z706C1U2pb1+JGP48fbazf3KxHrWOsLme6Rv7imFBn5EnuanDW1GPaA/P1/dvObE670JDePC3mnj0k0B7P0jjQ==}
