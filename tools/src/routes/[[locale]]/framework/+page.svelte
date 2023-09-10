@@ -32,13 +32,12 @@
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
-<Svelvet width={600} height={800} id="idg-framework" TD controls fitView>
+<Svelvet width={600} height={800} id="idg-framework" TD controls fitView locked>
     {#each $dimensions as dimension, i (dimension.name)}
         <!-- {@const dimensionSlug = getDimensionSlug(dimension.id)} -->
         <Node
             borderRadius={9999}
             bgColor="#{getRGBColor(dimension.id).slice(1)}"
-            editable
             width={200}
             height={200}
             label={dimension.name}
@@ -47,16 +46,20 @@
             id={dimension.id}
             connections={dimension.skills}
             inputs={0}
+            editable={false}
             outputs={dimension.skills.length}
+            on:nodeClicked={() => {
+                console.log('click', dimension.name)
+            }}
         />
 
         {#each getSkillsInDimension(dimension.id, { skills: $skills }) as skill, j (skill.name)}
             <Node
                 borderRadius={9999}
                 bgColor="#{getRGBColor(dimension.id).slice(1)}"
-                editable
                 width={100}
                 height={100}
+                editable={false}
                 label={skill.name}
                 textColor="black"
                 position={{ x: i * 750 + j * 125, y: 400 }}
