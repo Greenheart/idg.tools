@@ -32,7 +32,7 @@
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
-<Svelvet width={600} height={800} id="idg-framework" TD controls fitView locked>
+<Svelvet width={600} height={800} id="idg-framework" TD controls fitView>
     {#each $dimensions as dimension, i (dimension.name)}
         <!-- {@const dimensionSlug = getDimensionSlug(dimension.id)} -->
         <Node
