@@ -10,7 +10,8 @@
         TabPanels,
     } from '@rgossiaux/svelte-headlessui'
     import { derived, writable } from 'svelte/store'
-    import { Node, Svelvet, Edge } from 'svelvet'
+    import { Node, Svelvet, Edge, Anchor } from 'svelvet'
+    import type { Connections } from 'svelvet'
 
     import { page } from '$app/stores'
     import { Heading } from '$shared/components'
@@ -28,6 +29,7 @@
     // Ensure the page re-renders when the URL (and the data) changes.
     const dimensions = derived(page, () => data.dimensions)
     const skills = derived(page, () => data.skills)
+    const connections: Connections = [[]]
 </script>
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
@@ -40,18 +42,19 @@
             bgColor="#{getRGBColor(dimension.id).slice(1)}"
             width={200}
             height={200}
-            label={dimension.name}
             textColor="black"
             position={{ x: i * 750 + 40 * dimension.skills.length, y: 0 }}
             id={dimension.id}
-            connections={dimension.skills}
-            inputs={0}
             editable={false}
-            outputs={dimension.skills.length}
             on:nodeClicked={() => {
                 console.log('click', dimension.name)
             }}
-        />
+        >
+            {#each dimension.skills as skillConnection}
+                <Anchor connections={skillConnection.id} dynamic />
+            {/each}
+            {dimension.name}
+        </Node>
 
         {#each getSkillsInDimension(dimension.id, { skills: $skills }) as skill, j (skill.name)}
             <Node
@@ -60,14 +63,13 @@
                 width={100}
                 height={100}
                 editable={false}
-                label={skill.name}
                 textColor="black"
                 position={{ x: i * 750 + j * 125, y: 400 }}
                 id={skill.id}
-                connections={[dimension.id]}
-                inputs={1}
-                outputs={0}
-            />
+            >
+                <Anchor dynamic connections={[dimension.id]} />
+                {skill.name}
+            </Node>
         {/each}
     {/each}
 </Svelvet>
