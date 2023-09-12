@@ -7,6 +7,8 @@ const config = {
     safelist: ['being', 'thinking', 'relating', 'collaborating', 'acting'].flatMap((name) => [
         `bg-${name}`,
         `text-${name}`,
+        `group-hover:!text-${name}`,
+        `hover:outline-${name}`,
     ]),
     theme: {
         screens: {

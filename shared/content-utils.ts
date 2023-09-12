@@ -22,6 +22,13 @@ export const getDimension = (id: Dimension['id'], { dimensions }: Pick<AllConten
 export const getSkill = (id: Skill['id'], { skills }: Pick<AllContent, 'skills'>) =>
     skills.find((s) => s.id === id) as Skill
 
+export const getItem = (
+    id: Skill['id'] | Dimension['id'],
+    { skills, dimensions }: Pick<AllContent, 'skills' | 'dimensions'>,
+) =>
+    (getSkill(id, { skills }) as Skill | undefined) ||
+    (getDimension(id, { dimensions }) as Dimension | undefined)
+
 export const getTag = (id: Tag['id'], { tags }: Pick<AllContent, 'tags'>) =>
     tags.find((t) => t.id === id) as Tag
 

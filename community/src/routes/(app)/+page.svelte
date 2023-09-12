@@ -1,13 +1,9 @@
 <script lang="ts">
-    import Link from '$shared/components/Link.svelte'
-    import Heading from '$shared/components/Heading.svelte'
+    import { Link, Heading, LinkButton, ButtonGroup } from '$shared/components'
     import Meta from '$components/Meta.svelte'
     import type { PageData } from './$types'
-    import LinkButton from '$shared/components/LinkButton.svelte'
-    import StoriesSection from '$components/StoriesSection.svelte'
     import { COMMUNITY_LINK, FRAMEWORK_LINK } from '$shared/constants'
     import Stories from '$components/Stories.svelte'
-    import ButtonGroup from '$shared/components/ButtonGroup.svelte'
 
     export let data: PageData
     $: ({ content } = data)

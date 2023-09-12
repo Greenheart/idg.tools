@@ -1,18 +1,15 @@
 <script lang="ts">
     import { tick } from 'svelte'
-    import Link from '$shared/components/Link.svelte'
-    import MenuButton from '$shared/components/MenuButton.svelte'
-    import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
+    import { Link, MenuButton, LocaleSwitcher } from '$shared/components'
     import { isMenuOpen, scrollbarWidth } from '$lib/stores'
     import { onKeydown } from '$lib/utils'
     import { beforeNavigate } from '$app/navigation'
     import type { SupportedLocales } from '$shared/types'
     import { page } from '$app/stores'
 
-    export let supportedLocales: SupportedLocales
+    export let supportedLocales: SupportedLocales | undefined = undefined
 
     const toggleMenu = async () => {
-        // @ts-expect-error This is an invalid value for scroll behavior, but it produces the result we want so... :D
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
         $isMenuOpen = !$isMenuOpen
         document.documentElement.classList.toggle('overflow-y-scroll', !$isMenuOpen)
@@ -47,7 +44,7 @@
     </div>
 
     {#if $isMenuOpen}
-        <nav
+        <button
             class="xs:text-4xl bg-lightGray fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center overflow-y-scroll text-3xl font-semibold"
             on:click={toggleMenu}
             on:keydown={onKeydown(toggleMenu)}
@@ -55,7 +52,7 @@
             {#each links as { href, text }}
                 <Link {href} class="p-4" variant="black">{text}</Link>
             {/each}
-        </nav>
+        </button>
     {/if}
 
     <!-- NOTE: Breakpoints might be messed up by the negative margins that extend the actual width of the layout -->
@@ -64,8 +61,8 @@
         {#each links as { href, text }}
             <Link {href} class="p-2 px-3 text-base" variant="black">{text}</Link>
         {/each}
-        <!-- TODO: Only show locales for pages where it makes sense -->
-        {#if $page?.route?.id?.includes('/framework')}
+        <!-- Only show locales for pages where it makes sense -->
+        {#if $page?.route?.id?.includes('/framework') && supportedLocales}
             <LocaleSwitcher {supportedLocales} />
         {/if}
     </nav>

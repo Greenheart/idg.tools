@@ -1,13 +1,12 @@
 <script lang="ts">
-    import Link from '$shared/components/Link.svelte'
-    import MenuButton from '$shared/components/MenuButton.svelte'
+    import { Link, MenuButton } from '$shared/components'
     import { isMenuOpen, scrollbarWidth } from '$lib/stores'
     import { onKeydown } from '$lib/utils'
     import { beforeNavigate } from '$app/navigation'
     import { tick } from 'svelte'
+    import { IDG_WEBSITE } from '$shared/constants'
 
     const toggleMenu = () => {
-        // @ts-expect-error This is an invalid value for scroll behavior, but it produces the result we want so... :D
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
         $isMenuOpen = !$isMenuOpen
         document.documentElement.classList.toggle('overflow-y-scroll', !$isMenuOpen)
@@ -24,7 +23,7 @@
 
     const links = [
         { href: 'https://idg.tools', text: 'Toolkit' },
-        { href: 'https://innerdevelopmentgoals.org', text: 'IDG website' },
+        { href: IDG_WEBSITE, text: 'IDG website' },
         { href: '/contribute', text: 'How to contribute' },
     ]
 </script>
@@ -41,7 +40,7 @@
     </div>
 
     {#if $isMenuOpen}
-        <nav
+        <button
             class="xs:text-4xl bg-lightGray fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center text-3xl font-semibold"
             on:click={toggleMenu}
             on:keydown={onKeydown(toggleMenu)}
@@ -49,7 +48,7 @@
             {#each links as { href, text }}
                 <Link {href} class="p-4" variant="black">{text}</Link>
             {/each}
-        </nav>
+        </button>
     {/if}
 
     <nav class="z-10 hidden justify-evenly sm:flex">

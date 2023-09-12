@@ -1,14 +1,5 @@
 <script lang="ts">
-    import SvelteMarkdown from 'svelte-markdown'
-    import {
-        Paragraph,
-        Text,
-        Heading,
-        Blockquote,
-        List,
-        ListItem,
-        Hr,
-    } from 'svelte-markdown/src/renderers'
+    import SvelteMarkdown from 'svelte-markdown/src/SvelteMarkdown.svelte'
     import DOMPurify from 'dompurify'
 
     import Link from './Link.svelte'
@@ -21,36 +12,41 @@
     type MarkdownRenderer = 'linksOnly' | 'limited' | 'article'
 
     const getRenderers = (type: MarkdownRenderer) => {
-        const linksOnly = {
-            text: Text,
-            paragraph: Paragraph,
+        const shared = {
             em: Nothing,
             strong: Nothing,
-            hr: Nothing,
-            blockquote: Nothing,
             del: Nothing,
             link: Link,
             br: Nothing,
-            image: Nothing,
             table: Nothing,
             tablehead: Nothing,
             tablebody: Nothing,
             tablerow: Nothing,
             tablecell: Nothing,
-            list: Nothing,
-            listitem: Nothing,
-            heading: Nothing,
             codespan: Nothing,
             code: Nothing,
             html: Nothing,
         }
 
-        const limited = { ...linksOnly, list: List, listitem: ListItem }
+        const linksOnly = {
+            ...shared,
+            hr: Nothing,
+            blockquote: Nothing,
+            image: Nothing,
+            list: Nothing,
+            listitem: Nothing,
+            heading: Nothing,
+        }
+
+        const limited = {
+            ...shared,
+            heading: Nothing,
+            blockquote: Nothing,
+            hr: Nothing,
+            image: Nothing,
+        }
         const article = {
-            ...limited,
-            blockquote: Blockquote,
-            heading: Heading,
-            hr: Hr,
+            ...shared,
             // IDEA: Show alt texts as image descriptions also for inline images in articles.
             image: Picture,
         }

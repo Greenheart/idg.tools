@@ -1,7 +1,5 @@
 <script>
-    import Divider from '$shared/components/Divider.svelte'
-    import Heading from '$shared/components/Heading.svelte'
-    import Link from '$shared/components/Link.svelte'
+    import { Divider, Heading, Link } from '$shared/components'
     import {
         COMMUNITY_LINK,
         FRAMEWORK_LINK,

@@ -9,11 +9,11 @@
         "colors": "node scripts/compile.js && node scripts/compiled/update-colors.js"
     },
     "devDependencies": {
-        "@types/node": "^18.14.6",
+        "@types/node": "^20.5.1",
         "chokidar": "^3.5.3",
-        "esbuild": "~0.17.11",
-        "fast-glob": "^3.2.12",
+        "esbuild": "~0.19.2",
+        "fast-glob": "^3.3.1",
         "lodash.debounce": "^4.0.8",
-        "slugify": "^1.6.5"
+        "slugify": "^1.6.6"
     }
 }

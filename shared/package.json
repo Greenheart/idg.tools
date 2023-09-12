@@ -3,14 +3,15 @@
     "private": true,
     "version": "1.0.0",
     "type": "module",
+    "svelte": "components/index.js",
     "dependencies": {
-        "@rgossiaux/svelte-headlessui": "^1.0.2",
-        "dompurify": "^3.0.1",
-        "svelte": "^3.55.1",
-        "svelte-markdown": "^0.2.3",
+        "@rgossiaux/svelte-headlessui": "^2.0.0",
+        "dompurify": "^3.0.5",
+        "svelte": "^4.2.0",
+        "svelte-markdown": "github:nwaughachukwuma/svelte-markdown#upgrade-markded-to-v5",
         "svelte-typeahead": "^4.4.1"
     },
     "devDependencies": {
-        "@types/dompurify": "^2.4.0"
+        "@types/dompurify": "^3.0.2"
     }
 }

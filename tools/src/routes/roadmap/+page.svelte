@@ -1,8 +1,5 @@
 <script lang="ts">
-    import Divider from '$shared/components/Divider.svelte'
-    import Heading from '$shared/components/Heading.svelte'
-    import Link from '$shared/components/Link.svelte'
-    import LinkButton from '$shared/components/LinkButton.svelte'
+    import { Divider, Heading, Link, LinkButton } from '$shared/components'
     import { HOW_TO_CONTRIBUTE_LINK } from '$shared/constants'
 
     const roadmap = {

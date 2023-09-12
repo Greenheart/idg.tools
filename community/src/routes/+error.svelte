@@ -1,6 +1,5 @@
 <script lang="ts">
-    import LinkButton from '$shared/components/LinkButton.svelte'
-    import Heading from '$shared/components/Heading.svelte'
+    import { LinkButton, Heading } from '$shared/components'
 
     import { page } from '$app/stores'
 </script>

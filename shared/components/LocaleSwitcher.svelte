@@ -1,32 +1,59 @@
 <script lang="ts">
-    import { Menu, MenuButton, MenuItems, MenuItem } from '@rgossiaux/svelte-headlessui'
     import type { Locale, SupportedLocales } from '../types'
     import Link from './Link.svelte'
     import LocaleIcon from '../icons/Locale.svelte'
     import { cx, getLocalisedPath } from '../utils'
+    import { DEFAULT_LOCALE_IDENTIFIER } from '../constants'
+    import ChevronDown from '../icons/ChevronDown.svelte'
 
     export let supportedLocales: SupportedLocales
+    export let pathname: string
+    export let currentLocale: string = DEFAULT_LOCALE_IDENTIFIER
 
     const supported = Object.entries(supportedLocales) as [Locale, string][]
+
+    let open = false
+    let target: HTMLDivElement
 </script>
 
-<Menu class="relative grid p-2">
-    <MenuButton class="grid place-items-center" title="Change language" aria-label="Change language"
-        ><LocaleIcon /></MenuButton
+<div class="relative grid" bind:this={target}>
+    <button
+        class="flex items-center gap-2 hover:bg-stone-100 h-10 px-2"
+        title="Change language"
+        aria-label="Change language"
+        on:click={() => (open = !open)}
+        ><LocaleIcon />{supportedLocales[currentLocale ?? DEFAULT_LOCALE_IDENTIFIER]}<ChevronDown
+        /></button
     >
-    <MenuItems
-        class="bg-being list-style-none absolute top-full right-0 grid text-base shadow-md"
-        as="ul"
+    <ul
+        class="bg-white list-style-none absolute top-full right-0 grid text-base drop-shadow py-1 z-30"
+        class:hidden={!open}
     >
         {#each supported as [locale, label]}
-            <MenuItem let:active as="li" class="grid first:pt-1 last:pb-1">
-                <!-- TODO: verify that keyboard navigation works as expected -->
+            <li class="grid">
                 <Link
-                    href={getLocalisedPath(locale, location.pathname)}
+                    href={getLocalisedPath(locale, pathname)}
                     variant="black"
-                    class={cx('px-3 py-1', active ? 'text-white' : '')}>{label}</Link
+                    noScroll
+                    on:click={() => {
+                        open = false
+                    }}
+                    class="px-3 py-1 hover:bg-stone-100 !no-underline hover:underline">{label}</Link
                 >
-            </MenuItem>
+            </li>
         {/each}
-    </MenuItems>
-</Menu>
+    </ul>
+</div>
+
+<svelte:body
+    on:click={(event) => {
+        if (open && !event.composedPath().includes(target)) {
+            open = false
+        }
+    }}
+    on:keyup={(event) => {
+        if (open && event.key === 'Escape') {
+            open = false
+        }
+    }}
+/>
