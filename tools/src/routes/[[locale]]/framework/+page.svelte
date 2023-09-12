@@ -21,6 +21,7 @@
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import { IDGSymbol, ChevronDown } from '$shared/icons'
     import { cx, getColor, getDimensionSlug, getRGBColor } from '$shared/utils'
+    import Picture from '$shared/components/Picture.svelte'
 
     export let data: PageData
 
@@ -29,7 +30,6 @@
     // Ensure the page re-renders when the URL (and the data) changes.
     const dimensions = derived(page, () => data.dimensions)
     const skills = derived(page, () => data.skills)
-    const connections: Connections = [[]]
 </script>
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
@@ -43,7 +43,7 @@
             width={200}
             height={200}
             textColor="black"
-            position={{ x: i * 750 + 40 * dimension.skills.length, y: 0 }}
+            position={{ x: i * 750, y: 0 }}
             id={dimension.id}
             editable={false}
             on:nodeClicked={() => {
@@ -64,7 +64,10 @@
                 height={100}
                 editable={false}
                 textColor="black"
-                position={{ x: i * 750 + j * 125, y: 400 }}
+                position={{
+                    x: i * 750 + Math.cos(((2 * Math.PI) / dimension.skills.length) * j) * 280,
+                    y: Math.sin(((2 * Math.PI) / dimension.skills.length) * j) * 280,
+                }}
                 id={skill.id}
             >
                 <Anchor dynamic connections={[dimension.id]} />
