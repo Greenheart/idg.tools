@@ -31,7 +31,7 @@
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
-<div class="min-h-[700px] bg-white relative pb-16 max-w-xs mx-auto">
+<div class="min-h-[700px] bg-white relative mb-16 max-w-xs mx-auto">
     {#key $dimensions}
         {#if $dimensions}
             <div class="text-base h-full">
