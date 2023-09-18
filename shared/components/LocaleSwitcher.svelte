@@ -26,7 +26,7 @@
         /></button
     >
     <ul
-        class="bg-white list-style-none absolute top-full right-0 grid text-base drop-shadow py-1 z-30"
+        class="bg-white list-style-none absolute top-full ltr:right-0 rtl:left-0 grid text-base drop-shadow py-1 z-30 w-48"
         class:hidden={!open}
     >
         {#each supported as [locale, label]}
