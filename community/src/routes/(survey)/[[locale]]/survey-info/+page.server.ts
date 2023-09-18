@@ -4,6 +4,7 @@ import type { PageServerLoad } from './$types'
 import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
 
 import _translations from '../../../../../static/survey-info.json'
+import { getLocale } from '$shared/content-utils'
 
 export const prerender = true
 
@@ -15,13 +16,10 @@ const supportedLocales = Object.values(_translations).reduce(
     {},
 )
 
-type Locale = keyof typeof _translations
-
-const getLocale = (locale = DEFAULT_LOCALE_IDENTIFIER) =>
-    (Object.keys(supportedLocales).includes(locale) ? locale : DEFAULT_LOCALE_IDENTIFIER) as Locale
+type SurveyBackgroundInfoLocales = keyof typeof _translations
 
 const getContent = (locale?: string) => {
-    const _locale = getLocale(locale)
+    const _locale = getLocale(locale) as unknown as SurveyBackgroundInfoLocales
 
     if (_translations[_locale]) {
         return _translations[_locale].translations
