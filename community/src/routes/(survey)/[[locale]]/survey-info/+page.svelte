@@ -1,8 +1,8 @@
 <script lang="ts">
     import { page } from '$app/stores'
     import { SURVEY_EMAIL } from '$lib/constants'
-    import { Heading, IDGDivider, Markdown, Link } from '$shared/components'
-    import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
+    import { Heading, IDGDivider, Markdown, Link, LocaleSwitcher } from '$shared/components'
+    import { DEFAULT_LOCALE_IDENTIFIER, IDG_WEBSITE } from '$shared/constants'
     import { Arrow, Info } from '$shared/icons'
     import type { PageData } from './$types'
 
@@ -48,6 +48,22 @@
         jan: 'Jan Artem Henriksson\nExecutive Director\nInner Development Goals',
     }
 </script>
+
+<header class="relative flex items-center justify-between pt-6 pb-12">
+    <Link href={IDG_WEBSITE} unstyled class="z-30 flex h-[60px] items-center gap-4">
+        <img src="/images/IDG-logo.svg" alt="IDG logo" width="112" height="60" />
+    </Link>
+    <LocaleSwitcher
+        {supportedLocales}
+        pathname={$page.url.pathname}
+        currentLocale={$page.params.locale}
+    />
+</header>
+
+<!--
+    TODO: Maybe add proper support for RTL languages in the layout
+    https://tailwindcss.com/docs/hover-focus-and-other-states#rtl-support
+-->
 
 <div class="mx-auto">
     <Heading size={1} class="mb-4 font-black uppercase"

@@ -5,7 +5,7 @@ import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
 
 import _translations from '../../../../../static/survey-info.json'
 
-export const prerender = false
+export const prerender = true
 
 const supportedLocales = Object.values(_translations).reduce(
     (result, { locale, localeName }) => ({
@@ -27,7 +27,7 @@ const getContent = (locale?: string) => {
         return _translations[_locale].translations
     }
 
-    return _translations[DEFAULT_LOCALE_IDENTIFIER]
+    return _translations[DEFAULT_LOCALE_IDENTIFIER].translations
 }
 
 export const load = (async ({ params }) => {
