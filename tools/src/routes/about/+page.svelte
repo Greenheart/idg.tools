@@ -36,8 +36,6 @@
     </p>
 </div>
 
-<!-- TODO: Maybe showcase the core team -->
-
 <div
     class="mx-auto grid max-w-lg justify-items-center gap-4 text-center md:max-w-none md:grid-cols-3 lg:gap-8"
 >

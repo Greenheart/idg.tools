@@ -31,6 +31,7 @@
     // TODO: Add support for searching tool description, actions, resources, and more
     // But always show the name of the tool, or the excerpt of the relevant text
     // IDEA: Maybe extract all relevant strings and let them be searched
+    // IDEA: Check out the search/filter implementation for https://github.com/Greenheart/reconnect.earth
     const extract = (tool: Tool) => tool.name
 
     export let content: ToolsContent
