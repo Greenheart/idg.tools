@@ -479,8 +479,8 @@
       "contactTitle": "추가 질문이 있는 경우 문의처"
     }
   },
-  "": {
-    "locale": "",
+  "pt-BR": {
+    "locale": "pt-BR",
     "localeName": "Portuguese (Brazilian)",
     "translations": {
       "title1": "Uma pergunta",
