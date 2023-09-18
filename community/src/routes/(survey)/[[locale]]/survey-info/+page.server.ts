@@ -1,11 +1,14 @@
 import { error } from '@sveltejs/kit'
 
-import type { PageServerLoad } from './$types'
+import type { PageServerLoad, EntryGenerator } from './$types'
 import { DEFAULT_LOCALE_IDENTIFIER, LOCALES } from '$shared/constants'
 import { getLocale } from '$shared/content-utils'
 import type { Locale } from '$shared/types'
 
 import _translations from '../../../../../static/survey-info.json'
+
+export const entries = (() =>
+    Object.keys(_translations).map((locale) => ({ locale }))) satisfies EntryGenerator
 
 export const prerender = true
 
