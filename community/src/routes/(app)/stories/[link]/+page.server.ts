@@ -8,10 +8,12 @@ import {
     getStoryByLink,
     getTag,
 } from '$shared/content-utils'
-import type { PageServerLoad } from './$types'
+import type { PageServerLoad, EntryGenerator } from './$types'
 
-// Disable prerendering only for this page, since want the server-side redirect
-export const prerender = false
+export const entries = (() =>
+    content.stories.map(({ link }) => ({ link }))) satisfies EntryGenerator
+
+export const prerender = 'auto'
 
 export const load = (async ({ params: { link } }: { params: Record<string, string> }) => {
     const story = getStoryByLink(link, content)
