@@ -53,6 +53,7 @@
     <Link href={IDG_WEBSITE} unstyled class="z-30 flex h-[60px] items-center gap-4">
         <img src="/images/IDG-logo.svg" alt="IDG logo" width="112" height="60" />
     </Link>
+    <!-- TODO: Make this work with the other locales, by adding these languages to the shared constants -->
     <LocaleSwitcher
         {supportedLocales}
         pathname={$page.url.pathname}
