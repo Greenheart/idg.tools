@@ -37,8 +37,7 @@ export const LOCALES = {
     de: 'Deutsch',
     nl: 'Nederlands',
     it: 'Italiano',
-    // TODO: Use the correct japanese locale code (ja)
-    jp: '日本 (Japanese)',
+    ja: '日本 (Japanese)',
     dk: 'Dansk',
     sv: 'Svenska',
 }
