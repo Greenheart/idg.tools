@@ -27,10 +27,14 @@ export const IDG_CMS_LINK = 'https://cms.idg.community'
  * Add it in the CMS, which saves a JSON file with constants
  *
  * NOTE: For now, we can create instructions on how to add a new language
+ *
+ * Use this list to find native names: https://en.wikipedia.org/wiki/List_of_language_names
  */
 export const LOCALES = {
     en: 'English',
     es: 'Español',
+    bn: 'বাংলা ',
+    hi: 'हिन्दी',
     'pt-BR': 'Português (Brazil)',
     pt: 'Português',
     fr: 'Français',
@@ -40,7 +44,27 @@ export const LOCALES = {
     ja: '日本 (Japanese)',
     dk: 'Dansk',
     sv: 'Svenska',
+    ru: 'Русский',
+    ar: 'لعربية',
+    zh: '中文',
+    ko: '한국어',
+    ta: 'தமிழ்',
+    te: 'తెలుగు',
+    tr: 'Türkçe',
+    id: 'Bahasa Indonesia',
+    ur: 'اُردُو',
 }
+
+export const LOCALE_DIRECTIONS: Record<Locale, 'rtl' | 'ltr'> = (
+    Object.keys(LOCALES) as Locale[]
+).reduce(
+    (result, locale) => {
+        const RTL_LOCALES = ['ar', 'ur']
+        result[locale] = RTL_LOCALES.includes(locale) ? 'rtl' : 'ltr'
+        return result
+    },
+    {} as unknown as Record<Locale, 'rtl' | 'ltr'>,
+)
 
 export const LOCALE_IDENTIFIERS = Object.keys(LOCALES) as Locale[]
 export const DEFAULT_LOCALE_IDENTIFIER = 'en'

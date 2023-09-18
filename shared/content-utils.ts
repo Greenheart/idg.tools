@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE_IDENTIFIER, LOCALE_IDENTIFIERS } from './constants'
+import { DEFAULT_LOCALE_IDENTIFIER, LOCALE_DIRECTIONS, LOCALE_IDENTIFIERS } from './constants'
 import type {
     Dimension,
     ToolsContent,
@@ -15,6 +15,8 @@ import type {
 
 export const getLocale = (locale?: string) =>
     LOCALE_IDENTIFIERS.includes(locale as Locale) ? (locale as Locale) : DEFAULT_LOCALE_IDENTIFIER
+
+export const getHTMLDirection = (locale: Locale) => LOCALE_DIRECTIONS[locale] ?? 'ltr'
 
 export const getDimension = (id: Dimension['id'], { dimensions }: Pick<AllContent, 'dimensions'>) =>
     dimensions.find((c) => c.id === id) as Dimension

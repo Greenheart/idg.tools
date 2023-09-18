@@ -2,7 +2,7 @@
     import type { Locale, SupportedLocales } from '../types'
     import Link from './Link.svelte'
     import LocaleIcon from '../icons/Locale.svelte'
-    import { cx, getLocalisedPath } from '../utils'
+    import { getLocalisedPath } from '../utils'
     import { DEFAULT_LOCALE_IDENTIFIER } from '../constants'
     import ChevronDown from '../icons/ChevronDown.svelte'
 
