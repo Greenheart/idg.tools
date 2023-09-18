@@ -2,7 +2,7 @@
     import { page } from '$app/stores'
     import { SURVEY_EMAIL } from '$lib/constants'
     import { Heading, IDGDivider, Markdown, Link, LocaleSwitcher } from '$shared/components'
-    import { DEFAULT_LOCALE_IDENTIFIER, IDG_WEBSITE } from '$shared/constants'
+    import { IDG_WEBSITE } from '$shared/constants'
     import { getHTMLDirection, getLocale } from '$shared/content-utils'
     import { Arrow, Info } from '$shared/icons'
     import { onMount } from 'svelte'
@@ -11,20 +11,13 @@
     export let data: PageData
     $: ({ surveyInfo: t, supportedLocales } = data)
 
-    // IDEA: Maybe fallback to this approach, although it still doesn't force a page navigation.
-    // We likely need to disable client side navigation for when people change languages, since we need to update the rtl attribute
-    // Or we could update it manually whenever the page store changes
-    // // Ensure the page re-renders when the URL (and the data) changes.
-    // const t = derived(page, () => data.surveyInfo)
-    // const supportedLocales = derived(page, () => data.supportedLocales
-
     // NOTE: This is likely not the best way to force update the locale and direction
     // but it seems to work, so let's keep it.
-    let locale = getLocale($page.params.locale) ?? DEFAULT_LOCALE_IDENTIFIER
+    let locale = getLocale($page.params.locale)
 
     onMount(() => {
         page.subscribe(() => {
-            locale = getLocale($page.params.locale) ?? DEFAULT_LOCALE_IDENTIFIER
+            locale = getLocale($page.params.locale)
 
             document.documentElement.dir = getHTMLDirection(locale)
             document.documentElement.lang = locale
