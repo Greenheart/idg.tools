@@ -80,18 +80,18 @@
 
     <IDGDivider />
 
-    <Heading size={1} tag="h2" class="mb-4 text-collaborating">{t.whoTitle}</Heading>
+    <Heading size={1} tag="h2" class="mb-8 text-collaborating">{t.whoTitle}</Heading>
     <Markdown formatting="linksOnly" source={t.md_whoText} />
     <Link href={`mailto:${SURVEY_EMAIL}`} variant="orange">{SURVEY_EMAIL}</Link>
 
     <IDGDivider />
 
-    <Heading size={1} tag="h2" class="mb-4 text-collaborating">{t.whyTitle}</Heading>
+    <Heading size={1} tag="h2" class="mb-8 text-collaborating">{t.whyTitle}</Heading>
     <Markdown formatting="linksOnly" source={t.whyText} />
 
     <IDGDivider />
 
-    <Heading size={1} tag="h2" class="mb-4 text-collaborating">{t.howTitle}</Heading>
+    <Heading size={1} tag="h2" class="mb-8 text-collaborating">{t.howTitle}</Heading>
     <Markdown formatting="linksOnly" source={t.howText} />
 
     <IDGDivider />
@@ -99,7 +99,7 @@
     <Heading
         size={1}
         tag="h2"
-        class="mb-4 text-collaborating uppercase font-black whitespace-pre-line"
+        class="mb-8 text-collaborating uppercase font-black whitespace-pre-line"
         ><span class="text-acting">{t.journeyTitle}</span><br />{t.journeyTitle2}</Heading
     >
 
@@ -199,8 +199,8 @@
 
     <IDGDivider />
 
-    <Heading size={1} tag="h2" class="mb-4 text-collaborating">{t.howDoneTitle}</Heading>
-    <Heading size={3} class="mb-4 mt-8">{t.phaseTitle1}</Heading>
+    <Heading size={1} tag="h2" class="mb-8 text-collaborating">{t.howDoneTitle}</Heading>
+    <Heading size={3} class="mb-4">{t.phaseTitle1}</Heading>
     <Markdown formatting="limited" source={t.md_phaseText1} />
     <Heading size={3} class="mb-4 mt-8">{t.phaseTitle2}</Heading>
     <Markdown formatting="limited" source={t.md_phaseText2} />
@@ -219,7 +219,7 @@
 
     <IDGDivider />
 
-    <Heading size={1} tag="h2" class="mb-4 text-collaborating">{t.contactTitle}</Heading>
+    <Heading size={1} tag="h2" class="mb-8 text-collaborating">{t.contactTitle}</Heading>
 
     <div
         class="grid gap-8 gap-y-16 md:grid-cols-2 max-w-screen-md mx-auto text-sm xs:text-base place-content-center"
