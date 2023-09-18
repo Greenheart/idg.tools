@@ -10,7 +10,7 @@ export const content = _content[DEFAULT_LOCALE_IDENTIFIER] as unknown as ToolsCo
  * Gets the content bundle for a specific locale.
  */
 export const getContent = (locale?: string) =>
-    _content[getLocale(locale)] as unknown as ToolsContent
+    _content[getLocale(locale) as unknown as keyof typeof _content] as unknown as ToolsContent
 
 export const getSupportedLocales = () =>
     (Object.keys(_content) as Locale[]).reduce<Partial<Record<Locale, string>>>(
