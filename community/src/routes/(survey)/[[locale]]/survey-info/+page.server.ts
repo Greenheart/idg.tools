@@ -1,17 +1,18 @@
 import { error } from '@sveltejs/kit'
 
 import type { PageServerLoad } from './$types'
-import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
+import { DEFAULT_LOCALE_IDENTIFIER, LOCALES } from '$shared/constants'
+import { getLocale } from '$shared/content-utils'
+import type { Locale } from '$shared/types'
 
 import _translations from '../../../../../static/survey-info.json'
-import { getLocale } from '$shared/content-utils'
 
 export const prerender = true
 
-const supportedLocales = Object.values(_translations).reduce(
-    (result, { locale, localeName }) => ({
+const supportedLocales = Object.keys(_translations).reduce(
+    (result, locale) => ({
         ...result,
-        [locale]: localeName,
+        [locale]: LOCALES[locale as Locale],
     }),
     {},
 )
