@@ -14,7 +14,9 @@ import type {
 } from './types'
 
 export const getLocale = (locale?: string) =>
-    LOCALE_IDENTIFIERS.includes(locale as Locale) ? (locale as Locale) : DEFAULT_LOCALE_IDENTIFIER
+    LOCALE_IDENTIFIERS.some((l) => l.toLowerCase() === (locale?.toLowerCase() as Locale))
+        ? (locale as Locale)
+        : DEFAULT_LOCALE_IDENTIFIER
 
 export const getHTMLDirection = (locale: Locale) => LOCALE_DIRECTIONS[locale] ?? 'ltr'
 
