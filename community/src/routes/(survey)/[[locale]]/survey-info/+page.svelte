@@ -1,13 +1,16 @@
 <script lang="ts">
+    import { page } from '$app/stores'
     import { SURVEY_EMAIL } from '$lib/constants'
     import { Heading, IDGDivider, Markdown, Link } from '$shared/components'
+    import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
     import { Arrow, Info } from '$shared/icons'
     import type { PageData } from './$types'
 
     export let data: PageData
     $: ({ surveyInfo: t, supportedLocales } = data)
 
-    const locale = 'en'
+    const locale = $page.params.locale ?? DEFAULT_LOCALE_IDENTIFIER
+
     const monthOnly: Partial<Intl.DateTimeFormatOptions> = { month: 'short' }
     const yearAndMonth: Partial<Intl.DateTimeFormatOptions> = { month: 'short', year: 'numeric' }
     const dayAndMonth: Partial<Intl.DateTimeFormatOptions> = {

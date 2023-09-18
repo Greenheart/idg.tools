@@ -7,9 +7,13 @@ import _translations from '../../../../../static/survey-info.json'
 
 export const prerender = false
 
-const supportedLocales = Object.values(_translations).map(({ locale, localeName }) => ({
-    [locale]: localeName,
-}))
+const supportedLocales = Object.values(_translations).reduce(
+    (result, { locale, localeName }) => ({
+        ...result,
+        [locale]: localeName,
+    }),
+    {},
+)
 
 type Locale = keyof typeof _translations
 
@@ -18,6 +22,7 @@ const getLocale = (locale = DEFAULT_LOCALE_IDENTIFIER) =>
 
 const getContent = (locale?: string) => {
     const _locale = getLocale(locale)
+
     if (_translations[_locale]) {
         return _translations[_locale].translations
     }
@@ -27,8 +32,6 @@ const getContent = (locale?: string) => {
 
 export const load = (async ({ params }) => {
     const surveyInfo = getContent(params.locale)
-
-    console.log(surveyInfo, supportedLocales)
 
     if (surveyInfo && supportedLocales) {
         return { surveyInfo, supportedLocales }
