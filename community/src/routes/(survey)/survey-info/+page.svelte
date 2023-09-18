@@ -22,10 +22,6 @@
         milestones: 'Milestones',
         researchers: 'Researchers',
         multipliers: 'Multipliers/Networks',
-        date1: 'Mar - Sep 19, 2023',
-        date2: 'Sep 19 - Jan 2024',
-        date3: 'Jan - Jun 2024',
-        date4: 'Jul - Dec 2024',
         milestone1: 'Setting up the system',
         milestone2: 'Data collection',
         milestone3: 'Analysis and prioritisation',
@@ -61,6 +57,39 @@
         privacyText:
             'All information gathered for the One Question. Global Impact Survey is collected fully anonymously without any opportunity to be traced back to any respondent. The data is protected for use only for the purposes of understanding and acting according to the ethical principles in the section above. No IP-addresses or other sensitive personal identifiable information such as emails is gathered without explicit consent given by the respondent.  Consent to provide email addresses is only used in order to contact respondents for further questions. We will never use any information that respondents consent to provide for any other purpose than what is consented and in line with the ethical principles stated above.',
         contactTitle: 'Who to contact for further questions',
+    }
+
+    // TODO: use the selected locale from translations
+    const locale = 'en'
+    const monthOnly: Partial<Intl.DateTimeFormatOptions> = { month: 'short' }
+    const yearAndMonth: Partial<Intl.DateTimeFormatOptions> = { month: 'short', year: 'numeric' }
+    const dayAndMonth: Partial<Intl.DateTimeFormatOptions> = {
+        month: 'short',
+        day: 'numeric',
+    }
+    const fullDate: Partial<Intl.DateTimeFormatOptions> = {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+    }
+
+    const dates = {
+        phase1: {
+            start: new Date('2023-03-01').toLocaleDateString(locale, monthOnly),
+            end: new Date('2023-09-19').toLocaleDateString(locale, fullDate),
+        },
+        phase2: {
+            start: new Date('2023-09-19').toLocaleDateString(locale, dayAndMonth),
+            end: new Date('2024-01-15').toLocaleDateString(locale, yearAndMonth),
+        },
+        phase3: {
+            start: new Date('2024-01-15').toLocaleDateString(locale, monthOnly),
+            end: new Date('2024-06-30').toLocaleDateString(locale, yearAndMonth),
+        },
+        phase4: {
+            start: new Date('2024-07-01').toLocaleDateString(locale, monthOnly),
+            end: new Date('2024-12-01').toLocaleDateString(locale, yearAndMonth),
+        },
     }
 
     const people = {
@@ -125,7 +154,9 @@
             <tr>
                 <td class="text-right">
                     <p>
-                        <span class="font-semibold text-collaborating">{t.date1}</span><br />
+                        <span class="font-semibold text-collaborating"
+                            >{dates.phase1.start} → {dates.phase1.end}</span
+                        ><br />
                         {t.milestone1}
                     </p>
                 </td>
@@ -143,7 +174,9 @@
             <tr>
                 <td class="text-right">
                     <p>
-                        <span class="font-semibold text-collaborating">{t.date2}</span><br />
+                        <span class="font-semibold text-collaborating"
+                            >{dates.phase2.start} → {dates.phase2.end}</span
+                        ><br />
                         {t.milestone2}
                     </p>
                 </td>
@@ -161,7 +194,9 @@
             <tr>
                 <td class="text-right">
                     <p>
-                        <span class="font-semibold text-collaborating">{t.date3}</span><br />
+                        <span class="font-semibold text-collaborating"
+                            >{dates.phase3.start} → {dates.phase3.end}</span
+                        ><br />
                         {t.milestone3}
                     </p>
                 </td>
@@ -179,7 +214,9 @@
             <tr>
                 <td class="text-right">
                     <p>
-                        <span class="font-semibold text-collaborating">{t.date4}</span><br />
+                        <span class="font-semibold text-collaborating"
+                            >{dates.phase4.start} → {dates.phase4.end}</span
+                        ><br />
                         {t.milestone4}
                     </p>
                 </td>
