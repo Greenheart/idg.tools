@@ -49,7 +49,7 @@ export const getContributor = (
  * With the third case, we get built-in support for short URLs. Not that easy to type, but at least they are few characters.
  */
 export const getToolByLink = (link: Tool['link'], { tools }: Pick<AllContent, 'tools'>) =>
-    tools.find((t) => t.link === link || link.endsWith(t.slug)) as Tool
+    tools.find((t) => link.endsWith(t.slug)) as Tool
 
 /**
  * By supporting backwards compatible links that end with a `cuid.slug()`,
@@ -63,7 +63,7 @@ export const getToolByLink = (link: Tool['link'], { tools }: Pick<AllContent, 't
 export const getStoryByLink = (
     link: Story['link'],
     { stories }: Pick<CommunityContent, 'stories'>,
-) => stories.find((t) => t.link === link || link.endsWith(t.slug)) as Story
+) => stories.find((t) => link.endsWith(t.slug)) as Story
 
 /**
  * Given a specific story, get the next story before and after.
