@@ -37,10 +37,10 @@
         multiplier4: 'Present the updated framework at the IDG Summit in October 2024',
         note: 'Scroll the table to see all details',
         howDoneTitle: 'How is it done?',
-        phaseTitle1: 'Phase 1: Setting up the system (March 1 – September 2023)',
-        phaseTitle2: 'Phase 2: Data collection (September 2023  –  January 2024)',
-        phaseTitle3: 'Phase 3: Analysis & Prioritization (January  –  June 2024)',
-        phaseTitle4: 'Phase 4: Finalise design, present and localize (July  –  December 2024)',
+        phaseTitle1: 'Phase 1: Setting up the system',
+        phaseTitle2: 'Phase 2: Data collection',
+        phaseTitle3: 'Phase 3: Analysis & Prioritization',
+        phaseTitle4: 'Phase 4: Finalise design, present and localize',
         md_phaseText1:
             'During this phase co-creation have been conducted with more than 100 researchers across the globe to develop the survey and other methods. In parallel, information meetings have been conducted with so called multipliers (i.e international networks, global organizations, IDG Partner organizations & IDG Hubs) who are interested to help share the survey to a global audience. To get a comprehensive and inclusive dataset we aim at engaging at least 100 countries with 2M people who view the survey out which 100,000 respond. Researchers and multipliers have quality controlled the automatically generated translations of the survey.',
         md_phaseText2:
@@ -237,13 +237,21 @@
     <IDGDivider />
 
     <Heading size={1} tag="h2" class="mb-8 text-collaborating">{t.howDoneTitle}</Heading>
-    <Heading size={3} class="mb-4">{t.phaseTitle1}</Heading>
+    <Heading size={3} class="mb-4"
+        >{t.phaseTitle1} ({dates.phase1.start} → {dates.phase1.end})</Heading
+    >
     <Markdown formatting="limited" source={t.md_phaseText1} />
-    <Heading size={3} class="mb-4 mt-8">{t.phaseTitle2}</Heading>
+    <Heading size={3} class="mb-4 mt-8"
+        >{t.phaseTitle2} ({dates.phase2.start} → {dates.phase2.end})</Heading
+    >
     <Markdown formatting="limited" source={t.md_phaseText2} />
-    <Heading size={3} class="mb-4 mt-8">{t.phaseTitle3}</Heading>
+    <Heading size={3} class="mb-4 mt-8"
+        >{t.phaseTitle3} ({dates.phase3.start} → {dates.phase3.end})</Heading
+    >
     <Markdown formatting="limited" source={t.md_phaseText3} />
-    <Heading size={3} class="mb-4 mt-8">{t.phaseTitle4}</Heading>
+    <Heading size={3} class="mb-4 mt-8"
+        >{t.phaseTitle4} ({dates.phase4.start} → {dates.phase4.end})</Heading
+    >
     <Markdown formatting="limited" source={t.md_phaseText4} />
 
     <IDGDivider />
