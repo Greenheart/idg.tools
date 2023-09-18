@@ -1,6 +1,7 @@
+import type { Handle } from '@sveltejs/kit'
 import { getHTMLDirection, getLocale } from '$shared/content-utils'
 
-export async function handle({ event, resolve }) {
+export const handle = (async ({ event, resolve }) => {
     return resolve(event, {
         transformPageChunk: ({ html, done }) => {
             const locale = getLocale(event.params.locale)
@@ -14,4 +15,4 @@ export async function handle({ event, resolve }) {
             return html
         },
     })
-}
+}) satisfies Handle
