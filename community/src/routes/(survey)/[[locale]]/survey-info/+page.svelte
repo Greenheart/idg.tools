@@ -11,49 +11,57 @@
     export let data: PageData
     $: ({ surveyInfo: t, supportedLocales } = data)
 
-    // NOTE: This is likely not the best way to force update the locale and direction
-    // but it seems to work, so let's keep it.
     let locale = getLocale($page.params.locale)
+
+    const formatDates = () => {
+        const monthOnly: Partial<Intl.DateTimeFormatOptions> = { month: 'short' }
+        const yearAndMonth: Partial<Intl.DateTimeFormatOptions> = {
+            month: 'short',
+            year: 'numeric',
+        }
+        const dayAndMonth: Partial<Intl.DateTimeFormatOptions> = {
+            month: 'short',
+            day: 'numeric',
+        }
+        const fullDate: Partial<Intl.DateTimeFormatOptions> = {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+        }
+
+        return {
+            phase1: {
+                start: new Date('2023-03-01').toLocaleDateString(locale, monthOnly),
+                end: new Date('2023-09-19').toLocaleDateString(locale, fullDate),
+            },
+            phase2: {
+                start: new Date('2023-09-19').toLocaleDateString(locale, dayAndMonth),
+                end: new Date('2024-01-15').toLocaleDateString(locale, yearAndMonth),
+            },
+            phase3: {
+                start: new Date('2024-01-15').toLocaleDateString(locale, monthOnly),
+                end: new Date('2024-06-30').toLocaleDateString(locale, yearAndMonth),
+            },
+            phase4: {
+                start: new Date('2024-07-01').toLocaleDateString(locale, monthOnly),
+                end: new Date('2024-12-01').toLocaleDateString(locale, yearAndMonth),
+            },
+        }
+    }
+
+    let dates = formatDates()
 
     onMount(() => {
         page.subscribe(() => {
+            // NOTE: This is likely not the best way to force update the locale and direction
+            // but it seems to work, so let's keep it.
             locale = getLocale($page.params.locale)
+            dates = formatDates()
 
             document.documentElement.dir = getHTMLDirection(locale)
             document.documentElement.lang = locale
         })
     })
-
-    const monthOnly: Partial<Intl.DateTimeFormatOptions> = { month: 'short' }
-    const yearAndMonth: Partial<Intl.DateTimeFormatOptions> = { month: 'short', year: 'numeric' }
-    const dayAndMonth: Partial<Intl.DateTimeFormatOptions> = {
-        month: 'short',
-        day: 'numeric',
-    }
-    const fullDate: Partial<Intl.DateTimeFormatOptions> = {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-    }
-
-    const dates = {
-        phase1: {
-            start: new Date('2023-03-01').toLocaleDateString(locale, monthOnly),
-            end: new Date('2023-09-19').toLocaleDateString(locale, fullDate),
-        },
-        phase2: {
-            start: new Date('2023-09-19').toLocaleDateString(locale, dayAndMonth),
-            end: new Date('2024-01-15').toLocaleDateString(locale, yearAndMonth),
-        },
-        phase3: {
-            start: new Date('2024-01-15').toLocaleDateString(locale, monthOnly),
-            end: new Date('2024-06-30').toLocaleDateString(locale, yearAndMonth),
-        },
-        phase4: {
-            start: new Date('2024-07-01').toLocaleDateString(locale, monthOnly),
-            end: new Date('2024-12-01').toLocaleDateString(locale, yearAndMonth),
-        },
-    }
 
     const people = {
         fredrik:
