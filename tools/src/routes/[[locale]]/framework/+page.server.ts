@@ -18,7 +18,7 @@ export const load = (async ({ params, url }) => {
         throw redirect(301, redirectURL)
     }
 
-    // TODO: Get the user's preferred content locale via the `Accept-Language` HTTP header
+    // IDEA: Get the user's preferred content locale via the `Accept-Language` HTTP header
     const content = getContent(params.locale)
 
     if (content && supportedLocales) {

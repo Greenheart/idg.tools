@@ -10,7 +10,6 @@
     export let pathname: string
     export let currentLocale: string = DEFAULT_LOCALE_IDENTIFIER
 
-    // TODO: Order supported locales based on number of speakers
     const supported = Object.entries(supportedLocales) as [Locale, string][]
 
     let open = false

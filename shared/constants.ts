@@ -29,30 +29,32 @@ export const IDG_CMS_LINK = 'https://cms.idg.community'
  * NOTE: For now, we can create instructions on how to add a new language
  *
  * Use this list to find native names: https://en.wikipedia.org/wiki/List_of_language_names
+ *
+ * NOTE: These should be sorted in order with the highest number of speakers at the top.
  */
 export const LOCALES = {
     en: 'English',
-    es: 'Español',
-    bn: 'বাংলা ',
+    zh: '中文',
     hi: 'हिन्दी',
+    es: 'Español',
+    fr: 'Français',
+    ar: 'لعربية',
+    bn: 'বাংলা ',
     'pt-BR': 'Português (Brazil)',
     pt: 'Português',
-    fr: 'Français',
-    de: 'Deutsch',
-    nl: 'Nederlands',
-    it: 'Italiano',
-    ja: '日本 (Japanese)',
-    dk: 'Dansk',
-    sv: 'Svenska',
     ru: 'Русский',
-    ar: 'لعربية',
-    zh: '中文',
-    ko: '한국어',
-    ta: 'தமிழ்',
+    ur: 'اُردُو',
+    id: 'Bahasa Indonesia',
+    de: 'Deutsch',
+    ja: '日本',
     te: 'తెలుగు',
     tr: 'Türkçe',
-    id: 'Bahasa Indonesia',
-    ur: 'اُردُو',
+    ta: 'தமிழ்',
+    ko: '한국어',
+    it: 'Italiano',
+    nl: 'Nederlands',
+    sv: 'Svenska',
+    dk: 'Dansk',
 }
 
 export const LOCALE_DIRECTIONS: Record<Locale, 'rtl' | 'ltr'> = (
