@@ -16,6 +16,9 @@ export const load = (async ({ params }) => {
     // Build this into getLocale() so it happens automatically
     const content = getContent(params.locale)
 
+    // TODO: add redirect when locale is found
+    // TODO: separate getLocale() from getContent() to allow this.
+
     if (content && supportedLocales) {
         const { skills, dimensions } = content
         return { skills, dimensions, supportedLocales }

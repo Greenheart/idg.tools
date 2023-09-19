@@ -1,4 +1,5 @@
 import { COLORS, DEFAULT_LOCALE_IDENTIFIER, IDG_COLORS_RGB, LOCALE_IDENTIFIERS } from './constants'
+import { getLocale } from './content-utils'
 import type { Dimension, Locale, Skill } from './types'
 
 export const cx = (...classes: (string | undefined | false)[]) =>
@@ -84,7 +85,67 @@ export function getOffset(element: HTMLElement) {
 export const removeLeadingSlash = (string: string) => string.replace(/^\//, '')
 
 export const getCurrentLocale = (path: string) =>
-    LOCALE_IDENTIFIERS.find((identifier) => path.startsWith(`/${identifier}/`))
+    LOCALE_IDENTIFIERS.find((identifier) => new RegExp(`^\/${identifier}\/`, 'i').test(path))
+
+export const getRawLocale = (path: string) => path.match(/^\/([\w-]+)\//)?.[1]
+
+/**
+ * Get the localised version of location.pathname for a given locale.
+ * Adapts the output based on the currentLocale to keep URLs as simple as possible.
+ */
+// export const getLocalisedPath = (rawLocale: Locale, path: string, edgeCase = true) => {
+//     const currentLocale = getCurrentLocale(path)
+//     const _locale = getLocale(rawLocale)
+
+//     if (edgeCase) {
+//         // console.log({
+//         //     rawLocale,
+//         //     _locale,
+//         //     currentLocale,
+//         // })
+//     }
+
+//     if (typeof rawLocale === 'string' && rawLocale !== _locale) {
+//         // Replace with new locale.
+//         console.log('almost', { rawLocale, _locale, currentLocale })
+
+//         if (currentLocale) {
+//             console.log('hit')
+//             return path.replace(`/${currentLocale}/`, `/${_locale}/`)
+//         }
+//         return path.replace(`/${rawLocale}/`, `/${_locale}/`)
+//     } else if (_locale === DEFAULT_LOCALE_IDENTIFIER) {
+//         // No need to replace if we want the default locale and don't have any current one.
+//         if (!currentLocale) return path
+//         console.log('else if')
+
+//         // Shorten down default locale to keep URLs simple and consistent.
+//         return path.replace(`/${currentLocale}/`, '/')
+//     } else {
+//         console.log('else')
+
+//         return `/${_locale}/${removeLeadingSlash(path)}`
+//     }
+// }
+
+export const getRedirectURL = (path: string, rawLocale: string) => {
+    if (!rawLocale) return path
+
+    const locale = getLocale(rawLocale)
+
+    if (locale && locale !== rawLocale && locale !== DEFAULT_LOCALE_IDENTIFIER) {
+        // Mistyped locale should redirect to the version with correct casing
+        return path.replace(`/${rawLocale}/`, `/${locale}/`)
+    } else if (locale === DEFAULT_LOCALE_IDENTIFIER) {
+        // Shorten the default locale to keep URLs simple and consistent
+        return path.replace(`/${rawLocale}/`, '/')
+    } else if (!locale) {
+        // Invalid locale should redirect to the default locale
+        return path.replace(`/${rawLocale}/`, '/')
+    }
+
+    return path
+}
 
 /**
  * Get the localised version of location.pathname for a given locale.
@@ -105,3 +166,25 @@ export const getLocalisedPath = (locale: Locale, path: string) => {
         return `/${locale}/${removeLeadingSlash(path)}`
     }
 }
+
+// TODO: maybe break the getLocalisedPath() into two functions
+// 1) the first for getting all valid URLs to use for links
+// 2) the second for getting the correct URL based on rawLocale and the current path
+
+/*
+
+rawLocale = getRawLocale(locale)
+_locale = getLocale(rawLocale)
+currentLocale = getCurrentLocale(rawLocale)
+
+
+Cases:
+
+- /en/[link] should redirect to /[link] (Default locale)
+- /EN/[link] should redirect to /[link] (default locale, case insensitive)
+- /pt-BR/[link] should return the path (keep specific and correct locale)
+- /PT-BR/[link] should redirect to /pt-BR/[link] (case insensitive redirect to parsed locale)
+- /TY-po/[link] should redirect to /[link] (invalid locale redirect to default)
+- /
+
+*/
