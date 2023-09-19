@@ -3,14 +3,20 @@
     import Link from './Link.svelte'
     import LocaleIcon from '../icons/Locale.svelte'
     import { getLocalisedPath } from '../utils'
-    import { DEFAULT_LOCALE_IDENTIFIER } from '../constants'
+    import { DEFAULT_LOCALE_IDENTIFIER, LOCALES } from '../constants'
     import ChevronDown from '../icons/ChevronDown.svelte'
 
     export let supportedLocales: SupportedLocales
     export let pathname: string
     export let currentLocale: string = DEFAULT_LOCALE_IDENTIFIER
 
-    const supported = Object.entries(supportedLocales) as [Locale, string][]
+    // Sort supported languages based on number of speakers
+    const supported = Object.keys(LOCALES).reduce((result, locale) => {
+        if (supportedLocales[locale]) {
+            result.push([locale, supportedLocales[locale]])
+        }
+        return result
+    }, []) as [Locale, string][]
 
     let open = false
     let target: HTMLDivElement
