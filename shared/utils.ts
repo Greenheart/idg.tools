@@ -89,45 +89,6 @@ export const getCurrentLocale = (path: string) =>
 
 export const getRawLocale = (path: string) => path.match(/^\/([\w-]+)\//)?.[1]
 
-/**
- * Get the localised version of location.pathname for a given locale.
- * Adapts the output based on the currentLocale to keep URLs as simple as possible.
- */
-// export const getLocalisedPath = (rawLocale: Locale, path: string, edgeCase = true) => {
-//     const currentLocale = getCurrentLocale(path)
-//     const _locale = getLocale(rawLocale)
-
-//     if (edgeCase) {
-//         // console.log({
-//         //     rawLocale,
-//         //     _locale,
-//         //     currentLocale,
-//         // })
-//     }
-
-//     if (typeof rawLocale === 'string' && rawLocale !== _locale) {
-//         // Replace with new locale.
-//         console.log('almost', { rawLocale, _locale, currentLocale })
-
-//         if (currentLocale) {
-//             console.log('hit')
-//             return path.replace(`/${currentLocale}/`, `/${_locale}/`)
-//         }
-//         return path.replace(`/${rawLocale}/`, `/${_locale}/`)
-//     } else if (_locale === DEFAULT_LOCALE_IDENTIFIER) {
-//         // No need to replace if we want the default locale and don't have any current one.
-//         if (!currentLocale) return path
-//         console.log('else if')
-
-//         // Shorten down default locale to keep URLs simple and consistent.
-//         return path.replace(`/${currentLocale}/`, '/')
-//     } else {
-//         console.log('else')
-
-//         return `/${_locale}/${removeLeadingSlash(path)}`
-//     }
-// }
-
 export const getRedirectURL = (path: string, rawLocale: string) => {
     if (!rawLocale) return path
 
