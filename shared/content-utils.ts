@@ -13,10 +13,23 @@ import type {
     Locale,
 } from './types'
 
-export const getLocale = (locale?: string) =>
-    LOCALE_IDENTIFIERS.some((l) => l.toLowerCase() === (locale?.toLowerCase() as Locale))
-        ? (locale as Locale)
-        : DEFAULT_LOCALE_IDENTIFIER
+export const getLocale = (locale?: string) => {
+    const _locale = LOCALE_IDENTIFIERS.find(
+        (l) => l.toLowerCase() === (locale?.toLowerCase() as Locale),
+    )
+
+    if (_locale) return _locale
+
+    const withUnderscore = LOCALE_IDENTIFIERS.find(
+        (l) =>
+            l.toLowerCase().replace('-', '_') ===
+            (locale?.toLowerCase().replace('-', '_') as Locale),
+    )
+
+    if (withUnderscore) return withUnderscore
+
+    return DEFAULT_LOCALE_IDENTIFIER
+}
 
 export const getHTMLDirection = (locale: Locale) => LOCALE_DIRECTIONS[locale] ?? 'ltr'
 
