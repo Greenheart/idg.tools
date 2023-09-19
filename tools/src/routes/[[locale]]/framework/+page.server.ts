@@ -1,6 +1,7 @@
-import { error } from '@sveltejs/kit'
+import { error, redirect } from '@sveltejs/kit'
 import { getContent, getSupportedLocales } from '$lib/content-backend'
 import type { EntryGenerator, PageServerLoad } from './$types'
+import { getRawLocale, getRedirectURL } from '$shared/utils'
 
 const supportedLocales = getSupportedLocales()
 
@@ -9,15 +10,16 @@ export const entries = (() =>
 
 export const prerender = 'auto'
 
-export const load = (async ({ params }) => {
-    // TODO: Get the user's preferred content locale via the `Accept-Language` HTTP header
-    // TODO: If the current locale is not found, redirect to a locale that does exist.
-    // Make sure to make the proper redirect to prevent dead/duplicate content links
-    // Build this into getLocale() so it happens automatically
-    const content = getContent(params.locale)
+export const load = (async ({ params, url }) => {
+    const rawLocale = getRawLocale(url.pathname)
+    const redirectURL = getRedirectURL(url.pathname, rawLocale)
 
-    // TODO: add redirect when locale is found
-    // TODO: separate getLocale() from getContent() to allow this.
+    if (url.pathname !== redirectURL) {
+        throw redirect(301, redirectURL)
+    }
+
+    // TODO: Get the user's preferred content locale via the `Accept-Language` HTTP header
+    const content = getContent(params.locale)
 
     if (content && supportedLocales) {
         const { skills, dimensions } = content

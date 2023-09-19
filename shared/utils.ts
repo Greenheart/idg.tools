@@ -89,7 +89,7 @@ export const getCurrentLocale = (path: string) =>
 
 export const getRawLocale = (path: string) => path.match(/^\/([\w-]+)\//)?.[1]
 
-export const getRedirectURL = (path: string, rawLocale: string) => {
+export const getRedirectURL = (path: string, rawLocale?: string) => {
     if (!rawLocale) return path
 
     const locale = getLocale(rawLocale)

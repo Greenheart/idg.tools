@@ -42,8 +42,6 @@ export const load = (async ({ params, url }) => {
     const locale = getLocale(params.locale) as unknown as SurveyBackgroundInfoLocales
     const surveyInfo = getContent(locale)
 
-    // TODO: do the same for idg.tools/[[locale]]/framework
-
     if (surveyInfo && supportedLocales) {
         return { surveyInfo, supportedLocales }
     }
