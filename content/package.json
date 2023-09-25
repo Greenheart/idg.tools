@@ -9,9 +9,9 @@
         "colors": "node scripts/compile.js && node scripts/compiled/update-colors.js"
     },
     "devDependencies": {
-        "@types/node": "^20.5.1",
+        "@types/node": "^20.6.5",
         "chokidar": "^3.5.3",
-        "esbuild": "~0.19.2",
+        "esbuild": "~0.19.3",
         "fast-glob": "^3.3.1",
         "lodash.debounce": "^4.0.8",
         "slugify": "^1.6.6"
