@@ -2,5 +2,10 @@
   "id": "ckzi3f9cj1747e2n0taoxah1j",
   "name": "Habilidad para la comunicación",
   "description": "Aptitud de realmente escuchar a los demás, promover el diálogo genuino, defender hábilmente nuestros puntos de vista, manejar conflictos constructivamente y adaptar la comunicación a grupos diversos.",
-  "dimension": "ckzi3951t0293e2n0n3bykbg5"
+  "dimension": "ckzi3951t0293e2n0n3bykbg5",
+  "questions": [
+    "When was the last time you managed a conflict constructively?",
+    "Do you listen more or talk more? How hard would it be to change that balance?",
+    "How do you tailor your communication for different audiences?"
+  ]
 }

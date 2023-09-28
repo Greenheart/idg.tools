@@ -2,5 +2,10 @@
   "id": "ckzi3ayvo0547e2n03lvu0goo",
   "name": "Öppenhet och lärande",
   "description": "Att ha ett grundläggande inställning av nyfikenhet och en villighet att vara sårbar, omfamna förändring och att vilja utvecklas.",
-  "dimension": "ckzi3855r0086e2n0smi0mew5"
+  "dimension": "ckzi3855r0086e2n0smi0mew5",
+  "questions": [
+    "How do you deal with critical feedback?",
+    "How do you practice staying curious?",
+    "Who do you ask for honest feedback?"
+  ]
 }

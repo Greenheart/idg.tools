@@ -2,5 +2,10 @@
   "id": "ckzi3gb7f2318e2n04kesx118",
   "name": "Tillit",
   "description": "Förmåga att visa tillit samt skapa och upprätthålla tillitsfulla relationer.",
-  "dimension": "ckzi3951t0293e2n0n3bykbg5"
+  "dimension": "ckzi3951t0293e2n0n3bykbg5",
+  "questions": [
+    "How do you cultivate trust in your closest relationships?",
+    "What can you learn from relationships about building trust in your teams?",
+    "Which boundary of yours cannot be crossed without losing your trust?"
+  ]
 }

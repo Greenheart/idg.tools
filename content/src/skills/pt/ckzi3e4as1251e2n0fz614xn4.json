@@ -2,5 +2,10 @@
   "id": "ckzi3e4as1251e2n0fz614xn4",
   "name": "Apreciação",
   "description": "Relacionar-se com os outros e com o mundo com um sentido básico de apreciação, gratidão e alegria\n",
-  "dimension": "ckzi38wix0218e2n09ncgnmxx"
+  "dimension": "ckzi38wix0218e2n09ncgnmxx",
+  "questions": [
+    "What are you most grateful for right now? ",
+    "Who has helped you become the person you are today?",
+    "When did you last pause to truly appreciate something or someone?"
+  ]
 }

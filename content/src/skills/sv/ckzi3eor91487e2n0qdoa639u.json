@@ -2,5 +2,10 @@
   "id": "ckzi3eor91487e2n0qdoa639u",
   "name": "Ödmjukhet",
   "description": "Förmåga att agera i enlighet med vad en situation kräver utan att vara upptagen med ens egen betydelse.",
-  "dimension": "ckzi38wix0218e2n09ncgnmxx"
+  "dimension": "ckzi38wix0218e2n09ncgnmxx",
+  "questions": [
+    "When did you last prioritise the needs of someone else over your own desires?",
+    "What practices help you maintain a humble approach?",
+    "How do you navigate situations where your ego is challenged?"
+  ]
 }

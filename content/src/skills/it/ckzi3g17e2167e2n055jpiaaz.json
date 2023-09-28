@@ -2,5 +2,10 @@
   "id": "ckzi3g17e2167e2n055jpiaaz",
   "name": "Mentalità inclusiva e competenza interculturale",
   "description": "Disponibilità e competenza ad abbracciare la diversità e a includere persone e collettivi con punti di vista e background diversi.",
-  "dimension": "ckzi3951t0293e2n0n3bykbg5"
+  "dimension": "ckzi3951t0293e2n0n3bykbg5",
+  "questions": [
+    "How do you actively embrace diversity in your organisation?",
+    "Which stakeholders would you like to better understand and include?",
+    "How do you include all voices when collaborating with diverse groups?"
+  ]
 }

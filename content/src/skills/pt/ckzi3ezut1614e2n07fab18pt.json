@@ -2,5 +2,10 @@
   "id": "ckzi3ezut1614e2n07fab18pt",
   "name": "Empatia e Compaixão",
   "description": "Capacidade de se relacionar com os outros, consigo próprio e com a natureza com bondade, empatia e compaixão e lidar com o sofrimento associado\n",
-  "dimension": "ckzi38wix0218e2n09ncgnmxx"
+  "dimension": "ckzi38wix0218e2n09ncgnmxx",
+  "questions": [
+    "When did you last help a stranger to relieve their suffering or worry?",
+    "How do you care for yourself whilst empathising deeply with others?",
+    "How do you cultivate compassion even when it's challenging?"
+  ]
 }

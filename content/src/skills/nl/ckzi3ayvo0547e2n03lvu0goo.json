@@ -2,5 +2,10 @@
   "id": "ckzi3ayvo0547e2n03lvu0goo",
   "name": "Openheid en Leergierigheid",
   "description": "Een basishouding van nieuwsgierigheid en de bereidheid om kwetsbaar te zijn, verandering te omarmen en te groeien.",
-  "dimension": "ckzi3855r0086e2n0smi0mew5"
+  "dimension": "ckzi3855r0086e2n0smi0mew5",
+  "questions": [
+    "How do you deal with critical feedback?",
+    "How do you practice staying curious?",
+    "Who do you ask for honest feedback?"
+  ]
 }

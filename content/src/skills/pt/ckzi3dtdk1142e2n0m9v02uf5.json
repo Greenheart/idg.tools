@@ -2,5 +2,10 @@
   "id": "ckzi3dtdk1142e2n0m9v02uf5",
   "name": "Orientação e Visão de Longo Prazo",
   "description": "Orientação a longo prazo e capacidade de formular e sustentar o compromisso com visões relacionadas com o contexto mais amplo.\n",
-  "dimension": "ckzi38ilp0149e2n0idgw5zqv"
+  "dimension": "ckzi38ilp0149e2n0idgw5zqv",
+  "questions": [
+    "What would you like society to look like 20 years from now?",
+    "What long-term visions drive your actions?",
+    "In your role, which three tasks are most important from a 5, 10 and 30-year perspective?"
+  ]
 }
