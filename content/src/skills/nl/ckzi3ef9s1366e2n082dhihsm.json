@@ -2,5 +2,10 @@
   "id": "ckzi3ef9s1366e2n082dhihsm",
   "name": "Verbondenheid",
   "description": "Een scherp gevoel hebben van verbondenheid met en/of deel uitmaken van een groter geheel, zoals een gemeenschap, de mensheid of een wereldwijd ecosysteem.",
-  "dimension": "ckzi38wix0218e2n09ncgnmxx"
+  "dimension": "ckzi38wix0218e2n09ncgnmxx",
+  "questions": [
+    "Who are the people in your life that you feel a deep connection with?",
+    "What experiences deepen your sense of a global connection?",
+    "How do you connect to nature, and what does it do to you?"
+  ]
 }

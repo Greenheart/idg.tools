@@ -2,5 +2,10 @@
   "id": "ckzi3am4y0486e2n04obcy6hi",
   "name": "Integriteit en Authenticiteit",
   "description": "Betrokkenheid en het vermogen om te handelen vanuit oprechtheid, eerlijkheid en integriteit.",
-  "dimension": "ckzi3855r0086e2n0smi0mew5"
+  "dimension": "ckzi3855r0086e2n0smi0mew5",
+  "questions": [
+    "When have you stood by your truth, even if it was difficult?",
+    "What will you not compromise?",
+    "Who do you feel most authentic with?"
+  ]
 }

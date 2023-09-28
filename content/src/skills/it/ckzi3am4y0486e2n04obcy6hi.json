@@ -2,5 +2,10 @@
   "id": "ckzi3am4y0486e2n04obcy6hi",
   "name": "Integrità e Autenticità",
   "description": "Impegno e capacità di agire con sincerità, onestà e integrità.",
-  "dimension": "ckzi3855r0086e2n0smi0mew5"
+  "dimension": "ckzi3855r0086e2n0smi0mew5",
+  "questions": [
+    "When have you stood by your truth, even if it was difficult?",
+    "What will you not compromise?",
+    "Who do you feel most authentic with?"
+  ]
 }

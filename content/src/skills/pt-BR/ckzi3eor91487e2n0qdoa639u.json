@@ -2,5 +2,10 @@
   "id": "ckzi3eor91487e2n0qdoa639u",
   "name": "Humildade",
   "description": "Ser capaz de agir de acordo com as necessidades da situação sem se preocupar com a própria importância.",
-  "dimension": "ckzi38wix0218e2n09ncgnmxx"
+  "dimension": "ckzi38wix0218e2n09ncgnmxx",
+  "questions": [
+    "When did you last prioritise the needs of someone else over your own desires?",
+    "What practices help you maintain a humble approach?",
+    "How do you navigate situations where your ego is challenged?"
+  ]
 }

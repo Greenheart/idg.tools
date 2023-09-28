@@ -2,5 +2,10 @@
   "id": "ckzi3h80v2807e2n0l44d20qr",
   "name": "Creatividad",
   "description": "Habilidad de generar y desarrollar ideas originales, innovar y estar dispuesto a disrumpir patrones convencionales.",
-  "dimension": "ckzi39fwv0374e2n0d2eynda4"
+  "dimension": "ckzi39fwv0374e2n0d2eynda4",
+  "questions": [
+    "When and where are you most creative?",
+    "Do your personal structures support or inhibit your creativity?",
+    "When have you disrupted conventional patterns with a creative solution?"
+  ]
 }

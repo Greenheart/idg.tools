@@ -2,5 +2,10 @@
   "id": "ckzi3hqs63163e2n03h36pb73",
   "name": "Perseveranza",
   "description": "Capacità di sostenere l'impegno e di rimanere determinati e pazienti anche quando gli sforzi richiedono molto tempo per dare frutti.",
-  "dimension": "ckzi39fwv0374e2n0d2eynda4"
+  "dimension": "ckzi39fwv0374e2n0d2eynda4",
+  "questions": [
+    "Can you recall a time when your patience eventually paid off?",
+    "What helps you sustain your efforts when progress seems slow?",
+    "How do you handle feelings of discouragement?"
+  ]
 }

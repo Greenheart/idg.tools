@@ -2,5 +2,10 @@
   "id": "ckzi3hqs63163e2n03h36pb73",
   "name": "Doorzettingsvermogen",
   "description": "Het vermogen om zich te blijven inzetten en vastberaden en geduldig te blijven, zelfs wanneer het lang duurt voor de inspanningen vruchten afwerpen.",
-  "dimension": "ckzi39fwv0374e2n0d2eynda4"
+  "dimension": "ckzi39fwv0374e2n0d2eynda4",
+  "questions": [
+    "Can you recall a time when your patience eventually paid off?",
+    "What helps you sustain your efforts when progress seems slow?",
+    "How do you handle feelings of discouragement?"
+  ]
 }
