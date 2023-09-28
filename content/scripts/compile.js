@@ -9,6 +9,7 @@ esbuild
         entryPoints: [
             resolve(__dirname, 'build-content.ts'),
             // resolve(__dirname, 'update-colors.ts'),
+            resolve(__dirname, 'copy-locale.ts'),
         ],
         outdir: resolve(__dirname, 'compiled'),
         bundle: true,

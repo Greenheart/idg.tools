@@ -55,6 +55,7 @@ export const LOCALES = {
     nl: 'Nederlands',
     sv: 'Svenska',
     dk: 'Dansk',
+    fi: 'Suomi',
 }
 
 export const LOCALE_DIRECTIONS: Record<Locale, 'rtl' | 'ltr'> = (
