@@ -56,7 +56,7 @@ const contentDir = resolve(__dirname, '../../src')
 
 // TODO: Document how to update the selected Locales that should be published.
 // At the moment this is important for adding new translations of the IDG framework.
-const SELECTED_LOCALES: Locale[] = ['en', 'es', 'nl', 'sv', 'pt', 'pt-BR', 'it']
+const SELECTED_LOCALES: Locale[] = ['en', 'es', 'nl', 'sv', 'pt', 'pt-BR', 'it', 'fi']
 
 async function runBundle(selectedBundle: BundleName) {
     const bundle = BUNDLES[selectedBundle]
