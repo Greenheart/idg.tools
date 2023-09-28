@@ -5,6 +5,7 @@ export const SkillsFields: CustomCmsField[] = [
     NAME,
     { ...DESCRIPTION, widget: 'text' } as CustomCmsField,
     {
+        // TODO: create script to populate questions for skills in other locales
         label: 'Reflection questions',
         label_singular: 'Reflection question',
         name: 'questions',
