@@ -6,7 +6,7 @@
     const numberOfDots = (Math.ceil(score / 20) * 20) / 20
 </script>
 
-<div class="flex gap-1">
+<div class="flex gap-1" aria-label="Relevancy: {numberOfDots} of 5">
     <div class={cx(baseClasses, numberOfDots >= 1 ? 'bg-black' : '')} />
     <div class={cx(baseClasses, numberOfDots >= 2 ? 'bg-black' : '')} />
     <div class={cx(baseClasses, numberOfDots >= 3 ? 'bg-black' : '')} />
