@@ -84,7 +84,7 @@
 
                                 <div class="py-2 bg-white space-y-2">
                                     {#each getSkillsInDimension( dimension.id, { skills: $skills }, ) as skill (skill.name)}
-                                        <Disclosure class="grid" let:open defaultOpen={true}>
+                                        <Disclosure class="grid" let:open>
                                             <DisclosureButton
                                                 class={cx(
                                                     'p-2 flex gap-2 items-center hover:bg-white hover:text-black text-left group drop-shadow-xl',
