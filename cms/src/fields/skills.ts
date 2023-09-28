@@ -5,6 +5,23 @@ export const SkillsFields: CustomCmsField[] = [
     NAME,
     { ...DESCRIPTION, widget: 'text' } as CustomCmsField,
     {
+        label: 'Reflection questions',
+        label_singular: 'Reflection question',
+        name: 'questions',
+        i18n: true,
+        required: false,
+        allow_add: false,
+        collapsed: false,
+        field: {
+            widget: 'string',
+            i18n: true,
+            name: 'question',
+            label: 'Reflection question',
+        },
+        default: [],
+        widget: 'list',
+    },
+    {
         label: 'Dimension',
         name: 'dimension',
         widget: 'relation',
