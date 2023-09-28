@@ -15,18 +15,28 @@ import type {
 } from '$shared/types'
 import { getPaths, readJSON } from '../utils'
 import type { BuilderInput } from './builders'
+import { SCHEMAS } from './schemas'
 
 type LoaderInput = {
     contentDir: string
     locale: Locale
 }
 
-const loadJSONPaths = (paths: string[]) => Promise.all(paths.map(readJSON))
+/**
+ * Load all paths for a given contentType. Then parse the data with the related Zod schema.
+ */
+const loadJSONPaths = (paths: string[], contentType: keyof typeof SCHEMAS) =>
+    Promise.all(
+        paths.map((path) => readJSON(path).then((data) => SCHEMAS[contentType].parse(data))),
+    )
 
 const loadLocalisedContent = <T>(
     contentType: Omit<keyof AllContent, 'contributors' | 'featured'>,
     { contentDir, locale }: LoaderInput,
-): Promise<T[]> => getPaths(contentDir, `${contentType}/${locale}/*.json`).then(loadJSONPaths)
+): Promise<T[]> =>
+    getPaths(contentDir, `${contentType}/${locale}/*.json`).then((paths) =>
+        loadJSONPaths(paths, contentType as keyof typeof SCHEMAS),
+    ) as Promise<T[]>
 
 /**
  * Content loaders are a set of functions responsible for loading specific content types.
@@ -34,7 +44,9 @@ const loadLocalisedContent = <T>(
  */
 export const LOADERS = {
     async contributors({ contentDir }: LoaderInput): Promise<Contributor[]> {
-        return getPaths(contentDir, `contributors/*.json`).then(loadJSONPaths)
+        return getPaths(contentDir, `contributors/*.json`).then((paths) =>
+            loadJSONPaths(paths, 'contributors'),
+        ) as Promise<Contributor[]>
     },
     async tags(loaderInput: LoaderInput): Promise<Tag[]> {
         return loadLocalisedContent('tags', loaderInput)
@@ -80,11 +92,11 @@ async function loadContent<T>({
     selectedContent: (keyof T)[]
     contentDir: string
 }) {
-    // Load all selectedLocales in parallell
+    // Load all selectedLocales in parallel
     const loadedContent: [Locale, T][] = await Promise.all(
         selectedLocales.map(async (locale) => {
             const loaderInput = { locale, contentDir }
-            // Load all content types in parallell to improve performance
+            // Load all content types in parallel to improve performance
             const loadedContent = await Promise.all(
                 selectedContent.map((contentType) => {
                     return LOADERS[contentType as keyof typeof LOADERS](loaderInput)

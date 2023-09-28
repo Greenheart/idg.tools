@@ -27,9 +27,6 @@ export const BUILDERS = {
                 const stories = runAllTransformers(
                     [
                         TRANSFORMERS.keepPublishedStories,
-                        TRANSFORMERS.ensureTagsExists,
-                        TRANSFORMERS.ensureDimensionsExists,
-                        TRANSFORMERS.ensureContributorsExists,
                         TRANSFORMERS.useConsistentStoryImageURLs,
                         TRANSFORMERS.sortEntityTagsAlphabetically(content.tags),
                         TRANSFORMERS.updateLink,
@@ -75,9 +72,7 @@ export const BUILDERS = {
                     locale === 'en'
                         ? runAllTransformers(
                               [
-                                  TRANSFORMERS.ensureRelevancyExists,
                                   TRANSFORMERS.filterAndSortRelevancyScores(locale),
-                                  TRANSFORMERS.ensureTagsExists,
                                   TRANSFORMERS.sortEntityTagsAlphabetically(content.tags),
                                   TRANSFORMERS.updateLink,
                                   TRANSFORMERS.sortTools(content.skills),

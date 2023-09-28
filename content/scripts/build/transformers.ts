@@ -42,30 +42,6 @@ export const TRANSFORMERS = {
     keepPublishedStories(stories: Story[]) {
         return stories.filter((story) => story.publishedAt)
     },
-    ensureTagsExists<T>(entities: Story[] | Tool[]) {
-        return entities.map((entity) => {
-            if (!entity.tags) entity.tags = []
-            return entity as T
-        })
-    },
-    ensureDimensionsExists(entities: Story[]) {
-        return entities.map((entity) => {
-            if (!entity.dimensions) entity.dimensions = []
-            return entity
-        })
-    },
-    ensureContributorsExists(entities: Story[]) {
-        return entities.map((entity) => {
-            if (!entity.contributors) entity.contributors = []
-            return entity
-        })
-    },
-    ensureRelevancyExists(entities: Tool[]) {
-        return entities.map((entity) => {
-            if (!entity.relevancy) entity.relevancy = []
-            return entity
-        })
-    },
     keepRelevantTags(entities: Story[] | Tool[]) {
         return (tags: Tag[]) =>
             tags.filter((tag) => entities.some((entity) => entity.tags.includes(tag.id)))
