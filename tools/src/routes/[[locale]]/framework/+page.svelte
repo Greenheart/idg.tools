@@ -107,7 +107,7 @@
                                                     )}
                                                 />
                                             </DisclosureButton>
-                                            <DisclosurePanel class="bg-white px-4">
+                                            <DisclosurePanel class="bg-white px-4 grid">
                                                 <Heading
                                                     size={2}
                                                     class={cx(
@@ -117,7 +117,7 @@
                                                 >
                                                 <div
                                                     class={cx(
-                                                        'rounded-lg aspect-square max-w-xs mx-auto flex items-center justify-center',
+                                                        'rounded-lg flex items-center py-4 justify-center',
                                                         bgColor,
                                                     )}
                                                 >
