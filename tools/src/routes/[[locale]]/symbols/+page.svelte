@@ -32,6 +32,8 @@
 
 <!-- TODO: Move this into a separate layout group (inheriting from an empty root layout), similar to how we have done it for the communiity site -->
 
+<!-- IDEA: Add svelte transition fade in -->
+
 <!-- IDEA: If we add skill names, maybe add locale switcher too -->
 <div class="grid justify-center h-[320px]">
     {#key $randomSymbol}
