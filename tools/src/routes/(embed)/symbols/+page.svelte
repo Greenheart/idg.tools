@@ -29,15 +29,16 @@
     }
 
     onMount(() => {
-        // try {
-        //     const raw = localStorage.getItem('randomSymbol')
-        //     if (raw) {
-        //         randomSymbol = JSON.parse(raw)
-        //         return
-        //     }
-        // } catch (error) {
-        //     console.error(error)
-        // }
+        // IDEA: Maybe it's possible to persist your symbol in the embed
+        try {
+            const raw = localStorage.getItem('randomSymbol')
+            if (raw) {
+                randomSymbol = JSON.parse(raw)
+                return
+            }
+        } catch (error) {
+            console.error(error)
+        }
         randomSymbol = getRandomSymbol(skills, dimensions)
     })
 </script>
