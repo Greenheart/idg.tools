@@ -36,7 +36,7 @@
         {#if $randomSymbol}
             <div
                 class={cx(
-                    'h-[320px] w-[320px] aspect-square p-8',
+                    'h-[320px] w-[320px] aspect-square p-8 rounded-lg',
                     getColor($randomSymbol.skill.id),
                 )}
             >
