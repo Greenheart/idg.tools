@@ -30,6 +30,8 @@
 
 <Meta title="IDG Symbols" description="Show a random IDG symbol" />
 
+<!-- TODO: Move this into a separate layout group (inheriting from an empty root layout), similar to how we have done it for the communiity site -->
+
 <!-- IDEA: If we add skill names, maybe add locale switcher too -->
 <div class="grid justify-center h-[320px]">
     {#key $randomSymbol}
