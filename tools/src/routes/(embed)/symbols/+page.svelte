@@ -29,30 +29,20 @@
     }
 
     onMount(() => {
-        try {
-            const raw = localStorage.getItem('randomSymbol')
-            if (raw) {
-                randomSymbol = JSON.parse(raw)
-                return
-            }
-        } catch (error) {
-            console.error(error)
-        }
+        // try {
+        //     const raw = localStorage.getItem('randomSymbol')
+        //     if (raw) {
+        //         randomSymbol = JSON.parse(raw)
+        //         return
+        //     }
+        // } catch (error) {
+        //     console.error(error)
+        // }
         randomSymbol = getRandomSymbol(skills, dimensions)
     })
 </script>
 
 <Meta title="IDG Symbols" description="Show a random IDG symbol" />
-
-<!-- Preload symbols to improve perceived performance -->
-<svelte:head>
-    {#each dimensions as dimension}
-        {@const dimensionSlug = getDimensionSlug(dimension.id)}
-        {#each dimension.skills as _, i}
-            <link rel="preload" as="image" href="/symbols/{dimensionSlug}_{i + 1}.svg" />
-        {/each}
-    {/each}
-</svelte:head>
 
 <div class="pt-16 px-2 flex justify-center">
     <div
