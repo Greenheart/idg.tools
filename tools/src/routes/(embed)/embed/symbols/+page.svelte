@@ -9,4 +9,4 @@
 
 <Meta title="IDG Symbols" description="Show a random IDG symbol" />
 
-<RandomSymbol {skills} {dimensions} />
+<RandomSymbol {skills} {dimensions} isEmbedded />
