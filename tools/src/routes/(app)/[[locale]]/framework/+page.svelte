@@ -15,10 +15,10 @@
     import { Heading } from '$shared/components'
     import Meta from '$components/Meta.svelte'
     import type { PageData } from './$types'
-    import { getSkillsInDimension } from '$shared/content-utils'
+    import { getSkillsInDimension, getDimensionSlug } from '$shared/content-utils'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import { IDGSymbol, ChevronDown } from '$shared/icons'
-    import { cx, getColor, getDimensionSlug } from '$shared/utils'
+    import { cx, getColor } from '$shared/utils'
 
     export let data: PageData
 
