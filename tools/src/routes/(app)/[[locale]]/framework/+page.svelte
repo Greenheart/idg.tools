@@ -27,6 +27,7 @@
     // Ensure the page re-renders when the URL (and the data) changes.
     const dimensions = derived(page, () => data.dimensions)
     const skills = derived(page, () => data.skills)
+    const symbols = derived(page, () => data.symbols)
 </script>
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
@@ -59,6 +60,7 @@
                             >
                                 <IDGSymbol
                                     id={dimension.id}
+                                    symbols={$symbols}
                                     class="pointer-events-none w-12 h-12 {selectedIndex === i
                                         ? 'text-white'
                                         : getColor(dimension.id, 'text')}"
@@ -78,6 +80,7 @@
                                 <Heading size={4} class="px-4">{dimension.subtitle}</Heading>
                                 <IDGSymbol
                                     id={dimension.id}
+                                    symbols={$symbols}
                                     class="pointer-events-none w-36 h-36 my-4 mx-auto"
                                 />
                                 <p class="p-4 pt-0">{dimension.description}</p>
@@ -94,6 +97,7 @@
                                             >
                                                 <IDGSymbol
                                                     id={skill.id}
+                                                    symbols={$symbols}
                                                     class="w-10 h-10 shrink-0 group-hover:!{textColor}"
                                                 />
                                                 <p class="text-sm w-full">
@@ -122,6 +126,7 @@
                                                 >
                                                     <IDGSymbol
                                                         id={skill.id}
+                                                        symbols={$symbols}
                                                         class="pointer-events-none w-36 h-36 text-white"
                                                     />
                                                 </div>

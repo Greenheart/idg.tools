@@ -1,7 +1,7 @@
 <script lang="ts">
     import { cx, getColor, randomInt } from '$shared/utils'
     import { onMount } from 'svelte'
-    import type { Skill } from '$shared/types'
+    import type { IDGSymbols, Skill } from '$shared/types'
     import { fade } from 'svelte/transition'
     import { COLORS } from '$shared/constants'
     import { IDGSymbol } from '$shared/icons'
@@ -9,6 +9,7 @@
     /** Only enable persistance when the component isn't part of an embedded page */
     export let isEmbedded = false
     export let skills: Skill[]
+    export let symbols: IDGSymbols
 
     let randomSkill: Skill['id'] | undefined
 
@@ -41,7 +42,7 @@
     >
         {#if randomSkill}
             <div in:fade={{ duration: 500 }}>
-                <IDGSymbol id={randomSkill} class="w-full h-full text-white" />
+                <IDGSymbol id={randomSkill} {symbols} class="w-full h-full text-white" />
             </div>
         {/if}
     </div>
