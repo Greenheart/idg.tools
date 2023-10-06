@@ -4,9 +4,9 @@
     import RandomSymbol from '$components/RandomSymbol.svelte'
 
     export let data: PageData
-    $: ({ skills } = data)
+    $: ({ skills, symbols } = data)
 </script>
 
 <Meta title="IDG Symbols" description="Show a random IDG symbol" />
 
-<RandomSymbol {skills} isEmbedded />
+<RandomSymbol {skills} {symbols} isEmbedded />

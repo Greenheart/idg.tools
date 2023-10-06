@@ -97,3 +97,5 @@ export type Localised<T> = Partial<Record<Locale, T>>
 // export type SupportedLocales = Partial<Record<Locale, string>>
 // export type SupportedLocales = Localised<string>
 export type SupportedLocales = Partial<typeof LOCALES>
+
+export type IDGSymbols = Record<Skill['id'] | Dimension['id'], string[]>
