@@ -3,12 +3,12 @@ import type { PageServerLoad } from './$types'
 
 import { content } from '$lib/content-backend'
 
-export const prerender = 'auto'
+export const prerender = true
 
 export const load = (async () => {
     if (content) {
-        const { skills, dimensions } = content
-        return { skills, dimensions }
+        const { skills } = content
+        return { skills }
     }
 
     throw error(500)
