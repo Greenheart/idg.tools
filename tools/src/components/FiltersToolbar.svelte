@@ -52,11 +52,7 @@
     >
 
     {#if advancedFilters}
-        <div
-            class="col-span-full pt-4"
-            in:slide={{ easing: cubicOut, duration: 300 }}
-            out:slide={{ easing: cubicOut, duration: 300 }}
-        >
+        <div class="col-span-full pt-4" transition:slide={{ easing: cubicOut, duration: 300 }}>
             <h3 class="pb-2 text-sm">Select tags</h3>
             <div class="bg-being/40 flex flex-wrap gap-2 p-2">
                 {#each content.tags as tag}
