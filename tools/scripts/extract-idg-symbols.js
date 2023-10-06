@@ -36,7 +36,7 @@ export const COLORS = {
 }
 
 async function getSVGSymbol(dimension, skillId) {
-    const index = skillId ? dimension.skills.findIndex((id) => id === skillId) : 0
+    const index = skillId ? dimension.skills.findIndex((id) => id === skillId) + 1 : 0
     const raw = await readFile(
         resolve(`tools/static/symbols/${COLORS[dimension.id]}_${index}.svg`),
         {

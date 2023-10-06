@@ -47,7 +47,6 @@
                     <TabList class="text-white grid grid-cols-5" let:selectedIndex>
                         {#each $dimensions as dimension, i (dimension.name)}
                             {@const dimensionSlug = getDimensionSlug(dimension.id)}
-                            <!-- {@const symbol = getSymbol({ skill, dimension})} -->
                             <Tab
                                 class="p-2 grid place-items-center {selectedIndex === i
                                     ? `${getColor(dimension.id)}`
