@@ -46,14 +46,6 @@ export const getDimensionSlug = (id: Dimension['id'] | Skill['id']) => COLORS[id
 export const getSkill = (id: Skill['id'], { skills }: Pick<AllContent, 'skills'>) =>
     skills.find((s) => s.id === id) as Skill
 
-/**
- * Get the URL to the SVG symbol for an IDG skill or dimension
- */
-export function getSymbol({ skill, dimension }: { skill?: Skill; dimension: Dimension }) {
-    const index = skill ? dimension.skills.findIndex((skillId) => skillId === skill.id) : 0
-    return `${getDimensionSlug(skill ? skill.id : dimension.id)}_${index}.svg`
-}
-
 export const getItem = (
     id: Skill['id'] | Dimension['id'],
     { skills, dimensions }: Pick<AllContent, 'skills' | 'dimensions'>,

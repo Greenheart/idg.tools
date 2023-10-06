@@ -1,45 +1,34 @@
 <script lang="ts">
     import { cx, getColor, randomInt } from '$shared/utils'
-    import { getDimension, getSymbol } from '$shared/content-utils'
     import { onMount } from 'svelte'
-    import type { Dimension, Skill } from '$shared/types'
-
-    export let skills: Skill[]
-    export let dimensions: Dimension[]
+    import type { Skill } from '$shared/types'
+    import { fade } from 'svelte/transition'
+    import { COLORS } from '$shared/constants'
+    import { IDGSymbol } from '$shared/icons'
 
     /** Only enable persistance when the component isn't part of an embedded page */
     export let isEmbedded = false
+    export let skills: Skill[]
 
-    let randomSymbol: { skill: Skill; symbol: string }
-    let visible = false
+    let randomSkill: Skill['id'] | undefined
 
-    function getRandomSymbol(skills: Skill[], dimensions: Dimension[]) {
-        const randomSkill = skills[randomInt(0, skills.length - 1)]
-        const dimension = getDimension(randomSkill.dimension, { dimensions })
-
-        const randomSymbol = getSymbol(randomSkill, dimension)
-
+    function getRandomSkill(skills: Skill[]) {
         if (!isEmbedded) {
-            localStorage.setItem('randomSymbol', JSON.stringify(randomSymbol))
+            const id = localStorage.getItem('randomSkill')
+            if (id && COLORS[id] !== undefined) return id
         }
 
-        return randomSymbol
+        const randomSkill = skills[randomInt(0, skills.length - 1)].id
+
+        if (!isEmbedded) {
+            localStorage.setItem('randomSkill', randomSkill)
+        }
+
+        return randomSkill
     }
 
     onMount(() => {
-        if (!isEmbedded) {
-            try {
-                const raw = localStorage.getItem('randomSymbol')
-                if (raw) {
-                    randomSymbol = JSON.parse(raw)
-                    return
-                }
-            } catch (error) {
-                console.error(error)
-            }
-        }
-
-        randomSymbol = getRandomSymbol(skills, dimensions)
+        randomSkill = getRandomSkill(skills)
     })
 </script>
 
@@ -47,16 +36,13 @@
     <div
         class={cx(
             'h-72 w-72 aspect-square p-8 rounded-lg',
-            randomSymbol ? getColor(randomSymbol.skill.id) : 'bg-transparent',
+            randomSkill ? getColor(randomSkill) : 'bg-transparent',
         )}
-        class:hidden={!visible}
     >
-        {#if randomSymbol}
-            <img
-                src="/symbols/{randomSymbol.symbol}"
-                alt="IDG symbol for {randomSymbol.skill.name}"
-                on:load={() => (visible = true)}
-            />
+        {#if randomSkill}
+            <div in:fade={{ duration: 500 }}>
+                <IDGSymbol id={randomSkill} class="w-full h-full text-white" />
+            </div>
         {/if}
     </div>
 </div>
