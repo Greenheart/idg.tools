@@ -47,6 +47,7 @@
                     <TabList class="text-white grid grid-cols-5" let:selectedIndex>
                         {#each $dimensions as dimension, i (dimension.name)}
                             {@const dimensionSlug = getDimensionSlug(dimension.id)}
+                            <!-- {@const symbol = getSymbol({ skill, dimension})} -->
                             <Tab
                                 class="p-2 grid place-items-center {selectedIndex === i
                                     ? `${getColor(dimension.id)}`
@@ -58,7 +59,7 @@
                                 }}
                             >
                                 <IDGSymbol
-                                    slug={dimensionSlug}
+                                    id={dimension.id}
                                     class="pointer-events-none w-12 h-12 {selectedIndex === i
                                         ? 'text-white'
                                         : getColor(dimension.id, 'text')}"
@@ -77,7 +78,7 @@
                                 >
                                 <Heading size={4} class="px-4">{dimension.subtitle}</Heading>
                                 <IDGSymbol
-                                    slug={dimensionSlug}
+                                    id={dimension.id}
                                     class="pointer-events-none w-36 h-36 my-4 mx-auto"
                                 />
                                 <p class="p-4 pt-0">{dimension.description}</p>
@@ -92,9 +93,8 @@
                                                     bgColor,
                                                 )}
                                             >
-                                                <!-- TODO: Replace with the skill symbols -->
                                                 <IDGSymbol
-                                                    slug={dimensionSlug}
+                                                    id={skill.id}
                                                     class="w-10 h-10 shrink-0 group-hover:!{textColor}"
                                                 />
                                                 <p class="text-sm w-full">
@@ -122,7 +122,7 @@
                                                     )}
                                                 >
                                                     <IDGSymbol
-                                                        slug={dimensionSlug}
+                                                        id={skill.id}
                                                         class="pointer-events-none w-36 h-36 text-white"
                                                     />
                                                 </div>
