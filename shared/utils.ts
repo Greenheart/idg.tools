@@ -22,11 +22,6 @@ export const getColor = (id: Dimension['id'] | Skill['id'], colorType: 'bg' | 't
 export const randomInt = (min: number, max: number) =>
     Math.floor(Math.random() * (max - min + 1) + min)
 
-/**
- * IDEA: Maybe move this to $shared/content-utils
- */
-export const getDimensionSlug = (id: Dimension['id'] | Skill['id']) => COLORS[id]
-
 export const getRGBColor = (id: Dimension['id'] | Skill['id']) => IDG_COLORS_RGB[COLORS[id]]
 
 // TODO: This needs to be updated to support other locales than English, but is good enough for now.

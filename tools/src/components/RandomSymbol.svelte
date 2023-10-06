@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { cx, getColor, getDimensionSlug, randomInt } from '$shared/utils'
-    import { getDimension } from '$shared/content-utils'
+    import { cx, getColor, randomInt } from '$shared/utils'
+    import { getDimension, getSymbol } from '$shared/content-utils'
     import { onMount } from 'svelte'
     import type { Dimension, Skill } from '$shared/types'
 
@@ -14,14 +14,10 @@
     let visible = false
 
     function getRandomSymbol(skills: Skill[], dimensions: Dimension[]) {
-        const skill = skills[randomInt(0, skills.length - 1)]
-        const dimension = getDimension(skill.dimension, { dimensions })
-        const skillIndex = dimension.skills.findIndex((skillId) => skillId === skill.id) + 1
+        const randomSkill = skills[randomInt(0, skills.length - 1)]
+        const dimension = getDimension(randomSkill.dimension, { dimensions })
 
-        const randomSymbol = {
-            skill,
-            symbol: `${getDimensionSlug(skill.id)}_${skillIndex}.svg`,
-        }
+        const randomSymbol = getSymbol(randomSkill, dimension)
 
         if (!isEmbedded) {
             localStorage.setItem('randomSymbol', JSON.stringify(randomSymbol))
