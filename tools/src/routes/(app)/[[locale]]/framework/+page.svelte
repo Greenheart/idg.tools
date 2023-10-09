@@ -32,7 +32,7 @@
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
-<div class="min-h-[700px] bg-white relative mb-16 max-w-lg mx-auto">
+<div class="min-h-[700px] bg-white relative mb-16 max-w-screen-xl mx-auto">
     {#key $dimensions}
         {#if $dimensions}
             <div class="text-base h-full">
@@ -48,8 +48,9 @@
                     <TabList class="text-white grid grid-cols-5" let:selectedIndex>
                         {#each $dimensions as dimension, i (dimension.name)}
                             {@const dimensionSlug = getDimensionSlug(dimension.id)}
+                            {@const isSelected = selectedIndex === i}
                             <Tab
-                                class="p-2 grid place-items-center {selectedIndex === i
+                                class="p-2 grid place-items-center {isSelected
                                     ? `${getColor(dimension.id)}`
                                     : `bg-white hover:outline hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
                                 on:click={() => {
@@ -61,10 +62,17 @@
                                 <IDGSymbol
                                     id={dimension.id}
                                     symbols={$symbols}
-                                    class="pointer-events-none w-12 h-12 {selectedIndex === i
+                                    class="pointer-events-none w-12 h-12 {isSelected
                                         ? 'text-white'
                                         : getColor(dimension.id, 'text')}"
                                 />
+                                <p
+                                    class="pt-2 font-medium hidden sm:block {isSelected
+                                        ? 'text-white'
+                                        : 'text-black'}"
+                                >
+                                    {dimension.name}
+                                </p>
                             </Tab>
                         {/each}
                     </TabList>
@@ -73,19 +81,26 @@
                             {@const dimensionSlug = getDimensionSlug(dimension.id)}
                             {@const bgColor = getColor(dimension.id, 'bg')}
                             {@const textColor = getColor(dimension.id, 'text')}
-                            <TabPanel class={cx('w-full grid text-white', bgColor)}>
-                                <Heading size={2} class="p-4 pb-1 break-words hyphens-auto"
-                                    >{i + 1}. {dimension.name}</Heading
-                                >
-                                <Heading size={4} class="px-4">{dimension.subtitle}</Heading>
-                                <IDGSymbol
-                                    id={dimension.id}
-                                    symbols={$symbols}
-                                    class="pointer-events-none w-36 h-36 my-4 mx-auto"
-                                />
-                                <p class="p-4 pt-0">{dimension.description}</p>
+                            <TabPanel
+                                class={cx(
+                                    'w-full grid text-white sm:grid-cols-2 sm:gap-4',
+                                    bgColor,
+                                )}
+                            >
+                                <div>
+                                    <Heading size={2} class="p-4 pb-1 break-words hyphens-auto"
+                                        >{i + 1}. {dimension.name}</Heading
+                                    >
+                                    <Heading size={4} class="px-4">{dimension.subtitle}</Heading>
+                                    <IDGSymbol
+                                        id={dimension.id}
+                                        symbols={$symbols}
+                                        class="pointer-events-none w-36 h-36 my-4 mx-auto"
+                                    />
+                                    <p class="p-4 pt-0">{dimension.description}</p>
+                                </div>
 
-                                <div class="py-2 bg-white space-y-2">
+                                <div class="py-2 bg-white sm:bg-transparent space-y-2">
                                     {#each getSkillsInDimension( dimension.id, { skills: $skills }, ) as skill (skill.name)}
                                         <Disclosure class="grid" let:open>
                                             <DisclosureButton
@@ -110,7 +125,9 @@
                                                     )}
                                                 />
                                             </DisclosureButton>
-                                            <DisclosurePanel class="bg-white px-4 grid">
+                                            <DisclosurePanel
+                                                class="bg-white sm:bg-transparent px-4 grid"
+                                            >
                                                 <Heading
                                                     size={2}
                                                     class={cx(
