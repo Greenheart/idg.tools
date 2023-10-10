@@ -11,8 +11,12 @@ export const entries = (() =>
 export const prerender = 'auto'
 
 export const load = (async ({ params, url }) => {
-    const rawLocale = getRawLocale(url.pathname)
+    console.log({ params, url })
+
+    const rawLocale = getRawLocale(url.pathname, '/embed')
     const redirectURL = getRedirectURL(url.pathname, rawLocale)
+
+    console.log(redirectURL)
 
     if (url.pathname !== redirectURL) {
         throw redirect(302, redirectURL)
