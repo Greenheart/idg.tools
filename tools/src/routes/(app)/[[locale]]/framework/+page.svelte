@@ -67,9 +67,8 @@
                                         ? 'text-white'
                                         : getColor(dimension.id, 'text')}"
                                 />
-                                <!-- TODO: Decrease size on sm, then increase on larger screens than md -->
                                 <p
-                                    class="pt-2 font-medium hidden sm:block {isSelected
+                                    class="pt-2 font-medium hidden sm:block text-sm md:text-base {isSelected
                                         ? 'text-white'
                                         : 'text-black'}"
                                 >
