@@ -61,7 +61,7 @@
                             {@const dimensionSlug = getDimensionSlug(dimension.id)}
                             {@const isSelected = $selectedDimensionIndex === i}
                             <Tab
-                                class="p-2 grid place-items-center {isSelected
+                                class="py-2 xs:px-2 grid place-items-center {isSelected
                                     ? `${getColor(dimension.id)}`
                                     : `bg-white hover:outline hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
                             >
