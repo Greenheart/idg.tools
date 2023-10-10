@@ -15,7 +15,7 @@
 </script>
 
 <Meta
-    title="IDG Framework"
+    title="Inner Development Goals Framework"
     description="The {$dimensions.length} dimensions with the {$skills.length} skills and qualities"
 />
 
@@ -28,4 +28,4 @@
     supportedLocales={data.supportedLocales}
 />
 
-<!-- TODO: For the framework page, replace the community widget with another call to action to translate and add more locales of the framework -->
+<!-- TODO: for the embedded framework, make sure to add the script that resizes the iframe based on its content -->
