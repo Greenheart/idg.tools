@@ -9,6 +9,7 @@
     export let supportedLocales: SupportedLocales
     export let pathname: string
     export let currentLocale: string = DEFAULT_LOCALE_IDENTIFIER
+    export let basepath: string = ''
 
     // Sort supported languages based on number of speakers
     const supported = Object.keys(LOCALES).reduce((result, locale) => {
@@ -38,7 +39,7 @@
         {#each supported as [locale, label]}
             <li class="grid">
                 <Link
-                    href={getLocalisedPath(locale, pathname)}
+                    href={getLocalisedPath(locale, pathname, basepath)}
                     variant="black"
                     noScroll
                     on:click={() => {

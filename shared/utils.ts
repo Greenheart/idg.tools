@@ -85,10 +85,21 @@ export function getOffset(element: HTMLElement) {
 
 export const removeLeadingSlash = (string: string) => string.replace(/^\//, '')
 
-export const getCurrentLocale = (path: string) =>
-    LOCALE_IDENTIFIERS.find((identifier) => new RegExp(`^\/${identifier}\/`, 'i').test(path))
+export const getCurrentLocale = (path: string, basepath?: string) =>
+    LOCALE_IDENTIFIERS.find((identifier) =>
+        new RegExp(`^${basepath ? `\/${basepath}` : ''}\/${identifier}\/`, 'i').test(path),
+    )
 
-export const getRawLocale = (path: string) => path.match(/^\/([\w-]+)\//)?.[1]
+/**
+ * Extract the raw unparsed locale from an URL
+ * @param path The raw URL
+ * @param basepath Send in the expected base path to avoid
+ */
+export const getRawLocale = (path: string, basepath?: string) =>
+    basepath
+        ? // IDEA: This could be solved in one operation by creating the RegExp from a string template instead
+          path.replace(basepath, '').match(/^\/([\w-]+)\//)?.[1]
+        : path.match(/^\/([\w-]+)\//)?.[1]
 
 export const getRedirectURL = (path: string, rawLocale?: string) => {
     if (!rawLocale) return path
@@ -113,8 +124,8 @@ export const getRedirectURL = (path: string, rawLocale?: string) => {
  * Get the localised version of location.pathname for a given locale.
  * Adapts the output based on the currentLocale to keep URLs as simple as possible.
  */
-export const getLocalisedPath = (locale: Locale, path: string) => {
-    const currentLocale = getCurrentLocale(path)
+export const getLocalisedPath = (locale: Locale, path: string, basepath: string) => {
+    const currentLocale = getCurrentLocale(path, basepath)
 
     if (locale === DEFAULT_LOCALE_IDENTIFIER) {
         // No need to replace if we want the default locale and don't have any current one.
