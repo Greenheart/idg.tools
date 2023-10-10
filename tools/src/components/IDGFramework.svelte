@@ -59,7 +59,13 @@
         {#if $dimensions}
             <div class="text-base h-full">
                 <div class="flex justify-end p-2">
-                    <LocaleSwitcher {supportedLocales} {pathname} {currentLocale} />
+                    <LocaleSwitcher
+                        {supportedLocales}
+                        pathname={$selectedDimension
+                            ? `${pathname}#${$selectedDimension}`
+                            : pathname}
+                        {currentLocale}
+                    />
                 </div>
 
                 <TabGroup
