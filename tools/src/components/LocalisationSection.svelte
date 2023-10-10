@@ -6,7 +6,6 @@
         HOW_TO_CONTRIBUTE_LINK,
         IDG_ONE_QUESTION_SURVEY_LINK,
     } from '$shared/constants'
-    import { FEEDBACK_FORM_LINK, SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
 </script>
 
 <div class="flex flex-col items-center justify-between bg-white p-4 shadow-md">
@@ -15,11 +14,9 @@
 
     <p class="w-full px-4 text-left">
         We’re a non-profit, open source community, always learning and improving, together. With
-        your help with translation and localisation, we could make the Inner Development Goals
-        available in more languages!
+        your help, we could make the Inner Development Goals available in more languages and
+        locales!
     </p>
-
-    <!-- IDEA: add link to the IDG Global Survey -->
 
     <p class="px-4 pt-4">
         You can also help improve the next version of the Inner Development Goals framework by
