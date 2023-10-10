@@ -15,12 +15,7 @@
     import { Heading } from '$shared/components'
     import Meta from '$components/Meta.svelte'
     import type { PageData } from './$types'
-    import {
-        getSkillsInDimension,
-        getDimensionSlug,
-        getSkill,
-        getDimension,
-    } from '$shared/content-utils'
+    import { getSkillsInDimension, getDimensionSlug, getSkill } from '$shared/content-utils'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import { IDGSymbol, ChevronDown } from '$shared/icons'
     import { cx, getColor } from '$shared/utils'
@@ -30,7 +25,7 @@
 
     // Use a store to keep the same selected dimension and skill when the locale changes
     const selectedDimensionIndex = writable(0)
-    const selectedSkill = writable<Skill['id']>()
+    const selectedSkill = writable<Skill['id'] | null>(null)
 
     // Ensure the page re-renders when the locale changes.
     const dimensions = derived(page, () => data.dimensions)
@@ -60,20 +55,23 @@
                     />
                 </div>
 
-                <TabGroup defaultIndex={$selectedDimensionIndex}>
+                <TabGroup
+                    defaultIndex={$selectedDimensionIndex}
+                    on:change={(event) => {
+                        if (event.detail !== $selectedDimensionIndex) {
+                            $selectedDimensionIndex = event.detail
+                            $selectedSkill = $dimensions[event.detail].skills[0]
+                        }
+                    }}
+                >
                     <TabList class="text-white grid grid-cols-5" let:selectedIndex>
                         {#each $dimensions as dimension, i (dimension.name)}
                             {@const dimensionSlug = getDimensionSlug(dimension.id)}
-                            {@const isSelected = selectedIndex === i}
+                            {@const isSelected = $selectedDimensionIndex === i}
                             <Tab
                                 class="p-2 grid place-items-center {isSelected
                                     ? `${getColor(dimension.id)}`
                                     : `bg-white hover:outline hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
-                                on:click={() => {
-                                    if (selectedIndex) {
-                                        $selectedDimensionIndex = selectedIndex
-                                    }
-                                }}
                             >
                                 <IDGSymbol
                                     id={dimension.id}
@@ -97,10 +95,6 @@
                             {@const dimensionSlug = getDimensionSlug(dimension.id)}
                             {@const bgColor = getColor(dimension.id, 'bg')}
                             {@const textColor = getColor(dimension.id, 'text')}
-                            <!-- TODO: replace with actual skill -->
-                            <!-- {@const focusedSkill = getSkill($selectedSkill ?? dimension.skills[0], {
-                                skills: $skills,
-                            })} -->
                             <TabPanel
                                 class={cx(
                                     'w-full grid text-white sm:grid-cols-[minmax(260px,1fr)_2fr] lg:grid-cols-[minmax(260px,1fr)_1fr_1fr] sm:gap-2 bg-white sm:pt-2 items-start',
@@ -122,7 +116,6 @@
                                     <p class="p-4 pt-0">{dimension.description}</p>
                                 </div>
 
-                                <!-- TODO: Hide this section for lg screens and up, then replace with another two columns defined below -->
                                 <div class="py-2 sm:p-0 bg-white space-y-2 lg:hidden">
                                     {#each getSkillsInDimension( dimension.id, { skills: $skills }, ) as skill (skill.name)}
                                         <Disclosure class="grid relative" let:open>
@@ -177,10 +170,6 @@
                                 </div>
 
                                 <div class="space-y-2 hidden lg:grid">
-                                    <!-- list all skills, similarly to how they are listed for mobile in the disclosure buttons -->
-                                    <!-- Selecting a skill should render that in the preview -->
-                                    <!-- the selected skill is reset to the first in a dimension when the dimension changes -->
-                                    <!-- MAYBE: the selected skill stays the same if the locale changes -->
                                     {#each getSkillsInDimension( dimension.id, { skills: $skills }, ) as skill (skill.name)}
                                         {@const hoverClasses = `hover:bg-white hover:text-black hover:outline hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`}
                                         {@const activeClasses = `bg-white text-black outline outline-${dimensionSlug} outline-1 -outline-offset-1`}
