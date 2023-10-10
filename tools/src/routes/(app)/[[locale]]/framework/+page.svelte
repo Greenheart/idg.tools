@@ -22,9 +22,10 @@
 
     export let data: PageData
 
+    // Use a store to keep the same dimension selected when the locale changes
     const selectedDimensionIndex = writable(0)
 
-    // Ensure the page re-renders when the URL (and the data) changes.
+    // Ensure the page re-renders when the locale changes.
     const dimensions = derived(page, () => data.dimensions)
     const skills = derived(page, () => data.skills)
     const symbols = derived(page, () => data.symbols)
@@ -32,6 +33,7 @@
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
+<!-- TODO: Allow the framework to expand to fill the viewport width -->
 <div class="min-h-[700px] bg-white relative mb-16 max-w-screen-xl mx-auto">
     {#key $dimensions}
         {#if $dimensions}
@@ -83,11 +85,11 @@
                             {@const textColor = getColor(dimension.id, 'text')}
                             <TabPanel
                                 class={cx(
-                                    'w-full grid text-white sm:grid-cols-2 sm:gap-4',
+                                    'w-full grid text-white sm:grid-cols-[minmax(300px,1fr)_2fr] sm:gap-2 bg-white sm:pt-2',
                                     bgColor,
                                 )}
                             >
-                                <div>
+                                <div class={bgColor}>
                                     <Heading size={2} class="p-4 pb-1 break-words hyphens-auto"
                                         >{i + 1}. {dimension.name}</Heading
                                     >
@@ -100,7 +102,7 @@
                                     <p class="p-4 pt-0">{dimension.description}</p>
                                 </div>
 
-                                <div class="py-2 bg-white sm:bg-transparent space-y-2">
+                                <div class="py-2 sm:p-0 bg-white space-y-2">
                                     {#each getSkillsInDimension( dimension.id, { skills: $skills }, ) as skill (skill.name)}
                                         <Disclosure class="grid" let:open>
                                             <DisclosureButton
@@ -147,7 +149,9 @@
                                                         class="pointer-events-none w-36 h-36 text-white"
                                                     />
                                                 </div>
-                                                <p class="py-4 text-black">{skill.description}</p>
+                                                <p class="py-4 text-black">
+                                                    {skill.description}
+                                                </p>
                                             </DisclosurePanel>
                                         </Disclosure>
                                     {/each}
