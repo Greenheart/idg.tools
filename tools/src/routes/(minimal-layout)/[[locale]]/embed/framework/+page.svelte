@@ -28,7 +28,10 @@
 
 <svelte:body use:bodyClass={'bg-white'} />
 
-<!-- TODO: Find a way to allow server rendering the tabs and their content. The real issue is that the tabs render partially and then flash with the final content -->
+<!--
+    TODO: Find a way to allow server rendering the tabs and their content.
+    The real issue is that the tabs render partially and then flash with the final content
+-->
 <div class="xs:px-2">
     <IDGFramework
         {dimensions}
