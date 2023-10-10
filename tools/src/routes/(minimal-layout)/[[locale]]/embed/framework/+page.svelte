@@ -7,6 +7,7 @@
     import IDGFramework from '$components/IDGFramework.svelte'
     import { parseDimensionSlug } from '$shared/content-utils'
     import { browser } from '$app/environment'
+    import { bodyClass } from '$shared/utils'
 
     export let data: PageData
 
@@ -24,6 +25,8 @@
     title="Inner Development Goals Framework"
     description="The {$dimensions.length} dimensions with the {$skills.length} skills and qualities"
 />
+
+<svelte:body use:bodyClass={'bg-white'} />
 
 <IDGFramework
     {dimensions}
