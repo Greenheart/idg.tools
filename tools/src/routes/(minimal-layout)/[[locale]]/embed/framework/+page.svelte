@@ -19,9 +19,12 @@
     description="The {$dimensions.length} dimensions with the {$skills.length} skills and qualities"
 />
 
+<!-- TODO: Make the bg color white -->
+
+<svelte:body class="bg-white" style="background: #fff !important;" />
+
 <!-- TODO: Allow rendering the IDG framework with a specific dimension pre-selected -->
 <!-- IDEA: Maybe by using a URL fragment (#) and reacting to that when the page has loaded? -->
-
 <IDGFramework
     {dimensions}
     {skills}
