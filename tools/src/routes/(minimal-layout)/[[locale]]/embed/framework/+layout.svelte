@@ -21,6 +21,21 @@ To embed this widget, add the following code to the parent page:
 </script>
 
 
+
+For embedding in Howspace, use settings in the following format:
+
+Title:
+Being - Relationship to Self
+
+Info text:
+Scroll to explore the skills of this dimension:
+
+Embed iframe code or URL:
+<iframe src="https://idg.tools/embed/framework#being" width="100%"></iframe>
+
+Embed height:
+80%
+
  -->
 
 <slot />
