@@ -3,6 +3,7 @@ import type { Dimension, Locale, Skill } from './types'
 export const GITHUB_LINK = 'https://github.com/Greenheart/idg.tools'
 export const GITHUB_ISSUES_LINK = `${GITHUB_LINK}/issues`
 export const HOW_TO_CONTRIBUTE_LINK = 'https://idg.community/contribute'
+export const CONTRIBUTE_LOCALISATION_LINK = `${HOW_TO_CONTRIBUTE_LINK}#localisation`
 export const ELEMENT_LINK = 'https://matrix.to/#/#idg:community.innerdevelopmentgoals.org'
 export const ELEMENT_TOOLS_LINK =
     'https://matrix.to/#/#idg-tools:community.innerdevelopmentgoals.org'
@@ -21,6 +22,7 @@ export const COMMUNITY_HUBS_LINK = 'https://www.innerdevelopmentgoals.org/commun
 export const IDG_PDF_TOOLKIT = '/assets/221215_IDG_Toolkit_v1.pdf'
 export const IDG_REPORT_PDF = 'https://www.innerdevelopmentgoals.org/s/211201_IDG_Report_Full.pdf'
 export const IDG_CMS_LINK = 'https://cms.idg.community'
+export const IDG_ONE_QUESTION_SURVEY_LINK = 'https://www.surveymonkey.com/r/SWQXX99'
 
 /**
  * IDEA: Maybe the supported locales could be managed via the CMS?
