@@ -78,13 +78,10 @@ export type IDGRelevancy = {
     score: number
 }
 
+export type DimensionSlug = 'being' | 'thinking' | 'relating' | 'collaborating' | 'acting'
+
 export type IDGColorMap = {
-    [id: Dimension['id'] | Skill['id']]:
-        | 'being'
-        | 'thinking'
-        | 'relating'
-        | 'collaborating'
-        | 'acting'
+    [id: Dimension['id'] | Skill['id']]: DimensionSlug
 }
 
 export type Tag = { id: ItemId; name: string }
