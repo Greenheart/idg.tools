@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@octokit/graphql": "^7.0.1",
+        "iframe-resizer": "^4.3.7",
         "remark": "^14.0.3",
         "sanitize-html": "^2.11.0",
         "strip-markdown": "^5.0.1",
