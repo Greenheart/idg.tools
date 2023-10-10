@@ -159,3 +159,16 @@ Cases:
 - /
 
 */
+
+/**
+ * Workaround for https://github.com/sveltejs/svelte/issues/3105
+ */
+export const bodyClass = (node: HTMLBodyElement, className: string) => {
+    node.classList.add(className)
+
+    return {
+        destroy() {
+            node.classList.remove(className)
+        },
+    }
+}

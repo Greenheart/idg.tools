@@ -14,6 +14,7 @@ To embed this widget, add the following code to the parent page:
   #idg-framework {
     width: 1px;
     min-width: 100%;
+    min-height: 500px;
   }
 </style>
 <script src="https://idg.tools/js/iframeResizer.min.js"></script>
