@@ -21,6 +21,8 @@
     import { cx, getColor } from '$shared/utils'
     import type { Skill } from '$shared/types'
 
+    // TODO: migrate interactive framework to a separate component, and allow re-using it for multiple routes
+
     export let data: PageData
 
     // Use a store to keep the same selected dimension and skill when the locale changes
