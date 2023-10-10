@@ -1,97 +1,228 @@
 <script lang="ts">
-    import IDGColors from '$components/IDGColors.svelte'
-    import { COLORS } from '$shared/constants'
-    import { getSkillsInDimension } from '$shared/content-utils'
-    import type { Dimension, Skill } from '$shared/types'
-    import { cx, getColor, getDimensionSlug } from '$shared/utils'
-    import { IDGLogo } from '$shared/icons'
+    import {
+        Disclosure,
+        DisclosureButton,
+        DisclosurePanel,
+        Tab,
+        TabGroup,
+        TabList,
+        TabPanel,
+        TabPanels,
+    } from '@rgossiaux/svelte-headlessui'
+    import { derived, writable, type Readable } from 'svelte/store'
 
-    export let skills: Skill[]
-    export let dimensions: Dimension[]
+    import { Heading, LocaleSwitcher } from '$shared/components'
+    import { getSkillsInDimension, getDimensionSlug, getSkill } from '$shared/content-utils'
+    import { IDGSymbol, ChevronDown } from '$shared/icons'
+    import { cx, getColor } from '$shared/utils'
+    import type { Dimension, IDGSymbols, Skill, SupportedLocales } from '$shared/types'
+
+    export let skills: Readable<Skill[]>
+    export let dimensions: Readable<Dimension[]>
+    export let symbols: Readable<IDGSymbols>
+
+    export let supportedLocales: SupportedLocales
+    export let pathname: string
+    export let currentLocale: string
+
+    // Use a store to keep the same selected dimension and skill when the locale changes
+    const selectedDimensionIndex = writable(0)
+    const selectedSkill = writable<Skill['id'] | null>(null)
+
+    const focusedSkill = derived(
+        [selectedSkill, skills, dimensions, selectedDimensionIndex],
+        ([skillId, skills, dimensions, selectedDimensionIndex]) => {
+            const id = skillId ?? dimensions[selectedDimensionIndex].skills[0]
+
+            return getSkill(id, { skills })
+        },
+    )
 </script>
 
-<!-- TODO: Add all localised content from the existing translations -->
-<!-- TODO: Add allowed locales to the IDG CMS (pt, es, dk, ...) -->
+<div class="min-h-[700px] bg-white relative mb-16 max-w-screen-xl mx-auto">
+    {#key $dimensions}
+        {#if $dimensions}
+            <div class="text-base h-full">
+                <div class="flex justify-end p-2">
+                    <LocaleSwitcher {supportedLocales} {pathname} {currentLocale} />
+                </div>
 
-<div class="grid gap-4 pt-12">
-    <div class="flex aspect-video items-center justify-between bg-white shadow-md">
-        <IDGColors />
-        <img src="/images/IDG-logo.svg" alt="IDG logo" width="490" height="270" />
-        <IDGColors />
-    </div>
-
-    <div class="grid aspect-video place-items-center bg-white p-3 shadow-md">
-        <div class="grid h-full w-full grid-cols-5 gap-2 text-white">
-            {#each dimensions as dimension, i}
-                {@const dimensionSlug = getDimensionSlug(dimension.id)}
-                <div
-                    class={cx(
-                        'grid-cols-[repeat(1, minmax(0, max-content))] grid h-full grid-rows-[max-content_106px] gap-2 p-6 shadow-sm',
-                        getColor(dimension.id),
-                    )}
+                <TabGroup
+                    defaultIndex={$selectedDimensionIndex}
+                    on:change={(event) => {
+                        if (event.detail !== $selectedDimensionIndex) {
+                            $selectedDimensionIndex = event.detail
+                            $selectedSkill = $dimensions[event.detail].skills[0]
+                        }
+                    }}
                 >
-                    <img
-                        src={`/images/symbols/${dimensionSlug}.png`}
-                        alt={`IDG ${dimensionSlug} symbol`}
-                        width="150"
-                        height="150"
-                        class="place-self-center"
-                    />
-                    <div class="overflow-hidden break-words border-y py-2">
-                        <h2 class="font-black">
-                            <span class="pr-2">{i + 1}</span>{dimension.name}
-                        </h2>
-                        <p class="text-base font-semibold leading-5">{dimension.subtitle}</p>
-                    </div>
-                    <div
-                        class="flex flex-col justify-start gap-4 overflow-hidden break-words pt-1 text-base font-semibold leading-5"
-                    >
-                        {#each getSkillsInDimension(dimension.id, { skills }) as { name }}
-                            <p>{name}</p>
+                    <TabList class="text-white grid grid-cols-5" let:selectedIndex>
+                        {#each $dimensions as dimension, i (dimension.name)}
+                            {@const dimensionSlug = getDimensionSlug(dimension.id)}
+                            {@const isSelected = $selectedDimensionIndex === i}
+                            <Tab
+                                class="p-2 grid place-items-center {isSelected
+                                    ? `${getColor(dimension.id)}`
+                                    : `bg-white hover:outline hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
+                            >
+                                <IDGSymbol
+                                    id={dimension.id}
+                                    symbols={$symbols}
+                                    class="pointer-events-none w-12 h-12 {isSelected
+                                        ? 'text-white'
+                                        : getColor(dimension.id, 'text')}"
+                                />
+                                <p
+                                    class="pt-2 font-medium hidden sm:block text-sm md:text-base {isSelected
+                                        ? 'text-white'
+                                        : 'text-black'}"
+                                >
+                                    {dimension.name}
+                                </p>
+                            </Tab>
                         {/each}
-                    </div>
-                </div>
-            {/each}
-        </div>
-    </div>
+                    </TabList>
+                    <TabPanels>
+                        {#each $dimensions as dimension, i (dimension.name)}
+                            {@const dimensionSlug = getDimensionSlug(dimension.id)}
+                            {@const bgColor = getColor(dimension.id, 'bg')}
+                            {@const textColor = getColor(dimension.id, 'text')}
+                            <TabPanel
+                                class={cx(
+                                    'w-full grid text-white sm:grid-cols-[minmax(260px,1fr)_2fr] lg:grid-cols-[minmax(260px,1fr)_1fr_1fr] sm:gap-2 bg-white sm:pt-2 items-start',
+                                    bgColor,
+                                )}
+                            >
+                                <div class="sm:sticky sm:top-0 {bgColor}">
+                                    <h2
+                                        class="text-2xl md:text-3xl font-bold p-4 pb-1 break-words hyphens-auto"
+                                    >
+                                        {i + 1}. {dimension.name}
+                                    </h2>
+                                    <Heading size={4} class="px-4">{dimension.subtitle}</Heading>
+                                    <IDGSymbol
+                                        id={dimension.id}
+                                        symbols={$symbols}
+                                        class="pointer-events-none w-36 h-36 my-4 mx-auto"
+                                    />
+                                    <p class="p-4 pt-0">{dimension.description}</p>
+                                </div>
 
-    {#each dimensions as dimension}
-        {@const dimensionSlug = getDimensionSlug(dimension.id)}
-        {@const color = getColor(dimension.id)}
-        <div class="grid aspect-video place-items-center bg-white p-3 shadow-md">
-            <div
-                class={cx(
-                    'relative grid h-full w-full grid-cols-[6fr_7fr] gap-6 px-8 py-3 text-white',
-                    color,
-                )}
-            >
-                <div class="relative my-8 ml-8">
-                    <!-- NOTE: Since the exported symbols have excess whitespace in them, we have to compensate with a negative margin to fix alignment -->
-                    <img
-                        src={`/images/symbols/${dimensionSlug}.png`}
-                        alt={`IDG ${dimensionSlug} symbol`}
-                        width="130"
-                        height="130"
-                        class="-ml-2 pb-2"
-                    />
-                    <h2 class="pb-2 text-6xl font-extrabold">{dimension.name}</h2>
-                    <h3 class="pb-4 text-3xl font-bold">{dimension.subtitle}</h3>
+                                <div class="py-2 sm:p-0 bg-white space-y-2 lg:hidden">
+                                    {#each getSkillsInDimension( dimension.id, { skills: $skills }, ) as skill (skill.name)}
+                                        <Disclosure class="grid relative" let:open>
+                                            <DisclosureButton
+                                                class={cx(
+                                                    'sticky top-0 p-2 flex gap-2 items-center hover:bg-white hover:text-black text-left group drop-shadow-xl',
+                                                    `hover:outline hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`,
+                                                    bgColor,
+                                                )}
+                                            >
+                                                <IDGSymbol
+                                                    id={skill.id}
+                                                    symbols={$symbols}
+                                                    class="w-10 h-10 shrink-0 group-hover:!{textColor}"
+                                                />
+                                                <p class="text-sm w-full">
+                                                    {skill.name}
+                                                </p>
+                                                <ChevronDown
+                                                    class={cx(
+                                                        'mx-1 flex-grow',
+                                                        open ? 'rotate-180' : 'rotate-0',
+                                                    )}
+                                                />
+                                            </DisclosureButton>
+                                            <DisclosurePanel
+                                                class="bg-white sm:bg-transparent px-4 grid"
+                                            >
+                                                <h3
+                                                    class="text-2xl sm:text-xl md:text-3xl font-bold py-4 break-words hyphens-auto {textColor}"
+                                                >
+                                                    {skill.name}
+                                                </h3>
+                                                <div
+                                                    class={cx(
+                                                        'rounded-lg flex items-center py-4 justify-center',
+                                                        bgColor,
+                                                    )}
+                                                >
+                                                    <IDGSymbol
+                                                        id={skill.id}
+                                                        symbols={$symbols}
+                                                        class="pointer-events-none w-36 h-36 text-white"
+                                                    />
+                                                </div>
+                                                <p class="py-4 text-black">
+                                                    {skill.description}
+                                                </p>
+                                            </DisclosurePanel>
+                                        </Disclosure>
+                                    {/each}
+                                </div>
 
-                    <p class="max-w-xs text-base leading-5">
-                        {dimension.description}
-                    </p>
-                    <IDGLogo class="absolute bottom-0 h-[60px] w-[110px] flex-grow text-white/40" />
-                </div>
-                <div class="my-8 mr-8 flex flex-col gap-6 text-base">
-                    {#each getSkillsInDimension(dimension.id, { skills }) as skill}
-                        <div>
-                            <p class="font-extrabold">{skill.name}</p>
-                            <p>{skill.description}</p>
-                        </div>
-                    {/each}
-                </div>
-                <IDGColors class="absolute right-0 top-1/2 -translate-y-1/2" />
+                                <div class="space-y-2 hidden lg:grid">
+                                    {#each getSkillsInDimension( dimension.id, { skills: $skills }, ) as skill (skill.name)}
+                                        {@const hoverClasses = `hover:bg-white hover:text-black hover:outline hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`}
+                                        {@const activeClasses = `bg-white text-black outline outline-${dimensionSlug} outline-1 -outline-offset-1`}
+                                        {@const isSelected = $focusedSkill?.id === skill.id}
+                                        <div class="relative grid">
+                                            <button
+                                                class={cx(
+                                                    'sticky top-0 p-2 flex gap-2 items-center text-left group drop-shadow-xl',
+                                                    hoverClasses,
+                                                    bgColor,
+                                                    isSelected ? activeClasses : '',
+                                                )}
+                                                on:click={() => ($selectedSkill = skill.id)}
+                                                ><IDGSymbol
+                                                    id={skill.id}
+                                                    symbols={$symbols}
+                                                    class={cx(
+                                                        `w-10 h-10 shrink-0 group-hover:!${textColor}`,
+                                                        isSelected ? textColor : '',
+                                                    )}
+                                                />
+                                                <p class="text-sm w-full">
+                                                    {skill.name}
+                                                </p>
+                                                <ChevronDown
+                                                    class="mx-1 flex-grow -rotate-90"
+                                                /></button
+                                            >
+                                        </div>
+                                    {/each}
+                                </div>
+
+                                <div class="hidden lg:grid {bgColor}">
+                                    <div class="bg-white px-4 grid">
+                                        <h3
+                                            class="text-2xl sm:text-xl xl:text-2xl font-bold py-4 break-words hyphens-auto {textColor}"
+                                        >
+                                            {$focusedSkill.name}
+                                        </h3>
+                                        <div
+                                            class={cx(
+                                                'rounded-lg flex items-center py-4 justify-center',
+                                                bgColor,
+                                            )}
+                                        >
+                                            <IDGSymbol
+                                                id={$focusedSkill.id}
+                                                symbols={$symbols}
+                                                class="pointer-events-none w-36 h-36 text-white"
+                                            />
+                                        </div>
+                                        <p class="py-4 text-black">
+                                            {$focusedSkill.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            </TabPanel>
+                        {/each}
+                    </TabPanels>
+                </TabGroup>
             </div>
-        </div>
-    {/each}
+        {/if}
+    {/key}
 </div>
