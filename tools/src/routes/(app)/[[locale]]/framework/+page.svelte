@@ -33,6 +33,8 @@
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
+<!-- TODO: Ideally remove the px for smaller screens, coming from the layout. We need to override it for this screen -->
+
 <!-- TODO: Allow the framework to expand to fill the viewport width -->
 <div class="min-h-[700px] bg-white relative mb-16 max-w-screen-xl mx-auto">
     {#key $dimensions}
@@ -85,7 +87,7 @@
                             {@const textColor = getColor(dimension.id, 'text')}
                             <TabPanel
                                 class={cx(
-                                    'w-full grid text-white sm:grid-cols-[minmax(300px,1fr)_2fr] sm:gap-2 bg-white sm:pt-2 items-start',
+                                    'w-full grid text-white sm:grid-cols-[minmax(260px,1fr)_2fr] sm:gap-2 bg-white sm:pt-2 items-start',
                                     bgColor,
                                 )}
                             >
@@ -130,10 +132,19 @@
                                             <DisclosurePanel
                                                 class="bg-white sm:bg-transparent px-4 grid"
                                             >
+                                                <!-- TODO: Ensure words break correctly. For example "Kommunikationsfärdigheter" in Swedish doesn't wrap correctly, which causes overflow.render -->
+                                                <!-- IDEA: Allow headings to change size at certain breakpoints, instead of rendering the same component twice -->
                                                 <Heading
                                                     size={2}
                                                     class={cx(
-                                                        'py-4 break-words hyphens-auto',
+                                                        'sm:hidden py-4 break-words hyphens-auto',
+                                                        textColor,
+                                                    )}>{skill.name}</Heading
+                                                >
+                                                <Heading
+                                                    size={3}
+                                                    class={cx(
+                                                        'hidden sm:block py-4 break-words hyphens-auto',
                                                         textColor,
                                                     )}>{skill.name}</Heading
                                                 >
@@ -164,3 +175,5 @@
         {/if}
     {/key}
 </div>
+
+<!-- TODO: For the framework page, replace the community widget with another call to action to translate and add more locales of the framework -->
