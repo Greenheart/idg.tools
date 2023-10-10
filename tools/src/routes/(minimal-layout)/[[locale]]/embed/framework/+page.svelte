@@ -28,12 +28,14 @@
 
 <svelte:body use:bodyClass={'bg-white'} />
 
-<IDGFramework
-    {dimensions}
-    {skills}
-    {symbols}
-    pathname={$page.url.pathname}
-    {selectedDimension}
-    currentLocale={$page.params.locale}
-    supportedLocales={data.supportedLocales}
-/>
+<div class="xs:px-2">
+    <IDGFramework
+        {dimensions}
+        {skills}
+        {symbols}
+        pathname={$page.url.pathname}
+        {selectedDimension}
+        currentLocale={$page.params.locale}
+        supportedLocales={data.supportedLocales}
+    />
+</div>
