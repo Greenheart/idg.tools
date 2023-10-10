@@ -15,20 +15,25 @@
     import { Heading } from '$shared/components'
     import Meta from '$components/Meta.svelte'
     import type { PageData } from './$types'
-    import { getSkillsInDimension, getDimensionSlug } from '$shared/content-utils'
+    import { getSkillsInDimension, getDimensionSlug, getSkill } from '$shared/content-utils'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import { IDGSymbol, ChevronDown } from '$shared/icons'
     import { cx, getColor } from '$shared/utils'
+    import type { Skill } from '$shared/types'
 
     export let data: PageData
 
-    // Use a store to keep the same dimension selected when the locale changes
+    // Use a store to keep the same selected dimension and skill when the locale changes
     const selectedDimensionIndex = writable(0)
+    const selectedSkill = writable<Skill['id']>()
 
     // Ensure the page re-renders when the locale changes.
     const dimensions = derived(page, () => data.dimensions)
     const skills = derived(page, () => data.skills)
     const symbols = derived(page, () => data.symbols)
+    const focusedSkill = derived([selectedSkill, skills], ([skillId, skills]) =>
+        getSkill(skillId, { skills }),
+    )
 </script>
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
@@ -82,9 +87,12 @@
                             {@const dimensionSlug = getDimensionSlug(dimension.id)}
                             {@const bgColor = getColor(dimension.id, 'bg')}
                             {@const textColor = getColor(dimension.id, 'text')}
+                            {@const focusedSkill = getSkill($selectedSkill ?? dimension.skills[0], {
+                                skills: $skills,
+                            })}
                             <TabPanel
                                 class={cx(
-                                    'w-full grid text-white sm:grid-cols-[minmax(260px,1fr)_2fr] sm:gap-2 bg-white sm:pt-2 items-start',
+                                    'w-full grid text-white sm:grid-cols-[minmax(260px,1fr)_2fr] lg:grid-cols-[minmax(260px,1fr)_1fr_1fr] sm:gap-2 bg-white sm:pt-2 items-start',
                                     bgColor,
                                 )}
                             >
@@ -103,7 +111,8 @@
                                     <p class="p-4 pt-0">{dimension.description}</p>
                                 </div>
 
-                                <div class="py-2 sm:p-0 bg-white space-y-2">
+                                <!-- TODO: Hide this section for lg screens and up, then replace with another two columns defined below -->
+                                <div class="py-2 sm:p-0 bg-white space-y-2 lg:hidden">
                                     {#each getSkillsInDimension( dimension.id, { skills: $skills }, ) as skill (skill.name)}
                                         <Disclosure class="grid relative" let:open>
                                             <DisclosureButton
@@ -155,6 +164,61 @@
                                         </Disclosure>
                                     {/each}
                                 </div>
+
+                                <div class="space-y-2 hidden lg:grid">
+                                    <!-- list all skills, similarly to how they are listed for mobile in the disclosure buttons -->
+                                    <!-- Selecting a skill should render that in the preview -->
+                                    <!-- the selected skill is reset to the first in a dimension when the dimension changes -->
+                                    <!-- MAYBE: the selected skill stays the same if the locale changes -->
+                                    {#each getSkillsInDimension( dimension.id, { skills: $skills }, ) as skill (skill.name)}
+                                        <div class="relative grid">
+                                            <button
+                                                class={cx(
+                                                    'sticky top-0 p-2 flex gap-2 items-center hover:bg-white hover:text-black text-left group drop-shadow-xl',
+                                                    `hover:outline hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`,
+                                                    bgColor,
+                                                )}
+                                                on:click={() => ($selectedSkill = skill.id)}
+                                                ><IDGSymbol
+                                                    id={skill.id}
+                                                    symbols={$symbols}
+                                                    class="w-10 h-10 shrink-0 group-hover:!{textColor}"
+                                                />
+                                                <p class="text-sm w-full">
+                                                    {skill.name}
+                                                </p>
+                                                <ChevronDown
+                                                    class="mx-1 flex-grow -rotate-90"
+                                                /></button
+                                            >
+                                        </div>
+                                    {/each}
+                                </div>
+
+                                <div class="hidden lg:grid {bgColor}">
+                                    <div class="bg-white px-4 grid">
+                                        <h3
+                                            class="text-2xl sm:text-xl xl:text-2xl font-bold py-4 break-words hyphens-auto {textColor}"
+                                        >
+                                            {focusedSkill.name}
+                                        </h3>
+                                        <div
+                                            class={cx(
+                                                'rounded-lg flex items-center py-4 justify-center',
+                                                bgColor,
+                                            )}
+                                        >
+                                            <IDGSymbol
+                                                id={focusedSkill.id}
+                                                symbols={$symbols}
+                                                class="pointer-events-none w-36 h-36 text-white"
+                                            />
+                                        </div>
+                                        <p class="py-4 text-black">
+                                            {focusedSkill.description}
+                                        </p>
+                                    </div>
+                                </div>
                             </TabPanel>
                         {/each}
                     </TabPanels>
@@ -163,3 +227,5 @@
         {/if}
     {/key}
 </div>
+
+<!-- TODO: For the framework page, replace the community widget with another call to action to translate and add more locales of the framework -->
