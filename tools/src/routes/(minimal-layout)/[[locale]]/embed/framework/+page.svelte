@@ -5,6 +5,8 @@
     import Meta from '$components/Meta.svelte'
     import type { PageData } from './$types'
     import IDGFramework from '$components/IDGFramework.svelte'
+    import { parseDimensionSlug } from '$shared/content-utils'
+    import { browser } from '$app/environment'
 
     export let data: PageData
 
@@ -12,6 +14,10 @@
     const dimensions = derived(page, () => data.dimensions)
     const skills = derived(page, () => data.skills)
     const symbols = derived(page, () => data.symbols)
+
+    const selectedDimension = derived(page, () =>
+        browser ? parseDimensionSlug($page.url.hash.toLowerCase().replace('#', '')) : undefined,
+    )
 </script>
 
 <Meta
@@ -30,6 +36,7 @@
     {skills}
     {symbols}
     pathname={$page.url.pathname}
+    {selectedDimension}
     currentLocale={$page.params.locale}
     supportedLocales={data.supportedLocales}
 />

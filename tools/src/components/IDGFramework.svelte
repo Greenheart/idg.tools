@@ -12,23 +12,38 @@
     import { derived, writable, type Readable } from 'svelte/store'
 
     import { Heading, LocaleSwitcher } from '$shared/components'
-    import { getSkillsInDimension, getDimensionSlug, getSkill } from '$shared/content-utils'
+    import {
+        getSkillsInDimension,
+        getDimensionSlug,
+        getSkill,
+        getDimensionIndexBySlug,
+    } from '$shared/content-utils'
     import { IDGSymbol, ChevronDown } from '$shared/icons'
     import { cx, getColor } from '$shared/utils'
-    import type { Dimension, IDGSymbols, Skill, SupportedLocales } from '$shared/types'
+    import type {
+        Dimension,
+        DimensionSlug,
+        IDGSymbols,
+        Skill,
+        SupportedLocales,
+    } from '$shared/types'
 
     export let skills: Readable<Skill[]>
     export let dimensions: Readable<Dimension[]>
     export let symbols: Readable<IDGSymbols>
 
+    export let currentLocale: string
     export let supportedLocales: SupportedLocales
     export let pathname: string
-    export let currentLocale: string
+    export let selectedDimension: Readable<DimensionSlug | undefined>
 
     // Use a store to keep the same selected dimension and skill when the locale changes
-    const selectedDimensionIndex = writable(0)
+    const selectedDimensionIndex = writable(
+        $selectedDimension ? getDimensionIndexBySlug($selectedDimension) : 0,
+    )
     const selectedSkill = writable<Skill['id'] | null>(null)
 
+    /** The actual currently selected skill */
     const focusedSkill = derived(
         [selectedSkill, skills, dimensions, selectedDimensionIndex],
         ([skillId, skills, dimensions, selectedDimensionIndex]) => {
