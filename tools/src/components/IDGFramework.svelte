@@ -35,7 +35,7 @@
     export let currentLocale: string
     export let supportedLocales: SupportedLocales
     export let pathname: string
-    export let selectedDimension: Readable<DimensionSlug | undefined>
+    export let selectedDimension: Readable<DimensionSlug | undefined> | undefined = undefined
 
     // Use a store to keep the same selected dimension and skill when the locale changes
     const selectedDimensionIndex = writable(
@@ -54,7 +54,7 @@
     )
 </script>
 
-<div class="min-h-[700px] bg-white relative mb-16 max-w-screen-xl mx-auto">
+<div class="min-h-[700px] bg-white relative max-w-screen-xl mx-auto">
     {#key $dimensions}
         {#if $dimensions}
             <div class="text-base h-full">
