@@ -85,11 +85,11 @@
                             {@const textColor = getColor(dimension.id, 'text')}
                             <TabPanel
                                 class={cx(
-                                    'w-full grid text-white sm:grid-cols-[minmax(300px,1fr)_2fr] sm:gap-2 bg-white sm:pt-2',
+                                    'w-full grid text-white sm:grid-cols-[minmax(300px,1fr)_2fr] sm:gap-2 bg-white sm:pt-2 items-start',
                                     bgColor,
                                 )}
                             >
-                                <div class={bgColor}>
+                                <div class="sticky top-0 {bgColor}">
                                     <Heading size={2} class="p-4 pb-1 break-words hyphens-auto"
                                         >{i + 1}. {dimension.name}</Heading
                                     >
