@@ -33,9 +33,6 @@
 
 <Meta title="IDG Framework" description="The 5 dimensions with the 23 skills and qualities" />
 
-<!-- TODO: Ideally remove the px for smaller screens, coming from the layout. We need to override it for this screen -->
-
-<!-- TODO: Allow the framework to expand to fill the viewport width -->
 <div class="min-h-[700px] bg-white relative mb-16 max-w-screen-xl mx-auto">
     {#key $dimensions}
         {#if $dimensions}
@@ -70,6 +67,7 @@
                                         ? 'text-white'
                                         : getColor(dimension.id, 'text')}"
                                 />
+                                <!-- TODO: Decrease size on sm, then increase on larger screens than md -->
                                 <p
                                     class="pt-2 font-medium hidden sm:block {isSelected
                                         ? 'text-white'
@@ -92,9 +90,11 @@
                                 )}
                             >
                                 <div class="sm:sticky sm:top-0 {bgColor}">
-                                    <Heading size={2} class="p-4 pb-1 break-words hyphens-auto"
-                                        >{i + 1}. {dimension.name}</Heading
+                                    <h2
+                                        class="text-2xl md:text-3xl font-bold p-4 pb-1 break-words hyphens-auto"
                                     >
+                                        {i + 1}. {dimension.name}
+                                    </h2>
                                     <Heading size={4} class="px-4">{dimension.subtitle}</Heading>
                                     <IDGSymbol
                                         id={dimension.id}
@@ -132,22 +132,11 @@
                                             <DisclosurePanel
                                                 class="bg-white sm:bg-transparent px-4 grid"
                                             >
-                                                <!-- TODO: Ensure words break correctly. For example "Kommunikationsfärdigheter" in Swedish doesn't wrap correctly, which causes overflow.render -->
-                                                <!-- IDEA: Allow headings to change size at certain breakpoints, instead of rendering the same component twice -->
-                                                <Heading
-                                                    size={2}
-                                                    class={cx(
-                                                        'sm:hidden py-4 break-words hyphens-auto',
-                                                        textColor,
-                                                    )}>{skill.name}</Heading
+                                                <h3
+                                                    class="text-2xl sm:text-xl md:text-3xl font-bold py-4 break-words hyphens-auto {textColor}"
                                                 >
-                                                <Heading
-                                                    size={3}
-                                                    class={cx(
-                                                        'hidden sm:block py-4 break-words hyphens-auto',
-                                                        textColor,
-                                                    )}>{skill.name}</Heading
-                                                >
+                                                    {skill.name}
+                                                </h3>
                                                 <div
                                                     class={cx(
                                                         'rounded-lg flex items-center py-4 justify-center',
@@ -175,5 +164,3 @@
         {/if}
     {/key}
 </div>
-
-<!-- TODO: For the framework page, replace the community widget with another call to action to translate and add more locales of the framework -->
