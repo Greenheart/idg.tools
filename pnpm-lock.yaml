@@ -178,6 +178,9 @@ importers:
       '@octokit/graphql':
         specifier: ^7.0.1
         version: 7.0.1
+      iframe-resizer:
+        specifier: ^4.3.7
+        version: 4.3.7
       remark:
         specifier: ^14.0.3
         version: 14.0.3
@@ -3194,6 +3197,11 @@ packages:
 
   /ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
+
+  /iframe-resizer@4.3.7:
+    resolution: {integrity: sha512-a3EGVScU9NtUpj6lWvGhVw3EfOw5AopRs5xGsQU385kWdgQt++OsD6PCnTV+8YkgBu/g28rLIh0EztFg9UQr1Q==}
+    engines: {node: '>=0.8.0'}
+    dev: false
 
   /immediate@3.0.6:
     resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
