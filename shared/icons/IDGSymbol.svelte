@@ -50,6 +50,7 @@
 
     // TODO: Remove this when we release the full framework
     const TMP_SYMBOL = DIMENSION_SYMBOLS[DIMENSIONS[id]]
+    const ENABLED = (process.env.NODE_ENV ?? 'development') !== 'production'
 </script>
 
 <svg
@@ -60,9 +61,8 @@
     class={className}
     {style}
 >
-    <!-- TODO: Replace with this when publishing -->
-    <!-- {#each symbols[id] as path} -->
-    {#each symbols[TMP_SYMBOL] as path}
+    <!-- TODO: Update this when publishing the full framework -->
+    {#each ENABLED ? symbols[id] : symbols[TMP_SYMBOL] as path}
         <path d={path} />
     {/each}
 </svg>
