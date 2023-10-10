@@ -71,7 +71,9 @@
                         }
                     }}
                 >
-                    <TabList class="text-white grid grid-cols-5" let:selectedIndex>
+                    <TabList
+                        class="text-white grid grid-cols-5 {$selectedDimension ? 'hidden' : ''}"
+                    >
                         {#each $dimensions as dimension, i (dimension.name)}
                             {@const dimensionSlug = getDimensionSlug(dimension.id)}
                             {@const isSelected = $selectedDimensionIndex === i}
