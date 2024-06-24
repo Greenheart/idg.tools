@@ -9,7 +9,7 @@
         "colors": "node scripts/compile.js && node scripts/compiled/update-colors.js"
     },
     "devDependencies": {
-        "@types/node": "^20.6.5",
+        "@types/node": "^20.14.8",
         "chokidar": "^3.5.3",
         "esbuild": "~0.19.3",
         "fast-glob": "^3.3.1",
