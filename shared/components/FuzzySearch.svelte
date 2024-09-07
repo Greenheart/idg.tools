@@ -5,7 +5,7 @@
     export let data: any
     export let extract: (item: any) => any
     export let goto: (url: string) => Promise<void>
-    export let preloadData: (href: string) => Promise<void>
+    export let preloadData: (href: string) => Promise<any>
 
     const label = 'Search tools...'
 </script>
