@@ -11,5 +11,5 @@ export const load = (async () => {
         return { skills }
     }
 
-    throw error(500)
+    error(500);
 }) satisfies PageServerLoad

@@ -25,7 +25,8 @@
     "devDependencies": {
         "@rgossiaux/svelte-headlessui": "^2.0.0",
         "@sveltejs/adapter-vercel": "^5.4.3",
-        "@sveltejs/kit": "^1.30.4",
+        "@sveltejs/kit": "^2.0.0",
+        "@sveltejs/vite-plugin-svelte": "^3.0.0",
         "@tailwindcss/typography": "^0.5.15",
         "autoprefixer": "^10.4.20",
         "cssnano": "^7.0.6",
@@ -42,7 +43,7 @@
         "tinyglobby": "^0.2.5",
         "tslib": "^2.7.0",
         "typescript": "^5.5.4",
-        "vite": "^4.5.3"
+        "vite": "^5.0.0"
     },
     "type": "module"
 }
