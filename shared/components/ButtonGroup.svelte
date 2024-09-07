@@ -11,6 +11,6 @@
     export { className as class }
 </script>
 
-<div class={cx('grid gap-y-2 gap-x-4 whitespace-nowrap ', breakpoints[breakpoint], className)}>
+<div class={cx('grid gap-y-2 gap-x-4 whitespace-nowrap', breakpoints[breakpoint], className)}>
     <slot />
 </div>
