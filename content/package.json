@@ -4,17 +4,18 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-        "dev": "node scripts/compile.js && node scripts/dev.js --",
-        "build": "node scripts/compile.js && node scripts/build.js --",
-        "colors": "node scripts/compile.js && node scripts/compiled/update-colors.js"
+        "dev": "node --import=tsx --watch scripts/dev.ts --",
+        "build": "node --import=tsx scripts/build.ts --",
+        "colors": "node --import=tsx scripts/update-colors.ts --"
     },
     "devDependencies": {
-        "@types/node": "^20.14.8",
-        "chokidar": "^3.5.3",
-        "esbuild": "~0.19.3",
-        "fast-glob": "^3.3.1",
+        "tsx": "^4.19.0",
+        "@types/node": "^22.5.4",
+        "tinyglobby": "^0.2.5",
+        "chokidar": "^3.6.0",
         "lodash.debounce": "^4.0.8",
         "slugify": "^1.6.6",
-        "zod": "^3.22.2"
+        "zod": "^3.23.8",
+        "@types/lodash.debounce": "^4.0.9"
     }
 }
