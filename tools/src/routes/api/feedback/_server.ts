@@ -7,6 +7,8 @@ import { createIssue } from '$lib/github'
 const sanitizer = remark().use(stripMarkdown)
 const sanitizeInput = (raw: string) => sanitizer.process(raw).then((value) => value.toString())
 
+// NOTE: This API route is disabled since it's not currently used.
+
 export const POST = (async ({ request, url }) => {
     const raw = await request.json()
 
