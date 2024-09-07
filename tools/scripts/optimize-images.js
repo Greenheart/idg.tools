@@ -1,5 +1,5 @@
 import sharp from 'sharp'
-import FastGlob from 'fast-glob'
+import { glob } from 'tinyglobby'
 import { dirname, resolve, basename, extname } from 'path'
 import { fileURLToPath } from 'url'
 import { writeFile, stat } from 'fs/promises'
@@ -7,7 +7,7 @@ import { writeFile, stat } from 'fs/promises'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 console.log('🌅 Optimizing images...')
-const images = await FastGlob(resolve(__dirname, '../source-images', '*.{jpg,png}'))
+const images = await glob([resolve(__dirname, '../source-images', '*.{jpg,png}')])
 
 const outputDir = resolve(__dirname, '../static/images')
 

@@ -1,14 +1,14 @@
 import { readFile, writeFile } from 'fs/promises'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
-import fastGlob from 'fast-glob'
+import { glob } from 'tinyglobby'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const COPY_FROM = 'en'
 const NEW_LOCALES = ['pt-BR', 'pt', 'it', 'nl', 'sv', 'es']
 
-const skillPaths = await fastGlob(resolve(`${__dirname}/../src/skills/${COPY_FROM}/*.json`))
+const skillPaths = await glob([resolve(`${__dirname}/../src/skills/${COPY_FROM}/*.json`)])
 
 const skills = await Promise.all(
     skillPaths.map((path) => readFile(path, { encoding: 'utf-8' }).then(JSON.parse)),
