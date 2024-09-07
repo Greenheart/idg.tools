@@ -18,7 +18,7 @@
         "@octokit/graphql": "^7.0.1",
         "iframe-resizer": "^4.3.7",
         "remark": "^15.0.1",
-        "strip-markdown": "^5.0.1",
+        "strip-markdown": "^6.0.0",
         "svelte-meta-tags": "^3.1.4",
         "svelte-typeahead": "^4.4.1"
     },
