@@ -1,4 +1,4 @@
-import FastGlob from 'fast-glob'
+import { glob } from 'tinyglobby'
 import { readFile, writeFile } from 'fs/promises'
 import { resolve } from 'path'
 import slugify from 'slugify'
@@ -36,7 +36,7 @@ export const writeJSON = (path: string, data: any, indentation: number = 0) =>
         encoding: 'utf-8',
     })
 
-export const getPaths = (...paths: string[]) => FastGlob(resolve(...paths))
+export const getPaths = (...paths: string[]) => glob([resolve(...paths)])
 
 /**
  * Ensures the url works in the live app or website by removing the full prefix added by the CMS.

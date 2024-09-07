@@ -52,7 +52,7 @@ type BundleName = keyof typeof BUNDLES
 const BUNDLE_NAMES = Object.keys(BUNDLES) as BundleName[]
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const contentDir = resolve(__dirname, '../../src')
+const contentDir = resolve(__dirname, '../src')
 
 // TODO: Document how to update the selected Locales that should be published.
 // At the moment this is important for adding new translations of the IDG framework.
@@ -100,11 +100,16 @@ async function build(selectedBundles: BundleName[]) {
 
 const hasMatchingPath = (path: string) => (contentPath: string) => path.includes(`/${contentPath}`)
 
-export default async function run(selectedBundles: BundleName[] = BUNDLE_NAMES, path: string) {
-    // Remove invalid arguments
-    let bundles = selectedBundles.filter((b) => BUNDLE_NAMES.includes(b))
+/**
+ * Get content bundle names to build. Removes invalid arguments.
+ */
+function getBundleNames(names: string[]): BundleName[] {
+    const bundles = names.filter((b) => BUNDLE_NAMES.includes(b as BundleName)) as BundleName[]
+    return bundles.length ? bundles : BUNDLE_NAMES
+}
 
-    if (!bundles.length) bundles = BUNDLE_NAMES
+export default async function run(selectedBundles: string[] = BUNDLE_NAMES, path?: string) {
+    let bundles = getBundleNames(selectedBundles)
 
     if (path) {
         const shouldBuild = hasMatchingPath(path)
