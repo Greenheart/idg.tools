@@ -1,10 +1,9 @@
 <script>
     import { Divider, Heading, Link } from '$shared/components'
     import {
-        COMMUNITY_LINK,
         FRAMEWORK_LINK,
         GITHUB_LINK,
-        HOW_TO_CONTRIBUTE_LINK,
+        HUBS_NETWORKS_LINK,
         IDG_PDF_TOOLKIT,
     } from '$shared/constants'
 </script>
@@ -31,8 +30,8 @@
         >, and research from <Link href="https://29k.org" variant="black">29k</Link>. We invite you
         <!-- TODO: Replace the span with link to contributing guide specifically for the toolkit -->
         to both <span>help improve and expand this open source toolkit</span>, and join the growing
-        worldwide <Link href={COMMUNITY_LINK} variant="black">IDG community</Link> coming together to
-        work on inner development for sustainable development.
+        worldwide <Link href={HUBS_NETWORKS_LINK} variant="black">IDG community</Link> coming together
+        to work on inner development for sustainable development.
     </p>
 </div>
 
@@ -56,17 +55,17 @@
             improvements, new tools or even design and develop the app. Read the principles of
             tools, and how to join the co-creation.
         </p>
-        <Link href={HOW_TO_CONTRIBUTE_LINK} variant="orange">Get involved</Link>
+        <Link href={GITHUB_LINK} variant="orange">Get involved</Link>
     </div>
 
     <div class="border-relating flex flex-col border bg-white p-4 shadow-md">
         <Heading size={2} class="text-relating">Community</Heading>
         <p class="my-4 flex-1">
-            With more than 100 IDG Hubs, these tools are used by an emerging network eager to
+            With more than 600 IDG Hubs, these tools are used by an emerging network eager to
             participate, explore and co-create. Join local events, connect with the global community
             and learn together.
         </p>
-        <Link href={COMMUNITY_LINK} variant="orange">Find your community</Link>
+        <Link href={HUBS_NETWORKS_LINK} variant="orange">Explore Hubs & Networks</Link>
     </div>
 </div>
 

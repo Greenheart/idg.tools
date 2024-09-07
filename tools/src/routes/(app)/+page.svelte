@@ -15,13 +15,10 @@
     export let data: PageData
     $: ({ content } = data)
 
-    let reduceMotion = true
-
     onMount(() => {
         // NOTE: Maybe we could limit the number of re-renders by showing a loading state until all of these have updated?
         selectedSkills.useLocalStorage()
         selectedTags.useLocalStorage()
-        reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     })
 
     $: mostRelevantTools =
@@ -58,7 +55,6 @@
             > and <Link href={SUGGEST_NEW_TOOL_LINK} variant="white">suggest new tools</Link>.
         </p>
         <Link href="/about" variant="orange" class="whitespace-nowrap text-right">Learn more</Link>
-        <!-- TODO: Add link to the /contribute page for tools, with specific instructions on how to contribute. -->
     </div>
 </div>
 
@@ -70,5 +66,3 @@
 
 <Heading size={2} class="pb-4 pt-8">2. Explore relevant tools</Heading>
 <Tools {mostRelevantTools} {content} />
-
-<!-- <Tools {mostRelevantTools} {content} reduceMotion={reduceMotion.matches} /> -->

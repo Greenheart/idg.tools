@@ -1,7 +1,7 @@
 <script lang="ts">
     import { UserGroup } from '$shared/icons'
     import { Heading, LinkButton, Link, ButtonGroup } from '$shared/components'
-    import { HOW_TO_CONTRIBUTE_LINK } from '$shared/constants'
+    import { IDG_WEBSITE } from '$shared/constants'
     import { FEEDBACK_FORM_LINK, SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
 </script>
 
@@ -14,10 +14,6 @@
         together. And with your help, we can make the IDG Toolkit even better!
     </p>
 
-    <p class="px-4 pt-4">
-        Check out our project <Link href="/roadmap" variant="black">roadmap</Link>.
-    </p>
-
     <ButtonGroup class="my-4" breakpoint="sm">
         <LinkButton
             href={SUGGEST_NEW_TOOL_LINK}
@@ -28,5 +24,5 @@
         >
     </ButtonGroup>
 
-    <Link href={HOW_TO_CONTRIBUTE_LINK} variant="orange">Explore more ways to contribute</Link>
+    <Link href={IDG_WEBSITE} variant="orange">Learn more about the Inner Development Goals</Link>
 </div>

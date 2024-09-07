@@ -1,6 +1,7 @@
 <script lang="ts">
     import { UserGroup } from '$shared/icons'
-    import { Heading, ButtonGroup, Link, LinkButton } from '$shared/components'
+    import { Heading, LinkButton } from '$shared/components'
+    import { HUBS_NETWORKS_LINK } from '$shared/constants'
 </script>
 
 <div class="mt-16 flex flex-col items-center justify-between bg-white p-4 shadow-lg">
@@ -19,14 +20,5 @@
         yourself - but also empower many others.
     </p>
 
-    <ButtonGroup breakpoint="sm">
-        <LinkButton href="/contribute#stories" variant="inverted" class="border border-transparent"
-            >Share your story</LinkButton
-        >
-        <LinkButton href="/contribute#stories-curation" variant="secondary-inverted"
-            >Join the editorial team</LinkButton
-        >
-    </ButtonGroup>
-
-    <Link href="/contribute" variant="orange" class="mt-4">Explore more ways to contribute</Link>
+    <LinkButton href={HUBS_NETWORKS_LINK} variant="inverted">Explore Hubs & Networks</LinkButton>
 </div>

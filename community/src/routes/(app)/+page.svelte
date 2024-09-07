@@ -2,7 +2,7 @@
     import { Link, Heading, LinkButton, ButtonGroup } from '$shared/components'
     import Meta from '$components/Meta.svelte'
     import type { PageData } from './$types'
-    import { COMMUNITY_LINK, FRAMEWORK_LINK } from '$shared/constants'
+    import { FRAMEWORK_LINK, HUBS_NETWORKS_LINK } from '$shared/constants'
     import Stories from '$components/Stories.svelte'
 
     export let data: PageData
@@ -17,7 +17,7 @@
     <p>Welcome to the Inner Development Goals Community!</p>
 
     <p class="mt-4">
-        This is an emerging network of IDG Hubs who are using the <Link
+        This is an emerging network of IDG Hubs & Networks who are using the <Link
             href={FRAMEWORK_LINK}
             variant="black">Inner Development Goals</Link
         > (IDGs) to accelerate progress towards the <Link
@@ -27,8 +27,7 @@
     </p>
 
     <ButtonGroup class="mt-8">
-        <LinkButton href={COMMUNITY_LINK} variant="secondary-inverted">Learn more</LinkButton>
-        <LinkButton href="/contribute" variant="secondary-inverted">Get involved</LinkButton>
+        <LinkButton href={HUBS_NETWORKS_LINK} variant="secondary-inverted">Get involved</LinkButton>
     </ButtonGroup>
 </div>
 
@@ -50,10 +49,10 @@
     <div class="border-collaborating flex flex-col border bg-white p-4 shadow-md">
         <Heading size={2} class="text-collaborating">Hubs</Heading>
         <p class="my-4 flex-1">
-            With more than 100 IDG Hubs, this is an emerging network eager to participate, explore
+            With more than 600 IDG Hubs, this is an emerging network eager to participate, explore
             and co-create. Join local events, connect with the global community and learn together.
         </p>
-        <Link href={COMMUNITY_LINK} variant="orange">Find your community</Link>
+        <Link href={HUBS_NETWORKS_LINK} variant="orange">Find your community</Link>
     </div>
 
     <div class="border-relating flex flex-col border bg-white p-4 shadow-md">

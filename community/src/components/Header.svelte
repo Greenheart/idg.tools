@@ -24,7 +24,6 @@
     const links = [
         { href: 'https://idg.tools', text: 'Toolkit' },
         { href: IDG_WEBSITE, text: 'IDG website' },
-        { href: '/contribute', text: 'How to contribute' },
     ]
 </script>
 

@@ -73,11 +73,6 @@
 
         {#if visibleItems < content.stories.length}
             <Button on:click={showMore}>Show more</Button>
-        {:else}
-            <p>
-                Welcome to <Link href="/contribute#stories" variant="orange">share your story</Link
-                >!
-            </p>
         {/if}
     </div>
 
