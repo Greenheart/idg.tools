@@ -1,5 +1,5 @@
 <script lang="ts">
-    import SvelteMarkdown from 'svelte-markdown/src/SvelteMarkdown.svelte'
+    import SvelteMarkdown from 'svelte-markdown'
     import DOMPurify from 'dompurify'
 
     import Link from './Link.svelte'

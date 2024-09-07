@@ -17,10 +17,9 @@
     "dependencies": {
         "@octokit/graphql": "^7.0.1",
         "iframe-resizer": "^4.3.7",
-        "remark": "^14.0.3",
-        "sanitize-html": "^2.11.0",
+        "remark": "^15.0.1",
         "strip-markdown": "^5.0.1",
-        "svelte-meta-tags": "^2.8.0",
+        "svelte-meta-tags": "^3.1.4",
         "svelte-typeahead": "^4.4.1"
     },
     "devDependencies": {
@@ -28,11 +27,9 @@
         "@sveltejs/adapter-vercel": "^3.0.3",
         "@sveltejs/kit": "^1.22.6",
         "@tailwindcss/typography": "^0.5.9",
-        "@types/sanitize-html": "^2.9.0",
         "autoprefixer": "^10.4.15",
-        "cssnano": "^6.0.1",
-        "dotenv": "^16.3.1",
-        "fast-glob": "^3.3.1",
+        "cssnano": "^7.0.6",
+        "tinyglobby": "^0.2.5",
         "postcss": "^8.4.28",
         "postcss-load-config": "^4.0.1",
         "prettier": "^3.0.2",

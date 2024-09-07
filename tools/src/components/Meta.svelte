@@ -1,6 +1,6 @@
 <script lang="ts">
     import { MetaTags } from 'svelte-meta-tags'
-    import type { OpenGraphImages } from 'svelte-meta-tags/types'
+    import type { OpenGraph } from 'svelte-meta-tags'
     import {
         BASE_URL,
         DEFAULT_DESCRIPTION,
@@ -13,7 +13,7 @@
     const formattedTitle = title ? `${title} | ${TAGLINE}` : `${TAGLINE}`
     export let description: string | undefined = DEFAULT_DESCRIPTION
     export let url: string | undefined = BASE_URL
-    export let images: OpenGraphImages[] = [
+    export let images: OpenGraph['images'] = [
         {
             url: DEFAULT_OG_IMAGE,
             width: 1200,
