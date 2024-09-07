@@ -3,7 +3,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 /** @type {import('tailwindcss').Config} */
 const config = {
     // Special setup here to include the tailwind classes from the component library when building.
-    content: ['./src/**/*.{html,js,svelte,ts}', '../shared/**/*.{html,js,svelte,ts}'],
+    content: ['./src/**/*.{html,js,svelte,ts}', '../shared/!(node_modules)/*.{html,js,svelte,ts}'],
     safelist: ['being', 'thinking', 'relating', 'collaborating', 'acting'].flatMap((name) => [
         `bg-${name}`,
         `text-${name}`,
