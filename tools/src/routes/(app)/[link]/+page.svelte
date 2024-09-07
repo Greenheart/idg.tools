@@ -2,7 +2,6 @@
     import { Heading, Markdown, Divider, Breadcrumbs, Link } from '$shared/components'
     import DetailedRelevantSkills from '$components/DetailedRelevantSkills.svelte'
     import Resources from '$components/Resources.svelte'
-    import FeedbackForm from '$components/FeedbackForm.svelte'
     import Tags from '$components/Tags.svelte'
 
     import { page } from '$app/stores'
@@ -45,10 +44,6 @@
     <Heading class="pt-8 pb-2">Research and resources</Heading>
     <Resources {tool} />
 {/if}
-
-<div class="mt-8">
-    <FeedbackForm />
-</div>
 
 <div class="mt-8 flex justify-center">
     <Link href="/#explore" variant="orange">See more tools</Link>
