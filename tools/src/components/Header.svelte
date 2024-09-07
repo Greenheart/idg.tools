@@ -26,9 +26,7 @@
 
     const links = [
         { href: '/about', text: 'About' },
-        { href: '/roadmap', text: 'Roadmap' },
         { href: 'https://innerdevelopmentgoals.org', text: 'IDG website' },
-        { href: 'https://idg.community/contribute', text: 'How to contribute' },
     ]
 </script>
 

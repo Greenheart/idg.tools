@@ -3,14 +3,12 @@
 
     import { Link } from '$shared/components'
     import { GITHUB_LINK } from '$shared/constants'
-    import LocalisationSection from '$components/LocalisationSection.svelte'
 </script>
 
 <main class="mx-auto w-full max-w-2xl px-2 xs:px-4 pb-16 text-black sm:max-w-6xl sm:text-lg">
     <Header />
     <slot />
     <div class="mx-auto mt-16 max-w-2xl sm:max-w-3xl">
-        <LocalisationSection />
         <p class="mt-16 text-center">
             The IDG Toolkit uses two licenses: CC-BY-SA-4.0 for content (except images), and
             AGPL-3.0 for software.

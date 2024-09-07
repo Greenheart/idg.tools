@@ -17,7 +17,6 @@ We're a small team with high ambitions, and would love to get your help! This is
 
 Curious to learn how you can contribute? Come say hi in our chat rooms and we'll help you get started. There are many ways to help out so don't be afraid to ask!
 
--   Get an overview of ways to contribute at <https://idg.community/contribute>
 -   Join our Element chat rooms:
     -   [IDG Localization Team](https://matrix.to/#/#localization:community.innerdevelopmentgoals.org)
     -   [IDG.tools - design, content and development](https://matrix.to/#/#idg-tools:community.innerdevelopmentgoals.org)

@@ -2,26 +2,15 @@ import type { Dimension, Locale, Skill } from './types'
 
 export const GITHUB_LINK = 'https://github.com/Greenheart/idg.tools'
 export const GITHUB_ISSUES_LINK = `${GITHUB_LINK}/issues`
-export const HOW_TO_CONTRIBUTE_LINK = 'https://idg.community/contribute'
-export const CONTRIBUTE_LOCALISATION_LINK = `${HOW_TO_CONTRIBUTE_LINK}#localisation`
-export const ELEMENT_LINK = 'https://matrix.to/#/#idg:community.innerdevelopmentgoals.org'
-export const ELEMENT_TOOLS_LINK =
-    'https://matrix.to/#/#idg-tools:community.innerdevelopmentgoals.org'
-export const ELEMENT_COMMUNITY_LINK =
-    'https://matrix.to/#/#website:community.innerdevelopmentgoals.org'
-export const ELEMENT_STORIES_LINK =
-    'https://matrix.to/#/#stories:community.innerdevelopmentgoals.org'
-export const ELEMENT_LOCALIZATION_LINK =
-    'https://matrix.to/#/#localization:community.innerdevelopmentgoals.org'
 // TODO: Localise the internal IDG.tools and IDG.community links so they can send people to the right language
 // For example, it would be nice to be able to link people directly to the framework in their current locale.
 export const FRAMEWORK_LINK = 'https://idg.tools/framework'
 export const IDG_WEBSITE = 'https://innerdevelopmentgoals.org'
-export const COMMUNITY_LINK = 'https://www.innerdevelopmentgoals.org/community'
-export const COMMUNITY_HUBS_LINK = 'https://www.innerdevelopmentgoals.org/community#Hubs'
 export const IDG_PDF_TOOLKIT = '/assets/221215_IDG_Toolkit_v1.pdf'
 export const IDG_REPORT_PDF = 'https://www.innerdevelopmentgoals.org/s/211201_IDG_Report_Full.pdf'
 export const IDG_CMS_LINK = 'https://cms.idg.community'
+
+export const HUBS_NETWORKS_LINK = 'https://innerdevelopmentgoals.org/get-involved/hubs-networks/'
 
 /**
  * IDEA: Maybe the supported locales could be managed via the CMS?
