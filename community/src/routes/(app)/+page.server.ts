@@ -13,5 +13,5 @@ export const load = (async () => {
         }
     }
 
-    throw error(500)
+    error(500);
 }) satisfies PageServerLoad
