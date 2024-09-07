@@ -36,7 +36,7 @@ export const load = (async ({ params, url }) => {
     const redirectURL = getRedirectURL(url.pathname, rawLocale)
 
     if (url.pathname !== redirectURL) {
-        throw redirect(301, redirectURL)
+        redirect(301, redirectURL);
     }
 
     const locale = getLocale(params.locale) as unknown as SurveyBackgroundInfoLocales
@@ -46,5 +46,5 @@ export const load = (async ({ params, url }) => {
         return { surveyInfo, supportedLocales }
     }
 
-    throw error(500)
+    error(500);
 }) satisfies PageServerLoad

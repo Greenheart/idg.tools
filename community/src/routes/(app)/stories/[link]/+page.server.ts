@@ -21,7 +21,7 @@ export const load = (async ({ params: { link } }: { params: Record<string, strin
         // If page was found on a different URL,
         // permanently redirect to the updated url (HTTP 301)
         // to prevent multiple URLs publishing the same content.
-        if (link !== story.link) throw redirect(301, `/stories/${story.link}`)
+        if (link !== story.link) redirect(301, `/stories/${story.link}`);
 
         const dimensions = story.dimensions.map((id) => getDimension(id, content))
         const { prev, next } = getAdjacentStories(story.id, content)
@@ -38,5 +38,5 @@ export const load = (async ({ params: { link } }: { params: Record<string, strin
         }
     }
 
-    throw error(404, `No story found with the link: "${link}"`)
+    error(404, `No story found with the link: "${link}"`);
 }) satisfies PageServerLoad
