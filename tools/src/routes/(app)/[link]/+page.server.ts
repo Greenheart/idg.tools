@@ -20,7 +20,7 @@ export const load = (async ({ params: { link } }: { params: Record<string, strin
         // Also beware that content may exist in one locale but not in others.
         // TODO: Also redirect from `/${DEFAULT_LOCALE_IDENTIFIER}/path` to `/path`
         // This is necessary to prevent duplicate content across multiple URLs.
-        if (link !== tool.link) throw redirect(301, `/${tool.link}`)
+        if (link !== tool.link) redirect(301, `/${tool.link}`);
 
         const tags = tool.tags.map((tagId) => getTag(tagId, content))
         const skills = tool.relevancy.map((r) => getSkill(r.skill, content))
@@ -28,5 +28,5 @@ export const load = (async ({ params: { link } }: { params: Record<string, strin
         return { tool, tags, skills }
     }
 
-    throw error(404, `No tool found with the link: "${link}"`)
+    error(404, `No tool found with the link: "${link}"`);
 }) satisfies PageServerLoad
