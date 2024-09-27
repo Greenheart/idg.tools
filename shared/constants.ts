@@ -12,6 +12,8 @@ export const IDG_CMS_LINK = 'https://cms.idg.community'
 
 export const HUBS_NETWORKS_LINK = 'https://innerdevelopmentgoals.org/get-involved/hubs-networks/'
 
+export const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365
+
 /**
  * IDEA: Maybe the supported locales could be managed via the CMS?
  * Add it in the CMS, which saves a JSON file with constants

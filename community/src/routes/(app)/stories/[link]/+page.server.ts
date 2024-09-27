@@ -9,19 +9,24 @@ import {
     getTag,
 } from '$shared/content-utils'
 import type { PageServerLoad, EntryGenerator } from './$types'
+import { ONE_YEAR_SECONDS } from '$shared/constants'
 
 export const entries = (() =>
     content.stories.map(({ link }) => ({ link }))) satisfies EntryGenerator
 
 export const prerender = 'auto'
 
-export const load = (async ({ params: { link } }: { params: Record<string, string> }) => {
+export const load = (async ({ params: { link }, setHeaders }) => {
     const story = getStoryByLink(link, content)
     if (story) {
+        setHeaders({
+            'Cache-Control': `public, max-age=${ONE_YEAR_SECONDS}`,
+        })
+
         // If page was found on a different URL,
         // permanently redirect to the updated url (HTTP 301)
         // to prevent multiple URLs publishing the same content.
-        if (link !== story.link) redirect(301, `/stories/${story.link}`);
+        if (link !== story.link) redirect(301, `/stories/${story.link}`)
 
         const dimensions = story.dimensions.map((id) => getDimension(id, content))
         const { prev, next } = getAdjacentStories(story.id, content)
@@ -38,5 +43,5 @@ export const load = (async ({ params: { link } }: { params: Record<string, strin
         }
     }
 
-    error(404, `No story found with the link: "${link}"`);
+    error(404, `No story found with the link: "${link}"`)
 }) satisfies PageServerLoad
