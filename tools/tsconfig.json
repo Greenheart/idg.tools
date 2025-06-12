@@ -3,8 +3,8 @@
     "compilerOptions": {
         "moduleResolution": "bundler",
         "module": "esnext",
-        "lib": ["es2020", "DOM"],
-        "target": "es2020",
+        "lib": ["ESNext", "DOM"],
+        "target": "ES2020",
         /**
 			svelte-preprocess cannot figure out whether you have a value or a type, so tell TypeScript
 			to enforce using \`import type\` instead of \`import\` for Types.
