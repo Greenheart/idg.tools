@@ -1,1 +1,8 @@
 content/src
+cms/build
+**/node_modules
+**/.svelte-kit
+**/.vercel
+**/static
+**/*lock.yaml
+**/*lock.json
