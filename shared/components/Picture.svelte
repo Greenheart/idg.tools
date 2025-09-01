@@ -8,7 +8,7 @@
     let className = ''
 
     /**
-     * Only used by `svelte-markdown` to pass image src
+     * Only used by `@humanspeak/svelte-markdown` to pass image src
      */
     export let href: string | undefined = undefined
 

@@ -1,6 +1,5 @@
 <script lang="ts">
-    import SvelteMarkdown from 'svelte-markdown'
-    import DOMPurify from 'dompurify'
+    import SvelteMarkdown from '@humanspeak/svelte-markdown'
 
     import Link from './Link.svelte'
     import Nothing from './Nothing.svelte'
@@ -78,9 +77,6 @@
 </script>
 
 <div class={cx(baseClasses, variants[variant], className, 'break-words')}>
-    <SvelteMarkdown
-        {source}
-        renderers={getRenderers(formatting)}
-        options={{ sanitizer: DOMPurify.sanitize }}
-    />
+    <!-- TODO: upgrade to https://github.com/humanspeak/svelte-markdown -->
+    <SvelteMarkdown {source} renderers={getRenderers(formatting)} options={{}} />
 </div>
