@@ -5,7 +5,7 @@
     import { GITHUB_LINK } from '$shared/constants'
 </script>
 
-<main class="mx-auto w-full max-w-2xl px-2 xs:px-4 pb-16 text-black sm:max-w-6xl sm:text-lg">
+<main class="xs:px-4 mx-auto w-full max-w-2xl px-2 pb-16 text-black sm:max-w-6xl sm:text-lg">
     <Header />
     <slot />
     <div class="mx-auto mt-16 max-w-2xl sm:max-w-3xl">

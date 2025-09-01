@@ -37,11 +37,11 @@
     <Markdown source={tool.actions} formatting="limited" />
 </div>
 
-<Heading class="pt-8 pb-2">Most relevant skills</Heading>
+<Heading class="pb-2 pt-8">Most relevant skills</Heading>
 <DetailedRelevantSkills {skills} relevancy={tool.relevancy} />
 
 {#if tool.resources}
-    <Heading class="pt-8 pb-2">Research and resources</Heading>
+    <Heading class="pb-2 pt-8">Research and resources</Heading>
     <Resources {tool} />
 {/if}
 

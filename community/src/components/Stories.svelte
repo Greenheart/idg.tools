@@ -31,7 +31,7 @@
 <div class="pt-16">
     <Heading id="stories" size={1} tag="h2">Featured stories</Heading>
 
-    <p class="pt-4 pb-2">Select tags to filter:</p>
+    <p class="pb-2 pt-4">Select tags to filter:</p>
     <Tags tags={content.tags} size="md" interactive inverted class="pb-4" />
 
     <!-- <StoryFilters tags={content.tags} dimensions={content.dimensions} /> -->

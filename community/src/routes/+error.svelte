@@ -4,7 +4,7 @@
     import { page } from '$app/stores'
 </script>
 
-<div class="flex flex-col items-center justify-center mt-16">
+<div class="mt-16 flex flex-col items-center justify-center">
     {#if $page.status === 404}
         <Heading class="mb-8">Sorry, this page does not exist</Heading>
         <LinkButton href="/" variant="primary">Explore IDG.community</LinkButton>

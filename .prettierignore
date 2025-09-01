@@ -6,3 +6,4 @@ cms/build
 **/static
 **/*lock.yaml
 **/*lock.json
+shared/colors.json

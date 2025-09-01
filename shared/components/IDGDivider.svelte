@@ -1,4 +1,4 @@
-<div class="grid grid-cols-5 my-16 w-64 h-1 mx-auto">
+<div class="mx-auto my-16 grid h-1 w-64 grid-cols-5">
     <div class="bg-being"></div>
     <div class="bg-thinking"></div>
     <div class="bg-relating"></div>

@@ -24,7 +24,7 @@
 
 <div class="relative grid" bind:this={target}>
     <button
-        class="flex items-center gap-2 hover:bg-stone-100 h-10 px-2"
+        class="flex h-10 items-center gap-2 px-2 hover:bg-stone-100"
         title="Change language"
         aria-label="Change language"
         on:click={() => (open = !open)}
@@ -32,7 +32,7 @@
         /></button
     >
     <ul
-        class="bg-white list-style-none absolute top-full ltr:right-0 rtl:left-0 grid text-base drop-shadow py-1 z-30 w-48"
+        class="list-style-none absolute top-full z-30 grid w-48 bg-white py-1 text-base drop-shadow ltr:right-0 rtl:left-0"
         class:hidden={!open}
     >
         {#each supported as [locale, label]}
@@ -44,7 +44,7 @@
                     on:click={() => {
                         open = false
                     }}
-                    class="px-3 py-1 hover:bg-stone-100 !no-underline hover:underline">{label}</Link
+                    class="px-3 py-1 !no-underline hover:bg-stone-100 hover:underline">{label}</Link
                 >
             </li>
         {/each}

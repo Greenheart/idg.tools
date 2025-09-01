@@ -1,10 +1,20 @@
-<script lang="ts">
-    import SvelteMarkdown from '@humanspeak/svelte-markdown'
-
+<script lang="ts" module>
+    import SvelteMarkdown, { allowRenderersOnly } from '@humanspeak/svelte-markdown'
     import Link from './Link.svelte'
+    import Picture from './Picture.svelte'
+
+    const shared = [['link', Link]]
+
+    const allowedRenderers: Record<MarkdownRenderer, Parameters<typeof allowRenderersOnly>[0]> = {
+        linksOnly: [...shared],
+        limited: [],
+        article: [['image', Picture]],
+    } as const
+</script>
+
+<script lang="ts">
     import Nothing from './Nothing.svelte'
     import { cx } from '../utils'
-    import Picture from './Picture.svelte'
 
     // IDEA: Ideally align the enabled formatting options with the enabled formatting in the CMS editor, to make it easy to sync updates
     // The CMS config can be found in cms/src/fields/shared.ts
@@ -69,14 +79,21 @@
     const defaultVariant = 'default'
     const defaultRenderer: MarkdownRenderer = 'linksOnly'
 
-    export let variant: keyof typeof variants = defaultVariant
-    export let formatting: MarkdownRenderer = defaultRenderer
-    export let source: string
-    let className = ''
-    export { className as class }
+    interface Props {
+        variant?: keyof typeof variants
+        formatting?: MarkdownRenderer
+        source: string
+        class?: string
+    }
+
+    let {
+        variant = defaultVariant,
+        formatting = defaultRenderer,
+        source,
+        class: className = '',
+    }: Props = $props()
 </script>
 
-<div class={cx(baseClasses, variants[variant], className, 'break-words')}>
-    <!-- TODO: upgrade to https://github.com/humanspeak/svelte-markdown -->
-    <SvelteMarkdown {source} renderers={getRenderers(formatting)} options={{}} />
+<div class={[baseClasses, variants[variant], className, 'break-words']}>
+    <SvelteMarkdown {source} renderers={allowRenderersOnly()} />
 </div>

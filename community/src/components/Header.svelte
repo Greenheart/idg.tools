@@ -27,7 +27,7 @@
     ]
 </script>
 
-<header class="relative flex items-center justify-between pt-6 pb-12">
+<header class="relative flex items-center justify-between pb-12 pt-6">
     <Link href="/" unstyled class="z-30 flex h-[60px] items-center gap-4">
         <img src="/images/IDG-logo.svg" alt="IDG logo" width="112" height="60" />
         <div class="h-full w-px bg-black" />

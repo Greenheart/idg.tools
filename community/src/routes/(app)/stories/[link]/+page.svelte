@@ -55,7 +55,7 @@
     <Picture
         src={story.image}
         alt={story.imageAlt}
-        class="mx-auto mt-8 mb-2 w-full"
+        class="mx-auto mb-2 mt-8 w-full"
         width={768}
         height={576}
     />

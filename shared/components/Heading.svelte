@@ -2,7 +2,7 @@
     import { cx } from '../utils'
 
     const sizes = [1, 2, 3, 4, 5, 6] as const
-    type Size = typeof sizes[number]
+    type Size = (typeof sizes)[number]
 
     const classes: Record<Size, string> = {
         1: 'text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold',

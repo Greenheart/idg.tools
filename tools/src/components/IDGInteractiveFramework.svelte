@@ -85,7 +85,7 @@
                         ? 'node'
                         : 'node node--leaf'
                     : 'node node--root'}
-                fill={rootData.children ? getRGBColor(rootData.data.id) ?? '#f5f5f5' : '#f5f5f5'}
+                fill={rootData.children ? (getRGBColor(rootData.data.id) ?? '#f5f5f5') : '#f5f5f5'}
                 on:click={(e) => {
                     if ($activeFocus !== rootData) zoom(rootData, e)
                 }}

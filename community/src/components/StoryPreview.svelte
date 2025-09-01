@@ -24,7 +24,7 @@
             loading="lazy"
         />
     </div>
-    <Heading class="pt-3 pb-2 group-hover:underline">{story.title}</Heading>
+    <Heading class="pb-2 pt-3 group-hover:underline">{story.title}</Heading>
     <div class="flex items-center pb-2">
         <span>{new Date(story.publishedAt).toLocaleDateString('sv-SE')}</span>
         {#if tags.length}

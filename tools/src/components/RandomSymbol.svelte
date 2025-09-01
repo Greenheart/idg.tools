@@ -33,16 +33,16 @@
     })
 </script>
 
-<div class="pt-16 px-2 flex justify-center">
+<div class="flex justify-center px-2 pt-16">
     <div
         class={cx(
-            'h-72 w-72 aspect-square p-8 rounded-lg',
+            'aspect-square h-72 w-72 rounded-lg p-8',
             randomSkill ? getColor(randomSkill) : 'bg-transparent',
         )}
     >
         {#if randomSkill}
             <div in:fade={{ duration: 500 }}>
-                <IDGSymbol id={randomSkill} {symbols} class="w-full h-full text-white" />
+                <IDGSymbol id={randomSkill} {symbols} class="h-full w-full text-white" />
             </div>
         {/if}
     </div>

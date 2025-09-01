@@ -159,7 +159,7 @@
 
 <div
     class={cx(
-        'sticky top-0 z-10 -mr-4 -ml-4 h-[164px] bg-stone-300 px-4 sm:-mr-8 sm:-ml-8 sm:h-[148px] sm:px-8 md:h-[] lg:h-[108px]',
+        'sticky top-0 z-10 -ml-4 -mr-4 h-[164px] bg-stone-300 px-4 sm:-ml-8 sm:-mr-8 sm:h-[148px] sm:px-8 md:h-[] lg:h-[108px]',
         className,
     )}
 >
@@ -167,7 +167,7 @@
         {#if loaded}
             <div in:fade>
                 <TabGroup
-                    class="absolute top-0 left-0 right-0 -ml-4 -mr-4 overflow-hidden bg-black text-white shadow-xl sm:-mr-8 sm:-ml-8"
+                    class="absolute left-0 right-0 top-0 -ml-4 -mr-4 overflow-hidden bg-black text-white shadow-xl sm:-ml-8 sm:-mr-8"
                     on:change={onChange}
                 >
                     <TabList class="xs:overflow-auto flex flex-nowrap overflow-x-scroll">
@@ -178,7 +178,7 @@
                                 on:keydown={onKeydown(onTabClick)}
                                 class={({ selected }) =>
                                     cx(
-                                        'py-4 px-2 !text-base first:pl-4 last:pr-4 sm:!text-lg',
+                                        'px-2 py-4 !text-base first:pl-4 last:pr-4 sm:!text-lg',
                                         selected ? cx(color, 'underline') : 'text-white',
                                     )}>{name}</Tab
                             >
