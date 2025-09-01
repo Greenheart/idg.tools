@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     import { onMount } from 'svelte'
 
     import { cx, isExternalURL } from '../utils'
@@ -14,20 +14,36 @@
 </script>
 
 <script lang="ts">
-    export let href = ''
-    let className = ''
-    export { className as class }
-    export let variant: keyof typeof variants = defaultVariant
-    export let unstyled = false
-    export let tabindex: number | undefined = undefined
-    export let title: string | undefined = undefined
+    import { createBubbler } from 'svelte/legacy'
 
-    /**
-     * Disable scrolling on navigation. This only makes sense for internal links.
-     */
-    export let noScroll: boolean = false
+    const bubble = createBubbler()
 
-    let additionalProps: object
+    interface Props {
+        href?: string
+        class?: string
+        variant?: keyof typeof variants
+        unstyled?: boolean
+        tabindex?: number | undefined
+        title?: string | undefined
+        /**
+         * Disable scrolling on navigation. This only makes sense for internal links.
+         */
+        noScroll?: boolean
+        children?: import('svelte').Snippet
+    }
+
+    let {
+        href = '',
+        class: className = '',
+        variant = defaultVariant,
+        unstyled = false,
+        tabindex = undefined,
+        title = undefined,
+        noScroll = false,
+        children,
+    }: Props = $props()
+
+    let additionalProps: object = $state()
     onMount(() => {
         if (isExternalURL(href)) {
             additionalProps = {
@@ -42,9 +58,9 @@
         }
     })
 
-    $: classes = unstyled ? className : cx(defaultClasses, variants[variant], className)
+    let classes = $derived(unstyled ? className : cx(defaultClasses, variants[variant], className))
 </script>
 
-<a {href} {tabindex} {title} class={classes} {...additionalProps} on:click>
-    <slot />
+<a {href} {tabindex} {title} class={classes} {...additionalProps} onclick={bubble('click')}>
+    {@render children?.()}
 </a>

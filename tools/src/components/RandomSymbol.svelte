@@ -6,12 +6,16 @@
     import { COLORS } from '$shared/constants'
     import { IDGSymbol } from '$shared/icons'
 
-    /** Only enable persistance when the component isn't part of an embedded page */
-    export let isEmbedded = false
-    export let skills: Skill[]
-    export let symbols: IDGSymbols
+    interface Props {
+        /** Only enable persistance when the component isn't part of an embedded page */
+        isEmbedded?: boolean
+        skills: Skill[]
+        symbols: IDGSymbols
+    }
 
-    let randomSkill: Skill['id'] | undefined
+    let { isEmbedded = false, skills, symbols }: Props = $props()
+
+    let randomSkill: Skill['id'] | undefined = $state()
 
     function getRandomSkill(skills: Skill[]) {
         if (!isEmbedded) {

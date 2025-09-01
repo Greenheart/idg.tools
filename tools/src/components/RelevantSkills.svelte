@@ -4,17 +4,24 @@
     import { cx, getColor } from '$lib/utils'
     import { selectedSkills } from '$lib/stores'
 
-    export let tool: Tool
-    export let visible: number
-    export let content: ToolsContent
-    let className = ''
-    export { className as class }
+    interface Props {
+        tool: Tool
+        visible: number
+        content: ToolsContent
+        class?: string
+    }
 
-    $: mostRelevantSkills = tool.relevancy
-        .filter(
-            $selectedSkills.length ? ({ skill }) => $selectedSkills.includes(skill) : () => true,
-        )
-        .slice(0, visible)
+    let { tool, visible, content, class: className = '' }: Props = $props()
+
+    let mostRelevantSkills = $derived(
+        tool.relevancy
+            .filter(
+                $selectedSkills.length
+                    ? ({ skill }) => $selectedSkills.includes(skill)
+                    : () => true,
+            )
+            .slice(0, visible),
+    )
 </script>
 
 <div class={cx('flex flex-wrap items-start gap-1 pr-[29px] text-sm', className)}>

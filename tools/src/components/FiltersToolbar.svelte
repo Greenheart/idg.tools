@@ -34,10 +34,14 @@
     // IDEA: Check out the search/filter implementation for https://github.com/Greenheart/reconnect.earth
     const extract = (tool: Tool) => tool.name
 
-    export let content: ToolsContent
-    export let mostRelevantTools: Tool[]
+    interface Props {
+        content: ToolsContent
+        mostRelevantTools: Tool[]
+    }
 
-    let advancedFilters = false
+    let { content, mostRelevantTools }: Props = $props()
+
+    let advancedFilters = $state(false)
 </script>
 
 <div class="toolbar grid grid-cols-2 pb-3">
@@ -46,7 +50,7 @@
     <Button
         size="sm"
         class="xs:rounded-none xs:px-4 flex items-center gap-2 justify-self-end rounded-full"
-        on:click={() => {
+        onclick={() => {
             advancedFilters = !advancedFilters
         }}><Filters /> <span class="xs:inline hidden">Filters</span></Button
     >
@@ -59,7 +63,7 @@
                     <Button
                         size="sm"
                         unstyled
-                        on:click={() => toggleTag(tag.id)}
+                        onclick={() => toggleTag(tag.id)}
                         class={cx(
                             'xs:text-base transform-gpu bg-white text-sm !font-normal duration-100',
                             !$selectedTags.includes(tag.id) &&
@@ -76,7 +80,7 @@
             <VisibleToolsCount {mostRelevantTools} allToolsCount={content.tools.length} />
         </span>
         <Button
-            on:click={resetFilters}
+            onclick={resetFilters}
             unstyled
             size="sm"
             class="px-0 text-sm underline disabled:opacity-70"

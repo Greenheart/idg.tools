@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     import { cx } from '../utils'
 
     const sizes = [1, 2, 3, 4, 5, 6] as const
@@ -15,13 +15,23 @@
 </script>
 
 <script lang="ts">
-    export let size: Size = 2
-    let className = ''
-    export { className as class }
-    export let id: string | undefined = undefined
-    export let tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' = `h${size}`
+    interface Props {
+        size?: Size
+        class?: string
+        id?: string | undefined
+        tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+        children?: import('svelte').Snippet
+    }
+
+    let {
+        size = 2,
+        class: className = '',
+        id = undefined,
+        tag = `h${size}`,
+        children,
+    }: Props = $props()
 </script>
 
 <svelte:element this={tag} class={cx(classes[size], className)} {id}>
-    <slot />
+    {@render children?.()}
 </svelte:element>

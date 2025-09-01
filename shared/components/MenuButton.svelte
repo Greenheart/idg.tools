@@ -1,18 +1,23 @@
 <script lang="ts">
     import { onKeydown } from '../utils'
 
-    export let onToggle: () => void
-    export let isOpen: boolean
+    interface Props {
+        onToggle: () => void
+        isOpen: boolean
+    }
+
+    let { onToggle, isOpen }: Props = $props()
 </script>
 
 <button
     class:is-active={isOpen}
     class="hamburger hamburger--spring"
-    on:click={onToggle}
-    on:keydown={onKeydown(onToggle)}
+    onclick={onToggle}
+    onkeydown={onKeydown(onToggle)}
+    aria-label={`${isOpen ? 'Close' : 'Open'} menu`}
 >
     <span class="hamburger-box">
-        <span class="hamburger-inner" />
+        <span class="hamburger-inner"></span>
     </span>
 </button>
 

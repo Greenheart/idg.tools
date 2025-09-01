@@ -9,8 +9,12 @@
     import { Button } from '$shared/components'
     import VisibleToolsCount from './VisibleToolsCount.svelte'
 
-    export let mostRelevantTools: Tool[]
-    export let content: ToolsContent
+    interface Props {
+        mostRelevantTools: Tool[]
+        content: ToolsContent
+    }
+
+    let { mostRelevantTools, content }: Props = $props()
     // TODO: Implement option to reduce motion
     // export let reduceMotion: boolean
 

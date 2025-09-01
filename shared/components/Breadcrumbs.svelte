@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     import Arrow from '../icons/Arrow.svelte'
     import Link from './Link.svelte'
 
@@ -9,7 +9,11 @@
 </script>
 
 <script lang="ts">
-    export let sections: Breadcrumb[] = []
+    interface Props {
+        sections?: Breadcrumb[]
+    }
+
+    let { sections = [] }: Props = $props()
 </script>
 
 <div class="flex items-center gap-2">

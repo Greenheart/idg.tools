@@ -6,9 +6,13 @@
     import { DEFAULT_LOCALE_IDENTIFIER, LOCALES } from '../constants'
     import ChevronDown from '../icons/ChevronDown.svelte'
 
-    export let supportedLocales: SupportedLocales
-    export let pathname: string
-    export let currentLocale: string = DEFAULT_LOCALE_IDENTIFIER
+    interface Props {
+        supportedLocales: SupportedLocales
+        pathname: string
+        currentLocale?: string
+    }
+
+    let { supportedLocales, pathname, currentLocale = DEFAULT_LOCALE_IDENTIFIER }: Props = $props()
 
     // Sort supported languages based on number of speakers
     const supported = Object.keys(LOCALES).reduce((result, locale) => {
@@ -18,8 +22,8 @@
         return result
     }, []) as [Locale, string][]
 
-    let open = false
-    let target: HTMLDivElement
+    let open = $state(false)
+    let target: HTMLDivElement = $state()
 </script>
 
 <div class="relative grid" bind:this={target}>
@@ -27,7 +31,7 @@
         class="flex h-10 items-center gap-2 px-2 hover:bg-stone-100"
         title="Change language"
         aria-label="Change language"
-        on:click={() => (open = !open)}
+        onclick={() => (open = !open)}
         ><LocaleIcon />{supportedLocales[currentLocale ?? DEFAULT_LOCALE_IDENTIFIER]}<ChevronDown
         /></button
     >
@@ -52,12 +56,12 @@
 </div>
 
 <svelte:body
-    on:click={(event) => {
+    onclick={(event) => {
         if (open && !event.composedPath().includes(target)) {
             open = false
         }
     }}
-    on:keyup={(event) => {
+    onkeyup={(event) => {
         if (open && event.key === 'Escape') {
             open = false
         }

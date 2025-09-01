@@ -5,9 +5,13 @@
     import { onKeydown } from '$lib/utils'
     import { beforeNavigate } from '$app/navigation'
     import type { SupportedLocales } from '$shared/types'
-    import { page } from '$app/stores'
+    import { page } from '$app/state'
 
-    export let supportedLocales: SupportedLocales | undefined = undefined
+    interface Props {
+        supportedLocales?: SupportedLocales | undefined
+    }
+
+    let { supportedLocales = undefined }: Props = $props()
 
     const toggleMenu = async () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
@@ -33,7 +37,7 @@
 <header class="relative flex items-center justify-between pb-12 pt-6">
     <Link href="/" unstyled class="z-30 flex h-[60px] items-center gap-4">
         <img src="/images/IDG-logo.svg" alt="IDG logo" width="112" height="60" />
-        <div class="h-full w-px bg-black" />
+        <div class="h-full w-px bg-black"></div>
         <span>Toolkit</span>
     </Link>
 
@@ -44,8 +48,8 @@
     {#if $isMenuOpen}
         <button
             class="xs:text-4xl bg-lightGray fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center overflow-y-scroll text-3xl font-semibold"
-            on:click={toggleMenu}
-            on:keydown={onKeydown(toggleMenu)}
+            onclick={toggleMenu}
+            onkeydown={onKeydown(toggleMenu)}
         >
             {#each links as { href, text }}
                 <Link {href} class="p-4" variant="black">{text}</Link>
@@ -60,8 +64,8 @@
             <Link {href} class="p-2 px-3 text-base" variant="black">{text}</Link>
         {/each}
         <!-- Only show locales for pages where it makes sense -->
-        {#if $page?.route?.id?.includes('/framework') && supportedLocales}
-            <LocaleSwitcher {supportedLocales} />
+        {#if page?.route?.id?.includes('/framework') && supportedLocales}
+            <LocaleSwitcher {supportedLocales} pathname={page.url.pathname} />
         {/if}
     </nav>
 </header>

@@ -4,14 +4,17 @@
     import type { IDGRelevancy, Skill } from '$shared/types'
     import RelevancyScore from './RelevancyScore.svelte'
 
-    export let skills: Skill[]
-    export let relevancy: IDGRelevancy[]
-    let className = ''
-    export { className as class }
+    interface Props {
+        skills: Skill[]
+        relevancy: IDGRelevancy[]
+        class?: string
+    }
+
+    let { skills, relevancy, class: className = '' }: Props = $props()
 
     let [mostRelevant, remaining] = [relevancy.slice(0, 5), relevancy.slice(5).length]
 
-    let visibleSkills = mostRelevant
+    let visibleSkills = $state(mostRelevant)
     function showAll() {
         visibleSkills = relevancy
     }
@@ -38,7 +41,7 @@
     </div>
 
     {#if visibleSkills.length < relevancy.length}
-        <button class="text-collaborating mt-4 font-semibold underline" on:click={showAll}>
+        <button class="text-collaborating mt-4 font-semibold underline" onclick={showAll}>
             Show {remaining ?? ''} more
         </button>
     {/if}

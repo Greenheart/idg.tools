@@ -17,9 +17,12 @@
         }, 100)
     }
 
-    export let skill: Skill
-    let className = ''
-    export { className as class }
+    interface Props {
+        skill: Skill
+        class?: string
+    }
+
+    let { skill, class: className = '' }: Props = $props()
 </script>
 
 <Button

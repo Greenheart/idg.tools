@@ -2,10 +2,14 @@
     import Typeahead from 'svelte-typeahead'
     import Search from '../icons/Search.svelte'
 
-    export let data: any
-    export let extract: (item: any) => any
-    export let goto: (url: string) => Promise<void>
-    export let preloadData: (href: string) => Promise<any>
+    interface Props {
+        data: any
+        extract: (item: any) => any
+        goto: (url: string) => Promise<void>
+        preloadData: (href: string) => Promise<any>
+    }
+
+    let { data, extract, goto, preloadData }: Props = $props()
 
     const label = 'Search tools...'
 </script>

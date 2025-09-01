@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     export type FrameworkData = {
         id: string
         name: string
@@ -17,8 +17,12 @@
     } from 'd3'
     import type { Writable } from 'svelte/store'
 
-    export let data: Writable<unknown>
-    export let activeFocus: Writable<HierarchyCircularNode<FrameworkData>>
+    interface Props {
+        data: Writable<unknown>
+        activeFocus: Writable<HierarchyCircularNode<FrameworkData>>
+    }
+
+    let { data, activeFocus }: Props = $props()
 
     const width = 800
     const height = width
@@ -36,9 +40,9 @@
     const root = packFunction($data) as HierarchyCircularNode<FrameworkData>
 
     let view = [width / 2, height / 2, width] as ZoomView
-    let activeZoomK = (width / root.r) * 2
-    let activeZoomA = root.x
-    let activeZoomB = root.y
+    let activeZoomK = $state((width / root.r) * 2)
+    let activeZoomA = $state(root.x)
+    let activeZoomB = $state(root.y)
 
     const inactiveZoomTo = (v: ZoomView) => {
         activeZoomK = width / v[2]
@@ -74,11 +78,11 @@
     Would be much better with a technique that allows rendering on the GPU.
 -->
 
-<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
-<svg {width} {height} on:click={(e) => zoom(root, e)} class="interactive-framework">
+<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+<svg {width} {height} onclick={(e) => zoom(root, e)} class="interactive-framework">
     <g transform="translate({width / 2},{height / 2})">
         {#each root.descendants().slice(1) as rootData}
-            <!-- svelte-ignore a11y-mouse-events-have-key-events -->
+            <!-- svelte-ignore a11y_mouse_events_have_key_events -->
             <circle
                 class={rootData.parent
                     ? rootData.children
@@ -86,7 +90,7 @@
                         : 'node node--leaf'
                     : 'node node--root'}
                 fill={rootData.children ? (getRGBColor(rootData.data.id) ?? '#f5f5f5') : '#f5f5f5'}
-                on:click={(e) => {
+                onclick={(e) => {
                     if ($activeFocus !== rootData) zoom(rootData, e)
                 }}
                 transform="translate({(rootData.x - activeZoomA) * activeZoomK},{(rootData.y -

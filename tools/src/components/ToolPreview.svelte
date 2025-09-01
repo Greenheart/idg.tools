@@ -7,12 +7,15 @@
     import RelevantSkills from './RelevantSkills.svelte'
     import Tags from './Tags.svelte'
 
-    $: intro = truncateText(tool.intro ?? tool.description, 300)
+    interface Props {
+        tool: Tool
+        content: ToolsContent
+    }
 
-    export let tool: Tool
-    export let content: ToolsContent
+    let { tool, content }: Props = $props()
 
     let tags = tool.tags.map((tagId) => getTag(tagId, content))
+    let intro = $derived(truncateText(tool.intro ?? tool.description, 300))
 </script>
 
 <Link

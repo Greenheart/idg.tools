@@ -13,6 +13,7 @@
         "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
     },
     "dependencies": {
+        "@humanspeak/svelte-markdown": "^0.8.11",
         "@octokit/graphql": "^7.1.1",
         "bits-ui": "^2.9.4",
         "iframe-resizer": "^4.4.5",

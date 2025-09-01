@@ -2,11 +2,17 @@
     import type { Dimension } from '$shared/types'
     import { selectedSkills } from '$lib/stores'
 
-    export let skillsInDimension: Dimension['skills']
+    interface Props {
+        skillsInDimension: Dimension['skills']
+    }
 
-    $: selectedInDimension = skillsInDimension.reduce(
-        (count, skill) => ($selectedSkills.some((s) => s === skill) ? count + 1 : count),
-        0,
+    let { skillsInDimension }: Props = $props()
+
+    let selectedInDimension = $derived(
+        skillsInDimension.reduce(
+            (count, skill) => ($selectedSkills.some((s) => s === skill) ? count + 1 : count),
+            0,
+        ),
     )
 </script>
 

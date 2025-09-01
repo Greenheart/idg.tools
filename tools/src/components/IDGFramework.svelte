@@ -28,14 +28,25 @@
         SupportedLocales,
     } from '$shared/types'
 
-    export let skills: Readable<Skill[]>
-    export let dimensions: Readable<Dimension[]>
-    export let symbols: Readable<IDGSymbols>
+    interface Props {
+        skills: Readable<Skill[]>
+        dimensions: Readable<Dimension[]>
+        symbols: Readable<IDGSymbols>
+        currentLocale: string
+        supportedLocales: SupportedLocales
+        pathname: string
+        selectedDimension?: Readable<DimensionSlug | undefined> | undefined
+    }
 
-    export let currentLocale: string
-    export let supportedLocales: SupportedLocales
-    export let pathname: string
-    export let selectedDimension: Readable<DimensionSlug | undefined> | undefined = undefined
+    let {
+        skills,
+        dimensions,
+        symbols,
+        currentLocale,
+        supportedLocales,
+        pathname,
+        selectedDimension = undefined,
+    }: Props = $props()
 
     // Use a store to keep the same selected dimension and skill when the locale changes
     const selectedDimensionIndex = writable(
@@ -130,53 +141,55 @@
 
                                 <div class="space-y-2 bg-white py-2 sm:p-0 lg:hidden">
                                     {#each getSkillsInDimension( dimension.id, { skills: $skills }, ) as skill (skill.name)}
-                                        <Disclosure class="relative grid" let:open>
-                                            <DisclosureButton
-                                                class={cx(
-                                                    'group sticky top-0 flex items-center gap-2 p-2 text-left drop-shadow-xl hover:bg-white hover:text-black',
-                                                    `hover:outline hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`,
-                                                    bgColor,
-                                                )}
-                                            >
-                                                <IDGSymbol
-                                                    id={skill.id}
-                                                    symbols={$symbols}
-                                                    class="h-10 w-10 shrink-0 group-hover:!{textColor}"
-                                                />
-                                                <p class="w-full text-sm">
-                                                    {skill.name}
-                                                </p>
-                                                <ChevronDown
+                                        <Disclosure class="relative grid">
+                                            {#snippet children({ open })}
+                                                <DisclosureButton
                                                     class={cx(
-                                                        'mx-1 flex-grow',
-                                                        open ? 'rotate-180' : 'rotate-0',
-                                                    )}
-                                                />
-                                            </DisclosureButton>
-                                            <DisclosurePanel
-                                                class="grid bg-white px-4 sm:bg-transparent"
-                                            >
-                                                <h3
-                                                    class="hyphens-auto break-words py-4 text-2xl font-bold sm:text-xl md:text-3xl {textColor}"
-                                                >
-                                                    {skill.name}
-                                                </h3>
-                                                <div
-                                                    class={cx(
-                                                        'flex items-center justify-center rounded-lg py-4',
+                                                        'group sticky top-0 flex items-center gap-2 p-2 text-left drop-shadow-xl hover:bg-white hover:text-black',
+                                                        `hover:outline hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`,
                                                         bgColor,
                                                     )}
                                                 >
                                                     <IDGSymbol
                                                         id={skill.id}
                                                         symbols={$symbols}
-                                                        class="pointer-events-none h-36 w-36 text-white"
+                                                        class="h-10 w-10 shrink-0 group-hover:!{textColor}"
                                                     />
-                                                </div>
-                                                <p class="py-4 text-black">
-                                                    {skill.description}
-                                                </p>
-                                            </DisclosurePanel>
+                                                    <p class="w-full text-sm">
+                                                        {skill.name}
+                                                    </p>
+                                                    <ChevronDown
+                                                        class={cx(
+                                                            'mx-1 flex-grow',
+                                                            open ? 'rotate-180' : 'rotate-0',
+                                                        )}
+                                                    />
+                                                </DisclosureButton>
+                                                <DisclosurePanel
+                                                    class="grid bg-white px-4 sm:bg-transparent"
+                                                >
+                                                    <h3
+                                                        class="hyphens-auto break-words py-4 text-2xl font-bold sm:text-xl md:text-3xl {textColor}"
+                                                    >
+                                                        {skill.name}
+                                                    </h3>
+                                                    <div
+                                                        class={cx(
+                                                            'flex items-center justify-center rounded-lg py-4',
+                                                            bgColor,
+                                                        )}
+                                                    >
+                                                        <IDGSymbol
+                                                            id={skill.id}
+                                                            symbols={$symbols}
+                                                            class="pointer-events-none h-36 w-36 text-white"
+                                                        />
+                                                    </div>
+                                                    <p class="py-4 text-black">
+                                                        {skill.description}
+                                                    </p>
+                                                </DisclosurePanel>
+                                            {/snippet}
                                         </Disclosure>
                                     {/each}
                                 </div>
@@ -194,7 +207,7 @@
                                                     bgColor,
                                                     isSelected ? activeClasses : '',
                                                 )}
-                                                on:click={() => ($selectedSkill = skill.id)}
+                                                onclick={() => ($selectedSkill = skill.id)}
                                                 ><IDGSymbol
                                                     id={skill.id}
                                                     symbols={$symbols}

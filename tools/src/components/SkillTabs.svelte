@@ -6,7 +6,7 @@
 
     import { getSkillsInDimension } from '$shared/content-utils'
     import { getColor, onKeydown, getOffset, getRGBColor } from '$lib/utils'
-    import type { Dimension, Skill, ToolsContent } from '$shared/types'
+    import type { Skill, ToolsContent } from '$shared/types'
     import SkillButton from './SkillButton.svelte'
     import { Button, Link, Heading } from '$shared/components'
     import { FRAMEWORK_LINK } from '$shared/constants'
@@ -25,7 +25,6 @@
     let lastScrollTop = $state(0)
     let skillTabs = $state<HTMLDivElement>()!
     let tabsContainer = $state<HTMLDivElement>()!
-    let selectedTab = $state<Dimension['id']>(content.dimensions[0].id)
 
     // Add a bit extra offset to prevent accidentally closing on initial page load
     // if the user is navigating to an anchor link, and thus scrolling.
@@ -144,7 +143,6 @@
                 <Tabs.Root
                     onValueChange={onChange}
                     class="absolute left-0 right-0 top-0 -ml-4 -mr-4 overflow-hidden bg-black text-white shadow-xl sm:-ml-8 sm:-mr-8"
-                    bind:value={selectedTab}
                 >
                     <Tabs.List class="xs:overflow-auto flex flex-nowrap overflow-x-scroll">
                         {#each content.dimensions as { name, id: dimensionId } (dimensionId)}

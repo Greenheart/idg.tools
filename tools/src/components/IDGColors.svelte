@@ -1,11 +1,12 @@
 <script lang="ts">
-    import { cx } from '$shared/utils'
+    interface Props {
+        class?: string
+    }
 
-    let className = ''
-    export { className as class }
+    let { class: className = '' }: Props = $props()
 </script>
 
-<div class={cx('gradient h-80 w-3 flex-col', className)} />
+<div class={['gradient h-80 w-3 flex-col', className]}></div>
 
 <style>
     .gradient {
