@@ -12,8 +12,12 @@
     import { FEEDBACK_FORM_LINK, SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
     import FiltersToolbar from '$components/FiltersToolbar.svelte'
 
-    export let data: PageData
-    $: ({ content } = data)
+    interface Props {
+        data: PageData
+    }
+
+    let { data }: Props = $props()
+    let { content } = $derived(data)
 
     onMount(() => {
         // NOTE: Maybe we could limit the number of re-renders by showing a loading state until all of these have updated?
@@ -21,10 +25,11 @@
         selectedTags.useLocalStorage()
     })
 
-    $: mostRelevantTools =
+    let mostRelevantTools = $derived(
         $selectedSkills.length || $selectedTags.length
             ? getMostRelevantTools(content, $selectedSkills, $selectedTags)
-            : content.tools
+            : content.tools,
+    )
 </script>
 
 <Meta />

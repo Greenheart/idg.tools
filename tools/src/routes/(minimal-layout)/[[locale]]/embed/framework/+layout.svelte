@@ -1,5 +1,11 @@
 <script lang="ts">
     import 'iframe-resizer/js/iframeResizer.contentWindow'
+
+    interface Props {
+        children?: import('svelte').Snippet
+    }
+
+    let { children }: Props = $props()
 </script>
 
 <!--
@@ -38,4 +44,4 @@ Embed height:
 
  -->
 
-<slot />
+{@render children?.()}

@@ -1,9 +1,8 @@
 import { error } from '@sveltejs/kit'
 import { content } from '$lib/content-backend'
-import type { PageServerLoad } from './$types'
 import { ONE_YEAR_SECONDS } from '$shared/constants'
 
-export const load = (async ({ setHeaders }) => {
+export const load = async ({ setHeaders }) => {
     if (content) {
         setHeaders({
             'Cache-Control': `public, max-age=${ONE_YEAR_SECONDS}`,
@@ -12,4 +11,4 @@ export const load = (async ({ setHeaders }) => {
     }
 
     error(500)
-}) satisfies PageServerLoad
+}

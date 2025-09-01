@@ -1,12 +1,14 @@
 <script lang="ts">
     import type { Skill, Dimension, IDGSymbols } from '../types'
 
-    let className = ''
-    export { className as class }
-    export let style = ''
+    interface Props {
+        class?: string
+        style?: string
+        id: Skill['id'] | Dimension['id']
+        symbols: IDGSymbols
+    }
 
-    export let id: Skill['id'] | Dimension['id']
-    export let symbols: IDGSymbols
+    let { class: className = '', style = '', id, symbols }: Props = $props()
 </script>
 
 <svg

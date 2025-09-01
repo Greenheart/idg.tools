@@ -30,7 +30,7 @@
 <header class="relative flex items-center justify-between pb-12 pt-6">
     <Link href="/" unstyled class="z-30 flex h-[60px] items-center gap-4">
         <img src="/images/IDG-logo.svg" alt="IDG logo" width="112" height="60" />
-        <div class="h-full w-px bg-black" />
+        <div class="h-full w-px bg-black"></div>
         <span>Community</span>
     </Link>
 
@@ -41,8 +41,8 @@
     {#if $isMenuOpen}
         <button
             class="xs:text-4xl bg-lightGray fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center text-3xl font-semibold"
-            on:click={toggleMenu}
-            on:keydown={onKeydown(toggleMenu)}
+            onclick={toggleMenu}
+            onkeydown={onKeydown(toggleMenu)}
         >
             {#each links as { href, text }}
                 <Link {href} class="p-4" variant="black">{text}</Link>

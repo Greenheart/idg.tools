@@ -4,16 +4,20 @@
     import Resources from '$components/Resources.svelte'
     import Tags from '$components/Tags.svelte'
 
-    import { page } from '$app/stores'
+    import { page } from '$app/state'
 
     import type { PageData } from './$types'
     import Meta from '$components/Meta.svelte'
     import { truncateText } from '$shared/utils'
-    export let data: PageData
-    $: ({ tool, skills, tags } = data)
-    $: intro = truncateText(tool.intro ?? tool.description, 300)
+    interface Props {
+        data: PageData
+    }
 
-    const url = $page.url.toString()
+    let { data }: Props = $props()
+    let { tool, skills, tags } = $derived(data)
+    let intro = $derived(truncateText(tool.intro ?? tool.description, 300))
+
+    const url = page.url.toString()
 </script>
 
 <Meta title={tool.name} description={intro} {url} />

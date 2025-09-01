@@ -1,7 +1,11 @@
 <script lang="ts">
     import { cx } from '../utils'
 
-    export let open = false
+    interface Props {
+        open?: boolean
+    }
+
+    let { open = false }: Props = $props()
 </script>
 
 <svg

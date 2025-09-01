@@ -2,14 +2,13 @@ import { redirect, error } from '@sveltejs/kit'
 
 import { content } from '$lib/content-backend'
 import { getSkill, getTag, getToolByLink } from '$shared/content-utils'
-import type { EntryGenerator, PageServerLoad } from './$types'
 import { ONE_YEAR_SECONDS } from '$shared/constants'
 
-export const entries = (() => content.tools.map(({ link }) => ({ link }))) satisfies EntryGenerator
+export const entries = () => content.tools.map(({ link }) => ({ link }))
 
 export const prerender = 'auto'
 
-export const load = (async ({ params: { link }, setHeaders }) => {
+export const load = async ({ params: { link }, setHeaders }) => {
     const tool = getToolByLink(link, content)
 
     if (tool) {
@@ -33,4 +32,4 @@ export const load = (async ({ params: { link }, setHeaders }) => {
     }
 
     error(404, `No tool found with the link: "${link}"`)
-}) satisfies PageServerLoad
+}

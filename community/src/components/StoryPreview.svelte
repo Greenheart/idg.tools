@@ -5,10 +5,14 @@
     import { Heading, Link, Picture } from '$shared/components'
     import Tags from './Tags.svelte'
 
-    export let story: Story
-    export let content: CommunityContent
+    interface Props {
+        story: Story
+        content: CommunityContent
+    }
 
-    $: intro = truncateText(story.intro ?? story.story, 300)
+    let { story, content }: Props = $props()
+
+    let intro = $derived(truncateText(story.intro ?? story.story, 300))
 
     let tags = story.tags.map((tagId) => getTag(tagId, content))
 </script>

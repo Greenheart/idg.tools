@@ -1,12 +1,16 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     import type { Dimension, Tag } from '$shared/types'
     import Dimensions from './Dimensions.svelte'
     import Tags from './Tags.svelte'
 </script>
 
 <script lang="ts">
-    export let dimensions: Dimension[]
-    export let tags: Tag[]
+    interface Props {
+        dimensions: Dimension[]
+        tags: Tag[]
+    }
+
+    let { dimensions, tags }: Props = $props()
 </script>
 
 <div class="mt-8 flex flex-wrap gap-4 gap-x-8 bg-white p-4 shadow-xl">

@@ -22,9 +22,6 @@
 </script>
 
 <script lang="ts">
-    import { createBubbler, trusted } from 'svelte/legacy'
-
-    const bubble = createBubbler()
     interface Props {
         variant?: keyof typeof variants
         disabled?: boolean
@@ -49,13 +46,14 @@
         type = undefined,
         unstyled = false,
         class: className = '',
+        onclick,
         children,
     }: Props = $props()
 
     let classes = $derived(
         unstyled
-            ? cx(defaultClasses, sizes[size], className)
-            : cx(defaultClasses, variants[disabled ? 'disabled' : variant], sizes[size], className),
+            ? [defaultClasses, sizes[size], className]
+            : [defaultClasses, variants[disabled ? 'disabled' : variant], sizes[size], className],
     )
 </script>
 
@@ -65,7 +63,11 @@
     {tabindex}
     {type}
     class={classes}
-    onclick={trusted(bubble('click'))}
+    onclick={(event) => {
+        if (event.isTrusted) {
+            onclick?.()
+        }
+    }}
 >
     {@render children?.()}
 </button>

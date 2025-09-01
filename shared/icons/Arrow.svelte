@@ -1,11 +1,13 @@
 <script lang="ts">
     import { cx } from '../utils'
 
-    let className = ''
-    export { className as class }
+    interface Props {
+        class?: string
+        left?: boolean
+        right?: boolean
+    }
 
-    export let left = false
-    export let right = false
+    let { class: className = '', left = false, right = false }: Props = $props()
 </script>
 
 <span class={cx(className, '!text-xl font-medium')}

@@ -3,8 +3,12 @@
     import Meta from '$components/Meta.svelte'
     import RandomSymbol from '$components/RandomSymbol.svelte'
 
-    export let data: PageData
-    $: ({ skills, symbols } = data)
+    interface Props {
+        data: PageData
+    }
+
+    let { data }: Props = $props()
+    let { skills, symbols } = $derived(data)
 </script>
 
 <Meta title="IDG Symbols" description="Show a random IDG symbol" />

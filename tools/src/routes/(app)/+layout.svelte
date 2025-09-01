@@ -4,11 +4,16 @@
     import CommunitySection from '$components/CommunitySection.svelte'
     import { Link } from '$shared/components'
     import { GITHUB_LINK } from '$shared/constants'
+    interface Props {
+        children?: import('svelte').Snippet
+    }
+
+    let { children }: Props = $props()
 </script>
 
 <main class="mx-auto w-full max-w-2xl px-4 pb-16 text-black sm:max-w-6xl sm:px-8 sm:text-lg">
     <Header />
-    <slot />
+    {@render children?.()}
     <div class="mx-auto mt-16 max-w-2xl sm:max-w-3xl">
         <CommunitySection />
         <p class="mt-16 text-center">

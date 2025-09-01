@@ -17,11 +17,14 @@
         lg: { element: 'px-2 py-1', wrapper: 'text-sm xs:text-base gap-3' },
     }
 
-    export let size: keyof typeof sizes = 'sm'
-    export let interactive = false
-    export let dimensions: Dimension[]
-    let className = ''
-    export { className as class }
+    interface Props {
+        size?: keyof typeof sizes
+        interactive?: boolean
+        dimensions: Dimension[]
+        class?: string
+    }
+
+    let { size = 'sm', interactive = false, dimensions, class: className = '' }: Props = $props()
 
     const renderAs = interactive ? 'button' : 'span'
 </script>
@@ -33,8 +36,8 @@
         {@const color = getColor(dimension.id)}
         <svelte:element
             this={renderAs}
-            on:click={interactive ? () => toggleDimension(dimension.id) : () => {}}
-            on:keydown={interactive ? onKeydown(() => toggleDimension(dimension.id)) : () => {}}
+            onclick={interactive ? () => toggleDimension(dimension.id) : () => {}}
+            onkeydown={interactive ? onKeydown(() => toggleDimension(dimension.id)) : () => {}}
             class={cx(
                 interactive
                     ? $selectedDimensions.includes(dimension.id)

@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { onMount } from 'svelte'
+    import type { HTMLAnchorAttributes } from 'svelte/elements'
 
     import { cx, isExternalURL } from '../utils'
 
@@ -14,10 +15,6 @@
 </script>
 
 <script lang="ts">
-    import { createBubbler } from 'svelte/legacy'
-
-    const bubble = createBubbler()
-
     interface Props {
         href?: string
         class?: string
@@ -29,6 +26,7 @@
          * Disable scrolling on navigation. This only makes sense for internal links.
          */
         noScroll?: boolean
+        onclick?: HTMLAnchorAttributes['onclick']
         children?: import('svelte').Snippet
     }
 
@@ -40,10 +38,11 @@
         tabindex = undefined,
         title = undefined,
         noScroll = false,
+        onclick,
         children,
     }: Props = $props()
 
-    let additionalProps: object = $state()
+    let additionalProps = $state({})
     onMount(() => {
         if (isExternalURL(href)) {
             additionalProps = {
@@ -61,6 +60,6 @@
     let classes = $derived(unstyled ? className : cx(defaultClasses, variants[variant], className))
 </script>
 
-<a {href} {tabindex} {title} class={classes} {...additionalProps} onclick={bubble('click')}>
+<a {href} {tabindex} {title} class={classes} {...additionalProps} {onclick}>
     {@render children?.()}
 </a>

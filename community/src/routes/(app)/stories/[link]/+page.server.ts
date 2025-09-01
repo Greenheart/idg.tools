@@ -8,15 +8,13 @@ import {
     getStoryByLink,
     getTag,
 } from '$shared/content-utils'
-import type { PageServerLoad, EntryGenerator } from './$types'
 import { ONE_YEAR_SECONDS } from '$shared/constants'
 
-export const entries = (() =>
-    content.stories.map(({ link }) => ({ link }))) satisfies EntryGenerator
+export const entries = () => content.stories.map(({ link }) => ({ link }))
 
 export const prerender = 'auto'
 
-export const load = (async ({ params: { link }, setHeaders }) => {
+export const load = async ({ params: { link }, setHeaders }) => {
     const story = getStoryByLink(link, content)
     if (story) {
         setHeaders({
@@ -44,4 +42,4 @@ export const load = (async ({ params: { link }, setHeaders }) => {
     }
 
     error(404, `No story found with the link: "${link}"`)
-}) satisfies PageServerLoad
+}

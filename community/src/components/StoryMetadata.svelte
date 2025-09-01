@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     import type { Contributor, Dimension, Story, Tag } from '$shared/types'
     import { cx, getColor, pluralize } from '$shared/utils'
     import { Link } from '$shared/components'
@@ -6,10 +6,14 @@
 </script>
 
 <script lang="ts">
-    export let story: Story
-    export let dimensions: Dimension[]
-    export let contributors: Contributor[]
-    export let tags: Tag[]
+    interface Props {
+        story: Story
+        dimensions: Dimension[]
+        contributors: Contributor[]
+        tags: Tag[]
+    }
+
+    let { story, dimensions, contributors, tags }: Props = $props()
 </script>
 
 <div class="mt-8 flex flex-wrap gap-4 gap-x-8 bg-white p-4 shadow-xl">

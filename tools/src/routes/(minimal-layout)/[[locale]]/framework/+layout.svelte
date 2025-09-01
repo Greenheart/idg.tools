@@ -3,11 +3,16 @@
 
     import { Link } from '$shared/components'
     import { GITHUB_LINK } from '$shared/constants'
+    interface Props {
+        children?: import('svelte').Snippet
+    }
+
+    let { children }: Props = $props()
 </script>
 
 <main class="xs:px-4 mx-auto w-full max-w-2xl px-2 pb-16 text-black sm:max-w-6xl sm:text-lg">
     <Header />
-    <slot />
+    {@render children?.()}
     <div class="mx-auto mt-16 max-w-2xl sm:max-w-3xl">
         <p class="mt-16 text-center">
             The IDG Toolkit uses two licenses: CC-BY-SA-4.0 for content (except images), and

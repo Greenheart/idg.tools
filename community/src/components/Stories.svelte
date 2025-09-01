@@ -6,17 +6,22 @@
     import { selectedTags, selectedDimensions } from '$lib/stores'
     import type { CommunityContent } from '$shared/types'
     // import Dimensions from './Dimensions.svelte'
-    // import StoryFilters from './StoryFilters.svelte'
 
-    export let content: CommunityContent
+    interface Props {
+        // import StoryFilters from './StoryFilters.svelte'
+        content: CommunityContent
+    }
 
-    let visibleItems = 10
+    let { content }: Props = $props()
 
-    $: stories = (
-        $selectedTags.length || $selectedDimensions.length
+    let visibleItems = $state(10)
+
+    let stories = $derived(
+        ($selectedTags.length || $selectedDimensions.length
             ? getMostRelevantStories(content, $selectedTags, $selectedDimensions)
             : content.stories
-    ).slice(0, visibleItems)
+        ).slice(0, visibleItems),
+    )
 
     const showMore = () => {
         visibleItems += 10

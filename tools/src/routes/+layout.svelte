@@ -5,6 +5,11 @@
     import '../app.css'
     import { scrollbarWidth } from '$lib/stores'
     import { getScrollbarWidth } from '$shared/utils'
+    interface Props {
+        children?: import('svelte').Snippet
+    }
+
+    let { children }: Props = $props()
 
     // Workaround to allow smooth scrolling in Firefox
     // https://github.com/sveltejs/kit/issues/2733#issuecomment-1050779671
@@ -21,4 +26,4 @@
     })
 </script>
 
-<slot />
+{@render children?.()}
