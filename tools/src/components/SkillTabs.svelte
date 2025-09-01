@@ -1,41 +1,44 @@
 <script lang="ts">
-    import { TabGroup, Tab, TabList, TabPanel, TabPanels } from '@rgossiaux/svelte-headlessui'
+    import { Tabs } from 'bits-ui'
     import { onDestroy, onMount } from 'svelte'
     import { fade } from 'svelte/transition'
-    import { selectedSkills, selectedTags, listenForScroll } from '$lib/stores'
+    import { selectedSkills, listenForScroll } from '$lib/stores'
 
     import { getSkillsInDimension } from '$shared/content-utils'
-    import { cx, getColor, onKeydown, getOffset } from '$lib/utils'
-    import type { Skill, Tool, ToolsContent } from '$shared/types'
+    import { getColor, onKeydown, getOffset, getRGBColor } from '$lib/utils'
+    import type { Dimension, Skill, ToolsContent } from '$shared/types'
     import SkillButton from './SkillButton.svelte'
     import { Button, Link, Heading } from '$shared/components'
     import { FRAMEWORK_LINK } from '$shared/constants'
     import { Info } from '$shared/icons'
     import { browser } from '$app/environment'
 
-    let ticking = false
-    let loaded = false
-    let lastScrollTop = 0
-    let skillTabs: HTMLDivElement
+    interface Props {
+        content: ToolsContent
+        class?: string
+    }
+
+    let { content, class: className = '' }: Props = $props()
+
+    let ticking = $state(false)
+    let loaded = $state(false)
+    let lastScrollTop = $state(0)
+    let skillTabs = $state<HTMLDivElement>()!
+    let tabsContainer = $state<HTMLDivElement>()!
+    let selectedTab = $state<Dimension['id']>(content.dimensions[0].id)
+
     // Add a bit extra offset to prevent accidentally closing on initial page load
     // if the user is navigating to an anchor link, and thus scrolling.
     const offset = 20
 
-    const getSkillTabs = () => {
-        if (skillTabs) return skillTabs
-        skillTabs = document.querySelector('.skill-tabs') as HTMLDivElement
-        return skillTabs
-    }
-
     const updateFiltersVisiblity = (newScrollTop: number) => {
-        const element = getSkillTabs()
         if (newScrollTop > lastScrollTop) {
             // Scrolling down - only hide when user has scrolled down a bit on the page
             if (
                 newScrollTop - offset >
                 getOffset(document.querySelector('#explore') as HTMLElement).top
             ) {
-                element.classList.add('hidden')
+                skillTabs?.classList.add('hidden')
             }
         } else {
             // Scrolling up
@@ -43,7 +46,7 @@
                 newScrollTop - offset <=
                 getOffset(document.querySelector('#explore') as HTMLElement).top
             ) {
-                element.classList.remove('hidden')
+                skillTabs?.classList.remove('hidden')
             }
         }
         lastScrollTop = newScrollTop <= 0 ? 0 : newScrollTop // Handle mobile and negative scrolling
@@ -107,33 +110,13 @@
     }
 
     const onChange = () => {
-        getSkillTabs().classList.remove('hidden')
-        getSkillTabs().scrollTo(0, 0)
+        // NOTE: Maybe scroll the tab to the beginning
+        // skillTabs?.scrollTo(0, 0)
+
+        tabsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
     }
-
-    // NOTE: Unsure why type for mouse event doesn't work
-    const onTabClick = (event: any) => {
-        getSkillTabs().classList.remove('hidden')
-        event.target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
-    }
-
-    const resetFilters = () => {
-        $selectedSkills = []
-        $selectedTags = []
-        getSkillTabs().classList.remove('hidden')
-    }
-
-    // TODO: Add support for searching tool description, actions, resources, and more
-    // But always show the name of the tool, or the excerpt of the relevant text
-    const extract = (tool: Tool) => tool.name
-
-    export let content: ToolsContent
-    let className = ''
-    export { className as class }
 </script>
 
-<!-- TODO: simplify this layout if we go for the separate toolbar solution -->
-<!-- NOTE: Will need to update the breakpoint when adding more filter options -->
 <div class="xs:grid-cols-[1fr_max-content] grid items-center gap-y-1 pb-2">
     <Heading size={2} class="inline"
         >1. Choose skills to <span class="whitespace-nowrap"
@@ -147,67 +130,56 @@
             </Link></span
         ></Heading
     >
-    <!-- <div class="flex items-center gap-4 sm:justify-end"> -->
-    <!-- TODO: Make filters responsive -->
-    <!-- IDEA: Add advanced filters below the standard filters as a separate section. Allow them to be toggled on or off -->
-    <!-- <FuzzySearch data={content.tools} {extract} {goto} /> -->
-    <!-- <Button unstyled on:click={resetFilters} size="sm" class="!px-0 text-sm underline"
-            >Reset</Button
-        > -->
-    <!-- </div> -->
 </div>
 
 <div
-    class={cx(
-        'sticky top-0 z-10 -ml-4 -mr-4 h-[164px] bg-stone-300 px-4 sm:-ml-8 sm:-mr-8 sm:h-[148px] sm:px-8 md:h-[] lg:h-[108px]',
+    class={[
+        'sticky top-0 z-10 -ml-4 -mr-4 h-[164px] bg-stone-300 px-4 sm:-ml-8 sm:-mr-8 sm:h-[148px] sm:px-8 lg:h-[108px]',
         className,
-    )}
+    ]}
 >
     <div class="relative h-[164px] sm:h-[148px] lg:h-[108px]">
         {#if loaded}
-            <div in:fade>
-                <TabGroup
+            <div in:fade bind:this={tabsContainer}>
+                <Tabs.Root
+                    onValueChange={onChange}
                     class="absolute left-0 right-0 top-0 -ml-4 -mr-4 overflow-hidden bg-black text-white shadow-xl sm:-ml-8 sm:-mr-8"
-                    on:change={onChange}
+                    bind:value={selectedTab}
                 >
-                    <TabList class="xs:overflow-auto flex flex-nowrap overflow-x-scroll">
+                    <Tabs.List class="xs:overflow-auto flex flex-nowrap overflow-x-scroll">
                         {#each content.dimensions as { name, id: dimensionId } (dimensionId)}
-                            {@const color = getColor(dimensionId, 'text')}
-                            <Tab
-                                on:click={onTabClick}
-                                on:keydown={onKeydown(onTabClick)}
-                                class={({ selected }) =>
-                                    cx(
-                                        'px-2 py-4 !text-base first:pl-4 last:pr-4 sm:!text-lg',
-                                        selected ? cx(color, 'underline') : 'text-white',
-                                    )}>{name}</Tab
+                            <Tabs.Trigger
+                                value={dimensionId}
+                                class={[
+                                    'px-2 py-4 !text-base first:pl-4 last:pr-4 data-[state=inactive]:!text-white data-[state=active]:underline sm:!text-lg',
+                                ]}
+                                style="color: {getRGBColor(dimensionId)}">{name}</Tabs.Trigger
                             >
                         {/each}
-                    </TabList>
-                    <TabPanels class="skill-tabs flex h-full items-start text-black">
-                        {#each content.dimensions as { id: dimensionId, skills } (dimensionId)}
-                            {@const color = getColor(dimensionId)}
-                            <TabPanel
-                                class={cx(
-                                    'xs:gap-2 flex h-full flex-1 flex-wrap gap-1 overflow-auto p-2',
-                                    color,
-                                )}
+                    </Tabs.List>
+                    {#each content.dimensions as { id: dimensionId, skills } (dimensionId)}
+                        {@const color = getColor(dimensionId)}
+                        <Tabs.Content
+                            value={dimensionId}
+                            class={[
+                                'xs:gap-2 flex h-full flex-1 flex-wrap gap-1 overflow-auto p-2 text-black',
+                                color,
+                            ]}
+                        >
+                            <Button
+                                variant="inverted"
+                                size="sm"
+                                onclick={() => toggleSkills(skills)}
+                                onkeydown={onKeydown(() => toggleSkills(skills))}
+                                class="xs:text-base whitespace-nowrap text-sm font-normal"
+                                >Choose all</Button
                             >
-                                <Button
-                                    variant="inverted"
-                                    size="sm"
-                                    on:click={() => toggleSkills(skills)}
-                                    on:keydown={onKeydown(() => toggleSkills(skills))}
-                                    class="xs:text-base whitespace-nowrap text-sm font-normal"
-                                    >Choose all</Button
-                                >
-                                {#each getSkillsInDimension(dimensionId, content) as skill (skill.name)}
-                                    <SkillButton {skill} class="xs:whitespace-nowrap" />
-                                {/each}
-                            </TabPanel>
-                        {/each}
-                    </TabPanels>
-                </TabGroup>
+                            {#each getSkillsInDimension(dimensionId, content) as skill (skill.name)}
+                                <SkillButton {skill} class="xs:whitespace-nowrap" />
+                            {/each}
+                        </Tabs.Content>
+                    {/each}
+                </Tabs.Root>
             </div>
         {/if}
     </div>

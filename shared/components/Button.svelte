@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     import { cx } from '../utils'
 
     export const variants = {
@@ -21,20 +21,47 @@
 </script>
 
 <script lang="ts">
-    export let variant: keyof typeof variants = defaultVariant
-    export let disabled: boolean = false
-    export let size: keyof typeof sizes = defaultSize
-    export let element: HTMLButtonElement | undefined = undefined
-    export let tabindex: HTMLButtonElement['tabIndex'] | undefined = undefined
-    export let type: 'submit' | undefined = undefined
-    export let unstyled = false
-    let className = ''
-    export { className as class }
-    $: classes = unstyled
-        ? cx(defaultClasses, sizes[size], className)
-        : cx(defaultClasses, variants[disabled ? 'disabled' : variant], sizes[size], className)
+    import { createBubbler, trusted } from 'svelte/legacy'
+
+    const bubble = createBubbler()
+    interface Props {
+        variant?: keyof typeof variants
+        disabled?: boolean
+        size?: keyof typeof sizes
+        element?: HTMLButtonElement | undefined
+        tabindex?: HTMLButtonElement['tabIndex'] | undefined
+        type?: 'submit' | undefined
+        unstyled?: boolean
+        class?: string
+        children?: import('svelte').Snippet
+    }
+
+    let {
+        variant = defaultVariant,
+        disabled = false,
+        size = defaultSize,
+        element = $bindable(undefined),
+        tabindex = undefined,
+        type = undefined,
+        unstyled = false,
+        class: className = '',
+        children,
+    }: Props = $props()
+
+    let classes = $derived(
+        unstyled
+            ? cx(defaultClasses, sizes[size], className)
+            : cx(defaultClasses, variants[disabled ? 'disabled' : variant], sizes[size], className),
+    )
 </script>
 
-<button bind:this={element} {disabled} {tabindex} {type} class={classes} on:click|trusted>
-    <slot />
+<button
+    bind:this={element}
+    {disabled}
+    {tabindex}
+    {type}
+    class={classes}
+    onclick={trusted(bubble('click'))}
+>
+    {@render children?.()}
 </button>
