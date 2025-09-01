@@ -20,7 +20,7 @@
     <Markdown {source} formatting="limited" class="!prose-base max-w-none" />
     {#if visibleResources < allResources.length}
         <button class="text-collaborating mt-4 font-semibold underline" on:click={showAll}>
-            Show {allResources.length - visibleResources ?? ''} more
+            Show {allResources.length - visibleResources} more
         </button>
     {/if}
 </div>

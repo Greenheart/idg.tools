@@ -1,70 +1,22 @@
 <script lang="ts" module>
-    import SvelteMarkdown, { allowRenderersOnly } from '@humanspeak/svelte-markdown'
-    import Link from './Link.svelte'
-    import Picture from './Picture.svelte'
-
-    const shared = [['link', Link]]
-
-    const allowedRenderers: Record<MarkdownRenderer, Parameters<typeof allowRenderersOnly>[0]> = {
-        linksOnly: [...shared],
-        limited: [],
-        article: [['image', Picture]],
-    } as const
-</script>
-
-<script lang="ts">
-    import Nothing from './Nothing.svelte'
-    import { cx } from '../utils'
-
     // IDEA: Ideally align the enabled formatting options with the enabled formatting in the CMS editor, to make it easy to sync updates
     // The CMS config can be found in cms/src/fields/shared.ts
     type MarkdownRenderer = 'linksOnly' | 'limited' | 'article'
 
-    const getRenderers = (type: MarkdownRenderer) => {
-        const shared = {
-            em: Nothing,
-            strong: Nothing,
-            del: Nothing,
-            link: Link,
-            br: Nothing,
-            table: Nothing,
-            tablehead: Nothing,
-            tablebody: Nothing,
-            tablerow: Nothing,
-            tablecell: Nothing,
-            codespan: Nothing,
-            code: Nothing,
-            html: Nothing,
-        }
+    import SvelteMarkdown, { allowRenderersOnly } from '@humanspeak/svelte-markdown'
+    import Link from './Link.svelte'
+    import Picture from './Picture.svelte'
 
-        const linksOnly = {
-            ...shared,
-            hr: Nothing,
-            blockquote: Nothing,
-            image: Nothing,
-            list: Nothing,
-            listitem: Nothing,
-            heading: Nothing,
-        }
+    const shared: Parameters<typeof allowRenderersOnly>[0] = [['link', Link]]
 
-        const limited = {
-            ...shared,
-            heading: Nothing,
-            blockquote: Nothing,
-            hr: Nothing,
-            image: Nothing,
-        }
-        const article = {
-            ...shared,
-            // IDEA: Show alt texts as image descriptions also for inline images in articles.
-            image: Picture,
-        }
+    const allowedRenderers: Record<MarkdownRenderer, Parameters<typeof allowRenderersOnly>[0]> = {
+        linksOnly: [...shared],
+        limited: [...shared, 'list', 'listitem'],
+        article: [...shared, 'list', 'listitem', 'heading', 'blockquote', 'hr', ['image', Picture]],
+    } as const
+</script>
 
-        if (type === 'article') return article
-        if (type === 'limited') return limited
-        return linksOnly
-    }
-
+<script lang="ts">
     // IDEA: Maybe split classnames based on which formatting they support too. For example inverted: { article, linksOnly, limited }
     // This could reduce the number of unused classes and maybe improve maintainability for this component, showing which classes are needed for which formatting
     const variants = {
@@ -95,5 +47,10 @@
 </script>
 
 <div class={[baseClasses, variants[variant], className, 'break-words']}>
-    <SvelteMarkdown {source} renderers={allowRenderersOnly()} />
+    <SvelteMarkdown
+        {source}
+        renderers={allowRenderersOnly(
+            allowedRenderers[formatting] ?? allowedRenderers['linksOnly'],
+        )}
+    />
 </div>
