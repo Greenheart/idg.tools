@@ -38,7 +38,7 @@
                 newScrollTop - offset >
                 getOffset(document.querySelector('#explore') as HTMLElement).top
             ) {
-                skillTabs?.classList.add('hidden')
+                skillTabs.classList.add('hidden')
             }
         } else {
             // Scrolling up
@@ -46,7 +46,7 @@
                 newScrollTop - offset <=
                 getOffset(document.querySelector('#explore') as HTMLElement).top
             ) {
-                skillTabs?.classList.remove('hidden')
+                skillTabs.classList.remove('hidden')
             }
         }
         lastScrollTop = newScrollTop <= 0 ? 0 : newScrollTop // Handle mobile and negative scrolling
@@ -109,16 +109,12 @@
         }, 100)
     }
 
-    const ensureDimensionTabIsVisible: MouseEventHandler<HTMLDivElement> = (event) => {
-        // NOTE: Maybe scroll the tab to the beginning
-        // skillTabs?.scrollTo(0, 0)
-
-        event.currentTarget.scrollIntoView({
+    const ensureDimensionTabIsVisible: MouseEventHandler<HTMLDivElement> = (event) =>
+        (event.target as HTMLButtonElement).scrollIntoView({
             behavior: 'smooth',
             block: 'nearest',
             inline: 'center',
         })
-    }
 </script>
 
 <div class="xs:grid-cols-[1fr_max-content] grid items-center gap-y-1 pb-2">
@@ -147,6 +143,9 @@
             <div in:fade>
                 <Tabs.Root
                     value={selectedTab}
+                    onValueChange={() => {
+                        skillTabs.classList.remove('hidden')
+                    }}
                     class="absolute left-0 right-0 top-0 -ml-4 -mr-4 overflow-hidden bg-black text-white shadow-xl sm:-ml-8 sm:-mr-8"
                 >
                     <Tabs.List
@@ -163,13 +162,11 @@
                             >
                         {/each}
                     </Tabs.List>
-                    {#each content.dimensions as { id: dimensionId, skills } (dimensionId)}
-                        {@const color = getColor(dimensionId)}
-                        <Tabs.Content
-                            value={dimensionId}
-                            class="flex h-full items-start text-black"
-                        >
-                            <div
+                    <div bind:this={skillTabs} class="flex h-full items-start text-black">
+                        {#each content.dimensions as { id: dimensionId, skills } (dimensionId)}
+                            {@const color = getColor(dimensionId)}
+                            <Tabs.Content
+                                value={dimensionId}
                                 class={[
                                     'xs:gap-2 flex h-full flex-1 flex-wrap gap-1 overflow-auto p-2',
                                     color,
@@ -185,9 +182,9 @@
                                 {#each getSkillsInDimension(dimensionId, content) as skill (skill.name)}
                                     <SkillButton {skill} class="xs:whitespace-nowrap" />
                                 {/each}
-                            </div>
-                        </Tabs.Content>
-                    {/each}
+                            </Tabs.Content>
+                        {/each}
+                    </div>
                 </Tabs.Root>
             </div>
         {/if}
