@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { cx, getColor, randomInt } from '$shared/utils'
+    import { getColor, randomInt } from '$shared/utils'
     import { onMount } from 'svelte'
     import type { IDGSymbols, Skill } from '$shared/types'
     import { fade } from 'svelte/transition'
@@ -39,10 +39,10 @@
 
 <div class="flex justify-center px-2 pt-16">
     <div
-        class={cx(
+        class={[
             'aspect-square h-72 w-72 rounded-lg p-8',
             randomSkill ? getColor(randomSkill) : 'bg-transparent',
-        )}
+        ]}
     >
         {#if randomSkill}
             <div in:fade={{ duration: 500 }}>

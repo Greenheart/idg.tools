@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { cx, onKeydown } from '$lib/utils'
+    import { onKeydown } from '$lib/utils'
     import type { Tag } from '$shared/types'
     import { globalState } from '$lib/global-state.svelte'
 
@@ -40,14 +40,14 @@
 
 <!-- IDEA: Potentially split this component into a rendering component with various variants, and one separate for the logic -->
 
-<div class={cx('flex select-none flex-wrap items-start', sizes[size].wrapper, className)}>
+<div class={['flex select-none flex-wrap items-start', sizes[size].wrapper, className]}>
     {#each tags.slice(0, visible) as tag (tag.name)}
         <!-- svelte-ignore a11y_no_static_element_interactions (false positive since only the button element will be interactive) -->
         <svelte:element
             this={renderAs}
             onclick={interactive ? () => toggleTag(tag.id) : null}
             onkeydown={interactive ? onKeydown(() => toggleTag(tag.id)) : null}
-            class={cx(
+            class={[
                 sizes[size].tag,
                 inverted ? 'bg-white text-black' : 'bg-black text-white',
                 interactive
@@ -55,7 +55,7 @@
                         ? 'cursor-pointer bg-white shadow-xl'
                         : 'cursor-pointer bg-stone-100 shadow-md'
                     : '',
-            )}
+            ]}
         >
             {tag.name}
         </svelte:element>

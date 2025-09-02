@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { cx } from '../utils'
-
     interface Props {
         class?: string
     }
@@ -12,7 +10,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     fill="currentColor"
-    class={cx('h-6 w-6', className)}
+    class={['h-6 w-6', className]}
 >
     <path
         fill-rule="evenodd"

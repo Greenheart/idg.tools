@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { cx, getColor } from '$lib/utils'
+    import { getColor } from '$lib/utils'
     import { getSkill } from '$shared/content-utils'
     import type { IDGRelevancy, Skill } from '$shared/types'
     import RelevancyScore from './RelevancyScore.svelte'
@@ -28,10 +28,10 @@
 
             <div class="flex items-center justify-between gap-4">
                 <span
-                    class={cx(
+                    class={[
                         'overflow-hidden text-ellipsis whitespace-nowrap px-2 py-1 font-semibold',
                         color,
-                    )}
+                    ]}
                 >
                     {skill.name}
                 </span>

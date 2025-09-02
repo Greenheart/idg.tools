@@ -1,7 +1,7 @@
 <script lang="ts" module>
     import { onMount, type Snippet } from 'svelte'
 
-    import { isExternalURL, cx } from '../utils'
+    import { isExternalURL } from '../utils'
     import { variants, defaultVariant, defaultClasses, sizes, defaultSize } from './Button.svelte'
     import Link from './Link.svelte'
 </script>
@@ -39,13 +39,13 @@
 <Link
     {href}
     unstyled
-    class={cx(
+    class={[
         defaultClasses,
         variants[disabled ? 'disabled' : variant],
         disabled ? 'pointer-events-none' : '',
         sizes[size],
         className,
-    )}
+    ]}
     {...additionalProps}
 >
     {@render children?.()}

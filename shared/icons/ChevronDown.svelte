@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { cx } from '../utils'
-
     interface Props {
         class?: string
     }
@@ -14,7 +12,7 @@
     fill="none"
     stroke-width="1.5"
     stroke="currentColor"
-    class={cx('h-6 w-6', className)}
+    class={['h-6 w-6', className]}
 >
     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
 </svg>

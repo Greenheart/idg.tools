@@ -8,7 +8,6 @@
     import { goto, preloadData } from '$app/navigation'
     import type { Tag, Tool, ToolsContent } from '$shared/types'
     import { globalState } from '$lib/global-state.svelte'
-    import { cx } from '$shared/utils'
 
     const resetFilters = () => {
         globalState.selectedSkills = []
@@ -64,11 +63,11 @@
                         size="sm"
                         unstyled
                         onclick={() => toggleTag(tag.id)}
-                        class={cx(
+                        class={[
                             'xs:text-base transform-gpu bg-white text-sm !font-normal duration-100',
                             !globalState.selectedTags.includes(tag.id) &&
                                 'bg-opacity-50 shadow-lg hover:bg-opacity-75',
-                        )}>{tag.name}</Button
+                        ]}>{tag.name}</Button
                     >
                 {/each}
             </div>

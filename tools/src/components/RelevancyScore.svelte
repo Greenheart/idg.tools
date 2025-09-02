@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { cx } from '$lib/utils'
     interface Props {
         score: number
     }
@@ -11,9 +10,9 @@
 </script>
 
 <div class="flex gap-1" aria-label="Relevancy: {numberOfDots} of 5">
-    <div class={cx(baseClasses, numberOfDots >= 1 ? 'bg-black' : '')}></div>
-    <div class={cx(baseClasses, numberOfDots >= 2 ? 'bg-black' : '')}></div>
-    <div class={cx(baseClasses, numberOfDots >= 3 ? 'bg-black' : '')}></div>
-    <div class={cx(baseClasses, numberOfDots >= 4 ? 'bg-black' : '')}></div>
-    <div class={cx(baseClasses, numberOfDots >= 5 ? 'bg-black' : '')}></div>
+    <div class={[baseClasses, numberOfDots >= 1 ? 'bg-black' : '']}></div>
+    <div class={[baseClasses, numberOfDots >= 2 ? 'bg-black' : '']}></div>
+    <div class={[baseClasses, numberOfDots >= 3 ? 'bg-black' : '']}></div>
+    <div class={[baseClasses, numberOfDots >= 4 ? 'bg-black' : '']}></div>
+    <div class={[baseClasses, numberOfDots >= 5 ? 'bg-black' : '']}></div>
 </div>

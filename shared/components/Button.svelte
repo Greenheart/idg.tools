@@ -1,6 +1,5 @@
 <script lang="ts" module>
     import { type Snippet } from 'svelte'
-    import { cx } from '../utils'
     import type { HTMLButtonAttributes } from 'svelte/elements'
 
     export const variants = {

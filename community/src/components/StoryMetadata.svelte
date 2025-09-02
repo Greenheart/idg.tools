@@ -1,6 +1,6 @@
 <script lang="ts" module>
     import type { Contributor, Dimension, Story, Tag } from '$shared/types'
-    import { cx, getColor, pluralize } from '$shared/utils'
+    import { getColor, pluralize } from '$shared/utils'
     import { Link } from '$shared/components'
     import Tags from './Tags.svelte'
 </script>
@@ -51,7 +51,7 @@
             <div class="flex flex-wrap gap-1">
                 {#each dimensions as dimension}
                     {@const color = getColor(dimension.id)}
-                    <span class={cx('px-2 py-1 text-sm text-white', color)}>{dimension.name}</span>
+                    <span class={['px-2 py-1 text-sm text-white', color]}>{dimension.name}</span>
                 {/each}
             </div>
         </div>

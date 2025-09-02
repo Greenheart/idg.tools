@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { cx } from '$lib/utils'
     import { Button } from '$shared/components'
     import type { Skill } from '$shared/types'
     import { globalState } from '$lib/global-state.svelte'
@@ -29,10 +28,10 @@
     onclick={() => toggleSkill(skill.id)}
     size="sm"
     unstyled
-    class={cx(
+    class={[
         'xs:text-base transform-gpu bg-white text-sm !font-normal duration-100',
         !globalState.selectedSkills.includes(skill.id) &&
             'bg-opacity-50 shadow-lg hover:bg-opacity-75',
         className,
-    )}>{skill.name}</Button
+    ]}>{skill.name}</Button
 >

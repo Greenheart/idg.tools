@@ -2,7 +2,7 @@
     import { onMount, type Snippet } from 'svelte'
     import type { HTMLAnchorAttributes } from 'svelte/elements'
 
-    import { cx, isExternalURL } from '../utils'
+    import { isExternalURL } from '../utils'
 
     export const variants = {
         orange: 'text-collaborating',
@@ -56,10 +56,15 @@
             }
         }
     })
-
-    let classes = $derived(unstyled ? className : cx(defaultClasses, variants[variant], className))
 </script>
 
-<a {href} {tabindex} {title} class={classes} {...additionalProps} {onclick}>
+<a
+    {href}
+    {tabindex}
+    {title}
+    class={unstyled ? className : [defaultClasses, variants[variant], className]}
+    {...additionalProps}
+    {onclick}
+>
     {@render children?.()}
 </a>

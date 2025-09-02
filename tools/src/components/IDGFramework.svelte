@@ -19,7 +19,7 @@
         getDimensionIndexBySlug,
     } from '$shared/content-utils'
     import { IDGSymbol, ChevronDown } from '$shared/icons'
-    import { cx, getColor } from '$shared/utils'
+    import { getColor } from '$shared/utils'
     import type {
         Dimension,
         DimensionSlug,
@@ -144,11 +144,11 @@
                                         <Disclosure class="relative grid">
                                             {#snippet children({ open })}
                                                 <DisclosureButton
-                                                    class={cx(
+                                                    class={[
                                                         'group sticky top-0 flex items-center gap-2 p-2 text-left drop-shadow-xl hover:bg-white hover:text-black',
                                                         `hover:outline hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`,
                                                         bgColor,
-                                                    )}
+                                                    ]}
                                                 >
                                                     <IDGSymbol
                                                         id={skill.id}
@@ -159,10 +159,10 @@
                                                         {skill.name}
                                                     </p>
                                                     <ChevronDown
-                                                        class={cx(
+                                                        class={[
                                                             'mx-1 flex-grow',
                                                             open ? 'rotate-180' : 'rotate-0',
-                                                        )}
+                                                        ]}
                                                     />
                                                 </DisclosureButton>
                                                 <DisclosurePanel
@@ -174,10 +174,10 @@
                                                         {skill.name}
                                                     </h3>
                                                     <div
-                                                        class={cx(
+                                                        class={[
                                                             'flex items-center justify-center rounded-lg py-4',
                                                             bgColor,
-                                                        )}
+                                                        ]}
                                                     >
                                                         <IDGSymbol
                                                             id={skill.id}
@@ -201,20 +201,20 @@
                                         {@const isSelected = $focusedSkill?.id === skill.id}
                                         <div class="relative grid">
                                             <button
-                                                class={cx(
+                                                class={[
                                                     'group sticky top-0 flex items-center gap-2 p-2 text-left drop-shadow-xl',
                                                     hoverClasses,
                                                     bgColor,
                                                     isSelected ? activeClasses : '',
-                                                )}
+                                                ]}
                                                 onclick={() => ($selectedSkill = skill.id)}
                                                 ><IDGSymbol
                                                     id={skill.id}
                                                     symbols={$symbols}
-                                                    class={cx(
+                                                    class={[
                                                         `h-10 w-10 shrink-0 group-hover:!${textColor}`,
                                                         isSelected ? textColor : '',
-                                                    )}
+                                                    ]}
                                                 />
                                                 <p class="w-full text-sm">
                                                     {skill.name}
@@ -235,10 +235,10 @@
                                             {$focusedSkill.name}
                                         </h3>
                                         <div
-                                            class={cx(
+                                            class={[
                                                 'flex items-center justify-center rounded-lg py-4',
                                                 bgColor,
-                                            )}
+                                            ]}
                                         >
                                             <IDGSymbol
                                                 id={$focusedSkill.id}

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { getSkill } from '$shared/content-utils'
     import type { ToolsContent, Tool } from '$shared/types'
-    import { cx, getColor } from '$lib/utils'
+    import { getColor } from '$lib/utils'
     import { globalState } from '$lib/global-state.svelte'
 
     interface Props {
@@ -24,11 +24,11 @@
     )
 </script>
 
-<div class={cx('flex flex-wrap items-start gap-1 pr-[29px] text-sm', className)}>
+<div class={['flex flex-wrap items-start gap-1 pr-[29px] text-sm', className]}>
     {#each mostRelevantSkills as relevancy}
         {@const skill = getSkill(relevancy.skill, content)}
         {@const color = getColor(relevancy.skill)}
-        <span class={cx('px-2 py-1 text-white', color)}>
+        <span class={['px-2 py-1 text-white', color]}>
             {skill.name}
         </span>
     {/each}
