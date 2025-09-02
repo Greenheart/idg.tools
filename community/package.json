@@ -19,7 +19,6 @@
         "svelte-typeahead": "^5.0.0"
     },
     "devDependencies": {
-        "@rgossiaux/svelte-headlessui": "^2.0.0",
         "@sveltejs/adapter-vercel": "^5.10.2",
         "@sveltejs/kit": "^2.37.0",
         "@sveltejs/vite-plugin-svelte": "^6.1.3",
