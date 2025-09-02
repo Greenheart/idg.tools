@@ -1,56 +1,82 @@
 <script lang="ts" module>
-    // IDEA: Ideally align the enabled formatting options with the enabled formatting in the CMS editor, to make it easy to sync updates
-    // The CMS config can be found in cms/src/fields/shared.ts
-    type MarkdownRenderer = 'linksOnly' | 'limited' | 'article'
-
-    import SvelteMarkdown, { allowRenderersOnly } from '@humanspeak/svelte-markdown'
+    import SvelteMarkdown, { excludeRenderersOnly } from '@humanspeak/svelte-markdown'
     import Link from './Link.svelte'
     import Picture from './Picture.svelte'
 
-    const shared: Parameters<typeof allowRenderersOnly>[0] = [['link', Link]]
+    const alwaysDisabledRenderers: Parameters<typeof excludeRenderersOnly>[0] = [
+        'table',
+        'tablehead',
+        'tablebody',
+        'tablerow',
+        'tablecell',
+        'br',
+        'code',
+        'codespan',
+        'del',
+        'em',
+        'escape',
+        'strong',
+    ]
 
-    const allowedRenderers: Record<MarkdownRenderer, Parameters<typeof allowRenderersOnly>[0]> = {
-        linksOnly: [...shared],
-        limited: [...shared, 'list', 'listitem'],
-        article: [...shared, 'list', 'listitem', 'heading', 'blockquote', 'hr', ['image', Picture]],
+    // Formatting options should reflect what is enabled in the CMS editor.
+    // The CMS config can be found in cms/src/fields/shared.ts
+    const renderers = {
+        linksOnly: excludeRenderersOnly(
+            [
+                ...alwaysDisabledRenderers,
+                'list',
+                'listitem',
+                'orderedlistitem',
+                'unorderedlistitem',
+
+                'blockquote',
+                'heading',
+                'hr',
+                'image',
+            ],
+            [['link', Link]],
+        ),
+        limited: excludeRenderersOnly(
+            [...alwaysDisabledRenderers, 'blockquote', 'heading', 'hr', 'image'],
+            [['link', Link]],
+        ),
+        article: excludeRenderersOnly(alwaysDisabledRenderers, [
+            ['link', Link],
+            ['image', Picture],
+        ]),
     } as const
 </script>
 
 <script lang="ts">
-    // IDEA: Maybe split classnames based on which formatting they support too. For example inverted: { article, linksOnly, limited }
-    // This could reduce the number of unused classes and maybe improve maintainability for this component, showing which classes are needed for which formatting
     const variants = {
         default:
-            'prose-p:text-black prose-li:text-black prose-h2:text-black prose-h3:text-black prose-h4:text-black marker:text-black prose-strong:text-black prose-em:text-black prose-hr:border-t-stone-300',
+            'prose-p:text-black prose-li:text-black prose-h2:text-black prose-h3:text-black prose-h4:text-black marker:text-black prose-hr:border-t-stone-300',
         inverted:
-            'prose-p:text-white prose-li:text-white prose-h2:text-white prose-h3:text-white prose-h4:text-white marker:text-white prose-strong:text-white prose-em:text-white prose-hr:border-t-stone-300',
+            'prose-p:text-white prose-li:text-white prose-h2:text-white prose-h3:text-white prose-h4:text-white marker:text-white prose-hr:border-t-stone-300',
     }
-
-    const baseClasses =
-        'prose prose-lg lg:prose-xl prose-stone prose-p:leading-7 prose-li:my-4 prose-a:text-collaborating prose-img:w-full'
-    const defaultVariant = 'default'
-    const defaultRenderer: MarkdownRenderer = 'linksOnly'
 
     interface Props {
         variant?: keyof typeof variants
-        formatting?: MarkdownRenderer
+        formatting?: keyof typeof renderers
         source: string
         class?: string
     }
 
     let {
-        variant = defaultVariant,
-        formatting = defaultRenderer,
+        variant = 'default',
+        formatting = 'linksOnly',
         source,
         class: className = '',
     }: Props = $props()
 </script>
 
-<div class={[baseClasses, variants[variant], className, 'break-words']}>
-    <SvelteMarkdown
-        {source}
-        renderers={allowRenderersOnly(
-            allowedRenderers[formatting] ?? allowedRenderers['linksOnly'],
-        )}
-    />
+<div
+    class={[
+        'prose prose-lg lg:prose-xl prose-stone prose-p:leading-7 prose-li:my-4 prose-a:text-collaborating prose-img:w-full',
+        variants[variant],
+        className,
+        'break-words',
+    ]}
+>
+    <SvelteMarkdown {source} renderers={renderers[formatting] ?? renderers['linksOnly']} />
 </div>
