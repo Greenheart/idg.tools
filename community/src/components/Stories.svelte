@@ -1,9 +1,9 @@
 <script lang="ts">
-    import { Button, Heading, Link, Divider } from '$shared/components'
+    import { Button, Heading, Divider } from '$shared/components'
     import StoryPreview from './StoryPreview.svelte'
     import Tags from './Tags.svelte'
     import { getMostRelevantStories } from '$shared/content-utils'
-    import { selectedTags, selectedDimensions } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
     import type { CommunityContent } from '$shared/types'
     // import Dimensions from './Dimensions.svelte'
 
@@ -17,8 +17,12 @@
     let visibleItems = $state(10)
 
     let stories = $derived(
-        ($selectedTags.length || $selectedDimensions.length
-            ? getMostRelevantStories(content, $selectedTags, $selectedDimensions)
+        (globalState.selectedTags.length || globalState.selectedDimensions.length
+            ? getMostRelevantStories(
+                  content,
+                  globalState.selectedTags,
+                  globalState.selectedDimensions,
+              )
             : content.stories
         ).slice(0, visibleItems),
     )
@@ -28,8 +32,8 @@
     }
 
     const resetFilters = () => {
-        $selectedTags = []
-        $selectedDimensions = []
+        globalState.selectedTags = []
+        globalState.selectedDimensions = []
     }
 </script>
 
@@ -42,7 +46,7 @@
     <!-- <StoryFilters tags={content.tags} dimensions={content.dimensions} /> -->
 
     <!-- <p class="my-2 text-sm">
-        {#if $selectedTags.length || $selectedDimensions.length}Showing {stories.length}/{content
+        {#if state.selectedTags.length || state.selectedDimensions.length}Showing {stories.length}/{content
                 .stories.length} stories.{/if}
         Select tags to filter:
     </p>

@@ -3,8 +3,9 @@
     import { onDestroy, onMount } from 'svelte'
     import { fade } from 'svelte/transition'
     import type { MouseEventHandler } from 'svelte/elements'
-    import { selectedSkills, listenForScroll } from '$lib/stores'
 
+    // TODO: Convert these imports to state instead of stores
+    import { selectedSkills, listenForScroll } from '$lib/stores'
     import { getSkillsInDimension } from '$shared/content-utils'
     import { getColor, getOffset, getRGBColor } from '$lib/utils'
     import type { Dimension, Skill, ToolsContent } from '$shared/types'

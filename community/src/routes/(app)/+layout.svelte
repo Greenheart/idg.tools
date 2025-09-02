@@ -5,7 +5,7 @@
     import StoriesSection from '$components/StoriesSection.svelte'
 
     import { getScrollbarWidth } from '$shared/utils'
-    import { scrollbarWidth } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
     interface Props {
         children?: import('svelte').Snippet
     }
@@ -23,7 +23,7 @@
     afterNavigate(() => (document.documentElement.style.scrollBehavior = ''))
 
     onMount(() => {
-        $scrollbarWidth = getScrollbarWidth()
+        globalState.scrollbarWidth = getScrollbarWidth()
     })
 </script>
 

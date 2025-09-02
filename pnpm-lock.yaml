@@ -63,6 +63,9 @@ importers:
       svelte-meta-tags:
         specifier: ^4.4.1
         version: 4.4.1(svelte@5.38.6)
+      svelte-typeahead:
+        specifier: ^5.0.0
+        version: 5.0.0
     devDependencies:
       '@rgossiaux/svelte-headlessui':
         specifier: ^2.0.0
@@ -8121,6 +8124,11 @@ snapshots:
       queue-microtask: 1.2.3
 
   runed@0.29.2(svelte@5.38.6):
+    dependencies:
+      esm-env: 1.2.2
+      svelte: 5.38.6
+
+  runed@0.31.1(svelte@5.38.6):
     dependencies:
       esm-env: 1.2.2
       svelte: 5.38.6

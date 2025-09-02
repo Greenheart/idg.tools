@@ -1,13 +1,13 @@
 <script lang="ts">
     import { cx, onKeydown } from '$lib/utils'
     import type { Tag } from '$shared/types'
-    import { selectedTags } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
 
     const toggleTag = (tagId: Tag['id']) => {
-        if ($selectedTags.includes(tagId)) {
-            $selectedTags = $selectedTags.filter((id) => id !== tagId)
+        if (globalState.selectedTags.includes(tagId)) {
+            globalState.selectedTags = globalState.selectedTags.filter((id) => id !== tagId)
         } else {
-            $selectedTags = [...$selectedTags, tagId]
+            globalState.selectedTags = [...globalState.selectedTags, tagId]
         }
     }
 
@@ -51,7 +51,7 @@
                 sizes[size].tag,
                 inverted ? 'bg-white text-black' : 'bg-black text-white',
                 interactive
-                    ? $selectedTags.includes(tag.id)
+                    ? globalState.selectedTags.includes(tag.id)
                         ? 'cursor-pointer bg-white shadow-xl'
                         : 'cursor-pointer bg-stone-100 shadow-md'
                     : '',
