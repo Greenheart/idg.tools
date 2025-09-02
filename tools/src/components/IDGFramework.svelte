@@ -135,7 +135,7 @@
                                         class={[
                                             'group sticky top-0 flex w-full items-center gap-2 p-2 text-left drop-shadow-xl hover:bg-white hover:text-black',
                                             `hover:outline hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`,
-                                            '[&[data-state=open]>svg]:rotate-180',
+                                            '[&[data-state=open]>svg:last-child]:rotate-180',
                                             bgColor,
                                         ]}
                                     >
