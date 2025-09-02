@@ -50,7 +50,7 @@
     <div class="relative mb-4 bg-white p-4 text-base text-black">
         <div class="flex flex-wrap items-center justify-between">
             <p class="font-bold">Select filters</p>
-            <Button on:click={resetFilters} size="md" class="text-xs" variant="inverted"
+            <Button onclick={resetFilters} size="md" class="text-xs" variant="inverted"
                 >Clear filters</Button
             >
         </div>
@@ -77,7 +77,7 @@
         </p>
 
         {#if visibleItems < content.stories.length}
-            <Button on:click={showMore}>Show more</Button>
+            <Button onclick={showMore}>Show more</Button>
         {/if}
     </div>
 

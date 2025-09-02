@@ -45,7 +45,7 @@
                     href={getLocalisedPath(locale, pathname)}
                     variant="black"
                     noScroll
-                    on:click={() => {
+                    onclick={() => {
                         open = false
                     }}
                     class="px-3 py-1 !no-underline hover:bg-stone-100 hover:underline">{label}</Link

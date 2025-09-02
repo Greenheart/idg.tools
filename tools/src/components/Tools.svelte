@@ -60,7 +60,7 @@
             in:fade={{ duration: 250 }}
         >
             <p>There are no published tools matching your search yet</p>
-            <Button on:click={showAll}>Show all tools</Button>
+            <Button onclick={showAll}>Show all tools</Button>
         </div>
     {/each}
 
@@ -69,9 +69,9 @@
     >
         <VisibleToolsCount {mostRelevantTools} allToolsCount={content.tools.length} />
         {#if $visibleItems < mostRelevantTools.length}
-            <Button on:click={showMore}>Show more</Button>
+            <Button onclick={showMore}>Show more</Button>
         {:else if mostRelevantTools.length && ($selectedSkills.length || $selectedTags.length)}
-            <Button on:click={showAll}>Show all tools</Button>
+            <Button onclick={showAll}>Show all tools</Button>
         {/if}
     </div>
 </div>

@@ -54,6 +54,6 @@
     </form>
 {:else}
     <div class="flex justify-center">
-        <Button on:click={() => (expanded = true)}>Give feedback on this tool</Button>
+        <Button onclick={() => (expanded = true)}>Give feedback on this tool</Button>
     </div>
 {/if}

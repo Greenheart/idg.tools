@@ -26,7 +26,7 @@
 </script>
 
 <Button
-    on:click={() => toggleSkill(skill.id)}
+    onclick={() => toggleSkill(skill.id)}
     size="sm"
     unstyled
     class={cx(

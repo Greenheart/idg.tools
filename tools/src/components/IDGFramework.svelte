@@ -81,7 +81,7 @@
 
                 <TabGroup
                     defaultIndex={$selectedDimensionIndex}
-                    on:change={(event) => {
+                    onchange={(event) => {
                         if (event.detail !== $selectedDimensionIndex) {
                             $selectedDimensionIndex = event.detail
                             $selectedSkill = $dimensions[event.detail].skills[0]
