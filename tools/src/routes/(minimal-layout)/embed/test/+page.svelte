@@ -6,7 +6,7 @@
         iFrameResize(
             {
                 // log: true,
-                checkOrigin: ['http://localhost:5173'],
+                checkOrigin: ['http://localhost:5173', 'http://localhost:4173'],
                 inPageLinks: true,
             },
             '#idg-framework',
