@@ -2,10 +2,11 @@
     import { Tabs } from 'bits-ui'
     import { onDestroy, onMount } from 'svelte'
     import { fade } from 'svelte/transition'
+    import type { MouseEventHandler } from 'svelte/elements'
     import { selectedSkills, listenForScroll } from '$lib/stores'
 
     import { getSkillsInDimension } from '$shared/content-utils'
-    import { getColor, onKeydown, getOffset, getRGBColor } from '$lib/utils'
+    import { getColor, getOffset, getRGBColor } from '$lib/utils'
     import type { Dimension, Skill, ToolsContent } from '$shared/types'
     import SkillButton from './SkillButton.svelte'
     import { Button, Link, Heading } from '$shared/components'
@@ -24,7 +25,6 @@
     let loaded = $state(false)
     let lastScrollTop = $state(0)
     let skillTabs = $state<HTMLDivElement>()!
-    let tabsContainer = $state<HTMLDivElement>()!
     let selectedTab = $state<Dimension['id']>(content.dimensions[0].id)
 
     // Add a bit extra offset to prevent accidentally closing on initial page load
@@ -109,11 +109,15 @@
         }, 100)
     }
 
-    const onChange = () => {
+    const ensureDimensionTabIsVisible: MouseEventHandler<HTMLDivElement> = (event) => {
         // NOTE: Maybe scroll the tab to the beginning
         // skillTabs?.scrollTo(0, 0)
 
-        tabsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+        event.currentTarget.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center',
+        })
     }
 </script>
 
@@ -140,12 +144,15 @@
 >
     <div class="relative h-[164px] sm:h-[148px] lg:h-[108px]">
         {#if loaded}
-            <div in:fade bind:this={tabsContainer}>
+            <div in:fade>
                 <Tabs.Root
                     value={selectedTab}
                     class="absolute left-0 right-0 top-0 -ml-4 -mr-4 overflow-hidden bg-black text-white shadow-xl sm:-ml-8 sm:-mr-8"
                 >
-                    <Tabs.List class="xs:overflow-auto flex flex-nowrap overflow-x-scroll">
+                    <Tabs.List
+                        class="xs:overflow-auto flex flex-nowrap overflow-x-scroll"
+                        onclick={ensureDimensionTabIsVisible}
+                    >
                         {#each content.dimensions as { name, id: dimensionId } (dimensionId)}
                             <Tabs.Trigger
                                 value={dimensionId}
