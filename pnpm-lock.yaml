@@ -54,12 +54,6 @@ importers:
 
   community:
     dependencies:
-      remark:
-        specifier: ^15.0.1
-        version: 15.0.1
-      strip-markdown:
-        specifier: ^6.0.0
-        version: 6.0.0
       svelte-meta-tags:
         specifier: ^4.4.1
         version: 4.4.1(svelte@5.38.6)

@@ -13,8 +13,6 @@
         "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
     },
     "dependencies": {
-        "remark": "^15.0.1",
-        "strip-markdown": "^6.0.0",
         "svelte-meta-tags": "^4.4.1",
         "svelte-typeahead": "^5.0.0"
     },
