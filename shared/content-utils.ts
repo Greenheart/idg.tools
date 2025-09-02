@@ -49,7 +49,7 @@ export const getDimensionIndexBySlug = (slug: DimensionSlug) =>
 export const getDimensionSlug = (id: Dimension['id'] | Skill['id']) => COLORS[id] as DimensionSlug
 
 export const parseDimensionSlug = (slug: string) =>
-    IDG_COLORS_RGB[slug.toLowerCase()] !== undefined
+    IDG_COLORS_RGB[slug.toLowerCase() as DimensionSlug] !== undefined
         ? (slug.toLowerCase() as DimensionSlug)
         : undefined
 
