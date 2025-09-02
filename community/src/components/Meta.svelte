@@ -9,7 +9,6 @@
         TAGLINE,
     } from '$lib/constants'
 
-    const formattedTitle = title ? `${title} | ${TAGLINE}` : `${TAGLINE}`
     interface Props {
         title?: string | undefined
         description?: string | undefined
@@ -34,6 +33,8 @@
             },
         ],
     }: Props = $props()
+
+    const formattedTitle = title ? `${title} | ${TAGLINE}` : `${TAGLINE}`
 </script>
 
 <MetaTags
