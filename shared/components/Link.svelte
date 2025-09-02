@@ -1,5 +1,5 @@
 <script lang="ts" module>
-    import { onMount } from 'svelte'
+    import { onMount, type Snippet } from 'svelte'
     import type { HTMLAnchorAttributes } from 'svelte/elements'
 
     import { cx, isExternalURL } from '../utils'
@@ -27,7 +27,7 @@
          */
         noScroll?: boolean
         onclick?: HTMLAnchorAttributes['onclick']
-        children?: import('svelte').Snippet
+        children?: Snippet
     }
 
     let {

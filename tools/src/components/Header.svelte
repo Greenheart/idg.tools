@@ -1,7 +1,7 @@
 <script lang="ts">
     import { tick } from 'svelte'
     import { Link, MenuButton, LocaleSwitcher } from '$shared/components'
-    import { isMenuOpen, scrollbarWidth } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
     import { onKeydown } from '$lib/utils'
     import { beforeNavigate } from '$app/navigation'
     import type { SupportedLocales } from '$shared/types'
@@ -15,14 +15,16 @@
 
     const toggleMenu = async () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-        $isMenuOpen = !$isMenuOpen
-        document.documentElement.classList.toggle('overflow-y-scroll', !$isMenuOpen)
-        document.documentElement.classList.toggle('overflow-hidden', $isMenuOpen)
-        document.documentElement.style.paddingRight = $isMenuOpen ? `${$scrollbarWidth}px` : ''
+        globalState.isMenuOpen = !globalState.isMenuOpen
+        document.documentElement.classList.toggle('overflow-y-scroll', !globalState.isMenuOpen)
+        document.documentElement.classList.toggle('overflow-hidden', globalState.isMenuOpen)
+        document.documentElement.style.paddingRight = globalState.isMenuOpen
+            ? `globalState.{globalState.scrollbarWidth}px`
+            : ''
     }
 
     beforeNavigate(async () => {
-        if ($isMenuOpen) {
+        if (globalState.isMenuOpen) {
             toggleMenu()
             await tick()
         }
@@ -42,10 +44,10 @@
     </Link>
 
     <div class="z-30 md:hidden">
-        <MenuButton isOpen={$isMenuOpen} onToggle={toggleMenu} />
+        <MenuButton isOpen={globalState.isMenuOpen} onToggle={toggleMenu} />
     </div>
 
-    {#if $isMenuOpen}
+    {#if globalState.isMenuOpen}
         <button
             class="xs:text-4xl bg-lightGray fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center overflow-y-scroll text-3xl font-semibold"
             onclick={toggleMenu}

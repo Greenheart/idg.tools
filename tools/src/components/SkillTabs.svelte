@@ -4,8 +4,7 @@
     import { fade } from 'svelte/transition'
     import type { MouseEventHandler } from 'svelte/elements'
 
-    // TODO: Convert these imports to state instead of stores
-    import { selectedSkills, listenForScroll } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
     import { getSkillsInDimension } from '$shared/content-utils'
     import { getColor, getOffset, getRGBColor } from '$lib/utils'
     import type { Dimension, Skill, ToolsContent } from '$shared/types'
@@ -61,7 +60,7 @@
         // Prevent horizontal scrolling
         if (newScrollTop === lastScrollTop) return
         // Prevent triggering scroll when layout changes due to for example selecting skills
-        if (!$listenForScroll) return
+        if (!globalState.listenForScroll) return
 
         if (!ticking) {
             window.requestAnimationFrame(() => {
@@ -90,23 +89,25 @@
     })
 
     const toggleSkills = async (skills: Skill['id'][]) => {
-        $listenForScroll = false
-        const alreadySelected = skills.filter((skillId) => $selectedSkills.includes(skillId))
+        globalState.listenForScroll = false
+        const alreadySelected = skills.filter((skillId) =>
+            globalState.selectedSkills.includes(skillId),
+        )
 
         // Select all if not all skills are yet selected
         if (alreadySelected.length < skills.length) {
-            $selectedSkills = [
-                ...$selectedSkills,
+            globalState.selectedSkills = [
+                ...globalState.selectedSkills,
                 ...skills.filter((skillId) => !alreadySelected.includes(skillId)),
             ]
         } else {
             // Unselect all if everything is already selected
-            $selectedSkills = $selectedSkills.filter(
+            globalState.selectedSkills = globalState.selectedSkills.filter(
                 (skillId) => !alreadySelected.includes(skillId),
             )
         }
         setTimeout(() => {
-            $listenForScroll = true
+            globalState.listenForScroll = true
         }, 100)
     }
 

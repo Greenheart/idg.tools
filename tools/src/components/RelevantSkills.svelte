@@ -2,7 +2,7 @@
     import { getSkill } from '$shared/content-utils'
     import type { ToolsContent, Tool } from '$shared/types'
     import { cx, getColor } from '$lib/utils'
-    import { selectedSkills } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
 
     interface Props {
         tool: Tool
@@ -16,8 +16,8 @@
     let mostRelevantSkills = $derived(
         tool.relevancy
             .filter(
-                $selectedSkills.length
-                    ? ({ skill }) => $selectedSkills.includes(skill)
+                globalState.selectedSkills.length
+                    ? ({ skill }) => globalState.selectedSkills.includes(skill)
                     : () => true,
             )
             .slice(0, visible),

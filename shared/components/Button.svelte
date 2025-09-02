@@ -1,4 +1,5 @@
 <script lang="ts" module>
+    import { type Snippet } from 'svelte'
     import { cx } from '../utils'
     import type { HTMLButtonAttributes } from 'svelte/elements'
 
@@ -34,7 +35,7 @@
         // TODO: In order to properly resolve imports, make the shared components into a workspace package that can be used by all projects
         // Then we can have a svelte config here which makes the Svelte language tools work as expected
         onclick?: HTMLButtonAttributes['onclick']
-        children?: import('svelte').Snippet
+        children?: Snippet
     }
 
     let {

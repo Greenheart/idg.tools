@@ -2,18 +2,18 @@
     import { cx } from '$lib/utils'
     import { Button } from '$shared/components'
     import type { Skill } from '$shared/types'
-    import { selectedSkills, listenForScroll } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
 
     const toggleSkill = (skillId: Skill['id']) => {
-        $listenForScroll = false
+        globalState.listenForScroll = false
         // NOTE: Instead of recreating the array all the time, this might benefit from using a JS Set
-        if ($selectedSkills.includes(skillId)) {
-            $selectedSkills = $selectedSkills.filter((id) => id !== skillId)
+        if (globalState.selectedSkills.includes(skillId)) {
+            globalState.selectedSkills = globalState.selectedSkills.filter((id) => id !== skillId)
         } else {
-            $selectedSkills = [...$selectedSkills, skillId]
+            globalState.selectedSkills = [...globalState.selectedSkills, skillId]
         }
         setTimeout(() => {
-            $listenForScroll = true
+            globalState.listenForScroll = true
         }, 100)
     }
 
@@ -31,7 +31,8 @@
     unstyled
     class={cx(
         'xs:text-base transform-gpu bg-white text-sm !font-normal duration-100',
-        !$selectedSkills.includes(skill.id) && 'bg-opacity-50 shadow-lg hover:bg-opacity-75',
+        !globalState.selectedSkills.includes(skill.id) &&
+            'bg-opacity-50 shadow-lg hover:bg-opacity-75',
         className,
     )}>{skill.name}</Button
 >

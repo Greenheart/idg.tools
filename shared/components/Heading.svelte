@@ -1,5 +1,5 @@
 <script lang="ts" module>
-    import { cx } from '../utils'
+    import { type Snippet } from 'svelte'
 
     const sizes = [1, 2, 3, 4, 5, 6] as const
     type Size = (typeof sizes)[number]
@@ -20,7 +20,7 @@
         class?: string
         id?: string | undefined
         tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-        children?: import('svelte').Snippet
+        children?: Snippet
     }
 
     let {
@@ -32,6 +32,6 @@
     }: Props = $props()
 </script>
 
-<svelte:element this={tag} class={cx(classes[size], className)} {id}>
+<svelte:element this={tag} class={[classes[size], className]} {id}>
     {@render children?.()}
 </svelte:element>

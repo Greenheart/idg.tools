@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Tool } from '$shared/types'
-    import { visibleItems } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
 
     interface Props {
         mostRelevantTools: Tool[]
@@ -10,4 +10,4 @@
     let { mostRelevantTools, allToolsCount }: Props = $props()
 </script>
 
-Showing {Math.min($visibleItems, mostRelevantTools.length)} of {allToolsCount} tools
+Showing {Math.min(globalState.visibleItems, mostRelevantTools.length)} of {allToolsCount} tools

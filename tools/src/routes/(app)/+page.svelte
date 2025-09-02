@@ -3,7 +3,7 @@
 
     import { Link, Heading } from '$shared/components'
     import Tools from '$components/Tools.svelte'
-    import { selectedSkills, selectedTags } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
     import type { PageData } from './$types'
     import { getMostRelevantTools } from '$shared/content-utils'
     import Meta from '$components/Meta.svelte'
@@ -21,13 +21,13 @@
 
     onMount(() => {
         // NOTE: Maybe we could limit the number of re-renders by showing a loading state until all of these have updated?
-        selectedSkills.useLocalStorage()
-        selectedTags.useLocalStorage()
+        // selectedSkills.useLocalStorage()
+        // selectedTags.useLocalStorage()
     })
 
     let mostRelevantTools = $derived(
-        $selectedSkills.length || $selectedTags.length
-            ? getMostRelevantTools(content, $selectedSkills, $selectedTags)
+        globalState.selectedSkills.length || globalState.selectedTags.length
+            ? getMostRelevantTools(content, globalState.selectedSkills, globalState.selectedTags)
             : content.tools,
     )
 </script>

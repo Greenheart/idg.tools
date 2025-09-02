@@ -1,5 +1,5 @@
 <script lang="ts" module>
-    import { onMount } from 'svelte'
+    import { onMount, type Snippet } from 'svelte'
 
     import { isExternalURL, cx } from '../utils'
     import { variants, defaultVariant, defaultClasses, sizes, defaultSize } from './Button.svelte'
@@ -13,7 +13,7 @@
         disabled?: boolean
         class?: string
         href?: string
-        children?: import('svelte').Snippet
+        children?: Snippet
     }
 
     let {

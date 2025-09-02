@@ -1,12 +1,12 @@
 <script lang="ts">
-    import { onMount } from 'svelte'
+    import { onMount, type Snippet } from 'svelte'
     import { afterNavigate, beforeNavigate } from '$app/navigation'
 
     import '../app.css'
-    import { scrollbarWidth } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
     import { getScrollbarWidth } from '$shared/utils'
     interface Props {
-        children?: import('svelte').Snippet
+        children?: Snippet
     }
 
     let { children }: Props = $props()
@@ -22,7 +22,7 @@
     afterNavigate(() => (document.documentElement.style.scrollBehavior = ''))
 
     onMount(() => {
-        $scrollbarWidth = getScrollbarWidth()
+        globalState.scrollbarWidth = getScrollbarWidth()
     })
 </script>
 

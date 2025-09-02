@@ -1,13 +1,13 @@
 <script lang="ts">
     import { onKeydown } from '$lib/utils'
     import type { Tag } from '$shared/types'
-    import { selectedTags } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
 
     const toggleTag = (tagId: Tag['id']) => {
-        if ($selectedTags.includes(tagId)) {
-            $selectedTags = $selectedTags.filter((id) => id !== tagId)
+        if (globalState.selectedTags.includes(tagId)) {
+            globalState.selectedTags = globalState.selectedTags.filter((id) => id !== tagId)
         } else {
-            $selectedTags = [...$selectedTags, tagId]
+            globalState.selectedTags = [...globalState.selectedTags, tagId]
         }
     }
 
@@ -47,7 +47,7 @@
             onkeydown={interactive ? onKeydown(() => toggleTag(tag.id)) : null}
             class={[
                 interactive
-                    ? $selectedTags.includes(tag.id)
+                    ? globalState.selectedTags.includes(tag.id)
                         ? 'cursor-pointer'
                         : 'cursor-pointer bg-opacity-50'
                     : '',

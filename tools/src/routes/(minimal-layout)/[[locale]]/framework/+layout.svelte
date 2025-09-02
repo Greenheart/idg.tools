@@ -1,10 +1,11 @@
 <script lang="ts">
-    import Header from '$components/Header.svelte'
+    import { type Snippet } from 'svelte'
 
+    import Header from '$components/Header.svelte'
     import { Link } from '$shared/components'
     import { GITHUB_LINK } from '$shared/constants'
     interface Props {
-        children?: import('svelte').Snippet
+        children?: Snippet
     }
 
     let { children }: Props = $props()

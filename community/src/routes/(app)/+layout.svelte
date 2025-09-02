@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount } from 'svelte'
+    import { onMount, type Snippet } from 'svelte'
     import { afterNavigate, beforeNavigate } from '$app/navigation'
     import Header from '$components/Header.svelte'
     import StoriesSection from '$components/StoriesSection.svelte'
@@ -7,7 +7,7 @@
     import { getScrollbarWidth } from '$shared/utils'
     import { globalState } from '$lib/global-state.svelte'
     interface Props {
-        children?: import('svelte').Snippet
+        children?: Snippet
     }
 
     let { children }: Props = $props()

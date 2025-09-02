@@ -1,8 +1,9 @@
 <script lang="ts">
     import 'iframe-resizer/js/iframeResizer.contentWindow'
+    import { type Snippet } from 'svelte'
 
     interface Props {
-        children?: import('svelte').Snippet
+        children?: Snippet
     }
 
     let { children }: Props = $props()
