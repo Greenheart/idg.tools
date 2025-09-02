@@ -6,7 +6,7 @@
 
     import { getSkillsInDimension } from '$shared/content-utils'
     import { getColor, onKeydown, getOffset, getRGBColor } from '$lib/utils'
-    import type { Skill, ToolsContent } from '$shared/types'
+    import type { Dimension, Skill, ToolsContent } from '$shared/types'
     import SkillButton from './SkillButton.svelte'
     import { Button, Link, Heading } from '$shared/components'
     import { FRAMEWORK_LINK } from '$shared/constants'
@@ -25,6 +25,7 @@
     let lastScrollTop = $state(0)
     let skillTabs = $state<HTMLDivElement>()!
     let tabsContainer = $state<HTMLDivElement>()!
+    let selectedTab = $state<Dimension['id']>(content.dimensions[0].id)
 
     // Add a bit extra offset to prevent accidentally closing on initial page load
     // if the user is navigating to an anchor link, and thus scrolling.
@@ -141,7 +142,7 @@
         {#if loaded}
             <div in:fade bind:this={tabsContainer}>
                 <Tabs.Root
-                    onValueChange={onChange}
+                    value={selectedTab}
                     class="absolute left-0 right-0 top-0 -ml-4 -mr-4 overflow-hidden bg-black text-white shadow-xl sm:-ml-8 sm:-mr-8"
                 >
                     <Tabs.List class="xs:overflow-auto flex flex-nowrap overflow-x-scroll">
@@ -159,22 +160,25 @@
                         {@const color = getColor(dimensionId)}
                         <Tabs.Content
                             value={dimensionId}
-                            class={[
-                                'xs:gap-2 flex h-full flex-1 flex-wrap gap-1 overflow-auto p-2 text-black',
-                                color,
-                            ]}
+                            class="flex h-full items-start text-black"
                         >
-                            <Button
-                                variant="inverted"
-                                size="sm"
-                                onclick={() => toggleSkills(skills)}
-                                onkeydown={onKeydown(() => toggleSkills(skills))}
-                                class="xs:text-base whitespace-nowrap text-sm font-normal"
-                                >Choose all</Button
+                            <div
+                                class={[
+                                    'xs:gap-2 flex h-full flex-1 flex-wrap gap-1 overflow-auto p-2',
+                                    color,
+                                ]}
                             >
-                            {#each getSkillsInDimension(dimensionId, content) as skill (skill.name)}
-                                <SkillButton {skill} class="xs:whitespace-nowrap" />
-                            {/each}
+                                <Button
+                                    variant="inverted"
+                                    size="sm"
+                                    onclick={() => toggleSkills(skills)}
+                                    class="xs:text-base whitespace-nowrap text-sm font-normal"
+                                    >Choose all</Button
+                                >
+                                {#each getSkillsInDimension(dimensionId, content) as skill (skill.name)}
+                                    <SkillButton {skill} class="xs:whitespace-nowrap" />
+                                {/each}
+                            </div>
                         </Tabs.Content>
                     {/each}
                 </Tabs.Root>
