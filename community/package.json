@@ -14,7 +14,8 @@
     },
     "dependencies": {
         "svelte-meta-tags": "^4.4.1",
-        "svelte-typeahead": "^5.0.0"
+        "svelte-typeahead": "^5.0.0",
+        "@humanspeak/svelte-markdown": "^0.8.11"
     },
     "devDependencies": {
         "@sveltejs/adapter-vercel": "^5.10.2",

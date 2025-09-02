@@ -54,6 +54,9 @@ importers:
 
   community:
     dependencies:
+      '@humanspeak/svelte-markdown':
+        specifier: ^0.8.11
+        version: 0.8.11(svelte@5.38.6)
       svelte-meta-tags:
         specifier: ^4.4.1
         version: 4.4.1(svelte@5.38.6)
