@@ -9,7 +9,6 @@
         TabPanel,
         TabPanels,
     } from '@rgossiaux/svelte-headlessui'
-    import { derived, writable, type Readable } from 'svelte/store'
 
     import { Heading, LocaleSwitcher } from '$shared/components'
     import {
@@ -29,13 +28,13 @@
     } from '$shared/types'
 
     interface Props {
-        skills: Readable<Skill[]>
-        dimensions: Readable<Dimension[]>
-        symbols: Readable<IDGSymbols>
+        skills: Skill[]
+        dimensions: Dimension[]
+        symbols: IDGSymbols
         currentLocale: string
         supportedLocales: SupportedLocales
         pathname: string
-        selectedDimension?: Readable<DimensionSlug | undefined> | undefined
+        selectedDimension?: DimensionSlug | undefined
     }
 
     let {
@@ -49,51 +48,46 @@
     }: Props = $props()
 
     // Use a store to keep the same selected dimension and skill when the locale changes
-    const selectedDimensionIndex = writable(
-        $selectedDimension ? getDimensionIndexBySlug($selectedDimension) : 0,
+    let selectedDimensionIndex = $state(
+        selectedDimension ? getDimensionIndexBySlug(selectedDimension) : 0,
     )
-    const selectedSkill = writable<Skill['id'] | null>(null)
+    let selectedSkill = $state<Skill['id'] | null>(null)
 
     /** The actual currently selected skill */
-    const focusedSkill = derived(
-        [selectedSkill, skills, dimensions, selectedDimensionIndex],
-        ([skillId, skills, dimensions, selectedDimensionIndex]) => {
-            const id = skillId ?? dimensions[selectedDimensionIndex].skills[0]
+    const focusedSkill = $derived.by(() => {
+        const id = selectedSkill ?? dimensions[selectedDimensionIndex].skills[0]
 
-            return getSkill(id, { skills })
-        },
-    )
+        return getSkill(id, { skills })
+    })
 </script>
 
 <div class="relative mx-auto min-h-[700px] max-w-screen-xl bg-white">
-    {#key $dimensions}
-        {#if $dimensions}
+    {#key dimensions}
+        {#if dimensions}
             <div class="h-full text-base">
                 <div class="flex justify-end p-2">
                     <LocaleSwitcher
                         {supportedLocales}
-                        pathname={$selectedDimension
-                            ? `${pathname}#${$selectedDimension}`
-                            : pathname}
+                        pathname={selectedDimension ? `${pathname}#${selectedDimension}` : pathname}
                         {currentLocale}
                     />
                 </div>
 
                 <TabGroup
-                    defaultIndex={$selectedDimensionIndex}
+                    defaultIndex={selectedDimensionIndex}
                     onchange={(event) => {
-                        if (event.detail !== $selectedDimensionIndex) {
-                            $selectedDimensionIndex = event.detail
-                            $selectedSkill = $dimensions[event.detail].skills[0]
+                        if (event.detail !== selectedDimensionIndex) {
+                            selectedDimensionIndex = event.detail
+                            selectedSkill = dimensions[event.detail].skills[0]
                         }
                     }}
                 >
                     <TabList
-                        class="grid grid-cols-5 text-white {$selectedDimension ? 'hidden' : ''}"
+                        class="grid grid-cols-5 text-white {selectedDimension ? 'hidden' : ''}"
                     >
-                        {#each $dimensions as dimension, i (dimension.name)}
+                        {#each dimensions as dimension, i (dimension.name)}
                             {@const dimensionSlug = getDimensionSlug(dimension.id)}
-                            {@const isSelected = $selectedDimensionIndex === i}
+                            {@const isSelected = selectedDimensionIndex === i}
                             <Tab
                                 class="xs:px-2 grid place-items-center py-2 {isSelected
                                     ? `${getColor(dimension.id)}`
@@ -101,7 +95,7 @@
                             >
                                 <IDGSymbol
                                     id={dimension.id}
-                                    symbols={$symbols}
+                                    {symbols}
                                     class="pointer-events-none h-12 w-12 {isSelected
                                         ? 'text-white'
                                         : getColor(dimension.id, 'text')}"
@@ -117,7 +111,7 @@
                         {/each}
                     </TabList>
                     <TabPanels>
-                        {#each $dimensions as dimension, i (dimension.name)}
+                        {#each dimensions as dimension, i (dimension.name)}
                             {@const dimensionSlug = getDimensionSlug(dimension.id)}
                             {@const bgColor = getColor(dimension.id, 'bg')}
                             {@const textColor = getColor(dimension.id, 'text')}
@@ -133,14 +127,14 @@
                                     <Heading size={4} class="px-4">{dimension.subtitle}</Heading>
                                     <IDGSymbol
                                         id={dimension.id}
-                                        symbols={$symbols}
+                                        {symbols}
                                         class="pointer-events-none mx-auto my-4 h-36 w-36"
                                     />
                                     <p class="p-4 pt-0">{dimension.description}</p>
                                 </div>
 
                                 <div class="space-y-2 bg-white py-2 sm:p-0 lg:hidden">
-                                    {#each getSkillsInDimension( dimension.id, { skills: $skills }, ) as skill (skill.name)}
+                                    {#each getSkillsInDimension( dimension.id, { skills: skills }, ) as skill (skill.name)}
                                         <Disclosure class="relative grid">
                                             {#snippet children({ open })}
                                                 <DisclosureButton
@@ -152,7 +146,7 @@
                                                 >
                                                     <IDGSymbol
                                                         id={skill.id}
-                                                        symbols={$symbols}
+                                                        {symbols}
                                                         class="h-10 w-10 shrink-0 group-hover:!{textColor}"
                                                     />
                                                     <p class="w-full text-sm">
@@ -181,7 +175,7 @@
                                                     >
                                                         <IDGSymbol
                                                             id={skill.id}
-                                                            symbols={$symbols}
+                                                            {symbols}
                                                             class="pointer-events-none h-36 w-36 text-white"
                                                         />
                                                     </div>
@@ -195,10 +189,10 @@
                                 </div>
 
                                 <div class="hidden space-y-2 lg:grid">
-                                    {#each getSkillsInDimension( dimension.id, { skills: $skills }, ) as skill (skill.name)}
+                                    {#each getSkillsInDimension( dimension.id, { skills }, ) as skill (skill.name)}
                                         {@const hoverClasses = `hover:bg-white hover:text-black hover:outline hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`}
                                         {@const activeClasses = `bg-white text-black outline outline-${dimensionSlug} outline-1 -outline-offset-1`}
-                                        {@const isSelected = $focusedSkill?.id === skill.id}
+                                        {@const isSelected = focusedSkill?.id === skill.id}
                                         <div class="relative grid">
                                             <button
                                                 class={[
@@ -207,10 +201,10 @@
                                                     bgColor,
                                                     isSelected ? activeClasses : '',
                                                 ]}
-                                                onclick={() => ($selectedSkill = skill.id)}
+                                                onclick={() => (selectedSkill = skill.id)}
                                                 ><IDGSymbol
                                                     id={skill.id}
-                                                    symbols={$symbols}
+                                                    {symbols}
                                                     class={[
                                                         `h-10 w-10 shrink-0 group-hover:!${textColor}`,
                                                         isSelected ? textColor : '',
@@ -232,7 +226,7 @@
                                         <h3
                                             class="hyphens-auto break-words py-4 text-2xl font-bold sm:text-xl xl:text-2xl {textColor}"
                                         >
-                                            {$focusedSkill.name}
+                                            {focusedSkill.name}
                                         </h3>
                                         <div
                                             class={[
@@ -241,13 +235,13 @@
                                             ]}
                                         >
                                             <IDGSymbol
-                                                id={$focusedSkill.id}
-                                                symbols={$symbols}
+                                                id={focusedSkill.id}
+                                                {symbols}
                                                 class="pointer-events-none h-36 w-36 text-white"
                                             />
                                         </div>
                                         <p class="py-4 text-black">
-                                            {$focusedSkill.description}
+                                            {focusedSkill.description}
                                         </p>
                                     </div>
                                 </div>
