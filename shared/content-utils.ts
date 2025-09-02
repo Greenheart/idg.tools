@@ -43,8 +43,10 @@ export const getHTMLDirection = (locale: Locale) => LOCALE_DIRECTIONS[locale] ??
 export const getDimension = (id: Dimension['id'], { dimensions }: Pick<AllContent, 'dimensions'>) =>
     dimensions.find((c) => c.id === id) as Dimension
 
+const orderedDimensionSlugs = Object.keys(IDG_COLORS_RGB)
+
 export const getDimensionIndexBySlug = (slug: DimensionSlug) =>
-    Object.keys(IDG_COLORS_RGB).findIndex((dimensionSlug) => dimensionSlug === slug)
+    orderedDimensionSlugs.findIndex((dimensionSlug) => dimensionSlug === slug)
 
 export const getDimensionSlug = (id: Dimension['id'] | Skill['id']) => COLORS[id] as DimensionSlug
 
