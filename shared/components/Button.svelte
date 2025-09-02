@@ -31,8 +31,6 @@
         type?: 'submit' | undefined
         unstyled?: boolean
         class?: string
-        // TODO: In order to properly resolve imports, make the shared components into a workspace package that can be used by all projects
-        // Then we can have a svelte config here which makes the Svelte language tools work as expected
         onclick?: HTMLButtonAttributes['onclick']
         children?: Snippet
     }
