@@ -74,16 +74,16 @@
     <div class="mt-8 flex items-start space-x-8">
         {#if prev}
             <div class="flex flex-1 items-center justify-start space-x-2">
-                <Arrow left /><Link href={prev.link} class="text-left" variant="black"
+                <Arrow left /><Link href={`/stories/${prev.link}`} class="text-left" variant="black"
                     >{prev.title}</Link
                 >
             </div>
         {/if}
         {#if next}
             <div class="flex flex-1 items-center justify-end space-x-2">
-                <Link href={next.link} class="text-right" variant="black">{next.title}</Link><Arrow
-                    right
-                />
+                <Link href={`/stories/${next.link}`} class="text-right" variant="black"
+                    >{next.title}</Link
+                ><Arrow right />
             </div>
         {/if}
     </div>
