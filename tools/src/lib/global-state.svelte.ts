@@ -1,9 +1,9 @@
 import type { ItemId } from '$shared/types'
-// import { PersistedState } from 'runed'
+import { PersistedState } from 'runed'
 
 class GlobalState {
-    selectedSkills = $state<ItemId[]>([])
-    selectedTags = $state<ItemId[]>([])
+    selectedSkills = new PersistedState<ItemId[]>('selectedSkills', [])
+    selectedTags = new PersistedState<ItemId[]>('selectedTags', [])
     isMenuOpen = $state(false)
     filtersExpanded = $state(false)
     visibleItems = $state(20)

@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { onMount } from 'svelte'
-
     import { Link, Heading } from '$shared/components'
     import Tools from '$components/Tools.svelte'
     import { globalState } from '$lib/global-state.svelte'
@@ -19,15 +17,13 @@
     let { data }: Props = $props()
     let { content } = $derived(data)
 
-    onMount(() => {
-        // NOTE: Maybe we could limit the number of re-renders by showing a loading state until all of these have updated?
-        // selectedSkills.useLocalStorage()
-        // selectedTags.useLocalStorage()
-    })
-
     let mostRelevantTools = $derived(
-        globalState.selectedSkills.length || globalState.selectedTags.length
-            ? getMostRelevantTools(content, globalState.selectedSkills, globalState.selectedTags)
+        globalState.selectedSkills.current.length || globalState.selectedTags.current.length
+            ? getMostRelevantTools(
+                  content,
+                  globalState.selectedSkills.current,
+                  globalState.selectedTags.current,
+              )
             : content.tools,
     )
 </script>

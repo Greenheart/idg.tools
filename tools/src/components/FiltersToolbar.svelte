@@ -10,17 +10,19 @@
     import { globalState } from '$lib/global-state.svelte'
 
     const resetFilters = () => {
-        globalState.selectedSkills = []
-        globalState.selectedTags = []
+        globalState.selectedSkills.current = []
+        globalState.selectedTags.current = []
     }
 
     const toggleTag = (tagId: Tag['id']) => {
         globalState.listenForScroll = false
         // NOTE: Instead of recreating the array all the time, this might benefit from using a JS Set
-        if (globalState.selectedTags.includes(tagId)) {
-            globalState.selectedTags = globalState.selectedTags.filter((id) => id !== tagId)
+        if (globalState.selectedTags.current.includes(tagId)) {
+            globalState.selectedTags.current = globalState.selectedTags.current.filter(
+                (id) => id !== tagId,
+            )
         } else {
-            globalState.selectedTags = [...globalState.selectedTags, tagId]
+            globalState.selectedTags.current = [...globalState.selectedTags.current, tagId]
         }
         setTimeout(() => {
             globalState.listenForScroll = true
@@ -65,7 +67,7 @@
                         onclick={() => toggleTag(tag.id)}
                         class={[
                             'xs:text-base transform-gpu bg-white text-sm !font-normal duration-100',
-                            !globalState.selectedTags.includes(tag.id) &&
+                            !globalState.selectedTags.current.includes(tag.id) &&
                                 'bg-opacity-50 shadow-lg hover:bg-opacity-75',
                         ]}>{tag.name}</Button
                     >

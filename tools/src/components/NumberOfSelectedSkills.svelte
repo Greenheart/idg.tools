@@ -11,7 +11,7 @@
     let selectedInDimension = $derived(
         skillsInDimension.reduce(
             (count, skill) =>
-                globalState.selectedSkills.some((s) => s === skill) ? count + 1 : count,
+                globalState.selectedSkills.current.some((s) => s === skill) ? count + 1 : count,
             0,
         ),
     )

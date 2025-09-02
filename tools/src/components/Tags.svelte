@@ -4,10 +4,12 @@
     import { globalState } from '$lib/global-state.svelte'
 
     const toggleTag = (tagId: Tag['id']) => {
-        if (globalState.selectedTags.includes(tagId)) {
-            globalState.selectedTags = globalState.selectedTags.filter((id) => id !== tagId)
+        if (globalState.selectedTags.current.includes(tagId)) {
+            globalState.selectedTags.current = globalState.selectedTags.current.filter(
+                (id) => id !== tagId,
+            )
         } else {
-            globalState.selectedTags = [...globalState.selectedTags, tagId]
+            globalState.selectedTags.current = [...globalState.selectedTags.current, tagId]
         }
     }
 
@@ -47,7 +49,7 @@
             onkeydown={interactive ? onKeydown(() => toggleTag(tag.id)) : null}
             class={[
                 interactive
-                    ? globalState.selectedTags.includes(tag.id)
+                    ? globalState.selectedTags.current.includes(tag.id)
                         ? 'cursor-pointer'
                         : 'cursor-pointer bg-opacity-50'
                     : '',

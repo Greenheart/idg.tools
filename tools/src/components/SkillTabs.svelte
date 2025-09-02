@@ -91,18 +91,18 @@
     const toggleSkills = async (skills: Skill['id'][]) => {
         globalState.listenForScroll = false
         const alreadySelected = skills.filter((skillId) =>
-            globalState.selectedSkills.includes(skillId),
+            globalState.selectedSkills.current.includes(skillId),
         )
 
         // Select all if not all skills are yet selected
         if (alreadySelected.length < skills.length) {
-            globalState.selectedSkills = [
-                ...globalState.selectedSkills,
+            globalState.selectedSkills.current = [
+                ...globalState.selectedSkills.current,
                 ...skills.filter((skillId) => !alreadySelected.includes(skillId)),
             ]
         } else {
             // Unselect all if everything is already selected
-            globalState.selectedSkills = globalState.selectedSkills.filter(
+            globalState.selectedSkills.current = globalState.selectedSkills.current.filter(
                 (skillId) => !alreadySelected.includes(skillId),
             )
         }

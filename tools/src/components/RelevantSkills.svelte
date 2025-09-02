@@ -16,8 +16,8 @@
     let mostRelevantSkills = $derived(
         tool.relevancy
             .filter(
-                globalState.selectedSkills.length
-                    ? ({ skill }) => globalState.selectedSkills.includes(skill)
+                globalState.selectedSkills.current.length
+                    ? ({ skill }) => globalState.selectedSkills.current.includes(skill)
                     : () => true,
             )
             .slice(0, visible),

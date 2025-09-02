@@ -19,8 +19,8 @@
     // export let reduceMotion: boolean
 
     const showAll = () => {
-        globalState.selectedSkills = []
-        globalState.selectedTags = []
+        globalState.selectedSkills.current = []
+        globalState.selectedTags.current = []
     }
 
     const showMore = () => {
@@ -70,7 +70,7 @@
         <VisibleToolsCount {mostRelevantTools} allToolsCount={content.tools.length} />
         {#if globalState.visibleItems < mostRelevantTools.length}
             <Button onclick={showMore}>Show more</Button>
-        {:else if mostRelevantTools.length && (globalState.selectedSkills.length || globalState.selectedTags.length)}
+        {:else if mostRelevantTools.length && (globalState.selectedSkills.current.length || globalState.selectedTags.current.length)}
             <Button onclick={showAll}>Show all tools</Button>
         {/if}
     </div>
