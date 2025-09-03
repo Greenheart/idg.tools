@@ -89,6 +89,6 @@ export type Tag = { id: ItemId; name: string }
 
 export type Locale = keyof typeof LOCALES
 export type Localised<T> = Partial<Record<Locale, T>>
-export type SupportedLocales = Map<Locale, string>
+export type SupportedLocales = Partial<typeof LOCALES>
 
 export type IDGSymbols = Record<Skill['id'] | Dimension['id'], string[]>

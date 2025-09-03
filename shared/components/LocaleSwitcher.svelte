@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Select } from 'bits-ui'
     import { cubicOut } from 'svelte/easing'
+    import { goto } from '$app/navigation'
 
     import type { Locale, SupportedLocales } from '../types'
     import Link from './Link.svelte'
@@ -17,13 +18,12 @@
 
     let { supportedLocales, pathname, currentLocale = DEFAULT_LOCALE_IDENTIFIER }: Props = $props()
 
-    const items = supportedLocales
-        .entries()
+    const items = Object.entries(supportedLocales)
         .map(([value, label]) => ({ value, label }))
-        .toArray()
+        .sort((a, b) => a.label.localeCompare(b.label))
 
     let initialLocale = $derived<Locale>(
-        supportedLocales.has(currentLocale as Locale)
+        supportedLocales[currentLocale as Locale]
             ? (currentLocale as Locale)
             : DEFAULT_LOCALE_IDENTIFIER,
     )
@@ -50,10 +50,9 @@
         aria-label="Change language"
         title="Change language"
         class="flex h-10 items-center gap-2 px-2 hover:bg-stone-100"
-        ><LocaleIcon />{supportedLocales.get(initialLocale)}<ChevronDown /></Select.Trigger
+        ><LocaleIcon />{supportedLocales[initialLocale]}<ChevronDown /></Select.Trigger
     >
     <Select.Portal>
-        <!-- TODO: show items in alphabetical order. Simplify supportedLocales since we don't need custom sorting anymore -->
         <Select.Content class="z-30 grid w-48 bg-white text-base drop-shadow" preventScroll={true}>
             <Select.ScrollUpButton class="grid place-items-center" delay={autoScrollDelay}>
                 <ChevronDown class="!size-4 rotate-180 transform" />

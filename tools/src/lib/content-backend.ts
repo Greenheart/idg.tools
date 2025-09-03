@@ -12,21 +12,13 @@ export const content = _content[DEFAULT_LOCALE_IDENTIFIER] as unknown as ToolsCo
 export const getContent = (locale?: string) =>
     _content[getLocale(locale) as unknown as keyof typeof _content] as unknown as ToolsContent
 
-/**
- * Get the supportedLocales, sorted based on the order of the keys of `LOCALES`.
- * This preserves the desired sorting.
- */
 const getSupportedLocales = () => {
-    const all = Object.entries(LOCALES) as [Locale, string][]
     const supported = Object.keys(_content) as Locale[]
 
-    // Use a Map to preserve the insert order of keys during JSON (de)serialization.
-    return all.reduce<Map<Locale, string>>((supportedLocales, [locale, label]) => {
-        if (supported.includes(locale)) {
-            supportedLocales.set(locale, label)
-        }
+    return supported.reduce<Partial<typeof LOCALES>>((supportedLocales, locale) => {
+        supportedLocales[locale] = LOCALES[locale]
         return supportedLocales
-    }, new Map())
+    }, {})
 }
 
 // Cache result since it won't change unless `_content` changes
