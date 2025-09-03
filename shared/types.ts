@@ -10,7 +10,8 @@ type Item = {
 
 export type Skill = Item & {
     dimension: ItemId
-    questions: string[]
+    // NOTE: questions are rdisabled to match `content/scripts/build/schemas.ts`
+    // questions: string[]
 }
 
 export type Dimension = Item & {
