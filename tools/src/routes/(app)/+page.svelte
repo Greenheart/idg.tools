@@ -49,10 +49,8 @@
             This is the public beta version of the IDG Toolkit. It is primarily based on the <Link
                 href={IDG_PDF_TOOLKIT}
                 variant="white">IDG Phase 2 Research Report</Link
-            >, and research from <Link href="https://29k.org" variant="white">29k</Link>. Please <Link
-                href={FEEDBACK_FORM_LINK}
-                variant="white">share your feedback</Link
-            > and <Link href={SUGGEST_NEW_TOOL_LINK} variant="white">suggest new tools</Link>.
+            >. Please <Link href={FEEDBACK_FORM_LINK} variant="white">share your feedback</Link> and
+            <Link href={SUGGEST_NEW_TOOL_LINK} variant="white">suggest new tools</Link>.
         </p>
         <Link href="/about" variant="orange" class="whitespace-nowrap text-right">Learn more</Link>
     </div>

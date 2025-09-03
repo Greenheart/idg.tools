@@ -21,11 +21,9 @@
         This is the public beta version of the IDG Toolkit. It is primarily based on the <Link
             href={IDG_PDF_TOOLKIT}
             variant="black">IDG Phase 2 Research Report</Link
-        >, and research from <Link href="https://29k.org" variant="black">29k</Link>. We invite you
-        <!-- TODO: Replace the span with link to contributing guide specifically for the toolkit -->
-        to both <span>help improve and expand this open source toolkit</span>, and join the growing
-        worldwide <Link href={HUBS_NETWORKS_LINK} variant="black">IDG community</Link> coming together
-        to work on inner development for sustainable development.
+        >. We invite you to both help improve and expand this open source toolkit, and join the
+        growing worldwide <Link href={HUBS_NETWORKS_LINK} variant="black">IDG community</Link> coming
+        together to work on inner development for sustainable development.
     </p>
 </div>
 
