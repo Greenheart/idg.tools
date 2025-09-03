@@ -139,6 +139,9 @@ importers:
       '@humanspeak/svelte-markdown':
         specifier: ^0.8.11
         version: 0.8.11(svelte@5.38.6)
+      bits-ui:
+        specifier: ^2.9.6
+        version: 2.9.6(@internationalized/date@3.9.0)(svelte@5.38.6)
       svelte:
         specifier: ^5.38.6
         version: 5.38.6
@@ -1208,6 +1211,13 @@ packages:
 
   bits-ui@2.9.4:
     resolution: {integrity: sha512-Cqn685P6DDuEyBZT/CWMyS5+8JAnYbctvoEVPcmiut+HUpG3SozVgjoDaUib5VG4ZYUKEi1FPwHxiXo9c6J0PA==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@internationalized/date': ^3.8.1
+      svelte: ^5.33.0
+
+  bits-ui@2.9.6:
+    resolution: {integrity: sha512-OzHktsQRsIz/hIMk5VwHo96Wpp/KY68q/ebUPUzTbvuFBrALB/X+QvO4KLgdczj5dfb3xHs9zpWq8yMH8ZbZlA==}
     engines: {node: '>=20'}
     peerDependencies:
       '@internationalized/date': ^3.8.1
@@ -5315,6 +5325,17 @@ snapshots:
       file-uri-to-path: 1.0.0
 
   bits-ui@2.9.4(@internationalized/date@3.9.0)(svelte@5.38.6):
+    dependencies:
+      '@floating-ui/core': 1.7.3
+      '@floating-ui/dom': 1.7.4
+      '@internationalized/date': 3.9.0
+      esm-env: 1.2.2
+      runed: 0.29.2(svelte@5.38.6)
+      svelte: 5.38.6
+      svelte-toolbelt: 0.9.3(svelte@5.38.6)
+      tabbable: 6.2.0
+
+  bits-ui@2.9.6(@internationalized/date@3.9.0)(svelte@5.38.6):
     dependencies:
       '@floating-ui/core': 1.7.3
       '@floating-ui/dom': 1.7.4

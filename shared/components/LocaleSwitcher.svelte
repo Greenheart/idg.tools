@@ -1,9 +1,12 @@
 <script lang="ts">
+    import { Select } from 'bits-ui'
+    import { cubicOut } from 'svelte/easing'
+
     import type { Locale, SupportedLocales } from '../types'
     import Link from './Link.svelte'
     import LocaleIcon from '../icons/Locale.svelte'
     import { getLocalisedPath } from '../utils'
-    import { DEFAULT_LOCALE_IDENTIFIER, LOCALES } from '../constants'
+    import { DEFAULT_LOCALE_IDENTIFIER } from '../constants'
     import ChevronDown from '../icons/ChevronDown.svelte'
 
     interface Props {
@@ -14,56 +17,67 @@
 
     let { supportedLocales, pathname, currentLocale = DEFAULT_LOCALE_IDENTIFIER }: Props = $props()
 
-    // Sort supported languages based on number of speakers
-    const supported = Object.keys(LOCALES).reduce((result, locale) => {
-        if (supportedLocales[locale]) {
-            result.push([locale, supportedLocales[locale]])
-        }
-        return result
-    }, []) as [Locale, string][]
+    const items = supportedLocales
+        .entries()
+        .map(([value, label]) => ({ value, label }))
+        .toArray()
 
-    let open = $state(false)
-    let target: HTMLDivElement = $state()
+    let initialLocale = $derived<Locale>(
+        supportedLocales.has(currentLocale as Locale)
+            ? (currentLocale as Locale)
+            : DEFAULT_LOCALE_IDENTIFIER,
+    )
+
+    function autoScrollDelay(tick: number) {
+        const maxDelay = 200
+        const minDelay = 25
+        const steps = 30
+
+        const progress = Math.min(tick / steps, 1)
+        return maxDelay - (maxDelay - minDelay) * cubicOut(progress)
+    }
 </script>
 
-<div class="relative grid" bind:this={target}>
-    <button
-        class="flex h-10 items-center gap-2 px-2 hover:bg-stone-100"
-        title="Change language"
+<Select.Root
+    type="single"
+    value={initialLocale}
+    {items}
+    onValueChange={(value) => {
+        goto(getLocalisedPath(value as Locale, pathname))
+    }}
+>
+    <Select.Trigger
         aria-label="Change language"
-        onclick={() => (open = !open)}
-        ><LocaleIcon />{supportedLocales[currentLocale ?? DEFAULT_LOCALE_IDENTIFIER]}<ChevronDown
-        /></button
+        title="Change language"
+        class="flex h-10 items-center gap-2 px-2 hover:bg-stone-100"
+        ><LocaleIcon />{supportedLocales.get(initialLocale)}<ChevronDown /></Select.Trigger
     >
-    <ul
-        class="list-style-none absolute top-full z-30 grid w-48 bg-white py-1 text-base drop-shadow ltr:right-0 rtl:left-0"
-        class:hidden={!open}
-    >
-        {#each supported as [locale, label]}
-            <li class="grid">
-                <Link
-                    href={getLocalisedPath(locale, pathname)}
-                    variant="black"
-                    noScroll
-                    onclick={() => {
-                        open = false
-                    }}
-                    class="px-3 py-1 !no-underline hover:bg-stone-100 hover:underline">{label}</Link
-                >
-            </li>
-        {/each}
-    </ul>
-</div>
-
-<svelte:body
-    onclick={(event) => {
-        if (open && !event.composedPath().includes(target)) {
-            open = false
-        }
-    }}
-    onkeyup={(event) => {
-        if (open && event.key === 'Escape') {
-            open = false
-        }
-    }}
-/>
+    <Select.Portal>
+        <!-- TODO: show items in alphabetical order. Simplify supportedLocales since we don't need custom sorting anymore -->
+        <Select.Content class="z-30 grid w-48 bg-white text-base drop-shadow" preventScroll={true}>
+            <Select.ScrollUpButton class="grid place-items-center" delay={autoScrollDelay}>
+                <ChevronDown class="!size-4 rotate-180 transform" />
+            </Select.ScrollUpButton>
+            <Select.Viewport class="max-h-screen">
+                {#each items as { value, label } (value)}
+                    <Select.Item
+                        {value}
+                        class="hover:bg-stone-100 [&[data-highlighted]]:bg-stone-100 [&[data-highlighted]]:!underline"
+                    >
+                        <li class="grid">
+                            <Link
+                                href={getLocalisedPath(value, pathname)}
+                                variant="black"
+                                noScroll
+                                class="px-3 py-1">{label}</Link
+                            >
+                        </li>
+                    </Select.Item>
+                {/each}
+            </Select.Viewport>
+            <Select.ScrollDownButton class="grid place-items-center" delay={autoScrollDelay}>
+                <ChevronDown class="!size-4" />
+            </Select.ScrollDownButton>
+        </Select.Content>
+    </Select.Portal>
+</Select.Root>
