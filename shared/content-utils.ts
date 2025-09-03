@@ -51,9 +51,7 @@ export const getDimensionIndexBySlug = (slug: DimensionSlug) =>
 export const getDimensionSlug = (id: Dimension['id'] | Skill['id']) => COLORS[id] as DimensionSlug
 
 export const parseDimensionSlug = (slug: string) =>
-    IDG_COLORS_RGB[slug.toLowerCase() as DimensionSlug] !== undefined
-        ? (slug.toLowerCase() as DimensionSlug)
-        : undefined
+    IDG_COLORS_RGB[slug as DimensionSlug] !== undefined ? (slug as DimensionSlug) : undefined
 
 export const getSkill = (id: Skill['id'], { skills }: Pick<AllContent, 'skills'>) =>
     skills.find((s) => s.id === id) as Skill
