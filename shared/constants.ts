@@ -7,7 +7,6 @@ export const GITHUB_ISSUES_LINK = `${GITHUB_LINK}/issues`
 export const FRAMEWORK_LINK = 'https://idg.tools/framework'
 export const IDG_WEBSITE = 'https://innerdevelopmentgoals.org'
 export const IDG_PDF_TOOLKIT = '/assets/221215_IDG_Toolkit_v1.pdf'
-export const IDG_REPORT_PDF = 'https://www.innerdevelopmentgoals.org/s/211201_IDG_Report_Full.pdf'
 export const IDG_CMS_LINK = 'https://cms.idg.community'
 
 export const HUBS_NETWORKS_LINK = 'https://innerdevelopmentgoals.org/get-involved/hubs-networks/'
