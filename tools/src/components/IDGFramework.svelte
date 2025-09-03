@@ -82,7 +82,7 @@
 
 <div
     class={[
-        'relative mx-auto min-h-[700px] max-w-screen-xl bg-white',
+        'relative mx-auto min-h-[700px] max-w-(--breakpoint-xl) bg-white',
         !mounted.current && 'invisible',
     ]}
 >
@@ -113,7 +113,7 @@
                         value={dimensionSlug}
                         class="xs:px-2 grid place-items-center py-2 {isSelected
                             ? `${getColor(dimension.id)}`
-                            : `bg-white hover:outline hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
+                            : `bg-white hover:outline-solid hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
                     >
                         <IDGSymbol
                             id={dimension.id}
@@ -167,7 +167,7 @@
                                     <Accordion.Trigger
                                         class={[
                                             'group sticky top-0 flex w-full items-center gap-2 p-2 text-left drop-shadow-xl hover:bg-white hover:text-black',
-                                            `hover:outline hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`,
+                                            `hover:outline-solid hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`,
                                             '[&[data-state=open]>svg:last-child]:rotate-180',
                                             bgColor,
                                         ]}
@@ -181,7 +181,7 @@
                                             {skill.name}
                                         </p>
                                         <ChevronDown
-                                            class="transition-gpu mx-1 flex-grow transition-transform duration-200"
+                                            class="transition-gpu mx-1 grow transition-transform duration-200"
                                         />
                                     </Accordion.Trigger>
                                 </Accordion.Header>
@@ -216,8 +216,8 @@
 
                     <div class="hidden space-y-2 lg:grid">
                         {#each getSkillsInDimension(dimension.id, { skills }) as skill (skill.name)}
-                            {@const hoverClasses = `hover:bg-white hover:text-black hover:outline hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`}
-                            {@const activeClasses = `bg-white text-black outline outline-${dimensionSlug} outline-1 -outline-offset-1`}
+                            {@const hoverClasses = `hover:bg-white hover:text-black hover:outline-solid hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`}
+                            {@const activeClasses = `bg-white text-black outline-solid outline-${dimensionSlug} outline-1 -outline-offset-1`}
                             {@const isSelected = focusedSkill?.id === skill.id}
                             <div class="relative grid">
                                 <button
@@ -239,7 +239,7 @@
                                     <p class="w-full text-sm">
                                         {skill.name}
                                     </p>
-                                    <ChevronDown class="mx-1 flex-grow -rotate-90" /></button
+                                    <ChevronDown class="mx-1 grow -rotate-90" /></button
                                 >
                             </div>
                         {/each}

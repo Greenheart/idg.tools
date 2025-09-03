@@ -66,7 +66,7 @@
                         unstyled
                         onclick={() => toggleTag(tag.id)}
                         class={[
-                            'xs:text-base transform-gpu bg-white text-sm !font-normal duration-100',
+                            'xs:text-base transform-gpu bg-white text-sm font-normal! duration-100',
                             !globalState.selectedTags.current.includes(tag.id) &&
                                 'bg-opacity-50 shadow-lg hover:bg-opacity-75',
                         ]}>{tag.name}</Button

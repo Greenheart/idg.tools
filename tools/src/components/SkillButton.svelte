@@ -31,7 +31,7 @@
     size="sm"
     unstyled
     class={[
-        'xs:text-base transform-gpu bg-white text-sm !font-normal duration-100',
+        'xs:text-base transform-gpu bg-white text-sm font-normal! duration-100',
         !globalState.selectedSkills.current.includes(skill.id) &&
             'bg-opacity-50 shadow-lg hover:bg-opacity-75',
         className,

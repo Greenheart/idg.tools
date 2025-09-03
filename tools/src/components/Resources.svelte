@@ -20,7 +20,7 @@
 </script>
 
 <div class={className}>
-    <Markdown {source} formatting="limited" class="!prose-base max-w-none" />
+    <Markdown {source} formatting="limited" class="prose-base! max-w-none" />
     {#if visibleResources < allResources.length}
         <button class="text-collaborating mt-4 font-semibold underline" onclick={showAll}>
             Show {allResources.length - visibleResources} more
