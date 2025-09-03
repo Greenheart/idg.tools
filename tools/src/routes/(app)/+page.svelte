@@ -5,7 +5,7 @@
     import type { PageData } from './$types'
     import { getMostRelevantTools } from '$shared/content-utils'
     import Meta from '$components/Meta.svelte'
-    import { FRAMEWORK_LINK, IDG_PDF_TOOLKIT } from '$shared/constants'
+    import { IDG_PDF_TOOLKIT } from '$shared/constants'
     import SkillTabs from '$components/SkillTabs.svelte'
     import { FEEDBACK_FORM_LINK, SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
     import FiltersToolbar from '$components/FiltersToolbar.svelte'
@@ -36,9 +36,8 @@
     <p>Welcome to the Inner Development Goals Toolkit!</p>
 
     <p class="mt-4">
-        This is an emerging library of tools to explore the <Link
-            href={FRAMEWORK_LINK}
-            variant="black">Inner Development Goals</Link
+        This is an emerging library of tools to explore the <Link href="/framework" variant="black"
+            >Inner Development Goals</Link
         > (IDGs) in practice, and help people and organisations accelerate progress towards the <Link
             href="https://sdgs.un.org/goals#goals"
             variant="black">UN Sustainable Development Goals</Link

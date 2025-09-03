@@ -10,7 +10,6 @@
     import type { Dimension, Skill, ToolsContent } from '$shared/types'
     import SkillButton from './SkillButton.svelte'
     import { Button, Link, Heading } from '$shared/components'
-    import { FRAMEWORK_LINK } from '$shared/constants'
     import { Info } from '$shared/icons'
     import { browser } from '$app/environment'
 
@@ -124,7 +123,7 @@
         >1. Choose skills to <span class="whitespace-nowrap"
             >practice<Link
                 unstyled
-                href={FRAMEWORK_LINK}
+                href="/framework"
                 title="Learn more about the IDG framework"
                 class="pl-1"
             >
