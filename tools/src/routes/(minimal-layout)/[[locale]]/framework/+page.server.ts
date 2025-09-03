@@ -1,9 +1,7 @@
 import { error, redirect } from '@sveltejs/kit'
-import { getContent, getSupportedLocales } from '$lib/content-backend'
+import { getContent, supportedLocales } from '$lib/content-backend'
 import { getRawLocale, getRedirectURL } from '$shared/utils'
 import { ONE_YEAR_SECONDS } from '$shared/constants'
-
-const supportedLocales = getSupportedLocales()
 
 export const entries = () => Object.keys(supportedLocales).map((locale) => ({ locale }))
 

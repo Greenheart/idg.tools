@@ -88,12 +88,7 @@ export type IDGColorMap = {
 export type Tag = { id: ItemId; name: string }
 
 export type Locale = keyof typeof LOCALES
-
 export type Localised<T> = Partial<Record<Locale, T>>
-
-// TODO: Figure out the best way to type this
-// export type SupportedLocales = Partial<Record<Locale, string>>
-// export type SupportedLocales = Localised<string>
-export type SupportedLocales = Partial<typeof LOCALES>
+export type SupportedLocales = Map<Locale, string>
 
 export type IDGSymbols = Record<Skill['id'] | Dimension['id'], string[]>
