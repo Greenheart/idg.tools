@@ -20,6 +20,8 @@
 
 <iframe id="idg-framework" src="/embed/framework#collaborating" title="IDG Framework"></iframe>
 
+<!-- <iframe id="idg-framework" src="/embed/framework" title="IDG Framework"></iframe> -->
+
 <style>
     #idg-framework {
         width: 1px;

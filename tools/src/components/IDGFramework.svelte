@@ -1,5 +1,6 @@
 <script lang="ts">
     import { Tabs, Accordion } from 'bits-ui'
+    import { IsMounted } from 'runed'
 
     import { Heading, LocaleSwitcher } from '$shared/components'
     import {
@@ -25,8 +26,13 @@
         currentLocale: string
         supportedLocales: SupportedLocales
         pathname: string
-        selectedDimension?: DimensionSlug | undefined
+        /**
+         * Can be used to lock the framework to only display one specific dimension. Useful for embeds.
+         */
+        lockedDimension?: DimensionSlug | undefined
     }
+
+    let mounted = new IsMounted()
 
     let {
         skills,
@@ -35,12 +41,12 @@
         currentLocale,
         supportedLocales,
         pathname,
-        selectedDimension = undefined,
+        lockedDimension = undefined,
     }: Props = $props()
 
     // Keep the same selected dimension and skill when the locale changes
     let selectedDimensionIndex = $state(
-        selectedDimension ? getDimensionIndexBySlug(selectedDimension) : 0,
+        lockedDimension ? getDimensionIndexBySlug(lockedDimension) : 0,
     )
     let selectedSkill = $state<Skill['id'] | null>(null)
 
@@ -52,18 +58,23 @@
     })
 </script>
 
-<div class="relative mx-auto min-h-[700px] max-w-screen-xl bg-white">
+<div
+    class={[
+        'relative mx-auto min-h-[700px] max-w-screen-xl bg-white',
+        !mounted.current && 'invisible',
+    ]}
+>
     <div class="h-full text-base">
         <div class="flex justify-end p-2">
             <LocaleSwitcher
                 {supportedLocales}
-                pathname={selectedDimension ? `${pathname}#${selectedDimension}` : pathname}
+                pathname={lockedDimension ? `${pathname}#${lockedDimension}` : pathname}
                 {currentLocale}
             />
         </div>
 
         <Tabs.Root
-            value={selectedDimension ?? getDimensionSlug(dimensions[selectedDimensionIndex].id)}
+            value={lockedDimension ?? getDimensionSlug(dimensions[selectedDimensionIndex].id)}
             onValueChange={(slug) => {
                 const index = getDimensionIndexBySlug(slug as DimensionSlug)!
                 if (index !== selectedDimensionIndex) {
@@ -72,7 +83,7 @@
                 }
             }}
         >
-            <Tabs.List class={['grid grid-cols-5 text-white', selectedDimension && 'hidden']}>
+            <Tabs.List class={['grid grid-cols-5 text-white', lockedDimension && 'hidden']}>
                 {#each dimensions as dimension, i (dimension.name)}
                     {@const dimensionSlug = getDimensionSlug(dimension.id)}
                     {@const isSelected = selectedDimensionIndex === i}
@@ -107,7 +118,7 @@
                 {@const textColor = getColor(dimension.id, 'text')}
                 <Tabs.Content
                     value={dimensionSlug}
-                    class="grid w-full items-start bg-white text-white sm:grid-cols-[minmax(260px,1fr)_2fr] sm:gap-2 sm:pt-2 lg:grid-cols-[minmax(260px,1fr)_1fr_1fr]"
+                    class={'grid w-full items-start bg-white text-white sm:grid-cols-[minmax(260px,1fr)_2fr] sm:gap-2 sm:pt-2 lg:grid-cols-[minmax(260px,1fr)_1fr_1fr]'}
                 >
                     <div class="sm:sticky sm:top-0 {bgColor}">
                         <h2
@@ -154,7 +165,10 @@
                                 </Accordion.Header>
                                 <Accordion.Content class="grid bg-white px-4 sm:bg-transparent">
                                     <h3
-                                        class="hyphens-auto break-words py-4 text-2xl font-bold sm:text-xl md:text-3xl {textColor}"
+                                        class={[
+                                            'hyphens-auto break-words py-4 text-2xl font-bold sm:text-xl md:text-3xl',
+                                            textColor,
+                                        ]}
                                     >
                                         {skill.name}
                                     </h3>
@@ -209,7 +223,7 @@
                         {/each}
                     </div>
 
-                    <div class="hidden lg:grid {bgColor}">
+                    <div class={['hidden lg:grid', bgColor]}>
                         <div class="grid bg-white px-4">
                             <h3
                                 class={[
