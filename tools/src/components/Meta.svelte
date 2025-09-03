@@ -24,7 +24,7 @@
             {
                 url: DEFAULT_OG_IMAGE,
                 width: 1200,
-                height: 736,
+                height: 630,
             },
             {
                 url: DEFAULT_OG_IMAGE_SQUARE,
