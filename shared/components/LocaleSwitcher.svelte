@@ -61,14 +61,14 @@
                 {#each items as { value, label } (value)}
                     <Select.Item
                         {value}
-                        class="hover:bg-stone-100 [&[data-highlighted]]:bg-stone-100 [&[data-highlighted]]:!underline"
+                        class="hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]_a]:!underline"
                     >
                         <li class="grid">
                             <Link
                                 href={getLocalisedPath(value, pathname)}
                                 variant="black"
                                 noScroll
-                                class="px-3 py-1">{label}</Link
+                                class="px-3 py-1 !no-underline">{label}</Link
                             >
                         </li>
                     </Select.Item>
