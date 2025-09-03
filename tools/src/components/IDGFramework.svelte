@@ -56,6 +56,28 @@
 
         return getSkill(id, { skills })
     })
+
+    // TODO: Add missing framework translations from https://innerdevelopmentgoals.org/resources/
+    // simplified chinese
+    // traditional chinese
+    // Catalan
+    // Ukrainian
+    // Turkish
+    // Wolof (Senegal)
+
+    // Update existing ones:
+    // Japanese
+    // Swedish
+    // English
+    // Danish
+    // German
+    // Dutch
+    // English
+    // Spanish
+    // French
+    // Finnish
+    // Italian
+    // Portuguese (BR)
 </script>
 
 <div
