@@ -2,7 +2,7 @@ import type { CommunityContent, Locale, Localised, ToolsContent } from '$shared/
 import { resolve } from 'path'
 import { BuilderInput, BUILDERS } from './build/builders'
 import { BUNDLE_LOADERS } from './build/loaders'
-import { FRAMEWORK_SUPPORTED_LOCALES } from '$shared/constants'
+import { FRAMEWORK_AVAILABLE_LOCALES } from '$shared/constants'
 
 type Bundle<T> = {
     load: <T>(builderInput: BuilderInput<T>) => Promise<Localised<T>>
@@ -58,7 +58,7 @@ async function runBundle(selectedBundle: BundleName) {
     const input = {
         // NOTE: Temporarily only build EN content for community since we don't use other locales there yet.
         selectedLocales:
-            selectedBundle === 'tools' ? FRAMEWORK_SUPPORTED_LOCALES : (['en'] as Locale[]),
+            selectedBundle === 'tools' ? FRAMEWORK_AVAILABLE_LOCALES : (['en'] as Locale[]),
         contentDir,
         selectedContent: bundle.selectedContent,
     }

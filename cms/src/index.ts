@@ -3,7 +3,7 @@ import CMS from 'netlify-cms-app'
 import { default as UniqueId } from './widgets/UniqueId'
 import { default as UniqueSlug } from './widgets/UniqueSlug'
 
-import { DEFAULT_LOCALE_IDENTIFIER, LOCALE_IDENTIFIERS } from '../../shared/constants'
+import { DEFAULT_LOCALE_IDENTIFIER, FRAMEWORK_AVAILABLE_LOCALES } from '../../shared/constants'
 import { COLLECTIONS } from './collections'
 
 CMS.init({
@@ -25,7 +25,11 @@ CMS.init({
         publish_mode: 'editorial_workflow',
         i18n: {
             structure: 'multiple_folders',
-            locales: LOCALE_IDENTIFIERS,
+            // NOTE: When editing translations locally, it's very useful to only enable the locales you want to edit
+            // This reduces the number of entries to choose from and makes it easier to select the desired locales
+            locales: [DEFAULT_LOCALE_IDENTIFIER, 'ca'],
+            // By default, enable the
+            // locales: FRAMEWORK_AVAILABLE_LOCALES,
             default_locale: DEFAULT_LOCALE_IDENTIFIER,
         },
         collections: COLLECTIONS,

@@ -58,7 +58,7 @@ export const LOCALES = {
  * Update this when new translations become available.
  * IDEA: This could be added to a `Settings` collection in the CMS to allow publishing new IDG framework translations via the CMS.
  */
-export const FRAMEWORK_SUPPORTED_LOCALES: Locale[] = [
+export const FRAMEWORK_AVAILABLE_LOCALES: Locale[] = [
     'en',
     'es',
     'nl',
