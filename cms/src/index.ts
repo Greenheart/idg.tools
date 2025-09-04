@@ -3,7 +3,11 @@ import CMS from 'netlify-cms-app'
 import { default as UniqueId } from './widgets/UniqueId'
 import { default as UniqueSlug } from './widgets/UniqueSlug'
 
-import { DEFAULT_LOCALE_IDENTIFIER, FRAMEWORK_AVAILABLE_LOCALES } from '../../shared/constants'
+import {
+    COLORS,
+    DEFAULT_LOCALE_IDENTIFIER,
+    FRAMEWORK_AVAILABLE_LOCALES,
+} from '../../shared/constants'
 import { COLLECTIONS } from './collections'
 
 CMS.init({
@@ -65,4 +69,59 @@ const replaceLogo = () => {
     }
 }
 
-document.addEventListener('DOMContentLoaded', replaceLogo)
+/**
+ * Waits until an element is available in the DOM and returns a referece to it.
+ *
+ * Credit: https://stackoverflow.com/a/61511955
+ */
+function waitForElement(selector: string): Promise<Element> {
+    return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector) as Element)
+        }
+
+        const observer = new MutationObserver(() => {
+            if (document.querySelector(selector)) {
+                observer.disconnect()
+                resolve(document.querySelector(selector) as Element)
+            }
+        })
+
+        // If you get "parameter 1 is not of type 'Node'" error, see https://stackoverflow.com/a/77855838/492336
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+        })
+    })
+}
+
+async function addIDGColorsToSkillsAndDimensions() {
+    const entriesList = await waitForElement('ul[class*="CardsGrid"]')
+    entriesList.classList.add('idg-framework')
+
+    for (const link of Array.from(entriesList.querySelectorAll('a'))) {
+        const id = link.href.split('/').at(-1)!
+        link.classList.add(COLORS[id])
+    }
+}
+
+const collectionsWithCustomColorsRegex = /skills|dimensions$/
+
+async function applyCustomisations() {
+    replaceLogo()
+
+    // Delay to make sure the React-based CMS SPA has rendered.
+    await new Promise((r) => setTimeout(r, 200))
+
+    if (collectionsWithCustomColorsRegex.test(location.hash)) {
+        addIDGColorsToSkillsAndDimensions()
+    }
+
+    window.addEventListener('hashchange', (event) => {
+        if (collectionsWithCustomColorsRegex.test(event.newURL)) {
+            addIDGColorsToSkillsAndDimensions()
+        }
+    })
+}
+
+document.addEventListener('DOMContentLoaded', applyCustomisations)
