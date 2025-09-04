@@ -15,7 +15,8 @@
     "dependencies": {
         "@humanspeak/svelte-markdown": "^0.8.11",
         "svelte-meta-tags": "^4.4.1",
-        "svelte-typeahead": "^5.0.0"
+        "svelte-typeahead": "^5.0.0",
+        "bits-ui": "^2.9.6"
     },
     "devDependencies": {
         "@sveltejs/adapter-vercel": "^5.10.2",

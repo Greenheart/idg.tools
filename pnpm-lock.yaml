@@ -57,6 +57,9 @@ importers:
       '@humanspeak/svelte-markdown':
         specifier: ^0.8.11
         version: 0.8.11(svelte@5.38.6)
+      bits-ui:
+        specifier: ^2.9.6
+        version: 2.9.6(@internationalized/date@3.9.0)(svelte@5.38.6)
       svelte-meta-tags:
         specifier: ^4.4.1
         version: 4.4.1(svelte@5.38.6)
