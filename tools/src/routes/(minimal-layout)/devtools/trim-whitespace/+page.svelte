@@ -13,6 +13,10 @@
         if (value.length) {
             await navigator.clipboard.writeText(value)
             copied = true
+
+            setTimeout(() => {
+                copied = false
+            }, 2000)
         }
     }
 </script>
