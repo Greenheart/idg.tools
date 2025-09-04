@@ -2,13 +2,14 @@ import CMS from 'netlify-cms-app'
 
 import { default as UniqueId } from './widgets/UniqueId'
 import { default as UniqueSlug } from './widgets/UniqueSlug'
+import { COLLECTIONS } from './collections'
 
 import {
     COLORS,
     DEFAULT_LOCALE_IDENTIFIER,
     FRAMEWORK_AVAILABLE_LOCALES,
+    IDG_COLORS_RGB,
 } from '../../shared/constants'
-import { COLLECTIONS } from './collections'
 
 CMS.init({
     config: {
@@ -69,58 +70,56 @@ const replaceLogo = () => {
     }
 }
 
-/**
- * Waits until an element is available in the DOM and returns a referece to it.
- *
- * Credit: https://stackoverflow.com/a/61511955
- */
-function waitForElement(selector: string): Promise<Element> {
-    return new Promise((resolve) => {
-        if (document.querySelector(selector)) {
-            return resolve(document.querySelector(selector) as Element)
-        }
-
-        const observer = new MutationObserver(() => {
-            if (document.querySelector(selector)) {
-                observer.disconnect()
-                resolve(document.querySelector(selector) as Element)
-            }
-        })
-
-        // If you get "parameter 1 is not of type 'Node'" error, see https://stackoverflow.com/a/77855838/492336
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true,
-        })
-    })
-}
-
-async function addIDGColorsToSkillsAndDimensions() {
-    const entriesList = await waitForElement('ul[class*="CardsGrid"]')
-    entriesList.classList.add('idg-framework')
-
-    for (const link of Array.from(entriesList.querySelectorAll('a'))) {
-        const id = link.href.split('/').at(-1)!
-        link.classList.add(COLORS[id])
-    }
-}
-
 const collectionsWithCustomColorsRegex = /skills|dimensions$/
+
+/**
+ * Override colors for IDG Framework entries to make them easier to distinguish
+ *
+ * Dynamically add custom classes based on the latest IDG color constants, and known ID:s of skills and dimensions.
+ * This way, it stays in sync even if skills and dimensions change.
+ *
+ * By using predefined CSS selectors rather than classes, the styling is applied even across re-renders of the React CMS SPA.
+ */
+function initIDGColors() {
+    const stylesheet = document.createElement('style')
+    let cssContent = ''
+
+    for (const [id, dimensionSlug] of Object.entries(COLORS)) {
+        const color = IDG_COLORS_RGB[dimensionSlug]
+        cssContent += `
+a[href$='${id}'] {
+  background: ${color};
+  &:hover {
+    background: ${color}cc;
+  }
+}
+`
+    }
+
+    stylesheet.textContent = cssContent
+    document.head.appendChild(stylesheet)
+}
+
+/**
+ * Enable or disable the IDG custom colors for collection entries depending on the current page URL.
+ *
+ * This allows us to override colors for IDG Framework entries to make them easier to distinguish
+ */
+function toggleIDGColorsForCollectionEntries(url: string) {
+    // By toggling a class and using CSS to customise styles rather than JS,
+    // the behaviour is much more stable and the rendering performance is much better as well
+    // The class survives across re-renders of the React CMS SPA, which lets us avoid re-applying styling every time React re-renders.
+    document.body.classList.toggle('idg-framework', collectionsWithCustomColorsRegex.test(url))
+}
 
 async function applyCustomisations() {
     replaceLogo()
+    initIDGColors()
 
-    // Delay to make sure the React-based CMS SPA has rendered.
-    await new Promise((r) => setTimeout(r, 200))
-
-    if (collectionsWithCustomColorsRegex.test(location.hash)) {
-        addIDGColorsToSkillsAndDimensions()
-    }
+    toggleIDGColorsForCollectionEntries(location.hash)
 
     window.addEventListener('hashchange', (event) => {
-        if (collectionsWithCustomColorsRegex.test(event.newURL)) {
-            addIDGColorsToSkillsAndDimensions()
-        }
+        toggleIDGColorsForCollectionEntries(event.newURL)
     })
 }
 

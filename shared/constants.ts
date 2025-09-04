@@ -94,6 +94,10 @@ export const LOCALE_DIRECTIONS: Record<Locale, 'rtl' | 'ltr'> = (
 export const LOCALE_IDENTIFIERS = Object.keys(LOCALES) as Locale[]
 export const DEFAULT_LOCALE_IDENTIFIER: Locale = 'en'
 
+/**
+ * Map ID:s of dimensions and skills to dimensionSlugs, which in turn are mapped to actual colors.
+ * This object should include all skills and dimensions.
+ */
 export const COLORS: Record<Dimension['id'] | Skill['id'], keyof typeof IDG_COLORS_RGB> = {
     ckzi3855r0086e2n0smi0mew5: 'being',
     ckzi3a4z90431e2n04kx2pbq2: 'being',
