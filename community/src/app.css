@@ -1,27 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-/*
-
-/* Register shared components and icons to allow Tailwind classes to be included in the build * /
-@source '../../shared/components';
-@source '../../shared/icons';
-
-/**
- * Safe listed classes generated with ./content/scripts/format-safelist-tailwind-colors.ts
- * /
-@source inline('bg-being');
-@source inline('text-being');
-@source inline('bg-thinking');
-@source inline('text-thinking');
-@source inline('bg-relating');
-@source inline('text-relating');
-@source inline('bg-collaborating');
-@source inline('text-collaborating');
-@source inline('bg-acting');
-@source inline('text-acting');
-*/
+@plugin '@tailwindcss/typography';
 
 @font-face {
     font-family: 'Inter var';
@@ -38,6 +17,74 @@
     font-style: italic;
     font-named-instance: 'Italic';
     src: url('/fonts/Inter-italic.var.woff2?v=3.19') format('woff2');
+}
+
+/* Register shared components and icons to allow Tailwind classes to be included in the build */
+@source '../../shared/components';
+@source '../../shared/icons';
+
+/**
+ * Safe listed classes generated with ./content/scripts/format-safelist-tailwind-colors.ts
+ */
+@source inline('bg-being');
+@source inline('text-being');
+@source inline('bg-thinking');
+@source inline('text-thinking');
+@source inline('bg-relating');
+@source inline('text-relating');
+@source inline('bg-collaborating');
+@source inline('text-collaborating');
+@source inline('bg-acting');
+@source inline('text-acting');
+
+:root {
+    --being: #d4b88c;
+    --thinking: #e585a1;
+    --relating: #e84139;
+    --collaborating: #ff6821;
+    --acting: #661a30;
+    --light-gray: #f5f5f5;
+}
+
+@theme {
+    --breakpoint-*: initial;
+    --breakpoint-xs: 475px;
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+
+    --font-sans:
+        'Inter var', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@theme inline {
+    --color-being: var(--being);
+    --color-thinking: var(--thinking);
+    --color-relating: var(--relating);
+    --color-collaborating: var(--collaborating);
+    --color-acting: var(--acting);
+    --color-light-gray: var(--light-gray);
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
 }
 
 html {

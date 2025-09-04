@@ -53,7 +53,7 @@
     <StoryMetadata {story} {dimensions} {contributors} {tags} />
 
     {#if story.intro}
-        <Markdown source={story.intro} class="mt-8 !text-2xl" />
+        <Markdown source={story.intro} class="mt-8 text-2xl!" />
     {/if}
 
     <Picture

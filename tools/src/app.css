@@ -2,6 +2,23 @@
 
 @plugin '@tailwindcss/typography';
 
+@font-face {
+    font-family: 'Inter var';
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    font-named-instance: 'Regular';
+    src: url('/fonts/Inter-roman.var.woff2?v=3.19') format('woff2');
+}
+@font-face {
+    font-family: 'Inter var';
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: italic;
+    font-named-instance: 'Italic';
+    src: url('/fonts/Inter-italic.var.woff2?v=3.19') format('woff2');
+}
+
 /* Register shared components and icons to allow Tailwind classes to be included in the build */
 @source '../../shared/components';
 @source '../../shared/icons';
@@ -83,23 +100,6 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentcolor);
     }
-}
-
-@font-face {
-    font-family: 'Inter var';
-    font-weight: 100 900;
-    font-display: swap;
-    font-style: normal;
-    font-named-instance: 'Regular';
-    src: url('/fonts/Inter-roman.var.woff2?v=3.19') format('woff2');
-}
-@font-face {
-    font-family: 'Inter var';
-    font-weight: 100 900;
-    font-display: swap;
-    font-style: italic;
-    font-named-instance: 'Italic';
-    src: url('/fonts/Inter-italic.var.woff2?v=3.19') format('woff2');
 }
 
 html {

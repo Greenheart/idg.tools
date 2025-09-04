@@ -24,7 +24,7 @@
     {#if tags?.length}
         <div class="flex flex-wrap items-center">
             <p class="mb-2 text-sm uppercase">Tags</p>
-            <Tags {tags} interactive size="md" class="!gap-1" />
+            <Tags {tags} interactive size="md" class="gap-1!" />
         </div>
     {/if}
 </div>

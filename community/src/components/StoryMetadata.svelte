@@ -61,7 +61,7 @@
         <div>
             <p class="mb-2 text-sm uppercase">{pluralize('Tag', tags.length, false)}</p>
             <!-- IDEA: Make Tags into clickable links that navigate back to the homepage and shows the content with only that content shown -->
-            <Tags {tags} size="md" class="!gap-1" />
+            <Tags {tags} size="md" class="gap-1!" />
         </div>
     {/if}
 </div>
