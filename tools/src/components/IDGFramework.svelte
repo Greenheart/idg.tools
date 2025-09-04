@@ -82,7 +82,7 @@
 
 <div
     class={[
-        'relative mx-auto min-h-[700px] max-w-(--breakpoint-xl) bg-white',
+        'max-w-(--breakpoint-xl) relative mx-auto min-h-[700px] bg-white',
         !mounted.current && 'invisible',
     ]}
 >
@@ -113,7 +113,7 @@
                         value={dimensionSlug}
                         class="xs:px-2 grid place-items-center py-2 {isSelected
                             ? `${getColor(dimension.id)}`
-                            : `bg-white hover:outline-solid hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
+                            : `hover:outline-solid bg-white hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
                     >
                         <IDGSymbol
                             id={dimension.id}

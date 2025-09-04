@@ -3,11 +3,11 @@
     import type { HTMLButtonAttributes } from 'svelte/elements'
 
     export const variants = {
-        primary: 'bg-white text-black hover:bg-lightGray shadow-xl',
-        inverted: 'bg-black text-white hover:bg-opacity-75 shadow-lg',
-        secondary: 'bg-black text-white border-black border hover:bg-opacity-80 shadow-lg',
+        primary: 'bg-white text-black hover:bg-light-gray shadow-xl',
+        inverted: 'bg-black text-white hover:bg-black/75 shadow-lg',
+        secondary: 'bg-black text-white border-black border hover:bg-black/80 shadow-lg',
         'secondary-inverted':
-            'bg-white border-black text-black border hover:bg-lightGray shadow-xl',
+            'bg-white border-black text-black border hover:bg-light-gray shadow-xl',
         disabled: 'bg-white text-black opacity-60 pointer-events-none shadow-lg',
     }
     export const sizes = {

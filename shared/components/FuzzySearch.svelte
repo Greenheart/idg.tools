@@ -42,7 +42,7 @@
 
     :global([data-svelte-typeahead] ul.svelte-typeahead-list) {
         z-index: 50 !important;
-        background: var(--lightGray) !important;
+        background: var(--light-gray) !important;
     }
 
     :global([data-svelte-search]) {

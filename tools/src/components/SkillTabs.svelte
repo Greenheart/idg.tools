@@ -157,7 +157,7 @@
                             <Tabs.Trigger
                                 value={dimensionId}
                                 class={[
-                                    'px-2 py-4 text-base! first:pl-4 last:pr-4 data-[state=inactive]:text-white! data-[state=active]:underline sm:text-lg!',
+                                    'text-base! data-[state=inactive]:text-white! sm:text-lg! px-2 py-4 first:pl-4 last:pr-4 data-[state=active]:underline',
                                 ]}
                                 style="color: {getRGBColor(dimensionId)}">{name}</Tabs.Trigger
                             >
@@ -173,7 +173,6 @@
                                     color,
                                 ]}
                             >
-                            <!-- TODO: make white color stand out when buttons are selected -->
                                 <Button
                                     variant="inverted"
                                     size="sm"
