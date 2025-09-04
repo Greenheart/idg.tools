@@ -31,9 +31,11 @@
     const renderAs = interactive ? 'button' : 'span'
 </script>
 
+<!-- TODO: migrate all bg-opacity-* to bg-COLOR/* -->
 <div class={['flex select-none flex-wrap items-start text-black', sizes[size].wrapper, className]}>
     {#each dimensions as dimension (dimension.name)}
         {@const color = getColor(dimension.id)}
+        <!-- svelte-ignore a11y_no_static_element_interactions (false positive since only the button element will be interactive) -->
         <svelte:element
             this={renderAs}
             onclick={interactive ? () => toggleDimension(dimension.id) : () => {}}

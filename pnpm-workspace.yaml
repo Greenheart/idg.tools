@@ -1,13 +1,13 @@
 packages:
-  - tools
-  - community
-  - cms
-  - content
-  - shared
+    - tools
+    - community
+    - cms
+    - content
+    - shared
 
 onlyBuiltDependencies:
-  - '@sveltejs/kit'
-  - '@tailwindcss/oxide'
-  - esbuild
-  - iframe-resizer
-  - sharp
+    - '@sveltejs/kit'
+    - '@tailwindcss/oxide'
+    - esbuild
+    - iframe-resizer
+    - sharp

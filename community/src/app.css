@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+
+/* Register shared components and icons to allow Tailwind classes to be included in the build * /
+@source '../../shared/components';
+@source '../../shared/icons';
+
+/**
+ * Safe listed classes generated with ./content/scripts/format-safelist-tailwind-colors.ts
+ * /
+@source inline('bg-being');
+@source inline('text-being');
+@source inline('bg-thinking');
+@source inline('text-thinking');
+@source inline('bg-relating');
+@source inline('text-relating');
+@source inline('bg-collaborating');
+@source inline('text-collaborating');
+@source inline('bg-acting');
+@source inline('text-acting');
+*/
+
 @font-face {
     font-family: 'Inter var';
     font-weight: 100 900;

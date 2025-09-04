@@ -42,7 +42,7 @@
 
     {#if globalState.isMenuOpen}
         <button
-            class="xs:text-4xl bg-lightGray fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center text-3xl font-semibold"
+            class="xs:text-4xl bg-light-gray fixed inset-0 z-20 flex h-full w-full flex-col items-center justify-center text-3xl font-semibold"
             onclick={toggleMenu}
             onkeydown={onKeydown(toggleMenu)}
         >
