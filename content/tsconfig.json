@@ -15,7 +15,9 @@
         "paths": {
             "$shared": ["../shared"],
             "$shared/*": ["../shared/*"]
-        }
+        },
+        "noEmit": true,
+        "allowImportingTsExtensions": true
     },
     "include": ["scripts/**/*.ts"]
 }

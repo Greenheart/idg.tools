@@ -1,10 +1,8 @@
 import { cp } from 'fs/promises'
-import { dirname, resolve } from 'path'
-import { fileURLToPath } from 'url'
+import { resolve } from 'path'
 
 import { LOCALE_IDENTIFIERS } from '../../shared/constants.js'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // How to use this script:
 
@@ -24,8 +22,8 @@ await Promise.all(
         collections.map(async (collection) => {
             console.log(`Copying ${collection} from "${COPY_FROM}" to "${copyTo}"`)
             return cp(
-                resolve(`${__dirname}/../../src/${collection}/${COPY_FROM}/`),
-                resolve(`${__dirname}/../../src/${collection}/${copyTo}/`),
+                resolve(`${import.meta.dirname}/../../src/${collection}/${COPY_FROM}/`),
+                resolve(`${import.meta.dirname}/../../src/${collection}/${copyTo}/`),
                 { recursive: true },
             )
         }),

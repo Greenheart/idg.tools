@@ -1,6 +1,5 @@
 import type { CommunityContent, Locale, Localised, ToolsContent } from '$shared/types'
-import { dirname, resolve } from 'path'
-import { fileURLToPath } from 'url'
+import { resolve } from 'path'
 import { BuilderInput, BUILDERS } from './build/builders'
 import { BUNDLE_LOADERS } from './build/loaders'
 
@@ -51,8 +50,7 @@ const BUNDLES = {
 type BundleName = keyof typeof BUNDLES
 const BUNDLE_NAMES = Object.keys(BUNDLES) as BundleName[]
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const contentDir = resolve(__dirname, '../src')
+const contentDir = resolve(import.meta.dirname, '../src')
 
 // TODO: Document how to update the selected Locales that should be published.
 // At the moment this is important for adding new translations of the IDG framework.

@@ -1,15 +1,12 @@
 import sharp from 'sharp'
 import { glob } from 'tinyglobby'
-import { dirname, resolve, basename, extname } from 'path'
-import { fileURLToPath } from 'url'
+import { resolve, basename, extname } from 'path'
 import { writeFile, stat } from 'fs/promises'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-
 console.log('🌅 Optimizing images...')
-const images = await glob([resolve(__dirname, '../source-images', '*.{jpg,png}')])
+const images = await glob([resolve(import.meta.dirname, '../source-images', '*.{jpg,png}')])
 
-const outputDir = resolve(__dirname, '../static/images')
+const outputDir = resolve(import.meta.dirname, '../static/images')
 
 /**
  * Get the optimal quality for a given file size
