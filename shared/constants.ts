@@ -62,6 +62,7 @@ export const FRAMEWORK_AVAILABLE_LOCALES: Locale[] = [
     'en',
     'es',
     'nl',
+    'ca',
     'sv',
     'pt',
     'pt-BR',
