@@ -1,8 +1,7 @@
 import { cp } from 'fs/promises'
 import { resolve } from 'path'
 
-import { LOCALE_IDENTIFIERS } from '../../shared/constants.js'
-
+// import { LOCALE_IDENTIFIERS } from '../../shared/constants.ts'
 
 // How to use this script:
 
@@ -11,11 +10,11 @@ const collections = ['dimensions', 'skills']
 // 2. Add the Locale you want to copy from
 const COPY_FROM = 'en'
 // 3. Add the new locales you want to initialize with content from the Locale COPY_FROM
-// const NEW_LOCALES = ['pt']
+const NEW_LOCALES = ['ca']
 // 3. Or filter out the ones that already have translations, and add the rest
-const NEW_LOCALES = LOCALE_IDENTIFIERS.filter(
-    (x) => !['pt-BR', 'pt', 'it', 'en', 'nl', 'sv', 'es'].includes(x),
-)
+// const NEW_LOCALES = LOCALE_IDENTIFIERS.filter(
+//     (x) => !['pt-BR', 'pt', 'it', 'en', 'nl', 'sv', 'es'].includes(x),
+// )
 
 await Promise.all(
     NEW_LOCALES.flatMap((copyTo) =>

@@ -31,6 +31,7 @@ export const LOCALES = {
     zh: '中文',
     hi: 'हिन्दी',
     es: 'Español',
+    ca: 'Català',
     fr: 'Français',
     ar: 'لعربية',
     bn: 'বাংলা ',
