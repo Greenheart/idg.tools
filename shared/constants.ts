@@ -17,11 +17,14 @@ export const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365
  * IDEA: Maybe the supported locales could be managed via the CMS?
  * Add it in the CMS, which saves a JSON file with constants
  *
- * NOTE: For now, we can create instructions on how to add a new language
+ * Instructions for how to add a new locale:
  *
- * Use this list to find native names: https://en.wikipedia.org/wiki/List_of_language_names
- *
- * NOTE: These should be sorted in order with the highest number of speakers at the top.
+ * 1. Find language codes and native names (endonyms) in this list: https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes
+ * 2. Add the language code to the `LOCALES` constant below.
+ * 3. Configure and run the script [`copy-locales`](../content/scripts/copy-locale.ts) to create the initial structure
+ * 4. Edit via translations via the CMS (or JSON files if you prefer)
+ * 5. Update `FRAMEWORK_SUPPORTED_LOCALES` below to include the translations in the next content build.
+ * 6. Run the content build and refresh http://localhost:5173/framework to see the new locale.
  */
 export const LOCALES = {
     en: 'English',
@@ -48,6 +51,26 @@ export const LOCALES = {
     dk: 'Dansk',
     fi: 'Suomi',
 }
+
+/**
+ * Controls which locales are enabled for the IDG Framework.
+ * Update this when new translations become available.
+ * IDEA: This could be added to a `Settings` collection in the CMS to allow publishing new IDG framework translations via the CMS.
+ */
+export const FRAMEWORK_SUPPORTED_LOCALES: Locale[] = [
+    'en',
+    'es',
+    'nl',
+    'sv',
+    'pt',
+    'pt-BR',
+    'it',
+    'fi',
+    'ja',
+    'dk',
+    'de',
+    'fr',
+]
 
 export const LOCALE_DIRECTIONS: Record<Locale, 'rtl' | 'ltr'> = (
     Object.keys(LOCALES) as Locale[]

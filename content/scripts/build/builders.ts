@@ -105,11 +105,11 @@ export const BUILDERS = {
             'tools',
         ])
 
-        // NOTE: Temporarily only keep the localised content we care about to improve performance.
-        // TODO: Create a proper solution.
+        // Only keep the localised content we care about to improve performance.
         // If we output content as separate files for each locale instead, that might solve this in a nicer way
         builderInput.selectedLocales.forEach((locale) => {
             if (locale === 'en') return
+            // For other locales, we only keep the IDG Framework translations for dimensions and skills
             transformedContent[locale]!.tools = []
             transformedContent[locale]!.tags = []
         })
