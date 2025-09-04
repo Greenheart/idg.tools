@@ -45,7 +45,7 @@ export const LOCALES = {
     ur: 'اُردُو',
     id: 'Bahasa Indonesia',
     de: 'Deutsch',
-    ja: '日本',
+    ja: '日本語',
     te: 'తెలుగు',
     tr: 'Türkçe',
     ta: 'தமிழ்',
