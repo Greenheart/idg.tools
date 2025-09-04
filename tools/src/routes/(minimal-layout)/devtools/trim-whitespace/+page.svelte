@@ -1,6 +1,7 @@
 <script lang="ts">
     let value = $state('')
     let copied = $state(false)
+    let enableAutomation = $state(true)
 
     async function copyCleanText() {
         copied = false
@@ -19,21 +20,27 @@
 <div class="grid gap-4 px-8 py-4">
     <div>
         <h1 class="text-lg font-semibold">Paste to clean text</h1>
-        <p class="text-xs text-stone-600">
+        <p class="pb-2 text-xs text-stone-600">
             Trim whitespace and join newlines together in a paragraph. Useful when copying from
             documents that break paragraphs into multiple lines, like some PDF:s.
         </p>
+        <label>
+            <input type="checkbox" bind:checked={enableAutomation} />
+            Enable automated format on click and paste
+        </label>
     </div>
 
     <!-- svelte-ignore a11y_autofocus  -->
     <textarea
         bind:value
         class="mx-auto w-full border p-4 shadow-xl"
-        onclick={copyCleanText}
-        onpaste={async (event) => {
-            event.preventDefault()
-            await copyCleanText()
-        }}
+        onclick={enableAutomation ? copyCleanText : undefined}
+        onpaste={enableAutomation
+            ? async (event) => {
+                  event.preventDefault()
+                  await copyCleanText()
+              }
+            : undefined}
         rows="6"
         autofocus
     ></textarea>
