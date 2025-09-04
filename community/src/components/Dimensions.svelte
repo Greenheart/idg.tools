@@ -44,7 +44,7 @@
                 interactive
                     ? globalState.selectedDimensions.includes(dimension.id)
                         ? 'cursor-pointer'
-                        : 'cursor-pointer bg-opacity-50'
+                        : `cursor-pointer ${color}/50`
                     : '',
                 color,
                 sizes[size].element,
