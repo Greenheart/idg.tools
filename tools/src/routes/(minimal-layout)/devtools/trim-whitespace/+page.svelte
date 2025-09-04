@@ -29,7 +29,7 @@
     <textarea
         bind:value
         class="mx-auto w-full border p-4 shadow-xl"
-        onfocus={copyCleanText}
+        onclick={copyCleanText}
         onpaste={async (event) => {
             event.preventDefault()
             await copyCleanText()
