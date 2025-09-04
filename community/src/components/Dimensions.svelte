@@ -31,7 +31,6 @@
     const renderAs = interactive ? 'button' : 'span'
 </script>
 
-<!-- TODO: migrate all bg-opacity-* to bg-COLOR/* -->
 <div class={['flex select-none flex-wrap items-start text-black', sizes[size].wrapper, className]}>
     {#each dimensions as dimension (dimension.name)}
         {@const color = getColor(dimension.id)}

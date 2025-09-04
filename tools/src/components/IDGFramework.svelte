@@ -60,9 +60,8 @@
     // TODO: Add missing framework translations from https://innerdevelopmentgoals.org/resources/
     // simplified chinese
     // traditional chinese
-    // Catalan
-    // Ukrainian
-    // Turkish
+    // Ukrainian (uk)
+    // Turkish (tr)
     // Wolof (Senegal)
 
     // Update existing ones:
