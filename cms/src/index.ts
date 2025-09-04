@@ -27,7 +27,7 @@ CMS.init({
             structure: 'multiple_folders',
             // NOTE: When editing translations locally, it's very useful to only enable the locales you want to edit
             // This reduces the number of entries to choose from and makes it easier to select the desired locales
-            locales: [DEFAULT_LOCALE_IDENTIFIER, 'ca'],
+            locales: [DEFAULT_LOCALE_IDENTIFIER, 'uk'],
             // By default, enable the
             // locales: FRAMEWORK_AVAILABLE_LOCALES,
             default_locale: DEFAULT_LOCALE_IDENTIFIER,

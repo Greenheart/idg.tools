@@ -53,6 +53,7 @@ export const LOCALES = {
     it: 'Italiano',
     nl: 'Nederlands',
     sv: 'Svenska',
+    uk: 'Українська',
     dk: 'Dansk',
     fi: 'Suomi',
 }
@@ -67,6 +68,7 @@ export const FRAMEWORK_AVAILABLE_LOCALES: Locale[] = [
     'es',
     'nl',
     'ca',
+    'uk',
     'sv',
     'pt',
     'pt-BR',

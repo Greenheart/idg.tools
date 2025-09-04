@@ -10,7 +10,7 @@ const collections = ['dimensions', 'skills']
 // 2. Add the Locale you want to copy from
 const COPY_FROM = 'en'
 // 3. Add the new locales you want to initialize with content from the Locale COPY_FROM
-const NEW_LOCALES = ['ca']
+const NEW_LOCALES = ['uk']
 // 3. Or filter out the ones that already have translations, and add the rest
 // const NEW_LOCALES = LOCALE_IDENTIFIERS.filter(
 //     (x) => !['pt-BR', 'pt', 'it', 'en', 'nl', 'sv', 'es'].includes(x),
