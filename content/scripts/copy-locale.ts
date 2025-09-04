@@ -22,8 +22,8 @@ await Promise.all(
         collections.map(async (collection) => {
             console.log(`Copying ${collection} from "${COPY_FROM}" to "${copyTo}"`)
             return cp(
-                resolve(`${import.meta.dirname}/../../src/${collection}/${COPY_FROM}/`),
-                resolve(`${import.meta.dirname}/../../src/${collection}/${copyTo}/`),
+                resolve(import.meta.dirname, '../src', collection, COPY_FROM),
+                resolve(import.meta.dirname, '../src', collection, copyTo),
                 { recursive: true },
             )
         }),
