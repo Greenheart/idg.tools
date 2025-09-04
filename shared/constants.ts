@@ -86,11 +86,11 @@ export const LOCALE_DIRECTIONS: Record<Locale, 'rtl' | 'ltr'> = (
         result[locale] = RTL_LOCALES.includes(locale) ? 'rtl' : 'ltr'
         return result
     },
-    {} as unknown as Record<Locale, 'rtl' | 'ltr'>,
+    {} as Record<Locale, 'rtl' | 'ltr'>,
 )
 
 export const LOCALE_IDENTIFIERS = Object.keys(LOCALES) as Locale[]
-export const DEFAULT_LOCALE_IDENTIFIER = 'en'
+export const DEFAULT_LOCALE_IDENTIFIER: Locale = 'en'
 
 export const COLORS: Record<Dimension['id'] | Skill['id'], keyof typeof IDG_COLORS_RGB> = {
     ckzi3855r0086e2n0smi0mew5: 'being',
