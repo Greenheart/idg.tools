@@ -81,6 +81,7 @@ export const FRAMEWORK_AVAILABLE_LOCALES: Locale[] = [
     'fr',
     'zh-CN',
     'zh-TW',
+    'tr',
 ]
 
 export const LOCALE_DIRECTIONS: Record<Locale, 'rtl' | 'ltr'> = (
