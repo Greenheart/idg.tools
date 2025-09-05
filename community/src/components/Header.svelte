@@ -9,9 +9,9 @@
     const toggleMenu = () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
         globalState.isMenuOpen = !globalState.isMenuOpen
-        document.documentElement.classList.toggle('overflow-y-scroll', !globalState.isMenuOpen)
-        document.documentElement.classList.toggle('overflow-hidden', globalState.isMenuOpen)
-        document.documentElement.style.paddingRight = globalState.isMenuOpen
+        document.body.classList.toggle('overflow-y-scroll', !globalState.isMenuOpen)
+        document.body.classList.toggle('overflow-hidden', globalState.isMenuOpen)
+        document.body.style.paddingRight = globalState.isMenuOpen
             ? `${globalState.scrollbarWidth}px`
             : ''
     }
