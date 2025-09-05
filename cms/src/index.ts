@@ -12,7 +12,7 @@ import {
 } from '../../shared/constants'
 import { Locale } from '../../shared/types'
 
-const currentlyEditing: Locale = 'fr'
+const currentlyEditing: Locale = 'it'
 
 // NOTE: When editing translations locally, it's very useful to only enable the locales you want to edit
 // This reduces the number of entries to choose from and makes it easier to select the desired locales
@@ -127,6 +127,11 @@ async function applyCustomisations() {
     window.addEventListener('hashchange', (event) => {
         toggleIDGColorsForCollectionEntries(event.newURL)
     })
+
+    // IDEA: It would be posible to add a dropdown button to allow users to set thier preferred default locale
+    // Might be useful to simplify community translations
+    // To implement this, we could save the preferred defaultLocale to localStorage,
+    // and then reload the CMS app to restart with the preferred default locale.
 }
 
 document.addEventListener('DOMContentLoaded', applyCustomisations)
