@@ -1,5 +1,8 @@
 <script lang="ts">
-    let value = $state('')
+    import { PersistedState } from 'runed'
+
+    // Persist state to prevent data loss during accidental reload or navigation
+    let trimmedText = new PersistedState('trimmedText', '', { storage: 'session' })
     let copied = $state(false)
     let enableAutomation = $state(true)
 
@@ -7,11 +10,11 @@
         copied = false
 
         // Trim and join newlines
-        value = (await navigator.clipboard.readText()).trim().split('\n').join('')
+        trimmedText.current = (await navigator.clipboard.readText()).trim().split('\n').join('')
 
         // Copy cleaned text
-        if (value.length) {
-            await navigator.clipboard.writeText(value)
+        if (trimmedText.current.length) {
+            await navigator.clipboard.writeText(trimmedText.current)
             copied = true
 
             setTimeout(() => {
@@ -36,7 +39,7 @@
 
     <!-- svelte-ignore a11y_autofocus  -->
     <textarea
-        bind:value
+        bind:value={trimmedText.current}
         class="mx-auto w-full border p-4 shadow-xl"
         onclick={enableAutomation ? copyCleanText : undefined}
         onpaste={enableAutomation
