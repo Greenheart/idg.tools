@@ -1,10 +1,10 @@
 <script lang="ts">
     import { browser } from '$app/environment'
 
-    let trimmedText = $state(browser ? (sessionStorage.trimmedText ?? '') : '')
+    let trimmedText = $state<string>(browser ? (sessionStorage.trimmedText ?? '') : '')
     let copied = $state(false)
     let enableAutomation = $state(true)
-    let replace = $state<'empty' | 'space'>('empty')
+    let replace = $state<'empty' | 'space'>('space')
 
     $effect(() => {
         // Persist state to prevent data loss during accidental reload or navigation
@@ -23,10 +23,15 @@
 
         try {
             // Trim and join newlines
-            trimmedText = (await navigator.clipboard.readText())
+            const cleaned = (await navigator.clipboard.readText())
                 .trim()
                 .split('\n')
                 .join(replace === 'empty' ? '' : ' ')
+
+            // // Useful for strings where there should be a dot at the end
+            // trimmedText = cleaned.endsWith('.') ? cleaned : cleaned + '.'
+
+            trimmedText = cleaned
 
             // Copy cleaned text
             if (trimmedText.length) {
