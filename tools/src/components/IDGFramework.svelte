@@ -63,10 +63,9 @@
     // Look into how unplugin-icon handles custom icons. Maybe they have a solution for this?
 
     // TODO: Update existing framework translations from https://innerdevelopmentgoals.org/resources/:
+
     // Swedish
     // English
-    // German
-    // Dutch
     // English
     // Spanish
     // French
