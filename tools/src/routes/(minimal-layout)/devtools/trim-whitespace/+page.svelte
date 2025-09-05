@@ -1,20 +1,26 @@
 <script lang="ts">
-    import { PersistedState } from 'runed'
+    import { browser } from '$app/environment'
 
-    // Persist state to prevent data loss during accidental reload or navigation
-    let trimmedText = new PersistedState('trimmedText', '', { storage: 'session' })
+    let trimmedText = $state(browser ? (sessionStorage.trimmedText ?? '') : '')
     let copied = $state(false)
     let enableAutomation = $state(true)
+
+    $effect(() => {
+        // Persist state to prevent data loss during accidental reload or navigation
+        if (browser) {
+            sessionStorage.trimmedText = trimmedText
+        }
+    })
 
     async function copyCleanText() {
         copied = false
 
         // Trim and join newlines
-        trimmedText.current = (await navigator.clipboard.readText()).trim().split('\n').join('')
+        trimmedText = (await navigator.clipboard.readText()).trim().split('\n').join('')
 
         // Copy cleaned text
-        if (trimmedText.current.length) {
-            await navigator.clipboard.writeText(trimmedText.current)
+        if (trimmedText.length) {
+            await navigator.clipboard.writeText(trimmedText)
             copied = true
 
             setTimeout(() => {
@@ -39,15 +45,15 @@
 
     <!-- svelte-ignore a11y_autofocus  -->
     <textarea
-        bind:value={trimmedText.current}
+        bind:value={trimmedText}
         class="mx-auto w-full border p-4 shadow-xl"
-        onclick={enableAutomation ? copyCleanText : undefined}
+        onclick={enableAutomation ? copyCleanText : null}
         onpaste={enableAutomation
             ? async (event) => {
                   event.preventDefault()
                   await copyCleanText()
               }
-            : undefined}
+            : null}
         rows="6"
         autofocus
     ></textarea>
