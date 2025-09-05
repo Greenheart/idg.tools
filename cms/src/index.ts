@@ -10,13 +10,6 @@ import {
     FRAMEWORK_AVAILABLE_LOCALES,
     IDG_COLORS_RGB,
 } from '../../shared/constants'
-import { Locale } from '../../shared/types'
-
-const currentlyEditing: Locale = 'it'
-
-// NOTE: When editing translations locally, it's very useful to only enable the locales you want to edit
-// This reduces the number of entries to choose from and makes it easier to select the desired locales
-const locales: Locale[] = [currentlyEditing, DEFAULT_LOCALE_IDENTIFIER]
 
 CMS.init({
     config: {
@@ -37,11 +30,17 @@ CMS.init({
         publish_mode: 'editorial_workflow',
         i18n: {
             structure: 'multiple_folders',
-            locales,
-            // TODO: Switch back to showing all when translations have been updated.
-            // locales: FRAMEWORK_AVAILABLE_LOCALES,
-            // default_locale: DEFAULT_LOCALE_IDENTIFIER,
-            default_locale: currentlyEditing,
+            // Default locale config:
+            locales: FRAMEWORK_AVAILABLE_LOCALES,
+            default_locale: DEFAULT_LOCALE_IDENTIFIER,
+
+            // NOTE: When editing translations, it's very useful to only enable the locales you want to edit
+            // This reduces the number of entries to choose from and makes it easier to select the desired locales
+            // TIP: It's also worth disabling the fields you don't need to edit from for example the `skills` and `dimensions` collections
+            // ...((currentlyEditing: import('../../shared/types').Locale = 'pt-BR') => ({
+            //     locales: [currentlyEditing, DEFAULT_LOCALE_IDENTIFIER],
+            //     default_locale: currentlyEditing,
+            // }))
         },
         collections: COLLECTIONS,
     },
