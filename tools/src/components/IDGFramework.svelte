@@ -57,6 +57,11 @@
         return getSkill(id, { skills })
     })
 
+    // IDEA: Maybe render SVG sprites to reduce duplicated DOM-nodes and ship smaller output HTML to the browser?
+    // https://tomhazledine.com/inline-svg-icon-sprites/
+    // If we define all SVG symbols in one place, we could then reference them later on.
+    // Look into how unplugin-icon handles custom icons. Maybe they have a solution for this?
+
     // TODO: Update existing framework translations from https://innerdevelopmentgoals.org/resources/:
     // Japanese
     // Swedish
