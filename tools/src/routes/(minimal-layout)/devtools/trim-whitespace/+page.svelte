@@ -4,6 +4,7 @@
     let trimmedText = $state(browser ? (sessionStorage.trimmedText ?? '') : '')
     let copied = $state(false)
     let enableAutomation = $state(true)
+    let replace = $state<'empty' | 'space'>('empty')
 
     $effect(() => {
         // Persist state to prevent data loss during accidental reload or navigation
@@ -21,7 +22,10 @@
         currentTarget.select()
 
         // Trim and join newlines
-        trimmedText = (await navigator.clipboard.readText()).trim().split('\n').join('')
+        trimmedText = (await navigator.clipboard.readText())
+            .trim()
+            .split('\n')
+            .join(replace === 'empty' ? '' : ' ')
 
         // Copy cleaned text
         if (trimmedText.length) {
@@ -36,16 +40,37 @@
 </script>
 
 <div class="grid gap-4 px-8 py-4">
-    <div>
+    <div class="select-none text-sm">
         <h1 class="text-lg font-semibold">Paste to clean text</h1>
         <p class="pb-2 text-xs text-stone-600">
             Trim whitespace and join newlines together in a paragraph. Useful when copying from
             documents that break paragraphs into multiple lines, like some PDF:s.
         </p>
-        <label>
+        <label class="cursor-pointer py-1">
             <input type="checkbox" bind:checked={enableAutomation} />
-            Enable automated format on click and paste
+            Enable automated format on click and paste.
         </label>
+        <p class="pt-2">
+            Replace <code
+                class="inline-flex items-center whitespace-pre-line rounded-sm bg-stone-700 px-1 font-mono text-white"
+                >\n</code
+            >
+            with:
+            <label class="cursor-pointer py-1">
+                <input type="radio" name="replace" value="space" bind:group={replace} />
+                <code
+                    class="inline-flex items-center whitespace-pre-line rounded-sm bg-stone-700 px-1 font-mono text-white"
+                    >&quot;&nbsp&quot;</code
+                > (space)
+            </label>
+            <label class="cursor-pointer py-1">
+                <input type="radio" name="replace" value="empty" bind:group={replace} />
+                <code
+                    class="inline-flex items-center whitespace-pre-line rounded-sm bg-stone-700 px-1 font-mono text-white"
+                    >&quot;&quot;</code
+                > (empty string)
+            </label>
+        </p>
     </div>
 
     <!-- svelte-ignore a11y_autofocus  -->
