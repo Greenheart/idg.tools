@@ -1,3 +1,4 @@
+import { type Locale } from '../../shared/types.ts'
 import { cp } from 'fs/promises'
 import { resolve } from 'path'
 
@@ -8,11 +9,11 @@ import { resolve } from 'path'
 // 1. Specify the collections you want to copy.
 const collections = ['dimensions', 'skills']
 // 2. Add the Locale you want to copy from
-const COPY_FROM = 'en'
+const COPY_FROM: Locale = 'en'
 // 3. Add the new locales you want to initialize with content from the Locale COPY_FROM
-const NEW_LOCALES = ['zh-TW']
+const NEW_LOCALES: Locale[] = ['wo']
 // 3. Or filter out the ones that already have translations, and add the rest
-// const NEW_LOCALES = LOCALE_IDENTIFIERS.filter(
+// const NEW_LOCALES: Locale[] = LOCALE_IDENTIFIERS.filter(
 //     (x) => !['pt-BR', 'pt', 'it', 'en', 'nl', 'sv', 'es'].includes(x),
 // )
 

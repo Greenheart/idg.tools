@@ -51,6 +51,7 @@ export const LOCALES = {
     tr: 'Türkçe',
     ta: 'தமிழ்',
     ko: '한국어',
+    wo: 'وࣷلࣷفْ',
     it: 'Italiano',
     nl: 'Nederlands',
     sv: 'Svenska',

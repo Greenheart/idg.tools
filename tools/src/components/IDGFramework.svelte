@@ -57,10 +57,7 @@
         return getSkill(id, { skills })
     })
 
-    // TODO: Add missing framework translations from https://innerdevelopmentgoals.org/resources/
-    // Wolof (Senegal) (wo) وࣷلࣷفْ
-
-    // TODO: Update existing ones:
+    // TODO: Update existing framework translations from https://innerdevelopmentgoals.org/resources/:
     // Japanese
     // Swedish
     // English
