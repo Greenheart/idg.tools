@@ -1,5 +1,4 @@
 import { CmsCollection } from 'netlify-cms-core'
-import { STORIES_LEARN_MORE } from './constants'
 
 import { ContributorsFields } from './fields/contributors'
 import { DimensionsFields } from './fields/dimensions'
