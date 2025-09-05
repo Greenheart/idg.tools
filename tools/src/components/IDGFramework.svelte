@@ -76,6 +76,8 @@
     // Finnish
     // Italian
     // Portuguese (BR)
+
+    // TODO: Set correct `dir` for content based on the locale
 </script>
 
 <div

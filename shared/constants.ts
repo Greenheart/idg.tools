@@ -86,6 +86,7 @@ export const LOCALE_DIRECTIONS: Record<Locale, 'rtl' | 'ltr'> = (
     Object.keys(LOCALES) as Locale[]
 ).reduce(
     (result, locale) => {
+        // TODO: Add more rtl locales here
         const RTL_LOCALES = ['ar', 'ur']
         result[locale] = RTL_LOCALES.includes(locale) ? 'rtl' : 'ltr'
         return result
