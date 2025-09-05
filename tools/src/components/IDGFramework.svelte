@@ -58,11 +58,10 @@
     })
 
     // TODO: Add missing framework translations from https://innerdevelopmentgoals.org/resources/
-    // simplified chinese
-    // traditional chinese
-    // Ukrainian (uk)
+    // simplified chinese (zh_CN)
+    // traditional chinese (zh_TW)
     // Turkish (tr)
-    // Wolof (Senegal)
+    // Wolof (Senegal) (wo) وࣷلࣷفْ
 
     // Update existing ones:
     // Japanese

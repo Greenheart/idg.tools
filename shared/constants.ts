@@ -32,7 +32,8 @@ export const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365
  */
 export const LOCALES = {
     en: 'English',
-    zh: '中文',
+    zh_CN: '简体中文',
+    // zh_TW: '繁體中文',
     hi: 'हिन्दी',
     es: 'Español',
     ca: 'Català',
