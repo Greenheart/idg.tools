@@ -65,8 +65,6 @@
     // TODO: Update existing framework translations from https://innerdevelopmentgoals.org/resources/:
 
     // Swedish
-    // English
-    // English
     // Spanish
     // French
     // Finnish
@@ -84,6 +82,7 @@
 >
     <div class="h-full text-base">
         <div class="flex justify-end p-2">
+            <!-- TODO: improve sorting for locales. Make it easier to find common languages. See how others have solved this problem. -->
             <LocaleSwitcher
                 {supportedLocales}
                 pathname={lockedDimension ? `${pathname}#${lockedDimension}` : pathname}
