@@ -58,12 +58,9 @@
     })
 
     // TODO: Add missing framework translations from https://innerdevelopmentgoals.org/resources/
-    // simplified chinese (zh_CN)
-    // traditional chinese (zh_TW)
-    // Turkish (tr)
     // Wolof (Senegal) (wo) وࣷلࣷفْ
 
-    // Update existing ones:
+    // TODO: Update existing ones:
     // Japanese
     // Swedish
     // English
@@ -177,7 +174,7 @@
                                             {symbols}
                                             class="h-10 w-10 shrink-0 group-hover:!{textColor}"
                                         />
-                                        <p class="w-full text-sm">
+                                        <p class="w-full text-balance text-sm">
                                             {skill.name}
                                         </p>
                                         <ChevronDown
