@@ -62,11 +62,6 @@
     // If we define all SVG symbols in one place, we could then reference them later on.
     // Look into how unplugin-icon handles custom icons. Maybe they have a solution for this?
 
-    // TODO: Update existing framework translations from https://innerdevelopmentgoals.org/resources/:
-
-    // Italian
-    // Portuguese (BR)
-
     // TODO: Set correct `dir` for content based on the locale
 </script>
 
