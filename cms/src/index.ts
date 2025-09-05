@@ -14,7 +14,7 @@ import { Locale } from '../../shared/types'
 
 // NOTE: When editing translations locally, it's very useful to only enable the locales you want to edit
 // This reduces the number of entries to choose from and makes it easier to select the desired locales
-const locales: Locale[] = [DEFAULT_LOCALE_IDENTIFIER, 'wo']
+const locales: Locale[] = [DEFAULT_LOCALE_IDENTIFIER, 'ja']
 
 CMS.init({
     config: {
