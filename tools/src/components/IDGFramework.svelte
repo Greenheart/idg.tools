@@ -64,7 +64,6 @@
 
     // TODO: Update existing framework translations from https://innerdevelopmentgoals.org/resources/:
 
-    // Swedish
     // Italian
     // Portuguese (BR)
 
