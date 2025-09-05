@@ -10,6 +10,11 @@ import {
     FRAMEWORK_AVAILABLE_LOCALES,
     IDG_COLORS_RGB,
 } from '../../shared/constants'
+import { Locale } from '../../shared/types'
+
+// NOTE: When editing translations locally, it's very useful to only enable the locales you want to edit
+// This reduces the number of entries to choose from and makes it easier to select the desired locales
+const locales: Locale[] = [DEFAULT_LOCALE_IDENTIFIER, 'zh-CN']
 
 CMS.init({
     config: {
@@ -30,10 +35,8 @@ CMS.init({
         publish_mode: 'editorial_workflow',
         i18n: {
             structure: 'multiple_folders',
-            // NOTE: When editing translations locally, it's very useful to only enable the locales you want to edit
-            // This reduces the number of entries to choose from and makes it easier to select the desired locales
-            locales: [DEFAULT_LOCALE_IDENTIFIER, 'uk'],
-            // By default, enable the
+            locales,
+            // TODO: Switch back to showing all when translations have been updated.
             // locales: FRAMEWORK_AVAILABLE_LOCALES,
             default_locale: DEFAULT_LOCALE_IDENTIFIER,
         },

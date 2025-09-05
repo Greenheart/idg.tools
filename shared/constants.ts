@@ -32,7 +32,7 @@ export const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365
  */
 export const LOCALES = {
     en: 'English',
-    zh_CN: '简体中文',
+    'zh-CN': '简体中文',
     // zh_TW: '繁體中文',
     hi: 'हिन्दी',
     es: 'Español',
@@ -79,6 +79,7 @@ export const FRAMEWORK_AVAILABLE_LOCALES: Locale[] = [
     'dk',
     'de',
     'fr',
+    'zh-CN',
 ]
 
 export const LOCALE_DIRECTIONS: Record<Locale, 'rtl' | 'ltr'> = (
