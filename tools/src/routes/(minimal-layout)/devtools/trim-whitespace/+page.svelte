@@ -12,8 +12,13 @@
         }
     })
 
-    async function copyCleanText() {
+    async function copyCleanText({
+        currentTarget,
+    }: {
+        currentTarget: EventTarget & HTMLTextAreaElement
+    }) {
         copied = false
+        currentTarget.select()
 
         // Trim and join newlines
         trimmedText = (await navigator.clipboard.readText()).trim().split('\n').join('')
@@ -51,7 +56,7 @@
         onpaste={enableAutomation
             ? async (event) => {
                   event.preventDefault()
-                  await copyCleanText()
+                  await copyCleanText(event)
               }
             : null}
         rows="6"
