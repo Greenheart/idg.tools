@@ -21,20 +21,24 @@
         copied = false
         currentTarget.select()
 
-        // Trim and join newlines
-        trimmedText = (await navigator.clipboard.readText())
-            .trim()
-            .split('\n')
-            .join(replace === 'empty' ? '' : ' ')
+        try {
+            // Trim and join newlines
+            trimmedText = (await navigator.clipboard.readText())
+                .trim()
+                .split('\n')
+                .join(replace === 'empty' ? '' : ' ')
 
-        // Copy cleaned text
-        if (trimmedText.length) {
-            await navigator.clipboard.writeText(trimmedText)
-            copied = true
+            // Copy cleaned text
+            if (trimmedText.length) {
+                await navigator.clipboard.writeText(trimmedText)
+                copied = true
 
-            setTimeout(() => {
-                copied = false
-            }, 2000)
+                setTimeout(() => {
+                    copied = false
+                }, 2000)
+            }
+        } catch (error) {
+            // Ignore error when the user cancels the Clipboard read access for this specific interaction
         }
     }
 </script>
