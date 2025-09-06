@@ -2,6 +2,7 @@
     import { Select } from 'bits-ui'
     import { cubicOut } from 'svelte/easing'
     import { goto } from '$app/navigation'
+    import { browser } from '$app/environment'
 
     import type { Locale, SupportedLocales } from '../types'
     import Link from './Link.svelte'
@@ -18,8 +19,8 @@
 
     let { supportedLocales, pathname, currentLocale = DEFAULT_LOCALE_IDENTIFIER }: Props = $props()
 
-    const items = Object.entries(supportedLocales)
-        .map(([value, label]) => ({ value, label }))
+    const locales = Object.entries(supportedLocales)
+        .map<{ value: Locale; label: string }>(([value, label]) => ({ value, label }))
         .sort((a, b) => a.label.localeCompare(b.label))
 
     let initialLocale = $derived<Locale>(
@@ -36,12 +37,46 @@
         const progress = Math.min(tick / steps, 1)
         return maxDelay - (maxDelay - minDelay) * cubicOut(progress)
     }
+
+    /**
+     * Get recommended locales to show at the top of the list.
+     *
+     * Includes the user's language preferences from their browser, followed by the most common languages.
+     */
+    function getRecommendedLocales() {
+        // Most common languages according to https://en.wikipedia.org/wiki/List_of_languages_by_total_number_of_speakers
+        // Including zh-TW to show we have both variations
+        const mostCommon: Locale[] = ['en', 'zh-CN', 'es', 'fr', 'pt-BR', 'pt', 'de', 'ja', 'zh-TW']
+        if (!browser) return mostCommon
+
+        const preferred: Locale[] = []
+
+        for (const { value } of locales) {
+            // Handle both exact matches and if only the language matches
+            if (
+                navigator.languages.some(
+                    (lang) => value === lang || value.startsWith(lang.split('-').at(0)),
+                )
+            ) {
+                preferred.push(value)
+            }
+        }
+
+        // Only include one entry for each recommended locale,
+        // showing the user's preferred locales at the top.
+        return Array.from(new Set([...preferred, ...mostCommon]))
+    }
+
+    const recommendedLocales = getRecommendedLocales().map((value) => ({
+        value,
+        label: supportedLocales[value],
+    }))
 </script>
 
 <Select.Root
     type="single"
     value={initialLocale}
-    {items}
+    items={locales}
     onValueChange={(value) => {
         goto(getLocalisedPath(value as Locale, pathname))
     }}
@@ -58,7 +93,27 @@
                 <ChevronDown class="!size-4 rotate-180 transform" />
             </Select.ScrollUpButton>
             <Select.Viewport class="max-h-screen">
-                {#each items as { value, label } (value)}
+                {#if browser}
+                    {#each recommendedLocales as { value, label }, i ((value, i))}
+                        <!-- TODO: Ensure highlighted style only shows for one item at a time -->
+                        <!-- IDEA: Maybe add hover: and focus-within: prefixes for data-highlighted classes -->
+                        <Select.Item
+                            {value}
+                            class="grid hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]_a]:!underline"
+                        >
+                            <Link
+                                href={getLocalisedPath(value, pathname)}
+                                variant="black"
+                                noScroll
+                                class="px-3 py-1 !no-underline">{label}</Link
+                            >
+                        </Select.Item>
+                    {/each}
+                {/if}
+
+                <hr class="my-1" />
+
+                {#each locales as { value, label } (value)}
                     <Select.Item
                         {value}
                         class="grid hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]_a]:!underline"

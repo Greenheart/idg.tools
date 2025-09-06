@@ -6,8 +6,8 @@
     "svelte": "components/index.js",
     "dependencies": {
         "@humanspeak/svelte-markdown": "^0.8.11",
+        "bits-ui": "^2.9.6",
         "svelte": "^5.38.6",
-        "svelte-typeahead": "^5.0.0",
-        "bits-ui": "^2.9.6"
+        "svelte-typeahead": "^5.0.0"
     }
 }
