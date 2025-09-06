@@ -103,6 +103,7 @@
                     >
                         <IDGSymbol
                             symbolPaths={symbols[dimension.id]}
+                            aria-label={dimension.name}
                             class="pointer-events-none h-12 w-12 {isSelected
                                 ? 'text-white'
                                 : getColor(dimension.id, 'text')}"
