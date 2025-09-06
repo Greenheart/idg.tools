@@ -6,12 +6,14 @@
         style?: string
         id: Skill['id'] | Dimension['id']
         symbols: IDGSymbols
+        'aria-label': string
     }
 
-    let { class: className = '', style = '', id, symbols }: Props = $props()
+    let { class: className = '', style = '', id, symbols, ...props }: Props = $props()
 </script>
 
 <svg
+    {...props}
     xmlns="http://www.w3.org/2000/svg"
     fill="currentColor"
     stroke="currentColor"

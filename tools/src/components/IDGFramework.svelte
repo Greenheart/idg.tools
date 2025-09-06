@@ -138,6 +138,7 @@
                         <IDGSymbol
                             id={dimension.id}
                             {symbols}
+                            aria-label={dimension.name}
                             class="pointer-events-none mx-auto my-4 h-36 w-36"
                         />
                         <p class="p-4 pt-0">{dimension.description}</p>
@@ -161,6 +162,7 @@
                                         <IDGSymbol
                                             id={skill.id}
                                             {symbols}
+                                            aria-label={skill.name}
                                             class="h-10 w-10 shrink-0 group-hover:!{textColor}"
                                         />
                                         <p class="w-full text-balance text-sm">
@@ -189,6 +191,7 @@
                                         <IDGSymbol
                                             id={skill.id}
                                             {symbols}
+                                            aria-label={skill.name}
                                             class="pointer-events-none h-36 w-36 text-white"
                                         />
                                     </div>
@@ -217,6 +220,7 @@
                                     ><IDGSymbol
                                         id={skill.id}
                                         {symbols}
+                                        aria-label={skill.name}
                                         class={[
                                             `h-10 w-10 shrink-0 group-hover:!${textColor}`,
                                             isSelected && textColor,
@@ -250,6 +254,7 @@
                                 <IDGSymbol
                                     id={focusedSkill.id}
                                     {symbols}
+                                    aria-label={focusedSkill.name}
                                     class="pointer-events-none h-36 w-36 text-white"
                                 />
                             </div>

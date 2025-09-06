@@ -46,7 +46,12 @@
     >
         {#if randomSkill}
             <div in:fade={{ duration: 500 }}>
-                <IDGSymbol id={randomSkill} {symbols} class="h-full w-full text-white" />
+                <IDGSymbol
+                    id={randomSkill}
+                    {symbols}
+                    aria-label={randomSkill.name}
+                    class="h-full w-full text-white"
+                />
             </div>
         {/if}
     </div>
