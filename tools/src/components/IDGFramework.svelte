@@ -102,8 +102,7 @@
                             : `hover:outline-solid bg-white hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
                     >
                         <IDGSymbol
-                            id={dimension.id}
-                            {symbols}
+                            symbolPaths={symbols[dimension.id]}
                             class="pointer-events-none h-12 w-12 {isSelected
                                 ? 'text-white'
                                 : getColor(dimension.id, 'text')}"
@@ -136,8 +135,7 @@
                         </h2>
                         <Heading size={4} class="px-4">{dimension.subtitle}</Heading>
                         <IDGSymbol
-                            id={dimension.id}
-                            {symbols}
+                            symbolPaths={symbols[dimension.id]}
                             aria-label={dimension.name}
                             class="pointer-events-none mx-auto my-4 h-36 w-36"
                         />
@@ -160,8 +158,7 @@
                                         ]}
                                     >
                                         <IDGSymbol
-                                            id={skill.id}
-                                            {symbols}
+                                            symbolPaths={symbols[skill.id]}
                                             aria-label={skill.name}
                                             class="h-10 w-10 shrink-0 group-hover:!{textColor}"
                                         />
@@ -189,8 +186,7 @@
                                         ]}
                                     >
                                         <IDGSymbol
-                                            id={skill.id}
-                                            {symbols}
+                                            symbolPaths={symbols[skill.id]}
                                             aria-label={skill.name}
                                             class="pointer-events-none h-36 w-36 text-white"
                                         />
@@ -218,8 +214,7 @@
                                     ]}
                                     onclick={() => (selectedSkill = skill.id)}
                                     ><IDGSymbol
-                                        id={skill.id}
-                                        {symbols}
+                                        symbolPaths={symbols[skill.id]}
                                         aria-label={skill.name}
                                         class={[
                                             `h-10 w-10 shrink-0 group-hover:!${textColor}`,
@@ -252,8 +247,7 @@
                                 ]}
                             >
                                 <IDGSymbol
-                                    id={focusedSkill.id}
-                                    {symbols}
+                                    symbolPaths={symbols[focusedSkill.id]}
                                     aria-label={focusedSkill.name}
                                     class="pointer-events-none h-36 w-36 text-white"
                                 />
