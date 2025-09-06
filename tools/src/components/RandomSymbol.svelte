@@ -15,7 +15,8 @@
 
     let { isEmbedded = false, skills, symbols }: Props = $props()
 
-    let randomSkill: Skill['id'] | undefined = $state()
+    let randomSkill = $state<Skill['id']>()
+    let skillName = $state<Skill['name']>()!
 
     function getRandomSkill(skills: Skill[]) {
         if (!isEmbedded) {
@@ -23,13 +24,14 @@
             if (id && COLORS[id] !== undefined) return id
         }
 
-        const randomSkill = skills[randomInt(0, skills.length - 1)].id
+        const randomSkill = skills[randomInt(0, skills.length - 1)]
+        skillName = randomSkill.name
 
         if (!isEmbedded) {
-            localStorage.setItem('randomSkill', randomSkill)
+            localStorage.setItem('randomSkill', randomSkill.id)
         }
 
-        return randomSkill
+        return randomSkill.id
     }
 
     onMount(() => {
@@ -47,9 +49,8 @@
         {#if randomSkill}
             <div in:fade={{ duration: 500 }}>
                 <IDGSymbol
-                    id={randomSkill}
-                    {symbols}
-                    aria-label={randomSkill.name}
+                    symbolPaths={symbols[randomSkill]}
+                    aria-label={skillName}
                     class="h-full w-full text-white"
                 />
             </div>
