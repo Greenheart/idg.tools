@@ -148,6 +148,8 @@
                     </Select.Item>
                 {/each}
             </Select.Viewport>
+            <!-- IDEA: Add bottom inset shadow to indicate you can scroll down -->
+            <!-- IDEA: Make the total height of the viewport less glitchy as the buttons appear and dissapear -->
             <Select.ScrollDownButton
                 class="grid cursor-s-resize place-items-center"
                 delay={autoScrollDelay}
