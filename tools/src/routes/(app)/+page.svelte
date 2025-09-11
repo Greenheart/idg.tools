@@ -7,7 +7,6 @@
     import Meta from '$components/Meta.svelte'
     import { IDG_PDF_TOOLKIT } from '$shared/constants'
     import SkillTabs from '$components/SkillTabs.svelte'
-    import { FEEDBACK_FORM_LINK, SUGGEST_NEW_TOOL_LINK } from '$lib/constants'
     import FiltersToolbar from '$components/FiltersToolbar.svelte'
 
     interface Props {
@@ -49,8 +48,7 @@
             This is the public beta version of the IDG Toolkit. It is primarily based on the <Link
                 href={IDG_PDF_TOOLKIT}
                 variant="white">IDG Phase 2 Research Report</Link
-            >. Please <Link href={FEEDBACK_FORM_LINK} variant="white">share your feedback</Link> and
-            <Link href={SUGGEST_NEW_TOOL_LINK} variant="white">suggest new tools</Link>.
+            >.
         </p>
         <Link href="/about" variant="orange" class="whitespace-nowrap text-right">Learn more</Link>
     </div>
