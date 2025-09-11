@@ -29,6 +29,8 @@
             : DEFAULT_LOCALE_IDENTIFIER,
     )
 
+    let selectViewport = $state<HTMLDivElement | null>(null)
+
     function autoScrollDelay(tick: number) {
         const maxDelay = 200
         const minDelay = 25
@@ -83,6 +85,21 @@
     onValueChange={(value) => {
         goto(getLocalisedPath(value.replace(recommendedSuffix, '') as Locale, pathname))
     }}
+    onOpenChange={(open) => {
+        if (!open) {
+            selectViewport.classList.add('invisible')
+        }
+    }}
+    onOpenChangeComplete={async () => {
+        // We need to wait for the select to render fully
+        await new Promise((r) => setTimeout(r, 10))
+
+        // Ensure the select is scrolled to the top of the list
+        selectViewport.scrollTop = 0
+        // By making the list invisible, we can work around the fact that the list
+        // is not scrolled to the top during the first render
+        selectViewport.classList.remove('invisible')
+    }}
 >
     <Select.Trigger
         aria-label="Change language"
@@ -98,7 +115,7 @@
             >
                 <ChevronDown class="!size-4 rotate-180 transform" />
             </Select.ScrollUpButton>
-            <Select.Viewport class="max-h-[80vh]">
+            <Select.Viewport class="invisible max-h-[80vh]" bind:ref={selectViewport}>
                 {#if browser}
                     {#each recommendedLocales as { value, label }, i ((value, i))}
                         <Select.Item
