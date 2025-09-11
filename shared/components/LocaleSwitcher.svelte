@@ -67,6 +67,9 @@
         return Array.from(new Set([...preferred, ...mostCommon]))
     }
 
+    /** Use a suffix to make select values unique. This is needed to only highlight one item at a time. */
+    const recommendedSuffix = '-r'
+
     const recommendedLocales = getRecommendedLocales().map((value) => ({
         value,
         label: supportedLocales[value],
@@ -78,7 +81,7 @@
     value={initialLocale}
     items={locales}
     onValueChange={(value) => {
-        goto(getLocalisedPath(value as Locale, pathname))
+        goto(getLocalisedPath(value.replace(recommendedSuffix, '') as Locale, pathname))
     }}
 >
     <Select.Trigger
@@ -95,10 +98,8 @@
             <Select.Viewport class="max-h-screen">
                 {#if browser}
                     {#each recommendedLocales as { value, label }, i ((value, i))}
-                        <!-- TODO: Ensure highlighted style only shows for one item at a time -->
-                        <!-- IDEA: Maybe add hover: and focus-within: prefixes for data-highlighted classes -->
                         <Select.Item
-                            {value}
+                            value={value + recommendedSuffix}
                             class="grid hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]_a]:!underline"
                         >
                             <Link
