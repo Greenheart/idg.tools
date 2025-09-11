@@ -2,8 +2,7 @@
     "name": "innerdevelopmentgoals",
     "private": true,
     "engines": {
-        "node": ">= 22",
-        "pnpm": ">= 10"
+        "node": ">= 22"
     },
     "scripts": {
         "dev": "pnpm --filter \"./(tools|cms|content|community)\" --parallel dev",
@@ -40,5 +39,6 @@
                 }
             }
         ]
-    }
+    },
+    "packageManager": "pnpm@10.15.1"
 }
