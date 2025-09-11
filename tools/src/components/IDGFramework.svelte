@@ -57,10 +57,9 @@
         return getSkill(id, { skills })
     })
 
-    // IDEA: Maybe render SVG sprites to reduce duplicated DOM-nodes and ship smaller output HTML to the browser?
-    // https://tomhazledine.com/inline-svg-icon-sprites/
-    // If we define all SVG symbols in one place, we could then reference them later on.
-    // Look into how unplugin-icon handles custom icons. Maybe they have a solution for this?
+    // IDEA: Consider redesigning the framework widget to match the PDF presentations
+    // For example by only using colors for icons and otherwise black text on white background,
+    // which would fix the inaccessible text contrast. This would make the IDG framework much better adapted to a diverse and global audience.
 
     // TODO: Set correct `dir` for content based on the locale
 </script>
@@ -73,7 +72,6 @@
 >
     <div class="h-full text-base">
         <div class="flex justify-end p-2">
-            <!-- TODO: improve sorting for locales. Make it easier to find common languages. See how others have solved this problem. -->
             <LocaleSwitcher
                 {supportedLocales}
                 pathname={lockedDimension ? `${pathname}#${lockedDimension}` : pathname}
