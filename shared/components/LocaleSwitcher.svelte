@@ -55,7 +55,7 @@
             // Handle both exact matches and if only the language matches
             if (
                 navigator.languages.some(
-                    (lang) => value === lang || value.startsWith(lang.split('-').at(0)),
+                    (lang) => value === lang || value.startsWith(lang.split('-')[0]),
                 )
             ) {
                 preferred.push(value)
