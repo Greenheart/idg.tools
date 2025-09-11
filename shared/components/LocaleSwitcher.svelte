@@ -92,10 +92,13 @@
     >
     <Select.Portal>
         <Select.Content class="z-30 grid w-48 bg-white text-base drop-shadow" preventScroll={true}>
-            <Select.ScrollUpButton class="grid place-items-center" delay={autoScrollDelay}>
+            <Select.ScrollUpButton
+                class="grid cursor-n-resize place-items-center shadow-md"
+                delay={autoScrollDelay}
+            >
                 <ChevronDown class="!size-4 rotate-180 transform" />
             </Select.ScrollUpButton>
-            <Select.Viewport class="max-h-screen">
+            <Select.Viewport class="max-h-[80vh]">
                 {#if browser}
                     {#each recommendedLocales as { value, label }, i ((value, i))}
                         <Select.Item
@@ -128,7 +131,10 @@
                     </Select.Item>
                 {/each}
             </Select.Viewport>
-            <Select.ScrollDownButton class="grid place-items-center" delay={autoScrollDelay}>
+            <Select.ScrollDownButton
+                class="grid cursor-s-resize place-items-center"
+                delay={autoScrollDelay}
+            >
                 <ChevronDown class="!size-4" />
             </Select.ScrollDownButton>
         </Select.Content>
