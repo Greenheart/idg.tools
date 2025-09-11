@@ -15,12 +15,7 @@ First of all, thank you for being here! 🎉
 
 We're a small team with high ambitions, and would love to get your help! This is only the beginning of what we want to create - an active open source community where people use technology to make meaningful contributions for a future where humanity and the living planet thrive together 🌱
 
-Curious to learn how you can contribute? Come say hi in our chat rooms and we'll help you get started. There are many ways to help out so don't be afraid to ask!
-
-- Join our Element chat rooms:
-    - [IDG Localization Team](https://matrix.to/#/#localization:community.innerdevelopmentgoals.org)
-    - [IDG.tools - design, content and development](https://matrix.to/#/#idg-tools:community.innerdevelopmentgoals.org)
-    - [IDG.community - design, content and development](https://matrix.to/#/#website:community.innerdevelopmentgoals.org)
+Curious to learn how you can contribute? There are many ways to help out so don't be afraid to ask!
 
 ### Localization & translation
 
