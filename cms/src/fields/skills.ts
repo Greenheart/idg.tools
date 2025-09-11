@@ -1,7 +1,6 @@
 import { CustomCmsField, DESCRIPTION, ID, NAME } from './shared'
 
 export const SkillsFields: CustomCmsField[] = [
-    ID,
     NAME,
     { ...DESCRIPTION, widget: 'text' } as CustomCmsField,
     {
@@ -31,4 +30,5 @@ export const SkillsFields: CustomCmsField[] = [
         display_fields: ['name'],
         i18n: true,
     },
+    ID,
 ]

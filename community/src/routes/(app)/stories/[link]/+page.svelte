@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     import { BASE_URL, DEFAULT_OG_IMAGE } from '$lib/constants'
     const DEFAULT_IMAGE = [
         {
@@ -20,23 +20,27 @@
         Divider,
     } from '$shared/components'
     import { Arrow } from '$shared/icons'
-    import { page } from '$app/stores'
+    import { page } from '$app/state'
 
     import type { PageData } from './$types'
     import StoryMetadata from '$components/StoryMetadata.svelte'
     import Meta from '$components/Meta.svelte'
     import { truncateText } from '$shared/utils'
-    export let data: PageData
-    $: ({ story, dimensions, contributors, tags, prev, next } = data)
+    interface Props {
+        data: PageData
+    }
 
-    $: intro = truncateText(story.intro ?? story.story, 300)
-    const url = $page.url.toString()
+    let { data }: Props = $props()
+    let { story, dimensions, contributors, tags, prev, next } = $derived(data)
+
+    let intro = $derived(truncateText(story.intro ?? story.story, 300))
+    const url = page.url.toString()
 
     // NOTE: Until major platforms and apps support webp for OG images, we need to serve OG images in jpg format.
     // NOTE: This assumes images have been correctly optimized as part of the build process.
-    $: images = story.image
-        ? [{ url: BASE_URL + story.image.replace(/\.webp$/, '.jpg') }]
-        : DEFAULT_IMAGE
+    let images = $derived(
+        story.image ? [{ url: BASE_URL + story.image.replace(/\.webp$/, '.jpg') }] : DEFAULT_IMAGE,
+    )
 </script>
 
 <Meta title={story.title} description={intro} {url} {images} />
@@ -49,13 +53,13 @@
     <StoryMetadata {story} {dimensions} {contributors} {tags} />
 
     {#if story.intro}
-        <Markdown source={story.intro} class="mt-8 !text-2xl" />
+        <Markdown source={story.intro} class="mt-8 text-2xl!" />
     {/if}
 
     <Picture
         src={story.image}
         alt={story.imageAlt}
-        class="mx-auto mt-8 mb-2 w-full"
+        class="mx-auto mb-2 mt-8 w-full"
         width={768}
         height={576}
     />
@@ -70,16 +74,16 @@
     <div class="mt-8 flex items-start space-x-8">
         {#if prev}
             <div class="flex flex-1 items-center justify-start space-x-2">
-                <Arrow left /><Link href={prev.link} class="text-left" variant="black"
+                <Arrow left /><Link href={`/stories/${prev.link}`} class="text-left" variant="black"
                     >{prev.title}</Link
                 >
             </div>
         {/if}
         {#if next}
             <div class="flex flex-1 items-center justify-end space-x-2">
-                <Link href={next.link} class="text-right" variant="black">{next.title}</Link><Arrow
-                    right
-                />
+                <Link href={`/stories/${next.link}`} class="text-right" variant="black"
+                    >{next.title}</Link
+                ><Arrow right />
             </div>
         {/if}
     </div>

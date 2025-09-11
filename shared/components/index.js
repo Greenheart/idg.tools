@@ -9,6 +9,12 @@ export { default as LinkButton } from './LinkButton.svelte'
 export { default as LocaleSwitcher } from './LocaleSwitcher.svelte'
 export { default as Markdown } from './Markdown.svelte'
 export { default as MenuButton } from './MenuButton.svelte'
-export { default as Nothing } from './Nothing.svelte'
 export { default as Picture } from './Picture.svelte'
-export { default as IDGDivider } from './IDGDivider.svelte'
+
+// IDEA: In order to make the Svelte language server work as expected for TS and intellisense,
+// we could make the shared components into a SvelteKit component library that can be used by all workspace projects.
+// Then we can have a svelte config here which makes the Svelte language tools work as expected
+
+// This would also remove the need to duplicate depdendencies for shared components
+// both in the `shared` project and the projects where they are used.
+// Instead, the component library would manage its own dependencies.

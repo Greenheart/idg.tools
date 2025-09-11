@@ -1,12 +1,9 @@
 import type { IDGColorMap, ToolsContent, Localised } from '$shared/types'
-import { dirname, resolve } from 'path'
-import { fileURLToPath } from 'url'
+import { resolve } from 'path'
 import { readJSON, writeJSON } from './utils'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-
-const inputFile = resolve(__dirname, '../../tools/static/content.json')
-const outputFile = resolve(__dirname, `../../shared/colors.json`)
+const inputFile = resolve(import.meta.dirname, '../../tools/static/content.json')
+const outputFile = resolve(import.meta.dirname, `../../shared/colors.json`)
 
 async function buildIDGColors({ dimensions }: ToolsContent) {
     const COLORS = dimensions.reduce((COLORS, dimension) => {

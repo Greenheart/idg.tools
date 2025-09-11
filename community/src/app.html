@@ -1,14 +1,20 @@
-<!DOCTYPE html>
-<html lang="en" class="overflow-y-scroll scroll-smooth bg-lightGray">
+<!doctype html>
+<html lang="en" class="bg-light-gray scroll-smooth">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="preload" href="/fonts/Inter-roman.var.woff2?v=3.19" as="font" type="font/woff2" crossorigin="anonymous" />
+        <link
+            rel="preload"
+            href="/fonts/Inter-roman.var.woff2?v=3.19"
+            as="font"
+            type="font/woff2"
+            crossorigin="anonymous"
+        />
         <link rel="icon" href="/favicon.svg" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         %sveltekit.head%
     </head>
-    <body class="min-h-screen" data-sveltekit-preload-data="tap">
+    <body class="min-h-screen overflow-y-scroll" data-sveltekit-preload-data="tap">
         <div id="svelte">%sveltekit.body%</div>
     </body>
 </html>

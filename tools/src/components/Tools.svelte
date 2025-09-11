@@ -4,25 +4,29 @@
     import { quintOut } from 'svelte/easing'
 
     import type { ToolsContent, Tool } from '$shared/types'
-    import { selectedSkills, visibleItems, selectedTags } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
     import ToolPreview from './ToolPreview.svelte'
     import { Button } from '$shared/components'
     import VisibleToolsCount from './VisibleToolsCount.svelte'
 
-    export let mostRelevantTools: Tool[]
-    export let content: ToolsContent
+    interface Props {
+        mostRelevantTools: Tool[]
+        content: ToolsContent
+    }
+
+    let { mostRelevantTools, content }: Props = $props()
     // TODO: Implement option to reduce motion
     // export let reduceMotion: boolean
 
     const showAll = () => {
-        $selectedSkills = []
-        $selectedTags = []
+        globalState.selectedSkills.current = []
+        globalState.selectedTags.current = []
     }
 
     const showMore = () => {
-        $visibleItems = Math.max(
+        globalState.visibleItems = Math.max(
             mostRelevantTools.length,
-            Math.min($visibleItems + 10, mostRelevantTools.length),
+            Math.min(globalState.visibleItems + 10, mostRelevantTools.length),
         )
     }
 
@@ -36,7 +40,7 @@
 </script>
 
 <div class="grid gap-8 lg:grid-cols-2">
-    {#each mostRelevantTools.slice(0, $visibleItems) as tool (tool.link)}
+    {#each mostRelevantTools.slice(0, globalState.visibleItems) as tool (tool.link)}
         {@const key = tool.id}
         <div
             animate:flip={{ duration: 400 }}
@@ -56,7 +60,7 @@
             in:fade={{ duration: 250 }}
         >
             <p>There are no published tools matching your search yet</p>
-            <Button on:click={showAll}>Show all tools</Button>
+            <Button onclick={showAll}>Show all tools</Button>
         </div>
     {/each}
 
@@ -64,10 +68,10 @@
         class="flex flex-col items-center justify-center gap-4 space-y-4 pt-8 text-sm lg:col-span-2"
     >
         <VisibleToolsCount {mostRelevantTools} allToolsCount={content.tools.length} />
-        {#if $visibleItems < mostRelevantTools.length}
-            <Button on:click={showMore}>Show more</Button>
-        {:else if mostRelevantTools.length && ($selectedSkills.length || $selectedTags.length)}
-            <Button on:click={showAll}>Show all tools</Button>
+        {#if globalState.visibleItems < mostRelevantTools.length}
+            <Button onclick={showMore}>Show more</Button>
+        {:else if mostRelevantTools.length && (globalState.selectedSkills.current.length || globalState.selectedTags.current.length)}
+            <Button onclick={showAll}>Show all tools</Button>
         {/if}
     </div>
 </div>

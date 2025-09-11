@@ -1,15 +1,19 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     import type { Contributor, Dimension, Story, Tag } from '$shared/types'
-    import { cx, getColor, pluralize } from '$shared/utils'
+    import { getColor, pluralize } from '$shared/utils'
     import { Link } from '$shared/components'
     import Tags from './Tags.svelte'
 </script>
 
 <script lang="ts">
-    export let story: Story
-    export let dimensions: Dimension[]
-    export let contributors: Contributor[]
-    export let tags: Tag[]
+    interface Props {
+        story: Story
+        dimensions: Dimension[]
+        contributors: Contributor[]
+        tags: Tag[]
+    }
+
+    let { story, dimensions, contributors, tags }: Props = $props()
 </script>
 
 <div class="mt-8 flex flex-wrap gap-4 gap-x-8 bg-white p-4 shadow-xl">
@@ -47,7 +51,7 @@
             <div class="flex flex-wrap gap-1">
                 {#each dimensions as dimension}
                     {@const color = getColor(dimension.id)}
-                    <span class={cx('px-2 py-1 text-sm text-white', color)}>{dimension.name}</span>
+                    <span class={['px-2 py-1 text-sm text-white', color]}>{dimension.name}</span>
                 {/each}
             </div>
         </div>
@@ -57,7 +61,7 @@
         <div>
             <p class="mb-2 text-sm uppercase">{pluralize('Tag', tags.length, false)}</p>
             <!-- IDEA: Make Tags into clickable links that navigate back to the homepage and shows the content with only that content shown -->
-            <Tags {tags} size="md" class="!gap-1" />
+            <Tags {tags} size="md" class="gap-1!" />
         </div>
     {/if}
 </div>

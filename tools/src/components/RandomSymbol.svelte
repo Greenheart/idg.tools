@@ -1,17 +1,22 @@
 <script lang="ts">
-    import { cx, getColor, randomInt } from '$shared/utils'
+    import { getColor, randomInt } from '$shared/utils'
     import { onMount } from 'svelte'
     import type { IDGSymbols, Skill } from '$shared/types'
     import { fade } from 'svelte/transition'
     import { COLORS } from '$shared/constants'
     import { IDGSymbol } from '$shared/icons'
 
-    /** Only enable persistance when the component isn't part of an embedded page */
-    export let isEmbedded = false
-    export let skills: Skill[]
-    export let symbols: IDGSymbols
+    interface Props {
+        /** Only enable persistance when the component isn't part of an embedded page */
+        isEmbedded?: boolean
+        skills: Skill[]
+        symbols: IDGSymbols
+    }
 
-    let randomSkill: Skill['id'] | undefined
+    let { isEmbedded = false, skills, symbols }: Props = $props()
+
+    let randomSkill = $state<Skill['id']>()
+    let skillName = $state<Skill['name']>()!
 
     function getRandomSkill(skills: Skill[]) {
         if (!isEmbedded) {
@@ -19,13 +24,14 @@
             if (id && COLORS[id] !== undefined) return id
         }
 
-        const randomSkill = skills[randomInt(0, skills.length - 1)].id
+        const randomSkill = skills[randomInt(0, skills.length - 1)]
+        skillName = randomSkill.name
 
         if (!isEmbedded) {
-            localStorage.setItem('randomSkill', randomSkill)
+            localStorage.setItem('randomSkill', randomSkill.id)
         }
 
-        return randomSkill
+        return randomSkill.id
     }
 
     onMount(() => {
@@ -33,16 +39,20 @@
     })
 </script>
 
-<div class="pt-16 px-2 flex justify-center">
+<div class="flex justify-center px-2 pt-16">
     <div
-        class={cx(
-            'h-72 w-72 aspect-square p-8 rounded-lg',
+        class={[
+            'aspect-square h-72 w-72 rounded-lg p-8',
             randomSkill ? getColor(randomSkill) : 'bg-transparent',
-        )}
+        ]}
     >
         {#if randomSkill}
             <div in:fade={{ duration: 500 }}>
-                <IDGSymbol id={randomSkill} {symbols} class="w-full h-full text-white" />
+                <IDGSymbol
+                    symbolPaths={symbols[randomSkill]}
+                    aria-label={skillName}
+                    class="h-full w-full text-white"
+                />
             </div>
         {/if}
     </div>

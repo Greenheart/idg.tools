@@ -1,12 +1,14 @@
 import chokidar from 'chokidar'
-import debounce from 'lodash.debounce'
+import { debounce } from 'es-toolkit'
+import { glob } from 'tinyglobby'
 
 import run from './build-content'
 
 const WATCH_PATTERN = 'src/**/*.json'
+const WATCHED_PATHS = await glob(WATCH_PATTERN)
 
 const selectedBundles = process.argv.slice(2) as string[]
-const watcher = chokidar.watch(WATCH_PATTERN, { ignoreInitial: true })
+const watcher = chokidar.watch(WATCHED_PATHS, { ignoreInitial: true })
 
 async function build(selectedBundles: string[], path: string) {
     await run(selectedBundles, path).catch((err) => {
@@ -18,12 +20,12 @@ const rebuild = debounce(build, 400)
 
 watcher.on('all', async (_eventName, path) => {
     console.log(path)
-    await rebuild(selectedBundles, path)
+    rebuild(selectedBundles, path)
 })
 
 watcher.on('error', (error) => {
     console.error('Watcher error:', error)
-    console.error(error.stack)
+    console.error((error as Error)?.stack)
 })
 
 watcher.once('ready', async () => {

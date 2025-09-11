@@ -2,9 +2,6 @@ import { COLORS, DEFAULT_LOCALE_IDENTIFIER, IDG_COLORS_RGB, LOCALE_IDENTIFIERS }
 import { getLocale } from './content-utils'
 import type { Dimension, Locale, Skill } from './types'
 
-export const cx = (...classes: (string | undefined | false)[]) =>
-    classes.filter(Boolean).join(' ').trim()
-
 /**
  * Truncate a text to a max length, keeping whole words.
  */

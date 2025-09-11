@@ -7,12 +7,15 @@
     import RelevantSkills from './RelevantSkills.svelte'
     import Tags from './Tags.svelte'
 
-    $: intro = truncateText(tool.intro ?? tool.description, 300)
+    interface Props {
+        tool: Tool
+        content: ToolsContent
+    }
 
-    export let tool: Tool
-    export let content: ToolsContent
+    let { tool, content }: Props = $props()
 
     let tags = tool.tags.map((tagId) => getTag(tagId, content))
+    let intro = $derived(truncateText(tool.intro ?? tool.description, 300))
 </script>
 
 <Link
@@ -27,8 +30,8 @@
         <div class="flex h-full max-h-max flex-col justify-between">
             <div>
                 <Heading size={2}>{tool.name}</Heading>
-                <Tags {tags} visible={3} class="pt-2 pr-6" />
-                <Markdown source={intro} class="pt-2 pb-4" />
+                <Tags {tags} visible={3} class="pr-6 pt-2" />
+                <Markdown source={intro} class="pb-4 pt-2" />
             </div>
             <RelevantSkills {tool} {content} visible={4} />
         </div>

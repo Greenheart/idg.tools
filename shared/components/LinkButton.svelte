@@ -1,20 +1,30 @@
-<script lang="ts" context="module">
-    import { onMount } from 'svelte'
+<script lang="ts" module>
+    import { onMount, type Snippet } from 'svelte'
 
-    import { isExternalURL, cx } from '../utils'
+    import { isExternalURL } from '../utils'
     import { variants, defaultVariant, defaultClasses, sizes, defaultSize } from './Button.svelte'
     import Link from './Link.svelte'
 </script>
 
 <script lang="ts">
-    export let variant: keyof typeof variants = defaultVariant
-    export let size: keyof typeof sizes = defaultSize
-    export let disabled: boolean = false
-    let className = ''
-    export { className as class }
+    interface Props {
+        variant?: keyof typeof variants
+        size?: keyof typeof sizes
+        disabled?: boolean
+        class?: string
+        href?: string
+        children?: Snippet
+    }
 
-    export let href = ''
-    let additionalProps: object = {}
+    let {
+        variant = defaultVariant,
+        size = defaultSize,
+        disabled = false,
+        class: className = '',
+        href = '',
+        children,
+    }: Props = $props()
+    let additionalProps: object = $state({})
     onMount(() => {
         if (isExternalURL(href)) {
             additionalProps = {
@@ -29,14 +39,14 @@
 <Link
     {href}
     unstyled
-    class={cx(
+    class={[
         defaultClasses,
         variants[disabled ? 'disabled' : variant],
         disabled ? 'pointer-events-none' : '',
         sizes[size],
         className,
-    )}
+    ]}
     {...additionalProps}
 >
-    <slot />
+    {@render children?.()}
 </Link>

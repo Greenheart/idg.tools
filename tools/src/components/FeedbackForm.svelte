@@ -2,11 +2,11 @@
     import { Button, Link } from '$shared/components'
     import { GITHUB_ISSUES_LINK } from '$shared/constants'
 
-    let expanded = false
-    let submitted = false
-    let description = ''
-    let liked = ''
-    let improve = ''
+    let expanded = $state(false)
+    let submitted = $state(false)
+    let description = $state('')
+    let liked = $state('')
+    let improve = $state('')
 </script>
 
 {#if submitted}
@@ -17,7 +17,9 @@
     <form
         method="POST"
         class="grid space-y-2 text-black"
-        on:submit|preventDefault={async () => {
+        onsubmit={async (event) => {
+            event.preventDefault()
+
             submitted = true
             await fetch('/api/feedback', {
                 method: 'POST',
@@ -30,11 +32,11 @@
             name="description"
             bind:value={description}
             class="absolute -left-full p-2 shadow-md"
-        />
+        ></textarea>
         <label for="liked" class="font-bold">What do you like about this tool?</label>
-        <textarea name="liked" bind:value={liked} class="p-2 shadow-md" />
+        <textarea name="liked" bind:value={liked} class="p-2 shadow-md"></textarea>
         <label for="improve" class="font-bold">What can be improved for this tool?</label>
-        <textarea name="improve" bind:value={improve} class="p-2 shadow-md" />
+        <textarea name="improve" bind:value={improve} class="p-2 shadow-md"></textarea>
 
         <p class="py-4 text-sm">
             Please note that your feedback will be public on <Link
@@ -52,6 +54,6 @@
     </form>
 {:else}
     <div class="flex justify-center">
-        <Button on:click={() => (expanded = true)}>Give feedback on this tool</Button>
+        <Button onclick={() => (expanded = true)}>Give feedback on this tool</Button>
     </div>
 {/if}

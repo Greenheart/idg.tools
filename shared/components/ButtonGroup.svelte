@@ -1,16 +1,20 @@
 <script lang="ts">
-    import { cx } from '../utils'
+    import { type Snippet } from 'svelte'
 
     const breakpoints = {
         xs: 'xs:grid-cols-2 xs:max-w-max sm:place-content-start',
         sm: 'sm:grid-cols-2 sm:max-w-max sm:place-content-start',
     }
 
-    export let breakpoint: keyof typeof breakpoints = 'xs'
-    let className = ''
-    export { className as class }
+    interface Props {
+        breakpoint?: keyof typeof breakpoints
+        class?: string
+        children?: Snippet
+    }
+
+    let { breakpoint = 'xs', class: className = '', children }: Props = $props()
 </script>
 
-<div class={cx('grid gap-y-2 gap-x-4 whitespace-nowrap', breakpoints[breakpoint], className)}>
-    <slot />
+<div class={['grid gap-x-4 gap-y-2 whitespace-nowrap', breakpoints[breakpoint], className]}>
+    {@render children?.()}
 </div>

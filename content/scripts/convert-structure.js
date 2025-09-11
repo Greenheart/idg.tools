@@ -1,11 +1,8 @@
 import { glob } from 'tinyglobby'
 import { readFile, writeFile, mkdir, rm } from 'fs/promises'
 import { dirname, resolve, basename } from 'path'
-import { fileURLToPath } from 'url'
 
 const collections = ['dimensions', 'skills', 'tags', 'tools', 'stories']
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
 
 /**
  * This script converts selected collections to from working with the `single_files` config option in Netlify CMS.
@@ -15,7 +12,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
  */
 await Promise.all(
     collections.flatMap(async (collection) => {
-        const paths = await glob([resolve(`${__dirname}/../src/${collection}/*.json`)])
+        const paths = await glob([resolve(`${import.meta.dirname}/../src/${collection}/*.json`)])
         return paths.flatMap(async (path) => {
             const translatedContent = await readFile(path, { encoding: 'utf-8' }).then(JSON.parse)
 

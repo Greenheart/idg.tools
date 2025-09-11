@@ -1,17 +1,20 @@
 <script lang="ts">
-    import { cx, getColor } from '$lib/utils'
+    import { getColor } from '$lib/utils'
     import { getSkill } from '$shared/content-utils'
     import type { IDGRelevancy, Skill } from '$shared/types'
     import RelevancyScore from './RelevancyScore.svelte'
 
-    export let skills: Skill[]
-    export let relevancy: IDGRelevancy[]
-    let className = ''
-    export { className as class }
+    interface Props {
+        skills: Skill[]
+        relevancy: IDGRelevancy[]
+        class?: string
+    }
+
+    let { skills, relevancy, class: className = '' }: Props = $props()
 
     let [mostRelevant, remaining] = [relevancy.slice(0, 5), relevancy.slice(5).length]
 
-    let visibleSkills = mostRelevant
+    let visibleSkills = $state(mostRelevant)
     function showAll() {
         visibleSkills = relevancy
     }
@@ -25,10 +28,10 @@
 
             <div class="flex items-center justify-between gap-4">
                 <span
-                    class={cx(
+                    class={[
                         'overflow-hidden text-ellipsis whitespace-nowrap px-2 py-1 font-semibold',
                         color,
-                    )}
+                    ]}
                 >
                     {skill.name}
                 </span>
@@ -38,7 +41,7 @@
     </div>
 
     {#if visibleSkills.length < relevancy.length}
-        <button class="text-collaborating mt-4 font-semibold underline" on:click={showAll}>
+        <button class="text-collaborating mt-4 font-semibold underline" onclick={showAll}>
             Show {remaining ?? ''} more
         </button>
     {/if}

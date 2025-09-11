@@ -7,7 +7,6 @@ export const GITHUB_ISSUES_LINK = `${GITHUB_LINK}/issues`
 export const FRAMEWORK_LINK = 'https://idg.tools/framework'
 export const IDG_WEBSITE = 'https://innerdevelopmentgoals.org'
 export const IDG_PDF_TOOLKIT = '/assets/221215_IDG_Toolkit_v1.pdf'
-export const IDG_REPORT_PDF = 'https://www.innerdevelopmentgoals.org/s/211201_IDG_Report_Full.pdf'
 export const IDG_CMS_LINK = 'https://cms.idg.community'
 
 export const HUBS_NETWORKS_LINK = 'https://innerdevelopmentgoals.org/get-involved/hubs-networks/'
@@ -18,52 +17,94 @@ export const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365
  * IDEA: Maybe the supported locales could be managed via the CMS?
  * Add it in the CMS, which saves a JSON file with constants
  *
- * NOTE: For now, we can create instructions on how to add a new language
+ * Instructions for how to add a new locale for the IDG framework:
  *
- * Use this list to find native names: https://en.wikipedia.org/wiki/List_of_language_names
- *
- * NOTE: These should be sorted in order with the highest number of speakers at the top.
+ * 1. Find language codes and native names (endonyms) in this list: https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes
+ * 2. Add the language code to the `LOCALES` constant below.
+ * 3. Configure and run the script [`copy-locales.ts`](../content/scripts/copy-locale.ts) to create the initial structure
+ * 4. Stage the initial structure in Git to make it easier to review the diff between the default English content and the actual translations.
+ * 5. Configure the CMS [`index.ts`](../cms/index.ts) to let you quickly translate between the desired locales
+ * 6. Edit via translations via the CMS (or JSON files if you prefer)
+ * 7. Update `FRAMEWORK_AVAILABLE_LOCALES` below to include the translations in the next content build.
+ * 8. Run the content build and refresh http://localhost:5173/framework to see the new locale.
+ * 9. Review the rendered IDG framework translations and compare them side by side with the source translations document.
+ * 10. Stage one file at a time from the content, and review the diffs carefully before committing.
  */
 export const LOCALES = {
+    id: 'Bahasa Indonesia',
+    ca: 'Català',
+    dk: 'Dansk',
+    de: 'Deutsch',
     en: 'English',
-    zh: '中文',
-    hi: 'हिन्दी',
     es: 'Español',
     fr: 'Français',
-    ar: 'لعربية',
-    bn: 'বাংলা ',
-    'pt-BR': 'Português (Brazil)',
-    pt: 'Português',
-    ru: 'Русский',
-    ur: 'اُردُو',
-    id: 'Bahasa Indonesia',
-    de: 'Deutsch',
-    ja: '日本',
-    te: 'తెలుగు',
-    tr: 'Türkçe',
-    ta: 'தமிழ்',
-    ko: '한국어',
     it: 'Italiano',
     nl: 'Nederlands',
-    sv: 'Svenska',
-    dk: 'Dansk',
+    'pt-BR': 'Português (Brazil)',
+    pt: 'Português',
     fi: 'Suomi',
+    sv: 'Svenska',
+    tr: 'Türkçe',
+    ru: 'Русский',
+    uk: 'Українська',
+    ur: 'اُردُو',
+    ar: 'لعربية',
+    wo: 'وࣷلࣷفْ (Wolof)',
+    hi: 'हिन्दी',
+    bn: 'বাংলা',
+    ta: 'தமிழ்',
+    te: 'తెలుగు',
+    ko: '한국어',
+    ja: '日本語',
+    'zh-CN': '简体中文',
+    'zh-TW': '繁體中文',
 }
+
+/**
+ * Controls which locales are enabled for the IDG Framework.
+ * Update this when new translations become available.
+ * IDEA: This could be added to a `Settings` collection in the CMS to allow publishing new IDG framework translations via the CMS.
+ */
+export const FRAMEWORK_AVAILABLE_LOCALES: Locale[] = [
+    'en',
+    'es',
+    'nl',
+    'ca',
+    'uk',
+    'sv',
+    'pt',
+    'pt-BR',
+    'it',
+    'fi',
+    'ja',
+    'dk',
+    'de',
+    'fr',
+    'zh-CN',
+    'zh-TW',
+    'tr',
+    'wo',
+]
 
 export const LOCALE_DIRECTIONS: Record<Locale, 'rtl' | 'ltr'> = (
     Object.keys(LOCALES) as Locale[]
 ).reduce(
     (result, locale) => {
+        // TODO: Add more rtl locales here
         const RTL_LOCALES = ['ar', 'ur']
         result[locale] = RTL_LOCALES.includes(locale) ? 'rtl' : 'ltr'
         return result
     },
-    {} as unknown as Record<Locale, 'rtl' | 'ltr'>,
+    {} as Record<Locale, 'rtl' | 'ltr'>,
 )
 
 export const LOCALE_IDENTIFIERS = Object.keys(LOCALES) as Locale[]
-export const DEFAULT_LOCALE_IDENTIFIER = 'en'
+export const DEFAULT_LOCALE_IDENTIFIER: Locale = 'en'
 
+/**
+ * Map ID:s of dimensions and skills to dimensionSlugs, which in turn are mapped to actual colors.
+ * This object should include all skills and dimensions.
+ */
 export const COLORS: Record<Dimension['id'] | Skill['id'], keyof typeof IDG_COLORS_RGB> = {
     ckzi3855r0086e2n0smi0mew5: 'being',
     ckzi3a4z90431e2n04kx2pbq2: 'being',

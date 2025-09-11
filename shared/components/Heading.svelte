@@ -1,8 +1,8 @@
-<script lang="ts" context="module">
-    import { cx } from '../utils'
+<script lang="ts" module>
+    import { type Snippet } from 'svelte'
 
     const sizes = [1, 2, 3, 4, 5, 6] as const
-    type Size = typeof sizes[number]
+    type Size = (typeof sizes)[number]
 
     const classes: Record<Size, string> = {
         1: 'text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold',
@@ -15,13 +15,23 @@
 </script>
 
 <script lang="ts">
-    export let size: Size = 2
-    let className = ''
-    export { className as class }
-    export let id: string | undefined = undefined
-    export let tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' = `h${size}`
+    interface Props {
+        size?: Size
+        class?: string
+        id?: string | undefined
+        tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+        children?: Snippet
+    }
+
+    let {
+        size = 2,
+        class: className = '',
+        id = undefined,
+        tag = `h${size}`,
+        children,
+    }: Props = $props()
 </script>
 
-<svelte:element this={tag} class={cx(classes[size], className)} {id}>
-    <slot />
+<svelte:element this={tag} class={[classes[size], className]} {id}>
+    {@render children?.()}
 </svelte:element>

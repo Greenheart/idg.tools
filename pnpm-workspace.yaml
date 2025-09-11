@@ -4,3 +4,10 @@ packages:
     - cms
     - content
     - shared
+
+onlyBuiltDependencies:
+    - '@sveltejs/kit'
+    - '@tailwindcss/oxide'
+    - esbuild
+    - iframe-resizer
+    - sharp

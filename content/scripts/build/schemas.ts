@@ -19,7 +19,9 @@ export const SCHEMAS = {
     tags: baseItem,
     skills: item.extend({
         dimension: z.string(),
-        questions: z.array(z.string()),
+        // NOTE: Disable loading questions until we use it somewhere
+        // This reduces the size of data to load onthe webpage
+        // questions: z.array(z.string()),
     }),
     dimensions: item.extend({
         subtitle: z.string(),

@@ -1,13 +1,15 @@
 <script lang="ts">
-    import { cx, getColor, onKeydown } from '$lib/utils'
+    import { getColor, onKeydown } from '$lib/utils'
     import type { Dimension } from '$shared/types'
-    import { selectedDimensions } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
 
     const toggleDimension = (dimensionId: Dimension['id']) => {
-        if ($selectedDimensions.includes(dimensionId)) {
-            $selectedDimensions = $selectedDimensions.filter((id) => id !== dimensionId)
+        if (globalState.selectedDimensions.includes(dimensionId)) {
+            globalState.selectedDimensions = globalState.selectedDimensions.filter(
+                (id) => id !== dimensionId,
+            )
         } else {
-            $selectedDimensions = [...$selectedDimensions, dimensionId]
+            globalState.selectedDimensions = [...globalState.selectedDimensions, dimensionId]
         }
     }
 
@@ -17,33 +19,35 @@
         lg: { element: 'px-2 py-1', wrapper: 'text-sm xs:text-base gap-3' },
     }
 
-    export let size: keyof typeof sizes = 'sm'
-    export let interactive = false
-    export let dimensions: Dimension[]
-    let className = ''
-    export { className as class }
+    interface Props {
+        size?: keyof typeof sizes
+        interactive?: boolean
+        dimensions: Dimension[]
+        class?: string
+    }
+
+    let { size = 'sm', interactive = false, dimensions, class: className = '' }: Props = $props()
 
     const renderAs = interactive ? 'button' : 'span'
 </script>
 
-<div
-    class={cx('flex select-none flex-wrap items-start text-black', sizes[size].wrapper, className)}
->
+<div class={['flex select-none flex-wrap items-start text-black', sizes[size].wrapper, className]}>
     {#each dimensions as dimension (dimension.name)}
         {@const color = getColor(dimension.id)}
+        <!-- svelte-ignore a11y_no_static_element_interactions (false positive since only the button element will be interactive) -->
         <svelte:element
             this={renderAs}
-            on:click={interactive ? () => toggleDimension(dimension.id) : () => {}}
-            on:keydown={interactive ? onKeydown(() => toggleDimension(dimension.id)) : () => {}}
-            class={cx(
+            onclick={interactive ? () => toggleDimension(dimension.id) : () => {}}
+            onkeydown={interactive ? onKeydown(() => toggleDimension(dimension.id)) : () => {}}
+            class={[
                 interactive
-                    ? $selectedDimensions.includes(dimension.id)
+                    ? globalState.selectedDimensions.includes(dimension.id)
                         ? 'cursor-pointer'
-                        : 'cursor-pointer bg-opacity-50'
+                        : `cursor-pointer ${color}/50`
                     : '',
                 color,
                 sizes[size].element,
-            )}
+            ]}
         >
             {dimension.name}
         </svelte:element>

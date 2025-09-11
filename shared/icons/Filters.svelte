@@ -1,8 +1,9 @@
 <script lang="ts">
-    import { cx } from '../utils'
+    interface Props {
+        class?: string
+    }
 
-    let className = ''
-    export { className as class }
+    let { class: className = '' }: Props = $props()
 </script>
 
 <svg
@@ -11,7 +12,8 @@
     viewBox="0 0 24 24"
     stroke-width="1.5"
     stroke="currentColor"
-    class={cx('h-6 w-6', className)}
+    class={['h-6 w-6', className]}
+    aria-hidden="true"
 >
     <path
         stroke-linecap="round"

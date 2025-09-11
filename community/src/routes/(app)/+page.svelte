@@ -5,8 +5,12 @@
     import { FRAMEWORK_LINK, HUBS_NETWORKS_LINK } from '$shared/constants'
     import Stories from '$components/Stories.svelte'
 
-    export let data: PageData
-    $: ({ content } = data)
+    interface Props {
+        data: PageData
+    }
+
+    let { data }: Props = $props()
+    let { content } = $derived(data)
 </script>
 
 <Meta />

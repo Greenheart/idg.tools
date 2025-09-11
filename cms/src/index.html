@@ -1,8 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
         <meta charset="utf-8" />
         <title>IDG Community CMS</title>
+        <link rel="icon" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
     </head>
     <body>
         <div id="app"></div>
@@ -13,6 +15,7 @@
             /*
              * Hide logo section during page load.
              * NOTE: This needs to be the first rule in this style tag in order to work.
+             * This is because we call `CSSStyleSheet.deleteRule(0)` to delete this rule once our custom logo has been loaded.
              * See `index.ts` for more details
              */
             #nc-root section {
@@ -32,6 +35,15 @@
             /* Always schow the scrollbar to work around the jumping layout when changing between pages */
             html {
                 overflow-y: scroll;
+            }
+
+            /* Override colors for IDG Framework entries to make them easier to distinguish */
+            .idg-framework ul[class*='CardsGrid'] a:not(:hover) > h2 {
+                color: #fff;
+            }
+
+            .idg-framework ul[class*='CardsGrid'] a:hover {
+                color: #000;
             }
         </style>
         <script type="module" src="./index.ts"></script>

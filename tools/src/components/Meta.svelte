@@ -9,22 +9,32 @@
         TAGLINE,
     } from '$lib/constants'
 
-    export let title: string | undefined = ''
+    interface Props {
+        title?: string | undefined
+        description?: string | undefined
+        url?: string | undefined
+        images?: OpenGraph['images']
+    }
+
+    let {
+        title = '',
+        description = DEFAULT_DESCRIPTION,
+        url = BASE_URL,
+        images = [
+            {
+                url: DEFAULT_OG_IMAGE,
+                width: 1200,
+                height: 630,
+            },
+            {
+                url: DEFAULT_OG_IMAGE_SQUARE,
+                width: 1000,
+                height: 1000,
+            },
+        ],
+    }: Props = $props()
+
     const formattedTitle = title ? `${title} | ${TAGLINE}` : `${TAGLINE}`
-    export let description: string | undefined = DEFAULT_DESCRIPTION
-    export let url: string | undefined = BASE_URL
-    export let images: OpenGraph['images'] = [
-        {
-            url: DEFAULT_OG_IMAGE,
-            width: 1200,
-            height: 736,
-        },
-        {
-            url: DEFAULT_OG_IMAGE_SQUARE,
-            width: 1000,
-            height: 1000,
-        },
-    ]
 </script>
 
 <MetaTags

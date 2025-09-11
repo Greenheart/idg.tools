@@ -10,7 +10,8 @@ type Item = {
 
 export type Skill = Item & {
     dimension: ItemId
-    questions: string[]
+    // NOTE: questions are rdisabled to match `content/scripts/build/schemas.ts`
+    // questions: string[]
 }
 
 export type Dimension = Item & {
@@ -87,12 +88,7 @@ export type IDGColorMap = {
 export type Tag = { id: ItemId; name: string }
 
 export type Locale = keyof typeof LOCALES
-
 export type Localised<T> = Partial<Record<Locale, T>>
-
-// TODO: Figure out the best way to type this
-// export type SupportedLocales = Partial<Record<Locale, string>>
-// export type SupportedLocales = Localised<string>
 export type SupportedLocales = Partial<typeof LOCALES>
 
 export type IDGSymbols = Record<Skill['id'] | Dimension['id'], string[]>

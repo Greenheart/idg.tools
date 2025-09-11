@@ -1,23 +1,24 @@
 <script lang="ts">
-    import type { Skill, Dimension, IDGSymbols } from '../types'
+    import type { IDGSymbols } from '../types'
 
-    let className = ''
-    export { className as class }
-    export let style = ''
+    interface Props {
+        class?: string
+        style?: string
+        'aria-label': string
+        symbolPaths: IDGSymbols[keyof IDGSymbols]
+    }
 
-    export let id: Skill['id'] | Dimension['id']
-    export let symbols: IDGSymbols
+    let { symbolPaths, ...props }: Props = $props()
 </script>
 
 <svg
+    {...props}
     xmlns="http://www.w3.org/2000/svg"
     fill="currentColor"
     stroke="currentColor"
     viewBox="0 0 198.43 198.43"
-    class={className}
-    {style}
 >
-    {#each symbols[id] as path}
+    {#each symbolPaths as path}
         <path d={path} />
     {/each}
 </svg>

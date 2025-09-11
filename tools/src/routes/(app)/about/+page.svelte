@@ -1,11 +1,6 @@
 <script>
     import { Divider, Heading, Link } from '$shared/components'
-    import {
-        FRAMEWORK_LINK,
-        GITHUB_LINK,
-        HUBS_NETWORKS_LINK,
-        IDG_PDF_TOOLKIT,
-    } from '$shared/constants'
+    import { GITHUB_LINK, HUBS_NETWORKS_LINK, IDG_PDF_TOOLKIT } from '$shared/constants'
 </script>
 
 <Heading size={1} class="text-collaborating">About the IDG Toolkit</Heading>
@@ -18,20 +13,17 @@
         faced by humanity.
     </p>
     <p class="mt-4">
-        The <Link href={FRAMEWORK_LINK} variant="black">IDG framework</Link> describes the collective
-        inner skills needed to deal with complex global challenges, such as the Sustainable Development
-        Goals. The IDG Toolkit aims to be a library of useful methods and approaches to practice these
-        skills.
+        The <Link href="/framework" variant="black">IDG framework</Link> describes the collective inner
+        skills needed to deal with complex global challenges, such as the Sustainable Development Goals.
+        The IDG Toolkit aims to be a library of useful methods and approaches to practice these skills.
     </p>
     <p class="mt-4">
         This is the public beta version of the IDG Toolkit. It is primarily based on the <Link
             href={IDG_PDF_TOOLKIT}
             variant="black">IDG Phase 2 Research Report</Link
-        >, and research from <Link href="https://29k.org" variant="black">29k</Link>. We invite you
-        <!-- TODO: Replace the span with link to contributing guide specifically for the toolkit -->
-        to both <span>help improve and expand this open source toolkit</span>, and join the growing
-        worldwide <Link href={HUBS_NETWORKS_LINK} variant="black">IDG community</Link> coming together
-        to work on inner development for sustainable development.
+        >. We invite you to both help improve and expand this open source toolkit, and join the
+        growing worldwide <Link href={HUBS_NETWORKS_LINK} variant="black">IDG community</Link> coming
+        together to work on inner development for sustainable development.
     </p>
 </div>
 

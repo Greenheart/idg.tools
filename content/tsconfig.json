@@ -2,8 +2,8 @@
     "compilerOptions": {
         "moduleResolution": "node",
         "module": "esnext",
-        "lib": ["es2020", "DOM"],
-        "target": "es2020",
+        "lib": ["ESNext", "DOM"],
+        "target": "ES2020",
         "isolatedModules": true,
         "resolveJsonModule": true,
         "strict": true,
@@ -15,7 +15,9 @@
         "paths": {
             "$shared": ["../shared"],
             "$shared/*": ["../shared/*"]
-        }
+        },
+        "noEmit": true,
+        "allowImportingTsExtensions": true
     },
     "include": ["scripts/**/*.ts"]
 }

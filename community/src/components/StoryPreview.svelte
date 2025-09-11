@@ -5,16 +5,20 @@
     import { Heading, Link, Picture } from '$shared/components'
     import Tags from './Tags.svelte'
 
-    export let story: Story
-    export let content: CommunityContent
+    interface Props {
+        story: Story
+        content: CommunityContent
+    }
 
-    $: intro = truncateText(story.intro ?? story.story, 300)
+    let { story, content }: Props = $props()
+
+    let intro = $derived(truncateText(story.intro ?? story.story, 300))
 
     let tags = story.tags.map((tagId) => getTag(tagId, content))
 </script>
 
 <Link href={`/stories/${story.link}`} variant="black" unstyled class="group grid p-2">
-    <div class="grid aspect-[3/2] overflow-hidden shadow-md">
+    <div class="grid aspect-3/2 overflow-hidden shadow-md">
         <Picture
             src={story.image}
             alt={story.imageAlt}
@@ -24,7 +28,7 @@
             loading="lazy"
         />
     </div>
-    <Heading class="pt-3 pb-2 group-hover:underline">{story.title}</Heading>
+    <Heading class="pb-2 pt-3 group-hover:underline">{story.title}</Heading>
     <div class="flex items-center pb-2">
         <span>{new Date(story.publishedAt).toLocaleDateString('sv-SE')}</span>
         {#if tags.length}

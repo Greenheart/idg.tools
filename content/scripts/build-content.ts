@@ -1,8 +1,8 @@
 import type { CommunityContent, Locale, Localised, ToolsContent } from '$shared/types'
-import { dirname, resolve } from 'path'
-import { fileURLToPath } from 'url'
+import { resolve } from 'path'
 import { BuilderInput, BUILDERS } from './build/builders'
 import { BUNDLE_LOADERS } from './build/loaders'
+import { FRAMEWORK_AVAILABLE_LOCALES } from '$shared/constants'
 
 type Bundle<T> = {
     load: <T>(builderInput: BuilderInput<T>) => Promise<Localised<T>>
@@ -51,31 +51,14 @@ const BUNDLES = {
 type BundleName = keyof typeof BUNDLES
 const BUNDLE_NAMES = Object.keys(BUNDLES) as BundleName[]
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const contentDir = resolve(__dirname, '../src')
-
-// TODO: Document how to update the selected Locales that should be published.
-// At the moment this is important for adding new translations of the IDG framework.
-const SELECTED_LOCALES: Locale[] = [
-    'en',
-    'es',
-    'nl',
-    'sv',
-    'pt',
-    'pt-BR',
-    'it',
-    'fi',
-    'ja',
-    'dk',
-    'de',
-    'fr',
-]
+const contentDir = resolve(import.meta.dirname, '../src')
 
 async function runBundle(selectedBundle: BundleName) {
     const bundle = BUNDLES[selectedBundle]
     const input = {
-        // TODO: Temporarily only build EN content for community since we don't use other locales there yet.
-        selectedLocales: selectedBundle === 'tools' ? SELECTED_LOCALES : (['en'] as Locale[]),
+        // NOTE: Temporarily only build EN content for community since we don't use other locales there yet.
+        selectedLocales:
+            selectedBundle === 'tools' ? FRAMEWORK_AVAILABLE_LOCALES : (['en'] as Locale[]),
         contentDir,
         selectedContent: bundle.selectedContent,
     }

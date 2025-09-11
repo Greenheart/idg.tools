@@ -1,7 +1,8 @@
-<script lang="ts" context="module">
-    import { onMount } from 'svelte'
+<script lang="ts" module>
+    import { onMount, type Snippet } from 'svelte'
+    import type { HTMLAnchorAttributes } from 'svelte/elements'
 
-    import { cx, isExternalURL } from '../utils'
+    import { isExternalURL } from '../utils'
 
     export const variants = {
         orange: 'text-collaborating',
@@ -14,20 +15,34 @@
 </script>
 
 <script lang="ts">
-    export let href = ''
-    let className = ''
-    export { className as class }
-    export let variant: keyof typeof variants = defaultVariant
-    export let unstyled = false
-    export let tabindex: number | undefined = undefined
-    export let title: string | undefined = undefined
+    interface Props {
+        href?: string
+        class?: string
+        variant?: keyof typeof variants
+        unstyled?: boolean
+        tabindex?: number | undefined
+        title?: string | undefined
+        /**
+         * Disable scrolling on navigation. This only makes sense for internal links.
+         */
+        noScroll?: boolean
+        onclick?: HTMLAnchorAttributes['onclick']
+        children?: Snippet
+    }
 
-    /**
-     * Disable scrolling on navigation. This only makes sense for internal links.
-     */
-    export let noScroll: boolean = false
+    let {
+        href = '',
+        class: className = '',
+        variant = defaultVariant,
+        unstyled = false,
+        tabindex = undefined,
+        title = undefined,
+        noScroll = false,
+        onclick,
+        children,
+    }: Props = $props()
 
-    let additionalProps: object
+    let additionalProps = $state({})
     onMount(() => {
         if (isExternalURL(href)) {
             additionalProps = {
@@ -41,10 +56,15 @@
             }
         }
     })
-
-    $: classes = unstyled ? className : cx(defaultClasses, variants[variant], className)
 </script>
 
-<a {href} {tabindex} {title} class={classes} {...additionalProps} on:click>
-    <slot />
+<a
+    {href}
+    {tabindex}
+    {title}
+    class={unstyled ? className : [defaultClasses, variants[variant], className]}
+    {...additionalProps}
+    {onclick}
+>
+    {@render children?.()}
 </a>

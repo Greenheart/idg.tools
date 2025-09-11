@@ -1,13 +1,13 @@
 <script lang="ts">
-    import { cx, onKeydown } from '$lib/utils'
+    import { onKeydown } from '$lib/utils'
     import type { Tag } from '$shared/types'
-    import { selectedTags } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
 
     const toggleTag = (tagId: Tag['id']) => {
-        if ($selectedTags.includes(tagId)) {
-            $selectedTags = $selectedTags.filter((id) => id !== tagId)
+        if (globalState.selectedTags.includes(tagId)) {
+            globalState.selectedTags = globalState.selectedTags.filter((id) => id !== tagId)
         } else {
-            $selectedTags = [...$selectedTags, tagId]
+            globalState.selectedTags = [...globalState.selectedTags, tagId]
         }
     }
 
@@ -17,35 +17,45 @@
         lg: { tag: 'px-2 py-1', wrapper: 'text-sm xs:text-base gap-3' },
     }
 
-    export let size: keyof typeof sizes = 'sm'
-    export let inverted: boolean = false
-    export let interactive = false
-    export let tags: Tag[]
-    export let visible: number = tags.length
-    let className = ''
-    export { className as class }
+    interface Props {
+        size?: keyof typeof sizes
+        inverted?: boolean
+        interactive?: boolean
+        tags: Tag[]
+        visible?: number
+        class?: string
+    }
+
+    let {
+        size = 'sm',
+        inverted = false,
+        interactive = false,
+        tags,
+        visible = tags.length,
+        class: className = '',
+    }: Props = $props()
 
     const renderAs = interactive ? 'button' : 'span'
 </script>
 
 <!-- IDEA: Potentially split this component into a rendering component with various variants, and one separate for the logic -->
 
-<div class={cx('flex select-none flex-wrap items-start', sizes[size].wrapper, className)}>
+<div class={['flex select-none flex-wrap items-start', sizes[size].wrapper, className]}>
     {#each tags.slice(0, visible) as tag (tag.name)}
-        <!-- svelte-ignore a11y-no-static-element-interactions (false positive since only the button element will be interactive) -->
+        <!-- svelte-ignore a11y_no_static_element_interactions (false positive since only the button element will be interactive) -->
         <svelte:element
             this={renderAs}
-            on:click={interactive ? () => toggleTag(tag.id) : null}
-            on:keydown={interactive ? onKeydown(() => toggleTag(tag.id)) : null}
-            class={cx(
+            onclick={interactive ? () => toggleTag(tag.id) : null}
+            onkeydown={interactive ? onKeydown(() => toggleTag(tag.id)) : null}
+            class={[
                 sizes[size].tag,
                 inverted ? 'bg-white text-black' : 'bg-black text-white',
                 interactive
-                    ? $selectedTags.includes(tag.id)
+                    ? globalState.selectedTags.includes(tag.id)
                         ? 'cursor-pointer bg-white shadow-xl'
                         : 'cursor-pointer bg-stone-100 shadow-md'
                     : '',
-            )}
+            ]}
         >
             {tag.name}
         </svelte:element>

@@ -12,11 +12,14 @@ export const content = _content[DEFAULT_LOCALE_IDENTIFIER] as unknown as ToolsCo
 export const getContent = (locale?: string) =>
     _content[getLocale(locale) as unknown as keyof typeof _content] as unknown as ToolsContent
 
-export const getSupportedLocales = () =>
-    (Object.keys(_content) as Locale[]).reduce<Partial<Record<Locale, string>>>(
-        (supportedLocales, locale) => {
-            supportedLocales[locale] = LOCALES[locale]
-            return supportedLocales
-        },
-        {},
-    )
+const getSupportedLocales = () => {
+    const supported = Object.keys(_content) as Locale[]
+
+    return supported.reduce<Partial<typeof LOCALES>>((supportedLocales, locale) => {
+        supportedLocales[locale] = LOCALES[locale]
+        return supportedLocales
+    }, {})
+}
+
+// Cache result since it won't change unless `_content` changes
+export const supportedLocales = getSupportedLocales()

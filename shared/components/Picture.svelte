@@ -1,20 +1,40 @@
 <script lang="ts">
-    import { cx } from '../utils'
-
     type ImageSource = Pick<HTMLSourceElement, 'srcset'> & {
         type: 'image/webp' | 'image/jpeg' | 'image/png'
     }
 
-    let className = ''
+    type Props = {
+        class?: string
+        /**
+         * Only used by `@humanspeak/svelte-markdown` to pass image src
+         */
+        href?: string | undefined
+        src?: string
+        sources?: ImageSource[]
+        loading?: HTMLImageElement['loading']
+        /*
+         * Only used when by `svelte-markdown` to render alt fallback
+         */
+        text?: string | undefined
+        alt?: string
+        title?: string | undefined
+        // NOTE: We might need to specify width and height when rendering images through `svelte-markdown`. Not sure.
+        width: number | undefined
+        height: number | undefined
+    }
 
-    /**
-     * Only used by `svelte-markdown` to pass image src
-     */
-    export let href: string | undefined = undefined
-
-    export let src: string = href
-    export let sources: ImageSource[] = []
-    export let loading: HTMLImageElement['loading'] = 'eager'
+    let {
+        class: className = '',
+        href = undefined,
+        src = href,
+        sources = [],
+        loading = 'eager',
+        text = undefined,
+        alt = text,
+        title = undefined,
+        width,
+        height,
+    }: Props = $props()
 
     // Render fallback images even if `sources` are not explicitly defined.
     // This happens when images are rendered by `svelte-markdown` which can only handle one image by default.
@@ -27,17 +47,6 @@
 
     // Always fallback to a well-supported format
     const fallbackSrc = src.replace(/\.webp$/, '.jpg')
-
-    /*
-     * Only used when by `svelte-markdown` to render alt fallback
-     */
-    export let text: string | undefined = undefined
-    export let alt: string = text
-    export let title: string | undefined = undefined
-    // NOTE: We might need to specify width and height when rendering images through `svelte-markdown`. Not sure.
-    export let width: number | undefined
-    export let height: number | undefined
-    export { className as class }
 </script>
 
 <picture>
@@ -49,7 +58,7 @@
         {width}
         {height}
         {title}
-        class={cx('shadow-md', className)}
+        class={['shadow-md', className]}
         alt={alt ?? text}
         {loading}
     />

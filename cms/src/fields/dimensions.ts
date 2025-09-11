@@ -1,7 +1,6 @@
 import { CustomCmsField, DESCRIPTION, ID, NAME } from './shared'
 
 export const DimensionsFields: CustomCmsField[] = [
-    ID,
     NAME,
     {
         label: 'Subtitle',
@@ -23,4 +22,5 @@ export const DimensionsFields: CustomCmsField[] = [
         max: 23,
         options_length: 23,
     },
+    ID,
 ]

@@ -1,43 +1,52 @@
 <script lang="ts">
-    import { Button, Heading, Link, Divider } from '$shared/components'
+    import { Button, Heading, Divider } from '$shared/components'
     import StoryPreview from './StoryPreview.svelte'
     import Tags from './Tags.svelte'
     import { getMostRelevantStories } from '$shared/content-utils'
-    import { selectedTags, selectedDimensions } from '$lib/stores'
+    import { globalState } from '$lib/global-state.svelte'
     import type { CommunityContent } from '$shared/types'
     // import Dimensions from './Dimensions.svelte'
-    // import StoryFilters from './StoryFilters.svelte'
 
-    export let content: CommunityContent
+    interface Props {
+        // import StoryFilters from './StoryFilters.svelte'
+        content: CommunityContent
+    }
 
-    let visibleItems = 10
+    let { content }: Props = $props()
 
-    $: stories = (
-        $selectedTags.length || $selectedDimensions.length
-            ? getMostRelevantStories(content, $selectedTags, $selectedDimensions)
+    let visibleItems = $state(10)
+
+    let stories = $derived(
+        (globalState.selectedTags.length || globalState.selectedDimensions.length
+            ? getMostRelevantStories(
+                  content,
+                  globalState.selectedTags,
+                  globalState.selectedDimensions,
+              )
             : content.stories
-    ).slice(0, visibleItems)
+        ).slice(0, visibleItems),
+    )
 
     const showMore = () => {
         visibleItems += 10
     }
 
     const resetFilters = () => {
-        $selectedTags = []
-        $selectedDimensions = []
+        globalState.selectedTags = []
+        globalState.selectedDimensions = []
     }
 </script>
 
 <div class="pt-16">
     <Heading id="stories" size={1} tag="h2">Featured stories</Heading>
 
-    <p class="pt-4 pb-2">Select tags to filter:</p>
+    <p class="pb-2 pt-4">Select tags to filter:</p>
     <Tags tags={content.tags} size="md" interactive inverted class="pb-4" />
 
     <!-- <StoryFilters tags={content.tags} dimensions={content.dimensions} /> -->
 
     <!-- <p class="my-2 text-sm">
-        {#if $selectedTags.length || $selectedDimensions.length}Showing {stories.length}/{content
+        {#if state.selectedTags.length || state.selectedDimensions.length}Showing {stories.length}/{content
                 .stories.length} stories.{/if}
         Select tags to filter:
     </p>
@@ -45,7 +54,7 @@
     <div class="relative mb-4 bg-white p-4 text-base text-black">
         <div class="flex flex-wrap items-center justify-between">
             <p class="font-bold">Select filters</p>
-            <Button on:click={resetFilters} size="md" class="text-xs" variant="inverted"
+            <Button onclick={resetFilters} size="md" class="text-xs" variant="inverted"
                 >Clear filters</Button
             >
         </div>
@@ -72,7 +81,7 @@
         </p>
 
         {#if visibleItems < content.stories.length}
-            <Button on:click={showMore}>Show more</Button>
+            <Button onclick={showMore}>Show more</Button>
         {/if}
     </div>
 

@@ -5,13 +5,9 @@
     "type": "module",
     "svelte": "components/index.js",
     "dependencies": {
-        "@rgossiaux/svelte-headlessui": "^2.0.0",
-        "dompurify": "^3.1.6",
-        "svelte": "^4.2.19",
-        "svelte-markdown": "^0.4.1",
-        "svelte-typeahead": "^4.4.1"
-    },
-    "devDependencies": {
-        "@types/dompurify": "^3.0.5"
+        "@humanspeak/svelte-markdown": "^0.8.11",
+        "bits-ui": "^2.9.6",
+        "svelte": "^5.38.9",
+        "svelte-typeahead": "^5.0.0"
     }
 }

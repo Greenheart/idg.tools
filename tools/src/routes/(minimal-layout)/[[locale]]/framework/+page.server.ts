@@ -1,17 +1,13 @@
 import { error, redirect } from '@sveltejs/kit'
-import { getContent, getSupportedLocales } from '$lib/content-backend'
-import type { EntryGenerator, PageServerLoad } from './$types'
+import { getContent, supportedLocales } from '$lib/content-backend'
 import { getRawLocale, getRedirectURL } from '$shared/utils'
 import { ONE_YEAR_SECONDS } from '$shared/constants'
 
-const supportedLocales = getSupportedLocales()
-
-export const entries = (() =>
-    Object.keys(supportedLocales).map((locale) => ({ locale }))) satisfies EntryGenerator
+export const entries = () => Object.keys(supportedLocales).map((locale) => ({ locale }))
 
 export const prerender = 'auto'
 
-export const load = (async ({ params, url, setHeaders }) => {
+export const load = async ({ params, url, setHeaders }) => {
     const rawLocale = getRawLocale(url.pathname)
     const redirectURL = getRedirectURL(url.pathname, rawLocale)
 
@@ -32,4 +28,4 @@ export const load = (async ({ params, url, setHeaders }) => {
     }
 
     error(500)
-}) satisfies PageServerLoad
+}

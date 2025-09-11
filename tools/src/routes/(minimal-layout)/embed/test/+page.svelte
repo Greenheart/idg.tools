@@ -6,7 +6,7 @@
         iFrameResize(
             {
                 // log: true,
-                checkOrigin: ['http://localhost:5173'],
+                checkOrigin: ['http://localhost:5173', 'http://localhost:4173'],
                 inPageLinks: true,
             },
             '#idg-framework',
@@ -19,6 +19,8 @@
 </svelte:head>
 
 <iframe id="idg-framework" src="/embed/framework#collaborating" title="IDG Framework"></iframe>
+
+<!-- <iframe id="idg-framework" src="/embed/framework" title="IDG Framework"></iframe> -->
 
 <style>
     #idg-framework {

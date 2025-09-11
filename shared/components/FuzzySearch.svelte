@@ -2,10 +2,14 @@
     import Typeahead from 'svelte-typeahead'
     import Search from '../icons/Search.svelte'
 
-    export let data: any
-    export let extract: (item: any) => any
-    export let goto: (url: string) => Promise<void>
-    export let preloadData: (href: string) => Promise<any>
+    interface Props {
+        data: any
+        extract: (item: any) => any
+        goto: (url: string) => Promise<void>
+        preloadData: (href: string) => Promise<any>
+    }
+
+    let { data, extract, goto, preloadData }: Props = $props()
 
     const label = 'Search tools...'
 </script>
@@ -19,7 +23,7 @@
         {label}
         placeholder={label}
         hideLabel
-        class="!h-full max-w-[240px] !border-0 !bg-white !pr-4 !pl-10 shadow-md !outline-offset-0 sm:max-w-[300px]"
+        class="!h-full max-w-[240px] !border-0 !bg-white !pl-10 !pr-4 shadow-md !outline-offset-0 sm:max-w-[300px]"
         inputAfterSelect="clear"
         on:select={async ({ detail }) => {
             // Preload data to ensure the navigation can happen smoothly.
@@ -38,7 +42,7 @@
 
     :global([data-svelte-typeahead] ul.svelte-typeahead-list) {
         z-index: 50 !important;
-        background: var(--lightGray) !important;
+        background: var(--light-gray) !important;
     }
 
     :global([data-svelte-search]) {

@@ -4,16 +4,20 @@
     import Resources from '$components/Resources.svelte'
     import Tags from '$components/Tags.svelte'
 
-    import { page } from '$app/stores'
+    import { page } from '$app/state'
 
     import type { PageData } from './$types'
     import Meta from '$components/Meta.svelte'
     import { truncateText } from '$shared/utils'
-    export let data: PageData
-    $: ({ tool, skills, tags } = data)
-    $: intro = truncateText(tool.intro ?? tool.description, 300)
+    interface Props {
+        data: PageData
+    }
 
-    const url = $page.url.toString()
+    let { data }: Props = $props()
+    let { tool, skills, tags } = $derived(data)
+    let intro = $derived(truncateText(tool.intro ?? tool.description, 300))
+
+    const url = page.url.toString()
 </script>
 
 <Meta title={tool.name} description={intro} {url} />
@@ -25,7 +29,7 @@
 <Tags {tags} visible={3} class="pt-4" inverted size="md" />
 
 {#if tool.intro}
-    <Markdown source={tool.intro} class="pt-8 !text-2xl" />
+    <Markdown source={tool.intro} class="text-2xl! pt-8" />
 {/if}
 
 <Divider class="my-8" />
@@ -37,11 +41,11 @@
     <Markdown source={tool.actions} formatting="limited" />
 </div>
 
-<Heading class="pt-8 pb-2">Most relevant skills</Heading>
+<Heading class="pb-2 pt-8">Most relevant skills</Heading>
 <DetailedRelevantSkills {skills} relevancy={tool.relevancy} />
 
 {#if tool.resources}
-    <Heading class="pt-8 pb-2">Research and resources</Heading>
+    <Heading class="pb-2 pt-8">Research and resources</Heading>
     <Resources {tool} />
 {/if}
 

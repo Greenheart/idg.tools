@@ -7,24 +7,25 @@
 
     import { goto, preloadData } from '$app/navigation'
     import type { Tag, Tool, ToolsContent } from '$shared/types'
-    import { listenForScroll, selectedSkills, selectedTags } from '$lib/stores'
-    import { cx } from '$shared/utils'
+    import { globalState } from '$lib/global-state.svelte'
 
     const resetFilters = () => {
-        $selectedSkills = []
-        $selectedTags = []
+        globalState.selectedSkills.current = []
+        globalState.selectedTags.current = []
     }
 
     const toggleTag = (tagId: Tag['id']) => {
-        $listenForScroll = false
+        globalState.listenForScroll = false
         // NOTE: Instead of recreating the array all the time, this might benefit from using a JS Set
-        if ($selectedTags.includes(tagId)) {
-            $selectedTags = $selectedTags.filter((id) => id !== tagId)
+        if (globalState.selectedTags.current.includes(tagId)) {
+            globalState.selectedTags.current = globalState.selectedTags.current.filter(
+                (id) => id !== tagId,
+            )
         } else {
-            $selectedTags = [...$selectedTags, tagId]
+            globalState.selectedTags.current = [...globalState.selectedTags.current, tagId]
         }
         setTimeout(() => {
-            $listenForScroll = true
+            globalState.listenForScroll = true
         }, 100)
     }
 
@@ -34,10 +35,14 @@
     // IDEA: Check out the search/filter implementation for https://github.com/Greenheart/reconnect.earth
     const extract = (tool: Tool) => tool.name
 
-    export let content: ToolsContent
-    export let mostRelevantTools: Tool[]
+    interface Props {
+        content: ToolsContent
+        mostRelevantTools: Tool[]
+    }
 
-    let advancedFilters = false
+    let { content, mostRelevantTools }: Props = $props()
+
+    let advancedFilters = $state(false)
 </script>
 
 <div class="toolbar grid grid-cols-2 pb-3">
@@ -46,7 +51,7 @@
     <Button
         size="sm"
         class="xs:rounded-none xs:px-4 flex items-center gap-2 justify-self-end rounded-full"
-        on:click={() => {
+        onclick={() => {
             advancedFilters = !advancedFilters
         }}><Filters /> <span class="xs:inline hidden">Filters</span></Button
     >
@@ -59,12 +64,12 @@
                     <Button
                         size="sm"
                         unstyled
-                        on:click={() => toggleTag(tag.id)}
-                        class={cx(
-                            'xs:text-base transform-gpu bg-white text-sm !font-normal duration-100',
-                            !$selectedTags.includes(tag.id) &&
-                                'bg-opacity-50 shadow-lg hover:bg-opacity-75',
-                        )}>{tag.name}</Button
+                        onclick={() => toggleTag(tag.id)}
+                        class={[
+                            'xs:text-base font-normal! transform-gpu bg-white text-sm duration-100',
+                            !globalState.selectedTags.current.includes(tag.id) &&
+                                'bg-white/50 shadow-lg hover:bg-white/75',
+                        ]}>{tag.name}</Button
                     >
                 {/each}
             </div>
@@ -76,7 +81,7 @@
             <VisibleToolsCount {mostRelevantTools} allToolsCount={content.tools.length} />
         </span>
         <Button
-            on:click={resetFilters}
+            onclick={resetFilters}
             unstyled
             size="sm"
             class="px-0 text-sm underline disabled:opacity-70"
