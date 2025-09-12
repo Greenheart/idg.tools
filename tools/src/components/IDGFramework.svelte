@@ -64,16 +64,16 @@
         // HACK: Render the actual tab if we have lockedDimensions, which are
         // parsed from the URL hash on the client side. This causes a state
         // mismatch between the SSR Tabs and the CSR Tabs.
-        // To work around this, we reassign the selected tab to force it to update
+        // This workaround ensures the desired tab is shown correctly even when the dimension is locked
         // NOTE: This could be a bug in bits-ui. Tabs content becomes blank when Tabs.Root value is different during SSR and set during CSR.
         if (lockedDimension) {
-            const before = selectedDimensionSlug
-            selectedDimensionSlug = 'being'
-            // Ensure the update has been applied
-            await tick()
-            mounted = true
-            selectedDimensionSlug = before
+            const desiredTab = document.querySelector(
+                `[data-tabs-content][data-value='${selectedDimensionSlug}']`,
+            ) as HTMLDivElement
+            desiredTab.removeAttribute('hidden')
+            desiredTab.dataset.state = 'active'
         }
+        mounted = true
     })
 </script>
 
@@ -207,7 +207,6 @@
                             {@const hoverClasses = `hover:bg-white hover:text-black hover:outline-solid hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`}
                             {@const activeClasses = `bg-white text-black outline-solid outline-${dimensionSlug} outline-1 -outline-offset-1`}
                             {@const isSelected = selectedSkill?.id === skill.id}
-                            <!-- TODO: Convert to Accordion to improve accessibility -->
                             <div class="relative grid">
                                 <button
                                     class={[

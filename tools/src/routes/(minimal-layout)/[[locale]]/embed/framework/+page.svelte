@@ -26,17 +26,6 @@
 <svelte:body use:bodyClass={'bg-white'} />
 
 <div class="xs:px-2">
-    <!--
-    NOTE: We need to wait for the client-side mounting before rendering, to make it possible to show another default tab than the first one.
-
-    This is because we use the URL hash to determine the selected dimension, which is not available during SSR.$$render
-    When the lockedDimension starts as undefined on the server and then is set on the client side,
-    this causes the bits-ui tab component to not show any of the tabs
-
-    NOTE: This might be a bug in the bits-ui Tabs component
-
-    IDEA: An alternative might be to manually remove the hidden attribute on the desired tab after mount?
-    -->
     <IDGFramework
         {dimensions}
         {skills}
