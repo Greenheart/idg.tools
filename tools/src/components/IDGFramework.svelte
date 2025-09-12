@@ -24,6 +24,7 @@
         Skill,
         SupportedLocales,
     } from '$shared/types'
+    import { onMount, tick } from 'svelte'
 
     interface Props {
         skills: Skill[]
@@ -57,9 +58,31 @@
      * Even though this is a derived value, it can also be overwritten by selecting other skills within the dimension
      */
     let selectedSkill = $derived<Skill>(getSkill(selectedDimension.skills[0], { skills }))
+    let mounted = $state(false)
+
+    onMount(async () => {
+        // HACK: Render the actual tab if we have lockedDimensions, which are
+        // parsed from the URL hash on the client side. This causes a state
+        // mismatch between the SSR Tabs and the CSR Tabs.
+        // To work around this, we reassign the selected tab to force it to update
+        // NOTE: This could be a bug in bits-ui. Tabs content becomes blank when Tabs.Root value is different during SSR and set during CSR.
+        if (lockedDimension) {
+            const before = selectedDimensionSlug
+            selectedDimensionSlug = 'being'
+            // Ensure the update has been applied
+            await tick()
+            mounted = true
+            selectedDimensionSlug = before
+        }
+    })
 </script>
 
-<div class="max-w-(--breakpoint-xl) relative mx-auto min-h-[700px] bg-white">
+<div
+    class={[
+        'max-w-(--breakpoint-xl) relative mx-auto min-h-[700px] bg-white',
+        !mounted && 'invisible',
+    ]}
+>
     <div class="h-full text-base">
         <div class="flex justify-end p-2">
             <LocaleSwitcher

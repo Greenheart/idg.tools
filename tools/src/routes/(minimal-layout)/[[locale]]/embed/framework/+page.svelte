@@ -5,7 +5,6 @@
     import { parseDimensionSlug } from '$shared/content-utils'
     import { browser } from '$app/environment'
     import { bodyClass } from '$shared/utils'
-    import { IsMounted } from 'runed'
 
     let { data } = $props()
 
@@ -13,8 +12,6 @@
     const dimensions = $derived(page && data.dimensions)
     const skills = $derived(page && data.skills)
     const symbols = $derived(page && data.symbols)
-
-    let mounted = new IsMounted()
 
     const lockedDimension = $derived(
         browser ? parseDimensionSlug(page.url.hash.toLowerCase().replace('#', '')) : undefined,
@@ -40,15 +37,13 @@
 
     IDEA: An alternative might be to manually remove the hidden attribute on the desired tab after mount?
     -->
-    {#if mounted.current}
-        <IDGFramework
-            {dimensions}
-            {skills}
-            {symbols}
-            pathname={page.url.pathname}
-            {lockedDimension}
-            currentLocale={page.params.locale}
-            supportedLocales={data.supportedLocales}
-        />
-    {/if}
+    <IDGFramework
+        {dimensions}
+        {skills}
+        {symbols}
+        pathname={page.url.pathname}
+        {lockedDimension}
+        currentLocale={page.params.locale}
+        supportedLocales={data.supportedLocales}
+    />
 </div>
