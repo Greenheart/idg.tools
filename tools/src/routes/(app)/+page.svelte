@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Link, Heading } from '$shared/components'
     import Tools from '$components/Tools.svelte'
-    import { globalState } from '$lib/global-state.svelte'
+    import { persistedState } from '$lib/persisted-state.svelte'
     import type { PageData } from './$types'
     import { getMostRelevantTools } from '$shared/content-utils'
     import Meta from '$components/Meta.svelte'
@@ -17,11 +17,11 @@
     let { content } = $derived(data)
 
     let mostRelevantTools = $derived(
-        globalState.selectedSkills.current.length || globalState.selectedTags.current.length
+        persistedState.selectedSkills.current.length || persistedState.selectedTags.current.length
             ? getMostRelevantTools(
                   content,
-                  globalState.selectedSkills.current,
-                  globalState.selectedTags.current,
+                  persistedState.selectedSkills.current,
+                  persistedState.selectedTags.current,
               )
             : content.tools,
     )

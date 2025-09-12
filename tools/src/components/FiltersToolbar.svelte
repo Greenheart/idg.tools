@@ -8,21 +8,22 @@
     import { goto, preloadData } from '$app/navigation'
     import type { Tag, Tool, ToolsContent } from '$shared/types'
     import { globalState } from '$lib/global-state.svelte'
+    import { persistedState } from '$lib/persisted-state.svelte'
 
     const resetFilters = () => {
-        globalState.selectedSkills.current = []
-        globalState.selectedTags.current = []
+        persistedState.selectedSkills.current = []
+        persistedState.selectedTags.current = []
     }
 
     const toggleTag = (tagId: Tag['id']) => {
         globalState.listenForScroll = false
         // NOTE: Instead of recreating the array all the time, this might benefit from using a JS Set
-        if (globalState.selectedTags.current.includes(tagId)) {
-            globalState.selectedTags.current = globalState.selectedTags.current.filter(
+        if (persistedState.selectedTags.current.includes(tagId)) {
+            persistedState.selectedTags.current = persistedState.selectedTags.current.filter(
                 (id) => id !== tagId,
             )
         } else {
-            globalState.selectedTags.current = [...globalState.selectedTags.current, tagId]
+            persistedState.selectedTags.current = [...persistedState.selectedTags.current, tagId]
         }
         setTimeout(() => {
             globalState.listenForScroll = true
@@ -67,7 +68,7 @@
                         onclick={() => toggleTag(tag.id)}
                         class={[
                             'xs:text-base font-normal! transform-gpu bg-white text-sm duration-100',
-                            !globalState.selectedTags.current.includes(tag.id) &&
+                            !persistedState.selectedTags.current.includes(tag.id) &&
                                 'bg-white/50 shadow-lg hover:bg-white/75',
                         ]}>{tag.name}</Button
                     >

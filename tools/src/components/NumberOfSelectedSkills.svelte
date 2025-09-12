@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Dimension } from '$shared/types'
-    import { globalState } from '$lib/global-state.svelte'
+    import { persistedState } from '$lib/persisted-state.svelte'
 
     interface Props {
         skillsInDimension: Dimension['skills']
@@ -11,7 +11,7 @@
     let selectedInDimension = $derived(
         skillsInDimension.reduce(
             (count, skill) =>
-                globalState.selectedSkills.current.some((s) => s === skill) ? count + 1 : count,
+                persistedState.selectedSkills.current.some((s) => s === skill) ? count + 1 : count,
             0,
         ),
     )

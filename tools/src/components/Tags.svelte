@@ -1,15 +1,15 @@
 <script lang="ts">
     import { onKeydown } from '$lib/utils'
     import type { Tag } from '$shared/types'
-    import { globalState } from '$lib/global-state.svelte'
+    import { persistedState } from '$lib/persisted-state.svelte'
 
     const toggleTag = (tagId: Tag['id']) => {
-        if (globalState.selectedTags.current.includes(tagId)) {
-            globalState.selectedTags.current = globalState.selectedTags.current.filter(
+        if (persistedState.selectedTags.current.includes(tagId)) {
+            persistedState.selectedTags.current = persistedState.selectedTags.current.filter(
                 (id) => id !== tagId,
             )
         } else {
-            globalState.selectedTags.current = [...globalState.selectedTags.current, tagId]
+            persistedState.selectedTags.current = [...persistedState.selectedTags.current, tagId]
         }
     }
 
@@ -42,7 +42,7 @@
 
 <div class={['flex select-none flex-wrap items-start', sizes[size].wrapper, className]}>
     {#each tags.slice(0, visible) as tag (tag.name)}
-        {@const isSelected = globalState.selectedTags.current.includes(tag.id)}
+        {@const isSelected = persistedState.selectedTags.current.includes(tag.id)}
         <!-- svelte-ignore a11y_no_static_element_interactions (false positive since only the button element will be interactive) -->
         <svelte:element
             this={renderAs}

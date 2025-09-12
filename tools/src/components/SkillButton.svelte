@@ -2,16 +2,20 @@
     import { Button } from '$shared/components'
     import type { Skill } from '$shared/types'
     import { globalState } from '$lib/global-state.svelte'
+    import { persistedState } from '$lib/persisted-state.svelte'
 
     const toggleSkill = (skillId: Skill['id']) => {
         globalState.listenForScroll = false
         // NOTE: Instead of recreating the array all the time, this might benefit from using a JS Set
-        if (globalState.selectedSkills.current.includes(skillId)) {
-            globalState.selectedSkills.current = globalState.selectedSkills.current.filter(
+        if (persistedState.selectedSkills.current.includes(skillId)) {
+            persistedState.selectedSkills.current = persistedState.selectedSkills.current.filter(
                 (id) => id !== skillId,
             )
         } else {
-            globalState.selectedSkills.current = [...globalState.selectedSkills.current, skillId]
+            persistedState.selectedSkills.current = [
+                ...persistedState.selectedSkills.current,
+                skillId,
+            ]
         }
         setTimeout(() => {
             globalState.listenForScroll = true
@@ -32,7 +36,7 @@
     unstyled
     class={[
         'xs:text-base font-normal! transform-gpu bg-white text-sm duration-100',
-        !globalState.selectedSkills.current.includes(skill.id) &&
+        !persistedState.selectedSkills.current.includes(skill.id) &&
             'bg-white/50 shadow-lg hover:bg-white/75',
         className,
     ]}>{skill.name}</Button

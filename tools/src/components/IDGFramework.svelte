@@ -24,7 +24,7 @@
         Skill,
         SupportedLocales,
     } from '$shared/types'
-    import { onMount, tick } from 'svelte'
+    import { onMount } from 'svelte'
 
     interface Props {
         skills: Skill[]

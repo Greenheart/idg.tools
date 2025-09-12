@@ -8,6 +8,7 @@
     import ToolPreview from './ToolPreview.svelte'
     import { Button } from '$shared/components'
     import VisibleToolsCount from './VisibleToolsCount.svelte'
+    import { persistedState } from '$lib/persisted-state.svelte'
 
     interface Props {
         mostRelevantTools: Tool[]
@@ -19,8 +20,8 @@
     // export let reduceMotion: boolean
 
     const showAll = () => {
-        globalState.selectedSkills.current = []
-        globalState.selectedTags.current = []
+        persistedState.selectedSkills.current = []
+        persistedState.selectedTags.current = []
     }
 
     const showMore = () => {
@@ -70,7 +71,7 @@
         <VisibleToolsCount {mostRelevantTools} allToolsCount={content.tools.length} />
         {#if globalState.visibleItems < mostRelevantTools.length}
             <Button onclick={showMore}>Show more</Button>
-        {:else if mostRelevantTools.length && (globalState.selectedSkills.current.length || globalState.selectedTags.current.length)}
+        {:else if mostRelevantTools.length && (persistedState.selectedSkills.current.length || persistedState.selectedTags.current.length)}
             <Button onclick={showAll}>Show all tools</Button>
         {/if}
     </div>

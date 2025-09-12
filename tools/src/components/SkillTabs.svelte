@@ -12,6 +12,7 @@
     import { Button, Link, Heading } from '$shared/components'
     import { Info } from '$shared/icons'
     import { browser } from '$app/environment'
+    import { persistedState } from '$lib/persisted-state.svelte'
 
     interface Props {
         content: ToolsContent
@@ -90,18 +91,18 @@
     const toggleSkills = async (skills: Skill['id'][]) => {
         globalState.listenForScroll = false
         const alreadySelected = skills.filter((skillId) =>
-            globalState.selectedSkills.current.includes(skillId),
+            persistedState.selectedSkills.current.includes(skillId),
         )
 
         // Select all if not all skills are yet selected
         if (alreadySelected.length < skills.length) {
-            globalState.selectedSkills.current = [
-                ...globalState.selectedSkills.current,
+            persistedState.selectedSkills.current = [
+                ...persistedState.selectedSkills.current,
                 ...skills.filter((skillId) => !alreadySelected.includes(skillId)),
             ]
         } else {
             // Unselect all if everything is already selected
-            globalState.selectedSkills.current = globalState.selectedSkills.current.filter(
+            persistedState.selectedSkills.current = persistedState.selectedSkills.current.filter(
                 (skillId) => !alreadySelected.includes(skillId),
             )
         }
