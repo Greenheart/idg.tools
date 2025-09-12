@@ -2,6 +2,12 @@
     import { Tabs, Accordion } from 'bits-ui'
     import { IsMounted } from 'runed'
 
+    // IDEA: Consider redesigning the framework widget to match the PDF presentations
+    // For example by only using colors for icons and otherwise black text on white background,
+    // which would fix the inaccessible text contrast. This would make the IDG framework much better adapted to a diverse and global audience.
+
+    // TODO: Set correct `dir` for content based on the locale
+
     import Heading from '$shared/components/Heading.svelte'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import {
@@ -42,28 +48,38 @@
         currentLocale,
         supportedLocales,
         pathname,
-        lockedDimension = undefined,
+        lockedDimension,
     }: Props = $props()
 
     // Keep the same selected dimension and skill when the locale changes
     let selectedDimensionIndex = $state(
         lockedDimension ? getDimensionIndexBySlug(lockedDimension) : 0,
     )
-    let selectedSkill = $state<Skill['id'] | null>(null)
+    let selectedSkillId = $state<Skill['id'] | null>(null)
 
     /** The actual currently selected skill */
-    const focusedSkill = $derived.by(() => {
-        const id = selectedSkill ?? dimensions[selectedDimensionIndex].skills[0]
-
+    const selectedSkill = $derived.by(() => {
+        const id = selectedSkillId ?? dimensions[selectedDimensionIndex].skills[0]
         return getSkill(id, { skills })
     })
 
-    // IDEA: Consider redesigning the framework widget to match the PDF presentations
-    // For example by only using colors for icons and otherwise black text on white background,
-    // which would fix the inaccessible text contrast. This would make the IDG framework much better adapted to a diverse and global audience.
+    let initialValue = $derived(
+        lockedDimension ?? getDimensionSlug(dimensions[selectedDimensionIndex].id),
+    )
 
-    // TODO: Set correct `dir` for content based on the locale
+    // pass in prop selectedDimension or default it to the first one
+    // derive selectedDimensionIndex or set to 0
+    // derived selectedSkill default to the first in the dimension but can be overridden
+
+    // IDEA: Maybe derive the selectedDimension from the slug?
+
+    // IDEA: Maybe we need to show the tabs to allow it to select the right one by default?
+    // No it didnt seem like that before
+
+    $inspect(lockedDimension)
 </script>
+
+<!-- TODO: Bug: With a locked dimension, the correct tab is not showing up for some reason -->
 
 <div
     class={[
@@ -81,16 +97,17 @@
         </div>
 
         <Tabs.Root
-            value={lockedDimension ?? getDimensionSlug(dimensions[selectedDimensionIndex].id)}
+            value={getDimensionSlug(dimensions[selectedDimensionIndex].id)}
             onValueChange={(slug) => {
                 const index = getDimensionIndexBySlug(slug as DimensionSlug)!
                 if (index !== selectedDimensionIndex) {
                     selectedDimensionIndex = index
-                    selectedSkill = dimensions[index].skills[0]
+                    selectedSkillId = dimensions[index].skills[0]
                 }
             }}
         >
-            <Tabs.List class={['grid grid-cols-5 text-white', lockedDimension && 'hidden']}>
+            <!-- <Tabs.List class={['grid grid-cols-5 text-white', lockedDimension && 'hidden']}> -->
+            <Tabs.List class={['grid grid-cols-5 text-white']}>
                 {#each dimensions as dimension, i (dimension.name)}
                     {@const dimensionSlug = getDimensionSlug(dimension.id)}
                     {@const isSelected = selectedDimensionIndex === i}
@@ -119,7 +136,6 @@
                 {/each}
             </Tabs.List>
 
-            <!-- TODO: Might need to force the first tab to show -->
             {#each dimensions as dimension, i (dimension.name)}
                 {@const dimensionSlug = getDimensionSlug(dimension.id)}
                 {@const bgColor = getColor(dimension.id, 'bg')}
@@ -204,7 +220,7 @@
                         {#each getSkillsInDimension(dimension.id, { skills }) as skill (skill.name)}
                             {@const hoverClasses = `hover:bg-white hover:text-black hover:outline-solid hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`}
                             {@const activeClasses = `bg-white text-black outline-solid outline-${dimensionSlug} outline-1 -outline-offset-1`}
-                            {@const isSelected = focusedSkill?.id === skill.id}
+                            {@const isSelected = selectedSkill?.id === skill.id}
                             <div class="relative grid">
                                 <button
                                     class={[
@@ -213,7 +229,7 @@
                                         bgColor,
                                         isSelected && activeClasses,
                                     ]}
-                                    onclick={() => (selectedSkill = skill.id)}
+                                    onclick={() => (selectedSkillId = skill.id)}
                                     ><IDGSymbol
                                         symbolPaths={symbols[skill.id]}
                                         aria-label={skill.name}
@@ -239,7 +255,7 @@
                                     textColor,
                                 ]}
                             >
-                                {focusedSkill.name}
+                                {selectedSkill.name}
                             </h3>
                             <div
                                 class={[
@@ -248,13 +264,13 @@
                                 ]}
                             >
                                 <IDGSymbol
-                                    symbolPaths={symbols[focusedSkill.id]}
-                                    aria-label={focusedSkill.name}
+                                    symbolPaths={symbols[selectedSkill.id]}
+                                    aria-label={selectedSkill.name}
                                     class="pointer-events-none h-36 w-36 text-white"
                                 />
                             </div>
                             <p class="py-4 text-black">
-                                {focusedSkill.description}
+                                {selectedSkill.description}
                             </p>
                         </div>
                     </div>
