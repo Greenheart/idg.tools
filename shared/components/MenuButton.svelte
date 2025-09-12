@@ -21,7 +21,7 @@
     </span>
 </button>
 
-<style lang="postcss">
+<style>
     /*!
      * Adapted from Hamburgers (MIT license)
      * @description Tasty CSS-animated hamburgers
@@ -86,8 +86,8 @@
     }
 
     /*
-* Spring
-*/
+     * Spring
+     */
     .hamburger--spring .hamburger-inner {
         top: 2px;
         transition: background-color 0s 0.13s linear;
