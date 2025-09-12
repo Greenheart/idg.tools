@@ -2,7 +2,7 @@
     import { type Snippet } from 'svelte'
 
     import Header from '$components/Header.svelte'
-    import { Link } from '$shared/components'
+    import Link from '$shared/components/Link.svelte'
     import { GITHUB_LINK } from '$shared/constants'
     interface Props {
         children?: Snippet

@@ -2,7 +2,8 @@
     import { Tabs, Accordion } from 'bits-ui'
     import { IsMounted } from 'runed'
 
-    import { Heading, LocaleSwitcher } from '$shared/components'
+    import Heading from '$shared/components/Heading.svelte'
+    import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import {
         getSkillsInDimension,
         getDimensionSlug,
@@ -118,6 +119,7 @@
                 {/each}
             </Tabs.List>
 
+            <!-- TODO: Might need to force the first tab to show -->
             {#each dimensions as dimension, i (dimension.name)}
                 {@const dimensionSlug = getDimensionSlug(dimension.id)}
                 {@const bgColor = getColor(dimension.id, 'bg')}
