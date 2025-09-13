@@ -1,10 +1,13 @@
 <script lang="ts">
     import { Tabs, Accordion } from 'bits-ui'
+    import { onMount } from 'svelte'
     import '../app.css'
 
+    // TODO: Ensure the JSON files can be bundled properly.
+    // Otherwise, turn this into separate ES modules that can be imported to decide which locales you want to support
     import allLocales from '../content.json'
     import allSymbols from '../symbols.json'
-    import type { IDGSymbols, Skill, Locale, WidgetContent } from '$shared/types'
+    import type { IDGSymbols, Skill, Locale, WidgetContent, Dimension } from '$shared/types'
 
     const content = allLocales as Record<Locale, WidgetContent>
     const symbols = allSymbols as IDGSymbols
@@ -34,10 +37,10 @@
         getDimensionSlug,
         getSkill,
         getDimensionBySlug,
+        getDimension,
     } from '$shared/content-utils'
     import { IDGSymbol, ChevronDown } from '$shared/icons'
     import { getColor } from '$shared/utils'
-    import { onMount } from 'svelte'
     import {
         DEFAULT_LOCALE_IDENTIFIER,
         FRAMEWORK_AVAILABLE_LOCALES,
@@ -48,16 +51,36 @@
     let dimensions = $derived(content[locale].dimensions)
     let skills = $derived(content[locale].skills)
 
+    // selectedDimensionId
+    // selectedSkillId
+
+    // if current dimension exists in locale, use it
+    // selectedDimensionId
+
+    let selectedDimensionId = $state<Dimension['id'] | null>(null)
+
     // IDEA: Preserce the selected dimension and skill even when changing locales. This works since we're now on the same page
-    let selectedDimensionSlug = $derived(getDimensionSlug(dimensions[0].id))
+    let selectedDimensionSlug = $derived(
+        getDimensionSlug(
+            selectedDimensionId
+                ? getDimension(selectedDimensionId, { dimensions }).id
+                : dimensions[0].id,
+        ),
+    )
 
     const selectedDimension = $derived(getDimensionBySlug(selectedDimensionSlug, { dimensions }))
 
+    let selectedSkillId = $state<Skill['id'] | null>(null)
     /**
      * Select the first skill by default, or as soon as the dimension changes
      * Even though this is a derived value, it can also be overwritten by selecting other skills within the dimension
      */
-    let selectedSkill = $derived<Skill>(getSkill(selectedDimension.skills[0], { skills }))
+    let selectedSkill = $derived<Skill>(
+        getSkill(selectedSkillId ?? selectedDimension.skills[0], { skills }),
+    )
+
+    // IDEA: See if we can mount the tabs directly by removning the unwanted re-render.
+    // This might be caused by strange state updates
     let mounted = $state(false)
 
     onMount(() => {
