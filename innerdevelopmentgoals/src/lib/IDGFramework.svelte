@@ -28,7 +28,7 @@
 
     // NOTE: Consider Simplifying the heading
     import Heading from './Heading.svelte'
-    import LocaleSwitcher from './LocaleSwitcher.svelte'
+    import LocaleSelector from './LocaleSelector.svelte'
     import {
         getSkillsInDimension,
         getDimensionSlug,
@@ -73,7 +73,7 @@
 >
     <div class="h-full text-base">
         <div class="flex justify-end p-2">
-            <LocaleSwitcher
+            <LocaleSelector
                 {supportedLocales}
                 {locale}
                 onChangeLocale={(selected) => (locale = selected)}
