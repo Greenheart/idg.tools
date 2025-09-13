@@ -2,38 +2,20 @@
     import { Select, type SelectRootProps } from 'bits-ui'
     import { cubicOut } from 'svelte/easing'
 
-    import type { Locale, SupportedLocales } from '../types'
-    import Link from './Link.svelte'
-    import LocaleIcon from '../icons/Locale.svelte'
-    import { getLocalisedPath } from '../utils'
-    import { DEFAULT_LOCALE_IDENTIFIER } from '../constants'
-    import ChevronDown from '../icons/ChevronDown.svelte'
+    import type { Locale, SupportedLocales } from '$shared/types'
+    import LocaleIcon from '$shared/icons/Locale.svelte'
+    import ChevronDown from '$shared/icons/ChevronDown.svelte'
 
     interface Props {
         supportedLocales: SupportedLocales
-        pathname: string
-        currentLocale?: string
-        goto: (url: string) => void
-        browser: boolean
+        currentLocale: Locale
     }
 
-    let {
-        supportedLocales,
-        pathname,
-        currentLocale = DEFAULT_LOCALE_IDENTIFIER,
-        goto,
-        browser,
-    }: Props = $props()
+    let { supportedLocales, currentLocale }: Props = $props()
 
     const locales = Object.entries(supportedLocales)
         .map(([value, label]) => ({ value, label }))
         .sort((a, b) => a.label.localeCompare(b.label)) as { value: Locale; label: string }[]
-
-    let initialLocale = $derived<Locale>(
-        supportedLocales[currentLocale as Locale]
-            ? (currentLocale as Locale)
-            : DEFAULT_LOCALE_IDENTIFIER,
-    )
 
     let selectViewport = $state<HTMLDivElement | null>(null)
 
@@ -55,8 +37,6 @@
         // Most common languages according to https://en.wikipedia.org/wiki/List_of_languages_by_total_number_of_speakers
         // Including zh-TW to show we have both variations
         const mostCommon: Locale[] = ['en', 'zh-CN', 'es', 'fr', 'pt-BR', 'pt', 'de', 'ja', 'zh-TW']
-        if (!browser) return mostCommon
-
         const preferred: Locale[] = []
 
         for (const { value } of locales) {
@@ -104,11 +84,8 @@
 
 <Select.Root
     type="single"
-    value={initialLocale}
+    bind:value={() => currentLocale, (value) => value.replace(recommendedSuffix, '') as Locale}
     items={locales}
-    onValueChange={(value) => {
-        goto(getLocalisedPath(value.replace(recommendedSuffix, '') as Locale, pathname))
-    }}
     onOpenChange={hideViewportDuringScrollReset}
     onOpenChangeComplete={scrollViewportToTop}
 >
@@ -116,7 +93,7 @@
         aria-label="Change language"
         title="Change language"
         class="flex h-10 items-center gap-2 px-2 hover:bg-stone-100"
-        ><LocaleIcon />{supportedLocales[initialLocale]}<ChevronDown /></Select.Trigger
+        ><LocaleIcon />{supportedLocales[currentLocale]}<ChevronDown /></Select.Trigger
     >
     <Select.Portal>
         <Select.Content
@@ -133,35 +110,23 @@
                 <ChevronDown class="!size-4 rotate-180 transform" />
             </Select.ScrollUpButton>
             <Select.Viewport class="invisible max-h-[80vh]" bind:ref={selectViewport}>
-                {#if browser}
-                    {#each recommendedLocales as { value, label }, i (i)}
-                        <Select.Item
-                            value={value + recommendedSuffix}
-                            class="grid hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]_a]:!underline"
-                        >
-                            <Link
-                                href={getLocalisedPath(value, pathname)}
-                                variant="black"
-                                noScroll
-                                class="px-3 py-1 !no-underline">{label}</Link
-                            >
-                        </Select.Item>
-                    {/each}
-                {/if}
+                {#each recommendedLocales as { value, label }, i (i)}
+                    <Select.Item
+                        value={value + recommendedSuffix}
+                        class="grid hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]]:underline"
+                    >
+                        <span class="px-3 py-1">{label}</span>
+                    </Select.Item>
+                {/each}
 
                 <hr class="my-1" />
 
                 {#each locales as { value, label } (value)}
                     <Select.Item
                         {value}
-                        class="grid hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]_a]:!underline"
+                        class="grid hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]]:underline"
                     >
-                        <Link
-                            href={getLocalisedPath(value, pathname)}
-                            variant="black"
-                            noScroll
-                            class="px-3 py-1 !no-underline">{label}</Link
-                        >
+                        <span class="px-3 py-1">{label}</span>
                     </Select.Item>
                 {/each}
             </Select.Viewport>

@@ -6,8 +6,9 @@
 
     const content = allLocales as Record<Locale, WidgetContent>
 
-    import { goto } from '$app/navigation'
-    import { browser } from '$app/environment'
+    // TODO: load dimensions and skills from JSON instead of props
+    // TODO: manage state internally instead of by using links
+    // TODO: replace all svelte-kit and link related code with simple list items
 
     // IDEA: Consider redesigning the framework widget to match the PDF presentations
     // For example by only using colors for icons and otherwise black text on white background,
@@ -15,8 +16,11 @@
 
     // TODO: Set correct `dir` for content based on the locale
 
+    // TODO: add the Inter font, maybe via fontsource
+
+    // TODO: Use a local version of the heading instead
     import Heading from '$shared/components/Heading.svelte'
-    import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
+    import LocaleSwitcher from './LocaleSwitcher.svelte'
     import {
         getSkillsInDimension,
         getDimensionSlug,
@@ -25,39 +29,24 @@
     } from '$shared/content-utils'
     import { IDGSymbol, ChevronDown } from '$shared/icons'
     import { getColor } from '$shared/utils'
-    import type {
-        Dimension,
-        DimensionSlug,
-        IDGSymbols,
-        Skill,
-        SupportedLocales,
-    } from '$shared/types'
+    import type { Dimension, IDGSymbols, Skill, SupportedLocales } from '$shared/types'
     import { onMount } from 'svelte'
+    import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
 
     interface Props {
-        skills: Skill[]
-        dimensions: Dimension[]
         symbols: IDGSymbols
-        currentLocale: string
         supportedLocales: SupportedLocales
-        pathname: string
-        /**
-         * Can be used to lock the framework to only display one specific dimension. Useful for embeds.
-         */
-        lockedDimension?: DimensionSlug | undefined
     }
 
-    let {
-        skills,
-        dimensions,
-        symbols,
-        currentLocale,
-        supportedLocales,
-        pathname,
-        lockedDimension,
-    }: Props = $props()
+    // TODO: Import symbols via JSON
+    // TODO: Import supportedLocales directly to the component
+    let { symbols, supportedLocales }: Props = $props()
 
-    let selectedDimensionSlug = $state(lockedDimension ?? getDimensionSlug(dimensions[0].id))
+    let currentLocale = $state<Locale>(DEFAULT_LOCALE_IDENTIFIER)
+    let dimensions = $derived(content[currentLocale].dimensions)
+    let skills = $derived(content[currentLocale].skills)
+
+    let selectedDimensionSlug = $derived(getDimensionSlug(dimensions[0].id))
 
     const selectedDimension = $derived(getDimensionBySlug(selectedDimensionSlug, { dimensions }))
 
@@ -68,19 +57,7 @@
     let selectedSkill = $derived<Skill>(getSkill(selectedDimension.skills[0], { skills }))
     let mounted = $state(false)
 
-    onMount(async () => {
-        // HACK: Render the actual tab if we have lockedDimensions, which are
-        // parsed from the URL hash on the client side. This causes a state
-        // mismatch between the SSR Tabs and the CSR Tabs.
-        // This workaround ensures the desired tab is shown correctly even when the dimension is locked
-        // NOTE: This could be a bug in bits-ui. Tabs content becomes blank when Tabs.Root value is different during SSR and set during CSR.
-        if (lockedDimension) {
-            const desiredTab = document.querySelector(
-                `[data-tabs-content][data-value='${selectedDimensionSlug}']`,
-            ) as HTMLDivElement
-            desiredTab.removeAttribute('hidden')
-            desiredTab.dataset.state = 'active'
-        }
+    onMount(() => {
         mounted = true
     })
 </script>
@@ -93,17 +70,11 @@
 >
     <div class="h-full text-base">
         <div class="flex justify-end p-2">
-            <LocaleSwitcher
-                {supportedLocales}
-                pathname={lockedDimension ? `${pathname}#${lockedDimension}` : pathname}
-                {currentLocale}
-                {goto}
-                {browser}
-            />
+            <LocaleSwitcher {supportedLocales} {currentLocale} />
         </div>
 
         <Tabs.Root bind:value={selectedDimensionSlug}>
-            <Tabs.List class={['grid grid-cols-5 text-white', lockedDimension && 'hidden']}>
+            <Tabs.List class="grid grid-cols-5 text-white">
                 {#each dimensions as dimension (dimension.name)}
                     {@const dimensionSlug = getDimensionSlug(dimension.id)}
                     {@const isSelected = dimension.id === selectedDimension.id}
