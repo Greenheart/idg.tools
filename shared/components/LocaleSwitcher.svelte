@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Select } from 'bits-ui'
+    import { Select, type SelectRootProps } from 'bits-ui'
     import { cubicOut } from 'svelte/easing'
 
     import type { Locale, SupportedLocales } from '../types'
@@ -35,7 +35,7 @@
             : DEFAULT_LOCALE_IDENTIFIER,
     )
 
-    let selectViewport = $state<HTMLDivElement>()!
+    let selectViewport = $state<HTMLDivElement | null>(null)
 
     function autoScrollDelay(tick: number) {
         const maxDelay = 200
@@ -82,6 +82,24 @@
         value,
         label: supportedLocales[value],
     }))
+
+    const hideViewportDuringScrollReset: SelectRootProps['onOpenChange'] = (open) => {
+        if (!open && selectViewport) {
+            selectViewport.classList.add('invisible')
+        }
+    }
+
+    const scrollViewportToTop: SelectRootProps['onOpenChangeComplete'] = async () => {
+        if (selectViewport) {
+            // We need to wait for the select to render fully
+            await new Promise((r) => setTimeout(r, 10))
+            // Ensure the select is scrolled to the top of the list
+            selectViewport.scrollTop = 0
+            // By making the list invisible, we can work around the fact that the list
+            // is not scrolled to the top during the first render
+            selectViewport.classList.remove('invisible')
+        }
+    }
 </script>
 
 <Select.Root
@@ -91,21 +109,8 @@
     onValueChange={(value) => {
         goto(getLocalisedPath(value.replace(recommendedSuffix, '') as Locale, pathname))
     }}
-    onOpenChange={(open) => {
-        if (!open) {
-            selectViewport.classList.add('invisible')
-        }
-    }}
-    onOpenChangeComplete={async () => {
-        // We need to wait for the select to render fully
-        await new Promise((r) => setTimeout(r, 10))
-
-        // Ensure the select is scrolled to the top of the list
-        selectViewport.scrollTop = 0
-        // By making the list invisible, we can work around the fact that the list
-        // is not scrolled to the top during the first render
-        selectViewport.classList.remove('invisible')
-    }}
+    onOpenChange={hideViewportDuringScrollReset}
+    onOpenChangeComplete={scrollViewportToTop}
 >
     <Select.Trigger
         aria-label="Change language"
@@ -114,7 +119,13 @@
         ><LocaleIcon />{supportedLocales[initialLocale]}<ChevronDown /></Select.Trigger
     >
     <Select.Portal>
-        <Select.Content class="z-30 grid w-48 bg-white text-base drop-shadow" preventScroll={true}>
+        <Select.Content
+            class="z-30 grid w-48 bg-white text-base drop-shadow"
+            strategy="absolute"
+            preventScroll={false}
+            avoidCollisions={false}
+            sticky="always"
+        >
             <Select.ScrollUpButton
                 class="grid cursor-n-resize place-items-center shadow-md"
                 delay={autoScrollDelay}
