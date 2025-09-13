@@ -94,7 +94,7 @@
                         <IDGSymbol
                             symbolPaths={symbols[dimension.id]}
                             aria-label={dimension.name}
-                            class="pointer-events-none h-12 w-12 {isSelected
+                            class="pointer-events-none size-12 {isSelected
                                 ? 'text-white'
                                 : getColor(dimension.id, 'text')}"
                         />
@@ -128,7 +128,7 @@
                         <IDGSymbol
                             symbolPaths={symbols[dimension.id]}
                             aria-label={dimension.name}
-                            class="pointer-events-none mx-auto my-4 h-36 w-36"
+                            class="pointer-events-none mx-auto my-4 size-36"
                         />
                         <p class="p-4 pt-0">{dimension.description}</p>
                     </div>
@@ -151,7 +151,7 @@
                                         <IDGSymbol
                                             symbolPaths={symbols[skill.id]}
                                             aria-label={skill.name}
-                                            class="h-10 w-10 shrink-0 group-hover:!{textColor}"
+                                            class="size-10 shrink-0 group-hover:!{textColor}"
                                         />
                                         <p class="w-full text-balance text-sm">
                                             {skill.name}
@@ -179,7 +179,7 @@
                                         <IDGSymbol
                                             symbolPaths={symbols[skill.id]}
                                             aria-label={skill.name}
-                                            class="pointer-events-none h-36 w-36 text-white"
+                                            class="pointer-events-none size-36 text-white"
                                         />
                                     </div>
                                     <p class="py-4 text-black">
@@ -208,7 +208,7 @@
                                         symbolPaths={symbols[skill.id]}
                                         aria-label={skill.name}
                                         class={[
-                                            `h-10 w-10 shrink-0 group-hover:!${textColor}`,
+                                            `size-10 shrink-0 group-hover:!${textColor}`,
                                             isSelected && textColor,
                                         ]}
                                     />
@@ -240,7 +240,7 @@
                                 <IDGSymbol
                                     symbolPaths={symbols[selectedSkill.id]}
                                     aria-label={selectedSkill.name}
-                                    class="pointer-events-none h-36 w-36 text-white"
+                                    class="pointer-events-none size-36 text-white"
                                 />
                             </div>
                             <p class="py-4 text-black">
