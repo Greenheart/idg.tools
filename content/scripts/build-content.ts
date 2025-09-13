@@ -1,4 +1,10 @@
-import type { CommunityContent, Locale, Localised, ToolsContent } from '$shared/types'
+import type {
+    CommunityContent,
+    Locale,
+    Localised,
+    ToolsContent,
+    WidgetContent,
+} from '$shared/types'
 import { resolve } from 'path'
 import { BuilderInput, BUILDERS } from './build/builders'
 import { BUNDLE_LOADERS } from './build/loaders'
@@ -7,8 +13,9 @@ import { FRAMEWORK_AVAILABLE_LOCALES } from '$shared/constants'
 type Bundle<T> = {
     load: <T>(builderInput: BuilderInput<T>) => Promise<Localised<T>>
     build: <T>(content: Localised<T>, builderInput: BuilderInput<T>) => Promise<void>
-    selectedContent: (keyof T)[]
     watchPaths: string[]
+    selectedContent: (keyof T)[]
+    selectedLocales: Locale[]
 }
 
 function getWatchPaths<T>(selectedContent: (keyof T)[]) {
@@ -25,9 +32,10 @@ function createBundle<T>(
     load: Bundle<T>['load'],
     build: Bundle<T>['build'],
     selectedContent: Bundle<T>['selectedContent'],
+    selectedLocales: Locale[],
 ): Bundle<T> {
     const watchPaths = getWatchPaths<T>(selectedContent)
-    return { load, build, selectedContent, watchPaths }
+    return { load, build, selectedContent, watchPaths, selectedLocales }
 }
 
 /**
@@ -39,13 +47,20 @@ const BUNDLES = {
         BUNDLE_LOADERS.community as any,
         BUILDERS.community as any,
         ['stories', 'contributors', 'dimensions', 'tags', 'featured'],
+        ['en'], // Only build EN content for community since we don't use other locales there yet.
     ),
-    tools: createBundle<ToolsContent>(BUNDLE_LOADERS.tools as any, BUILDERS.tools as any, [
-        'tools',
-        'skills',
-        'dimensions',
-        'tags',
-    ]),
+    tools: createBundle<ToolsContent>(
+        BUNDLE_LOADERS.tools as any,
+        BUILDERS.tools as any,
+        ['tools', 'skills', 'dimensions', 'tags'],
+        FRAMEWORK_AVAILABLE_LOCALES,
+    ),
+    widget: createBundle<WidgetContent>(
+        BUNDLE_LOADERS.widget as any,
+        BUILDERS.widget as any,
+        ['dimensions', 'skills'],
+        FRAMEWORK_AVAILABLE_LOCALES,
+    ),
 }
 
 type BundleName = keyof typeof BUNDLES
@@ -56,9 +71,7 @@ const contentDir = resolve(import.meta.dirname, '../src')
 async function runBundle(selectedBundle: BundleName) {
     const bundle = BUNDLES[selectedBundle]
     const input = {
-        // NOTE: Temporarily only build EN content for community since we don't use other locales there yet.
-        selectedLocales:
-            selectedBundle === 'tools' ? FRAMEWORK_AVAILABLE_LOCALES : (['en'] as Locale[]),
+        selectedLocales: bundle.selectedLocales,
         contentDir,
         selectedContent: bundle.selectedContent,
     }

@@ -12,6 +12,7 @@ import type {
     Tag,
     Tool,
     ToolsContent,
+    WidgetContent,
 } from '$shared/types'
 import { getPaths, readJSON } from '../utils'
 import type { BuilderInput } from './builders'
@@ -78,6 +79,9 @@ export const BUNDLE_LOADERS = {
     },
     tools: (builderInput: BuilderInput<ToolsContent>) => {
         return loadContent<ToolsContent>(builderInput)
+    },
+    widget: (builderInput: BuilderInput<WidgetContent>) => {
+        return loadContent<WidgetContent>(builderInput)
     },
 }
 

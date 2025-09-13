@@ -1,5 +1,11 @@
 import { resolve } from 'path'
-import type { CommunityContent, Locale, Localised, ToolsContent } from '$shared/types'
+import type {
+    CommunityContent,
+    Locale,
+    Localised,
+    ToolsContent,
+    WidgetContent,
+} from '$shared/types'
 import { runAllTransformers, transformContent, TRANSFORMERS } from './transformers'
 import { writeJSON } from '../utils'
 import { VALIDATORS } from './validators'
@@ -116,6 +122,24 @@ export const BUILDERS = {
 
         await writeJSON(
             resolve(builderInput.contentDir, '../../tools/static/content.json'),
+            transformedContent,
+            0,
+        )
+    },
+    async widget(
+        localisedContent: Localised<WidgetContent>,
+        builderInput: BuilderInput<WidgetContent>,
+    ) {
+        const transformedContent = transformContent(
+            localisedContent,
+            (result, [locale, content]) => {
+                result[locale as Locale] = content
+                return result
+            },
+        )
+
+        await writeJSON(
+            resolve(builderInput.contentDir, '../../innerdevelopmentgoals/static/content.json'),
             transformedContent,
             0,
         )
