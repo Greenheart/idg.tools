@@ -56,13 +56,12 @@
         <Tabs.Root bind:value={widgetState.selectedDimensionId}>
             <Tabs.List class="grid grid-cols-5 text-white">
                 {#each widgetState.dimensions as dimension (dimension.id)}
-                    {@const dimensionSlug = getDimensionSlug(dimension.id)}
                     {@const isSelected = dimension.id === widgetState.selectedDimensionId}
                     <Tabs.Trigger
                         value={dimension.id}
                         class="xs:px-2 grid place-items-center py-2 {isSelected
                             ? `${getColor(dimension.id)}`
-                            : `hover:outline-solid bg-white hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
+                            : `hover:outline-solid bg-white hover:outline-1 hover:outline-${getDimensionSlug(dimension.id)} hover:-outline-offset-1`}"
                     >
                         <IDGSymbol
                             symbolPaths={symbols[dimension.id]}
