@@ -14,7 +14,7 @@
 
     let { supportedLocales, locale, onChangeLocale }: Props = $props()
 
-    const locales = Object.entries(supportedLocales)
+    const sortedLocales = Object.entries(supportedLocales)
         .map(([value, label]) => ({ value, label }))
         .sort((a, b) => a.label.localeCompare(b.label)) as { value: Locale; label: string }[]
 
@@ -40,7 +40,7 @@
         const mostCommon: Locale[] = ['en', 'zh-CN', 'es', 'fr', 'pt-BR', 'pt', 'de', 'ja', 'zh-TW']
         const preferred: Locale[] = []
 
-        for (const { value } of locales) {
+        for (const { value } of sortedLocales) {
             // Handle both exact matches and if only the language matches
             if (
                 navigator.languages.some(
@@ -88,7 +88,7 @@
     bind:value={
         () => locale, (value) => onChangeLocale(value.replace(recommendedSuffix, '') as Locale)
     }
-    items={locales}
+    items={sortedLocales}
     onOpenChange={hideViewportDuringScrollReset}
     onOpenChangeComplete={scrollViewportToTop}
 >
@@ -118,7 +118,7 @@
 
                 <hr class="my-1" />
 
-                {#each locales as { value, label } (value)}
+                {#each sortedLocales as { value, label } (value)}
                     <Select.Item
                         {value}
                         class="grid hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]]:underline"
