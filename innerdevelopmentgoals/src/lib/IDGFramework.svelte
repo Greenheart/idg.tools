@@ -44,10 +44,11 @@
         LOCALES,
     } from '$shared/constants'
 
-    let currentLocale = $state<Locale>(DEFAULT_LOCALE_IDENTIFIER)
-    let dimensions = $derived(content[currentLocale].dimensions)
-    let skills = $derived(content[currentLocale].skills)
+    let locale = $state<Locale>(DEFAULT_LOCALE_IDENTIFIER)
+    let dimensions = $derived(content[locale].dimensions)
+    let skills = $derived(content[locale].skills)
 
+    // IDEA: Preserce the selected dimension and skill even when changing locales. This works since we're now on the same page
     let selectedDimensionSlug = $derived(getDimensionSlug(dimensions[0].id))
 
     const selectedDimension = $derived(getDimensionBySlug(selectedDimensionSlug, { dimensions }))
@@ -72,7 +73,11 @@
 >
     <div class="h-full text-base">
         <div class="flex justify-end p-2">
-            <LocaleSwitcher {supportedLocales} {currentLocale} />
+            <LocaleSwitcher
+                {supportedLocales}
+                {locale}
+                onChangeLocale={(selected) => (locale = selected)}
+            />
         </div>
 
         <Tabs.Root bind:value={selectedDimensionSlug}>

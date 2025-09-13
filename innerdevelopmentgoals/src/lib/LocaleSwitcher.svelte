@@ -8,10 +8,11 @@
 
     interface Props {
         supportedLocales: SupportedLocales
-        currentLocale: Locale
+        locale: Locale
+        onChangeLocale: (locale: Locale) => void
     }
 
-    let { supportedLocales, currentLocale }: Props = $props()
+    let { supportedLocales, locale, onChangeLocale }: Props = $props()
 
     const locales = Object.entries(supportedLocales)
         .map(([value, label]) => ({ value, label }))
@@ -84,7 +85,9 @@
 
 <Select.Root
     type="single"
-    bind:value={() => currentLocale, (value) => value.replace(recommendedSuffix, '') as Locale}
+    bind:value={
+        () => locale, (value) => onChangeLocale(value.replace(recommendedSuffix, '') as Locale)
+    }
     items={locales}
     onOpenChange={hideViewportDuringScrollReset}
     onOpenChangeComplete={scrollViewportToTop}
@@ -93,16 +96,10 @@
         aria-label="Change language"
         title="Change language"
         class="flex h-10 items-center gap-2 px-2 hover:bg-stone-100"
-        ><LocaleIcon />{supportedLocales[currentLocale]}<ChevronDown /></Select.Trigger
+        ><LocaleIcon />{supportedLocales[locale]}<ChevronDown /></Select.Trigger
     >
     <Select.Portal>
-        <Select.Content
-            class="z-30 grid w-48 bg-white text-base drop-shadow"
-            strategy="absolute"
-            preventScroll={false}
-            avoidCollisions={false}
-            sticky="always"
-        >
+        <Select.Content class="z-30 grid w-48 bg-white text-base drop-shadow">
             <Select.ScrollUpButton
                 class="grid cursor-n-resize place-items-center shadow-md"
                 delay={autoScrollDelay}
