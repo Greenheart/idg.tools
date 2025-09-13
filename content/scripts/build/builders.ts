@@ -11,7 +11,7 @@ import { writeJSON } from '../utils'
 import { VALIDATORS } from './validators'
 
 export type BuilderInput<T> = {
-    selectedLocales: Locale[]
+    selectedLocales: readonly Locale[]
     contentDir: string
     selectedContent: (keyof T)[]
 }
@@ -139,7 +139,7 @@ export const BUILDERS = {
         )
 
         await writeJSON(
-            resolve(builderInput.contentDir, '../../innerdevelopmentgoals/static/content.json'),
+            resolve(builderInput.contentDir, '../../innerdevelopmentgoals/src/content.json'),
             transformedContent,
             0,
         )

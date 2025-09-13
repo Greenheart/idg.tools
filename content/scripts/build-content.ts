@@ -15,7 +15,7 @@ type Bundle<T> = {
     build: <T>(content: Localised<T>, builderInput: BuilderInput<T>) => Promise<void>
     watchPaths: string[]
     selectedContent: (keyof T)[]
-    selectedLocales: Locale[]
+    selectedLocales: readonly Locale[]
 }
 
 function getWatchPaths<T>(selectedContent: (keyof T)[]) {
@@ -32,7 +32,7 @@ function createBundle<T>(
     load: Bundle<T>['load'],
     build: Bundle<T>['build'],
     selectedContent: Bundle<T>['selectedContent'],
-    selectedLocales: Locale[],
+    selectedLocales: readonly Locale[],
 ): Bundle<T> {
     const watchPaths = getWatchPaths<T>(selectedContent)
     return { load, build, selectedContent, watchPaths, selectedLocales }
