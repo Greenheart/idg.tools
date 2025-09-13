@@ -7,21 +7,10 @@
     // Otherwise, turn this into separate ES modules that can be imported to decide which locales you want to support
     import allLocales from '../content.json'
     import allSymbols from '../symbols.json'
-    import type { IDGSymbols, Skill, Locale, WidgetContent, Dimension } from '$shared/types'
+    import type { IDGSymbols, Locale, WidgetContent } from '$shared/types'
 
     const content = allLocales as Record<Locale, WidgetContent>
     const symbols = allSymbols as IDGSymbols
-
-    function getSupportedLocales() {
-        const supported = Object.keys(content) as (typeof FRAMEWORK_AVAILABLE_LOCALES)[number][]
-
-        return supported.reduce<Partial<typeof LOCALES>>((supportedLocales, locale) => {
-            supportedLocales[locale] = LOCALES[locale]
-            return supportedLocales
-        }, {})
-    }
-
-    const supportedLocales = getSupportedLocales()
 
     // IDEA: Consider redesigning the framework widget to match the PDF presentations
     // For example by only using colors for icons and otherwise black text on white background,
@@ -32,52 +21,13 @@
     // NOTE: Consider Simplifying the heading
     import Heading from './Heading.svelte'
     import LocaleSelector from './LocaleSelector.svelte'
-    import {
-        getSkillsInDimension,
-        getDimensionSlug,
-        getSkill,
-        getDimensionBySlug,
-        getDimension,
-    } from '$shared/content-utils'
+    import { getSkillsInDimension, getDimensionSlug } from '$shared/content-utils'
     import { IDGSymbol, ChevronDown } from '$shared/icons'
     import { getColor } from '$shared/utils'
-    import {
-        DEFAULT_LOCALE_IDENTIFIER,
-        FRAMEWORK_AVAILABLE_LOCALES,
-        LOCALES,
-    } from '$shared/constants'
+    import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
+    import { IDGFrameworkState } from './idg-framework.svelte'
 
-    let locale = $state<Locale>(DEFAULT_LOCALE_IDENTIFIER)
-    let dimensions = $derived(content[locale].dimensions)
-    let skills = $derived(content[locale].skills)
-
-    // selectedDimensionId
-    // selectedSkillId
-
-    // if current dimension exists in locale, use it
-    // selectedDimensionId
-
-    let selectedDimensionId = $state<Dimension['id'] | null>(null)
-
-    // IDEA: Preserce the selected dimension and skill even when changing locales. This works since we're now on the same page
-    let selectedDimensionSlug = $derived(
-        getDimensionSlug(
-            selectedDimensionId
-                ? getDimension(selectedDimensionId, { dimensions }).id
-                : dimensions[0].id,
-        ),
-    )
-
-    const selectedDimension = $derived(getDimensionBySlug(selectedDimensionSlug, { dimensions }))
-
-    let selectedSkillId = $state<Skill['id'] | null>(null)
-    /**
-     * Select the first skill by default, or as soon as the dimension changes
-     * Even though this is a derived value, it can also be overwritten by selecting other skills within the dimension
-     */
-    let selectedSkill = $derived<Skill>(
-        getSkill(selectedSkillId ?? selectedDimension.skills[0], { skills }),
-    )
+    const widgetState = new IDGFrameworkState(DEFAULT_LOCALE_IDENTIFIER, content)
 
     // IDEA: See if we can mount the tabs directly by removning the unwanted re-render.
     // This might be caused by strange state updates
@@ -97,19 +47,19 @@
     <div class="h-full text-base">
         <div class="flex justify-end p-2">
             <LocaleSelector
-                {supportedLocales}
-                {locale}
-                onChangeLocale={(selected) => (locale = selected)}
+                supportedLocales={widgetState.supportedLocales}
+                locale={widgetState.locale}
+                onChangeLocale={(selected) => (widgetState.locale = selected)}
             />
         </div>
 
-        <Tabs.Root bind:value={selectedDimensionSlug}>
+        <Tabs.Root bind:value={widgetState.selectedDimensionId}>
             <Tabs.List class="grid grid-cols-5 text-white">
-                {#each dimensions as dimension (dimension.name)}
+                {#each widgetState.dimensions as dimension (dimension.id)}
                     {@const dimensionSlug = getDimensionSlug(dimension.id)}
-                    {@const isSelected = dimension.id === selectedDimension.id}
+                    {@const isSelected = dimension.id === widgetState.selectedDimensionId}
                     <Tabs.Trigger
-                        value={dimensionSlug}
+                        value={dimension.id}
                         class="xs:px-2 grid place-items-center py-2 {isSelected
                             ? `${getColor(dimension.id)}`
                             : `hover:outline-solid bg-white hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
@@ -133,12 +83,15 @@
                 {/each}
             </Tabs.List>
 
-            {#each dimensions as dimension, i (dimension.name)}
+            {#each widgetState.dimensions as dimension, i (dimension.id)}
                 {@const dimensionSlug = getDimensionSlug(dimension.id)}
                 {@const bgColor = getColor(dimension.id, 'bg')}
                 {@const textColor = getColor(dimension.id, 'text')}
+                {@const dimensionSkills = getSkillsInDimension(dimension.id, {
+                    skills: widgetState.skills,
+                })}
                 <Tabs.Content
-                    value={dimensionSlug}
+                    value={dimension.id}
                     class={'grid w-full items-start bg-white text-white sm:grid-cols-[minmax(260px,1fr)_2fr] sm:gap-2 sm:pt-2 lg:grid-cols-[minmax(260px,1fr)_1fr_1fr]'}
                 >
                     <div class="sm:sticky sm:top-0 {bgColor}">
@@ -160,7 +113,7 @@
                         class="space-y-2 bg-white py-2 sm:p-0 lg:hidden"
                         type="multiple"
                     >
-                        {#each getSkillsInDimension( dimension.id, { skills: skills }, ) as skill (skill.name)}
+                        {#each dimensionSkills as skill (skill.id)}
                             <Accordion.Item class="relative grid" value={skill.id}>
                                 <Accordion.Header>
                                     <Accordion.Trigger
@@ -170,6 +123,7 @@
                                             '[&[data-state=open]>svg:last-child]:rotate-180',
                                             bgColor,
                                         ]}
+                                        onclick={() => (widgetState.selectedSkillId = skill.id)}
                                     >
                                         <IDGSymbol
                                             symbolPaths={symbols[skill.id]}
@@ -214,10 +168,10 @@
                     </Accordion.Root>
 
                     <div class="hidden space-y-2 lg:grid">
-                        {#each getSkillsInDimension(dimension.id, { skills }) as skill (skill.name)}
+                        {#each dimensionSkills as skill (skill.name)}
                             {@const hoverClasses = `hover:bg-white hover:text-black hover:outline-solid hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`}
                             {@const activeClasses = `bg-white text-black outline-solid outline-${dimensionSlug} outline-1 -outline-offset-1`}
-                            {@const isSelected = selectedSkill?.id === skill.id}
+                            {@const isSelected = skill.id === widgetState.selectedSkillId}
                             <div class="relative grid">
                                 <button
                                     class={[
@@ -226,7 +180,7 @@
                                         bgColor,
                                         isSelected && activeClasses,
                                     ]}
-                                    onclick={() => (selectedSkill = skill)}
+                                    onclick={() => (widgetState.selectedSkillId = skill.id)}
                                     ><IDGSymbol
                                         symbolPaths={symbols[skill.id]}
                                         aria-label={skill.name}
@@ -252,7 +206,7 @@
                                     textColor,
                                 ]}
                             >
-                                {selectedSkill.name}
+                                {widgetState.selectedSkill.name}
                             </h3>
                             <div
                                 class={[
@@ -261,13 +215,13 @@
                                 ]}
                             >
                                 <IDGSymbol
-                                    symbolPaths={symbols[selectedSkill.id]}
-                                    aria-label={selectedSkill.name}
+                                    symbolPaths={symbols[widgetState.selectedSkill.id]}
+                                    aria-label={widgetState.selectedSkill.name}
                                     class="pointer-events-none size-36 text-white"
                                 />
                             </div>
                             <p class="py-4 text-black">
-                                {selectedSkill.description}
+                                {widgetState.selectedSkill.description}
                             </p>
                         </div>
                     </div>

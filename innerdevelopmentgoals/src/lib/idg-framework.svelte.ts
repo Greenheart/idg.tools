@@ -2,52 +2,77 @@ import { LOCALES } from '$shared/constants'
 import type { Dimension, Skill, Locale, WidgetContent } from '$shared/types'
 
 export class IDGFrameworkState {
-    /** The currently selected locale */
+    /** The selected locale */
     #locale: Locale
+    /** Content for all loaded locales */
+    #content: Record<Locale, WidgetContent>
     /** The dimensions of the selected locale */
     dimensions: Dimension[]
     /** The skills of the selected locale */
     skills: Skill[]
-    supportedLocales: Record<Locale, string>
+    readonly supportedLocales: Record<Locale, string>
 
     // IDEA: Keep these to preserve state even when changing the locale
-    selectedDimensionId = $state<Dimension['id']>()
-    selectedSkillId = $state<Skill['id']>()
+    #selectedDimensionId: Dimension['id']
+    selectedSkillId: Skill['id']
 
     selectedDimension: Dimension
     selectedSkill: Skill
 
     constructor(initalLocale: Locale, content: Record<Locale, WidgetContent>) {
+        this.#content = content
         this.#locale = $state<Locale>(initalLocale)
         this.supportedLocales = getSupportedLocales(content)
         this.dimensions = $derived(content[this.#locale].dimensions)
         this.skills = $derived(content[this.#locale].skills)
 
-        // dimensionSlugs are used for colors and values
-        // they are shorter strings, but IDs would be more flexible, and we can always get the slugs if we want to
+        // By using state for the selected dimension and skill, they can be preserved even as the locale is changed
+        this.#selectedDimensionId = $state(this.dimensions[0].id)
+        this.selectedSkillId = $state(this.skills[0].id)
 
         this.selectedDimension = $derived(
-            this.selectedDimensionId
-                ? (this.dimensions.find(({ id }) => id === this.selectedDimensionId) ??
-                      this.dimensions[0])
-                : this.dimensions[0],
+            this.dimensions.find(({ id }) => id === this.#selectedDimensionId) ??
+                this.dimensions[0],
         )
-
         this.selectedSkill = $derived(
-            this.selectedSkillId
-                ? (this.skills.find(({ id }) => id === this.selectedSkillId) ?? this.skills[0])
-                : this.skills[0],
+            this.skills.find(({ id }) => id === this.selectedSkillId) ?? this.skills[0],
         )
+    }
+
+    get selectedDimensionId() {
+        return this.#selectedDimensionId
+    }
+
+    set selectedDimensionId(newDimensionId: Dimension['id']) {
+        this.#selectedDimensionId = newDimensionId
+
+        // When changing the selected dimension, make sure the selected skill is within the new dimension
+        if (!this.selectedDimension.skills.includes(this.selectedSkillId)) {
+            this.selectedSkillId = this.selectedDimension.skills[0]
+        }
     }
 
     get locale() {
         return this.#locale
     }
 
-    set locale(val: Locale) {
-        // IDEA: Maybe use this as an opportunity to sync state while preserving common settings?
-        // If we don't need this and can solve it with plain derived values, then remove this and expose a public `locale` field instead
-        this.#locale = val
+    set locale(newLocale: Locale) {
+        const { dimensions, skills } = this.#content[newLocale]
+
+        // Before updating the locale, we need to check if the selected dimension and skill exist in the new locale
+        // This allows us to keep the same dimension and skill selected, and falling back to other values if necessary
+        // Try to find the same dimension in the new locale, or fall back to the first dimension
+        const newDimension =
+            dimensions.find(({ id }) => id === this.#selectedDimensionId) ?? dimensions[0]
+
+        // Try to find the same skill in the new locale, or fall back to the first skill in the new dimension
+        const newSkillId =
+            skills.find(({ id }) => id === this.selectedSkillId)?.id ?? newDimension.skills[0]
+
+        this.#locale = newLocale
+
+        this.#selectedDimensionId = newDimension.id
+        this.selectedSkillId = newSkillId
     }
 }
 

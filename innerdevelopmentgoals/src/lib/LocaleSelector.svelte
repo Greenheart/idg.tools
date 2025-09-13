@@ -14,6 +14,7 @@
 
     let { supportedLocales, locale, onChangeLocale }: Props = $props()
 
+    // IDEA: Maybe make pt-BR show before regular pt since that is more common
     const sortedLocales = Object.entries(supportedLocales)
         .map(([value, label]) => ({ value, label }))
         .sort((a, b) => a.label.localeCompare(b.label)) as { value: Locale; label: string }[]
