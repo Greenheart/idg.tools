@@ -45,5 +45,8 @@
     },
     "keywords": [
         "svelte"
-    ]
+    ],
+    "dependencies": {
+        "bits-ui": "^2.9.6"
+    }
 }

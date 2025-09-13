@@ -1,0 +1,178 @@
+<script lang="ts">
+    import { Select, type SelectRootProps } from 'bits-ui'
+    import { cubicOut } from 'svelte/easing'
+
+    import type { Locale, SupportedLocales } from '../types'
+    import Link from './Link.svelte'
+    import LocaleIcon from '../icons/Locale.svelte'
+    import { getLocalisedPath } from '../utils'
+    import { DEFAULT_LOCALE_IDENTIFIER } from '../constants'
+    import ChevronDown from '../icons/ChevronDown.svelte'
+
+    interface Props {
+        supportedLocales: SupportedLocales
+        pathname: string
+        currentLocale?: string
+        goto: (url: string) => void
+        browser: boolean
+    }
+
+    let {
+        supportedLocales,
+        pathname,
+        currentLocale = DEFAULT_LOCALE_IDENTIFIER,
+        goto,
+        browser,
+    }: Props = $props()
+
+    const locales = Object.entries(supportedLocales)
+        .map(([value, label]) => ({ value, label }))
+        .sort((a, b) => a.label.localeCompare(b.label)) as { value: Locale; label: string }[]
+
+    let initialLocale = $derived<Locale>(
+        supportedLocales[currentLocale as Locale]
+            ? (currentLocale as Locale)
+            : DEFAULT_LOCALE_IDENTIFIER,
+    )
+
+    let selectViewport = $state<HTMLDivElement | null>(null)
+
+    function autoScrollDelay(tick: number) {
+        const maxDelay = 200
+        const minDelay = 25
+        const steps = 30
+
+        const progress = Math.min(tick / steps, 1)
+        return maxDelay - (maxDelay - minDelay) * cubicOut(progress)
+    }
+
+    /**
+     * Get recommended locales to show at the top of the list.
+     *
+     * Includes the user's language preferences from their browser, followed by the most common languages.
+     */
+    function getRecommendedLocales() {
+        // Most common languages according to https://en.wikipedia.org/wiki/List_of_languages_by_total_number_of_speakers
+        // Including zh-TW to show we have both variations
+        const mostCommon: Locale[] = ['en', 'zh-CN', 'es', 'fr', 'pt-BR', 'pt', 'de', 'ja', 'zh-TW']
+        if (!browser) return mostCommon
+
+        const preferred: Locale[] = []
+
+        for (const { value } of locales) {
+            // Handle both exact matches and if only the language matches
+            if (
+                navigator.languages.some(
+                    (lang) => value === lang || value.startsWith(lang.split('-')[0]),
+                )
+            ) {
+                preferred.push(value)
+            }
+        }
+
+        // Only include one entry for each recommended locale,
+        // showing the user's preferred locales at the top.
+        return Array.from(new Set([...preferred, ...mostCommon]))
+    }
+
+    /** Use a suffix to make select values unique. This is needed to only highlight one item at a time. */
+    const recommendedSuffix = '-r'
+
+    const recommendedLocales = getRecommendedLocales().map((value) => ({
+        value,
+        label: supportedLocales[value],
+    }))
+
+    const hideViewportDuringScrollReset: SelectRootProps['onOpenChange'] = (open) => {
+        if (!open && selectViewport) {
+            selectViewport.classList.add('invisible')
+        }
+    }
+
+    const scrollViewportToTop: SelectRootProps['onOpenChangeComplete'] = async () => {
+        if (selectViewport) {
+            // We need to wait for the select to render fully
+            await new Promise((r) => setTimeout(r, 10))
+            // Ensure the select is scrolled to the top of the list
+            selectViewport.scrollTop = 0
+            // By making the list invisible, we can work around the fact that the list
+            // is not scrolled to the top during the first render
+            selectViewport.classList.remove('invisible')
+        }
+    }
+</script>
+
+<Select.Root
+    type="single"
+    value={initialLocale}
+    items={locales}
+    onValueChange={(value) => {
+        goto(getLocalisedPath(value.replace(recommendedSuffix, '') as Locale, pathname))
+    }}
+    onOpenChange={hideViewportDuringScrollReset}
+    onOpenChangeComplete={scrollViewportToTop}
+>
+    <Select.Trigger
+        aria-label="Change language"
+        title="Change language"
+        class="flex h-10 items-center gap-2 px-2 hover:bg-stone-100"
+        ><LocaleIcon />{supportedLocales[initialLocale]}<ChevronDown /></Select.Trigger
+    >
+    <Select.Portal>
+        <Select.Content
+            class="z-30 grid w-48 bg-white text-base drop-shadow"
+            strategy="absolute"
+            preventScroll={false}
+            avoidCollisions={false}
+            sticky="always"
+        >
+            <Select.ScrollUpButton
+                class="grid cursor-n-resize place-items-center shadow-md"
+                delay={autoScrollDelay}
+            >
+                <ChevronDown class="!size-4 rotate-180 transform" />
+            </Select.ScrollUpButton>
+            <Select.Viewport class="invisible max-h-[80vh]" bind:ref={selectViewport}>
+                {#if browser}
+                    {#each recommendedLocales as { value, label }, i (i)}
+                        <Select.Item
+                            value={value + recommendedSuffix}
+                            class="grid hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]_a]:!underline"
+                        >
+                            <Link
+                                href={getLocalisedPath(value, pathname)}
+                                variant="black"
+                                noScroll
+                                class="px-3 py-1 !no-underline">{label}</Link
+                            >
+                        </Select.Item>
+                    {/each}
+                {/if}
+
+                <hr class="my-1" />
+
+                {#each locales as { value, label } (value)}
+                    <Select.Item
+                        {value}
+                        class="grid hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]_a]:!underline"
+                    >
+                        <Link
+                            href={getLocalisedPath(value, pathname)}
+                            variant="black"
+                            noScroll
+                            class="px-3 py-1 !no-underline">{label}</Link
+                        >
+                    </Select.Item>
+                {/each}
+            </Select.Viewport>
+            <!-- IDEA: Add bottom inset shadow to indicate you can scroll down -->
+            <!-- IDEA: Make the total height of the viewport less glitchy as the buttons appear and dissapear -->
+            <Select.ScrollDownButton
+                class="grid cursor-s-resize place-items-center"
+                delay={autoScrollDelay}
+            >
+                <ChevronDown class="!size-4" />
+            </Select.ScrollDownButton>
+        </Select.Content>
+    </Select.Portal>
+</Select.Root>
