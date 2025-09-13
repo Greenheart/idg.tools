@@ -63,7 +63,7 @@
     class={classes}
     onclick={(event) => {
         if (event.isTrusted) {
-            onclick?.()
+            onclick?.(event)
         }
     }}
 >
