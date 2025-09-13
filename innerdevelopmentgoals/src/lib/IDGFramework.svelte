@@ -1,8 +1,9 @@
 <script lang="ts">
     import { Tabs, Accordion } from 'bits-ui'
+    import '../app.css'
 
-    import allLocales from '../../static/content.json'
-    import allSymbols from '../../static/symbols.json'
+    import allLocales from '../content.json'
+    import allSymbols from '../symbols.json'
     import type { IDGSymbols, Skill, Locale, WidgetContent } from '$shared/types'
 
     const content = allLocales as Record<Locale, WidgetContent>
@@ -23,13 +24,10 @@
     // For example by only using colors for icons and otherwise black text on white background,
     // which would fix the inaccessible text contrast. This would make the IDG framework much better adapted to a diverse and global audience.
 
-    // TODO: Set correct `dir` for content based on the locale
+    // IDEA: Set correct `dir` for content based on the locale
 
-    // TODO: add the Inter font, maybe via fontsource
-
-    // TODO: Use a local version of the heading instead
-    // TODO: Add colors and other styling settings to match expected result
-    import Heading from '$shared/components/Heading.svelte'
+    // NOTE: Consider Simplifying the heading
+    import Heading from './Heading.svelte'
     import LocaleSwitcher from './LocaleSwitcher.svelte'
     import {
         getSkillsInDimension,
