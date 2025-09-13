@@ -10,11 +10,34 @@ export class IDGFrameworkState {
     skills: Skill[]
     supportedLocales: Record<Locale, string>
 
+    // IDEA: Keep these to preserve state even when changing the locale
+    selectedDimensionId = $state<Dimension['id']>()
+    selectedSkillId = $state<Skill['id']>()
+
+    selectedDimension: Dimension
+    selectedSkill: Skill
+
     constructor(initalLocale: Locale, content: Record<Locale, WidgetContent>) {
         this.#locale = $state<Locale>(initalLocale)
         this.supportedLocales = getSupportedLocales(content)
         this.dimensions = $derived(content[this.#locale].dimensions)
         this.skills = $derived(content[this.#locale].skills)
+
+        // dimensionSlugs are used for colors and values
+        // they are shorter strings, but IDs would be more flexible, and we can always get the slugs if we want to
+
+        this.selectedDimension = $derived(
+            this.selectedDimensionId
+                ? (this.dimensions.find(({ id }) => id === this.selectedDimensionId) ??
+                      this.dimensions[0])
+                : this.dimensions[0],
+        )
+
+        this.selectedSkill = $derived(
+            this.selectedSkillId
+                ? (this.skills.find(({ id }) => id === this.selectedSkillId) ?? this.skills[0])
+                : this.skills[0],
+        )
     }
 
     get locale() {
