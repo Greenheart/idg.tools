@@ -1,8 +1,6 @@
 <script lang="ts">
     import { Select } from 'bits-ui'
     import { cubicOut } from 'svelte/easing'
-    import { goto } from '$app/navigation'
-    import { browser } from '$app/environment'
 
     import type { Locale, SupportedLocales } from '../types'
     import Link from './Link.svelte'
@@ -15,13 +13,21 @@
         supportedLocales: SupportedLocales
         pathname: string
         currentLocale?: string
+        goto: (url: string) => void
+        browser: boolean
     }
 
-    let { supportedLocales, pathname, currentLocale = DEFAULT_LOCALE_IDENTIFIER }: Props = $props()
+    let {
+        supportedLocales,
+        pathname,
+        currentLocale = DEFAULT_LOCALE_IDENTIFIER,
+        goto,
+        browser,
+    }: Props = $props()
 
     const locales = Object.entries(supportedLocales)
-        .map<{ value: Locale; label: string }>(([value, label]) => ({ value, label }))
-        .sort((a, b) => a.label.localeCompare(b.label))
+        .map(([value, label]) => ({ value, label }))
+        .sort((a, b) => a.label.localeCompare(b.label)) as { value: Locale; label: string }[]
 
     let initialLocale = $derived<Locale>(
         supportedLocales[currentLocale as Locale]
@@ -29,7 +35,7 @@
             : DEFAULT_LOCALE_IDENTIFIER,
     )
 
-    let selectViewport = $state<HTMLDivElement | null>(null)
+    let selectViewport = $state<HTMLDivElement>()!
 
     function autoScrollDelay(tick: number) {
         const maxDelay = 200
@@ -117,7 +123,7 @@
             </Select.ScrollUpButton>
             <Select.Viewport class="invisible max-h-[80vh]" bind:ref={selectViewport}>
                 {#if browser}
-                    {#each recommendedLocales as { value, label }, i ((value, i))}
+                    {#each recommendedLocales as { value, label }, i (i)}
                         <Select.Item
                             value={value + recommendedSuffix}
                             class="grid hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]_a]:!underline"

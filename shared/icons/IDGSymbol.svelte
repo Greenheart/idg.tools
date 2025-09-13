@@ -1,8 +1,9 @@
 <script lang="ts">
+    import type { ClassValue } from 'svelte/elements'
     import type { IDGSymbols } from '../types'
 
     interface Props {
-        class?: string
+        class?: ClassValue
         style?: string
         'aria-label': string
         symbolPaths: IDGSymbols[keyof IDGSymbols]

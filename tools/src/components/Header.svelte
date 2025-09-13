@@ -3,9 +3,10 @@
     import { Link, MenuButton, LocaleSwitcher } from '$shared/components'
     import { globalState } from '$lib/global-state.svelte'
     import { onKeydown } from '$lib/utils'
-    import { beforeNavigate } from '$app/navigation'
+    import { beforeNavigate, goto } from '$app/navigation'
     import type { SupportedLocales } from '$shared/types'
     import { page } from '$app/state'
+    import { browser } from '$app/environment'
 
     interface Props {
         supportedLocales?: SupportedLocales | undefined
@@ -67,7 +68,7 @@
         {/each}
         <!-- Only show locales for pages where it makes sense -->
         {#if page?.route?.id?.includes('/framework') && supportedLocales}
-            <LocaleSwitcher {supportedLocales} pathname={page.url.pathname} />
+            <LocaleSwitcher {supportedLocales} pathname={page.url.pathname} {browser} {goto} />
         {/if}
     </nav>
 </header>

@@ -9,5 +9,8 @@
         "bits-ui": "^2.9.6",
         "svelte": "^5.38.9",
         "svelte-typeahead": "^5.0.0"
+    },
+    "devDependencies": {
+        "@tsconfig/svelte": "^5.0.5"
     }
 }
