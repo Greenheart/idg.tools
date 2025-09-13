@@ -2,13 +2,22 @@
     import { Tabs, Accordion } from 'bits-ui'
 
     import allLocales from '../../static/content.json'
-    import type { Locale, WidgetContent } from '$shared/types'
+    import allSymbols from '../../static/symbols.json'
+    import type { IDGSymbols, Skill, Locale, WidgetContent } from '$shared/types'
 
     const content = allLocales as Record<Locale, WidgetContent>
+    const symbols = allSymbols as IDGSymbols
 
-    // TODO: load dimensions and skills from JSON instead of props
-    // TODO: manage state internally instead of by using links
-    // TODO: replace all svelte-kit and link related code with simple list items
+    function getSupportedLocales() {
+        const supported = Object.keys(content) as (typeof FRAMEWORK_AVAILABLE_LOCALES)[number][]
+
+        return supported.reduce<Partial<typeof LOCALES>>((supportedLocales, locale) => {
+            supportedLocales[locale] = LOCALES[locale]
+            return supportedLocales
+        }, {})
+    }
+
+    const supportedLocales = getSupportedLocales()
 
     // IDEA: Consider redesigning the framework widget to match the PDF presentations
     // For example by only using colors for icons and otherwise black text on white background,
@@ -19,6 +28,7 @@
     // TODO: add the Inter font, maybe via fontsource
 
     // TODO: Use a local version of the heading instead
+    // TODO: Add colors and other styling settings to match expected result
     import Heading from '$shared/components/Heading.svelte'
     import LocaleSwitcher from './LocaleSwitcher.svelte'
     import {
@@ -29,18 +39,12 @@
     } from '$shared/content-utils'
     import { IDGSymbol, ChevronDown } from '$shared/icons'
     import { getColor } from '$shared/utils'
-    import type { Dimension, IDGSymbols, Skill, SupportedLocales } from '$shared/types'
     import { onMount } from 'svelte'
-    import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
-
-    interface Props {
-        symbols: IDGSymbols
-        supportedLocales: SupportedLocales
-    }
-
-    // TODO: Import symbols via JSON
-    // TODO: Import supportedLocales directly to the component
-    let { symbols, supportedLocales }: Props = $props()
+    import {
+        DEFAULT_LOCALE_IDENTIFIER,
+        FRAMEWORK_AVAILABLE_LOCALES,
+        LOCALES,
+    } from '$shared/constants'
 
     let currentLocale = $state<Locale>(DEFAULT_LOCALE_IDENTIFIER)
     let dimensions = $derived(content[currentLocale].dimensions)
