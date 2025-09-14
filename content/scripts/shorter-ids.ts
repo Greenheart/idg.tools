@@ -1,5 +1,5 @@
 import { COLORS } from '../../shared/constants.ts'
-import { glob } from 'node:fs/promises'
+import { glob, readFile, writeFile, rename } from 'node:fs/promises'
 import { resolve, basename } from 'node:path'
 
 const lowercase = 'abcdefghijklmnopqrstuvwxyz'
@@ -35,7 +35,7 @@ const skillId = getShortId('s')
 const allDimensionFiles = await Array.fromAsync(glob('./src/dimensions/**/*.json'))
 const allSkillFiles = await Array.fromAsync(glob('./src/skills/**/*.json'))
 
-const newDimensionIDs = allDimensionFiles.slice(0, 5).reduce(
+const NEW_DIMENSION_IDS = allDimensionFiles.slice(0, 5).reduce(
     (unique, path) => {
         const oldId = basename(path).replace('.json', '')
         unique[oldId] = dimensionId().next().value as string
@@ -44,7 +44,7 @@ const newDimensionIDs = allDimensionFiles.slice(0, 5).reduce(
     {} as Record<string, string>,
 )
 
-const newSkillIDs = allSkillFiles.slice(0, 23).reduce(
+const NEW_SKILL_IDS = allSkillFiles.slice(0, 23).reduce(
     (unique, path) => {
         const oldId = basename(path).replace('.json', '')
         unique[oldId] = skillId().next().value as string
@@ -53,16 +53,62 @@ const newSkillIDs = allSkillFiles.slice(0, 23).reduce(
     {} as Record<string, string>,
 )
 
-const newColors = Object.fromEntries(
+// TODO: Once everything is completed, update COLORS to use the new ids
+const NEW_COLORS = Object.fromEntries(
     Object.entries(COLORS).map(([oldId, dimensionSlug]) => [
-        newSkillIDs[oldId] ?? newDimensionIDs[oldId],
+        NEW_SKILL_IDS[oldId] ?? NEW_DIMENSION_IDS[oldId],
         dimensionSlug,
     ]),
 )
 
-console.dir({ COLORS, newColors })
+function formatConstant(name: string, value: any) {
+    return `
+export const ${name} = ${JSON.stringify(value, null, 4)}
+`
+}
 
-// TODO: Update COLORS to use the new ids
+async function addConstants(path: string, constants: Record<string, any>) {
+    let file = await readFile(path, 'utf-8')
+    file += Object.entries(constants)
+        .map(([name, value]) => formatConstant(name, value))
+        .join('')
+    await writeFile(path, file, 'utf-8')
+}
+
+await addConstants(resolve('../shared/constants.ts'), {
+    NEW_COLORS,
+    NEW_DIMENSION_IDS,
+    NEW_SKILL_IDS,
+})
+
+// await Promise.all(
+//     allDimensionFiles
+//         .filter((path) => basename(path).replace('.json', '').length > 3)
+//         .map(async (path) => {
+//             const oldId = basename(path).replace('.json', '')
+
+//             let file = (await readFile(path, 'utf-8')).replaceAll(oldId, newDimensionIds[oldId])
+
+//             for (const [oldSkillId, newSkillId] of Object.entries(newSkillIds)) {
+//                 file = file.replaceAll(oldSkillId, newSkillId)
+//             }
+
+//             const newPath = path.replace(oldId, newDimensionIds[oldId])
+//             await rename(path, newPath)
+
+//             await writeFile(newPath, file, 'utf-8')
+//         }),
+// )
+
+// TODO: for each locale, for each dimension, update the file name and update the dimensionId within the file. Also update skills to new IDs
+// For each locale, for each skill, update the file name, and update the skillId, as well as the dimensionId
+// Use COLORS to generate a map of old dimensionIds with new DimensionIds, and old skillIds mapped to new skillIds
+// generate these ids up front to keep them consistent across all files
+// write the files at the end
+
+// TODO: Also update skillIds and dimensionIds in other content forms, such as tools and stories
+
+// ---------------------------------------------------------------------------------------------------------------
 
 // the current system relies on sortable ids.
 // The simple start is to manually create sortable keys, and once the new IDG framework structure is known,
@@ -74,13 +120,3 @@ console.dir({ COLORS, newColors })
 // By replacing the IDs with 3 characters instead of 25, we reduce the amount of data for IDs by 88%
 // As a comparison, the IDG.tools content bundle size decreased from 202529 characters to Y characters
 // As a comparison, the widget content bundle size decreased from 130638 characters to Y characters
-
-// TODO: get the dimensions by globbing the directories and generate new IDs for them
-// TODO: output a new constant with the dimensions mapped dimensionId: dimensionSlug, and skillId: dimensionSlug
-// TODO: for each locale, for each dimension, update the file name and update the dimensionId within the file. Also update skills to new IDs
-// For each locale, for each skill, update the file name, and update the skillId, as well as the dimensionId
-// Use COLORS to generate a map of old dimensionIds with new DimensionIds, and old skillIds mapped to new skillIds
-// generate these ids up front to keep them consistent across all files
-// write the files at the end
-
-// TODO: Also update skillIds and dimensionIds in other content forms, such as tools and stories
