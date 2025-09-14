@@ -51,6 +51,7 @@ CMS.registerWidget(UniqueCuid)
 CMS.registerWidget(UniqueNanoId)
 CMS.registerWidget(UniqueSlug)
 
+// TODO: See if the logo can be customised directly by using the Decap CMS config instead
 const replaceLogo = () => {
     const styles = document.querySelector('#idg-overrides') as HTMLStyleElement
     if (styles) {
@@ -83,7 +84,6 @@ const collectionsWithCustomColorsRegex = /skills|dimensions$/
  * Override colors for IDG Framework entries to make them easier to distinguish
  *
  * Dynamically add custom classes based on the latest IDG color constants, and known ID:s of skills and dimensions.
- * This way, it stays in sync even if skills and dimensions change.
  *
  * By using predefined CSS selectors rather than classes, the styling is applied even across re-renders of the React CMS SPA.
  */
