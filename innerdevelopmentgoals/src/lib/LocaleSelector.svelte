@@ -14,10 +14,15 @@
 
     let { supportedLocales, locale, onChangeLocale }: Props = $props()
 
-    // IDEA: Maybe make pt-BR show before regular pt since that is more common
     const sortedLocales = Object.entries(supportedLocales)
         .map(([value, label]) => ({ value, label }))
-        .sort((a, b) => a.label.localeCompare(b.label)) as { value: Locale; label: string }[]
+        .sort((a, b) => {
+            // Special rule: Show pt-BR before pt since it's more common
+            if ([a.value, b.value].every((v) => v.includes('pt'))) {
+                return a.value === 'pt-BR' ? -1 : 1
+            }
+            return a.label.localeCompare(b.label)
+        }) as { value: Locale; label: string }[]
 
     let selectViewport = $state<HTMLDivElement | null>(null)
 
