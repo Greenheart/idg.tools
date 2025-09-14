@@ -59,7 +59,7 @@
                     {@const isSelected = dimension.id === widgetState.selectedDimensionId}
                     <Tabs.Trigger
                         value={dimension.id}
-                        class="xs:px-2 grid place-items-center py-2 {isSelected
+                        class="xs:px-2 grid place-items-center rounded-lg py-2 {isSelected
                             ? `${getColor(dimension.id)}`
                             : `hover:outline-solid bg-white hover:outline-1 hover:outline-${getDimensionSlug(dimension.id)} hover:-outline-offset-1`}"
                         title={dimension.name}
@@ -90,24 +90,27 @@
                 {@const dimensionSkills = getSkillsInDimension(dimension.id, {
                     skills: widgetState.skills,
                 })}
-                <Tabs.Content
+                <!-- <Tabs.Content
                     value={dimension.id}
                     class="grid w-full items-start gap-8 bg-white px-4 text-black sm:pt-2 md:grid-cols-[minmax(320px,1fr)_2fr] md:px-8"
+                > -->
+                <!-- TODO: Make columns consistent widths - test with Thinking for zh-TW -->
+                <Tabs.Content
+                    value={dimension.id}
+                    class="flex flex-col items-start gap-8 px-4 text-black sm:pt-2 md:flex-row md:justify-between md:px-8"
                 >
-                    <div class="pt-6 sm:sticky sm:top-0">
+                    <div class="max-w-md text-balance pt-6 md:max-w-xs lg:max-w-lg">
                         <IDGSymbol
                             symbolPaths={symbols[dimension.id]}
                             aria-label={dimension.name}
                             class={['pointer-events-none size-36', textColor]}
                         />
                         <h2
-                            class="hyphens-auto break-words pt-4 text-4xl font-bold sm:text-5xl md:text-6xl"
+                            class="hyphens-auto break-words pt-4 text-4xl font-bold md:text-5xl lg:text-6xl"
                         >
                             {dimension.name}
                         </h2>
-                        <h3
-                            class="xs:text-lg text-balance pt-1 font-semibold sm:pt-2 sm:text-xl md:text-2xl"
-                        >
+                        <h3 class="pt-1 text-lg font-semibold sm:pt-2 sm:text-2xl md:text-3xl">
                             {dimension.subtitle}
                         </h3>
                         <p class="pt-8">{dimension.description}</p>
@@ -119,12 +122,12 @@
                                 symbolPaths={symbols[skill.id]}
                                 aria-label={skill.name}
                                 class={[
-                                    'pointer-events-none size-20 shrink-0 self-center',
+                                    '2xs:size-20 pointer-events-none size-16 shrink-0 self-center',
                                     textColor,
                                 ]}
                             />
                             <div>
-                                <h2 class="font-bold">{skill.name}</h2>
+                                <h2 class="xs:pb-0 pb-1 font-bold">{skill.name}</h2>
                                 <p class="text-balance">{skill.description}</p>
                             </div>
                         {/each}
