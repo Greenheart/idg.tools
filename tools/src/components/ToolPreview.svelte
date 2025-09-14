@@ -36,6 +36,6 @@
             <RelevantSkills {tool} {content} visible={4} />
         </div>
 
-        <Arrow right class="absolute bottom-5 right-5 grid h-6 w-6 place-items-center" />
+        <Arrow right class="absolute bottom-5 right-5 grid size-6 place-items-center" />
     </div>
 </Link>

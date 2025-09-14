@@ -11,7 +11,7 @@
     viewBox="0 0 24 24"
     fill="currentColor"
     aria-hidden="true"
-    class={['h-6 w-6', className]}
+    class={['size-6', className]}
 >
     <path
         fill-rule="evenodd"
