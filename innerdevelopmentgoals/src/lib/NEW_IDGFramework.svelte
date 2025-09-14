@@ -94,17 +94,20 @@
                     value={dimension.id}
                     class="grid w-full items-start bg-white px-4 text-black sm:grid-cols-[minmax(320px,1fr)_2fr] sm:gap-2 sm:pt-2 md:px-8"
                 >
-                    <!-- IDEA: Make text larger for mobile screens -->
                     <div class="pt-6 sm:sticky sm:top-0">
                         <IDGSymbol
                             symbolPaths={symbols[dimension.id]}
                             aria-label={dimension.name}
                             class={['pointer-events-none size-36', textColor]}
                         />
-                        <h2 class="hyphens-auto break-words pt-4 text-4xl font-bold md:text-5xl">
+                        <h2
+                            class="hyphens-auto break-words pt-4 text-4xl font-bold sm:text-5xl md:text-6xl"
+                        >
                             {dimension.name}
                         </h2>
-                        <h3 class="md:text:xl text-balance pt-1 text-lg font-semibold">
+                        <h3
+                            class="text-balance pt-1 text-lg font-semibold sm:pt-2 sm:text-xl md:text-2xl"
+                        >
                             {dimension.subtitle}
                         </h3>
                         <p class="pt-8">{dimension.description}</p>
