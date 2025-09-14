@@ -3,11 +3,11 @@
     import { onMount } from 'svelte'
 
     import './style.css'
-    import allLocales from './content.json'
+    // import allLocales from './content.json'
     import allSymbols from './symbols.json'
     import type { IDGSymbols, Locale, WidgetContent } from '$shared/types'
 
-    const content = allLocales as Record<Locale, WidgetContent>
+    // const content = allLocales as Record<Locale, WidgetContent>
     const symbols = allSymbols as IDGSymbols
 
     // IDEA: Consider redesigning the framework widget to match the PDF presentations
@@ -25,7 +25,10 @@
     import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
     import { IDGFrameworkState } from './idg-framework.svelte'
 
-    const widgetState = new IDGFrameworkState(DEFAULT_LOCALE_IDENTIFIER, content)
+    type Props = {
+        widgetState: IDGFrameworkState
+    }
+    let { widgetState }: Props = $props()
 
     // IDEA: See if we can mount the tabs directly by removning the unwanted re-render.
     // This might be caused by strange state updates
