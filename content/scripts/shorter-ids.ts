@@ -36,20 +36,22 @@ type OldSkillId = keyof typeof NEW_SKILL_IDS
 const dimensionId = getShortId('d')
 const skillId = getShortId('s')
 
-const allToolsFiles = await Array.fromAsync(glob('./src/tools/**/*.json'))
 const allStoriesFiles = await Array.fromAsync(glob('./src/stories/**/*.json'))
 const allSettingsFiles = await Array.fromAsync(glob('./src/settings/**/*.json'))
 
 // TODO: Once everything is completed, update COLORS to use the new ids
 
 await Promise.all(
-    allToolsFiles
+    allStoriesFiles
         .filter((path) => basename(path).replace('.json', '').length > 3)
         .map(async (path) => {
             let file = await readFile(path, 'utf-8')
 
-            for (const [oldSkillId, newSkillId] of Object.entries(NEW_SKILL_IDS)) {
-                file = file.replaceAll(oldSkillId, newSkillId)
+            // for (const [oldSkillId, newSkillId] of Object.entries(NEW_SKILL_IDS)) {
+            //     file = file.replaceAll(oldSkillId, newSkillId)
+            // }
+            for (const [oldDimensionId, newDimensionId] of Object.entries(NEW_DIMENSION_IDS)) {
+                file = file.replaceAll(oldDimensionId, newDimensionId)
             }
 
             await writeFile(path, file, 'utf-8')
