@@ -1,11 +1,12 @@
-import { COLORS } from '../../shared/constants.ts'
+import { COLORS, NEW_COLORS, NEW_DIMENSION_IDS, NEW_SKILL_IDS } from '../../shared/constants.ts'
 import { glob, readFile, writeFile, rename } from 'node:fs/promises'
 import { resolve, basename } from 'node:path'
 
-const lowercase = 'abcdefghijklmnopqrstuvwxyz'
-const numbers = '0123456789'
-
-function getShortId(prefix: 'd' | 's') {
+function getShortId(
+    prefix: 'd' | 's',
+    lowercase = 'abcdefghijklmnopqrstuvwxyz',
+    numbers = '0123456789',
+) {
     let letterIndex = 0
     let numberIndex = 0
     return function* generate() {
@@ -29,76 +30,54 @@ function getShortId(prefix: 'd' | 's') {
     }
 }
 
+type OldDimensionId = keyof typeof NEW_DIMENSION_IDS
+type OldSkillId = keyof typeof NEW_SKILL_IDS
+
 const dimensionId = getShortId('d')
 const skillId = getShortId('s')
 
 const allDimensionFiles = await Array.fromAsync(glob('./src/dimensions/**/*.json'))
 const allSkillFiles = await Array.fromAsync(glob('./src/skills/**/*.json'))
 
-const NEW_DIMENSION_IDS = allDimensionFiles.slice(0, 5).reduce(
-    (unique, path) => {
-        const oldId = basename(path).replace('.json', '')
-        unique[oldId] = dimensionId().next().value as string
-        return unique
-    },
-    {} as Record<string, string>,
-)
-
-const NEW_SKILL_IDS = allSkillFiles.slice(0, 23).reduce(
-    (unique, path) => {
-        const oldId = basename(path).replace('.json', '')
-        unique[oldId] = skillId().next().value as string
-        return unique
-    },
-    {} as Record<string, string>,
-)
-
 // TODO: Once everything is completed, update COLORS to use the new ids
-const NEW_COLORS = Object.fromEntries(
-    Object.entries(COLORS).map(([oldId, dimensionSlug]) => [
-        NEW_SKILL_IDS[oldId] ?? NEW_DIMENSION_IDS[oldId],
-        dimensionSlug,
-    ]),
+
+await Promise.all(
+    allDimensionFiles
+        .filter((path) => basename(path).replace('.json', '').length > 3)
+        .map(async (path) => {
+            const oldId = basename(path).replace('.json', '') as OldDimensionId
+
+            let file = (await readFile(path, 'utf-8')).replaceAll(oldId, NEW_DIMENSION_IDS[oldId])
+
+            for (const [oldSkillId, newSkillId] of Object.entries(NEW_SKILL_IDS)) {
+                file = file.replaceAll(oldSkillId, newSkillId)
+            }
+
+            const newPath = path.replace(oldId, NEW_DIMENSION_IDS[oldId])
+            await rename(path, newPath)
+
+            await writeFile(newPath, file, 'utf-8')
+        }),
 )
 
-function formatConstant(name: string, value: any) {
-    return `
-export const ${name} = ${JSON.stringify(value, null, 4)}
-`
-}
+await Promise.all(
+    allSkillFiles
+        .filter((path) => basename(path).replace('.json', '').length > 3)
+        .map(async (path) => {
+            const oldId = basename(path).replace('.json', '') as OldSkillId
 
-async function addConstants(path: string, constants: Record<string, any>) {
-    let file = await readFile(path, 'utf-8')
-    file += Object.entries(constants)
-        .map(([name, value]) => formatConstant(name, value))
-        .join('')
-    await writeFile(path, file, 'utf-8')
-}
+            let file = (await readFile(path, 'utf-8')).replaceAll(oldId, NEW_SKILL_IDS[oldId])
 
-await addConstants(resolve('../shared/constants.ts'), {
-    NEW_COLORS,
-    NEW_DIMENSION_IDS,
-    NEW_SKILL_IDS,
-})
+            for (const [oldDimensionId, newDimensionId] of Object.entries(NEW_DIMENSION_IDS)) {
+                file = file.replaceAll(oldDimensionId, newDimensionId)
+            }
 
-// await Promise.all(
-//     allDimensionFiles
-//         .filter((path) => basename(path).replace('.json', '').length > 3)
-//         .map(async (path) => {
-//             const oldId = basename(path).replace('.json', '')
+            const newPath = path.replace(oldId, NEW_SKILL_IDS[oldId])
+            await rename(path, newPath)
 
-//             let file = (await readFile(path, 'utf-8')).replaceAll(oldId, newDimensionIds[oldId])
-
-//             for (const [oldSkillId, newSkillId] of Object.entries(newSkillIds)) {
-//                 file = file.replaceAll(oldSkillId, newSkillId)
-//             }
-
-//             const newPath = path.replace(oldId, newDimensionIds[oldId])
-//             await rename(path, newPath)
-
-//             await writeFile(newPath, file, 'utf-8')
-//         }),
-// )
+            await writeFile(newPath, file, 'utf-8')
+        }),
+)
 
 // TODO: for each locale, for each dimension, update the file name and update the dimensionId within the file. Also update skills to new IDs
 // For each locale, for each skill, update the file name, and update the skillId, as well as the dimensionId
