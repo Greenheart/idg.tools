@@ -36,46 +36,23 @@ type OldSkillId = keyof typeof NEW_SKILL_IDS
 const dimensionId = getShortId('d')
 const skillId = getShortId('s')
 
-const allDimensionFiles = await Array.fromAsync(glob('./src/dimensions/**/*.json'))
-const allSkillFiles = await Array.fromAsync(glob('./src/skills/**/*.json'))
+const allToolsFiles = await Array.fromAsync(glob('./src/tools/**/*.json'))
+const allStoriesFiles = await Array.fromAsync(glob('./src/stories/**/*.json'))
+const allSettingsFiles = await Array.fromAsync(glob('./src/settings/**/*.json'))
 
 // TODO: Once everything is completed, update COLORS to use the new ids
 
 await Promise.all(
-    allDimensionFiles
+    allToolsFiles
         .filter((path) => basename(path).replace('.json', '').length > 3)
         .map(async (path) => {
-            const oldId = basename(path).replace('.json', '') as OldDimensionId
-
-            let file = (await readFile(path, 'utf-8')).replaceAll(oldId, NEW_DIMENSION_IDS[oldId])
+            let file = await readFile(path, 'utf-8')
 
             for (const [oldSkillId, newSkillId] of Object.entries(NEW_SKILL_IDS)) {
                 file = file.replaceAll(oldSkillId, newSkillId)
             }
 
-            const newPath = path.replace(oldId, NEW_DIMENSION_IDS[oldId])
-            await rename(path, newPath)
-
-            await writeFile(newPath, file, 'utf-8')
-        }),
-)
-
-await Promise.all(
-    allSkillFiles
-        .filter((path) => basename(path).replace('.json', '').length > 3)
-        .map(async (path) => {
-            const oldId = basename(path).replace('.json', '') as OldSkillId
-
-            let file = (await readFile(path, 'utf-8')).replaceAll(oldId, NEW_SKILL_IDS[oldId])
-
-            for (const [oldDimensionId, newDimensionId] of Object.entries(NEW_DIMENSION_IDS)) {
-                file = file.replaceAll(oldDimensionId, newDimensionId)
-            }
-
-            const newPath = path.replace(oldId, NEW_SKILL_IDS[oldId])
-            await rename(path, newPath)
-
-            await writeFile(newPath, file, 'utf-8')
+            await writeFile(path, file, 'utf-8')
         }),
 )
 
