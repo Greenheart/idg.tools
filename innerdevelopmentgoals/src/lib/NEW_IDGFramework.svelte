@@ -123,15 +123,12 @@
                                     textColor,
                                 ]}
                             />
-                            <div class="max-w-md">
+                            <div>
                                 <h2 class="font-bold">{skill.name}</h2>
-                                <p>{skill.description}</p>
+                                <p class="text-balance">{skill.description}</p>
                             </div>
                         {/each}
                     </div>
-
-                    <!-- TODO: List skills below in a wrapper div -->
-                    <!-- TODO: For tablet and desktop, show skills to the right of the dimension description -->
                 </Tabs.Content>
             {/each}
         </Tabs.Root>
