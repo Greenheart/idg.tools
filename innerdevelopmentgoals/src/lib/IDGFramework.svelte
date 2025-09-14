@@ -3,10 +3,8 @@
     import { onMount } from 'svelte'
     import '../app.css'
 
-    // TODO: Ensure the JSON files can be bundled properly.
-    // Otherwise, turn this into separate ES modules that can be imported to decide which locales you want to support
-    import allLocales from '../content.json'
-    import allSymbols from '../symbols.json'
+    import allLocales from './content.json'
+    import allSymbols from './symbols.json'
     import type { IDGSymbols, Locale, WidgetContent } from '$shared/types'
 
     const content = allLocales as Record<Locale, WidgetContent>
