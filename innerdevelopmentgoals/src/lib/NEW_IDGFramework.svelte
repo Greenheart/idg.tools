@@ -92,7 +92,7 @@
                 })}
                 <Tabs.Content
                     value={dimension.id}
-                    class="grid w-full items-start bg-white px-4 text-black sm:grid-cols-[minmax(320px,1fr)_2fr] sm:gap-2 sm:pt-2 md:px-8"
+                    class="grid w-full items-start gap-8 bg-white px-4 text-black sm:pt-2 md:grid-cols-[minmax(320px,1fr)_2fr] md:px-8"
                 >
                     <div class="pt-6 sm:sticky sm:top-0">
                         <IDGSymbol
@@ -106,11 +106,28 @@
                             {dimension.name}
                         </h2>
                         <h3
-                            class="text-balance pt-1 text-lg font-semibold sm:pt-2 sm:text-xl md:text-2xl"
+                            class="xs:text-lg text-balance pt-1 font-semibold sm:pt-2 sm:text-xl md:text-2xl"
                         >
                             {dimension.subtitle}
                         </h3>
                         <p class="pt-8">{dimension.description}</p>
+                    </div>
+
+                    <div class="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-8 pt-8">
+                        {#each dimensionSkills as skill (skill.id)}
+                            <IDGSymbol
+                                symbolPaths={symbols[skill.id]}
+                                aria-label={skill.name}
+                                class={[
+                                    'pointer-events-none size-20 shrink-0 self-center',
+                                    textColor,
+                                ]}
+                            />
+                            <div class="max-w-md">
+                                <h2 class="font-bold">{skill.name}</h2>
+                                <p>{skill.description}</p>
+                            </div>
+                        {/each}
                     </div>
 
                     <!-- TODO: List skills below in a wrapper div -->
