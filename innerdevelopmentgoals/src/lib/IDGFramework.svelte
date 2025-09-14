@@ -18,8 +18,6 @@
 
     // IDEA: Set correct `dir` for content based on the locale
 
-    // NOTE: Consider Simplifying the heading
-    import Heading from './Heading.svelte'
     import LocaleSelector from './LocaleSelector.svelte'
     import { getSkillsInDimension, getDimensionSlug } from '$shared/content-utils'
     import { IDGSymbol, ChevronDown } from '$shared/icons'
@@ -99,7 +97,7 @@
                         >
                             {i + 1}. {dimension.name}
                         </h2>
-                        <Heading size={4} class="px-4">{dimension.subtitle}</Heading>
+                        <h3 class="px-4 text-sm font-semibold">{dimension.subtitle}</h3>
                         <IDGSymbol
                             symbolPaths={symbols[dimension.id]}
                             aria-label={dimension.name}
