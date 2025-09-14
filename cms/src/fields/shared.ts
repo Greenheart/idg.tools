@@ -1,19 +1,37 @@
 import { CmsFieldBase, CmsField, CmsFieldMarkdown } from 'netlify-cms-core'
 
-export type CmsFieldUniqueId = CmsFieldBase & {
-    widget: 'uniqueId'
+export type CmsFieldUniqueCuid = CmsFieldBase & {
+    widget: 'uniqueCuid'
+}
+export type CmsFieldUniqueNanoId = CmsFieldBase & {
+    widget: 'uniqueNanoId'
 }
 
 export type CmsFieldUniqueSlug = CmsFieldBase & {
     widget: 'uniqueSlug'
 }
 
-export type CustomCmsField = CmsField | CmsFieldUniqueId | CmsFieldUniqueSlug
+export type CustomCmsField =
+    | CmsField
+    | CmsFieldUniqueCuid
+    | CmsFieldUniqueNanoId
+    | CmsFieldUniqueSlug
 
-export const ID: CmsFieldUniqueId = {
+/**
+ * @deprecated Use the `ID` field with the `uniqueNanoId` widget instead.
+ */
+export const CUID: CmsFieldUniqueCuid = {
     label: 'ID',
     name: 'id',
-    widget: 'uniqueId',
+    widget: 'uniqueCuid',
+    required: true,
+    i18n: 'duplicate',
+}
+
+export const ID: CmsFieldUniqueNanoId = {
+    label: 'ID',
+    name: 'id',
+    widget: 'uniqueNanoId',
     required: true,
     i18n: 'duplicate',
 }

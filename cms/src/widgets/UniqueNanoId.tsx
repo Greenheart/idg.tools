@@ -1,11 +1,14 @@
 import React, { FC, RefObject } from 'react'
-import cuid from 'cuid'
 import { CmsWidgetControlProps, CmsWidgetParam } from 'netlify-cms-core'
+import { customAlphabet } from 'nanoid'
 
-const UniqueId: FC<CmsWidgetControlProps<string>> = React.forwardRef(
+const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+const nanoid = customAlphabet(alphabet, 3)
+
+const UniqueNanoId: FC<CmsWidgetControlProps<string>> = React.forwardRef(
     ({ value = '', forID, classNameWrapper, onChange }, ref) => {
         if (!value) {
-            value = cuid()
+            value = nanoid()
             onChange(value)
         }
         return (
@@ -25,8 +28,8 @@ const UniqueId: FC<CmsWidgetControlProps<string>> = React.forwardRef(
 )
 
 const Widget = {
-    name: 'uniqueId',
-    controlComponent: UniqueId,
+    name: 'uniqueNanoId',
+    controlComponent: UniqueNanoId,
 } as unknown as CmsWidgetParam<string>
 
 export default Widget

@@ -1,6 +1,7 @@
 import CMS from 'netlify-cms-app'
 
-import { default as UniqueId } from './widgets/UniqueId'
+import { default as UniqueCuid } from './widgets/UniqueCuid'
+import { default as UniqueNanoId } from './widgets/UniqueNanoId'
 import { default as UniqueSlug } from './widgets/UniqueSlug'
 import { COLLECTIONS } from './collections'
 
@@ -46,7 +47,8 @@ CMS.init({
     },
 })
 
-CMS.registerWidget(UniqueId)
+CMS.registerWidget(UniqueCuid)
+CMS.registerWidget(UniqueNanoId)
 CMS.registerWidget(UniqueSlug)
 
 const replaceLogo = () => {
