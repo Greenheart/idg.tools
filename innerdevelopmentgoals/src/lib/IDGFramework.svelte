@@ -1,8 +1,8 @@
 <script lang="ts">
     import { Tabs, Accordion } from 'bits-ui'
     import { onMount } from 'svelte'
-    import '../app.css'
 
+    import './style.css'
     import allLocales from './content.json'
     import allSymbols from './symbols.json'
     import type { IDGSymbols, Locale, WidgetContent } from '$shared/types'
