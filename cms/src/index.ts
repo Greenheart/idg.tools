@@ -31,7 +31,7 @@ CMS.init({
         i18n: {
             structure: 'multiple_folders',
             // Default locale config:
-            locales: FRAMEWORK_AVAILABLE_LOCALES,
+            locales: FRAMEWORK_AVAILABLE_LOCALES as unknown as string[],
             default_locale: DEFAULT_LOCALE_IDENTIFIER,
 
             // NOTE: When editing translations, it's very useful to only enable the locales you want to edit
