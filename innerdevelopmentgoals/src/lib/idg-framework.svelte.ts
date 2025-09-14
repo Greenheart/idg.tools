@@ -12,10 +12,8 @@ export class IDGFrameworkState {
     skills: Skill[]
     readonly supportedLocales: Record<Locale, string>
 
-    // IDEA: Keep these to preserve state even when changing the locale
     #selectedDimensionId: Dimension['id']
     selectedSkillId: Skill['id']
-
     selectedDimension: Dimension
     selectedSkill: Skill
 
