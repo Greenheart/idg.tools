@@ -1,6 +1,5 @@
 <script lang="ts">
     import { Tabs } from 'bits-ui'
-    import { onMount } from 'svelte'
 
     import './style.css'
     // import allLocales from './content.json'
@@ -28,22 +27,9 @@
         widgetState: IDGFrameworkState
     }
     let { widgetState }: Props = $props()
-
-    // IDEA: See if we can mount the tabs directly by removning the unwanted re-render.
-    // This might be caused by strange state updates
-    let mounted = $state(false)
-
-    onMount(() => {
-        mounted = true
-    })
 </script>
 
-<div
-    class={[
-        'max-w-(--breakpoint-xl) relative mx-auto min-h-[700px] bg-white',
-        !mounted && 'invisible',
-    ]}
->
+<div class="max-w-(--breakpoint-xl) relative mx-auto min-h-[700px] bg-white">
     <div class="h-full text-base">
         <div class="flex justify-end p-2">
             <LocaleSelector
