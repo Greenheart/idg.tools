@@ -1,0 +1,26 @@
+import { defineConfig } from 'tsdown'
+import svelte from 'rollup-plugin-svelte'
+
+// TODO: Create UMD bundle that can be loaded as a browser global
+// Or look at how the emoji picker solved the bundling
+// TODO: Include compiled CSS in build
+// TODO: Consider if tailwind should be used or not since it might interfere with classes that are already on the page
+// Maybe we could compile tailwind into regular CSS classes to combine all utilities into specific class selectors instead?
+
+// TODO: Move all shared types and code into the component during bundling
+
+// To bundle fonts, we could do like this: https://stackoverflow.com/questions/73868885/react-component-library-how-to-correctly-bundle-fonts-with-rollup
+// Or in tsdown, we could just copy the relevant files instead
+
+// Old example of how to bundle output multiple files using Rollup:
+// https://github.com/lokimckay-references/svelte-web-component-library-example/blob/master/package.json
+
+export default defineConfig({
+    entry: ['./src/lib/index.ts'],
+    platform: 'browser',
+    dts: {
+        oxc: true,
+    },
+    // TODO: To enable CSS bundling, migrate away from Tailwind
+    plugins: [svelte()],
+})

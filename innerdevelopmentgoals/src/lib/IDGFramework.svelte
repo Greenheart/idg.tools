@@ -16,6 +16,7 @@
 
     // IDEA: Set correct `dir` for content based on the locale
 
+    // TODO: Create minimal CSS to be bundled together with the components
     import LocaleSelector from './LocaleSelector.svelte'
     import { getSkillsInDimension, getDimensionSlug } from '$shared/content-utils'
     import ChevronDown from './icons/ChevronDown.svelte'
