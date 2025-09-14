@@ -1,0 +1,11 @@
+{
+  "id": "sc2",
+  "name": "Perseverança",
+  "description": "Capacidade de manter o engajamento e permanecer com determinação e paciência, mesmo quando os esforços levam muito tempo para dar frutos.",
+  "dimension": "da4",
+  "questions": [
+    "Can you recall a time when your patience eventually paid off?",
+    "What helps you sustain your efforts when progress seems slow?",
+    "How do you handle feelings of discouragement?"
+  ]
+}

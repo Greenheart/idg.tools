@@ -1,0 +1,11 @@
+{
+  "id": "sa0",
+  "name": "Sisäinen kompassi",
+  "description": "Syvä vastuuntunto ja sitoutuminen sellaisiin arvoihin ja päämääriin, jotka liittyvät koko ihmiskunnan hyvinvointiin.",
+  "dimension": "da0",
+  "questions": [
+    "What are your three most important values?",
+    "When have you felt deeply connected to a larger purpose?",
+    "How do you navigate moments of doubt?"
+  ]
+}

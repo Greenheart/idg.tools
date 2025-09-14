@@ -1,0 +1,11 @@
+{
+  "id": "sb3",
+  "name": "Empatia e compassione",
+  "description": "Capacità di relazionarsi con gli altri, con se stessi e con la natura con gentilezza, empatia e compassione, affrontandone le relative sofferenze.",
+  "dimension": "da2",
+  "questions": [
+    "When did you last help a stranger to relieve their suffering or worry?",
+    "How do you care for yourself whilst empathising deeply with others?",
+    "How do you cultivate compassion even when it's challenging?"
+  ]
+}

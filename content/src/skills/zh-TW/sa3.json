@@ -1,0 +1,11 @@
+{
+  "id": "sa3",
+  "name": "自我覺察",
+  "description": "能夠反思自我的思維、感受和欲望；擁有真實的自我印象和自我調節的能力。",
+  "dimension": "da0",
+  "questions": [
+    "Which of your strengths and weaknesses are you working on, and how?",
+    "What helps you become aware of your own patterns?",
+    "When did you last adjust your behaviour based on self-reflection?"
+  ]
+}

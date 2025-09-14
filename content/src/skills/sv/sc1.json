@@ -1,0 +1,11 @@
+{
+  "id": "sc1",
+  "name": "Optimism",
+  "description": "Förmåga att upprätthålla och kommunicera en känsla av hopp, positiv inställning samt tilltro till möjligheten till en meningsfull förändring.",
+  "dimension": "da4",
+  "questions": [
+    "What gives you hope?",
+    "How do you maintain a positive outlook during challenging times?",
+    "How do you balance realism with hope?"
+  ]
+}

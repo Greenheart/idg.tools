@@ -1,0 +1,11 @@
+{
+  "id": "sc2",
+  "name": "Perseverance",
+  "description": "Ability to sustain engagement and remain determined and patient even when efforts take a long time to bear fruit.",
+  "dimension": "da4",
+  "questions": [
+    "Can you recall a time when your patience eventually paid off?",
+    "What helps you sustain your efforts when progress seems slow?",
+    "How do you handle feelings of discouragement?"
+  ]
+}

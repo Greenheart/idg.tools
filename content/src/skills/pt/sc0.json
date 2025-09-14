@@ -1,0 +1,11 @@
+{
+  "id": "sc0",
+  "name": "Criatividade",
+  "description": "Capacidade de gerar e desenvolver ideias originais, inovar e estar disposto a destituir os padrões convencionais\n",
+  "dimension": "da4",
+  "questions": [
+    "When and where are you most creative?",
+    "Do your personal structures support or inhibit your creativity?",
+    "When have you disrupted conventional patterns with a creative solution?"
+  ]
+}

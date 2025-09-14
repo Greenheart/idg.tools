@@ -1,0 +1,11 @@
+{
+  "id": "sb9",
+  "name": "Cesaret",
+  "description": "Değerleri savunabilme, kararlar alabilme, kararlı bir şekilde harekete geçebilme ve gerekirse mevcut yapılara ve görüşlere meydan okuyabilme ve bunları bozabilme becerisi.",
+  "dimension": "da4",
+  "questions": [
+    "When did you last act courageously?",
+    "How hard is it for you to challenge the status quo, and why?",
+    "Where do you see real courage in others?"
+  ]
+}

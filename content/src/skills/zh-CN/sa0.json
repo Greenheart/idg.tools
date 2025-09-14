@@ -1,0 +1,11 @@
+{
+  "id": "sa0",
+  "name": "内在指南针",
+  "description": "对与整体利益相关的价值观和目的,拥有深切的责任感和承诺。",
+  "dimension": "da0",
+  "questions": [
+    "What are your three most important values?",
+    "When have you felt deeply connected to a larger purpose?",
+    "How do you navigate moments of doubt?"
+  ]
+}

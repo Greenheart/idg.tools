@@ -1,0 +1,11 @@
+{
+  "id": "sb8",
+  "name": "Habilitats de mobilització",
+  "description": "Habilitats per inspirar i mobilitzar altres persones per participar enpropòsits compartits.",
+  "dimension": "da3",
+  "questions": [
+    "How and when have you inspired others?",
+    "What tools or methods do you use to mobilise diverse groups?",
+    "What challenges you most when trying to mobilise others?"
+  ]
+}

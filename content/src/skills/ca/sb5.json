@@ -1,0 +1,11 @@
+{
+  "id": "sb5",
+  "name": "Habilitats de co-creació",
+  "description": "Habilitat i motivació per construir, desenvolupar i facilitarrelacions col·laboratives amb grups d'interès diversos,caracteritzades per la seguretat psicològica i la co-creaciógenuïna.",
+  "dimension": "da3",
+  "questions": [
+    "How do you build psychological safety in your groups or organisation?",
+    "How do you nurture a genuine spirit of co-creation?",
+    "How do you handle disagreements during collaborative projects?"
+  ]
+}

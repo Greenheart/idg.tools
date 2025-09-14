@@ -1,0 +1,11 @@
+{
+  "id": "sc0",
+  "name": "Kreativitet",
+  "description": "Förmåga att generera och utveckla originella idéer, innovera samt vara villig att bryta konventionella mönster.",
+  "dimension": "da4",
+  "questions": [
+    "When and where are you most creative?",
+    "Do your personal structures support or inhibit your creativity?",
+    "When have you disrupted conventional patterns with a creative solution?"
+  ]
+}

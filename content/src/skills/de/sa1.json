@@ -1,0 +1,11 @@
+{
+  "id": "sa1",
+  "name": "Integrität und Authentizität",
+  "description": "Die Verpflichtung und Fähigkeit, aufrichtig, ehrlich und integer zu handeln.",
+  "dimension": "da0",
+  "questions": [
+    "When have you stood by your truth, even if it was difficult?",
+    "What will you not compromise?",
+    "Who do you feel most authentic with?"
+  ]
+}

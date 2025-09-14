@@ -1,0 +1,11 @@
+{
+  "id": "sa3",
+  "name": "Zelfbewustzijn",
+  "description": "Het vermogen om te reflecteren op eigen gedachten, gevoelens en verlangens; het hebben van een realistisch zelfbeeld en het vermogen om zichzelf te reguleren.",
+  "dimension": "da0",
+  "questions": [
+    "Which of your strengths and weaknesses are you working on, and how?",
+    "What helps you become aware of your own patterns?",
+    "When did you last adjust your behaviour based on self-reflection?"
+  ]
+}

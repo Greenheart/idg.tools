@@ -1,0 +1,11 @@
+{
+  "id": "sc1",
+  "name": "Optimisme",
+  "description": "Evner til at opretholde og kommunikere en følelse af håb, positiv tilgang samt tillid til at meningsfuld forandring kan finde sted.",
+  "dimension": "da4",
+  "questions": [
+    "What gives you hope?",
+    "How do you maintain a positive outlook during challenging times?",
+    "How do you balance realism with hope?"
+  ]
+}

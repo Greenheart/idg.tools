@@ -1,0 +1,11 @@
+{
+  "id": "sb5",
+  "name": "共同創造技能",
+  "description": "與多元的利害關係者建構、發展和促進合作關係的技能和動力, 並以心理安全和真誠的共同創造為其特點。",
+  "dimension": "da3",
+  "questions": [
+    "How do you build psychological safety in your groups or organisation?",
+    "How do you nurture a genuine spirit of co-creation?",
+    "How do you handle disagreements during collaborative projects?"
+  ]
+}

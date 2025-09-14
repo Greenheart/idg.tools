@@ -1,0 +1,11 @@
+{
+  "id": "sa6",
+  "name": "複雑さの認識",
+  "description": "複雑でシステム的な状況と因果的なつながりを理解し、それを活用するスキル",
+  "dimension": "da1",
+  "questions": [
+    "What helps you see the deeper causes and dependencies of a system?",
+    "What is your first step when facing a complex challenge or situation? ",
+    "When do you tend to see things as ‘black or white’?"
+  ]
+}

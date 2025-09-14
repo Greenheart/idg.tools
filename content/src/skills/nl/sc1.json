@@ -1,0 +1,11 @@
+{
+  "id": "sc1",
+  "name": "Optimisme",
+  "description": "Het vermogen om een gevoel van hoop, een positieve houding en vertrouwen in de mogelijkheid van zinvolle verandering vast te houden en uit te dragen.",
+  "dimension": "da4",
+  "questions": [
+    "What gives you hope?",
+    "How do you maintain a positive outlook during challenging times?",
+    "How do you balance realism with hope?"
+  ]
+}

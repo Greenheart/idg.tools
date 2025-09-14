@@ -1,0 +1,11 @@
+{
+  "id": "sb5",
+  "name": "Samskabelse",
+  "description": "Færdigheder og motivation til at opbygge, udvikle og facilitere samarbejdsrelationer med forskellige interessenter, præget af psykologisk tryghed og ægte samskabelse.",
+  "dimension": "da3",
+  "questions": [
+    "How do you build psychological safety in your groups or organisation?",
+    "How do you nurture a genuine spirit of co-creation?",
+    "How do you handle disagreements during collaborative projects?"
+  ]
+}

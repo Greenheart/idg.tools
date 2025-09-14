@@ -1,0 +1,11 @@
+{
+  "id": "sa0",
+  "name": "Innerer Kompass",
+  "description": "Ein tief empfundenes Gefühl der Verantwortung und des Engagements für Werte und Ziele, die dem Wohl des Ganzen dienen.",
+  "dimension": "da0",
+  "questions": [
+    "What are your three most important values?",
+    "When have you felt deeply connected to a larger purpose?",
+    "How do you navigate moments of doubt?"
+  ]
+}

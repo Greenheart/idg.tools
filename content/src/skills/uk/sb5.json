@@ -1,0 +1,11 @@
+{
+  "id": "sb5",
+  "name": "Навички спільнотворчості",
+  "description": "Навички та мотивація будувати, розвивати та фасилітувати відносини з різноманітними зацікавленими сторонами, засновані на співпраці, психологічній безпеці та справжній спільнотворчості",
+  "dimension": "da3",
+  "questions": [
+    "How do you build psychological safety in your groups or organisation?",
+    "How do you nurture a genuine spirit of co-creation?",
+    "How do you handle disagreements during collaborative projects?"
+  ]
+}

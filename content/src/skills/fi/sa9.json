@@ -1,0 +1,11 @@
+{
+  "id": "sa9",
+  "name": "Pitkäjänteisyys ja visiointi",
+  "description": "Kyky pitkän tähtäimen ajatteluun sekä taito luoda ja ylläpitää\nsitoutumista laajempaan kokonaisuuteen liittyviin visioihin",
+  "dimension": "da1",
+  "questions": [
+    "What would you like society to look like 20 years from now?",
+    "What long-term visions drive your actions?",
+    "In your role, which three tasks are most important from a 5, 10 and 30-year perspective?"
+  ]
+}

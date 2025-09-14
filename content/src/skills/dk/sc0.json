@@ -1,0 +1,11 @@
+{
+  "id": "sc0",
+  "name": "Kreativitet",
+  "description": "Evner til at skabe og udvikle originale idéer, være innovativ og villig til at nytænke konventionelle mønstre.",
+  "dimension": "da4",
+  "questions": [
+    "When and where are you most creative?",
+    "Do your personal structures support or inhibit your creativity?",
+    "When have you disrupted conventional patterns with a creative solution?"
+  ]
+}

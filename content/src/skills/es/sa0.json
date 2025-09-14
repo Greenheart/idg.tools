@@ -1,0 +1,11 @@
+{
+  "id": "sa0",
+  "name": "Brújula interior",
+  "description": "Tener un profundo sentido de la responsabilidad y el compromiso con valores y propósitos relacionados con el bien común.",
+  "dimension": "da0",
+  "questions": [
+    "What are your three most important values?",
+    "When have you felt deeply connected to a larger purpose?",
+    "How do you navigate moments of doubt?"
+  ]
+}

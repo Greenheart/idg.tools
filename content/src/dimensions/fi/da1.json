@@ -1,0 +1,13 @@
+{
+  "id": "da1",
+  "name": "Ajattelu",
+  "subtitle": "Tiedolliset taidot",
+  "skills": [
+    "sa5",
+    "sa6",
+    "sa7",
+    "sa8",
+    "sa9"
+  ],
+  "description": "Tiedollisten taitojemme kehittäminen siten, että tarkastelemme eri näkökulmia, arvioimme tietoa ja hahmotamme mailman systeemisesti yhteen kytkeytyneenä kokonaisuutena, on tärkeää viisaan päätöksenteon kannalta."
+}

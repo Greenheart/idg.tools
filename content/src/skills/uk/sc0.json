@@ -1,0 +1,11 @@
+{
+  "id": "sc0",
+  "name": "Творчість",
+  "description": "Здатність генерувати та розвивати оригінальні ідеї, впроваджувати інновації, бути готовим і мати бажання порушувати традиційні моделі",
+  "dimension": "da4",
+  "questions": [
+    "When and where are you most creative?",
+    "Do your personal structures support or inhibit your creativity?",
+    "When have you disrupted conventional patterns with a creative solution?"
+  ]
+}

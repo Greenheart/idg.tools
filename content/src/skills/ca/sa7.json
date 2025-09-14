@@ -1,0 +1,11 @@
+{
+  "id": "sa7",
+  "name": "Habilitats de perspectiva",
+  "description": "Habilitats per buscar, comprendre i fer un ús actiu de punts devista des de perspectives que contrastin.",
+  "dimension": "da1",
+  "questions": [
+    "Who do you know that holds the most contrasting views to yours?",
+    "How often do you seek out viewpoints different from your own?",
+    "How has understanding multiple perspectives enriched your decisions?"
+  ]
+}

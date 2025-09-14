@@ -1,0 +1,11 @@
+{
+  "id": "sa1",
+  "name": "Integritas dan Autentisitas",
+  "description": "Suatu komitmen dan kemampuan untuk bertindak dengan ketulusan, kejujuran dan integritas. ",
+  "dimension": "da0",
+  "questions": [
+    "Kapan Anda pernah mempertahankan kebenaran Anda, meskipun itu sulit?",
+    "Apakah hal-hal yang tidak akan Anda kompromikan?",
+    "Dengan siapa Anda merasa bisa menjadi diri Anda yang asli dan apa adanya?"
+  ]
+}

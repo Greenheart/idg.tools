@@ -1,0 +1,11 @@
+{
+  "id": "sa0",
+  "name": "Bússola interior",
+  "description": "Ter um sentido profundo de responsabilidade e compromisso para com os valores e objetivos relacionados com o melhor para o todo.",
+  "dimension": "da0",
+  "questions": [
+    "What are your three most important values?",
+    "When have you felt deeply connected to a larger purpose?",
+    "How do you navigate moments of doubt?"
+  ]
+}

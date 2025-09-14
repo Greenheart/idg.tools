@@ -1,0 +1,11 @@
+{
+  "id": "sa2",
+  "name": "Відкритість та мислення з фокусом на розвиток",
+  "description": "Мати в основі мислення що включає цікавість та бажання бут вразливими, приймати зміни та розвиватися",
+  "dimension": "da0",
+  "questions": [
+    "How do you deal with critical feedback?",
+    "How do you practice staying curious?",
+    "Who do you ask for honest feedback?"
+  ]
+}

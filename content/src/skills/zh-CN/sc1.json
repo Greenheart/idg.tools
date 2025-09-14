@@ -1,0 +1,11 @@
+{
+  "id": "sc1",
+  "name": "乐观",
+  "description": "在有意义变化的可能性当中能维持并传递希望感、积极的态度和信心的能力。",
+  "dimension": "da4",
+  "questions": [
+    "What gives you hope?",
+    "How do you maintain a positive outlook during challenging times?",
+    "How do you balance realism with hope?"
+  ]
+}

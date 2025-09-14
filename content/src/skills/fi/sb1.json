@@ -1,0 +1,11 @@
+{
+  "id": "sb1",
+  "name": "Yhteenkytkeytyneisyys",
+  "description": "Voimakas tunne siitä, että on yhteydessä johonkin suurempaan kokonaisuuteen, kuten yhteisöön, ihmiskuntaan tai maailmanlaajuiseen ekosysteeminen, ja kokee olevansa osa sitä.",
+  "dimension": "da2",
+  "questions": [
+    "Who are the people in your life that you feel a deep connection with?",
+    "What experiences deepen your sense of a global connection?",
+    "How do you connect to nature, and what does it do to you?"
+  ]
+}

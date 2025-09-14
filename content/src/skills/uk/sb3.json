@@ -1,0 +1,11 @@
+{
+  "id": "sb3",
+  "name": "Емпатія і співчуття",
+  "description": "Вміти ставитися до інших, до себе і до природи з добротою, емпатією та співчуттям і реагувати на страждання",
+  "dimension": "da2",
+  "questions": [
+    "When did you last help a stranger to relieve their suffering or worry?",
+    "How do you care for yourself whilst empathising deeply with others?",
+    "How do you cultivate compassion even when it's challenging?"
+  ]
+}

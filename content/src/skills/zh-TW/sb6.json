@@ -1,0 +1,11 @@
+{
+  "id": "sb6",
+  "name": "包容性思維與跨文化能力",
+  "description": "願意且能夠擁抱多樣性並包容擁有不同觀點和背景的個人和集體。",
+  "dimension": "da3",
+  "questions": [
+    "How do you actively embrace diversity in your organisation?",
+    "Which stakeholders would you like to better understand and include?",
+    "How do you include all voices when collaborating with diverse groups?"
+  ]
+}

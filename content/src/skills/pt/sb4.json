@@ -1,0 +1,11 @@
+{
+  "id": "sb4",
+  "name": "Competências de comunicação",
+  "description": "Capacidade de ouvir realmente os outros, fomentar um diálogo genuíno, argumentar os próprios pontos de vista de forma competente, gerir conflitos de forma construtiva e adaptar a comunicação a diversos tipos de grupos.\n",
+  "dimension": "da3",
+  "questions": [
+    "When was the last time you managed a conflict constructively?",
+    "Do you listen more or talk more? How hard would it be to change that balance?",
+    "How do you tailor your communication for different audiences?"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "sc2",
+  "name": "Vedholdenhed",
+  "description": "Evner til at opretholde engagement og forblive beslutsom og tålmodig, selv når indsatsen tager lang tid om at bære frugt.",
+  "dimension": "da4",
+  "questions": [
+    "Can you recall a time when your patience eventually paid off?",
+    "What helps you sustain your efforts when progress seems slow?",
+    "How do you handle feelings of discouragement?"
+  ]
+}

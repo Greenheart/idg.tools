@@ -1,0 +1,11 @@
+{
+  "id": "sb0",
+  "name": "Waardering",
+  "description": "Verbinden met anderen en met de wereld vanuit een basisgevoel van waardering, dankbaarheid en vreugde.",
+  "dimension": "da2",
+  "questions": [
+    "What are you most grateful for right now? ",
+    "Who has helped you become the person you are today?",
+    "When did you last pause to truly appreciate something or someone?"
+  ]
+}

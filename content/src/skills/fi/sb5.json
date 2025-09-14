@@ -1,0 +1,11 @@
+{
+  "id": "sb5",
+  "name": "Yhteiskehittämistaidot",
+  "description": "Taidot ja motivoituneisuus rakentaa, kehittää ja edistää eri sidosryhmien kanssa yhteistyöhön perustuvia suhteita, joissa vallitsee psykologisen turvallisuuden tunne ja aito yhteiskehittäminen.",
+  "dimension": "da3",
+  "questions": [
+    "How do you build psychological safety in your groups or organisation?",
+    "How do you nurture a genuine spirit of co-creation?",
+    "How do you handle disagreements during collaborative projects?"
+  ]
+}

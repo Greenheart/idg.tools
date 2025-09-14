@@ -1,0 +1,11 @@
+{
+  "id": "sc2",
+  "name": "Uthållighet",
+  "description": "Förmåga att bibehålla engagemang och förbli beslutsam och tålmodig även när det tar lång tid innan ens ansträngningar ger resultat.",
+  "dimension": "da4",
+  "questions": [
+    "Can you recall a time when your patience eventually paid off?",
+    "What helps you sustain your efforts when progress seems slow?",
+    "How do you handle feelings of discouragement?"
+  ]
+}

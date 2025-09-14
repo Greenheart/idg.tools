@@ -1,0 +1,11 @@
+{
+  "id": "sa0",
+  "name": "內在指南針",
+  "description": "深刻感受到對促進整體福祉的價值觀和使命的責任與承諾。",
+  "dimension": "da0",
+  "questions": [
+    "What are your three most important values?",
+    "When have you felt deeply connected to a larger purpose?",
+    "How do you navigate moments of doubt?"
+  ]
+}

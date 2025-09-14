@@ -1,0 +1,11 @@
+{
+  "id": "sa4",
+  "name": "Presència",
+  "description": "Habilitat de ser en l’aquí i l’ara, sense jutjari en un estat de presència oberta.",
+  "dimension": "da0",
+  "questions": [
+    "How do you ground yourself in the present moment?",
+    "When did you last experience a moment without an internal dialogue? ",
+    "What is present for you right now?"
+  ]
+}

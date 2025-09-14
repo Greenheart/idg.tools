@@ -1,0 +1,11 @@
+{
+  "id": "sa4",
+  "name": "Nærvær",
+  "description": "Evner til at være til stede her og nu, uden fordomme og i en tilstand af åben tilstedeværelse.",
+  "dimension": "da0",
+  "questions": [
+    "How do you ground yourself in the present moment?",
+    "When did you last experience a moment without an internal dialogue? ",
+    "What is present for you right now?"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "sa0",
+  "name": "Inner Compass",
+  "description": "Having a deeply felt sense of responsibility and commitment to values and purposes relating to the good of the whole.",
+  "dimension": "da0",
+  "questions": [
+    "What are your three most important values?",
+    "When have you felt deeply connected to a larger purpose?",
+    "How do you navigate moments of doubt?"
+  ]
+}

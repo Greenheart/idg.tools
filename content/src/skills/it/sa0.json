@@ -1,0 +1,11 @@
+{
+  "id": "sa0",
+  "name": "Bussola interiore",
+  "description": "Attivare un profondo senso di responsabilità e impegno per i valori e gli scopi relativi al bene comune.",
+  "dimension": "da0",
+  "questions": [
+    "What are your three most important values?",
+    "When have you felt deeply connected to a larger purpose?",
+    "How do you navigate moments of doubt?"
+  ]
+}

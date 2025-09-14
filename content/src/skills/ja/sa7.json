@@ -1,0 +1,11 @@
+{
+  "id": "sa7",
+  "name": "パースペクティブ・スキル (視点・見通す力)",
+  "description": "対照的な視点からの洞察を求め、理解し、積極的に活用するスキル",
+  "dimension": "da1",
+  "questions": [
+    "Who do you know that holds the most contrasting views to yours?",
+    "How often do you seek out viewpoints different from your own?",
+    "How has understanding multiple perspectives enriched your decisions?"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "sb0",
+  "name": "Takdir",
+  "description": "Başkalarıyla ve dünyayla temel bir anlayışla; takdir, şükran ve mutlulukla ilişki kurmak.",
+  "dimension": "da2",
+  "questions": [
+    "What are you most grateful for right now? ",
+    "Who has helped you become the person you are today?",
+    "When did you last pause to truly appreciate something or someone?"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "sa0",
+  "name": "Indre kompas",
+  "description": "At have en dybfølt ansvarsfølelse og et engagement i værdier og formål, der vedrører helhedens bedste.",
+  "dimension": "da0",
+  "questions": [
+    "What are your three most important values?",
+    "When have you felt deeply connected to a larger purpose?",
+    "How do you navigate moments of doubt?"
+  ]
+}

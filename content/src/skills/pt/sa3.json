@@ -1,0 +1,11 @@
+{
+  "id": "sa3",
+  "name": "Autoconsciência",
+  "description": "Capacidade de reflexão com os próprios pensamentos, sentimentos e desejos; ter um sentido realista de autoimagem e capacidade de se regular a si próprio\n",
+  "dimension": "da0",
+  "questions": [
+    "Which of your strengths and weaknesses are you working on, and how?",
+    "What helps you become aware of your own patterns?",
+    "When did you last adjust your behaviour based on self-reflection?"
+  ]
+}

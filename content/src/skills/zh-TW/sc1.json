@@ -1,0 +1,11 @@
+{
+  "id": "sc1",
+  "name": "樂觀",
+  "description": "能維持和傳達希望感、積極態度以及對有意義的改變之可能性具備信心。",
+  "dimension": "da4",
+  "questions": [
+    "What gives you hope?",
+    "How do you maintain a positive outlook during challenging times?",
+    "How do you balance realism with hope?"
+  ]
+}

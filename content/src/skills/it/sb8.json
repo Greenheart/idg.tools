@@ -1,0 +1,11 @@
+{
+  "id": "sb8",
+  "name": "Capacità di mobilizzazione",
+  "description": "Abilità nell'ispirare e mobilitare gli altri ad impegnarsi per scopi condivisi.",
+  "dimension": "da3",
+  "questions": [
+    "How and when have you inspired others?",
+    "What tools or methods do you use to mobilise diverse groups?",
+    "What challenges you most when trying to mobilise others?"
+  ]
+}

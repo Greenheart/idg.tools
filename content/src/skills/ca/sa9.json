@@ -1,0 +1,11 @@
+{
+  "id": "sa9",
+  "name": "Orientació i visió a llarg termini",
+  "description": "Orientació a llarg termini i capacitat per formular imantenir el compromís amb les visions relacionades amb elcontext més ampli.",
+  "dimension": "da1",
+  "questions": [
+    "What would you like society to look like 20 years from now?",
+    "What long-term visions drive your actions?",
+    "In your role, which three tasks are most important from a 5, 10 and 30-year perspective?"
+  ]
+}

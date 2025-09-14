@@ -1,0 +1,11 @@
+{
+  "id": "sb0",
+  "name": "Uppskattning",
+  "description": "Att relatera till andra och till omvärlden med en grundläggande känsla av uppskattning, tacksamhet och glädje.",
+  "dimension": "da2",
+  "questions": [
+    "What are you most grateful for right now? ",
+    "Who has helped you become the person you are today?",
+    "When did you last pause to truly appreciate something or someone?"
+  ]
+}

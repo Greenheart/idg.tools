@@ -1,0 +1,11 @@
+{
+  "id": "sb2",
+  "name": "Humildad",
+  "description": "Ser capaz de actuar de acuerdo con las necesidades de la situación sin preocuparse por la propia importancia.",
+  "dimension": "da2",
+  "questions": [
+    "When did you last prioritise the needs of someone else over your own desires?",
+    "What practices help you maintain a humble approach?",
+    "How do you navigate situations where your ego is challenged?"
+  ]
+}

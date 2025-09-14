@@ -1,0 +1,11 @@
+{
+  "id": "sb5",
+  "name": "共創スキル",
+  "description": "多様なステークホルダー(関係する人たち)と協力関係をつくり、発展、促進させるスキルと意欲。その関係性には、心理的安全性と真の共創という特徴があること",
+  "dimension": "da3",
+  "questions": [
+    "How do you build psychological safety in your groups or organisation?",
+    "How do you nurture a genuine spirit of co-creation?",
+    "How do you handle disagreements during collaborative projects?"
+  ]
+}

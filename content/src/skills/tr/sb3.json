@@ -1,0 +1,11 @@
+{
+  "id": "sb3",
+  "name": "Empati ve Şefkat",
+  "description": "Başkalarıyla, kendisiyle ve doğayla; nezaket, empati ve şefkatle ilişki kurma ve ilgili sıkıntıları ele alma becerisi.",
+  "dimension": "da2",
+  "questions": [
+    "When did you last help a stranger to relieve their suffering or worry?",
+    "How do you care for yourself whilst empathising deeply with others?",
+    "How do you cultivate compassion even when it's challenging?"
+  ]
+}

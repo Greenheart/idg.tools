@@ -1,0 +1,11 @@
+{
+  "id": "sc0",
+  "name": "創造力",
+  "description": "能產生和發展原創想法、創新和願意打破傳統模式。",
+  "dimension": "da4",
+  "questions": [
+    "When and where are you most creative?",
+    "Do your personal structures support or inhibit your creativity?",
+    "When have you disrupted conventional patterns with a creative solution?"
+  ]
+}
