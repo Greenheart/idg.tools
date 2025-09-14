@@ -3,8 +3,8 @@
     import { cubicOut } from 'svelte/easing'
 
     import type { Locale, SupportedLocales } from '$shared/types'
-    import LocaleIcon from '$shared/icons/Locale.svelte'
-    import ChevronDown from '$shared/icons/ChevronDown.svelte'
+    import LocaleIcon from './icons/Locale.svelte'
+    import ChevronDown from './icons/ChevronDown.svelte'
 
     interface Props {
         supportedLocales: SupportedLocales

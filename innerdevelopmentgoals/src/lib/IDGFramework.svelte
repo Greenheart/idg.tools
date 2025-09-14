@@ -20,7 +20,8 @@
 
     import LocaleSelector from './LocaleSelector.svelte'
     import { getSkillsInDimension, getDimensionSlug } from '$shared/content-utils'
-    import { IDGSymbol, ChevronDown } from '$shared/icons'
+    import ChevronDown from './icons/ChevronDown.svelte'
+    import IDGSymbol from './icons/IDGSymbol.svelte'
     import { getColor } from '$shared/utils'
     import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
     import { IDGFrameworkState } from './idg-framework.svelte'

@@ -2,9 +2,6 @@
 
 @import '@fontsource-variable/inter';
 
-/* Register shared components and icons to allow Tailwind classes to be included in the build */
-@source '../../shared/icons';
-
 /**
  * Safe listed classes generated with ./content/scripts/format-safelist-tailwind-colors.ts
  */
