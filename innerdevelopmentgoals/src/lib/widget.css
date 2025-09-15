@@ -102,12 +102,10 @@
             display: grid;
             align-items: start;
             gap: 2rem;
-            padding-inline: 1rem;
-            padding-top: 1rem;
-            padding-bottom: 2rem;
+            padding: 1rem;
             text-wrap: balance;
 
-            :first-child {
+            .dimension {
                 max-width: 100%;
 
                 .idg-symbol {
@@ -117,9 +115,8 @@
                 }
             }
 
-            :last-child {
+            .skills {
                 .idg-symbol {
-                    margin-top: 1rem;
                     width: 80px;
                     height: 80px;
                     align-self: center;
@@ -158,10 +155,8 @@
                 display: block;
             }
 
-            [data-tabs-content] :last-child {
-                .idg-symbol {
-                    margin: 0;
-                }
+            .dimension {
+                padding-bottom: 1rem;
             }
         }
     }
@@ -177,10 +172,11 @@
             [data-tabs-content] {
                 grid-template-columns: minmax(340px, 1fr) 2fr;
                 padding-inline: 1.5rem;
+            }
 
-                :first-child {
-                    max-width: 384px;
-                }
+            .dimension {
+                max-width: 384px;
+                padding: 0;
             }
         }
     }
@@ -192,11 +188,11 @@
                 grid-template-columns: minmax(440px, 1fr) 1fr;
                 padding-inline: 2rem;
 
-                :first-child {
+                .dimension {
                     max-width: 100%;
                 }
 
-                :last-child {
+                .skills {
                     .idg-symbol {
                         width: 96px;
                         height: 96px;

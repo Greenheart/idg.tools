@@ -58,7 +58,7 @@
         {#each widgetState.dimensions as dimension (dimension.id)}
             {@const dimensionSkills = getSkillsInDimension(dimension.id, widgetState.skills)}
             <Tabs.Content value={dimension.id} style={formatColorVar(dimension.id)}>
-                <div>
+                <div class="dimension">
                     <IDGSymbol symbolPaths={symbols[dimension.id]} aria-label={dimension.name} />
                     <h2
                         class="xs:text-4xl hyphens-auto break-words pt-4 text-3xl font-bold lg:text-5xl xl:text-6xl"
@@ -71,10 +71,10 @@
                     <p class="max-w-lg pt-8">{dimension.description}</p>
                 </div>
 
-                <div class="xs:gap-x-8 grid gap-4 sm:grid-cols-[max-content_1fr] sm:gap-y-8">
+                <div class="xs:gap-x-8 skills grid gap-4 sm:grid-cols-[max-content_1fr]">
                     {#each dimensionSkills as skill (skill.id)}
                         <IDGSymbol symbolPaths={symbols[skill.id]} aria-label={skill.name} />
-                        <div>
+                        <div class="pb-4">
                             <h2 class="font-bold">{skill.name}</h2>
                             <p>{skill.description}</p>
                         </div>
