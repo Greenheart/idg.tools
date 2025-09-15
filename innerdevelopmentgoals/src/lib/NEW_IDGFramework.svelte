@@ -14,7 +14,7 @@
     import LocaleSelector from './LocaleSelector.svelte'
     import { getSkillsInDimension, getDimensionSlug } from '$shared/content-utils'
     import IDGSymbol from './icons/IDGSymbol.svelte'
-    import { getColor, getRGBColor } from '$shared/utils'
+    import { getColor } from '$shared/utils'
     import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
     import type { IDGFrameworkState } from './idg-framework.svelte'
 
@@ -50,14 +50,7 @@
                     title={dimension.name}
                     style={formatColorVar(dimension.id)}
                 >
-                    <IDGSymbol
-                        symbolPaths={symbols[dimension.id]}
-                        aria-label={dimension.name}
-                        class={[
-                            'pointer-events-none size-12',
-                            !isSelected && getColor(dimension.id, 'text'),
-                        ]}
-                    />
+                    <IDGSymbol symbolPaths={symbols[dimension.id]} aria-label={dimension.name} />
                     <p
                         class={[
                             'hidden pt-2 text-sm font-medium sm:block md:text-base',
@@ -71,6 +64,7 @@
         </Tabs.List>
 
         {#each widgetState.dimensions as dimension (dimension.id)}
+            <!-- IDEA: set the color var on the tab content, and then use it in the CSS. This should remove the need for the getColor() call -->
             {@const textColor = getColor(dimension.id, 'text')}
             {@const dimensionSkills = getSkillsInDimension(dimension.id, widgetState.skills)}
             <Tabs.Content
@@ -81,7 +75,7 @@
                     <IDGSymbol
                         symbolPaths={symbols[dimension.id]}
                         aria-label={dimension.name}
-                        class={['pointer-events-none -ml-1 size-36', textColor]}
+                        class={['-ml-1 size-36', textColor]}
                     />
                     <h2
                         class="xs:text-4xl hyphens-auto break-words pt-4 text-3xl font-bold lg:text-5xl xl:text-6xl"
@@ -102,7 +96,7 @@
                             symbolPaths={symbols[skill.id]}
                             aria-label={skill.name}
                             class={[
-                                'pointer-events-none mt-4 size-20 shrink-0 self-center sm:m-0 lg:size-24',
+                                'mt-4 size-20 shrink-0 self-center sm:m-0 lg:size-24',
                                 textColor,
                             ]}
                         />

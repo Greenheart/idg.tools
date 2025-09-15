@@ -12,11 +12,12 @@
     let { symbolPaths, ...props }: Props = $props()
 </script>
 
+<!-- TODO: Ideally, we shouldn't need the class or style props for the icons. Use context-aware styles instead -->
+
 <svg
     {...props}
+    class={['idg-symbol', props.class]}
     xmlns="http://www.w3.org/2000/svg"
-    fill="currentColor"
-    stroke="currentColor"
     viewBox="0 0 198.43 198.43"
 >
     {#each symbolPaths as path}

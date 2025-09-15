@@ -57,15 +57,32 @@
                 border-radius: 8px;
                 padding-block: 8px;
 
+                .idg-symbol {
+                    width: 48px;
+                    height: 48px;
+                }
+
                 &[aria-selected='true'] {
                     background: var(--color);
                 }
 
-                &[aria-selected='false']:hover {
-                    outline: 1px solid var(--color);
-                    outline-offset: -1px;
+                &[aria-selected='false'] {
+                    .idg-symbol {
+                        color: var(--color);
+                    }
+
+                    &:hover {
+                        outline: 1px solid var(--color);
+                        outline-offset: -1px;
+                    }
                 }
             }
+        }
+
+        .idg-symbol {
+            pointer-events: none;
+            fill: currentColor;
+            stroke: currentColor;
         }
     }
 
