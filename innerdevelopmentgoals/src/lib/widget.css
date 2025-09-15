@@ -104,9 +104,28 @@
             padding-inline: 1rem;
             padding-top: 1rem;
 
-            &:first-child {
+            :first-child {
                 max-width: 100%;
                 text-wrap: balance;
+
+                .idg-symbol {
+                    margin-left: -0.25rem;
+                    width: 144px;
+                    height: 144px;
+                }
+            }
+
+            :last-child {
+                .idg-symbol {
+                    margin-top: 1rem;
+                    width: 80px;
+                    height: 80px;
+                    align-self: center;
+                }
+            }
+
+            .idg-symbol {
+                color: var(--color);
             }
         }
     }
@@ -135,6 +154,12 @@
             [data-tabs-trigger] p {
                 display: block;
             }
+
+            [data-tabs-content] :last-child {
+                .idg-symbol {
+                    margin: 0;
+                }
+            }
         }
     }
 
@@ -150,7 +175,7 @@
                 grid-template-columns: minmax(340px, 1fr) 2fr;
                 padding-inline: 1.5rem;
 
-                &:first-child {
+                :first-child {
                     max-width: 384px;
                 }
             }
@@ -164,8 +189,15 @@
                 grid-template-columns: minmax(440px, 1fr) 1fr;
                 padding-inline: 2rem;
 
-                &:first-child {
+                :first-child {
                     max-width: 100%;
+                }
+
+                :last-child {
+                    .idg-symbol {
+                        width: 96px;
+                        height: 96px;
+                    }
                 }
             }
         }

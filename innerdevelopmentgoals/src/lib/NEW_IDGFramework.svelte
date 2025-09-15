@@ -14,7 +14,6 @@
     import LocaleSelector from './LocaleSelector.svelte'
     import { getSkillsInDimension, getDimensionSlug } from '$shared/content-utils'
     import IDGSymbol from './icons/IDGSymbol.svelte'
-    import { getColor } from '$shared/utils'
     import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
     import type { IDGFrameworkState } from './idg-framework.svelte'
 
@@ -57,16 +56,10 @@
         </Tabs.List>
 
         {#each widgetState.dimensions as dimension (dimension.id)}
-            <!-- IDEA: set the color var on the tab content, and then use it in the CSS. This should remove the need for the getColor() call -->
-            {@const textColor = getColor(dimension.id, 'text')}
             {@const dimensionSkills = getSkillsInDimension(dimension.id, widgetState.skills)}
             <Tabs.Content value={dimension.id} style={formatColorVar(dimension.id)}>
                 <div>
-                    <IDGSymbol
-                        symbolPaths={symbols[dimension.id]}
-                        aria-label={dimension.name}
-                        class={['-ml-1 size-36', textColor]}
-                    />
+                    <IDGSymbol symbolPaths={symbols[dimension.id]} aria-label={dimension.name} />
                     <h2
                         class="xs:text-4xl hyphens-auto break-words pt-4 text-3xl font-bold lg:text-5xl xl:text-6xl"
                     >
@@ -82,14 +75,7 @@
                     class="xs:gap-x-8 grid gap-4 text-balance sm:grid-cols-[max-content_1fr] sm:gap-y-8"
                 >
                     {#each dimensionSkills as skill (skill.id)}
-                        <IDGSymbol
-                            symbolPaths={symbols[skill.id]}
-                            aria-label={skill.name}
-                            class={[
-                                'mt-4 size-20 shrink-0 self-center sm:m-0 lg:size-24',
-                                textColor,
-                            ]}
-                        />
+                        <IDGSymbol symbolPaths={symbols[skill.id]} aria-label={skill.name} />
                         <div>
                             <h2 class="font-bold">{skill.name}</h2>
                             <p>{skill.description}</p>
