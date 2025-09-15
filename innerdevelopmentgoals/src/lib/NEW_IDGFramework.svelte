@@ -94,7 +94,7 @@
                     </div>
 
                     <div
-                        class="xs:gap-x-8 grid gap-4 text-balance sm:grid-cols-[max-content_1fr] sm:gap-y-8 sm:pt-4"
+                        class="xs:gap-x-8 grid gap-4 text-balance sm:grid-cols-[max-content_1fr] sm:gap-y-8 sm:pt-6"
                     >
                         {#each dimensionSkills as skill (skill.id)}
                             <IDGSymbol
