@@ -92,20 +92,20 @@
                 <!-- NOTE: Maybe reduce the font size, but ideally change grid column width instead -->
                 <Tabs.Content
                     value={dimension.id}
-                    class="xs:px-8 flex flex-col items-start gap-8 px-4 text-black sm:pt-2 md:flex-row md:justify-between"
+                    class="xs:px-8 flex flex-col items-start gap-8 px-4 text-black sm:pt-2 md:flex-row md:justify-between md:px-4 lg:px-8"
                 >
-                    <div class="max-w-full text-balance pt-6 md:max-w-xs lg:max-w-lg">
+                    <div class="max-w-full text-balance pt-6 md:max-w-sm lg:max-w-lg">
                         <IDGSymbol
                             symbolPaths={symbols[dimension.id]}
                             aria-label={dimension.name}
-                            class={['pointer-events-none size-36', textColor]}
+                            class={['pointer-events-none -ml-1 size-36', textColor]}
                         />
                         <h2
-                            class="xs:text-4xl hyphens-auto break-words pt-4 text-3xl font-bold md:text-5xl lg:text-6xl"
+                            class="xs:text-4xl hyphens-auto break-words pt-4 text-3xl font-bold lg:text-5xl xl:text-6xl"
                         >
                             {dimension.name}
                         </h2>
-                        <h3 class="pt-1 text-lg font-semibold sm:pt-2 sm:text-2xl md:text-3xl">
+                        <h3 class="pt-1 text-lg font-semibold sm:pt-2 sm:text-2xl lg:text-3xl">
                             {dimension.subtitle}
                         </h3>
                         <p class="pt-8">{dimension.description}</p>
