@@ -63,7 +63,7 @@
                     <h2>
                         {dimension.name}
                     </h2>
-                    <h3 class="pt-1 text-lg font-semibold sm:pt-2 sm:text-2xl lg:text-3xl">
+                    <h3>
                         {dimension.subtitle}
                     </h3>
                     <p class="max-w-lg pt-8">{dimension.description}</p>

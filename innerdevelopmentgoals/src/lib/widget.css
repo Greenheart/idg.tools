@@ -132,6 +132,13 @@
                 font-size: 1.875rem;
                 line-height: 1.2;
             }
+
+            h3 {
+                padding-top: 0.25rem;
+                font-weight: 600;
+                font-size: 1.125rem;
+                line-height: 1.5556;
+            }
         }
 
         .skills {
@@ -189,6 +196,12 @@
 
             .dimension {
                 padding-bottom: 1rem;
+
+                h3 {
+                    padding-top: 0.5rem;
+                    font-size: 1.5rem;
+                    line-height: 1.3333;
+                }
             }
 
             .skills {
@@ -235,6 +248,11 @@
                 h2 {
                     font-size: 3rem;
                     line-height: 1;
+                }
+
+                h3 {
+                    font-size: 1.875rem;
+                    line-height: 1.2;
                 }
             }
 
