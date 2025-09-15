@@ -23,7 +23,7 @@
     let { widgetState }: Props = $props()
 </script>
 
-<div class="max-w-(--breakpoint-xl) relative mx-auto min-h-[700px] bg-white">
+<div class="max-w-(--breakpoint-xl) relative mx-auto min-h-[700px] bg-white text-black">
     <div class="h-full text-base">
         <div class="flex justify-end p-2">
             <LocaleSelector
@@ -42,9 +42,12 @@
                     {@const isSelected = dimension.id === widgetState.selectedDimensionId}
                     <Tabs.Trigger
                         value={dimension.id}
-                        class="xs:px-2 grid place-items-center rounded-lg py-2 {isSelected
-                            ? `${getColor(dimension.id)}`
-                            : `hover:outline-solid bg-white hover:outline-1 hover:outline-${getDimensionSlug(dimension.id)} hover:-outline-offset-1`}"
+                        class={[
+                            'xs:px-2 grid place-items-center rounded-lg py-2',
+                            isSelected
+                                ? `${getColor(dimension.id)}`
+                                : `hover:outline-solid hover:outline-1 hover:outline-${getDimensionSlug(dimension.id)} hover:-outline-offset-1`,
+                        ]}
                         title={dimension.name}
                     >
                         <IDGSymbol
@@ -74,7 +77,7 @@
                 })}
                 <Tabs.Content
                     value={dimension.id}
-                    class="xs:px-8 grid w-full items-start gap-8 px-4 text-black sm:pt-2 md:grid-cols-[minmax(340px,1fr)_2fr] md:px-6 lg:grid-cols-[minmax(440px,1fr)_1fr] lg:px-8"
+                    class="xs:px-8 grid w-full items-start gap-8 px-4 sm:pt-2 md:grid-cols-[minmax(340px,1fr)_2fr] md:px-6 lg:grid-cols-[minmax(440px,1fr)_1fr] lg:px-8"
                 >
                     <div class="max-w-full text-balance pt-6 md:max-w-sm lg:max-w-full">
                         <IDGSymbol
