@@ -48,9 +48,7 @@
                     style={formatColorVar(dimension.id)}
                 >
                     <IDGSymbol symbolPaths={symbols[dimension.id]} aria-label={dimension.name} />
-                    <p>
-                        {dimension.name}
-                    </p>
+                    <p>{dimension.name}</p>
                 </Tabs.Trigger>
             {/each}
         </Tabs.List>
@@ -60,13 +58,9 @@
             <Tabs.Content value={dimension.id} style={formatColorVar(dimension.id)}>
                 <div class="dimension">
                     <IDGSymbol symbolPaths={symbols[dimension.id]} aria-label={dimension.name} />
-                    <h2>
-                        {dimension.name}
-                    </h2>
-                    <h3>
-                        {dimension.subtitle}
-                    </h3>
-                    <p class="max-w-lg pt-8">{dimension.description}</p>
+                    <h2>{dimension.name}</h2>
+                    <h3>{dimension.subtitle}</h3>
+                    <p>{dimension.description}</p>
                 </div>
 
                 <div class="skills">

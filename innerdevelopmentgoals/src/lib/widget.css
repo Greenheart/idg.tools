@@ -139,6 +139,11 @@
                 font-size: 1.125rem;
                 line-height: 1.5556;
             }
+
+            p {
+                max-width: 512px;
+                padding-top: 2rem;
+            }
         }
 
         .skills {
