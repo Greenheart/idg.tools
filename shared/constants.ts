@@ -49,7 +49,7 @@ export const LOCALES = {
     uk: 'Українська',
     ur: 'اُردُو',
     ar: 'لعربية',
-    wo: 'وࣷلࣷفْ (Wolof)',
+    wo: 'Wolof (Senegal)',
     hi: 'हिन्दी',
     bn: 'বাংলা',
     ta: 'தமிழ்',
