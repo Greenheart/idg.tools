@@ -3,8 +3,8 @@
     "version": "0.0.1",
     "scripts": {
         "dev": "vite dev",
-        "build_old": "vite build && npm run prepack",
-        "build": "tsdown",
+        "build": "vite build && npm run prepack",
+        "build:new": "tsdown",
         "preview": "vite preview",
         "prepare": "svelte-kit sync || echo ''",
         "prepack": "svelte-kit sync && svelte-package && publint",
