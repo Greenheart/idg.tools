@@ -61,7 +61,7 @@
             {@const textColor = getColor(dimension.id, 'text')}
             {@const dimensionSkills = getSkillsInDimension(dimension.id, widgetState.skills)}
             <Tabs.Content value={dimension.id} style={formatColorVar(dimension.id)}>
-                <div class="max-w-full text-balance md:max-w-sm lg:max-w-full">
+                <div>
                     <IDGSymbol
                         symbolPaths={symbols[dimension.id]}
                         aria-label={dimension.name}
