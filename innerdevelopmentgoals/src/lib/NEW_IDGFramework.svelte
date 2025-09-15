@@ -74,7 +74,7 @@
                 })}
                 <Tabs.Content
                     value={dimension.id}
-                    class="xs:px-8 grid w-full items-start gap-8 px-4 text-black sm:pt-2 md:grid-cols-[minmax(340px,1fr)_2fr] md:px-4 lg:grid-cols-[minmax(440px,1fr)_1fr] lg:px-8"
+                    class="xs:px-8 grid w-full items-start gap-8 px-4 text-black sm:pt-2 md:grid-cols-[minmax(340px,1fr)_2fr] md:px-6 lg:grid-cols-[minmax(440px,1fr)_1fr] lg:px-8"
                 >
                     <div class="max-w-full text-balance pt-6 md:max-w-sm lg:max-w-full">
                         <IDGSymbol
@@ -90,7 +90,7 @@
                         <h3 class="pt-1 text-lg font-semibold sm:pt-2 sm:text-2xl lg:text-3xl">
                             {dimension.subtitle}
                         </h3>
-                        <p class="pt-8">{dimension.description}</p>
+                        <p class="max-w-lg pt-8">{dimension.description}</p>
                     </div>
 
                     <div
