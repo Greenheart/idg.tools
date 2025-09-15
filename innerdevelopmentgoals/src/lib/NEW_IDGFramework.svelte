@@ -5,7 +5,7 @@
     import './widget.css'
     // import allLocales from './content.json'
     import allSymbols from './symbols.json'
-    import type { IDGSymbols, Locale, WidgetContent } from '$shared/types'
+    import type { Dimension, IDGSymbols, Locale, Skill, WidgetContent } from '$shared/types'
 
     // const content = allLocales as Record<Locale, WidgetContent>
     const symbols = allSymbols as IDGSymbols
@@ -14,7 +14,7 @@
     import LocaleSelector from './LocaleSelector.svelte'
     import { getSkillsInDimension, getDimensionSlug } from '$shared/content-utils'
     import IDGSymbol from './icons/IDGSymbol.svelte'
-    import { getColor } from '$shared/utils'
+    import { getColor, getRGBColor } from '$shared/utils'
     import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
     import type { IDGFrameworkState } from './idg-framework.svelte'
 
@@ -22,6 +22,10 @@
         widgetState: IDGFrameworkState
     }
     let { widgetState }: Props = $props()
+
+    function formatColorVar(id: Dimension['id'] | Skill['id']) {
+        return `--color: var(--${getDimensionSlug(id)});`
+    }
 </script>
 
 <div class="idg-framework">
@@ -42,14 +46,9 @@
                 {@const isSelected = dimension.id === widgetState.selectedDimensionId}
                 <Tabs.Trigger
                     value={dimension.id}
-                    class={[
-                        'trigger',
-                        // TODO: Style selected state based on attribute
-                        isSelected
-                            ? `${getColor(dimension.id)}`
-                            : `hover:outline-solid hover:outline-1 hover:outline-${getDimensionSlug(dimension.id)} hover:-outline-offset-1`,
-                    ]}
+                    class="trigger"
                     title={dimension.name}
+                    style={formatColorVar(dimension.id)}
                 >
                     <IDGSymbol
                         symbolPaths={symbols[dimension.id]}

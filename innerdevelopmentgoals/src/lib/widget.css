@@ -4,6 +4,15 @@
 
 @layer reset {
     /* TODO: Add minimal reset here */
+
+    .idg-framework {
+        -webkit-tap-highlight-color: transparent;
+        overscroll-behavior-y: none;
+        font-smoothing: antialiased;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+    }
 }
 
 @layer widget {
@@ -11,6 +20,12 @@
         --font-sans:
             'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
             'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+        --being: #d4b88c;
+        --thinking: #e585a1;
+        --relating: #e84139;
+        --collaborating: #ff6821;
+        --acting: #661a30;
     }
 
     .idg-framework {
@@ -23,6 +38,7 @@
         font-size: 1rem;
         color: #000;
         margin: 0 auto;
+        font-family: var(--font-sans);
 
         .locale {
             align-self: flex-end;
@@ -40,6 +56,15 @@
                 place-items: center;
                 border-radius: 8px;
                 padding-block: 8px;
+
+                &[aria-selected='true'] {
+                    background: var(--color);
+                }
+
+                &[aria-selected='false']:hover {
+                    outline: 1px solid var(--color);
+                    outline-offset: -1px;
+                }
             }
         }
     }
