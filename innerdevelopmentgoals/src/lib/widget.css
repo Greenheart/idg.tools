@@ -40,6 +40,10 @@
         margin: 0 auto;
         font-family: var(--font-sans);
 
+        h2 {
+            font-weight: 700;
+        }
+
         .idg-symbol {
             pointer-events: none;
             fill: currentColor;
@@ -103,6 +107,7 @@
             align-items: start;
             gap: 2rem;
             padding: 1rem;
+            padding-bottom: 2rem;
             text-wrap: balance;
 
             .dimension {
@@ -118,11 +123,17 @@
             .skills {
                 display: grid;
                 gap: 1rem;
+                align-items: start;
 
                 .idg-symbol {
                     width: 80px;
                     height: 80px;
-                    align-self: center;
+                    /* NOTE: Not sure if it's better to center the symbol, both or keep both symbol and text aligned to the start */
+                    /* align-self: center; */
+                }
+
+                div {
+                    padding-bottom: 1rem;
                 }
             }
 
@@ -183,6 +194,10 @@
             [data-tabs-content] {
                 grid-template-columns: minmax(340px, 1fr) 2fr;
                 padding-inline: 1.5rem;
+
+                .skills div {
+                    padding: 0;
+                }
             }
 
             .dimension {

@@ -61,7 +61,7 @@
                 <div class="dimension">
                     <IDGSymbol symbolPaths={symbols[dimension.id]} aria-label={dimension.name} />
                     <h2
-                        class="xs:text-4xl hyphens-auto break-words pt-4 text-3xl font-bold lg:text-5xl xl:text-6xl"
+                        class="xs:text-4xl hyphens-auto break-words pt-4 text-3xl lg:text-5xl xl:text-6xl"
                     >
                         {dimension.name}
                     </h2>
@@ -74,8 +74,8 @@
                 <div class="skills">
                     {#each dimensionSkills as skill (skill.id)}
                         <IDGSymbol symbolPaths={symbols[skill.id]} aria-label={skill.name} />
-                        <div class="pb-4">
-                            <h2 class="font-bold">{skill.name}</h2>
+                        <div>
+                            <h2>{skill.name}</h2>
                             <p>{skill.description}</p>
                         </div>
                     {/each}
