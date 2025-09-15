@@ -37,12 +37,10 @@
     --relating: #e84139;
     --collaborating: #ff6821;
     --acting: #661a30;
-    --light-gray: #f5f5f5;
 }
 
 @theme {
     --breakpoint-*: initial;
-    --breakpoint-2xs: 375px;
     --breakpoint-xs: 475px;
     --breakpoint-sm: 640px;
     --breakpoint-md: 768px;
