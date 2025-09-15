@@ -56,6 +56,7 @@
             grid-template-columns: repeat(5, minmax(0, 1fr));
             color: #fff;
             gap: 2px;
+            padding-inline: 2px;
         }
 
         [data-tabs-trigger] {
@@ -150,6 +151,7 @@
         .idg-framework {
             .tabs-list {
                 gap: 0.25rem;
+                padding-inline: 0.25rem;
             }
 
             [data-tabs-trigger] p {
