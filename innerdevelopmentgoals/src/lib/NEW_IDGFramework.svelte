@@ -92,7 +92,7 @@
                 <!-- NOTE: Maybe reduce the font size, but ideally change grid column width instead -->
                 <Tabs.Content
                     value={dimension.id}
-                    class="flex flex-col items-start gap-8 px-4 text-black sm:px-8 sm:pt-2 md:flex-row md:justify-between"
+                    class="xs:px-8 flex flex-col items-start gap-8 px-4 text-black sm:pt-2 md:flex-row md:justify-between"
                 >
                     <div class="max-w-full text-balance pt-6 md:max-w-xs lg:max-w-lg">
                         <IDGSymbol
@@ -112,19 +112,19 @@
                     </div>
 
                     <div
-                        class="grid gap-4 text-balance sm:grid-cols-[max-content_1fr] sm:gap-y-8 sm:pt-8"
+                        class="xs:gap-x-8 grid gap-4 text-balance sm:grid-cols-[max-content_1fr] sm:gap-y-8 sm:pt-4"
                     >
                         {#each dimensionSkills as skill (skill.id)}
                             <IDGSymbol
                                 symbolPaths={symbols[skill.id]}
                                 aria-label={skill.name}
                                 class={[
-                                    'pointer-events-none mt-8 size-20 shrink-0 self-center sm:m-0',
+                                    'pointer-events-none mt-4 size-20 shrink-0 self-center sm:m-0',
                                     textColor,
                                 ]}
                             />
                             <div>
-                                <h2 class="xs:pb-0 pb-1 font-bold">{skill.name}</h2>
+                                <h2 class="font-bold">{skill.name}</h2>
                                 <p>{skill.description}</p>
                             </div>
                         {/each}
