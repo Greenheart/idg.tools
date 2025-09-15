@@ -9,10 +9,6 @@
     // const content = allLocales as Record<Locale, WidgetContent>
     const symbols = allSymbols as IDGSymbols
 
-    // IDEA: Consider redesigning the framework widget to match the PDF presentations
-    // For example by only using colors for icons and otherwise black text on white background,
-    // which would fix the inaccessible text contrast. This would make the IDG framework much better adapted to a diverse and global audience.
-
     // IDEA: Set correct `dir` for content based on the locale
 
     // TODO: Create minimal CSS to be bundled together with the components
@@ -39,8 +35,6 @@
             />
         </div>
 
-        <!-- TODO: improve styling -->
-        <!-- TODO: Make it work well for all locales -->
         <!-- Create build process -->
         <!-- Create demo page -->
 
