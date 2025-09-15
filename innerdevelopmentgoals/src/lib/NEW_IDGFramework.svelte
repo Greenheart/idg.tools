@@ -101,7 +101,7 @@
                                 symbolPaths={symbols[skill.id]}
                                 aria-label={skill.name}
                                 class={[
-                                    'pointer-events-none mt-4 size-20 shrink-0 self-center sm:m-0',
+                                    'pointer-events-none mt-4 size-20 shrink-0 self-center sm:m-0 lg:size-24',
                                     textColor,
                                 ]}
                             />
