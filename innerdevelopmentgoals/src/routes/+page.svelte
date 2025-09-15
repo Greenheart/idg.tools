@@ -34,6 +34,6 @@
 
 <div style="height: 50vh"></div>
 
-<IdgFramework {widgetState} />
+<!-- <IdgFramework {widgetState} />
 
-<div style="height: 20vh"></div>
+<div style="height: 20vh"></div> -->

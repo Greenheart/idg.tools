@@ -23,7 +23,7 @@
     import IDGSymbol from './icons/IDGSymbol.svelte'
     import { getColor } from '$shared/utils'
     import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
-    import { IDGFrameworkState } from './idg-framework.svelte'
+    import type { IDGFrameworkState } from './old-idg-framework.svelte'
 
     type Props = {
         widgetState: IDGFrameworkState
