@@ -40,7 +40,7 @@
         </div>
 
         <Tabs.Root bind:value={widgetState.selectedDimensionId}>
-            <Tabs.List class="grid grid-cols-5 text-white">
+            <Tabs.List class="grid grid-cols-5 gap-0.5 text-white sm:gap-1">
                 {#each widgetState.dimensions as dimension (dimension.id)}
                     {@const isSelected = dimension.id === widgetState.selectedDimensionId}
                     <Tabs.Trigger
