@@ -110,35 +110,44 @@
             padding-bottom: 2rem;
             text-wrap: balance;
 
-            .dimension {
-                max-width: 100%;
-
-                .idg-symbol {
-                    margin-left: -0.25rem;
-                    width: 144px;
-                    height: 144px;
-                }
-            }
-
-            .skills {
-                display: grid;
-                gap: 1rem;
-                align-items: start;
-
-                .idg-symbol {
-                    width: 80px;
-                    height: 80px;
-                    /* NOTE: Not sure if it's better to center the symbol, both or keep both symbol and text aligned to the start */
-                    /* align-self: center; */
-                }
-
-                div {
-                    padding-bottom: 1rem;
-                }
-            }
-
             .idg-symbol {
                 color: var(--color);
+            }
+        }
+
+        .dimension {
+            max-width: 100%;
+
+            .idg-symbol {
+                margin-left: -0.25rem;
+                width: 144px;
+                height: 144px;
+            }
+
+            h2 {
+                -webkit-hyphens: auto;
+                hyphens: auto;
+                overflow-wrap: break-word;
+                padding-top: 1rem;
+                font-size: 1.875rem;
+                line-height: 1.2;
+            }
+        }
+
+        .skills {
+            display: grid;
+            gap: 1rem;
+            align-items: start;
+
+            .idg-symbol {
+                width: 80px;
+                height: 80px;
+                /* NOTE: Not sure if it's better to center the symbol, both or keep both symbol and text aligned to the start */
+                /* align-self: center; */
+            }
+
+            div {
+                padding-bottom: 1rem;
             }
         }
     }
@@ -153,6 +162,11 @@
             [data-tabs-content] {
                 padding-inline: 2rem;
                 padding-top: 2rem;
+            }
+
+            .dimension h2 {
+                font-size: 2.25rem;
+                line-height: 1.1111;
             }
 
             .skills {
@@ -194,14 +208,14 @@
             [data-tabs-content] {
                 grid-template-columns: minmax(340px, 1fr) 2fr;
                 padding-inline: 1.5rem;
-
-                .skills div {
-                    padding: 0;
-                }
             }
 
             .dimension {
                 max-width: 384px;
+                padding: 0;
+            }
+
+            .skills div {
                 padding: 0;
             }
         }
@@ -213,16 +227,21 @@
             [data-tabs-content] {
                 grid-template-columns: minmax(440px, 1fr) 1fr;
                 padding-inline: 2rem;
+            }
 
-                .dimension {
-                    max-width: 100%;
+            .dimension {
+                max-width: 100%;
+
+                h2 {
+                    font-size: 3rem;
+                    line-height: 1;
                 }
+            }
 
-                .skills {
-                    .idg-symbol {
-                        width: 96px;
-                        height: 96px;
-                    }
+            .skills {
+                .idg-symbol {
+                    width: 96px;
+                    height: 96px;
                 }
             }
         }
@@ -230,6 +249,11 @@
 
     /* xl */
     @media (min-width: 1280px) {
-        /*  */
+        .idg-framework {
+            .dimension h2 {
+                font-size: 3.75rem;
+                line-height: 1;
+            }
+        }
     }
 }

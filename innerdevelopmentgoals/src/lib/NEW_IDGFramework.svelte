@@ -60,9 +60,7 @@
             <Tabs.Content value={dimension.id} style={formatColorVar(dimension.id)}>
                 <div class="dimension">
                     <IDGSymbol symbolPaths={symbols[dimension.id]} aria-label={dimension.name} />
-                    <h2
-                        class="xs:text-4xl hyphens-auto break-words pt-4 text-3xl lg:text-5xl xl:text-6xl"
-                    >
+                    <h2>
                         {dimension.name}
                     </h2>
                     <h3 class="pt-1 text-lg font-semibold sm:pt-2 sm:text-2xl lg:text-3xl">
