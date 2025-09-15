@@ -9,8 +9,6 @@
     // const content = allLocales as Record<Locale, WidgetContent>
     const symbols = allSymbols as IDGSymbols
 
-    // IDEA: Set correct `dir` for content based on the locale
-
     // TODO: Create minimal CSS to be bundled together with the components
     import LocaleSelector from './LocaleSelector.svelte'
     import { getSkillsInDimension, getDimensionSlug } from '$shared/content-utils'
@@ -78,7 +76,7 @@
                     value={dimension.id}
                     class="xs:px-8 grid w-full items-start gap-8 px-4 text-black sm:pt-2 md:grid-cols-[minmax(340px,1fr)_2fr] md:px-4 lg:grid-cols-[minmax(440px,1fr)_1fr] lg:px-8"
                 >
-                    <div class="max-w-full text-balance pt-6 md:max-w-sm lg:max-w-lg">
+                    <div class="max-w-full text-balance pt-6 md:max-w-sm lg:max-w-full">
                         <IDGSymbol
                             symbolPaths={symbols[dimension.id]}
                             aria-label={dimension.name}
