@@ -2,8 +2,8 @@ import {
     COLORS,
     DEFAULT_LOCALE_IDENTIFIER,
     IDG_COLORS_RGB,
-    LOCALE_DIRECTIONS,
     LOCALE_IDENTIFIERS,
+    RTL_LOCALES,
 } from './constants'
 import type {
     Dimension,
@@ -38,7 +38,7 @@ export const getLocale = (locale?: string) => {
     return DEFAULT_LOCALE_IDENTIFIER
 }
 
-export const getHTMLDirection = (locale: Locale) => LOCALE_DIRECTIONS[locale] ?? 'ltr'
+export const getHTMLDirection = (locale: Locale) => (RTL_LOCALES.has(locale) ? 'rtr' : 'ltr')
 
 export const getDimension = (id: Dimension['id'], { dimensions }: Pick<AllContent, 'dimensions'>) =>
     dimensions.find((c) => c.id === id) as Dimension

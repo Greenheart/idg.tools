@@ -86,17 +86,11 @@ export const FRAMEWORK_AVAILABLE_LOCALES = [
     'wo',
 ] as const
 
-export const LOCALE_DIRECTIONS: Record<Locale, 'rtl' | 'ltr'> = (
-    Object.keys(LOCALES) as Locale[]
-).reduce(
-    (result, locale) => {
-        // TODO: Add more rtl locales here
-        const RTL_LOCALES = ['ar', 'ur']
-        result[locale] = RTL_LOCALES.includes(locale) ? 'rtl' : 'ltr'
-        return result
-    },
-    {} as Record<Locale, 'rtl' | 'ltr'>,
-)
+/**
+ * Includes the language codes for all RTL locales we support
+ * Useful resource when adding more: https://github.com/shadiabuhilal/rtl-detect/blob/ca1f7e94b55bed42bcbb1d234ee0eba153d0a342/lib/rtl-detect.js#L139-L168
+ */
+export const RTL_LOCALES = new Set<keyof typeof LOCALES>(['ar', 'ur'])
 
 export const LOCALE_IDENTIFIERS = Object.keys(LOCALES) as Locale[]
 export const DEFAULT_LOCALE_IDENTIFIER: Locale = 'en'
