@@ -62,9 +62,10 @@
             {@const dimensionSkills = getSkillsInDimension(dimension.id, widgetState.skills)}
             <Tabs.Content
                 value={dimension.id}
-                class="xs:px-8 grid w-full items-start gap-8 px-4 sm:pt-2 md:grid-cols-[minmax(340px,1fr)_2fr] md:px-6 lg:grid-cols-[minmax(440px,1fr)_1fr] lg:px-8"
+                class="md:grid-cols-[minmax(340px,1fr)_2fr] md:px-6 lg:grid-cols-[minmax(440px,1fr)_1fr] lg:px-8"
+                style={formatColorVar(dimension.id)}
             >
-                <div class="max-w-full text-balance pt-6 md:max-w-sm lg:max-w-full">
+                <div class="max-w-full text-balance md:max-w-sm lg:max-w-full">
                     <IDGSymbol
                         symbolPaths={symbols[dimension.id]}
                         aria-label={dimension.name}
@@ -82,7 +83,7 @@
                 </div>
 
                 <div
-                    class="xs:gap-x-8 grid gap-4 text-balance sm:grid-cols-[max-content_1fr] sm:gap-y-8 sm:pt-6"
+                    class="xs:gap-x-8 grid gap-4 text-balance sm:grid-cols-[max-content_1fr] sm:gap-y-8"
                 >
                     {#each dimensionSkills as skill (skill.id)}
                         <IDGSymbol

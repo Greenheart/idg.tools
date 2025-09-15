@@ -28,3 +28,6 @@ export default defineConfig({
     plugins: [svelte()],
     // TODO: Set a good target for the browser bundle, for example es2022 or es2021 for maximum compatibility
 })
+
+// TODO: minify JS for CDN bundle
+// TODO: minify CSS for CDN bundle
