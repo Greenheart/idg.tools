@@ -112,7 +112,10 @@
             >
                 <ChevronDown class="!size-4 rotate-180 transform" />
             </Select.ScrollUpButton>
-            <Select.Viewport class="invisible max-h-[80vh]" bind:ref={selectViewport}>
+            <Select.Viewport
+                class="invisible max-h-[clamp(200px,80vh,600px)]"
+                bind:ref={selectViewport}
+            >
                 {#each recommendedLocales as { value, label }, i (i)}
                     <Select.Item
                         value={value + recommendedSuffix}
