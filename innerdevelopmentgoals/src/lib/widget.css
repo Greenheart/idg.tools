@@ -116,6 +116,9 @@
             }
 
             .skills {
+                display: grid;
+                gap: 1rem;
+
                 .idg-symbol {
                     width: 80px;
                     height: 80px;
@@ -140,6 +143,10 @@
                 padding-inline: 2rem;
                 padding-top: 2rem;
             }
+
+            .skills {
+                column-gap: 2rem;
+            }
         }
     }
 
@@ -157,6 +164,10 @@
 
             .dimension {
                 padding-bottom: 1rem;
+            }
+
+            .skills {
+                grid-template-columns: max-content 1fr;
             }
         }
     }

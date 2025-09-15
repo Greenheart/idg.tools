@@ -71,7 +71,7 @@
                     <p class="max-w-lg pt-8">{dimension.description}</p>
                 </div>
 
-                <div class="xs:gap-x-8 skills grid gap-4 sm:grid-cols-[max-content_1fr]">
+                <div class="skills">
                     {#each dimensionSkills as skill (skill.id)}
                         <IDGSymbol symbolPaths={symbols[skill.id]} aria-label={skill.name} />
                         <div class="pb-4">
