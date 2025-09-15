@@ -72,9 +72,7 @@
 
         {#each widgetState.dimensions as dimension (dimension.id)}
             {@const textColor = getColor(dimension.id, 'text')}
-            {@const dimensionSkills = getSkillsInDimension(dimension.id, {
-                skills: widgetState.skills,
-            })}
+            {@const dimensionSkills = getSkillsInDimension(dimension.id, widgetState.skills)}
             <Tabs.Content
                 value={dimension.id}
                 class="xs:px-8 grid w-full items-start gap-8 px-4 sm:pt-2 md:grid-cols-[minmax(340px,1fr)_2fr] md:px-6 lg:grid-cols-[minmax(440px,1fr)_1fr] lg:px-8"

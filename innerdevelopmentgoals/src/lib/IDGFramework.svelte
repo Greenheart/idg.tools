@@ -87,9 +87,7 @@
                 {@const dimensionSlug = getDimensionSlug(dimension.id)}
                 {@const bgColor = getColor(dimension.id, 'bg')}
                 {@const textColor = getColor(dimension.id, 'text')}
-                {@const dimensionSkills = getSkillsInDimension(dimension.id, {
-                    skills: widgetState.skills,
-                })}
+                {@const dimensionSkills = getSkillsInDimension(dimension.id, widgetState.skills)}
                 <Tabs.Content
                     value={dimension.id}
                     class={'grid w-full items-start bg-white text-white sm:grid-cols-[minmax(260px,1fr)_2fr] sm:gap-2 sm:pt-2 lg:grid-cols-[minmax(260px,1fr)_1fr_1fr]'}

@@ -18,6 +18,7 @@ import type {
     AllContent,
     Locale,
     DimensionSlug,
+    WidgetContent,
 } from './types'
 
 export const getLocale = (locale?: string) => {
@@ -111,7 +112,7 @@ export const getAdjacentStories = (
     return { prev: stories[index - 1], next: stories[index + 1] }
 }
 
-export const getSkillsInDimension = (id: Dimension['id'], { skills }: Pick<AllContent, 'skills'>) =>
+export const getSkillsInDimension = (id: Dimension['id'], skills: WidgetContent['skills']) =>
     skills.filter((s) => s.dimension === id)
 
 export const getTotalRelevancyScore = (
