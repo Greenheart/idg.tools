@@ -139,7 +139,7 @@ export const BUILDERS = {
         )
 
         await writeJSON(
-            resolve(builderInput.contentDir, '../../innerdevelopmentgoals/src/content.json'),
+            resolve(builderInput.contentDir, '../../innerdevelopmentgoals/src/lib/content.json'),
             transformedContent,
             0,
         )
