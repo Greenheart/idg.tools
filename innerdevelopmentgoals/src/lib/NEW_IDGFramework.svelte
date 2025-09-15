@@ -2,6 +2,7 @@
     import { Tabs } from 'bits-ui'
 
     import './style.css'
+    import './widget.css'
     // import allLocales from './content.json'
     import allSymbols from './symbols.json'
     import type { IDGSymbols, Locale, WidgetContent } from '$shared/types'
@@ -23,10 +24,8 @@
     let { widgetState }: Props = $props()
 </script>
 
-<div
-    class="max-w-(--breakpoint-xl) mx-auto grid h-full min-h-[700px] bg-white text-base text-black"
->
-    <div class="justify-self-end p-2">
+<div class="idg-framework">
+    <div class="locale">
         <LocaleSelector
             supportedLocales={widgetState.supportedLocales}
             locale={widgetState.locale}
@@ -38,13 +37,14 @@
     <!-- Create demo page -->
 
     <Tabs.Root bind:value={widgetState.selectedDimensionId}>
-        <Tabs.List class="grid grid-cols-5 gap-0.5 text-white sm:gap-1">
+        <Tabs.List class="tabs-list">
             {#each widgetState.dimensions as dimension (dimension.id)}
                 {@const isSelected = dimension.id === widgetState.selectedDimensionId}
                 <Tabs.Trigger
                     value={dimension.id}
                     class={[
-                        'xs:px-2 grid place-items-center rounded-lg py-2',
+                        'trigger',
+                        // TODO: Style selected state based on attribute
                         isSelected
                             ? `${getColor(dimension.id)}`
                             : `hover:outline-solid hover:outline-1 hover:outline-${getDimensionSlug(dimension.id)} hover:-outline-offset-1`,

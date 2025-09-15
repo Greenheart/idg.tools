@@ -1,0 +1,75 @@
+/* Minimal styles for the widget */
+
+@layer reset, widget;
+
+@layer reset {
+    /* TODO: Add minimal reset here */
+}
+
+@layer widget {
+    :root {
+        --font-sans:
+            'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+            'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    }
+
+    .idg-framework {
+        max-width: 1280px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 700px;
+        background: #fff;
+        font-size: 1rem;
+        color: #000;
+        margin: 0 auto;
+
+        .locale {
+            align-self: flex-end;
+            padding: 0.5rem;
+        }
+
+        .tabs-list {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            color: #fff;
+            gap: 2px;
+
+            .trigger {
+                display: grid;
+                place-items: center;
+                border-radius: 8px;
+                padding-block: 8px;
+            }
+        }
+    }
+
+    /* xs */
+    @media (min-width: 475px) {
+        .idg-framework .trigger {
+            padding-inline: 8px;
+        }
+    }
+
+    /* sm */
+    @media (min-width: 640px) {
+        .idg-framework .tabs-list {
+            gap: 4px;
+        }
+    }
+
+    /* md */
+    @media (min-width: 768px) {
+        /*  */
+    }
+
+    /* lg */
+    @media (min-width: 1024px) {
+        /*  */
+    }
+
+    /* xl */
+    @media (min-width: 1280px) {
+        /*  */
+    }
+}
