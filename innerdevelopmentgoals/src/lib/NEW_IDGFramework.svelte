@@ -40,7 +40,7 @@
     <!-- Create demo page -->
 
     <Tabs.Root bind:value={widgetState.selectedDimensionId}>
-        <Tabs.List class="tabs-list">
+        <Tabs.List>
             {#each widgetState.dimensions as dimension (dimension.id)}
                 <Tabs.Trigger
                     value={dimension.id}

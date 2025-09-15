@@ -55,7 +55,7 @@
             padding: 0.5rem;
         }
 
-        .tabs-list {
+        [role='tablist'] {
             display: grid;
             grid-template-columns: repeat(5, minmax(0, 1fr));
             color: #fff;
@@ -164,7 +164,7 @@
     /* sm */
     @media (min-width: 640px) {
         .idg-framework {
-            .tabs-list {
+            [role='tablist'] {
                 gap: 0.25rem;
                 padding-inline: 0.25rem;
             }
