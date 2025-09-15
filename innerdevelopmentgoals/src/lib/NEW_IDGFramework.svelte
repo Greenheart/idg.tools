@@ -43,20 +43,13 @@
     <Tabs.Root bind:value={widgetState.selectedDimensionId}>
         <Tabs.List class="tabs-list">
             {#each widgetState.dimensions as dimension (dimension.id)}
-                {@const isSelected = dimension.id === widgetState.selectedDimensionId}
                 <Tabs.Trigger
                     value={dimension.id}
-                    class="trigger"
                     title={dimension.name}
                     style={formatColorVar(dimension.id)}
                 >
                     <IDGSymbol symbolPaths={symbols[dimension.id]} aria-label={dimension.name} />
-                    <p
-                        class={[
-                            'hidden pt-2 text-sm font-medium sm:block md:text-base',
-                            !isSelected && 'text-black',
-                        ]}
-                    >
+                    <p>
                         {dimension.name}
                     </p>
                 </Tabs.Trigger>
