@@ -60,11 +60,7 @@
             <!-- IDEA: set the color var on the tab content, and then use it in the CSS. This should remove the need for the getColor() call -->
             {@const textColor = getColor(dimension.id, 'text')}
             {@const dimensionSkills = getSkillsInDimension(dimension.id, widgetState.skills)}
-            <Tabs.Content
-                value={dimension.id}
-                class="md:grid-cols-[minmax(340px,1fr)_2fr] md:px-6 lg:grid-cols-[minmax(440px,1fr)_1fr] lg:px-8"
-                style={formatColorVar(dimension.id)}
-            >
+            <Tabs.Content value={dimension.id} style={formatColorVar(dimension.id)}>
                 <div class="max-w-full text-balance md:max-w-sm lg:max-w-full">
                     <IDGSymbol
                         symbolPaths={symbols[dimension.id]}

@@ -137,15 +137,27 @@
 
     /* md */
     @media (min-width: 768px) {
-        .idg-framework [data-tabs-trigger] p {
-            font-size: 1rem;
-            line-height: 1.5;
+        .idg-framework {
+            [data-tabs-trigger] p {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
+            [data-tabs-content] {
+                grid-template-columns: minmax(340px, 1fr) 2fr;
+                padding-inline: 1.5rem;
+            }
         }
     }
 
     /* lg */
     @media (min-width: 1024px) {
-        /*  */
+        .idg-framework {
+            [data-tabs-content] {
+                grid-template-columns: minmax(440px, 1fr) 1fr;
+                padding-inline: 2rem;
+            }
+        }
     }
 
     /* xl */
