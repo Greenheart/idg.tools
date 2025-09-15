@@ -92,16 +92,16 @@
                 <!-- NOTE: Maybe reduce the font size, but ideally change grid column width instead -->
                 <Tabs.Content
                     value={dimension.id}
-                    class="flex flex-col items-start gap-8 px-4 text-black sm:pt-2 md:flex-row md:justify-between md:px-8"
+                    class="flex flex-col items-start gap-8 px-4 text-black sm:px-8 sm:pt-2 md:flex-row md:justify-between"
                 >
-                    <div class="text-balance pt-6 md:max-w-xs lg:max-w-lg">
+                    <div class="max-w-full text-balance pt-6 md:max-w-xs lg:max-w-lg">
                         <IDGSymbol
                             symbolPaths={symbols[dimension.id]}
                             aria-label={dimension.name}
                             class={['pointer-events-none size-36', textColor]}
                         />
                         <h2
-                            class="hyphens-auto break-words pt-4 text-4xl font-bold md:text-5xl lg:text-6xl"
+                            class="xs:text-4xl hyphens-auto break-words pt-4 text-3xl font-bold md:text-5xl lg:text-6xl"
                         >
                             {dimension.name}
                         </h2>
@@ -111,13 +111,15 @@
                         <p class="pt-8">{dimension.description}</p>
                     </div>
 
-                    <div class="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-8 text-balance pt-8">
+                    <div
+                        class="grid gap-4 text-balance sm:grid-cols-[max-content_1fr] sm:gap-y-8 sm:pt-8"
+                    >
                         {#each dimensionSkills as skill (skill.id)}
                             <IDGSymbol
                                 symbolPaths={symbols[skill.id]}
                                 aria-label={skill.name}
                                 class={[
-                                    '2xs:size-20 pointer-events-none size-16 shrink-0 self-center',
+                                    'pointer-events-none mt-8 size-20 shrink-0 self-center sm:m-0',
                                     textColor,
                                 ]}
                             />
