@@ -105,10 +105,10 @@
             padding-inline: 1rem;
             padding-top: 1rem;
             padding-bottom: 2rem;
+            text-wrap: balance;
 
             :first-child {
                 max-width: 100%;
-                text-wrap: balance;
 
                 .idg-symbol {
                     margin-left: -0.25rem;
