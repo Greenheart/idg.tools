@@ -53,14 +53,15 @@
                         <IDGSymbol
                             symbolPaths={symbols[dimension.id]}
                             aria-label={dimension.name}
-                            class="pointer-events-none size-12 {isSelected
-                                ? 'text-white'
-                                : getColor(dimension.id, 'text')}"
+                            class={[
+                                'pointer-events-none size-12',
+                                !isSelected && getColor(dimension.id, 'text'),
+                            ]}
                         />
                         <p
                             class={[
                                 'hidden pt-2 text-sm font-medium sm:block md:text-base',
-                                isSelected ? 'text-white' : 'text-black',
+                                !isSelected && 'text-black',
                             ]}
                         >
                             {dimension.name}
