@@ -39,6 +39,11 @@
             />
         </div>
 
+        <!-- TODO: improve styling -->
+        <!-- TODO: Make it work well for all locales -->
+        <!-- Create build process -->
+        <!-- Create demo page -->
+
         <Tabs.Root bind:value={widgetState.selectedDimensionId}>
             <Tabs.List class="grid grid-cols-5 gap-0.5 text-white sm:gap-1">
                 {#each widgetState.dimensions as dimension (dimension.id)}
@@ -106,7 +111,7 @@
                         <p class="pt-8">{dimension.description}</p>
                     </div>
 
-                    <div class="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-8 pt-8">
+                    <div class="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-8 text-balance pt-8">
                         {#each dimensionSkills as skill (skill.id)}
                             <IDGSymbol
                                 symbolPaths={symbols[skill.id]}
@@ -118,7 +123,7 @@
                             />
                             <div>
                                 <h2 class="xs:pb-0 pb-1 font-bold">{skill.name}</h2>
-                                <p class="text-balance">{skill.description}</p>
+                                <p>{skill.description}</p>
                             </div>
                         {/each}
                     </div>
