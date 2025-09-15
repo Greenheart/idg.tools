@@ -7,7 +7,6 @@
 
     import { IDGFrameworkState } from '$lib/idg-framework.svelte'
 
-    import IdgFramework from '$lib/IDGFramework.svelte'
     import NEW_IDGFramework from '$lib/NEW_IDGFramework.svelte'
     import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
 
@@ -31,9 +30,3 @@
 {#if browser}
     <NEW_IDGFramework {widgetState} />
 {/if}
-
-<div style="height: 50vh"></div>
-
-<!-- <IdgFramework {widgetState} />
-
-<div style="height: 20vh"></div> -->

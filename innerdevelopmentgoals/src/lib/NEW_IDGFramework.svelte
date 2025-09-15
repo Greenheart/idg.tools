@@ -23,99 +23,99 @@
     let { widgetState }: Props = $props()
 </script>
 
-<div class="max-w-(--breakpoint-xl) relative mx-auto min-h-[700px] bg-white text-black">
-    <div class="h-full text-base">
-        <div class="flex justify-end p-2">
-            <LocaleSelector
-                supportedLocales={widgetState.supportedLocales}
-                locale={widgetState.locale}
-                onChangeLocale={(selected) => (widgetState.locale = selected)}
-            />
-        </div>
-
-        <!-- Create build process -->
-        <!-- Create demo page -->
-
-        <Tabs.Root bind:value={widgetState.selectedDimensionId}>
-            <Tabs.List class="grid grid-cols-5 gap-0.5 text-white sm:gap-1">
-                {#each widgetState.dimensions as dimension (dimension.id)}
-                    {@const isSelected = dimension.id === widgetState.selectedDimensionId}
-                    <Tabs.Trigger
-                        value={dimension.id}
-                        class={[
-                            'xs:px-2 grid place-items-center rounded-lg py-2',
-                            isSelected
-                                ? `${getColor(dimension.id)}`
-                                : `hover:outline-solid hover:outline-1 hover:outline-${getDimensionSlug(dimension.id)} hover:-outline-offset-1`,
-                        ]}
-                        title={dimension.name}
-                    >
-                        <IDGSymbol
-                            symbolPaths={symbols[dimension.id]}
-                            aria-label={dimension.name}
-                            class={[
-                                'pointer-events-none size-12',
-                                !isSelected && getColor(dimension.id, 'text'),
-                            ]}
-                        />
-                        <p
-                            class={[
-                                'hidden pt-2 text-sm font-medium sm:block md:text-base',
-                                !isSelected && 'text-black',
-                            ]}
-                        >
-                            {dimension.name}
-                        </p>
-                    </Tabs.Trigger>
-                {/each}
-            </Tabs.List>
-
-            {#each widgetState.dimensions as dimension (dimension.id)}
-                {@const textColor = getColor(dimension.id, 'text')}
-                {@const dimensionSkills = getSkillsInDimension(dimension.id, {
-                    skills: widgetState.skills,
-                })}
-                <Tabs.Content
-                    value={dimension.id}
-                    class="xs:px-8 grid w-full items-start gap-8 px-4 sm:pt-2 md:grid-cols-[minmax(340px,1fr)_2fr] md:px-6 lg:grid-cols-[minmax(440px,1fr)_1fr] lg:px-8"
-                >
-                    <div class="max-w-full text-balance pt-6 md:max-w-sm lg:max-w-full">
-                        <IDGSymbol
-                            symbolPaths={symbols[dimension.id]}
-                            aria-label={dimension.name}
-                            class={['pointer-events-none -ml-1 size-36', textColor]}
-                        />
-                        <h2
-                            class="xs:text-4xl hyphens-auto break-words pt-4 text-3xl font-bold lg:text-5xl xl:text-6xl"
-                        >
-                            {dimension.name}
-                        </h2>
-                        <h3 class="pt-1 text-lg font-semibold sm:pt-2 sm:text-2xl lg:text-3xl">
-                            {dimension.subtitle}
-                        </h3>
-                        <p class="max-w-lg pt-8">{dimension.description}</p>
-                    </div>
-
-                    <div
-                        class="xs:gap-x-8 grid gap-4 text-balance sm:grid-cols-[max-content_1fr] sm:gap-y-8 sm:pt-6"
-                    >
-                        {#each dimensionSkills as skill (skill.id)}
-                            <IDGSymbol
-                                symbolPaths={symbols[skill.id]}
-                                aria-label={skill.name}
-                                class={[
-                                    'pointer-events-none mt-4 size-20 shrink-0 self-center sm:m-0 lg:size-24',
-                                    textColor,
-                                ]}
-                            />
-                            <div>
-                                <h2 class="font-bold">{skill.name}</h2>
-                                <p>{skill.description}</p>
-                            </div>
-                        {/each}
-                    </div>
-                </Tabs.Content>
-            {/each}
-        </Tabs.Root>
+<div
+    class="max-w-(--breakpoint-xl) mx-auto grid h-full min-h-[700px] bg-white text-base text-black"
+>
+    <div class="justify-self-end p-2">
+        <LocaleSelector
+            supportedLocales={widgetState.supportedLocales}
+            locale={widgetState.locale}
+            onChangeLocale={(selected) => (widgetState.locale = selected)}
+        />
     </div>
+
+    <!-- Create build process -->
+    <!-- Create demo page -->
+
+    <Tabs.Root bind:value={widgetState.selectedDimensionId}>
+        <Tabs.List class="grid grid-cols-5 gap-0.5 text-white sm:gap-1">
+            {#each widgetState.dimensions as dimension (dimension.id)}
+                {@const isSelected = dimension.id === widgetState.selectedDimensionId}
+                <Tabs.Trigger
+                    value={dimension.id}
+                    class={[
+                        'xs:px-2 grid place-items-center rounded-lg py-2',
+                        isSelected
+                            ? `${getColor(dimension.id)}`
+                            : `hover:outline-solid hover:outline-1 hover:outline-${getDimensionSlug(dimension.id)} hover:-outline-offset-1`,
+                    ]}
+                    title={dimension.name}
+                >
+                    <IDGSymbol
+                        symbolPaths={symbols[dimension.id]}
+                        aria-label={dimension.name}
+                        class={[
+                            'pointer-events-none size-12',
+                            !isSelected && getColor(dimension.id, 'text'),
+                        ]}
+                    />
+                    <p
+                        class={[
+                            'hidden pt-2 text-sm font-medium sm:block md:text-base',
+                            !isSelected && 'text-black',
+                        ]}
+                    >
+                        {dimension.name}
+                    </p>
+                </Tabs.Trigger>
+            {/each}
+        </Tabs.List>
+
+        {#each widgetState.dimensions as dimension (dimension.id)}
+            {@const textColor = getColor(dimension.id, 'text')}
+            {@const dimensionSkills = getSkillsInDimension(dimension.id, {
+                skills: widgetState.skills,
+            })}
+            <Tabs.Content
+                value={dimension.id}
+                class="xs:px-8 grid w-full items-start gap-8 px-4 sm:pt-2 md:grid-cols-[minmax(340px,1fr)_2fr] md:px-6 lg:grid-cols-[minmax(440px,1fr)_1fr] lg:px-8"
+            >
+                <div class="max-w-full text-balance pt-6 md:max-w-sm lg:max-w-full">
+                    <IDGSymbol
+                        symbolPaths={symbols[dimension.id]}
+                        aria-label={dimension.name}
+                        class={['pointer-events-none -ml-1 size-36', textColor]}
+                    />
+                    <h2
+                        class="xs:text-4xl hyphens-auto break-words pt-4 text-3xl font-bold lg:text-5xl xl:text-6xl"
+                    >
+                        {dimension.name}
+                    </h2>
+                    <h3 class="pt-1 text-lg font-semibold sm:pt-2 sm:text-2xl lg:text-3xl">
+                        {dimension.subtitle}
+                    </h3>
+                    <p class="max-w-lg pt-8">{dimension.description}</p>
+                </div>
+
+                <div
+                    class="xs:gap-x-8 grid gap-4 text-balance sm:grid-cols-[max-content_1fr] sm:gap-y-8 sm:pt-6"
+                >
+                    {#each dimensionSkills as skill (skill.id)}
+                        <IDGSymbol
+                            symbolPaths={symbols[skill.id]}
+                            aria-label={skill.name}
+                            class={[
+                                'pointer-events-none mt-4 size-20 shrink-0 self-center sm:m-0 lg:size-24',
+                                textColor,
+                            ]}
+                        />
+                        <div>
+                            <h2 class="font-bold">{skill.name}</h2>
+                            <p>{skill.description}</p>
+                        </div>
+                    {/each}
+                </div>
+            </Tabs.Content>
+        {/each}
+    </Tabs.Root>
 </div>
