@@ -94,7 +94,7 @@
                     value={dimension.id}
                     class="flex flex-col items-start gap-8 px-4 text-black sm:pt-2 md:flex-row md:justify-between md:px-8"
                 >
-                    <div class="max-w-md text-balance pt-6 md:max-w-xs lg:max-w-lg">
+                    <div class="text-balance pt-6 md:max-w-xs lg:max-w-lg">
                         <IDGSymbol
                             symbolPaths={symbols[dimension.id]}
                             aria-label={dimension.name}
