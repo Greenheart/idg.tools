@@ -10,7 +10,10 @@ import svelte from 'rollup-plugin-svelte'
 // TODO: Move all shared types and code into the component during bundling
 
 // To bundle fonts, we could do like this: https://stackoverflow.com/questions/73868885/react-component-library-how-to-correctly-bundle-fonts-with-rollup
-// Or in tsdown, we could just copy the relevant files instead
+// Or in tsdown, we could just copy the relevant files instead and replace the fontsource imports with references to the actual bundled font files.
+// We just need to make sure the fonts can be loaded from the npm package though.
+// Alternatively, the code sample should include loading the fonts too - or the main script could add the CSS imports for fonts manually
+// Might be useful: https://medium.com/geekculture/how-to-publish-a-js-and-css-library-to-npm-using-rollup-5406dbee51fa
 
 // Old example of how to bundle output multiple files using Rollup:
 // https://github.com/lokimckay-references/svelte-web-component-library-example/blob/master/package.json
