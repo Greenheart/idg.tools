@@ -80,19 +80,9 @@
                 {@const dimensionSkills = getSkillsInDimension(dimension.id, {
                     skills: widgetState.skills,
                 })}
-                <!-- <Tabs.Content
-                    value={dimension.id}
-                    class="grid w-full items-start gap-8 bg-white px-4 text-black sm:pt-2 md:grid-cols-[minmax(320px,1fr)_2fr] md:px-8"
-                > -->
-                <!-- TODO: Make columns consistent widths - test with Thinking for zh-TW -->
-                <!--
-                    NOTE: Maybe use the same grid as before and bump the max width the first column for larger screens
-                    This would allow larger fonts while still keeping a narrow layout on mid-sized screens
-                -->
-                <!-- NOTE: Maybe reduce the font size, but ideally change grid column width instead -->
                 <Tabs.Content
                     value={dimension.id}
-                    class="xs:px-8 flex flex-col items-start gap-8 px-4 text-black sm:pt-2 md:flex-row md:justify-between md:px-4 lg:px-8"
+                    class="xs:px-8 grid w-full items-start gap-8 px-4 text-black sm:pt-2 md:grid-cols-[minmax(340px,1fr)_2fr] md:px-4 lg:grid-cols-[minmax(440px,1fr)_1fr] lg:px-8"
                 >
                     <div class="max-w-full text-balance pt-6 md:max-w-sm lg:max-w-lg">
                         <IDGSymbol
