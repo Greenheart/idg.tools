@@ -71,15 +71,6 @@
         [role='button']:not(:disabled) {
             cursor: pointer;
         }
-
-        [data-select-viewport] {
-            scrollbar-width: none !important;
-            -ms-overflow-style: none !important;
-            -webkit-overflow-scrolling: touch !important;
-        }
-        [data-select-viewport]::-webkit-scrollbar {
-            display: none !important;
-        }
     }
 }
 
