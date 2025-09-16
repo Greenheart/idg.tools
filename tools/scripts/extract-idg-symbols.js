@@ -1,9 +1,16 @@
 import { readFile, writeFile } from 'fs/promises'
 import { resolve } from 'path'
 import content from '../static/content.json' with { type: 'json' }
+import { format } from 'prettier'
 
+// This assumes all dimensions and skills are the same as for the English locale.
+// This script likely needs to be updated for the new framework.
 const { dimensions } = content['en']
 
+/**
+ * This might need to be updated to include all known dimensions.
+ * It should align with the latest Map<Dimension['id'] | Skill['id'], DimensionSlug>
+ */
 export const COLORS = {
     da0: 'being',
     sa0: 'being',
@@ -62,8 +69,13 @@ await writeFile(
     JSON.stringify(symbols),
     'utf-8',
 )
+
+const formatted = await format(
+    `/** Symbols for the 2023 version of the IDG Framework */\nexport const allSymbols = ${JSON.stringify(symbols)}`,
+    { semi: false, singleQuote: true, tabWidth: 2, parser: 'typescript' },
+)
 await writeFile(
-    resolve(import.meta.dirname, '../../innerdevelopmentgoals/src/symbols.json'),
-    JSON.stringify(symbols),
+    resolve(import.meta.dirname, '../../innerdevelopmentgoals/src/lib/symbols.ts'),
+    formatted,
     'utf-8',
 )

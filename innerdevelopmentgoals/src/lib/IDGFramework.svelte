@@ -3,7 +3,7 @@
 
     import './widget.css'
     import { allLocales } from './content'
-    import allSymbols from './symbols.json'
+    import { allSymbols } from './symbols'
     import type { Dimension, IDGSymbols, Locale, Skill, WidgetContent } from '$shared/types'
 
     // TODO: Add types (using local types) in the generated output
