@@ -102,7 +102,7 @@
         ><LocaleIcon />{supportedLocales[locale]}<ChevronDown /></Select.Trigger
     >
     <Select.Portal>
-        <Select.Content class="z-30 grid w-48 bg-white text-base drop-shadow">
+        <Select.Content class="idg-locale-list">
             <Select.ScrollUpButton
                 class="grid cursor-n-resize place-items-center shadow-md"
                 delay={autoScrollDelay}
