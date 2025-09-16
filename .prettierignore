@@ -7,3 +7,4 @@ cms/build
 **/*lock.yaml
 **/*lock.json
 shared/colors.json
+innerdevelopmentgoals/src/lib/content.ts

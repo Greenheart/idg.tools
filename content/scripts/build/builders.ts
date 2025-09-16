@@ -9,6 +9,9 @@ import type {
 import { runAllTransformers, transformContent, TRANSFORMERS } from './transformers'
 import { writeJSON } from '../utils'
 import { VALIDATORS } from './validators'
+import { writeFile } from 'fs/promises'
+import { exec } from 'child_process'
+import { format } from 'prettier'
 
 export type BuilderInput<T> = {
     selectedLocales: readonly Locale[]
@@ -138,10 +141,14 @@ export const BUILDERS = {
             },
         )
 
-        await writeJSON(
-            resolve(builderInput.contentDir, '../../innerdevelopmentgoals/src/lib/content.json'),
-            transformedContent,
-            0,
+        const formatted = await format(
+            `/** Localised versions of the IDG Framework */\nexport const allLocales = ${JSON.stringify(transformedContent)}`,
+            { semi: false, singleQuote: true, tabWidth: 2, parser: 'typescript' },
+        )
+        await writeFile(
+            resolve(builderInput.contentDir, '../../innerdevelopmentgoals/src/lib/content.ts'),
+            formatted,
+            'utf-8',
         )
     },
 }
