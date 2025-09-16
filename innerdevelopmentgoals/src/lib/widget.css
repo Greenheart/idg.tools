@@ -1,8 +1,8 @@
 /* Minimal styles for the widget */
 
-@layer reset, widget;
+@layer idg-reset, idg-widget;
 
-@layer reset {
+@layer idg-reset {
     .idg-framework,
     .idg-locale-list {
         -webkit-tap-highlight-color: transparent;
@@ -83,7 +83,7 @@
     }
 }
 
-@layer widget {
+@layer idg-widget {
     .invisible {
         visibility: hidden;
     }
