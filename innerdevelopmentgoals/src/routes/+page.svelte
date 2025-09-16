@@ -7,7 +7,7 @@
 
     import { IDGFrameworkState } from '$lib/idg-framework.svelte'
 
-    import NEW_IDGFramework from '$lib/NEW_IDGFramework.svelte'
+    import IDGFramework from '$lib/IDGFramework.svelte'
     import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
 
     // Temporarily control state from the outside to sync it with both implementations
@@ -28,5 +28,5 @@
 </script>
 
 {#if browser}
-    <NEW_IDGFramework {widgetState} />
+    <IDGFramework {widgetState} />
 {/if}
