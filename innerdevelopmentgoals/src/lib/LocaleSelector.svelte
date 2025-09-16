@@ -103,10 +103,7 @@
     >
     <Select.Portal>
         <Select.Content class="idg-locale-list">
-            <Select.ScrollUpButton
-                class="grid cursor-n-resize place-items-center shadow-md"
-                delay={autoScrollDelay}
-            >
+            <Select.ScrollUpButton delay={autoScrollDelay}>
                 <ChevronDown class="!size-4 rotate-180 transform" />
             </Select.ScrollUpButton>
             <Select.Viewport
@@ -134,11 +131,7 @@
                 {/each}
             </Select.Viewport>
             <!-- IDEA: Make the total height of the viewport less glitchy as the buttons appear and dissapear -->
-            <Select.ScrollDownButton
-                class="grid cursor-s-resize place-items-center shadow-[0_-2px_4px_0_rgba(0,0,0,0.1)]"
-                delay={autoScrollDelay}
-                style="box-shadow: 0 px"
-            >
+            <Select.ScrollDownButton delay={autoScrollDelay}>
                 <ChevronDown class="!size-4" />
             </Select.ScrollDownButton>
         </Select.Content>
