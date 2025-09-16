@@ -149,7 +149,7 @@
                     </Select.Item>
                 {/each}
             </Select.Viewport>
-            <!-- IDEA: Make the total height of the viewport less glitchy as the buttons appear and dissapear -->
+            <!-- IDEA: Make the total height of the viewport less glitchy as the buttons appear and disappear -->
             <Select.ScrollDownButton delay={autoScrollDelay}>
                 {@render ChevronDown()}
             </Select.ScrollDownButton>
