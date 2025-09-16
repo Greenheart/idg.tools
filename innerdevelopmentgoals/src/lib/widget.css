@@ -64,6 +64,11 @@
             &:hover {
                 background: var(--stone-100);
             }
+
+            svg {
+                width: 24px;
+                height: 24px;
+            }
         }
 
         [role='tablist'] {
@@ -188,12 +193,21 @@
         [data-select-scroll-down-button] {
             display: grid;
             place-items: center;
+
+            svg {
+                width: 16px;
+                height: 16px;
+            }
         }
         [data-select-scroll-up-button] {
             cursor: n-resize;
             box-shadow:
                 0 4px 6px -1px #0000001a,
                 0 2px 4px -2px #0000001a;
+
+            svg {
+                transform: rotate(180deg);
+            }
         }
         [data-select-scroll-down-button] {
             cursor: s-resize;
