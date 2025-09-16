@@ -1,5 +1,5 @@
-import { DEFAULT_LOCALE_IDENTIFIER, LOCALES } from '$shared/constants'
-import type { Dimension, Skill, Locale, WidgetContent } from '$shared/types'
+import { DEFAULT_LOCALE_IDENTIFIER, LOCALES } from './constants'
+import type { Dimension, Skill, Locale, WidgetContent } from './types'
 
 const browser = typeof window !== 'undefined'
 

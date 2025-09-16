@@ -2,7 +2,7 @@
     import { Select, type SelectRootProps } from 'bits-ui'
     import { cubicOut } from 'svelte/easing'
 
-    import type { Locale, SupportedLocales } from '$shared/types'
+    import type { Locale, SupportedLocales } from './types'
 
     interface Props {
         supportedLocales: SupportedLocales

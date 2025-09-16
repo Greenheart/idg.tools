@@ -1,24 +1,35 @@
-<script lang="ts">
-    import { Tabs } from 'bits-ui'
-
+<script lang="ts" module>
     import './widget.css'
     import { allLocales } from './content'
     import { allSymbols } from './symbols'
-    import type { Dimension, IDGSymbols, Locale, Skill, WidgetContent } from '$shared/types'
+
+    import { COLORS } from './constants'
+    import type { Dimension, IDGSymbols, Locale, Skill, WidgetContent } from './types'
 
     // TODO: Add types (using local types) in the generated output
     const content = allLocales as Record<Locale, WidgetContent>
     const symbols = allSymbols as IDGSymbols
 
-    import LocaleSelector from './LocaleSelector.svelte'
-    import { getSkillsInDimension, getDimensionSlug } from '$shared/content-utils'
-    import { IDGFrameworkState } from './idg-framework.svelte'
-
-    const widgetState = new IDGFrameworkState({ content })
+    function getDimensionSlug(id: Dimension['id'] | Skill['id']) {
+        return COLORS[id]
+    }
 
     function formatColorVar(id: Dimension['id'] | Skill['id']) {
         return `--color: var(--${getDimensionSlug(id)});`
     }
+
+    function getSkillsInDimension(id: Dimension['id'], skills: WidgetContent['skills']) {
+        return skills.filter((s) => s.dimension === id)
+    }
+</script>
+
+<script lang="ts">
+    import { Tabs } from 'bits-ui'
+
+    import LocaleSelector from './LocaleSelector.svelte'
+    import { IDGFrameworkState } from './idg-framework.svelte'
+
+    const widgetState = new IDGFrameworkState({ content })
 </script>
 
 {#snippet IDGSymbol({ id, name }: { id: keyof IDGSymbols; name: string })}

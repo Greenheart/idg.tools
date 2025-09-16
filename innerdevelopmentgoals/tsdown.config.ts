@@ -4,8 +4,6 @@ import svelte from 'rollup-plugin-svelte'
 // TODO: Create UMD bundle that can be loaded as a browser global
 // Or look at how the emoji picker solved the bundling
 
-// TODO: Move all shared types and code into the component during bundling
-
 // Might be useful: https://medium.com/geekculture/how-to-publish-a-js-and-css-library-to-npm-using-rollup-5406dbee51fa
 
 // Old example of how to bundle output multiple files using Rollup:
