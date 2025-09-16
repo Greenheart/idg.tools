@@ -102,6 +102,8 @@
 
         --stone-100: #f5f5f4;
         --stone-200: #e7e5e4;
+
+        font-family: var(--font-sans);
     }
 
     .idg-framework {
@@ -114,7 +116,6 @@
         font-size: 1rem;
         color: #000;
         margin: 0 auto;
-        font-family: var(--font-sans);
 
         h2 {
             font-weight: 700;
