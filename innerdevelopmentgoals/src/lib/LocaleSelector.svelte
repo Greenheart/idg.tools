@@ -98,10 +98,7 @@
     onOpenChange={hideViewportDuringScrollReset}
     onOpenChangeComplete={scrollViewportToTop}
 >
-    <Select.Trigger
-        aria-label="Change language"
-        title="Change language"
-        class="flex h-10 items-center gap-2 px-2 hover:bg-stone-100"
+    <Select.Trigger aria-label="Change language" title="Change language" class="locale"
         ><LocaleIcon />{supportedLocales[locale]}<ChevronDown /></Select.Trigger
     >
     <Select.Portal>

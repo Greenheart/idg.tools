@@ -28,13 +28,11 @@
 </script>
 
 <div class="idg-framework">
-    <div class="locale">
-        <LocaleSelector
-            supportedLocales={widgetState.supportedLocales}
-            locale={widgetState.locale}
-            onChangeLocale={(selected) => (widgetState.locale = selected)}
-        />
-    </div>
+    <LocaleSelector
+        supportedLocales={widgetState.supportedLocales}
+        locale={widgetState.locale}
+        onChangeLocale={(selected) => (widgetState.locale = selected)}
+    />
 
     <!-- Create build process -->
     <!-- Create demo page -->
