@@ -31,3 +31,6 @@ export default defineConfig({
 
 // TODO: minify JS for CDN bundle
 // TODO: minify CSS for CDN bundle
+
+// An alternative might be to replace sveltekit with the built-in library mode in Vite: https://vite.dev/guide/build.html#library-mode
+// This could simplify the project setup. However, since we likely want to support SvelteKit SSR for the components, it makes sense to stick with SvelteKit for now.

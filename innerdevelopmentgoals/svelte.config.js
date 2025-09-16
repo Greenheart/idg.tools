@@ -18,6 +18,8 @@ const config = {
                 config.include.push(
                     // Add shared code and types
                     '../shared/**/*.ts',
+                    // Make sure to include scripts in the genrerated tsconfig.json to enable type checking
+                    'scripts',
                 )
             },
         },
