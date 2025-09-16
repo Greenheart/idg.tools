@@ -106,10 +106,7 @@
             <Select.ScrollUpButton delay={autoScrollDelay}>
                 <ChevronDown />
             </Select.ScrollUpButton>
-            <Select.Viewport
-                class="invisible max-h-[clamp(200px,80vh,600px)]"
-                bind:ref={selectViewport}
-            >
+            <Select.Viewport class="invisible" bind:ref={selectViewport}>
                 {#each recommendedLocales as { value, label }, i (i)}
                     <Select.Item
                         value={value + recommendedSuffix}
@@ -119,7 +116,7 @@
                     </Select.Item>
                 {/each}
 
-                <hr class="my-1" />
+                <hr />
 
                 {#each sortedLocales as { value, label } (value)}
                     <Select.Item
