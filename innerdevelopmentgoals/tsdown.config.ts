@@ -24,7 +24,6 @@ export default defineConfig({
     dts: {
         oxc: true,
     },
-    // TODO: To enable CSS bundling, migrate away from Tailwind
     plugins: [svelte()],
     // TODO: Set a good target for the browser bundle, for example es2022 or es2021 for maximum compatibility
 })
