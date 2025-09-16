@@ -16,7 +16,12 @@
 }
 
 @layer widget {
-    :root {
+    .invisible {
+        visibility: hidden;
+    }
+
+    .idg-framework,
+    .idg-locale-list {
         --font-sans:
             'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
             'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -29,10 +34,6 @@
 
         --stone-100: #f5f5f4;
         --stone-200: #e7e5e4;
-    }
-
-    .invisible {
-        visibility: hidden;
     }
 
     .idg-framework {
@@ -238,13 +239,13 @@
             &:hover {
                 background: var(--stone-200);
             }
+        }
 
-            &[data-highlighted] {
-                background: var(--stone-200);
+        [data-highlighted] {
+            background: var(--stone-200);
 
-                &:hover {
-                    text-decoration: underline;
-                }
+            &:hover {
+                text-decoration: underline;
             }
         }
     }
