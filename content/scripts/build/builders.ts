@@ -141,7 +141,9 @@ export const BUILDERS = {
         )
 
         const formatted = await format(
-            `/** Localised versions of the IDG Framework */\nexport const allLocales = ${JSON.stringify(transformedContent)}`,
+            `/** Localised versions of the IDG Framework */
+import type { WidgetContent } from './types'
+export const locales = ${JSON.stringify(transformedContent)} satisfies Record<string, WidgetContent>`,
             { semi: false, singleQuote: true, tabWidth: 2, parser: 'typescript' },
         )
         await writeFile(

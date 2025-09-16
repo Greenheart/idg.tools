@@ -7,7 +7,7 @@ type Options = {
     /** The initial locale to show. */
     defaultLocale?: Locale
     /** The localised content. */
-    content: Record<Locale, WidgetContent>
+    locales: Record<Locale, WidgetContent>
     /**
      * Indicates whether or not to store the user's selected locale to localStorage, and show that as the default locale
      * Only enabled on the client side.
@@ -19,7 +19,7 @@ export class IDGFrameworkState {
     /** The selected locale */
     #locale: Locale
     /** Content for all loaded locales */
-    #content: Record<Locale, WidgetContent>
+    #locales: Record<Locale, WidgetContent>
     /** The dimensions of the selected locale */
     dimensions: Dimension[]
     /** The skills of the selected locale */
@@ -31,17 +31,17 @@ export class IDGFrameworkState {
     selectedDimension: Dimension
 
     constructor(options: Options) {
-        const { defaultLocale = DEFAULT_LOCALE_IDENTIFIER, content, persistLocale = true } = options
-        this.#content = content
+        const { defaultLocale = DEFAULT_LOCALE_IDENTIFIER, locales, persistLocale = true } = options
+        this.#locales = locales
         this.#persistLocale = browser && persistLocale
         this.#locale = $state<Locale>(
             this.#persistLocale
                 ? ((localStorage['idg-locale'] as Locale) ?? defaultLocale)
                 : defaultLocale,
         )
-        this.supportedLocales = getSupportedLocales(content)
-        this.dimensions = $derived(content[this.#locale].dimensions)
-        this.skills = $derived(content[this.#locale].skills)
+        this.supportedLocales = getSupportedLocales(locales)
+        this.dimensions = $derived(locales[this.#locale].dimensions)
+        this.skills = $derived(locales[this.#locale].skills)
 
         // By using state for the selected dimension, this can be preserved even as the locale changes
         this.selectedDimensionId = $state(this.dimensions[0].id)
@@ -55,7 +55,7 @@ export class IDGFrameworkState {
     }
 
     set locale(newLocale: Locale) {
-        const { dimensions } = this.#content[newLocale]
+        const { dimensions } = this.#locales[newLocale]
 
         // Before updating the locale, we need to check if the selected dimension exist in the new locale
         // This allows us to keep the same dimension selected if it exists in the new locale.
@@ -71,10 +71,10 @@ export class IDGFrameworkState {
     }
 }
 
-function getSupportedLocales(content: Record<Locale, WidgetContent>) {
+function getSupportedLocales(locales: Record<Locale, WidgetContent>) {
     const supportedLocales = {} as Record<Locale, string>
 
-    for (const locale of Object.keys(content) as Locale[]) {
+    for (const locale of Object.keys(locales) as Locale[]) {
         supportedLocales[locale] = LOCALES[locale]
     }
 

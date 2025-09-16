@@ -1,4 +1,4 @@
-import type { allLocales } from './content'
+import type { locales } from './content'
 
 type ItemId = string
 
@@ -19,7 +19,7 @@ export type Dimension = Item & {
 
 export type IDGSymbols = Record<Skill['id'] | Dimension['id'], string[]>
 
-export type Locale = keyof typeof allLocales
+export type Locale = keyof typeof locales
 export type SupportedLocales = Record<Locale, string>
 
 export type WidgetContent = {

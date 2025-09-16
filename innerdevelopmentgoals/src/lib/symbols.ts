@@ -1,5 +1,6 @@
 /** Symbols for the 2023 version of the IDG Framework */
-export const allSymbols = {
+import type { IDGSymbols } from './types'
+export const symbols: IDGSymbols = {
   da0: [
     'm191.95,99.26c0,51.18-31.36,92.67-92.67,92.67-51.18,0-89.23-41.61-92.67-92.67C3.69,55.9,48.17,4,99.28,6.59c57.68,2.92,92.67,41.49,92.67,92.67Z',
   ],

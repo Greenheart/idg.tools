@@ -1,14 +1,9 @@
 <script lang="ts" module>
     import './widget.css'
-    import { allLocales } from './content'
-    import { allSymbols } from './symbols'
-
+    import { locales } from './content'
+    import { symbols } from './symbols'
     import { COLORS } from './constants'
-    import type { Dimension, IDGSymbols, Locale, Skill, WidgetContent } from './types'
-
-    // TODO: Add types (using local types) in the generated output
-    const content = allLocales as Record<Locale, WidgetContent>
-    const symbols = allSymbols as IDGSymbols
+    import type { Dimension, IDGSymbols, Skill, WidgetContent } from './types'
 
     function getDimensionSlug(id: Dimension['id'] | Skill['id']) {
         return COLORS[id]
@@ -29,7 +24,7 @@
     import LocaleSelector from './LocaleSelector.svelte'
     import { IDGFrameworkState } from './idg-framework.svelte'
 
-    const widgetState = new IDGFrameworkState({ content })
+    const widgetState = new IDGFrameworkState({ locales })
 </script>
 
 {#snippet IDGSymbol({ id, name }: { id: keyof IDGSymbols; name: string })}

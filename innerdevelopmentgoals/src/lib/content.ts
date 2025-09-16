@@ -1,5 +1,6 @@
 /** Localised versions of the IDG Framework */
-export const allLocales = {
+import type { WidgetContent } from './types'
+export const locales = {
   en: {
     dimensions: [
       {
@@ -3695,4 +3696,4 @@ export const allLocales = {
       },
     ],
   },
-}
+} satisfies Record<string, WidgetContent>
