@@ -18,6 +18,20 @@ import svelte from 'rollup-plugin-svelte'
 // Old example of how to bundle output multiple files using Rollup:
 // https://github.com/lokimckay-references/svelte-web-component-library-example/blob/master/package.json
 
+// TODO: Prepare locales for build.
+//
+// 1) Either add JSON files to the build (all.json) as well as locale-specific files.
+// This would let the library user define which locales they want (e.g. ['en', 'de']), with the default being to load 'all.json'.
+// This would rely on relative path imports to fetch the relevant JSON files. This would increase the load time though.
+//
+// 2) Another option is to build the content as ES modules with one for each locale, and an `all.js` file that includes all locales.
+// These files could be created in the content build process.
+// One benefit of using ES modules is that the locales will get loaded together with the widget, rather than waiting for the client to do a network round-trip.
+// This way, the JS bundle is larger, but the perceived performance will likely be faster, especially for users with slow networks.
+// This would allow tree-shaking for more advanced setups, to only include the locales you want.
+//
+// 3) Only build content as one ES module, and leave the locale customisation for later.
+
 export default defineConfig({
     entry: ['./src/lib/index.ts'],
     platform: 'browser',

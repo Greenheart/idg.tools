@@ -1,4 +1,14 @@
-# Svelte library
+# Inner Development Goals - Interactive Framework Widget
+
+## Installation
+
+The widget comes bundled with Inter Variable fonts to be consistent with the Inner Development Goals branding.
+
+- Any website: Add to your website.
+- Using npm: Import JS library in your web project.
+- Using Svelte: Import the Svelte component and use in your project.
+
+---
 
 Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
 
