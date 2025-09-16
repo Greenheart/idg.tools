@@ -10,7 +10,6 @@ import { runAllTransformers, transformContent, TRANSFORMERS } from './transforme
 import { writeJSON } from '../utils'
 import { VALIDATORS } from './validators'
 import { writeFile } from 'fs/promises'
-import { exec } from 'child_process'
 import { format } from 'prettier'
 
 export type BuilderInput<T> = {

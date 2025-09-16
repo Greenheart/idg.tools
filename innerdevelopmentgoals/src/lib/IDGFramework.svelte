@@ -2,23 +2,35 @@
     import { Tabs } from 'bits-ui'
 
     import './widget.css'
-    // import allLocales from './content.json'
+    import { allLocales } from './content'
     import allSymbols from './symbols.json'
     import type { Dimension, IDGSymbols, Locale, Skill, WidgetContent } from '$shared/types'
 
-    // const content = allLocales as Record<Locale, WidgetContent>
+    const browser = typeof window !== 'undefined'
+
+    // TODO: Add types (using local types) in the generated output
+    const content = allLocales as Record<Locale, WidgetContent>
     const symbols = allSymbols as IDGSymbols
 
-    // TODO: Create minimal CSS to be bundled together with the components
     import LocaleSelector from './LocaleSelector.svelte'
     import { getSkillsInDimension, getDimensionSlug } from '$shared/content-utils'
     import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
-    import type { IDGFrameworkState } from './idg-framework.svelte'
+    import { IDGFrameworkState } from './idg-framework.svelte'
 
-    type Props = {
-        widgetState: IDGFrameworkState
-    }
-    let { widgetState }: Props = $props()
+    const widgetState = new IDGFrameworkState(
+        // Dev only persistence
+        browser
+            ? ((localStorage.getItem('idg-locale') as Locale) ?? DEFAULT_LOCALE_IDENTIFIER)
+            : DEFAULT_LOCALE_IDENTIFIER,
+        content,
+    )
+
+    // Dev only persistence
+    $effect(() => {
+        if (browser) {
+            localStorage.setItem('idg-locale', widgetState.locale)
+        }
+    })
 
     function formatColorVar(id: Dimension['id'] | Skill['id']) {
         return `--color: var(--${getDimensionSlug(id)});`
