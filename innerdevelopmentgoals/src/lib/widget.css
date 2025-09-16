@@ -3,15 +3,83 @@
 @layer reset, widget;
 
 @layer reset {
-    /* TODO: Add minimal reset here */
-
-    .idg-framework {
+    .idg-framework,
+    .idg-locale-list {
         -webkit-tap-highlight-color: transparent;
         overscroll-behavior-y: none;
         font-smoothing: antialiased;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
+        -webkit-text-size-adjust: 100%;
+        tab-size: 4;
+        line-height: 1.5;
+
+        *,
+        :after,
+        :before,
+        ::backdrop {
+            box-sizing: border-box;
+            border: 0 solid;
+            margin: 0;
+            padding: 0;
+        }
+
+        hr {
+            height: 0;
+            color: inherit;
+            border-top-width: 1px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: inherit;
+            font-weight: inherit;
+        }
+
+        a {
+            color: inherit;
+            -webkit-text-decoration: inherit;
+            text-decoration: inherit;
+        }
+
+        svg {
+            vertical-align: middle;
+            display: block;
+        }
+
+        button {
+            font: inherit;
+            font-feature-settings: inherit;
+            font-variation-settings: inherit;
+            letter-spacing: inherit;
+            color: inherit;
+            opacity: 1;
+            background-color: #0000;
+            border-radius: 0;
+            appearance: button;
+        }
+
+        [hidden]:where(:not([hidden='until-found'])) {
+            display: none !important;
+        }
+        button:not(:disabled),
+        [role='button']:not(:disabled) {
+            cursor: pointer;
+        }
+
+        [data-select-viewport] {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        [data-select-viewport]::-webkit-scrollbar {
+            display: none !important;
+        }
     }
 }
 

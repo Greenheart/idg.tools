@@ -1,7 +1,6 @@
 <script lang="ts">
     import { Tabs } from 'bits-ui'
 
-    import './style.css'
     import './widget.css'
     // import allLocales from './content.json'
     import allSymbols from './symbols.json'
