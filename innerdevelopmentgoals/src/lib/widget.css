@@ -28,6 +28,7 @@
         --acting: #661a30;
 
         --stone-100: #f5f5f4;
+        --stone-200: #e7e5e4;
     }
 
     .invisible {
@@ -224,6 +225,27 @@
 
         [data-select-viewport] {
             max-height: clamp(200px, 80vh, 600px);
+        }
+
+        [data-select-item] {
+            display: grid;
+            cursor: pointer;
+
+            span {
+                padding: 0.25rem 0.75rem;
+            }
+
+            &:hover {
+                background: var(--stone-200);
+            }
+
+            &[data-highlighted] {
+                background: var(--stone-200);
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
         }
     }
 

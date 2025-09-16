@@ -108,22 +108,16 @@
             </Select.ScrollUpButton>
             <Select.Viewport class="invisible" bind:ref={selectViewport}>
                 {#each recommendedLocales as { value, label }, i (i)}
-                    <Select.Item
-                        value={value + recommendedSuffix}
-                        class="grid hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]]:underline"
-                    >
-                        <span class="px-3 py-1">{label}</span>
+                    <Select.Item value={value + recommendedSuffix}>
+                        <span>{label}</span>
                     </Select.Item>
                 {/each}
 
                 <hr />
 
                 {#each sortedLocales as { value, label } (value)}
-                    <Select.Item
-                        {value}
-                        class="grid hover:bg-stone-200 [&[data-highlighted]]:bg-stone-200 [&[data-highlighted]]:underline"
-                    >
-                        <span class="px-3 py-1">{label}</span>
+                    <Select.Item {value}>
+                        <span>{label}</span>
                     </Select.Item>
                 {/each}
             </Select.Viewport>
