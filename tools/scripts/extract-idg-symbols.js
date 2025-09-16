@@ -39,9 +39,7 @@ async function getSVGSymbol(dimension, skillId) {
     const index = skillId ? dimension.skills.findIndex((id) => id === skillId) + 1 : 0
     const raw = await readFile(
         resolve(import.meta.dirname, `../static/symbols/${COLORS[dimension.id]}_${index}.svg`),
-        {
-            encoding: 'utf-8',
-        },
+        'utf-8',
     )
 
     const svgPaths = raw
@@ -59,13 +57,13 @@ const symbols = await Promise.all(
     ]),
 ).then((res) => res.reduce((result, [id, paths]) => ({ ...result, [id]: paths }), {}))
 
-await writeFile(resolve(import.meta.dirname, '../static/symbols.json'), JSON.stringify(symbols), {
-    encoding: 'utf-8',
-})
+await writeFile(
+    resolve(import.meta.dirname, '../static/symbols.json'),
+    JSON.stringify(symbols),
+    'utf-8',
+)
 await writeFile(
     resolve(import.meta.dirname, '../../innerdevelopmentgoals/src/symbols.json'),
     JSON.stringify(symbols),
-    {
-        encoding: 'utf-8',
-    },
+    'utf-8',
 )
