@@ -1,5 +1,19 @@
-import { LOCALES } from '$shared/constants'
+import { DEFAULT_LOCALE_IDENTIFIER, LOCALES } from '$shared/constants'
 import type { Dimension, Skill, Locale, WidgetContent } from '$shared/types'
+
+const browser = typeof window !== 'undefined'
+
+type Options = {
+    /** The initial locale to show. */
+    defaultLocale?: Locale
+    /** The localised content. */
+    content: Record<Locale, WidgetContent>
+    /**
+     * Indicates whether or not to store the user's selected locale to localStorage, and show that as the default locale
+     * Only enabled on the client side.
+     */
+    persistLocale?: boolean
+}
 
 export class IDGFrameworkState {
     /** The selected locale */
@@ -11,13 +25,20 @@ export class IDGFrameworkState {
     /** The skills of the selected locale */
     skills: Skill[]
     readonly supportedLocales: Record<Locale, string>
+    #persistLocale: boolean
 
     selectedDimensionId: Dimension['id']
     selectedDimension: Dimension
 
-    constructor(initalLocale: Locale, content: Record<Locale, WidgetContent>) {
+    constructor(options: Options) {
+        const { defaultLocale = DEFAULT_LOCALE_IDENTIFIER, content, persistLocale = true } = options
         this.#content = content
-        this.#locale = $state<Locale>(initalLocale)
+        this.#persistLocale = browser && persistLocale
+        this.#locale = $state<Locale>(
+            this.#persistLocale
+                ? ((localStorage['idg-locale'] as Locale) ?? defaultLocale)
+                : defaultLocale,
+        )
         this.supportedLocales = getSupportedLocales(content)
         this.dimensions = $derived(content[this.#locale].dimensions)
         this.skills = $derived(content[this.#locale].skills)
@@ -43,6 +64,10 @@ export class IDGFrameworkState {
 
         this.#locale = newLocale
         this.selectedDimensionId = newDimension.id
+
+        if (this.#persistLocale) {
+            localStorage['idg-locale'] = newLocale
+        }
     }
 }
 

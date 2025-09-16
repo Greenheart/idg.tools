@@ -6,31 +6,15 @@
     import allSymbols from './symbols.json'
     import type { Dimension, IDGSymbols, Locale, Skill, WidgetContent } from '$shared/types'
 
-    const browser = typeof window !== 'undefined'
-
     // TODO: Add types (using local types) in the generated output
     const content = allLocales as Record<Locale, WidgetContent>
     const symbols = allSymbols as IDGSymbols
 
     import LocaleSelector from './LocaleSelector.svelte'
     import { getSkillsInDimension, getDimensionSlug } from '$shared/content-utils'
-    import { DEFAULT_LOCALE_IDENTIFIER } from '$shared/constants'
     import { IDGFrameworkState } from './idg-framework.svelte'
 
-    const widgetState = new IDGFrameworkState(
-        // Dev only persistence
-        browser
-            ? ((localStorage.getItem('idg-locale') as Locale) ?? DEFAULT_LOCALE_IDENTIFIER)
-            : DEFAULT_LOCALE_IDENTIFIER,
-        content,
-    )
-
-    // Dev only persistence
-    $effect(() => {
-        if (browser) {
-            localStorage.setItem('idg-locale', widgetState.locale)
-        }
-    })
+    const widgetState = new IDGFrameworkState({ content })
 
     function formatColorVar(id: Dimension['id'] | Skill['id']) {
         return `--color: var(--${getDimensionSlug(id)});`
