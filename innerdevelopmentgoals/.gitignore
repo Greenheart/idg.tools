@@ -22,3 +22,7 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Ignore dist files since they are only used to serve the demo
+demo/*
+!demo/index.html
