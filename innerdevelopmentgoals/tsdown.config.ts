@@ -1,5 +1,7 @@
 import { defineConfig } from 'tsdown'
 import svelte from 'rollup-plugin-svelte'
+import { compile, type CompileOptions } from 'svelte/compiler'
+import { sveltePreprocess } from 'svelte-preprocess'
 
 // TODO: Create UMD bundle that can be loaded as a browser global
 // Or look at how the emoji picker solved the bundling
@@ -15,7 +17,25 @@ export default defineConfig({
     dts: {
         oxc: true,
     },
-    plugins: [svelte()],
+    // Ignore font files since they get imported later on
+    external: [/\.woff2$/],
+    // external(id, parentId, isResolved) {
+
+    //     if (isResolved && id.endsWith())
+    //     console.log(id, isResolved)
+    // },
+    publint: true,
+    // TODO: Make the svelte rollup plugin understand typescript
+    // The rollup-plugin-svelte seems to be outdated, and using the old Svelte 3/4 compiler types. Maybe that's why it doesn't work with Svelte 5.
+    // Maybe use svelte package instead to simplify the build and just use Vite in this project.
+    plugins: [
+        svelte({
+            compilerOptions: {} as CompileOptions,
+            preprocess: sveltePreprocess({
+                typescript: { tsconfigFile: './tsconfig.json' },
+            }),
+        }),
+    ],
     // TODO: Set a good target for the browser bundle, for example es2022 or es2021 for maximum compatibility
 })
 
