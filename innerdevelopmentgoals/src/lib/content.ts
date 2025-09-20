@@ -1304,147 +1304,147 @@ export const locales = {
         id: 'sa2',
         name: 'Abertura e mentalidade de aprendizagem',
         description:
-          'Ter uma mentalidade básica de curiosidade, vontade de ser vulnerável, abraçar a mudança e crescer.\n',
+          'Ter uma mentalidade básica de curiosidade, vontade de ser vulnerável, abraçar a mudança e crescer.',
         dimension: 'da0',
       },
       {
         id: 'sa3',
         name: 'Autoconsciência',
         description:
-          'Capacidade de reflexão com os próprios pensamentos, sentimentos e desejos; ter um sentido realista de autoimagem e capacidade de se regular a si próprio\n',
+          'Capacidade de reflexão com os próprios pensamentos, sentimentos e desejos; ter um sentido realista de autoimagem e capacidade de se regular a si próprio.',
         dimension: 'da0',
       },
       {
         id: 'sa4',
         name: 'Presença',
         description:
-          'Capacidade de estar no aqui e agora, sem julgamento e num estado de presença aberta.\n',
+          'Capacidade de estar no aqui e agora, sem julgamento e num estado de presença aberta.',
         dimension: 'da0',
       },
       {
         id: 'sa5',
         name: 'Pensamento Crítico',
         description:
-          'Competências para efetuar uma revisão critica da validade dos pontos de vista, das evidências e dos planos\n',
+          'Competências para efetuar uma revisão critica da validade dos pontos de vista, das evidências e dos planos.',
         dimension: 'da1',
       },
       {
         id: 'sa6',
         name: 'Consciência da Complexidade',
         description:
-          'Compreensão e competências de trabalho com condições e causas complexas e sistémicas \n',
+          'Compreensão e competências de trabalho com condições e causas complexas e sistémicas.',
         dimension: 'da1',
       },
       {
         id: 'sa7',
         name: 'Competências de Perspetiva',
         description:
-          'Competências para procurar, compreender e utilizar ativamente insights, a partir de perspetivas contrastantes  \n',
+          'Competências para procurar, compreender e utilizar ativamente insights, a partir de perspetivas contrastantes.',
         dimension: 'da1',
       },
       {
         id: 'sa8',
         name: 'Fazer sentido',
         description:
-          'Competências para identificar padrões, estruturar o desconhecido e ser capaz de conscientemente criar histórias.\n',
+          'Competências para identificar padrões, estruturar o desconhecido e ser capaz de conscientemente criar histórias.',
         dimension: 'da1',
       },
       {
         id: 'sa9',
         name: 'Orientação e Visão de Longo Prazo',
         description:
-          'Orientação a longo prazo e capacidade de formular e sustentar o compromisso com visões relacionadas com o contexto mais amplo.\n',
+          'Orientação a longo prazo e capacidade de formular e sustentar o compromisso com visões relacionadas com o contexto mais amplo.',
         dimension: 'da1',
       },
       {
         id: 'sb0',
         name: 'Apreciação',
         description:
-          'Relacionar-se com os outros e com o mundo com um sentido básico de apreciação, gratidão e alegria\n',
+          'Relacionar-se com os outros e com o mundo com um sentido básico de apreciação, gratidão e alegria.',
         dimension: 'da2',
       },
       {
         id: 'sb1',
         name: 'Conexão',
         description:
-          'Ter uma sensação profunda de estar ligado e/ou fazer parte de um todo maior, tal como uma comunidade, a humanidade ou o ecossistema global.\n',
+          'Ter uma sensação profunda de estar ligado e/ou fazer parte de um todo maior, tal como uma comunidade, a humanidade ou o ecossistema global.',
         dimension: 'da2',
       },
       {
         id: 'sb2',
         name: 'Humildade',
         description:
-          'Ser capaz de agir de acordo com as necessidades da situação sem se preocupar com a sua própria importância.\n',
+          'Ser capaz de agir de acordo com as necessidades da situação sem se preocupar com a sua própria importância.',
         dimension: 'da2',
       },
       {
         id: 'sb3',
         name: 'Empatia e Compaixão',
         description:
-          'Capacidade de se relacionar com os outros, consigo próprio e com a natureza com bondade, empatia e compaixão e lidar com o sofrimento associado\n',
+          'Capacidade de se relacionar com os outros, consigo próprio e com a natureza com bondade, empatia e compaixão e lidar com o sofrimento associado.',
         dimension: 'da2',
       },
       {
         id: 'sb4',
         name: 'Competências de comunicação',
         description:
-          'Capacidade de ouvir realmente os outros, fomentar um diálogo genuíno, argumentar os próprios pontos de vista de forma competente, gerir conflitos de forma construtiva e adaptar a comunicação a diversos tipos de grupos.\n',
+          'Capacidade de ouvir realmente os outros, fomentar um diálogo genuíno, argumentar os próprios pontos de vista de forma competente, gerir conflitos de forma construtiva e adaptar a comunicação a diversos tipos de grupos.',
         dimension: 'da3',
       },
       {
         id: 'sb5',
         name: 'Competências de co-criação',
         description:
-          'Competências e motivação para construir, desenvolver e facilitar as relações colaborativas com os diversos intervenientes num ambiente de segurança psicológica e genuína co-criação.\n',
+          'Competências e motivação para construir, desenvolver e facilitar as relações colaborativas com os diversos intervenientes num ambiente de segurança psicológica e genuína co-criação.',
         dimension: 'da3',
       },
       {
         id: 'sb6',
         name: 'Mentalidade inclusiva e competência intercultural',
         description:
-          'Disposição e competência para abraçar a diversidade e incluir pessoas e coletivos com opiniões e contextos diferentes\n',
+          'Disposição e competência para abraçar a diversidade e incluir pessoas e coletivos com opiniões e contextos diferentes.',
         dimension: 'da3',
       },
       {
         id: 'sb7',
         name: 'Confiança',
         description:
-          'Capacidade de mostrar confiança e de criar e manter relações baseadas na confiança mútua.\n',
+          'Capacidade de mostrar confiança e de criar e manter relações baseadas na confiança mútua.',
         dimension: 'da3',
       },
       {
         id: 'sb8',
         name: 'Capacidades de mobilização',
         description:
-          'Competências para inspirar e mobilizar os outros na envolvência e dedicação a propósitos comuns.\n',
+          'Competências para inspirar e mobilizar os outros na envolvência e dedicação a propósitos comuns.',
         dimension: 'da3',
       },
       {
         id: 'sb9',
         name: 'Coragem',
         description:
-          'Capacidade de defender valores, tomar decisões, tomar ações decisivas e, se necessário, desafiar e destituir as estruturas e pontos de vista existentes.\n',
+          'Capacidade de defender valores, tomar decisões, tomar ações decisivas e, se necessário, desafiar e destituir as estruturas e pontos de vista existentes.',
         dimension: 'da4',
       },
       {
         id: 'sc0',
         name: 'Criatividade',
         description:
-          'Capacidade de gerar e desenvolver ideias originais, inovar e estar disposto a destituir os padrões convencionais\n',
+          'Capacidade de gerar e desenvolver ideias originais, inovar e estar disposto a destituir os padrões convencionais.',
         dimension: 'da4',
       },
       {
         id: 'sc1',
         name: 'Otimismo',
         description:
-          'Capacidade de sustentar e comunicar um sentido de esperança, atitude positiva e confiança na possibilidade de criar uma mudança significativa\n',
+          'Capacidade de sustentar e comunicar um sentido de esperança, atitude positiva e confiança na possibilidade de criar uma mudança significativa.',
         dimension: 'da4',
       },
       {
         id: 'sc2',
         name: 'Perseverança',
         description:
-          'Capacidade de manter o compromisso e permanecer determinado e paciente mesmo quando os esforços demoram muito tempo a dar frutos.\n',
+          'Capacidade de manter o compromisso e permanecer determinado e paciente mesmo quando os esforços demoram muito tempo a dar frutos.',
         dimension: 'da4',
       },
     ],
@@ -1974,7 +1974,7 @@ export const locales = {
         id: 'sa9',
         name: 'Pitkäjänteisyys ja visiointi',
         description:
-          'Kyky pitkän tähtäimen ajatteluun sekä taito luoda ja ylläpitää\nsitoutumista laajempaan kokonaisuuteen liittyviin visioihin',
+          'Kyky pitkän tähtäimen ajatteluun sekä taito luoda ja ylläpitää sitoutumista laajempaan kokonaisuuteen liittyviin visioihin',
         dimension: 'da1',
       },
       {
@@ -3033,7 +3033,7 @@ export const locales = {
         id: 'sb4',
         name: '沟通技能',
         description:
-          '能真正倾听他人,培养真诚对话,巧妙地提倡自己的观点, 建设性地\n处理冲突,以及适应与多元群体沟通的能力。',
+          '能真正倾听他人,培养真诚对话,巧妙地提倡自己的观点,建设性地处理冲突,以及适应与多元群体沟通的能力。',
         dimension: 'da3',
       },
       {
