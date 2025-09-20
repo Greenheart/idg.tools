@@ -25,9 +25,6 @@ const configs = {
         }),
 }
 
-if (process.argv) {
-}
-
 export default defineConfig(async ({ mode, isPreview }) => {
     if (mode === 'library') {
         if (isPreview) {
