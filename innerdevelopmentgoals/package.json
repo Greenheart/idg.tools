@@ -3,10 +3,8 @@
     "version": "0.0.1",
     "scripts": {
         "dev": "vite dev",
-        "build": "vite build",
-        "build:lib": "LIBRARY_MODE=1 vite build && pnpm prepack",
-        "demo": "vite dev --config vite.demo.config.ts",
-        "preview": "vite preview",
+        "build": "vite build && vite build --mode library && pnpm prepack",
+        "demo": "vite --mode library preview",
         "prepare": "svelte-kit sync || echo ''",
         "prepack": "svelte-kit sync && svelte-package && publint",
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
