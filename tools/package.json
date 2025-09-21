@@ -14,6 +14,7 @@
     },
     "dependencies": {
         "@humanspeak/svelte-markdown": "^0.8.11",
+        "innerdevelopmentgoals": "workspace:*",
         "@octokit/graphql": "^7.1.1",
         "bits-ui": "^2.9.6",
         "iframe-resizer": "^4.4.5",
