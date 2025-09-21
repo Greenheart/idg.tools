@@ -14,31 +14,43 @@ const configs = {
             // https://stackoverflow.com/questions/75832641/how-to-compile-svelte-3-components-into-iifes-that-can-be-used-in-vanilla-js
             build: {
                 lib: {
-                    entry: resolve(import.meta.dirname, 'dist/index.js'),
+                    entry: resolve(import.meta.dirname, 'dist-svelte/index.js'),
                     name: 'IDGFramework',
-                    fileName: 'components',
+                    fileName: 'framework',
                 },
-                // TODO: use the same outdir in the future, but also keep the original files for users who want them
-                // We could use this to replace the embed widget on IDG.tools to reduce the number of incoming requests
-                outDir: 'dist-js',
+                outDir: 'dist',
+                // Preserve files that were copied into the dist dir in earlier build steps
+                emptyOutDir: false,
             },
         }),
 }
 
 export default defineConfig(async ({ mode, isPreview }) => {
     if (mode === 'library') {
+        const base = import.meta.dirname
+        const { cp } = await import('node:fs/promises')
+
         if (isPreview) {
             // Serve the demo site to showcase the latest library build
-            const fs = await import('node:fs/promises')
-            const demoDir = resolve(import.meta.dirname, 'demo')
-            await fs.cp(resolve(import.meta.dirname, 'dist-js'), demoDir, { recursive: true })
+            const demoDir = resolve(base, 'demo')
+            await cp(resolve(base, 'dist'), demoDir, { recursive: true })
 
             return defineConfig({})
         }
 
+        await Promise.all([
+            // IDEA: Use the bundled fonts instead of inlined fonts to improve performance
+            // We would need to disable the inlined fonts for the vite lib build.
+            // cp(resolve(base, 'dist-svelte/fonts'), resolve(base, 'dist/fonts'), {
+            //     recursive: true,
+            // }),
+            cp(resolve(base, 'dist-svelte/index.d.ts'), resolve(base, 'dist/framework.d.ts')),
+        ])
+
         return configs.library()
     }
 
+    // Default to starting the SvelteKit development environment
     return configs.dev()
 })
 
