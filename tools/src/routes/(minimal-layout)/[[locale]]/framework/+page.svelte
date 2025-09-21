@@ -8,7 +8,7 @@
     let container: HTMLDivElement
 
     onMount(() => {
-        IDGFramework(container, { defaultLocale: page.params.locale })
+        IDGFramework.show(container, { defaultLocale: page.params.locale })
     })
 </script>
 
