@@ -24,7 +24,8 @@
             "types": "./dist/framework.d.ts",
             "import": "./dist/framework.js",
             "default": "./dist/framework.umd.cjs"
-        }
+        },
+        "./framework.css": "./dist/framework.css"
     },
     "peerDependencies": {
         "svelte": "^5.0.0"
