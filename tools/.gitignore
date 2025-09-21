@@ -8,3 +8,7 @@ build
 /scripts/compiled
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Ignore pre-built assets from third-party package
+/static/assets/widgets/framework.css
+/static/assets/widgets/framework.umd.cjs
