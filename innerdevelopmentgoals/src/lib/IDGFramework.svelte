@@ -25,7 +25,9 @@
     import { IDGFrameworkState } from './idg-framework.svelte'
 
     type Props = {
+        /** The default locale to show until the user selects another locale. */
         defaultLocale?: keyof typeof locales
+        // TODO: add option to disable persistence (needed for embeds)
     }
     let { defaultLocale }: Props = $props()
 

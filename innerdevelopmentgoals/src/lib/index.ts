@@ -3,7 +3,13 @@ import Widget from './IDGFramework.svelte'
 import { locales as supportedLocales } from './content'
 import type { Locale } from './types'
 
-export function IDGFramework(target: HTMLElement, props: ComponentProps<typeof Widget>) {
+/**
+ * Show the IDGFramework widget
+ *
+ * @param target HTML element where you want to display the
+ * @param props These options allow you to customise default behaviours.
+ */
+export function show(target: HTMLElement, props: ComponentProps<typeof Widget>) {
     mount(Widget, { target, props })
 }
 
