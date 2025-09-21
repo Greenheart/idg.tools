@@ -154,7 +154,7 @@
                         class="space-y-2 bg-white py-2 sm:p-0 lg:hidden"
                         type="multiple"
                     >
-                        {#each getSkillsInDimension( dimension.id, { skills: skills }, ) as skill (skill.id)}
+                        {#each getSkillsInDimension(dimension.id, skills) as skill (skill.id)}
                             <Accordion.Item class="relative grid" value={skill.id}>
                                 <Accordion.Header>
                                     <Accordion.Trigger
@@ -208,7 +208,7 @@
                     </Accordion.Root>
 
                     <div class="hidden space-y-2 lg:grid">
-                        {#each getSkillsInDimension(dimension.id, { skills }) as skill (skill.id)}
+                        {#each getSkillsInDimension(dimension.id, skills) as skill (skill.id)}
                             {@const hoverClasses = `hover:bg-white hover:text-black hover:outline-solid hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`}
                             {@const activeClasses = `bg-white text-black outline-solid outline-${dimensionSlug} outline-1 -outline-offset-1`}
                             {@const isSelected = selectedSkill?.id === skill.id}

@@ -181,7 +181,7 @@
                                     class="xs:text-base whitespace-nowrap text-sm font-normal"
                                     >Choose all</Button
                                 >
-                                {#each getSkillsInDimension(dimensionId, content) as skill (skill.name)}
+                                {#each getSkillsInDimension(dimensionId, content.skills) as skill (skill.name)}
                                     <SkillButton {skill} class="xs:whitespace-nowrap" />
                                 {/each}
                             </Tabs.Content>
