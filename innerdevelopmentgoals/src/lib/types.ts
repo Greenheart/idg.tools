@@ -28,3 +28,10 @@ export type WidgetContent = {
 }
 
 export type DimensionSlug = 'being' | 'thinking' | 'relating' | 'collaborating' | 'acting'
+
+// Props are declared here instead of in the component to workaround the lack of proper .d.ts generation
+export type IDGFrameworkProps = {
+    /** The default locale to show until the user selects another locale. */
+    defaultLocale?: keyof typeof locales
+    // TODO: add option to disable persistence (needed for cross-origin embeds)
+}

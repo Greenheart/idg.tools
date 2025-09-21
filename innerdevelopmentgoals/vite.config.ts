@@ -7,9 +7,11 @@ const configs = {
         defineConfig({
             plugins: [(await import('@sveltejs/kit/vite')).sveltekit()],
         }),
-    library: async () =>
-        defineConfig({
-            plugins: [(await import('@sveltejs/vite-plugin-svelte')).svelte()],
+    library: async () => {
+        const { svelte } = await import('@sveltejs/vite-plugin-svelte')
+
+        return defineConfig({
+            plugins: [svelte()],
             // TODO: Write a blog post and better documentation for this approach to create web components with Svelte:
             // https://stackoverflow.com/questions/75832641/how-to-compile-svelte-3-components-into-iifes-that-can-be-used-in-vanilla-js
             build: {
@@ -22,7 +24,8 @@ const configs = {
                 // Preserve files that were copied into the dist dir in earlier build steps
                 emptyOutDir: false,
             },
-        }),
+        })
+    },
 }
 
 export default defineConfig(async ({ mode, isPreview }) => {
@@ -38,14 +41,25 @@ export default defineConfig(async ({ mode, isPreview }) => {
             return defineConfig({})
         }
 
-        await Promise.all([
-            // IDEA: Use the bundled fonts instead of inlined fonts to improve performance
-            // We would need to disable the inlined fonts for the vite lib build.
-            // cp(resolve(base, 'dist-svelte/fonts'), resolve(base, 'dist/fonts'), {
-            //     recursive: true,
-            // }),
-            cp(resolve(base, 'dist-svelte/index.d.ts'), resolve(base, 'dist/framework.d.ts')),
-        ])
+        // IDEA: Use the bundled fonts instead of inlined fonts to improve performance
+        // We would need to disable the inlined fonts for the vite lib build.
+        // await cp(resolve(base, 'dist-svelte/fonts'), resolve(base, 'dist/fonts'), {
+        //     recursive: true,
+        // })
+
+        // Copy the relevant type definitions to make sure users get proper intellisense for the public API
+        await Promise.all(
+            ['index', 'types', 'content'].map((file) =>
+                cp(
+                    resolve(import.meta.dirname, 'dist-svelte', `${file}.d.ts`),
+                    resolve(
+                        import.meta.dirname,
+                        'dist',
+                        file === 'index' ? 'framework.d.ts' : `${file}.d.ts`,
+                    ),
+                ),
+            ),
+        )
 
         return configs.library()
     }

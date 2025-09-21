@@ -3,7 +3,7 @@
     import { locales } from './content'
     import { symbols } from './symbols'
     import { COLORS } from './constants'
-    import type { Dimension, IDGSymbols, Skill, WidgetContent } from './types'
+    import type { Dimension, IDGFrameworkProps, IDGSymbols, Skill, WidgetContent } from './types'
 
     function getDimensionSlug(id: Dimension['id'] | Skill['id']) {
         return COLORS[id]
@@ -24,12 +24,7 @@
     import LocaleSelector from './LocaleSelector.svelte'
     import { IDGFrameworkState } from './idg-framework.svelte'
 
-    type Props = {
-        /** The default locale to show until the user selects another locale. */
-        defaultLocale?: keyof typeof locales
-        // TODO: add option to disable persistence (needed for embeds)
-    }
-    let { defaultLocale }: Props = $props()
+    let { defaultLocale }: IDGFrameworkProps = $props()
 
     const widgetState = new IDGFrameworkState({ defaultLocale, locales })
 </script>
