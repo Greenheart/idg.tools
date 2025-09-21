@@ -3,15 +3,12 @@
     import IDGFramework from 'innerdevelopmentgoals/framework'
     import { bodyClass } from '$shared/utils'
     import { onMount } from 'svelte'
-    // import { page } from '$app/state'
+    import { page } from '$app/state'
 
     let container: HTMLDivElement
 
-    // TODO: Use the initial locale
-    // page.params.locale
-
     onMount(() => {
-        IDGFramework(container)
+        IDGFramework(container, { defaultLocale: page.params.locale })
     })
 </script>
 
