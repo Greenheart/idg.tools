@@ -1,5 +1,5 @@
-import { supportedLocales } from '$lib/content-backend'
+import { locales } from 'innerdevelopmentgoals/framework'
 
-export const entries = () => Object.keys(supportedLocales).map((locale) => ({ locale }))
+export const entries = () => locales.map((locale) => ({ locale }))
 
 export const prerender = true

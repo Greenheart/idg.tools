@@ -1,9 +1,16 @@
 import { resolve } from 'path'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import adapter from '@sveltejs/adapter-vercel'
+import { entries } from './src/routes/(minimal-layout)/[[locale]]/embed/framework/+page.server.ts'
+import type { Config } from '@sveltejs/kit'
 
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
+// TODO: Verify that this works as expected with prerendering
+const frameworkEmbedEntries = [
+    '/embed/framework',
+    ...entries().map(({ locale }) => `/${locale}/embed/framework`),
+] as `/${string}`[]
+
+const config: Config = {
     preprocess: [vitePreprocess()],
     kit: {
         adapter: adapter(),
@@ -27,12 +34,10 @@ const config = {
                 )
             },
         },
+        prerender: {
+            entries: ['*', ...frameworkEmbedEntries],
+        },
     },
-    // vitePlugin: {
-    //     experimental: {
-    //         inspector: true,
-    //     },
-    // },
 }
 
 export default config
