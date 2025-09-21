@@ -24,7 +24,12 @@
     import LocaleSelector from './LocaleSelector.svelte'
     import { IDGFrameworkState } from './idg-framework.svelte'
 
-    const widgetState = new IDGFrameworkState({ locales })
+    type Props = {
+        defaultLocale?: keyof typeof locales
+    }
+    let { defaultLocale }: Props = $props()
+
+    const widgetState = new IDGFrameworkState({ defaultLocale, locales })
 </script>
 
 {#snippet IDGSymbol({ id, name }: { id: keyof IDGSymbols; name: string })}

@@ -1,7 +1,6 @@
-import { mount } from 'svelte'
-import Component from './IDGFramework.svelte'
+import { mount, type ComponentProps } from 'svelte'
+import Widget from './IDGFramework.svelte'
 
-// IDEA: Allow passing in the initial locale via props
-export default function IDGFramework(target: HTMLElement) {
-    mount(Component, { target })
+export default function IDGFramework(target: HTMLElement, props: ComponentProps<typeof Widget>) {
+    mount(Widget, { target, props })
 }
