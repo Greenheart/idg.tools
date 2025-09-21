@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "scripts": {
         "dev": "vite dev",
-        "build": "vite build && svelte-kit sync && svelte-package -o dist-svelte && vite build --mode library && pnpm prepack",
+        "build": "vite build && svelte-kit sync && svelte-package -o dist-svelte && vite build --mode library && node scripts/postbuild.ts && pnpm prepack",
         "demo": "vite --mode library preview --outDir demo",
         "prepare": "svelte-kit sync || echo ''",
         "prepack": "publint",
@@ -23,7 +23,7 @@
         "./framework": {
             "types": "./dist/framework.d.ts",
             "import": "./dist/framework.js",
-            "default": "./dist/framework.umd.cjs"
+            "default": "./dist/framework.umd.js"
         },
         "./framework.css": "./dist/framework.css"
     },

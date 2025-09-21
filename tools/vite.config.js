@@ -18,7 +18,7 @@ export default defineConfig(async ({ command, mode }) => {
         await mkdir(frameworkAssetsDir, { recursive: true })
 
         await Promise.all(
-            ['framework.css', 'framework.umd.cjs'].map((file) =>
+            ['framework.css', 'framework.umd.js'].map((file) =>
                 cp(
                     resolve(import.meta.dirname, 'node_modules/innerdevelopmentgoals/dist/', file),
                     resolve(frameworkAssetsDir, file),
