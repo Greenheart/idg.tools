@@ -11,6 +11,16 @@
     let { children }: Props = $props()
 </script>
 
+<svelte:head>
+    <link
+        rel="preload"
+        href="/fonts/Inter-roman.var.woff2?v=3.19"
+        as="font"
+        type="font/woff2"
+        crossorigin=""
+    />
+</svelte:head>
+
 <main class="mx-auto w-full max-w-2xl px-4 pb-16 text-black sm:max-w-6xl sm:px-8 sm:text-lg">
     <Header />
     {@render children?.()}
