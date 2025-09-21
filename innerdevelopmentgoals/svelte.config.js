@@ -12,7 +12,7 @@ const config = {
                 config.include ??= []
                 config.include.push(
                     // Make sure to include scripts in the genrerated tsconfig.json to enable type checking
-                    'scripts',
+                    'scripts/**/*.{ts,js}',
                 )
             },
         },
