@@ -31,9 +31,17 @@ export class IDGFrameworkState {
     selectedDimension: Dimension
 
     constructor(options: Options) {
-        const { defaultLocale = DEFAULT_LOCALE_IDENTIFIER, locales, persistLocale = true } = options
-        this.#locales = locales
+        const { locales, persistLocale = true } = options
+
         this.#persistLocale = browser && persistLocale
+        // Ensure the provided defaultLocale is valid - and use a fallback value otherwise
+        const defaultLocale =
+            options.defaultLocale &&
+            Object.prototype.hasOwnProperty.call(locales, options.defaultLocale)
+                ? options.defaultLocale
+                : DEFAULT_LOCALE_IDENTIFIER
+
+        this.#locales = locales
         this.#locale = $state<Locale>(
             this.#persistLocale
                 ? ((localStorage['idg-locale'] as Locale) ?? defaultLocale)
