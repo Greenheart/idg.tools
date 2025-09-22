@@ -1,6 +1,6 @@
 <script lang="ts">
     import 'innerdevelopmentgoals/framework.css'
-    import IDGFramework from 'innerdevelopmentgoals/framework'
+    import * as IDGFramework from 'innerdevelopmentgoals/framework'
     import { bodyClass } from '$shared/utils'
     import { onMount } from 'svelte'
     import { page } from '$app/state'
