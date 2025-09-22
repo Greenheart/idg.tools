@@ -7,7 +7,6 @@
 
     let container: HTMLDivElement
 
-    // IDEA: Maybe export the Locale type to make it easy to pass it in with type safety
     type Locale = Parameters<typeof IDGFramework.show>[1]['defaultLocale']
 
     onMount(() => {
