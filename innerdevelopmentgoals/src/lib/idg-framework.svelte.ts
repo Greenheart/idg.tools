@@ -12,7 +12,7 @@ type Options = {
      * Indicates whether or not to store the user's selected locale to localStorage, and show that as the default locale
      * Only enabled on the client side.
      */
-    persistLocale?: boolean
+    persistLocale: boolean
 }
 
 export class IDGFrameworkState {
@@ -31,7 +31,7 @@ export class IDGFrameworkState {
     selectedDimension: Dimension
 
     constructor(options: Options) {
-        const { locales, persistLocale = true } = options
+        const { locales, persistLocale } = options
 
         this.#persistLocale = browser && persistLocale
         // Ensure the provided defaultLocale is valid - and use a fallback value otherwise

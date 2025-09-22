@@ -33,5 +33,6 @@ export type DimensionSlug = 'being' | 'thinking' | 'relating' | 'collaborating' 
 export type IDGFrameworkProps = {
     /** The default locale to show until the user selects another locale. */
     defaultLocale?: keyof typeof locales
-    // TODO: add option to disable persistence (needed for cross-origin embeds)
+    /** Remember the user's preferred locale using localStorage */
+    persistLocale?: boolean
 }
