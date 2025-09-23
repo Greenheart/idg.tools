@@ -2,8 +2,6 @@ import type { Dimension, Locale, Skill } from './types'
 
 export const GITHUB_LINK = 'https://github.com/Greenheart/idg.tools'
 export const GITHUB_ISSUES_LINK = `${GITHUB_LINK}/issues`
-// TODO: Localise the internal IDG.tools and IDG.community links so they can send people to the right language
-// For example, it would be nice to be able to link people directly to the framework in their current locale.
 export const FRAMEWORK_LINK = 'https://idg.tools/framework'
 export const IDG_WEBSITE = 'https://innerdevelopmentgoals.org'
 export const IDG_PDF_TOOLKIT = '/assets/221215_IDG_Toolkit_v1.pdf'

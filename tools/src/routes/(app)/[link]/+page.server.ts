@@ -18,10 +18,10 @@ export const load = async ({ params: { link }, setHeaders }) => {
         // If page was found on a different URL,
         // permanently redirect to the updated url (HTTP 301)
         // to prevent multiple URLs publishing the same content.
-        // TODO: Make sure redirects target a valid locale.
+        // Make sure redirects target a valid locale.
         // First try with the current locale but then with the default fallback one.
         // Also beware that content may exist in one locale but not in others.
-        // TODO: Also redirect from `/${DEFAULT_LOCALE_IDENTIFIER}/path` to `/path`
+        // Also redirect from `/${DEFAULT_LOCALE_IDENTIFIER}/path` to `/path`
         // This is necessary to prevent duplicate content across multiple URLs.
         if (link !== tool.link) redirect(301, `/${tool.link}`)
 

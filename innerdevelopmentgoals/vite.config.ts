@@ -12,8 +12,6 @@ const configs = {
 
         return defineConfig({
             plugins: [svelte()],
-            // TODO: Write a blog post and better documentation for this approach to create web components with Svelte:
-            // https://stackoverflow.com/questions/75832641/how-to-compile-svelte-3-components-into-iifes-that-can-be-used-in-vanilla-js
             build: {
                 lib: {
                     entry: resolve(import.meta.dirname, 'dist-svelte/index.js'),

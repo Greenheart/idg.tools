@@ -62,8 +62,3 @@
 </div>
 
 <Divider class="my-16" />
-
-<!--
-    TODO: maybe show principles and governance for the IDG Toolkit down here, with support for anchor links
-    These should likely have their own pages though, so they can easily be linked to.
--->

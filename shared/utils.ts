@@ -21,7 +21,7 @@ export const randomInt = (min: number, max: number) =>
 
 export const getRGBColor = (id: Dimension['id'] | Skill['id']) => IDG_COLORS_RGB[COLORS[id]]
 
-// TODO: This needs to be updated to support other locales than English, but is good enough for now.
+// This needs to be updated to support other locales than English, but is good enough for now.
 export const pluralize = (item: string, count: number, showCount = true) => {
     const formattedItems = count === 1 ? item : `${item}s`
     return showCount ? `${count} ${formattedItems}` : formattedItems
@@ -118,6 +118,10 @@ export const getRedirectURL = (path: string, rawLocale?: string) => {
 /**
  * Get the localised version of location.pathname for a given locale.
  * Adapts the output based on the currentLocale to keep URLs as simple as possible.
+ *
+ * Maybe break the getLocalisedPath() into two functions
+ * 1) the first for getting all valid URLs to use for links
+ * 2) the second for getting the correct URL based on rawLocale and the current path
  */
 export const getLocalisedPath = (locale: Locale, path: string) => {
     const currentLocale = getCurrentLocale(path)
@@ -134,10 +138,6 @@ export const getLocalisedPath = (locale: Locale, path: string) => {
         return `/${locale}/${removeLeadingSlash(path)}`
     }
 }
-
-// TODO: maybe break the getLocalisedPath() into two functions
-// 1) the first for getting all valid URLs to use for links
-// 2) the second for getting the correct URL based on rawLocale and the current path
 
 /*
 

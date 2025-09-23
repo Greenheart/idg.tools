@@ -3,12 +3,6 @@
     import { goto } from '$app/navigation'
     import { browser } from '$app/environment'
 
-    // IDEA: Consider redesigning the framework widget to match the PDF presentations
-    // For example by only using colors for icons and otherwise black text on white background,
-    // which would fix the inaccessible text contrast. This would make the IDG framework much better adapted to a diverse and global audience.
-
-    // TODO: Set correct `dir` for content based on the locale
-
     import Heading from '$shared/components/Heading.svelte'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import {
