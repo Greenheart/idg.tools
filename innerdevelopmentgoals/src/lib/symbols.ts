@@ -1,4 +1,4 @@
-/** Symbols for the 2023 version of the IDG Framework */
+/** Symbols for the 2023 version of the IDG Framework. Automatically extracted from SVG files using the script \`extract-idg-symbols\` */
 import type { IDGSymbols } from './types'
 export const symbols: IDGSymbols = {
   da0: [

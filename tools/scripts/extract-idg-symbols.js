@@ -71,7 +71,7 @@ await writeFile(
 )
 
 const formatted = await format(
-    `/** Symbols for the 2023 version of the IDG Framework */
+    `/** Symbols for the 2023 version of the IDG Framework. Automatically extracted from SVG files using the script \`extract-idg-symbols\` */
 import type { IDGSymbols } from './types'
 export const symbols: IDGSymbols = ${JSON.stringify(symbols)}`,
     { semi: false, singleQuote: true, tabWidth: 2, parser: 'typescript' },
