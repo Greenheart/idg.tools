@@ -16,4 +16,4 @@
 
 <svelte:body use:bodyClass={'bg-white'} />
 
-<div class="xs:px-2" bind:this={container}></div>
+<div bind:this={container}></div>

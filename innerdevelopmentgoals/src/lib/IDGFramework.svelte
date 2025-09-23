@@ -52,7 +52,7 @@
     <!-- Create build process -->
     <!-- Create demo page -->
 
-    <Tabs.Root bind:value={widgetState.selectedDimensionId}>
+    <Tabs.Root bind:value={widgetState.selectedDimensionId} class="xs:px-2">
         <Tabs.List>
             {#each widgetState.dimensions as dimension (dimension.id)}
                 <Tabs.Trigger
