@@ -3,6 +3,11 @@ import Widget from './IDGFramework.svelte'
 import { locales as supportedLocales } from './content'
 import type { Locale, IDGFrameworkProps } from './types'
 
+// TODO: Decide which import format to use
+// 1) either show function
+// 2) or simply a default exported function, which also includes the property locales
+// 3) default exported function, combined with a separate export for the locales
+
 /**
  * Show the IDGFramework widget
  *
