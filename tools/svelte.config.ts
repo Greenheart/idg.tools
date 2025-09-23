@@ -4,10 +4,11 @@ import adapter from '@sveltejs/adapter-vercel'
 import { entries } from './src/routes/(minimal-layout)/[[locale]]/embed/framework/+page.server.ts'
 import type { Config } from '@sveltejs/kit'
 
-// TODO: Verify that this works as expected with prerendering
 const frameworkEmbedEntries = [
     '/embed/framework',
-    ...entries().map(({ locale }) => `/${locale}/embed/framework`),
+    ...entries()
+        .map(({ locale }) => (locale === 'en' ? null : `/${locale}/embed/framework`))
+        .filter(Boolean),
 ] as `/${string}`[]
 
 const config: Config = {
@@ -36,6 +37,7 @@ const config: Config = {
         },
         prerender: {
             entries: ['*', ...frameworkEmbedEntries],
+            handleUnseenRoutes: 'warn',
         },
     },
 }
