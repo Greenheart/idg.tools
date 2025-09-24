@@ -26,8 +26,11 @@
 
     let { defaultLocale, persistLocale = true }: IDGFrameworkProps = $props()
 
-    const embedded = window !== window.top
-    const widgetState = new IDGFrameworkState({ defaultLocale, locales, persistLocale, embedded })
+    const widgetState = new IDGFrameworkState({
+        defaultLocale,
+        locales,
+        persistLocale,
+    })
 </script>
 
 {#snippet IDGSymbol({ id, name }: { id: keyof IDGSymbols; name: string })}

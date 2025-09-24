@@ -13,12 +13,6 @@ type Options = {
      * Only enabled on the client side.
      */
     persistLocale: boolean
-    /**
-     * Adapt the widget so it can work well within an iframe.
-     *
-     * This will also disable localStorage since that doesn't work in iframes.
-     */
-    embedded?: boolean
 }
 
 export class IDGFrameworkState {
@@ -37,8 +31,10 @@ export class IDGFrameworkState {
     selectedDimension: Dimension
 
     constructor(options: Options) {
-        const { locales, persistLocale, embedded } = options
+        const { locales, persistLocale } = options
+        const embedded = window !== window.top
 
+        // Only persist locale when the user wants to. Disabled when running in an iframe.
         this.#persistLocale = browser && !embedded && persistLocale
         // Ensure the provided defaultLocale is valid - and use a fallback value otherwise
         const defaultLocale =
