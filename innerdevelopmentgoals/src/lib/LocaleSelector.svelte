@@ -98,18 +98,15 @@
         }
     }
 
-    // TODO: since we won't have cross-origin access to scripts, perhaps we could pass in an embeddedMode option instead
-
-    // TODO: Apply embedded everywhere the widget is used in embed mode
     onMount(() => {
         // Improve UX by allowing the select list to be closed by clicking outside the iframe
-        if (embedded) {
+        if (embedded && window !== window.top) {
             window.parent.document.addEventListener('click', clickOutsideIframeHandler)
         }
     })
 
     onDestroy(() => {
-        if (embedded) {
+        if (embedded && window !== window.top) {
             window.parent.document.removeEventListener('click', clickOutsideIframeHandler)
         }
     })
