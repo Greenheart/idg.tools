@@ -1,0 +1,11 @@
+{
+  "id": "sa0",
+  "name": "Inre kompass",
+  "description": "Att ha en djupt förankrad känsla av ansvar för och engagemang kring värden och mål i relation till vad helheten behöver.",
+  "dimension": "da0",
+  "questions": [
+    "What are your three most important values?",
+    "When have you felt deeply connected to a larger purpose?",
+    "How do you navigate moments of doubt?"
+  ]
+}

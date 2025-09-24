@@ -1,9 +1,9 @@
 import { CmsField } from 'netlify-cms-core'
 import { STORIES_LEARN_MORE } from '../constants'
-import { CustomCmsField, ID, MARKDOWN_ARTICLE, MARKDOWN_LINKS_ONLY, TITLE } from './shared'
+import { CustomCmsField, CUID, MARKDOWN_ARTICLE, MARKDOWN_LINKS_ONLY, TITLE } from './shared'
 
 export const StoriesFields: CustomCmsField[] = [
-    ID,
+    CUID,
     TITLE,
     {
         widget: 'image',

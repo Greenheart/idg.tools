@@ -1,0 +1,11 @@
+{
+  "id": "sc1",
+  "name": "İyimserlik",
+  "description": "Umut duygusunu sürdürme ve iletme becerisi, anlamlı değişim olasılığına ilişkin tutum ve güven.",
+  "dimension": "da4",
+  "questions": [
+    "What gives you hope?",
+    "How do you maintain a positive outlook during challenging times?",
+    "How do you balance realism with hope?"
+  ]
+}

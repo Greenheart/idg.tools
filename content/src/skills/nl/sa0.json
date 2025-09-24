@@ -1,0 +1,11 @@
+{
+  "id": "sa0",
+  "name": "Innerlijk kompas",
+  "description": "Een diep gevoel van verantwoordelijkheid, en toewijding aan waarden en doelen die het grotere geheel ten goede komen.",
+  "dimension": "da0",
+  "questions": [
+    "What are your three most important values?",
+    "When have you felt deeply connected to a larger purpose?",
+    "How do you navigate moments of doubt?"
+  ]
+}

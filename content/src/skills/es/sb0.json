@@ -1,0 +1,11 @@
+{
+  "id": "sb0",
+  "name": "Aprecio",
+  "description": "Relacionarse con los demás y con el mundo con un sentido básico de aprecio, gratitud y alegría.",
+  "dimension": "da2",
+  "questions": [
+    "What are you most grateful for right now? ",
+    "Who has helped you become the person you are today?",
+    "When did you last pause to truly appreciate something or someone?"
+  ]
+}

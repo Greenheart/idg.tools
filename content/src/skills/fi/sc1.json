@@ -1,0 +1,11 @@
+{
+  "id": "sc1",
+  "name": "Optimismi",
+  "description": "Kyky ylläpitää ja välittää toivoa, myönteistä asennetta ja luottamusta merkityksellisen muutoksen mahdollisuuteen.",
+  "dimension": "da4",
+  "questions": [
+    "What gives you hope?",
+    "How do you maintain a positive outlook during challenging times?",
+    "How do you balance realism with hope?"
+  ]
+}

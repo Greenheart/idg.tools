@@ -1,0 +1,11 @@
+{
+  "id": "sa3",
+  "name": "Autoconsapevolezza",
+  "description": "Capacità di essere in contatto riflessivo con i propri pensieri, sentimenti e desideri; avere un'immagine di sé realistica e una capacità di autoregolarsi.",
+  "dimension": "da0",
+  "questions": [
+    "Which of your strengths and weaknesses are you working on, and how?",
+    "What helps you become aware of your own patterns?",
+    "When did you last adjust your behaviour based on self-reflection?"
+  ]
+}

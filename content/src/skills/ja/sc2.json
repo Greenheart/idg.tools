@@ -1,0 +1,11 @@
+{
+  "id": "sc2",
+  "name": "粘り強さ",
+  "description": "努力が実を結ぶのに長い時間がかかる場合でも、決意を固め、忍耐強く関わり続ける力",
+  "dimension": "da4",
+  "questions": [
+    "Can you recall a time when your patience eventually paid off?",
+    "What helps you sustain your efforts when progress seems slow?",
+    "How do you handle feelings of discouragement?"
+  ]
+}

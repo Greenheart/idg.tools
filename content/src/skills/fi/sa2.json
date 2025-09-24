@@ -1,0 +1,11 @@
+{
+  "id": "sa2",
+  "name": "Avoimuus ja oppiva mieli",
+  "description": "Utelias mielenlaatu sekä valmius olla haavoittuvainen ja suhtautua avoimesti muutokseen ja kasvun mahdollisuuksiin.",
+  "dimension": "da0",
+  "questions": [
+    "How do you deal with critical feedback?",
+    "How do you practice staying curious?",
+    "Who do you ask for honest feedback?"
+  ]
+}

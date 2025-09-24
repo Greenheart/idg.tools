@@ -1,0 +1,11 @@
+{
+  "id": "sa9",
+  "name": "Langfristige Orientierung und Visionen",
+  "description": "Langfristige Orientierung und die Fähigkeit, Visionen in Bezug auf den größeren Kontext zu formulieren und aufrechtzuerhalten.",
+  "dimension": "da1",
+  "questions": [
+    "What would you like society to look like 20 years from now?",
+    "What long-term visions drive your actions?",
+    "In your role, which three tasks are most important from a 5, 10 and 30-year perspective?"
+  ]
+}

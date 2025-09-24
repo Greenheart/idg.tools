@@ -1,0 +1,11 @@
+{
+  "id": "sa5",
+  "name": "クリティカル・シンキング (思考の偏りに気づく)",
+  "description": "ものごとの捉え方、結論、プランに対して、妥当かどうかをクリティカルに熟考するスキル",
+  "dimension": "da1",
+  "questions": [
+    "What biases might affect your judgment?",
+    "Do you dare to challenge your own ideas?",
+    "When was the last time you changed your opinion, and why?"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "sa7",
+  "name": "Abilità prospettiche",
+  "description": "Abilità nel cercare, comprendere e utilizzare attivamente intuizioni da prospettive contrastanti.",
+  "dimension": "da1",
+  "questions": [
+    "Who do you know that holds the most contrasting views to yours?",
+    "How often do you seek out viewpoints different from your own?",
+    "How has understanding multiple perspectives enriched your decisions?"
+  ]
+}

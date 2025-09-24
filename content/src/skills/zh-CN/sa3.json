@@ -1,0 +1,11 @@
+{
+  "id": "sa3",
+  "name": "自我意识",
+  "description": "反思自己的思想、感受和欲望的能力;拥有现实的自我形象和自我调节的能力。",
+  "dimension": "da0",
+  "questions": [
+    "Which of your strengths and weaknesses are you working on, and how?",
+    "What helps you become aware of your own patterns?",
+    "When did you last adjust your behaviour based on self-reflection?"
+  ]
+}

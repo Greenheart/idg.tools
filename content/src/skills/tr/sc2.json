@@ -1,0 +1,11 @@
+{
+  "id": "sc2",
+  "name": "Azim",
+  "description": "Çabaların meyve vermesinin uzun zaman aldığı durumlarda bile bağlılığı sürdürme, kararlı kalma ve sabırlı olma becerisi.",
+  "dimension": "da4",
+  "questions": [
+    "Can you recall a time when your patience eventually paid off?",
+    "What helps you sustain your efforts when progress seems slow?",
+    "How do you handle feelings of discouragement?"
+  ]
+}

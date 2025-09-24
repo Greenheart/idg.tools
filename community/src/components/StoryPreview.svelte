@@ -18,7 +18,7 @@
 </script>
 
 <Link href={`/stories/${story.link}`} variant="black" unstyled class="group grid p-2">
-    <div class="grid aspect-3/2 overflow-hidden shadow-md">
+    <div class="aspect-3/2 grid overflow-hidden shadow-md">
         <Picture
             src={story.image}
             alt={story.imageAlt}

@@ -1,0 +1,11 @@
+{
+  "id": "sc0",
+  "name": "Creativiteit",
+  "description": "Het vermogen om originele ideeën te genereren en te ontwikkelen, te innoveren en bereid te zijn conventionele patronen te doorbreken.",
+  "dimension": "da4",
+  "questions": [
+    "When and where are you most creative?",
+    "Do your personal structures support or inhibit your creativity?",
+    "When have you disrupted conventional patterns with a creative solution?"
+  ]
+}

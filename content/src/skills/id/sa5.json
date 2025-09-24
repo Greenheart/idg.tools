@@ -1,0 +1,11 @@
+{
+  "id": "sa5",
+  "name": "Critical Thinking",
+  "description": "Skills in critically reviewing the validity of views, evidence and plans.",
+  "dimension": "da1",
+  "questions": [
+    "What biases might affect your judgment?",
+    "Do you dare to challenge your own ideas?",
+    "When was the last time you changed your opinion, and why?"
+  ]
+}

@@ -1,6 +1,7 @@
 import CMS from 'netlify-cms-app'
 
-import { default as UniqueId } from './widgets/UniqueId'
+import { default as UniqueCuid } from './widgets/UniqueCuid'
+import { default as UniqueNanoId } from './widgets/UniqueNanoId'
 import { default as UniqueSlug } from './widgets/UniqueSlug'
 import { COLLECTIONS } from './collections'
 
@@ -31,7 +32,7 @@ CMS.init({
         i18n: {
             structure: 'multiple_folders',
             // Default locale config:
-            locales: FRAMEWORK_AVAILABLE_LOCALES,
+            locales: FRAMEWORK_AVAILABLE_LOCALES as unknown as string[],
             default_locale: DEFAULT_LOCALE_IDENTIFIER,
 
             // NOTE: When editing translations, it's very useful to only enable the locales you want to edit
@@ -46,9 +47,11 @@ CMS.init({
     },
 })
 
-CMS.registerWidget(UniqueId)
+CMS.registerWidget(UniqueCuid)
+CMS.registerWidget(UniqueNanoId)
 CMS.registerWidget(UniqueSlug)
 
+// TODO: See if the logo can be customised directly by using the Decap CMS config instead
 const replaceLogo = () => {
     const styles = document.querySelector('#idg-overrides') as HTMLStyleElement
     if (styles) {
@@ -81,7 +84,6 @@ const collectionsWithCustomColorsRegex = /skills|dimensions$/
  * Override colors for IDG Framework entries to make them easier to distinguish
  *
  * Dynamically add custom classes based on the latest IDG color constants, and known ID:s of skills and dimensions.
- * This way, it stays in sync even if skills and dimensions change.
  *
  * By using predefined CSS selectors rather than classes, the styling is applied even across re-renders of the React CMS SPA.
  */

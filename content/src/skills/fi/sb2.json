@@ -1,0 +1,11 @@
+{
+  "id": "sb2",
+  "name": "Nöyryys ja tilannetaju",
+  "description": "Kyky toimita tilanteen tarpeiden mukaisesti ilman oman itsensä tärkeyden korostamista.",
+  "dimension": "da2",
+  "questions": [
+    "When did you last prioritise the needs of someone else over your own desires?",
+    "What practices help you maintain a humble approach?",
+    "How do you navigate situations where your ego is challenged?"
+  ]
+}

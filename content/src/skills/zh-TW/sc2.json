@@ -1,0 +1,11 @@
+{
+  "id": "sc2",
+  "name": "毅力",
+  "description": "即使努力需要很長一段時間才能看見成果, 依然能堅持投入並保有決心和耐心。",
+  "dimension": "da4",
+  "questions": [
+    "Can you recall a time when your patience eventually paid off?",
+    "What helps you sustain your efforts when progress seems slow?",
+    "How do you handle feelings of discouragement?"
+  ]
+}

@@ -13,7 +13,7 @@
     stroke-width="1.5"
     stroke="currentColor"
     aria-hidden="true"
-    class={['h-6 w-6', className]}
+    class={['size-6', className]}
 >
     <path
         stroke-linecap="round"

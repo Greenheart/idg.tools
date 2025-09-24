@@ -1,0 +1,11 @@
+{
+  "id": "sa5",
+  "name": "Kritisk tænkning",
+  "description": "Færdigheder til kritisk at forholde sig til gyldigheden af synspunkter, konklusioner og planer.",
+  "dimension": "da1",
+  "questions": [
+    "What biases might affect your judgment?",
+    "Do you dare to challenge your own ideas?",
+    "When was the last time you changed your opinion, and why?"
+  ]
+}

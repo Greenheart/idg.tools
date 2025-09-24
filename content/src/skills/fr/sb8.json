@@ -1,0 +1,11 @@
+{
+  "id": "sb8",
+  "name": "Capacités de mobilisation",
+  "description": "Etre capable dʼinspirer et de mobiliser les autres pour quʼils sʼinvestissent dans des objectifs communs.",
+  "dimension": "da3",
+  "questions": [
+    "How and when have you inspired others?",
+    "What tools or methods do you use to mobilise diverse groups?",
+    "What challenges you most when trying to mobilise others?"
+  ]
+}

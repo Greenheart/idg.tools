@@ -1,0 +1,11 @@
+{
+  "id": "sa5",
+  "name": "Pensamiento crítico",
+  "description": "Aptitudes para la revisión crítica y validación de opiniones, evidencia y planes.",
+  "dimension": "da1",
+  "questions": [
+    "What biases might affect your judgment?",
+    "Do you dare to challenge your own ideas?",
+    "When was the last time you changed your opinion, and why?"
+  ]
+}

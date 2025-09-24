@@ -29,12 +29,10 @@ export const createBackwardsCompatibleLink = (
     locale = DEFAULT_LOCALE_IDENTIFIER,
 ) => `${slugifyName(name, locale)}-${uniqueSlug}`
 
-export const readJSON = (path: string) => readFile(path, { encoding: 'utf-8' }).then(JSON.parse)
+export const readJSON = (path: string) => readFile(path, 'utf-8').then(JSON.parse)
 
 export const writeJSON = (path: string, data: any, indentation: number = 0) =>
-    writeFile(path, JSON.stringify(data, null, indentation), {
-        encoding: 'utf-8',
-    })
+    writeFile(path, JSON.stringify(data, null, indentation), 'utf-8')
 
 export const getPaths = (...paths: string[]) => glob([resolve(...paths)])
 

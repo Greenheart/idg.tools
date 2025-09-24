@@ -1,0 +1,11 @@
+{
+  "id": "sc2",
+  "name": "Beharrlichkeit",
+  "description": "Fähigkeit, das Engagement aufrechtzuerhalten und entschlossen und geduldig zu bleiben, auch wenn die Bemühungen lange Zeit brauchen, um Früchte zu tragen.",
+  "dimension": "da4",
+  "questions": [
+    "Can you recall a time when your patience eventually paid off?",
+    "What helps you sustain your efforts when progress seems slow?",
+    "How do you handle feelings of discouragement?"
+  ]
+}

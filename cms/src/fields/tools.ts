@@ -1,6 +1,6 @@
 import {
     CustomCmsField,
-    ID,
+    CUID,
     MARKDOWN_MINIMAL,
     MARKDOWN_LINKS_ONLY,
     MARKDOWN_ARTICLE,
@@ -8,7 +8,7 @@ import {
 } from './shared'
 
 export const ToolsFields: CustomCmsField[] = [
-    ID,
+    CUID,
     NAME,
     {
         label: 'Intro',

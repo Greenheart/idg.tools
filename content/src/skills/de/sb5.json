@@ -1,0 +1,11 @@
+{
+  "id": "sb5",
+  "name": "Mitgestaltungsfähigkeiten",
+  "description": "Fähigkeiten und Motivation zum Aufbau, zur Entwicklung und zum Ermöglichen von Kooperationsbeziehungen mit verschiedenen Interessengruppen, gekennzeichnet durch psychologischer Sicherheit und echter Ko-Kreation.",
+  "dimension": "da3",
+  "questions": [
+    "How do you build psychological safety in your groups or organisation?",
+    "How do you nurture a genuine spirit of co-creation?",
+    "How do you handle disagreements during collaborative projects?"
+  ]
+}

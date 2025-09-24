@@ -1,0 +1,11 @@
+{
+  "id": "sb8",
+  "name": "Mobilisering",
+  "description": "Förmåga att inspirera och organisera andra att engagera sig i delade intressen.",
+  "dimension": "da3",
+  "questions": [
+    "How and when have you inspired others?",
+    "What tools or methods do you use to mobilise diverse groups?",
+    "What challenges you most when trying to mobilise others?"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "sb9",
+  "name": "Coraggio",
+  "description": "Capacità di difendere i propri valori, prendere decisioni, intraprendere azioni decisive e, se necessario, sfidare e cambiare le strutture e le opinioni esistenti.",
+  "dimension": "da4",
+  "questions": [
+    "When did you last act courageously?",
+    "How hard is it for you to challenge the status quo, and why?",
+    "Where do you see real courage in others?"
+  ]
+}

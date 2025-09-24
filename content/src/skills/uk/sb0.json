@@ -1,0 +1,11 @@
+{
+  "id": "sb0",
+  "name": "Визнання, вдячність",
+  "description": "Ставлення до інших та до світу з почуттям, в основі якого визнання, вдячність та радість",
+  "dimension": "da2",
+  "questions": [
+    "What are you most grateful for right now? ",
+    "Who has helped you become the person you are today?",
+    "When did you last pause to truly appreciate something or someone?"
+  ]
+}

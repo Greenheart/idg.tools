@@ -1,0 +1,11 @@
+{
+  "id": "sa9",
+  "name": "Довгострокова орієнтація та візіонерство",
+  "description": "Довгострокова орієнтація та здатність формулювати та підтримувати відданість баченню більшого контексту",
+  "dimension": "da1",
+  "questions": [
+    "What would you like society to look like 20 years from now?",
+    "What long-term visions drive your actions?",
+    "In your role, which three tasks are most important from a 5, 10 and 30-year perspective?"
+  ]
+}

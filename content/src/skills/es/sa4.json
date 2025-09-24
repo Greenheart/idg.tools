@@ -1,0 +1,11 @@
+{
+  "id": "sa4",
+  "name": "Presencia",
+  "description": "Habilidad de estar en el aquí y ahora, sin juzgar y en un estado de presencia abierta.",
+  "dimension": "da0",
+  "questions": [
+    "How do you ground yourself in the present moment?",
+    "When did you last experience a moment without an internal dialogue? ",
+    "What is present for you right now?"
+  ]
+}

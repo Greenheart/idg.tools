@@ -1,0 +1,11 @@
+{
+  "id": "sa4",
+  "name": "Присутність",
+  "description": "Здатність бути тут і зараз, без засудження та в стані відкритої присутності",
+  "dimension": "da0",
+  "questions": [
+    "How do you ground yourself in the present moment?",
+    "When did you last experience a moment without an internal dialogue? ",
+    "What is present for you right now?"
+  ]
+}

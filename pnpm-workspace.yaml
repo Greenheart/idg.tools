@@ -4,10 +4,13 @@ packages:
     - cms
     - content
     - shared
+    - innerdevelopmentgoals
 
 onlyBuiltDependencies:
     - '@sveltejs/kit'
     - '@tailwindcss/oxide'
     - esbuild
-    - iframe-resizer
     - sharp
+
+ignoredBuiltDependencies:
+    - iframe-resizer

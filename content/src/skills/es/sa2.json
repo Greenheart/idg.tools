@@ -1,0 +1,11 @@
+{
+  "id": "sa2",
+  "name": "Apertura y mentalidad de aprendizaje",
+  "description": "Poseer una mente curiosa y una disposición a ser vulnerable y a aceptar el cambio y crecer.",
+  "dimension": "da0",
+  "questions": [
+    "How do you deal with critical feedback?",
+    "How do you practice staying curious?",
+    "Who do you ask for honest feedback?"
+  ]
+}

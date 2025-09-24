@@ -1,11 +1,19 @@
 import { resolve } from 'path'
-import type { CommunityContent, Locale, Localised, ToolsContent } from '$shared/types'
+import type {
+    CommunityContent,
+    Locale,
+    Localised,
+    ToolsContent,
+    WidgetContent,
+} from '$shared/types'
 import { runAllTransformers, transformContent, TRANSFORMERS } from './transformers'
 import { writeJSON } from '../utils'
 import { VALIDATORS } from './validators'
+import { writeFile } from 'fs/promises'
+import { format } from 'prettier'
 
 export type BuilderInput<T> = {
-    selectedLocales: Locale[]
+    selectedLocales: readonly Locale[]
     contentDir: string
     selectedContent: (keyof T)[]
 }
@@ -118,6 +126,30 @@ export const BUILDERS = {
             resolve(builderInput.contentDir, '../../tools/static/content.json'),
             transformedContent,
             0,
+        )
+    },
+    async widget(
+        localisedContent: Localised<WidgetContent>,
+        builderInput: BuilderInput<WidgetContent>,
+    ) {
+        const transformedContent = transformContent(
+            localisedContent,
+            (result, [locale, content]) => {
+                result[locale as Locale] = content
+                return result
+            },
+        )
+
+        const formatted = await format(
+            `/** Localised versions of the IDG Framework */
+import type { WidgetContent } from './types'
+export const locales = ${JSON.stringify(transformedContent)} satisfies Record<string, WidgetContent>`,
+            { semi: false, singleQuote: true, tabWidth: 2, parser: 'typescript' },
+        )
+        await writeFile(
+            resolve(builderInput.contentDir, '../../innerdevelopmentgoals/src/lib/content.ts'),
+            formatted,
+            'utf-8',
         )
     },
 }

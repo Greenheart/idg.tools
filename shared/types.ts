@@ -61,6 +61,11 @@ export type ToolsContent = {
     tags: Tag[]
 }
 
+export type WidgetContent = {
+    dimensions: Dimension[]
+    skills: Skill[]
+}
+
 export type CommunityContent = {
     stories: Story[]
     contributors: Contributor[]

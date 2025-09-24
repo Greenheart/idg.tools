@@ -1,0 +1,11 @@
+{
+  "id": "sc1",
+  "name": "Optimismo",
+  "description": "Habilidad de mantener y comunicar un sentido de esperanza, actitud positiva y confianza en la posibilidad de un cambio significativo.",
+  "dimension": "da4",
+  "questions": [
+    "What gives you hope?",
+    "How do you maintain a positive outlook during challenging times?",
+    "How do you balance realism with hope?"
+  ]
+}

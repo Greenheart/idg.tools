@@ -2,8 +2,8 @@ import {
     COLORS,
     DEFAULT_LOCALE_IDENTIFIER,
     IDG_COLORS_RGB,
-    LOCALE_DIRECTIONS,
     LOCALE_IDENTIFIERS,
+    RTL_LOCALES,
 } from './constants'
 import type {
     Dimension,
@@ -18,6 +18,7 @@ import type {
     AllContent,
     Locale,
     DimensionSlug,
+    WidgetContent,
 } from './types'
 
 export const getLocale = (locale?: string) => {
@@ -38,7 +39,7 @@ export const getLocale = (locale?: string) => {
     return DEFAULT_LOCALE_IDENTIFIER
 }
 
-export const getHTMLDirection = (locale: Locale) => LOCALE_DIRECTIONS[locale] ?? 'ltr'
+export const getHTMLDirection = (locale: Locale) => (RTL_LOCALES.has(locale) ? 'rtr' : 'ltr')
 
 export const getDimension = (id: Dimension['id'], { dimensions }: Pick<AllContent, 'dimensions'>) =>
     dimensions.find((c) => c.id === id) as Dimension
@@ -111,7 +112,7 @@ export const getAdjacentStories = (
     return { prev: stories[index - 1], next: stories[index + 1] }
 }
 
-export const getSkillsInDimension = (id: Dimension['id'], { skills }: Pick<AllContent, 'skills'>) =>
+export const getSkillsInDimension = (id: Dimension['id'], skills: WidgetContent['skills']) =>
     skills.filter((s) => s.dimension === id)
 
 export const getTotalRelevancyScore = (

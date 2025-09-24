@@ -1,47 +1,52 @@
 import { readFile, writeFile } from 'fs/promises'
 import { resolve } from 'path'
-import content from '../static/content.json' assert { type: 'json' }
+import content from '../static/content.json' with { type: 'json' }
+import { format } from 'prettier'
 
+// This assumes all dimensions and skills are the same as for the English locale.
+// This script likely needs to be updated for the new framework.
 const { dimensions } = content['en']
 
+/**
+ * This might need to be updated to include all known dimensions.
+ * It should align with the latest Map<Dimension['id'] | Skill['id'], DimensionSlug>
+ */
 export const COLORS = {
-    ckzi3855r0086e2n0smi0mew5: 'being',
-    ckzi3a4z90431e2n04kx2pbq2: 'being',
-    ckzi3am4y0486e2n04obcy6hi: 'being',
-    ckzi3ayvo0547e2n03lvu0goo: 'being',
-    ckzi3b8sz0614e2n0ijnnazce: 'being',
-    ckzi3blfz0687e2n0huf88a8y: 'being',
-    ckzi38ilp0149e2n0idgw5zqv: 'thinking',
-    ckzi3cikk0766e2n0j9my4e46: 'thinking',
-    ckzi3cvpf0851e2n00bcmzsgz: 'thinking',
-    ckzi3d9gp0942e2n0lvc6k1nh: 'thinking',
-    ckzi3dk3h1039e2n0qxij7ooh: 'thinking',
-    ckzi3dtdk1142e2n0m9v02uf5: 'thinking',
-    ckzi38wix0218e2n09ncgnmxx: 'relating',
-    ckzi3e4as1251e2n0fz614xn4: 'relating',
-    ckzi3ef9s1366e2n082dhihsm: 'relating',
-    ckzi3eor91487e2n0qdoa639u: 'relating',
-    ckzi3ezut1614e2n07fab18pt: 'relating',
-    ckzi3951t0293e2n0n3bykbg5: 'collaborating',
-    ckzi3f9cj1747e2n0taoxah1j: 'collaborating',
-    ckzi3fnea2022e2n0r588if1r: 'collaborating',
-    ckzi3g17e2167e2n055jpiaaz: 'collaborating',
-    ckzi3gb7f2318e2n04kesx118: 'collaborating',
-    ckzi3gknp2475e2n0dm59ikcn: 'collaborating',
-    ckzi39fwv0374e2n0d2eynda4: 'acting',
-    ckzi3gu6u2638e2n0fmr9gv86: 'acting',
-    ckzi3h80v2807e2n0l44d20qr: 'acting',
-    ckzi3hi072982e2n0r4cdkqjy: 'acting',
-    ckzi3hqs63163e2n03h36pb73: 'acting',
+    da0: 'being',
+    sa0: 'being',
+    sa1: 'being',
+    sa2: 'being',
+    sa3: 'being',
+    sa4: 'being',
+    da1: 'thinking',
+    sa5: 'thinking',
+    sa6: 'thinking',
+    sa7: 'thinking',
+    sa8: 'thinking',
+    sa9: 'thinking',
+    da2: 'relating',
+    sb0: 'relating',
+    sb1: 'relating',
+    sb2: 'relating',
+    sb3: 'relating',
+    da3: 'collaborating',
+    sb4: 'collaborating',
+    sb5: 'collaborating',
+    sb6: 'collaborating',
+    sb7: 'collaborating',
+    sb8: 'collaborating',
+    da4: 'acting',
+    sb9: 'acting',
+    sc0: 'acting',
+    sc1: 'acting',
+    sc2: 'acting',
 }
 
 async function getSVGSymbol(dimension, skillId) {
     const index = skillId ? dimension.skills.findIndex((id) => id === skillId) + 1 : 0
     const raw = await readFile(
-        resolve(`tools/static/symbols/${COLORS[dimension.id]}_${index}.svg`),
-        {
-            encoding: 'utf-8',
-        },
+        resolve(import.meta.dirname, `../static/symbols/${COLORS[dimension.id]}_${index}.svg`),
+        'utf-8',
     )
 
     const svgPaths = raw
@@ -59,6 +64,20 @@ const symbols = await Promise.all(
     ]),
 ).then((res) => res.reduce((result, [id, paths]) => ({ ...result, [id]: paths }), {}))
 
-await writeFile(resolve('shared/symbols.json'), JSON.stringify(symbols), {
-    encoding: 'utf-8',
-})
+await writeFile(
+    resolve(import.meta.dirname, '../static/symbols.json'),
+    JSON.stringify(symbols),
+    'utf-8',
+)
+
+const formatted = await format(
+    `/** Symbols for the 2023 version of the IDG Framework. Automatically extracted from SVG files using the script \`extract-idg-symbols\` */
+import type { IDGSymbols } from './types'
+export const symbols: IDGSymbols = ${JSON.stringify(symbols)}`,
+    { semi: false, singleQuote: true, tabWidth: 2, parser: 'typescript' },
+)
+await writeFile(
+    resolve(import.meta.dirname, '../../innerdevelopmentgoals/src/lib/symbols.ts'),
+    formatted,
+    'utf-8',
+)

@@ -1,0 +1,11 @@
+{
+  "id": "sb4",
+  "name": "Communicatievaardigheden",
+  "description": "Vermogen om echt naar anderen te luisteren, een authentieke dialoog te bevorderen, eigen standpunten vaardig te bepleiten, conflicten constructief te benaderen en communicatie aan te passen aan diverse groepen.",
+  "dimension": "da3",
+  "questions": [
+    "When was the last time you managed a conflict constructively?",
+    "Do you listen more or talk more? How hard would it be to change that balance?",
+    "How do you tailor your communication for different audiences?"
+  ]
+}

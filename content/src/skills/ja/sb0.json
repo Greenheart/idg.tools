@@ -1,0 +1,11 @@
+{
+  "id": "sb0",
+  "name": "感謝",
+  "description": "他の存在や世界に対し、感謝、ありがたさ、喜びの基本的な感覚を持ってつながること",
+  "dimension": "da2",
+  "questions": [
+    "What are you most grateful for right now? ",
+    "Who has helped you become the person you are today?",
+    "When did you last pause to truly appreciate something or someone?"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "sb3",
+  "name": "Einfühlungsvermögen und Mitgefühl",
+  "description": "Die Fähigkeit, anderen, sich selbst und der Natur mit Freundlichkeit, Einfühlungsvermögen und Mitgefühl zu begegnen und das damit verbundene Leiden zu bewältigen.",
+  "dimension": "da2",
+  "questions": [
+    "When did you last help a stranger to relieve their suffering or worry?",
+    "How do you care for yourself whilst empathising deeply with others?",
+    "How do you cultivate compassion even when it's challenging?"
+  ]
+}

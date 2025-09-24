@@ -1,0 +1,11 @@
+{
+  "id": "sb4",
+  "name": "コミュニケーション・スキル",
+  "description": "他者の話を本当に聴く力、真の対話を育む力、自分の意見を上手に主張する力、対立を建設的に扱う力、多様なグループに合わせたコミュニケーションを取る力",
+  "dimension": "da3",
+  "questions": [
+    "When was the last time you managed a conflict constructively?",
+    "Do you listen more or talk more? How hard would it be to change that balance?",
+    "How do you tailor your communication for different audiences?"
+  ]
+}

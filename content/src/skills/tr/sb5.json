@@ -1,0 +1,11 @@
+{
+  "id": "sb5",
+  "name": "Birlikte Geliştirme Becerileri",
+  "description": "Farklı paydaşlarla, psikolojik güvenlik ve ortak yaratım ile nitelendirilen işbirliğine dayalı ilişkiler kurma, geliştirme, kolaylaştırma becerileri ve motivasyonu.",
+  "dimension": "da3",
+  "questions": [
+    "How do you build psychological safety in your groups or organisation?",
+    "How do you nurture a genuine spirit of co-creation?",
+    "How do you handle disagreements during collaborative projects?"
+  ]
+}

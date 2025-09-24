@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="%LOCALE%">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="data:," />
+        <title>IDG Framework</title>
+    </head>
+    <body style="margin:0;">
+        <div id="idg"></div>
+        <!-- TODO: Update embed instructions -->
+        <link rel="stylesheet" href="/assets/widgets/framework.css" />
+        <script type="module" src="/js/iframeResizer.contentWindow.min.js"></script>
+        <script src="/assets/widgets/framework.umd.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                IDGFramework(document.querySelector('#idg'), {
+                    defaultLocale: '%LOCALE%',
+                })
+            })
+        </script>
+    </body>
+</html>

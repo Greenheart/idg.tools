@@ -1,0 +1,11 @@
+{
+  "id": "sb5",
+  "name": "共创技能",
+  "description": "有能力和意愿去建立、发展和促进合作关系的技能,并以心理安全感和真正的共创为特征。",
+  "dimension": "da3",
+  "questions": [
+    "How do you build psychological safety in your groups or organisation?",
+    "How do you nurture a genuine spirit of co-creation?",
+    "How do you handle disagreements during collaborative projects?"
+  ]
+}

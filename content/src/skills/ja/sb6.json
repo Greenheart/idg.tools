@@ -1,0 +1,11 @@
+{
+  "id": "sb6",
+  "name": "インクルーシブな (みんなを包み尊重する)意識や態度と異文化コンピテンス",
+  "description": "多様性を歓迎し、さまざまな異なった見解や背景を持つ人々や集団を受け入れ、含める意欲と能力",
+  "dimension": "da3",
+  "questions": [
+    "How do you actively embrace diversity in your organisation?",
+    "Which stakeholders would you like to better understand and include?",
+    "How do you include all voices when collaborating with diverse groups?"
+  ]
+}

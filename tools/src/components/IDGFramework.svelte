@@ -3,12 +3,6 @@
     import { goto } from '$app/navigation'
     import { browser } from '$app/environment'
 
-    // IDEA: Consider redesigning the framework widget to match the PDF presentations
-    // For example by only using colors for icons and otherwise black text on white background,
-    // which would fix the inaccessible text contrast. This would make the IDG framework much better adapted to a diverse and global audience.
-
-    // TODO: Set correct `dir` for content based on the locale
-
     import Heading from '$shared/components/Heading.svelte'
     import LocaleSwitcher from '$shared/components/LocaleSwitcher.svelte'
     import {
@@ -98,7 +92,7 @@
 
         <Tabs.Root bind:value={selectedDimensionSlug}>
             <Tabs.List class={['grid grid-cols-5 text-white', lockedDimension && 'hidden']}>
-                {#each dimensions as dimension (dimension.name)}
+                {#each dimensions as dimension (dimension.id)}
                     {@const dimensionSlug = getDimensionSlug(dimension.id)}
                     {@const isSelected = dimension.id === selectedDimension.id}
                     <Tabs.Trigger
@@ -106,6 +100,7 @@
                         class="xs:px-2 grid place-items-center py-2 {isSelected
                             ? `${getColor(dimension.id)}`
                             : `hover:outline-solid bg-white hover:outline-1 hover:outline-${dimensionSlug} hover:-outline-offset-1`}"
+                        title={dimension.name}
                     >
                         <IDGSymbol
                             symbolPaths={symbols[dimension.id]}
@@ -126,7 +121,7 @@
                 {/each}
             </Tabs.List>
 
-            {#each dimensions as dimension, i (dimension.name)}
+            {#each dimensions as dimension, i (dimension.id)}
                 {@const dimensionSlug = getDimensionSlug(dimension.id)}
                 {@const bgColor = getColor(dimension.id, 'bg')}
                 {@const textColor = getColor(dimension.id, 'text')}
@@ -153,7 +148,7 @@
                         class="space-y-2 bg-white py-2 sm:p-0 lg:hidden"
                         type="multiple"
                     >
-                        {#each getSkillsInDimension( dimension.id, { skills: skills }, ) as skill (skill.name)}
+                        {#each getSkillsInDimension(dimension.id, skills) as skill (skill.id)}
                             <Accordion.Item class="relative grid" value={skill.id}>
                                 <Accordion.Header>
                                     <Accordion.Trigger
@@ -207,7 +202,7 @@
                     </Accordion.Root>
 
                     <div class="hidden space-y-2 lg:grid">
-                        {#each getSkillsInDimension(dimension.id, { skills }) as skill (skill.name)}
+                        {#each getSkillsInDimension(dimension.id, skills) as skill (skill.id)}
                             {@const hoverClasses = `hover:bg-white hover:text-black hover:outline-solid hover:outline-${dimensionSlug} hover:outline-1 hover:-outline-offset-1`}
                             {@const activeClasses = `bg-white text-black outline-solid outline-${dimensionSlug} outline-1 -outline-offset-1`}
                             {@const isSelected = selectedSkill?.id === skill.id}

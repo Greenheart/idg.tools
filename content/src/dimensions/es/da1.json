@@ -1,0 +1,13 @@
+{
+  "id": "da1",
+  "name": "Pensar",
+  "subtitle": "Habilidades Cognitivas",
+  "description": "Desarrollar nuestras habilidades cognitivas tomando diferentes perspectivas, evaluando información y dando sentido al mundo como un todo interconectado, es esencial para tomar decisiones acertadas.",
+  "skills": [
+    "sa5",
+    "sa6",
+    "sa7",
+    "sa8",
+    "sa9"
+  ]
+}

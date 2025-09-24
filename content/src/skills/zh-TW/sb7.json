@@ -1,0 +1,11 @@
+{
+  "id": "sb7",
+  "name": "信任",
+  "description": "能展現信任並創造及維繫信任關係。",
+  "dimension": "da3",
+  "questions": [
+    "How do you cultivate trust in your closest relationships?",
+    "What can you learn from relationships about building trust in your teams?",
+    "Which boundary of yours cannot be crossed without losing your trust?"
+  ]
+}

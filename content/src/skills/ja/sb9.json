@@ -1,0 +1,11 @@
+{
+  "id": "sb9",
+  "name": "勇気",
+  "description": "価値観を貫き、決断し、断固とした行動を取り、必要ならば、既存の構造や見解に異議を唱え、破壊する能力。",
+  "dimension": "da4",
+  "questions": [
+    "When did you last act courageously?",
+    "How hard is it for you to challenge the status quo, and why?",
+    "Where do you see real courage in others?"
+  ]
+}

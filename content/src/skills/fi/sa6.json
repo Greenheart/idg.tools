@@ -1,0 +1,11 @@
+{
+  "id": "sa6",
+  "name": "Monimutkaisuuden tiedostaminen",
+  "description": "Ymmärrys ja kyky toimia monitahoisten ja systeemisten tilanteiden ja syy-yhteyksien parissa.",
+  "dimension": "da1",
+  "questions": [
+    "What helps you see the deeper causes and dependencies of a system?",
+    "What is your first step when facing a complex challenge or situation? ",
+    "When do you tend to see things as ‘black or white’?"
+  ]
+}
