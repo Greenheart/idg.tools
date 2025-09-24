@@ -1,5 +1,5 @@
-import { locales } from 'innerdevelopmentgoals/framework'
+import IDGFramework from 'innerdevelopmentgoals/framework'
 
-export const entries = () => locales.map((locale) => ({ locale }))
+export const entries = () => IDGFramework.locales.map((locale) => ({ locale }))
 
 export const prerender = true

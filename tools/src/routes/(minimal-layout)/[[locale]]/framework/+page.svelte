@@ -1,16 +1,16 @@
 <script lang="ts">
     import 'innerdevelopmentgoals/framework.css'
-    import * as IDGFramework from 'innerdevelopmentgoals/framework'
+    import IDGFramework from 'innerdevelopmentgoals/framework'
     import { bodyClass } from '$shared/utils'
     import { onMount } from 'svelte'
     import { page } from '$app/state'
 
     let container: HTMLDivElement
 
-    type Locale = Parameters<typeof IDGFramework.show>[1]['defaultLocale']
+    type Locale = Parameters<typeof IDGFramework>[1]['defaultLocale']
 
     onMount(() => {
-        IDGFramework.show(container, { defaultLocale: page.params.locale as Locale })
+        IDGFramework(container, { defaultLocale: page.params.locale as Locale })
     })
 </script>
 
