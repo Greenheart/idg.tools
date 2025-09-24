@@ -60,8 +60,11 @@
         return Array.from(new Set([...preferred, ...mostCommon]))
     }
 
-    /** Use a suffix to make select values unique. This is needed to only highlight one item at a time. */
-    const recommendedSuffix = '-r'
+    /** Use a suffix to make select values unique. This is needed to only highlight one item at a time.
+     * By adding this suffix for duplicates appearing later in the list, the first value is highlighted when the select is opened.
+     * This prevents unnecessary scrolling to show the first value.
+     */
+    const regularValueSuffix = '-r'
 
     const recommendedLocales = getRecommendedLocales().map((value) => ({
         value,
@@ -119,7 +122,7 @@
     <Select.Root
         type="single"
         bind:value={
-            () => locale, (value) => onChangeLocale(value.replace(recommendedSuffix, '') as Locale)
+            () => locale, (value) => onChangeLocale(value.replace(regularValueSuffix, '') as Locale)
         }
         items={sortedLocales}
         onOpenChange={hideViewportDuringScrollReset}
@@ -136,7 +139,7 @@
             </Select.ScrollUpButton>
             <Select.Viewport class="invisible" bind:ref={selectViewport}>
                 {#each recommendedLocales as { value, label }, i (i)}
-                    <Select.Item value={value + recommendedSuffix}>
+                    <Select.Item {value}>
                         <span>{label}</span>
                     </Select.Item>
                 {/each}
@@ -144,7 +147,7 @@
                 <hr />
 
                 {#each sortedLocales as { value, label } (value)}
-                    <Select.Item {value}>
+                    <Select.Item value={value + regularValueSuffix}>
                         <span>{label}</span>
                     </Select.Item>
                 {/each}
