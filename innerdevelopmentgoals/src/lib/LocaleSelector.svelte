@@ -3,16 +3,14 @@
     import { cubicOut } from 'svelte/easing'
 
     import type { Locale, SupportedLocales } from './types'
-    import { onDestroy, onMount } from 'svelte'
 
     interface Props {
         supportedLocales: SupportedLocales
         locale: Locale
         onChangeLocale: (locale: Locale) => void
-        embedded: boolean
     }
 
-    let { supportedLocales, locale, onChangeLocale, embedded }: Props = $props()
+    let { supportedLocales, locale, onChangeLocale }: Props = $props()
 
     const sortedLocales = Object.entries(supportedLocales)
         .map(([value, label]) => ({ value, label }))
@@ -91,25 +89,6 @@
             selectViewport.classList.remove('invisible')
         }
     }
-
-    function clickOutsideIframeHandler() {
-        if (open) {
-            open = false
-        }
-    }
-
-    onMount(() => {
-        // Improve UX by allowing the select list to be closed by clicking outside the iframe
-        if (embedded) {
-            window.parent.document.addEventListener('click', clickOutsideIframeHandler)
-        }
-    })
-
-    onDestroy(() => {
-        if (embedded) {
-            window.parent.document.removeEventListener('click', clickOutsideIframeHandler)
-        }
-    })
 </script>
 
 {#snippet Locale()}

@@ -48,7 +48,6 @@
         supportedLocales={widgetState.supportedLocales}
         locale={widgetState.locale}
         onChangeLocale={(selected) => (widgetState.locale = selected)}
-        {embedded}
     />
 
     <Tabs.Root bind:value={widgetState.selectedDimensionId} class="xs:px-2">
