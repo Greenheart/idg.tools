@@ -35,10 +35,4 @@ export type IDGFrameworkProps = {
     defaultLocale?: keyof typeof locales
     /** Remember the user's preferred locale using localStorage */
     persistLocale?: boolean
-    /**
-     * Adapt the widget so it can work well within an iframe.
-     *
-     * This will also disable localStorage since that doesn't work in iframes.
-     */
-    embedded?: boolean
 }

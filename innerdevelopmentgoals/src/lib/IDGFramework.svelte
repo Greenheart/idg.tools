@@ -24,8 +24,9 @@
     import LocaleSelector from './LocaleSelector.svelte'
     import { IDGFrameworkState } from './idg-framework.svelte'
 
-    let { defaultLocale, persistLocale = true, embedded = false }: IDGFrameworkProps = $props()
+    let { defaultLocale, persistLocale = true }: IDGFrameworkProps = $props()
 
+    const embedded = window !== window.top
     const widgetState = new IDGFrameworkState({ defaultLocale, locales, persistLocale, embedded })
 </script>
 

@@ -100,13 +100,13 @@
 
     onMount(() => {
         // Improve UX by allowing the select list to be closed by clicking outside the iframe
-        if (embedded && window !== window.top) {
+        if (embedded) {
             window.parent.document.addEventListener('click', clickOutsideIframeHandler)
         }
     })
 
     onDestroy(() => {
-        if (embedded && window !== window.top) {
+        if (embedded) {
             window.parent.document.removeEventListener('click', clickOutsideIframeHandler)
         }
     })
