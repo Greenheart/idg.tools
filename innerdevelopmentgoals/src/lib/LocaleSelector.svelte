@@ -3,6 +3,7 @@
     import { cubicOut } from 'svelte/easing'
 
     import type { Locale, SupportedLocales } from './types'
+    import { onDestroy, onMount } from 'svelte'
 
     interface Props {
         supportedLocales: SupportedLocales
@@ -23,6 +24,7 @@
         }) as { value: Locale; label: string }[]
 
     let selectViewport = $state<HTMLDivElement | null>(null)
+    let open = $state(false)
 
     function autoScrollDelay(tick: number) {
         const maxDelay = 200
@@ -88,6 +90,25 @@
             selectViewport.classList.remove('invisible')
         }
     }
+
+    function clickOutsideIframeHandler() {
+        if (open) {
+            open = false
+        }
+    }
+
+    onMount(() => {
+        // Improve UX by allowing the select list to be closed by clicking outside the iframe
+        if (window.parent?.document) {
+            window.parent.document.addEventListener('click', clickOutsideIframeHandler)
+        }
+    })
+
+    onDestroy(() => {
+        if (window.parent?.document) {
+            window.parent.document.removeEventListener('click', clickOutsideIframeHandler)
+        }
+    })
 </script>
 
 {#snippet Locale()}
@@ -124,6 +145,7 @@
         bind:value={
             () => locale, (value) => onChangeLocale(value.replace(regularValueSuffix, '') as Locale)
         }
+        bind:open
         items={sortedLocales}
         onOpenChange={hideViewportDuringScrollReset}
         onOpenChangeComplete={scrollViewportToTop}
