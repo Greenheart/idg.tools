@@ -1,7 +1,7 @@
 @layer idg-reset, idg-widget;
 
 /* font-declarations-start */
-/* Adapted from @fontsource-variable/inter/index.css v5.2.7 */
+/* Adapted from @fontsource-variable/inter/index.css v5.2.8 */
 /* inter-cyrillic-ext-wght-normal */
 @font-face {
   font-family: 'Inter Variable';
@@ -189,8 +189,12 @@
             stroke: currentColor;
         }
 
-        .locale {
+        .locale-container {
+            position: relative;
             align-self: flex-end;
+        }
+
+        .locale {
             margin: 0.5rem;
             display: flex;
             align-items: center;
@@ -318,6 +322,9 @@
     }
 
     .idg-locale-list {
+        position: absolute;
+        top: 48px;
+        right: 8px;
         z-index: 30;
         display: grid;
         width: 192px;
@@ -355,7 +362,8 @@
             margin-block: 0.25rem;
         }
 
-        [data-select-viewport] {
+        [data-select-viewport],
+        .idg-locale-list {
             max-height: clamp(200px, 80vh, 500px);
         }
 

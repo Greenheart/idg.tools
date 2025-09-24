@@ -115,22 +115,22 @@
     </svg>
 {/snippet}
 
-<Select.Root
-    type="single"
-    bind:value={
-        () => locale, (value) => onChangeLocale(value.replace(recommendedSuffix, '') as Locale)
-    }
-    items={sortedLocales}
-    onOpenChange={hideViewportDuringScrollReset}
-    onOpenChangeComplete={scrollViewportToTop}
->
-    <Select.Trigger aria-label="Change language" title="Change language" class="locale"
-        >{@render Locale()}
-        {supportedLocales[locale]}
-        {@render ChevronDown()}
-    </Select.Trigger>
-    <Select.Portal>
-        <Select.Content class="idg-locale-list">
+<div class="locale-container">
+    <Select.Root
+        type="single"
+        bind:value={
+            () => locale, (value) => onChangeLocale(value.replace(recommendedSuffix, '') as Locale)
+        }
+        items={sortedLocales}
+        onOpenChange={hideViewportDuringScrollReset}
+        onOpenChangeComplete={scrollViewportToTop}
+    >
+        <Select.Trigger aria-label="Change language" title="Change language" class="locale"
+            >{@render Locale()}
+            {supportedLocales[locale]}
+            {@render ChevronDown()}
+        </Select.Trigger>
+        <Select.ContentStatic class="idg-locale-list">
             <Select.ScrollUpButton delay={autoScrollDelay}>
                 {@render ChevronDown()}
             </Select.ScrollUpButton>
@@ -153,6 +153,6 @@
             <Select.ScrollDownButton delay={autoScrollDelay}>
                 {@render ChevronDown()}
             </Select.ScrollDownButton>
-        </Select.Content>
-    </Select.Portal>
-</Select.Root>
+        </Select.ContentStatic>
+    </Select.Root>
+</div>
