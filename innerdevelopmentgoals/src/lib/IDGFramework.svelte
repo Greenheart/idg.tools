@@ -24,9 +24,9 @@
     import LocaleSelector from './LocaleSelector.svelte'
     import { IDGFrameworkState } from './idg-framework.svelte'
 
-    let { defaultLocale, persistLocale = true }: IDGFrameworkProps = $props()
+    let { defaultLocale, persistLocale = true, embedded = false }: IDGFrameworkProps = $props()
 
-    const widgetState = new IDGFrameworkState({ defaultLocale, locales, persistLocale })
+    const widgetState = new IDGFrameworkState({ defaultLocale, locales, persistLocale, embedded })
 </script>
 
 {#snippet IDGSymbol({ id, name }: { id: keyof IDGSymbols; name: string })}
@@ -47,6 +47,7 @@
         supportedLocales={widgetState.supportedLocales}
         locale={widgetState.locale}
         onChangeLocale={(selected) => (widgetState.locale = selected)}
+        {embedded}
     />
 
     <Tabs.Root bind:value={widgetState.selectedDimensionId} class="xs:px-2">

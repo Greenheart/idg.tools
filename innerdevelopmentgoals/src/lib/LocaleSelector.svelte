@@ -9,9 +9,10 @@
         supportedLocales: SupportedLocales
         locale: Locale
         onChangeLocale: (locale: Locale) => void
+        embedded: boolean
     }
 
-    let { supportedLocales, locale, onChangeLocale }: Props = $props()
+    let { supportedLocales, locale, onChangeLocale, embedded }: Props = $props()
 
     const sortedLocales = Object.entries(supportedLocales)
         .map(([value, label]) => ({ value, label }))
@@ -97,15 +98,18 @@
         }
     }
 
+    // TODO: since we won't have cross-origin access to scripts, perhaps we could pass in an embeddedMode option instead
+
+    // TODO: Apply embedded everywhere the widget is used in embed mode
     onMount(() => {
         // Improve UX by allowing the select list to be closed by clicking outside the iframe
-        if (parent?.document !== document) {
+        if (embedded) {
             window.parent.document.addEventListener('click', clickOutsideIframeHandler)
         }
     })
 
     onDestroy(() => {
-        if (parent?.document !== document) {
+        if (embedded) {
             window.parent.document.removeEventListener('click', clickOutsideIframeHandler)
         }
     })
