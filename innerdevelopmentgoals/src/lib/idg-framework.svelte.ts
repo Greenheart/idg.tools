@@ -32,7 +32,7 @@ export class IDGFrameworkState {
 
     constructor(options: Options) {
         const { locales, persistLocale } = options
-        const embedded = window !== window.top
+        const embedded = browser && window !== window.top
 
         // Only persist locale when the user wants to. Disabled when running in an iframe.
         this.#persistLocale = browser && !embedded && persistLocale
