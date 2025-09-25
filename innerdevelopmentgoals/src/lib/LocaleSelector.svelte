@@ -89,6 +89,8 @@
             selectViewport.classList.remove('invisible')
         }
     }
+
+    // IDEA: Maybe hide the LocaleSelector if the document (inside the iframe) loses focus.
 </script>
 
 {#snippet Locale()}
