@@ -8,8 +8,29 @@
     </head>
     <body>
         <div id="idg"></div>
-        <link rel="stylesheet" href="./framework.css" />
-        <script src="./framework.umd.js"></script>
+
+        <!-- Local: -->
+        <!-- <link rel="stylesheet" href="./framework.css" />
+        <script src="./framework.umd.js"></script> -->
+
+        <!-- CDN: -->
+        <!-- `@main` can be replaced with a specific commit like `@<commit-hash>` -->
+
+        <link
+            rel="stylesheet"
+            href="https:/cdn.jsdelivr.net/gh/Greenheart/idg.tools@main/innerdevelopmentgoals/dist/framework.css"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https:/cdn.jsdelivr.net/gh/Greenheart/idg.tools@main/innerdevelopmentgoals/dist/framework.umd.js"
+            crossorigin="anonymous"
+        ></script>
+
+        <!--
+            NOTE: tagged npm releases are a better long-term solution than serving cachced files from GitHub.
+            However, this require more maintenance and complex setup for automated package publishing.
+        -->
+
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 IDGFramework(document.querySelector('#idg'))
