@@ -7,7 +7,7 @@
         <title>IDG Framework</title>
     </head>
     <body style="margin:0;">
-        <div id="idg"></div>
+        <div id="idg-widget"></div>
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/gh/Greenheart/idg.tools@main/innerdevelopmentgoals/dist/framework.css"
@@ -21,7 +21,7 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                IDGFramework(document.querySelector('#idg'), {
+                IDGFramework(document.getElementById('idg-widget'), {
                     defaultLocale: '%LOCALE%',
                 })
             })
