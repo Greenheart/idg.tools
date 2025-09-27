@@ -2,6 +2,8 @@
 
 ## Add the widget to any website
 
+Add the following HTML code where you want the widget to show up. For the best result, ensure the element with `id="idg-widget"` can cover the full page width.
+
 ```html
 <div id="idg-widget"></div>
 <link
@@ -20,19 +22,8 @@
 </script>
 ```
 
----
-
-## Installation
-
-The widgets come bundled with Inter Variable fonts to be consistent with the Inner Development Goals branding.
-
-- Any website: Add to your website.
-- Using npm: Import JS library in your web project.
+By loading code from a CDN, no dedicated server is needed to host the widget.
 
 ---
 
-Import the widget you want
-
-For example:
-
-/framework to import the 2023 version of the Inner Development Goals framework
+The widget bundles the Inter Variable font to be consistent with the Inner Development Goals branding.
